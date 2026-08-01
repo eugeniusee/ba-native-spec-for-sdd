@@ -146,27 +146,30 @@ its governance references can name files that already exist.
 Composed plan — 2026-07-10 · Y.K.
 | # | Technique | Source | Output contract {expected · class · destination} | Status |
 |---|---|---|---|---|
-| 1 | t02 glossary discipline | catalogue | {defined terms · Governance · `.specify/memory/glossary.md`} | run 2026-07-10 |
-| 2 | t11 domain (conceptual) modeling | catalogue | {entities + relations · Governance · `.specify/memory/domain-model.md`} | run 2026-07-10 |
-| 3 | t12 roles & permissions | catalogue | {roles + policy rows · Governance · `.specify/memory/roles-permissions.md`} | run 2026-07-10 |
-| 4 | t13 core process mapping | catalogue | {major journeys · Governance · `.specify/memory/processes.md`} | run 2026-07-10 |
-| 5 | t14 design & UX standards | catalogue | {global budgets + UX conventions · Governance · `.specify/memory/design-standards.md`} | run 2026-07-10 |
-| 6 | t15 constitution | catalogue | {principles + governance references · Governance · `.specify/memory/constitution.md`} | run 2026-07-10 |
-| 7 | t16 global out-of-scope | catalogue | {exclusions + dispositions · Governance · `.specify/memory/out-of-scope.md`} | run 2026-07-10 |
+| 1 | t02 glossary discipline | catalogue | {glossary — canonical-term entries, definition-complete, merges dated · Context · `.specify/memory/glossary.md`} | run 2026-07-10 |
+| 2 | t11 domain (conceptual) modeling | catalogue | {domain model at seed grade — entities the core functions imply, relations at business level, boundary references disposed external · Context · `.specify/memory/domain-model.md`} | run 2026-07-10 |
+| 3 | t12 roles & permissions | catalogue | {roles + one explicit policy row per role × entity × action tuple, entities verbatim from the domain model, zero persona names · Governance · `.specify/memory/roles-permissions.md`} | run 2026-07-10 |
+| 4 | t13 core process mapping | catalogue | {the major journeys of each significant role — role verbatim, trigger → outcome, numbered helicopter steps · Context · `.specify/memory/processes.md`} | run 2026-07-10 |
+| 5 | t14 design & UX standards | catalogue | {design & UX standards at global grade — named budgets, product-wide conventions, each section real or ruled · Governance · `.specify/memory/design-standards.md`} | run 2026-07-10 |
+| 6 | t15 constitution | catalogue | {constitution at principle grade — named MUST-form principles incl. the two framework seeds, plus the Governance-class reference spine · Governance · `.specify/memory/constitution.md`} | run 2026-07-10 |
+| 7 | t16 global out-of-scope | catalogue | {the product-level fence — at least one exclusion, each naming where it lives instead and the expectation it fences · Context · `.specify/memory/out-of-scope.md`} | run 2026-07-10 |
 
 Run log:
 2026-07-10 · t02 · contract: fulfilled — glossary.md, 6 terms
   signals: none
-2026-07-10 · t11 · contract: fulfilled — domain-model.md, 6 entities
+2026-07-10 · t11 · contract: fulfilled — domain-model.md, 6 entities, 6 relations, 1 boundary reference
   signals: none
-2026-07-10 · t12 · contract: fulfilled — roles-permissions.md, Client + Specialist
+2026-07-10 · t12 · contract: fulfilled — roles-permissions.md, Client + Specialist, 6 explicit tuples
+  signals: transformation dormant — no personas.md exists; the namespace screen had
+           an empty screened set and is recorded as run, not skipped.
+2026-07-10 · t13 · contract: fulfilled — processes.md, 3 journeys across the 2 significant roles
   signals: none
-2026-07-10 · t13 · contract: fulfilled — processes.md, booking + cancellation journeys
-  signals: none
-2026-07-10 · t14 · contract: fulfilled — design-standards.md, budgets + conventions
-  signals: none
+2026-07-10 · t14 · contract: fulfilled — design-standards.md, 4 named budgets + 4 conventions
+  signals: conditionality check ran first — design/UX ground found (canvas §6 Forms,
+           §9 Localization, Olena's accessibility ruling), so the file is authored and
+           t15's reference will resolve.
 2026-07-10 · t15 · contract: fulfilled — constitution.md, 3 principles, 2 governance refs
-  signals: none
+  signals: reference spine resolved at write time — both entries exist and are stub-free.
 2026-07-10 · t16 · contract: fulfilled — out-of-scope.md, 4 exclusions
   signals: none
 

@@ -3,6 +3,25 @@ Read by Spec Kit's Constitution Check at /plan (Q5). Principles live
 here; detailed matrices live in the referenced governance files
 (plan §4.13 — reference, never restate).
 
+<!--
+  FIXTURE. T-15's output, in the shape catalogue-b5 T-15 §5 pins: Principles
+  table (named, MUST form, enforcement surface, source — no ID family, nothing
+  cites a principle by line) · Governance references table, Governance-class
+  files only.
+
+  Seeded 2026-07-10 after T-12 and T-14, so both references resolve to existing
+  stub-free files at authoring — CC-H-06's authoring-time form, checked before
+  arming could discover it.
+
+  Two framework principles enter unconditionally (D-B5-4): Authorization —
+  seeded although no personas.md exists, so AT-RQ-2's persona clause reads
+  dormant while the statement is already in force · Spec-first iteration. The
+  Data-boundary row is the principle-vs-detail screen at work: the regime's
+  detail stays in constraints.md §3, referenced, and the constitutional MUST is
+  one line. `out-of-scope.md` is deliberately not in the spine — it is
+  Context-class, and gate §10.2 keeps it under CC-H-01 alone.
+-->
+
 ## Principles
 
 | Principle | Statement (MUST form) | Enforcement surface | Source |

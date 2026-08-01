@@ -1431,3 +1431,299 @@ run land in S7 by the plan's row, and the closure event is already in the fixtur
 ledger (07-10, `HEALTHY`) — so the work is proving the skill against a ledger
 state that already records its outcome, which is the S3/S4 replay pattern rather
 than the S5/S6 authoring pattern.
+
+---
+
+## S7 — Techniques III + closure · 1 August 2026 · GREEN
+
+**Session prompt:** the standing pattern, build plan §4.
+**Grounding:** `docs/methodology/` at the pinned versions (S1's vector,
+unchanged) · build plan v0.2 §1.1, §2.1, §3, §4 (S7 row) · **catalogue b4 v0.2
+in full** (T-11…T-13) and **catalogue b5 v0.2 in full** (T-14…T-16) — each
+sheet's §2 depth, §3 contract, §4 procedure, §5 template/micro-example, §6
+hooks, §8 build-brief hook · catalogue index v0.2 rows T-11…T-16 as cross-check ·
+orchestrator v0.3 §2.4, §3.3 (AT-RQ-1…4 and the handover rule), §6.1–§6.4,
+§7.4, **§8.2 (closure, the arming act)**, §12 · gate v0.3 §3 (the static core's
+constitution expansion), §10.1–§10.4 (Scope-H cadence, results home, the HA),
+§14.1 · contract v0.2 §5–§6 (CC-H-01/-05/-06, CC-NF-03, CC-OS-03, CC-XA-01/-02)
+and §7's gate run 2 · S5/S6's technique-skill shape, `ba-discovery`, and S3/S4's
+`ba-gate-health` and `ba-close-band1`, as the interfaces this session's units
+meet.
+
+### Units built — 6 of the 67 (running total 60)
+
+| Unit class | Built | Notes |
+|---|---|---|
+| Technique skills (§2.1) — 6 | `ba-t11` … `ba-t16`, each `SKILL.md` + `references/example.md` | all `disable-model-invocation: true`; 12 payload files |
+| Test harness | `tests/check-techniques3.sh` · 31 new rule classes in `tests/check-band1-artifacts.py` (B40–B70) · `tests/fixtures/…/band1/gate-health.md` · `band1/first-pass/{roles-permissions,out-of-scope}.md` | not §2 build units; the S7 exit test |
+| Prior-session fixture units touched | `project/.specify/memory/{domain-model,processes,design-standards,out-of-scope,roles-permissions,constitution}.md` · `band1/aspect-plans.md` · `expected/gate-run3.entry` | D30–D35 — see below |
+
+No new subagent and no new workflow skill: the six technique skills dispatch
+under `ba-discovery` (S5), and closure is `ba-close-band1` + `ba-gate-health`,
+both built at S4/S3. **S7 is the first session whose exit test is a replay of a
+skill it did not build** — the closure act is proven against a ledger state that
+already records its outcome.
+
+### Compilation-rule application (§3)
+
+- **§3.1 travels verbatim.** Carried byte-faithful into the compiled prompts:
+  each sheet's §2 **Depth** boundary with its named forbidden zones · each §3
+  output-contract triple `{expected · class · destination}` · the exact heading
+  and header sets — `Entities` · `Relations` · `Boundary references (external —
+  not entities)`; `Roles` · `Policy`; `Global budgets` · `UX & interaction
+  conventions` · `Visual identity & references`; `Principles` · `Governance
+  references`; `Exclusions` — with their column vocabularies · the journey
+  shape `## <name> — role: <role>` / `Trigger: … → Outcome: …` / numbered
+  `actor → action → observable result` · the **lives-instead vocabulary**, three
+  values, verbatim · the `open — no source material` and `N/A — <reason>` ruling
+  forms · the two framework principles' MUST sentences · the significance test
+  (*actor of ≥ 1 canvas Core Function line*) · the one-explicit-row-per-tuple
+  rule and its no-wildcard, no-inheritance corollaries.
+- **§3.2 compiled with transformation.** Each §2 metadata + §3 contract became
+  frontmatter plus the invocation-contract block: the P-O3 self-check in both
+  halves and the exact refusal when either is unmet. Each §8 build-brief hook
+  became the skill's wiring — inputs loaded **in order**, interaction pattern,
+  outputs written — with the "Phase 2 adds" list implemented: the EG-1 line-parse
+  and glossary-first routing assist plus the derived-diagram offer (T-11) · the
+  activity-line read, the tuple-coverage rendering toward the ⚑ sign-off, and the
+  automated namespace screen at write time (T-12) · the coherence-diff rendering
+  and the locatability check for later drafting (T-13) · the **conditionality
+  report** rendering and the feature-vs-global classification assist (T-14) · the
+  plan-check surface shape, the reference-resolution validator, and the
+  principle-vs-detail router (T-15) · the adjacency-candidate generator over
+  function and connection lines, the Covers-column miner, and the graduation-note
+  rendering (T-16).
+- **The chain's order is compiled into the skills, not left to the plan.** Three
+  of the six state their predecessor in the invocation contract itself — *run
+  after the domain model* (T-12), *run after the roles model* (T-13, T-15) — and
+  T-14 states its successor (*run before the constitution*). The composed plan
+  can still be composed wrongly; the skill will say so at the self-check rather
+  than write a policy row against an entity that does not exist yet.
+- **D-P2-10 lands, six more times.** Each §5 template + micro-example compiled to
+  `references/example.md` with a *what the example is showing* reading. Four
+  examples carry a worked shape the sheet implies but does not draw: T-11's
+  glossary-first two-output sequence, T-12's *had charters existed* walk-through
+  (which changes nothing in the tables, and that is the point), T-14's full
+  **conditionality-branch report** for the no-design-ground case, and T-16's
+  genuinely-empty-boundary waiver referral.
+- **§3.3 never compiled.** No BABOK anchor, no §7 mining note, no review record
+  reached the payload; the leak scan additionally greps `D-B[0-9]-[0-9]` and
+  `D-W[0-9]`. Every locked decision this batch rests on ships as its **rule**,
+  never its ID: *no wildcard cells, no role inheritance* rather than D-B4-2, *a
+  role is significant iff it is the actor of ≥ 1 canvas Core Function line*
+  rather than D-B4-4, *budgets are named rows and the name is the citation
+  target* rather than D-B5-2, *≥ 1 exclusion at seed, and the empty case takes an
+  aspect waiver* rather than D-B5-5.
+- **§0 layering, at the technique layer.** No skill restates an AT criterion, and
+  every one of the six refuses in as many words to confirm a criterion or clear
+  an aspect. Two go further: **T-12 refuses to state the authorization principle**
+  even though it is the file that enforces it, and **T-15 refuses to author the
+  roles and budgets** it references — the same boundary, held from both sides.
+
+### D-P2 bindings applied
+
+| ID | How it landed |
+|---|---|
+| D-P2-2 | All six ship `disable-model-invocation: true`, asserted per skill |
+| **D-P2-4** | **1:1 technique↔skill holds at 16 of 20.** No sheet split, none merged — including T-12, which carries the conditional persona→role transformation inside the one skill rather than as a separate act |
+| D-P2-6 | Unbroken. The six Requirements homes are all ◇ — born by their runs, never installed |
+| **D-P2-10** | **Six more `references/example.md`**; the installed file count rises to 73 |
+| D-P2-11 | Untouched this session — no tuning-log entry was generated, because no false-ask, wrong-draft or dead-answer arose in a replay |
+
+### Architecture decisions
+
+**1 · The validator learns six artifacts, and one relation between two of them.**
+B40–B68 judge the six destinations. B69 and B70 judge something different: the
+**seed → mature delta**. Two of the six files have one, and the two deltas are
+produced by different machinery — a tuple the gate added (accretion: the seed row
+set survives untouched, in place, and the file grows by exactly one row) and an
+exclusion that graduated (resolution in place: the disposition moves from a phase
+hint to a named epic, and the basis never moves). Modelling them as one rule
+would have made the graduation look like a rewrite; that was the first red the
+suite produced, and it was the suite being right.
+
+**2 · The first-pass snapshots are taken only where there is a delta.**
+S6 recorded one (`constraints.md`, for the Assumed → Confirmed flip). S7 records
+two, and deliberately not six: `processes.md`, `design-standards.md`,
+`constitution.md` and `domain-model.md` are byte-identical at seed and today, so
+a snapshot would assert nothing and would need maintaining. A snapshot exists
+where a mechanism needs proving, not where a date exists.
+
+**3 · Closure is asserted from the event, not from the head.**
+The ledger head shows Stakeholders `first-pass-cleared since 2026-07-15` — the
+post-RO-1 re-clear, five days *after* closure. Reading precondition 1 off the
+head would have asserted a state that did not exist at the act. The suite parses
+the closure event's own `states:` block instead, which is the record of what was
+true when the BA declared closure. This is the general shape of replaying an act
+against a ledger that has kept moving.
+
+**4 · The arming run gets its own fixture file, and it is outside `memory/`.**
+`band1/gate-health.md` is new this session — S3 built `ba-gate-health` and its
+verdict shapes, but no ledger instance existed. It carries two entries: the
+arming run at closure and the post-ingestion full run the cadence requires. The
+suite additionally asserts the *negative* — that no `gate-health.md` sits under
+`.specify/memory/` — because the runtime-ledger rule is a placement rule, and a
+placement rule is only checkable by looking where the file must not be.
+
+**5 · A HEALTHY arming run is proven by an absence.**
+`/ba-close-band1` says a heavy-gap arming run signals an aspect-gate escape and
+logs a **threshold-gap candidate** tagged with the AT-ID that should have caught
+it. This run was HEALTHY, so the correct ledger state is *no candidate logged* —
+and the suite asserts that no `Threshold-gap candidate` line exists, while also
+asserting the skill still carries the candidate's record shape. The mechanism is
+proven present and proven not to have fired.
+
+### Session exit test — GREEN
+
+`tests/check-techniques3.sh` — **158 checks, 0 failures.**
+
+Against the plan's S7 row (*Requirements clears; `/ba-close-band1` succeeds; the
+arming Scope-H run lands in `gate-health.md` — HEALTHY*):
+
+- **Requirements clears.** The composed plan carries all six techniques with
+  their contracts pinned character-for-character against the skills, in
+  dependency order, with the ordering rationale on the record. The six homes
+  validate against 29 shape rules. All four AT-RQ rows are re-derived live from
+  the files rather than read back from the table: every enumerated home exists
+  with real content; every governance file the constitution references resolves
+  and is stub-free; the two defined roles are exactly the roles the canvas names;
+  every domain entity has a glossary entry; six entities and six relations with
+  no entity standing relation-less; and the significance criterion the journeys
+  row applied is stated. The BA's `→ CLEARED · Y.K. · 2026-07-10` closes it.
+- **`/ba-close-band1` succeeds.** Precondition 1 is re-derived from the closure
+  event's state block; precondition 2 is the `AWs carried: none` line. The act's
+  record, the head's `Band: 1 (closed 2026-07-10)`, the non-repeatability
+  refusal, and the handover effects are all asserted.
+- **The arming run lands, HEALTHY.** The request is in the ledger, the entry is
+  in `gate-health.md`, the two agree on date, trigger, scope and verdict, and the
+  skill is asserted never to run the check itself.
+- **31 seeded defects, one per new rule.** Each mutation is a single edit to a
+  real fixture file and each is asserted to produce *exactly* its rule ID (three
+  produce a documented pair, where renaming a section necessarily also orphans
+  the table under it).
+- **Layering clean** across all 12 S7 payload files.
+
+Regression, all green after the session's fixture reshaping:
+`check-m.sh` 40 · `check-gate.sh` 59 · `check-cards.py` · `check-ledger.py` 14
+rules · `check-orchestrator.sh` 120 · `check-techniques.sh` 100 ·
+`check-techniques2.sh` 122 · `check-techniques3.sh` 158.
+
+`tests/check-layout.sh` is install-dependent and was not re-run in this session;
+`tests/layout.expected` already registered the six `S7|` rows from S1, and all
+six directories now exist with `SKILL.md` + `references/example.md`.
+
+### Divergences flagged (§3.2 discipline, generalized)
+
+**D30 · Four of the six Requirements homes stood in pre-sheet shapes.**
+`domain-model.md`, `processes.md`, `design-standards.md` and `out-of-scope.md`
+were authored at S2/S3 to satisfy the M scripts, months before the b4/b5 sheets
+were compiled: `Meaning` for `What it is (one business line)`, `Relationships`
+for `Relations`, no boundary-reference section, no multiplicity column, journeys
+as a numbered table with no role in the heading and no trigger → outcome line,
+budgets as `Category | Budget` rather than the name · metric · target · condition
+grammar, and an out-of-scope file with no `## Exclusions` heading and a
+`Disposition` column.
+
+*Resolution taken:* **reshaped, all four, to the sheets** — the same move S6 made
+for the Context estate. `roles-permissions.md` and `constitution.md` needed
+nothing; both were already in sheet shape. Nothing the M scripts read changed
+meaning: `sk_health`'s CC-H-06 reads the constitution's `## Governance
+references` table (untouched), `sk_stories` and `sk_idgraph` read the roles
+table (untouched) and use `domain-model.md` as a path only. The one consequence
+is arithmetic: five certification-manifest hashes in
+`expected/gate-run3.entry` were regenerated, which is the manifest doing exactly
+what it is for.
+
+**D31 · `processes.md` cited a call four days after the artifact was cleared.**
+The pre-S7 booking journey sourced its hold step to `call 2026-07-14`, while the
+Requirements aspect cleared 2026-07-10 — and the S5 first-pass glossary, dated
+07-10, already sourced the term `Hold` to *processes.md: booking journey*. The
+world could not have both.
+
+*Resolution taken:* **the chronology fixed at the source cell, not the date.**
+The hold step is re-sourced to the kickoff notes — the seed's own material, which
+is what the 07-10 glossary was reading when it cited this file. The 07-14 call
+keeps its real effects elsewhere in the estate (the constraints flip, the
+register's Clinic Admin population, the canvas actor line). A fixture that cites
+forward in time is a fixture that cannot be replayed, and this one is replayed
+by three suites.
+
+**D32 · b4 T-11 §5 says `Hold` is deliberately absent; this world carries it at
+seed.** The sheet's continuity thread reads *"the hold mechanism is deliberately
+absent — it is spec-born, feature-004 ground; if a future spec relies on a Hold
+relationship, CC-DA-01's update-first path brings it into the model then, never
+before."* The fixture's domain model has carried `Hold` since S2, and the spec's
+References line names it among the six entities CC-DA-01 resolves.
+
+*Resolution taken:* **both stand, and the compiled artifact follows the sheet.**
+`ba-t11/references/example.md` carries the sheet's model verbatim — five
+entities, no `Hold`, with the update-first path spelled out as *the hold that is
+deliberately absent*. The **fixture world differs because its evidence differs**:
+here the kickoff notes state the hold, the glossary has carried the term with
+that source since S5, and an entity whose term the glossary defines and whose
+step a journey states is not spec-born in this world. What the sheet is
+protecting — no attribute, no lifecycle, no cutoff at conceptual grade — holds in
+both: the fixture model carries `Hold | reserves | Slot` and nothing about five
+minutes or `expires_at`, and B43 enforces that mechanically.
+
+**D33 · b4 T-13 pins one role per journey; the fixture had one journey with
+two.** The pre-S7 "Cancellation journey" carried a Client step and a Specialist
+step under one heading, which the sheet's shape has no room for — the role is in
+the heading, singular, verbatim.
+
+*Resolution taken:* **split into two journeys**, and the Specialist one carries
+its own provenance: the governance change of 2026-07-17 that added the
+`Specialist × Appointment × cancel` policy row. That makes the pair legible as
+what it is — a journey that arrived with the tuple that authorized it — and it
+gives B55's significance check two roles to resolve rather than one heading with
+two actors inside it.
+
+**D34 · The composed Requirements plan's contract triples were S4 placeholders.**
+`{entities + relations · Governance · …}` and its five siblings were written at
+S4, before the sheets existed, and four of the seven also carried the wrong
+artifact class (Governance where b4/b5 say Context).
+
+*Resolution taken:* **refined to the sheets' contracts and classes**, and the
+suite now asserts each triple character-for-character against its skill — the S6
+pattern, applied to this aspect. The t02 row was corrected in the same pass
+(`{defined terms · Governance · …}` → the glossary sheet's own contract, class
+Context) although T-02 is S5's unit: leaving one row wrong inside a table the
+suite reads for correctness would have been a knowingly false fixture.
+
+**D35 · sheet ⇄ index, checked and clean.** Index v0.2 rows T-11…T-16 were read
+against b4 §§2–3 and b5 §§2–3 cell by cell — Serves, class, evidence triggers,
+skip-if, depth boundary, expected output, destination. **No divergence found**,
+including the three cells most likely to drift: T-14's conditionality skip-if,
+T-15's persona-clause allocation (the principle half here, the role half at
+T-12), and T-16's lives-instead vocabulary, which the index reproduces in full.
+Recorded because the plan asks for the check, not only for its failures.
+
+### Open for the next session
+
+S8 — Band 2 + spine (`ba-t17` · `ba-t18` · `ba-tier1` · `ba-tier2` ·
+`ba-analyst` agent, from b6 v0.2 and elicitation v0.3 in full).
+
+Inputs now in place: **the armed toy** — Band 1 closed, Scope H armed, the
+arming entry in `band1/gate-health.md`, and the estate the contract now owns in
+the shapes its sheets pin · **the Requirements estate as Tier-1/Tier-2 input** —
+`processes.md` is a kit input and Tier-2 stack row 5; `out-of-scope.md` is a kit
+part-A baseline and stack row 7; `domain-model.md` and `roles-permissions.md` are
+stack rows 3 and 4 — all four now shaped as their consumers expect to read them ·
+**the roadmap already decomposed and allocated** (E-01…E-08, Allocation 1 and 2),
+so T-17/T-18 are a replay against a recorded outcome, the S7 pattern again ·
+**the graduation loop closed from both ends** — the out-of-scope payments row
+resolves to E-07, and E-07's Source cites the row it graduated from.
+
+Three things S8 inherits as work. **(i)** The validator has no rules for
+`roadmap.md`, the scope brief, the kit, or the spec — four artifacts, and the
+last of them is the only one with an existing checker family (S2's M scripts),
+so the split between *what the M scripts already judge* and *what a Band-2/spine
+validator should add* needs drawing before rules are written. **(ii)** T-18 is
+the catalogue's one **repeatable** technique, and its skip-if is event-shaped
+(*the current allocation stands approved and no C1 event since the last log
+entry*) — the first technique skill whose self-check has to read a log rather
+than a ledger head. **(iii)** `ba-tier2` is the first unit that both consumes the
+gate and is consumed by it: it drafts the spec r5 that S2's fixtures already
+carry and S3's gate run 2 already fails, so its exit test is bounded on both
+sides by recorded outcomes — and the `≤ 7 GQ` cap plus cite-or-mark are the two
+properties that have to be provable from the answer sheet alone.
