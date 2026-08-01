@@ -24,8 +24,13 @@ project/                        the world as an installed project
     scope/E-03.md               the filled brief (elicitation §8.2)
     scope/E-03.kit.md           the call kit (elicitation §8.1)
   specs/004-appointment-booking/spec.md      = revisions/spec-r6.md
+presale-brief.md                raw presale + kickoff material — the Frame input (S5)
 call-notes-E-03.md              scripted call notes — the ingestion input
 tier2-answer-sheet.md           the ≤ 7 GQ answers — the Tier-2 input
+band1/                          the orchestrator §12 ledgers (S4)
+  first-pass/                   what T-01/T-02/T-03 produced (S5) — canvas at
+                                framing grade, the pre-RO-1 register, the
+                                6-term glossary; see that directory's README
 revisions/
   spec-r5.md                    the gate-§14 defect set, seeded
   spec-r6.md                    the same spec after §14.1's five fixes
@@ -42,8 +47,27 @@ expected/                       the recorded verdict table per case, plus the
                                 two recorded gate-report entries (S3)
 ```
 
-Run the M suite with `tests/check-m.sh` and the gate suite with
-`tests/check-gate.sh`, both from the package root.
+Run the M suite with `tests/check-m.sh`, the gate suite with
+`tests/check-gate.sh`, the orchestrator suite with `tests/check-orchestrator.sh`
+and the technique suite with `tests/check-techniques.sh` — all from the package
+root.
+
+### The estate is in framework shape, and that is now checked
+
+`tests/check-band1-artifacts.py` validates `canvas.md`, `glossary.md` and
+`stakeholders.md` against the shapes their sheets pin, on **both** the
+`band1/first-pass/` set and this mature `project/` set, and asserts that every
+first-pass row survives into the mature one. Three things moved at S5 to make
+that true — recorded in `BUILD-LOG.md` as D20:
+
+- **canvas §7** now reads *Availability published by Specialists or their Clinic
+  Admins* — RO-1's resolution, which the ledger records and the canvas had not
+  carried.
+- **canvas §3–§5, §7, §11** gained their citations, and §13's Business and
+  Regulatory one-liners now cite `constraints.md: C-B1 / C-R1` rather than the
+  kickoff notes, which say nothing about either.
+- **`glossary.md`** gained the `Merged synonyms` column and **`stakeholders.md`**
+  became one six-column table — the shapes T-02 §5 and T-03 §5 pin.
 
 ### Two facts worth knowing before reading a verdict
 

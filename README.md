@@ -12,8 +12,8 @@ not itself the installed thing.
 
 ## Status
 
-Phase 2 build, sessions **S1–S4 of S9** complete (foundation · M machinery ·
-gate · orchestrator). See
+Phase 2 build, sessions **S1–S5 of S9** complete (foundation · M machinery ·
+gate · orchestrator · techniques I). See
 [`BUILD-LOG.md`](BUILD-LOG.md) for the per-session record and
 [`docs/methodology/ba-native-spec-phase2-build-plan.md`](docs/methodology/ba-native-spec-phase2-build-plan.md)
 §4 for the session plan.
@@ -24,7 +24,8 @@ gate · orchestrator). See
 | S2 | 10 checker scripts · toy-world fixtures | ✅ built |
 | S3 | Gate skills · gate agent · 3 compiled cards · report/certification writer | ✅ built |
 | S4 | Orchestrator agent · 9 workflow skills | ✅ built |
-| S5–S7 | 16 Band-1 technique skills · discovery agent | pending |
+| S5 | `ba-t01`…`ba-t03` · discovery agent · `/ba-run` dispatch proven | ✅ built |
+| S6–S7 | 13 further Band-1 technique skills | pending |
 | S8 | Band-2 pair · Tier-1/Tier-2 spine · analyst agent | pending |
 | S9 | Adapter · README · quickstart · Phase-2 exit test | pending |
 
@@ -55,11 +56,12 @@ Offline use needs `vendor/spec-kit-v0.12.5.zip` — see [`vendor/README.md`](ven
 ## Test
 
 ```sh
-tests/check-layout.sh --target /path/to/project --session S4   # this session's bar
+tests/check-layout.sh --target /path/to/project --session S5   # this session's bar
 tests/check-layout.sh --target /path/to/project                # full Phase-2 bar
 tests/check-m.sh                                               # the M-checker suite
 tests/check-gate.sh                                            # the gate suite
 tests/check-orchestrator.sh                                    # the orchestrator suite
+tests/check-techniques.sh                                      # the technique suite, batch I
 ```
 
 `check-m.sh` runs the ten vendored checkers against the appointment-booking
@@ -97,7 +99,11 @@ ba-native-spec/
    ├─ check-cards.py       compiles + verifies the three cards (S3)
    ├─ check-orchestrator.sh  the orchestrator suite — §12 exhibits replayed (S4)
    ├─ check-ledger.py      aspect-ledger grammar validator (S4 harness; not installed)
-   ├─ fixtures/            the toy world (S2) · band1/ the §12 ledgers (S4)
+   ├─ check-techniques.sh  the technique suite, batch I — T-01/T-02/T-03 (S5)
+   ├─ check-band1-artifacts.py  canvas/glossary/register validator (S5 harness;
+   │                       not installed — the technique layer ships no checker)
+   ├─ fixtures/            the toy world (S2) · band1/ the §12 ledgers (S4) ·
+   │                       presale-brief.md + band1/first-pass/ (S5)
    └─ exit-test.md         the Phase-2 exit script (S9)
 ```
 

@@ -875,3 +875,251 @@ reaches `first-pass-cleared` with a §3.4 evidence table") reachable at all ·
 One thing S5 inherits as work, not as input: **D18's canvas** — T-01 is the
 skill that lands a canvas, so the fixture's §7 line is naturally reconciled
 there rather than by an out-of-band edit.
+
+---
+
+## S5 — Techniques I · 1 August 2026 · GREEN
+
+**Session prompt:** the standing pattern, build plan §4.
+**Grounding:** `docs/methodology/` at the pinned versions (S1's vector,
+unchanged) · build plan v0.2 §1.1, §2.1, §2.3, §2.8, §3, §4 (S5 row), §5 step 3 ·
+**catalogue b1 v0.3 in full** (T-01, T-02, T-03 — each sheet's §2 depth, §3
+contract, §4 procedure, §5 template/micro-example, §6 hooks, §8 build-brief
+hook) · catalogue index v0.2 rows T-01…T-03 as cross-check · elicitation v0.3
+§0 operating principles, §3.5 routing table, §7 build-brief format · writing
+standard v0.3 §1 golden rules and §4's banned-word list · sequencing plan v0.4
+§2 template rules · orchestrator v0.3 §3.3/§3.4, §6.1–§6.4, §7.1–§7.4, §12 ·
+S4's `/ba-run`, `/ba-frame` and the two Band-1 ledgers, as the interface these
+three skills implement.
+
+### Units built — 4 of the 67 (running total 47)
+
+| Unit class | Built | Notes |
+|---|---|---|
+| Technique skills (§2.1) — 3 | `ba-t01` · `ba-t02` · `ba-t03`, each `SKILL.md` + `references/example.md` | all `disable-model-invocation: true` |
+| Subagents (§2.3) — 1 | `ba-discovery` — the technique executor, `tools: Read, Write, Edit, Grep, Glob` | **no Bash** — the technique layer runs no check |
+| Test harness | `tests/check-techniques.sh` · `tests/check-band1-artifacts.py` · `tests/fixtures/…/presale-brief.md` · `tests/fixtures/…/band1/first-pass/` | not §2 build units; the S5 exit test — see decision 1 |
+| S2 fixture units touched | `project/canvas.md` · `project/.specify/memory/glossary.md` · `project/.specify/memory/stakeholders.md` | D18 paid, plus D20 — see below |
+
+`presale-brief.md` is build plan §2.8's missing fixture input ("presale brief →
+the framed-canvas expectation"). It did not exist after S2; the S5 and the S9
+exit scripts both name it, so it is authored here.
+
+### Compilation-rule application (§3)
+
+- **§3.1 travels verbatim.** Carried byte-faithful into the compiled prompts:
+  each sheet's §2 **Depth** boundary with its named forbidden zones · each §3
+  output-contract triple `{expected · class · destination}` · the two marker
+  states, kept distinct — `open — no source material` (a visible hole) vs.
+  `N/A — <reason>` (a BA ruling) · the `[CONFLICT: <A> says … · <B> says …]`
+  grammar · the `P-n`/`O-n` line-ID convention with its monotonic-continuation
+  and never-reused clauses, and the `→ P-n` / `→ O-n` / `→ <vision section>`
+  linkage notation · the ≤ 10 capability-line cap · the three doc-3 operating
+  principles, word for word, in the agent · the banned-word list · the §3.5
+  routing/reopen signal payloads.
+- **§3.2 compiled with transformation.** Each sheet's §2 metadata + §3 contract
+  became frontmatter (`name` · `description` naming technique, Serves and
+  destination) plus an **invocation-contract block** at the skill top: the P-O3
+  self-check in both halves, and the exact refusal when either is unmet. Each
+  §8 build-brief hook became the skill's wiring — inputs loaded in order,
+  interaction pattern, outputs written — with the "Phase 2 adds" list
+  implemented: multi-format ingestion and the parse-vs-draft branch (T-01),
+  cross-file term extraction with usage-location evidence and batch assembly
+  (T-02), transcript parsing toward register fields and the coherence diff
+  (T-03).
+- **D-P2-10 lands.** Each §5 output template + micro-example compiled to
+  `references/example.md` as a few-shot, with a *what the example is showing*
+  reading — the rules made visible in the exemplar rather than only stated.
+- **§3.3 never compiled.** No BABOK anchor, no §7 mining note, no review record
+  entered the payload. T-01's §7 right column — *what the framework sheet must
+  satisfy* — **is** operative and was folded into the procedure and the
+  refusals (real names never masked · destination file not a chat table ·
+  Context/Constraints added · the two marker states · full cite-or-mark · BA
+  review replacing "never ask for confirmation" · line-IDs · no
+  stage-navigation postamble). Its left column, the mining evidence, stayed
+  home. The leak scan in `check-techniques.sh` greps for `Reference design` too,
+  so a later session cannot re-import it by habit.
+- **§0 layering, at the technique layer.** No skill restates an AT criterion.
+  T-01's framing report names the nine canvas-anchored criteria **by ID** and is
+  told, in as many words, to report what the sections show and never confirm one.
+
+### D-P2 bindings applied
+
+| ID | How it landed |
+|---|---|
+| D-P2-2 | All three ship `disable-model-invocation: true`. Negative-tested: deleting the line from an installed `ba-t02` turns `check-layout.sh` red |
+| **D-P2-3** | **The third of the four agents ships.** `ba-discovery`'s tool policy is asserted exactly — adding `Bash` turns `check-techniques.sh` red |
+| **D-P2-4** | **1:1 technique↔skill holds at 3 of 20.** No sheet was split, none merged |
+| D-P2-6 | Unbroken. The three skills write content only at a contracted destination, and `check-layout.sh` still asserts all 19 runtime-born paths absent after a fresh install |
+| **D-P2-10** | **Micro-examples compile in**, one `references/example.md` per skill. They install (47 files hashed, up from 40) and cost nothing until loaded |
+
+### Architecture decisions
+
+**1 · The artifact validator is a test harness, not a twelfth script.** The S5
+exit test needs something that can judge a canvas, a glossary and a register.
+Shipping it would contradict the documents it compiles from twice over: build
+plan §2.4 pins the vendored script set at **eleven**, and orchestrator §3.2 rule
+4 says AT criteria have **no checker** by construction — they are BA-confirmed
+evidence checks. So `tests/check-band1-artifacts.py` lives in `tests/`, is never
+installed, and exists for the same reason `check-ledger.py` and `check-cards.py`
+do: to keep the compiled prompts honest against the pinned sheets. Sixteen
+rules, sixteen seeded mutations.
+
+**2 · The technique reports; `/ba-run` refreshes.** Sheets T-02 §4.6 and T-03
+§4.6 both make the evidence-table refresh a framework act of the technique,
+while S4 compiled that refresh into `/ba-run`'s **post-run touchpoint**
+(orchestrator §7.4). Two owners for one act is a defect waiting to happen, so
+the split is: the **skill reports** which criteria its run moved and what remains
+open; **`/ba-run` refreshes** the table and proposes confirmation; **`/ba-clear`**
+takes the BA's ruling. Nothing is lost — the refresh still happens at run end,
+exactly once — and §7.4's "defined touchpoint" language is what settles the tie.
+Asserted in the suite on both skills.
+
+**3 · T-01 emits no signal, and says so.** T-02 and T-03 carry routing and reopen
+emission; T-01 carries neither. At Frame nothing is gated, so there is no reopen
+to signal, and every artifact home but `canvas.md` is still empty, so there is
+nowhere to route. A finding that would route later is carried as an open line or
+a `[CONFLICT: …]` marker and read by the aspect that owns it. Stating the absence
+is worth more than leaving it inferable.
+
+**4 · Negatives are mutation-derived in-suite**, in the idiom S3 and S4 used: one
+legal base artifact set, validated clean first, then sixteen single-defect
+mutations.
+
+### Session exit test — GREEN
+
+Build plan §4, S5 row: *from the fixture presale brief: Frame runs T-01 →
+`canvas.md` in framework shape; T-02/T-03 land glossary + register; Stakeholders
+reaches `first-pass-cleared` with a §3.4 evidence table.*
+
+```
+$ tests/check-techniques.sh
+
+▸ The Frame input                        raw material: no table, no line-IDs, no citations
+▸ Frame runs T-01 → canvas.md            16 rules · substrate convergence · framing-grade holes
+▸ T-02 and T-03 land glossary + register 16 rules · dated merge · continuity into the estate
+▸ The §12.2 evidence table, EVIDENCED    AT-ST-1/-2/-3 re-derived from the artifacts
+▸ Seeded defects — 16 rules, 16 mutations all sixteen caught
+▸ /ba-run dispatch proven                both ends of the interface, one contract string
+▸ The three sheets, compiled             depth · markers · conflict · signals · refusals
+▸ The ba-discovery agent                 no Bash · three principles · both boundaries
+▸ Consistency and layering               template ⇄ example · zero methodology leaks
+
+  passed: 100   failed: 0
+✓ GREEN — S5 techniques I: T-01/T-02/T-03 · 16 seeded defects · /ba-run dispatch · ba-discovery
+```
+
+**How much of that is real.** The **validator runs live** — a real parser over
+the canvas, the glossary and the register, judging thirteen sections in order,
+cite-or-mark on every cell, `P-n`/`O-n` contiguity, link resolution, the ≤ 10
+cap, the two table headers, the `Kind` vocabulary, explicit sponsor authority,
+canvas ⇄ register coherence recomputed from scratch, and continuity from the
+first-pass set into the mature estate. The **artifacts are recorded**, because
+producing one is an agent act and cannot be re-derived inside a regression suite
+— the same split S3 made for the gate's A pass and S4 for the ledgers.
+
+One thing worth naming: **§12.2's evidence table is now evidenced.** S4 recorded
+it; S5 re-derives every claim in it — the sponsor and the two populations from
+canvas Customers, the four register entries with rights or comms and the
+sponsor's authority spelled out, and AT-ST-3's coherence recomputed by diff. A
+row that claimed something the artifacts do not show is now a caught defect.
+
+Supporting checks run this session, all green:
+
+| Check | Result |
+|---|---|
+| Fresh `--offline` install, then `check-layout.sh --session S5` | ✓ GREEN — 83 passed, 0 failed, 20 pending |
+| Full-bar `check-layout.sh` must still **fail** at S5 | ✓ exits non-zero — 20 units still owned by S6–S9 |
+| `verify-manifest.py` after the install | ✓ 47 files hashed, all matching (S4's 40 + S5's 7) |
+| `references/example.md` installs and is hashed | ✓ under `.claude/skills/ba-t01/references/` |
+| S2 regression — `check-m.sh` | ✓ GREEN, 40 passed |
+| S3 regression — `check-gate.sh` · `check-cards.py` | ✓ GREEN, 59 passed · cards byte-identical |
+| S4 regression — `check-orchestrator.sh` | ✓ GREEN, 120 passed |
+| Delete `disable-model-invocation` from an installed `ba-t02` | ✓ **RED**, naming D-P2-2 |
+| Add `Bash` to the `ba-discovery` agent | ✓ **RED** twice — tool policy and the no-check rule |
+| Soften T-01's "runs no question loop at all" | ✓ **RED** |
+| Break one `→ P-n` link in the framed canvas | ✓ **RED** twice — the validator's B5 and the AT-ST-3 row |
+
+### Divergences flagged (§3.2 discipline, generalized)
+
+**D18 · paid.** S4 flagged the fixture canvas's §7 Core Functions line as
+carrying neither the pre- nor the post-RO-1 form, and handed it to S5 as work.
+The line now reads **"Availability published by Specialists or their Clinic
+Admins"** — §12.3's resolution text, in the post-RO-1 snapshot `project/` is.
+The two hash prefixes this moves (`canvas.md`, `glossary.md`) were re-recorded
+with `check-gate.sh --record`; the diff is exactly two lines of the run-3
+certification manifest and nothing else.
+
+**D20 · three fixture artifacts were not in the shape their sheets pin.**
+Discovered while building the validator, all in the same class as D18 — the
+mature `project/` estate rendering artifacts its own way rather than the sheet's:
+
+1. `glossary.md` had **no `Merged synonyms` column** (T-02 §5 pins four). The
+   column is not decoration — it is what makes later drift detectable rather
+   than re-litigable, and CC-XA-03's drift reading stands on it. Added, with the
+   corpus's own merge line (`booking (noun) — merged 2026-07-10, canvas usage`).
+2. `stakeholders.md` was **two tables** — Individuals and Populations, with a
+   different column set each — where T-03 §5 pins one six-column table with a
+   `Kind` column. Reshaped; `Dr. Ivanova` restored, so the first-pass register is
+   a strict prefix of the mature one and the world reads as continuous.
+3. `canvas.md` had **five uncited, unmarked cells** (§3–§5, §7, §11) and two
+   §13 one-liners citing `[kickoff notes]` for material the kickoff notes do not
+   contain. Cite-or-mark is not optional on a framework artifact. §3–§5 and §7
+   now cite the presale brief and the kickoff notes, §11 cites the Unlike entry
+   it differentiates against, and §13's Business and Regulatory lines cite
+   `constraints.md: C-B1 / C-R1` — the file that actually owns them.
+
+*Resolution taken:* **fixed, not merely flagged.** These are the three artifacts
+T-01/T-02/T-03 own, so S5 is their natural home — the reasoning S4 used to hand
+D18 here. The fix is load-bearing rather than cosmetic: the validator now runs
+over **both** the first-pass set and the mature estate, and the mature estate
+only passes because it is in framework shape. *Doc-first (§3.5):* no doc defect —
+the sheets were right and the fixture was wrong.
+
+**D21 · the build plan's toy run and the corpus's history enter the world by
+different doors.** Build plan §4's S5 row and §5 step 3 both have **T-01 birth
+`canvas.md` from the presale brief** — the canvas-absent branch. Orchestrator
+§12.1, and therefore S4's two fixture ledgers, record Frame 2026-07-07 with
+`canvas.md` **already present from presale**: the `## Frame` plan row's status is
+`dropped — canvas.md present from presale, carried into the repo`, which is
+T-01's skip-if. Both cannot be one Frame act.
+
+*Resolution taken:* **both stand, and they converge.** The ledgers record §12.1's
+history and are right to. The build plan's scripts enter the same world through
+the other branch, because it is the only entry a reproducible fixture run can
+have — the skip-if branch produces nothing to check. `band1/first-pass/canvas.md`
+is the second door's output, and the suite **asserts the convergence rather than
+assuming it**: thirteen sections, `P-1`/`P-2`, `O-1`/`O-2` — the substrate line
+the Frame band event records, character for character, plus the same contract
+triple in three places (`/ba-frame`, `ba-t01`, the fixture's `## Frame` row).
+*Doc-first:* no erratum. §12 is a running example, not a specification of which
+branch a test script must take; and the build plan's own §5 is explicit.
+
+**D22 · sheet ⇄ index, checked and clean.** Index v0.2 rows T-01…T-03 were read
+against b1 v0.3 §§2–3 cell by cell — Serves, evidence triggers, skip-if, depth
+boundary, expected output, destination. **No divergence found**; the index rows
+are faithful condensations. Recorded because the plan asks for the check, not
+only for its failures.
+
+### Open for the next session
+
+S6 — Techniques II (`ba-t04`…`ba-t10`, seven skills, from b2 v0.2 and b3 v0.2).
+Inputs now in place: **the technique-skill shape** — frontmatter naming
+technique/Serves/destination, the P-O3 self-check in two halves, skip-if, depth
+boundary with named forbidden zones, inputs-in-order, procedure with framework/BA
+act labels, output, signals, refusals — which every later technique skill
+implements · **`references/example.md`** as the compiled home of each sheet's §5
+· **the report-don't-confirm split** with `/ba-run`, settled at decision 2 ·
+**`ba-discovery`**, which every one of these skills is dispatched under, so its
+principles do not need restating per skill · **`check-band1-artifacts.py`**,
+which already validates the canvas that T-08/T-09/T-10 write into — the three
+canvas-internal sheets get their exit-test bar for free, and the `→ O-n` link
+rule is already enforced.
+
+Two things S6 inherits as work: the validator has **no rules yet for
+`context.md`, `constraints.md`, `personas.md` or `competitive-analysis.md`** —
+T-05…T-07's destinations — so S6 extends it the way S5 extended nothing (it is a
+new file, and adding a rule class is the pattern) · and **`canvas.md` is written
+by four different sheets from S6 on** (T-07 §10 · T-08 §2/§12 · T-09 §§3–5/§11 ·
+T-10 §§6–9), so the proposed-edit-batch discipline on canvas-side writes is the
+thing to compile carefully — T-01 owns the file at Frame and nobody owns it after.
