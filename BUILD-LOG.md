@@ -424,3 +424,237 @@ waiver flip on CC-G-03 (D8), the run-workspace path (D10), and — cheaply, whil
 the cards are open — the D9 template comment.
 
 ---
+
+## S3 — Gate · 1 August 2026 · GREEN
+
+**Session prompt:** the standing pattern, build plan §4.
+**Grounding:** `docs/methodology/` at the pinned versions (S1's vector,
+unchanged — re-read from the vendored headers this session) · build plan v0.2
+§2.2, §2.3, §2.5, §3, §4 (S3 row) · gate v0.3 **in full** · contract v0.2 §2,
+§4–§6, §7, §8, §10 · orchestrator v0.3 §2.1–§2.4, §3.2–§3.4, §4.3 · standard
+v0.3 §2, §15 · S2's ten checkers and the fixture world.
+
+### Units built — 6 of the 67 (running total 33)
+
+| Unit class | Built | Notes |
+|---|---|---|
+| Compiled cards (§2.5) — 3 | `assertions-f.md` (34 A) · `assertions-h.md` (3 A) · `at-thresholds.md` (18 AT / 6 aspects) | text + ID + Checks + flags, nothing else |
+| Workflow skills (§2.2) — 2 | `ba-gate` (Scope-F, stages 0–5) · `ba-gate-health` (Scope H: full · scoped · the P8/HA cadence) | `disable-model-invocation: true` |
+| Subagents (§2.3) — 1 | `ba-gate` — the A-pass evaluator, `tools: Read, Grep, Glob` | read-only by tool policy |
+| Report/certification writer | `sk_snapshot.py report` (+ `--certification-out`) | inside the pinned 11 scripts — see D12 |
+| Test harness | `tests/check-gate.sh` · `tests/check-cards.py` · a frontmatter block in `check-layout.sh` | not §2 build units; the S3 exit test |
+
+**The `[non-waivable]` rendering (D7), the CC-G-03 waiver flip (D8), the D9
+template comment and the run-workspace path (D10)** — the four items S2 left
+open — are all taken this session; each is recorded below.
+
+### Compilation-rule application (§3)
+
+- **§3.1 travels verbatim, and it is now mechanically enforced.**
+  `tests/check-cards.py` **re-derives all three cards from the vendored
+  documents and byte-compares** — `--record` is the compiler, the default mode
+  is the regression floor. A doc bump recompiles the cards by re-running
+  `--record` and shows the delta as a diff (§3.5 step 3). Carried verbatim: the
+  34 + 3 A pass-conditions · their Checks sets · the ⚑ pair · the six
+  non-waivable IDs with their refusal lines · the contract §2 Checks shorthand
+  legend · the twelve category titles · the 18 AT criteria with the two locked
+  conditionality notes (D-B5-3, D-B4-4) and the handover rule.
+- **§2.5's "nothing else", applied literally.** The cards carry **no category
+  or aspect intent lines**. Gate §5.2 fixes an A checker's inputs as *"the
+  assertion's exact contract wording + only its Checks artifacts"*, so the
+  intent prose is framing, not input. Recorded as a reading, not a silent cut.
+- **§3.3 never compiled:** a leak scan of the six new payload files finds zero
+  BABOK anchors, mining notes, review records or rationale prose. One hit was
+  found and fixed in-session — the `ba-gate` skill's P4 paragraph opened
+  "BABOK 5.5, holistic"; the anchor is methodology-layer and was removed. The
+  scan is now part of `check-cards.py` and runs on every card.
+- **§0 layering rule** — one deliberate, documented exception: gate §7.1 step 3
+  requires a waiver request against a non-waivable assertion to be refused
+  *"printing the contract's §8 rationale line for that ID"*, so those six lines
+  are vendored in `sk_snapshot.py`. Four of the six name **M** assertions, so a
+  card is not their home. `check-cards.py` verifies them against the contract
+  like a card; mutating one byte turns the suite red (proven).
+
+### D-P2 bindings applied
+
+| ID | How it landed |
+|---|---|
+| D-P2-1 | `/ba-gate` · `/ba-gate-health`, hyphenated, name-for-name with gate §13's indicative `/ba.gate` · `/ba.gate-health` |
+| **D-P2-2** | **Mechanically enforced from this session on.** `check-layout.sh` now asserts, on every installed `/ba-*` skill: frontmatter `name` = directory · a non-empty `description` · `disable-model-invocation: true`. Negative-tested: deleting the line turns the layout check red |
+| **D-P2-3** | The fourth agent ships. Its read-only tool policy is asserted too — `tools: Read, Grep, Glob` exactly; adding `Edit` turns the check red (gate §11.3 made mechanical, not advisory) |
+| D-P2-6 | Unbroken: the three cards and the two skills are templates/prompts, not content; the 19 runtime-born paths stay absent after a fresh install |
+| D-P2-7 | The `report` subcommand is Python 3, stdlib only |
+| D-P2-10 | Not applicable to gate units — `references/example.md` is the technique skills' (S5–S8) |
+| D-P2-12 | The FAIL → fix → re-gate cycle, one waiver + ⚑ pass, and a hash-refusal check are **already exercised here** at feature scale; S9 owns the same shape as the Phase-2 exit script |
+
+### Architecture decisions
+
+**1 · The report/certification writer is a subcommand, not a twelfth script.**
+Build plan §4's S3 row names it a unit; §2 does not count it — it is content
+inside the gate skill, and §2.4 pins **11** `sk_*.py`. It landed as
+`sk_snapshot.py report`, the run-machinery script that already owned the §11.1
+certification block. The alternative — an LLM assembling the report from the
+skill prompt — would put the one number nobody can verify (the category summary,
+the `FAIL (n)` count) inside a model's arithmetic. See D12.
+
+**2 · Three granularities in the category summary, and they are not the same
+one.** `in force · evaluated · carried · passed · skipped` are **assertion**
+counts; `failed` is a **failure-line** count (assertion × element — one
+assertion can contribute several gaps); `waived` and `overridden` are **record**
+counts (W-/O- records in force this run). Under exactly this reading both
+worked examples reconcile — see the reconciliation below.
+
+**3 · One accepted gap, several assertion lines.** W-004-01 accepts the
+calendar-sync failure expectation (CC-IN-03) *and* the `[NEEDS CLARIFICATION]`
+marker that names it (CC-G-03). Contract §8's "Markers and waivers" makes those
+one acceptance, and the corpus mints one W-number for it. The record therefore
+carries an `also` list for the extra lines rather than a second W-number; the
+rendered line says so.
+
+**4 · The run workspace (D10).** `.specify/ba/runs/<NNN-feature>/run-<n>/` —
+manifest · workspace · checkers · a-pass · run record · certification manifest.
+Under `.specify/ba/`, outside `memory/`, runtime-generated and never shipped, so
+the runtime-ledger rule holds and the installer's overlay copy (additive) leaves
+it alone.
+
+**5 · Stage 5 certifies what the run *produced*, not only what it read.**
+Gate §11.1 says "every file the run read or produced"; the snapshot holds only
+the reads. `report` takes a `produced` list, hashes it, and appends it to the
+certification manifest — that is how `traceability.md` gets certified, which
+CC-TR-04 requires and the adapter later verifies. Found by inspecting the first
+recorded entry against §11.1, not by a test.
+
+### Contract §7 ⇄ gate §14.3 — the two examples reconcile exactly
+
+The run-2 entry this machinery produces reads
+`55 in force · 55 evaluated · 0 carried · 48 passed · 5 failed · 1 waived · 1 overridden · 0 skipped`.
+Contract §7's worked example reads `61 checked · 54 passed · 5 failed · 1 waived
+· 1 overridden`. They are the same run: **61 = 55 Scope-F + 6 CC-H pre-flight**,
+and **54 = 48 + those same 6 H passes**. Nothing is left over. Gate §6.2 fixes
+the field list, contract §7 counts the pre-flight inside "checked" — no
+divergence, and the arithmetic is now asserted in `check-gate.sh`.
+
+### Session exit test — GREEN
+
+Build plan §4, S3 row: *fixture replay of gate §14 runs 2→3 end to end: FAIL
+with 5 named gaps → fixes applied from fixture r6 → incremental re-gate (carry
+set per §9.2) → PASS WITH WAIVERS → ⚑ ×2 → approval → certification manifest
+hashes verify.*
+
+```
+$ tests/check-gate.sh
+
+▸ Compiled cards (build plan §2.5)            34 · 3 · 18, verbatim, layering clean
+▸ Gate run 2 — full Scope-F run on r5         FAIL (5 gaps), all five verbatim
+▸ Gate run 3 — incremental re-gate on r6      PASS WITH WAIVERS, effective
+▸ The gate never self-certifies               provisional without P3 / P4
+▸ Waiver instrument — hard refusals           non-waivable · incomplete record
+▸ P1 — pre-flight block and the HA lift       blocked · admitted, HA cited
+▸ Mutation checks — the suite is not vacuous  2 seeded, both caught
+
+  passed: 59   failed: 0
+✓ GREEN — S3 gate: cards · Scope-F stages 0–5 · W/O/HA · P1–P8 · certification
+```
+
+**How much of that is real.** The **M pass runs live** — the ten S2 checkers
+against a real snapshot workspace. The **A pass is a recorded sheet**
+(`tests/fixtures/appointment-booking/a-pass/`), because Stage 3 is an agent act
+and cannot be re-derived inside a regression suite. Everything downstream of the
+A pass runs for real: disposition, verdict assembly, the report entry, the
+waiver/override/HA lifecycles, certification, and the hash verification. What
+the suite does **not** prove is that a live `ba-gate` agent returns those
+verdicts — that is the agent prompt's job, proven by running it, and the
+fixture's README says so in as many words. Both recorded entries are byte-frozen
+in `expected/gate-run2.entry` and `expected/gate-run3.entry`.
+
+Supporting checks run this session, all green:
+
+| Check | Result |
+|---|---|
+| Full-bar `check-layout.sh` must still **fail** at S3 | ✓ exits non-zero — 34 units still owned by S4–S9 |
+| `check-layout.sh --session S3` after a real `--offline` install | ✓ GREEN — 69 passed, 0 failed |
+| `verify-manifest.py` after the install | ✓ 30 files hashed, all matching (S2's 24 + the six S3 units) |
+| S2 regression — `check-m.sh` after the `sk_snapshot` extension | ✓ GREEN, 40 passed |
+| Delete `disable-model-invocation` from an installed skill | ✓ **RED**, naming D-P2-2 |
+| Add `Edit` to the `ba-gate` agent's tools | ✓ **RED**, naming gate §11.3 |
+| Mutate one byte of a vendored §8 refusal line | ✓ **RED**, printing doc vs. script |
+| Drop the CC-XA-01 verdict from the A sheet | ✓ verdict moves to FAIL (4 gaps) — the gap list is real |
+| A finding whose line does not round-trip the named-gap grammar | ✓ exit 2, runtime defect — the writer refuses the run |
+| Post-certification byte edit to the generated `traceability.md` | ✓ `verify` REFUSES, naming the diverged path |
+| Installed checkers run from `.specify/ba/scripts/` | ✓ no `__pycache__` written |
+
+**One defect found and fixed in-session.** The first certification manifest
+listed only the ten files the run *read*; `traceability.md` — the file the run
+*generates*, that CC-TR-04 asserts and the adapter must verify — was absent.
+Gate §11.1's wording is "every file the run read or produced", and a
+certification that omits the produced file lets a post-certification edit to
+`traceability.md` pass the adapter's hash guard silently. Fixed by the
+`produced` list (decision 5 above); the negative check is in the suite.
+
+### Divergences flagged (§3.2 discipline, generalized)
+
+**D11 · Contract §7's worked example prints CC-TR-01's failure line without the
+`[non-waivable]` marker, and CC-XA-01's with it.** Both IDs are in §8's locked
+non-waivable set, and gate §6.2 rules the Failures block "named-gap grammar;
+**non-waivable marked**". The two cannot both be right. *Resolution taken:* the
+rule governs the example — every failing member of the locked six carries the
+marker, so the run-2 entry renders `CC-TR-01 FAIL [non-waivable] — US4: …`,
+which is §7's line plus the marker §6.2 requires. This is the same shape as S2's
+D6 ruling. The checker-layer statement is untouched and still verbatim: no
+checker emits the marker (asserted), and `check-m.sh` still reproduces §7's
+CC-TR-01 line byte-for-byte from `sk_scan`/`sk_idgraph`. *Doc-first (§3.5):*
+**contract erratum candidate** — §7's example should mark CC-TR-01. A rendered
+example, not a rule; no compiled text depends on the difference.
+
+**D12 · The report/certification writer is a build-plan unit with no home in
+the §2 inventory.** §4's S3 row lists it among the units built; §2.9's roll-up
+counts 67 units of which the script class is pinned at **11**, and §2.4's
+`sk_snapshot` row names snapshot · live-diff · re-run set · anchor diffing —
+not report assembly. *Resolution taken:* implemented as `sk_snapshot.py report`.
+The count stays literal at 11 scripts, and `sk_snapshot` is the run-machinery
+script — it already renders the §11.1 certification block that §2.4 assigns it,
+and the §6.2 entry is the same layer. *Doc-first:* **build-plan §2.4 row-wording
+candidate** — sk_snapshot's Covers cell should read "… · verdict assembly (§6.1)
++ report entry (§6.2) + certification (§11.1)". No coverage changed; no
+assertion moved.
+
+**D13 · Gate §14.3's "13 carried / 41 evaluated" inherits S2's D6.** With
+CC-FL-02 correctly re-run as an M assertion, run 3's composition is **42
+evaluated · 12 carried · 1 waived = 55**, where §14.3 reads 41 · 13 · 1 = 55.
+The delta is exactly CC-FL-02 and nothing else, which is what makes it a
+verification of D6 rather than a new finding. *Resolution taken:* the numbers
+above are what the machinery produces and what `check-gate.sh` asserts, with the
+basis inline. *Doc-first:* folded into D6's existing **gate erratum candidate**;
+§14.3's two totals move with §14.2's carried list.
+
+**D14 · The fixture's US2 carries the 24h boundary as checklist lines, where
+contract §7's override example names a Gherkin scenario.** O-004-01 is therefore
+modelled as a textbook false positive — CC-AC-04 governs Gherkin scenarios and
+does not reach a checklist line — which is precisely what the override
+instrument exists for, and it auto re-applies at run 3 because US2's acceptance
+block is byte-identical across r5 → r6 (the mechanic §14.2 demonstrates).
+*Resolution taken:* the instrument, the anchor and the persistence are the
+corpus's; only the element's rendering differs, and the a-pass README records
+it. *No erratum implied* — the fixture (an S2 unit) and the example describe the
+same mechanic on slightly different text.
+
+**D15 · S2's D9 taken.** The `spec-template.md` §5 comment now names CC-NF-02's
+three accepted forms (`NFR-0NN (<category>) — …` · `- <Category>: N/A — <reason>`
+· a table row led by the category) and says that a keyword inside a sentence
+does not count. This is not a new operative rule: it is S2's recognition freedom
+(recorded there, inside the pinned coverage) propagated into the artifact a BA
+actually writes from, so the machinery stops costing one avoidable cycle. The
+one-way rule (§3.5) is respected — no *runtime behavior* changed, and the
+underlying doc gap is unchanged: **standard §7 / contract C5-C6 wording
+candidate**, still open, still doc-first.
+
+### Open for the next session
+
+S4 — Orchestrator. Inputs now in place: `at-thresholds.md` (the 18 criteria
+`/ba-clear` reads at the §3.4 confirmation act, with the two locked
+conditionality notes and the handover rule) · the gate's arming contract, so
+`/ba-close-band1` has a concrete dispatch target (`/ba-gate-health full`, whose
+"disarmed before closure" precondition is written into that skill) · the
+W/AW/HA distinctness table honoured on the gate side, so S4's AW machinery has
+nothing to reconcile. `check-layout.sh` now asserts skill frontmatter on
+whatever is installed, so S4's nine skills are covered the moment they land.

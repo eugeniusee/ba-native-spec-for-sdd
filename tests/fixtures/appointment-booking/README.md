@@ -4,8 +4,6 @@ Build plan §2.8's fixture unit: **the corpus's running world reconstructed as
 machine inputs.** Every "stakeholder" contribution in the Phase-2 exit script
 (§5 steps 4–7) is a file here, so the run is reproducible without improvisation.
 
-Run it with `tests/check-m.sh` from the package root.
-
 ---
 
 ## The world
@@ -35,8 +33,17 @@ revisions/
 negatives/                      one focused FAIL surface per M script
   neg-structure · neg-scan · neg-stories · neg-acceptance · neg-ears
   neg-sections · neg-idgraph · personas.md · health/
-expected/                       the recorded verdict table per case
+a-pass/                         the gate agent's Stage-3 verdicts, recorded (S3)
+  run2.json · run3.json         — see that directory's README
+gate-runs/                      the BA's P2–P5 rulings per run (S3)
+  run2-rulings.json             W-004-01 granted · O-004-01 ruled
+  run3-rulings.json             re-affirmed · re-applied · ⚑ ×2 · approval
+expected/                       the recorded verdict table per case, plus the
+                                two recorded gate-report entries (S3)
 ```
+
+Run the M suite with `tests/check-m.sh` and the gate suite with
+`tests/check-gate.sh`, both from the package root.
 
 ### Two facts worth knowing before reading a verdict
 

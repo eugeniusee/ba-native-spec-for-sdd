@@ -1,0 +1,348 @@
+{
+  "script": "ba-gate (A pass)",
+  "run": 2,
+  "spec_revision": "r5",
+  "assertions": [
+    {
+      "assertion": "CC-G-02",
+      "verdict": "PASS",
+      "non_waivable": true,
+      "checks": ["spec"],
+      "evidence": "all ten sections carry feature-specific content; the three silent NFR categories carry `N/A — <reason>` lines (§5, lines 111–116)",
+      "reasoning": "no empty body, no TBD/TODO/template boilerplate anywhere in the ten sections.",
+      "findings": []
+    },
+    {
+      "assertion": "CC-G-05",
+      "verdict": "PASS",
+      "non_waivable": false,
+      "checks": ["spec"],
+      "evidence": "\"the Specialist's calendar stays in place (constraints.md C-T1)\" (§8) is a named external constraint, not a stack choice",
+      "reasoning": "zero technology names, endpoints, storage schemas or layout directives; the only external system is a mandated integration touchpoint.",
+      "findings": []
+    },
+    {
+      "assertion": "CC-G-06",
+      "verdict": "PASS",
+      "non_waivable": false,
+      "checks": ["spec"],
+      "evidence": "9 SHALL occurrences, all inside FR-001…FR-009; Overview, flows and notes carry none",
+      "reasoning": "every normative statement sits in an ID-bearing structure.",
+      "findings": []
+    },
+    {
+      "assertion": "CC-OV-01",
+      "verdict": "PASS",
+      "non_waivable": false,
+      "checks": ["spec"],
+      "evidence": "\"about 30% of those calls go unanswered and the booking is lost\" · \"lets a Client browse a Specialist's published Availability and book a Slot without phoning\" (§1)",
+      "reasoning": "states the problem and what the feature does; no solution design.",
+      "findings": []
+    },
+    {
+      "assertion": "CC-OV-02",
+      "verdict": "PASS",
+      "non_waivable": false,
+      "checks": ["spec", "canvas", "brief"],
+      "evidence": "\"(canvas Problems P-1)\" and \"canvas Objective O-2 — reduce lost bookings\" (§1) both resolve in canvas.md; \"the F1 slice … (E-03 §8)\" resolves in the brief",
+      "reasoning": "the value claim names a canvas objective and a canvas problem, both present upstream.",
+      "findings": []
+    },
+    {
+      "assertion": "CC-US-05",
+      "verdict": "PASS",
+      "non_waivable": false,
+      "checks": ["spec"],
+      "evidence": "US1 \"book an available Slot\" · US2 \"cancel my own Appointment\" · US3 \"cancel an Appointment I cannot attend\" · US4 \"choose which notices I receive\"",
+      "reasoning": "each capability clause carries one verb over one object; no chaining, no \"manage\"/\"handle\".",
+      "findings": []
+    },
+    {
+      "assertion": "CC-AC-02",
+      "verdict": "PASS",
+      "non_waivable": false,
+      "checks": ["spec"],
+      "evidence": "8 checklist criteria; each is one observable assertion (\"A Client cannot cancel an Appointment that belongs to another Client\")",
+      "reasoning": "every checklist line is singular and externally observable.",
+      "findings": []
+    },
+    {
+      "assertion": "CC-AC-03",
+      "verdict": "PASS",
+      "non_waivable": false,
+      "checks": ["spec"],
+      "evidence": "US1 / scenario \"Successful booking\": names the Client role and the resulting status \"Booked\"; no `<x>`, \"some\" or \"a user\" placeholder",
+      "reasoning": "thin on data, but it clears the placeholder bar this assertion names; its defect is re-narration and is booked at CC-AC-04.",
+      "findings": []
+    },
+    {
+      "assertion": "CC-AC-04",
+      "verdict": "FAIL",
+      "non_waivable": false,
+      "checks": ["spec"],
+      "evidence": "US1 / scenario \"Successful booking\" vs. FR-001",
+      "reasoning": "the scenario's three steps restate FR-001's trigger and response with no added path or datum; and US2's boundary items were read as re-narrating FR-006/FR-008.",
+      "findings": [
+        {
+          "element": "US1 / scenario \"Successful booking\"",
+          "problem": "re-narrates FR-001, no new data or path",
+          "fix": "convert to a checklist line, or make it carry the race-for-last-slot path with concrete data.",
+          "evidence": "Scenario: Successful booking / Given a Client selects an available Slot / When the Client confirms / Then the Appointment is created with status \"Booked\"",
+          "location": "spec-r5.md:21",
+          "gap_line": "CC-AC-04 FAIL — US1 / scenario \"Successful booking\": re-narrates FR-001, no new data or path → convert to a checklist line, or make it carry the race-for-last-slot path with concrete data."
+        },
+        {
+          "element": "US2 / acceptance \"Cancellation inside 24h of start_time keeps the Slot unavailable for rebooking (BR-002)\"",
+          "problem": "reads as a re-narration of FR-008",
+          "fix": "carry a path or datum FR-008 does not spell out, or drop the item.",
+          "evidence": "- [ ] Cancellation inside 24h of start_time keeps the Slot unavailable for rebooking (BR-002).",
+          "location": "spec-r5.md:31",
+          "gap_line": "CC-AC-04 FAIL — US2 / acceptance \"Cancellation inside 24h of start_time keeps the Slot unavailable for rebooking (BR-002)\": reads as a re-narration of FR-008 → carry a path or datum FR-008 does not spell out, or drop the item."
+        }
+      ]
+    },
+    {
+      "assertion": "CC-FR-03",
+      "verdict": "PASS",
+      "non_waivable": false,
+      "checks": ["spec"],
+      "evidence": "FR-001 \"create an Appointment … and display the confirmation\" — one observable outcome, not two behaviors",
+      "reasoning": "every FR carries a single trigger→response; the compound responses are one outcome each.",
+      "findings": []
+    },
+    {
+      "assertion": "CC-FR-04",
+      "verdict": "PASS",
+      "non_waivable": false,
+      "checks": ["spec"],
+      "evidence": "FR-006 names the Client, the own Appointment, and \"return the Slot to the Specialist's published Availability\"",
+      "reasoning": "each FR names actor and specific object; every response is externally observable.",
+      "findings": []
+    },
+    {
+      "assertion": "CC-FL-01",
+      "verdict": "PASS",
+      "non_waivable": false,
+      "checks": ["spec"],
+      "evidence": "§4 main flow, 3 numbered steps, each actor → action → observable result",
+      "reasoning": "present and shaped.",
+      "findings": []
+    },
+    {
+      "assertion": "CC-FL-03",
+      "verdict": "PASS",
+      "non_waivable": false,
+      "checks": ["spec"],
+      "evidence": "E1/E2/E3 each fill trigger · system behavior · user-visible outcome (\"Slot expired\", with the refreshed Availability)",
+      "reasoning": "no empty or generic cell in the three error rows.",
+      "findings": []
+    },
+    {
+      "assertion": "CC-FL-04",
+      "verdict": "PASS",
+      "non_waivable": false,
+      "checks": ["spec"],
+      "evidence": "E1 → FR-004 · E2 → FR-002 · E3 → FR-005, all IF/THEN unwanted-behavior FRs",
+      "reasoning": "every error path's behavior is covered by an unwanted-behavior FR.",
+      "findings": []
+    },
+    {
+      "assertion": "CC-FL-05",
+      "verdict": "PASS",
+      "non_waivable": false,
+      "checks": ["spec"],
+      "evidence": "states used: Booked · Cancelled · Completed · No-show — all four in §7's states table",
+      "reasoning": "no state name is used outside the table.",
+      "findings": []
+    },
+    {
+      "assertion": "CC-NF-01",
+      "verdict": "PASS",
+      "non_waivable": false,
+      "checks": ["spec"],
+      "evidence": "NFR-001 \"within 2 seconds for a Specialist with up to 5,000 published Slots\" — metric, target, condition",
+      "reasoning": "both authored NFRs carry all three parts.",
+      "findings": []
+    },
+    {
+      "assertion": "CC-NF-03",
+      "verdict": "PASS",
+      "non_waivable": false,
+      "checks": ["spec", "gov"],
+      "evidence": "the Availability, Localization and Scale lines reference the global budgets in design-standards.md rather than restating them",
+      "reasoning": "no global budget is restated; the spec carries feature-specific deltas only.",
+      "findings": []
+    },
+    {
+      "assertion": "CC-BR-01",
+      "verdict": "PASS",
+      "non_waivable": false,
+      "checks": ["spec"],
+      "evidence": "BR-001 \"at most 3 Appointments in status Booked\" · BR-002 \"strictly more than 24 hours before start_time\"",
+      "reasoning": "each BR is one testable rule with a stable ID; the computational ones carry their threshold.",
+      "findings": []
+    },
+    {
+      "assertion": "CC-BR-03",
+      "verdict": "PASS",
+      "non_waivable": false,
+      "checks": ["spec", "gov"],
+      "evidence": "BR-001…003 are booking-feature rules; no governance rule is restated",
+      "reasoning": "nothing cross-feature is duplicated here.",
+      "findings": []
+    },
+    {
+      "assertion": "CC-DA-01",
+      "verdict": "PASS",
+      "non_waivable": false,
+      "checks": ["spec", "dm"],
+      "evidence": "Appointment · Availability · Client · Hold · Slot · Specialist — all six in domain-model.md",
+      "reasoning": "no entity is introduced by the spec.",
+      "findings": []
+    },
+    {
+      "assertion": "CC-DA-02",
+      "verdict": "PASS",
+      "non_waivable": false,
+      "checks": ["spec"],
+      "evidence": "§7 fields table: 4 rows, entity · field · type · required · validation all filled",
+      "reasoning": "covers the fields this feature reads or writes.",
+      "findings": []
+    },
+    {
+      "assertion": "CC-DA-03",
+      "verdict": "PASS",
+      "non_waivable": false,
+      "checks": ["spec"],
+      "evidence": "\"future only; inside the Specialist's published Availability\" · \"at most 500 characters\" · \"Booked / Cancelled / Completed / No-show\"",
+      "reasoning": "every validation is a format, range, limit or an allowed-value source.",
+      "findings": []
+    },
+    {
+      "assertion": "CC-DA-04",
+      "verdict": "PASS",
+      "non_waivable": false,
+      "checks": ["spec"],
+      "evidence": "states table lists Booked → Cancelled/Completed/No-show with triggers; the three terminal states carry \"— (terminal)\"",
+      "reasoning": "every state has transitions with triggers or an explicit terminal mark.",
+      "findings": []
+    },
+    {
+      "assertion": "CC-IN-01",
+      "verdict": "PASS",
+      "non_waivable": false,
+      "checks": ["spec", "brief"],
+      "evidence": "the Specialist's external calendar is the only external system named in the spec or brief E-03 §4, and it is the table's only row",
+      "reasoning": "table and named systems match in both directions.",
+      "findings": []
+    },
+    {
+      "assertion": "CC-IN-02",
+      "verdict": "PASS",
+      "non_waivable": false,
+      "checks": ["spec"],
+      "evidence": "system · outbound · \"Appointment created and cancelled events\" · constraint C-T1 — all four filled",
+      "reasoning": "the single row is complete.",
+      "findings": []
+    },
+    {
+      "assertion": "CC-IN-03",
+      "verdict": "FAIL",
+      "non_waivable": false,
+      "checks": ["spec"],
+      "evidence": "§8, calendar row: \"the failure expectation is not yet fixed\"",
+      "reasoning": "no WHILE/IF FR and no error row covers the calendar being unavailable.",
+      "findings": [
+        {
+          "element": "Specialist's external calendar",
+          "problem": "no declared failure expectation — nothing states what happens while the calendar is unavailable",
+          "fix": "add a WHILE/IF FR or an error path, or carry the open question as a waiver.",
+          "evidence": "| Specialist's external calendar | outbound | Appointment created and cancelled events | … the failure expectation is not yet fixed — [NEEDS CLARIFICATION: …] |",
+          "location": "spec-r5.md:154",
+          "gap_line": "CC-IN-03 FAIL — Specialist's external calendar: no declared failure expectation — nothing states what happens while the calendar is unavailable → add a WHILE/IF FR or an error path, or carry the open question as a waiver."
+        }
+      ]
+    },
+    {
+      "assertion": "CC-OS-02",
+      "verdict": "PASS",
+      "non_waivable": false,
+      "checks": ["spec"],
+      "evidence": "\"deferred inside this epic to Phase 2\" · \"epic Online Payment (E-07), Phase 2\" · \"not planned\" · \"separate feature of this epic (005-…)\"",
+      "reasoning": "all four exclusions name where they live instead.",
+      "findings": []
+    },
+    {
+      "assertion": "CC-OS-03",
+      "verdict": "PASS",
+      "non_waivable": false,
+      "checks": ["spec", "oos"],
+      "evidence": "no line of §9 repeats a product-level boundary from out-of-scope.md",
+      "reasoning": "the exclusions are all feature- or epic-level.",
+      "findings": []
+    },
+    {
+      "assertion": "CC-OS-04",
+      "verdict": "PASS",
+      "non_waivable": false,
+      "checks": ["spec"],
+      "evidence": "reschedule · payments · recurring · availability publishing — none appears in a story or an FR",
+      "reasoning": "nothing excluded is simultaneously specified.",
+      "findings": []
+    },
+    {
+      "assertion": "CC-XA-01",
+      "verdict": "FAIL",
+      "non_waivable": true,
+      "checks": ["spec", "roles"],
+      "evidence": "7 exercised tuples extracted from US1–US4 and FR-001…FR-009; 6 matched by explicit policy rows in roles-permissions.md",
+      "reasoning": "US3 and FR-009 exercise a Specialist cancelling an Appointment; the policy table carries no row for it, and authorization is never inferred.",
+      "findings": [
+        {
+          "element": "(Specialist × Appointment × cancel)",
+          "problem": "no policy row in roles-permissions.md, but US3/FR-009 exercise it",
+          "fix": "add the row (governance change) or remove Specialist-initiated cancellation from scope.",
+          "evidence": "US3 (P2) — As a Specialist, I want to cancel an Appointment I cannot attend · FR-009 (US3) — WHEN a Specialist cancels an Appointment on their own Availability, THE SYSTEM SHALL set the Appointment status to \"Cancelled\"",
+          "location": "spec-r5.md:36 · spec-r5.md:80",
+          "gap_line": "CC-XA-01 FAIL — (Specialist × Appointment × cancel): no policy row in roles-permissions.md, but US3/FR-009 exercise it → add the row (governance change) or remove Specialist-initiated cancellation from scope."
+        }
+      ]
+    },
+    {
+      "assertion": "CC-XA-03",
+      "verdict": "PASS",
+      "non_waivable": false,
+      "checks": ["spec", "gloss"],
+      "evidence": "Appointment · Availability · Hold · No-show · Slot — each used in the glossary's canonical form; no synonym drift (\"booking\" appears only as the feature's plain-language subject in §1)",
+      "reasoning": "every domain term resolves to glossary.md and the canonical spelling is the one used.",
+      "findings": []
+    },
+    {
+      "assertion": "CC-XA-04",
+      "verdict": "PASS",
+      "non_waivable": false,
+      "checks": ["spec", "dm"],
+      "evidence": "Slot→Availability, Hold→Slot, Appointment→Slot, Appointment→Client, Appointment→Specialist — all five relations in domain-model.md",
+      "reasoning": "no relied-on relationship is missing upstream.",
+      "findings": []
+    },
+    {
+      "assertion": "CC-XA-06",
+      "verdict": "PASS",
+      "non_waivable": false,
+      "checks": ["spec", "brief"],
+      "evidence": "brief E-03 §3 Excluded/Deferred lists reschedule-in-place and payments — the spec excludes both; §6 open rows: OQ-1 Answered → BR-001, OQ-2 Open → carried as [NEEDS CLARIFICATION] in §8",
+      "reasoning": "nothing specified falls inside the epic's excluded or deferred scope, and both touching open questions are resolved or marked.",
+      "findings": []
+    },
+    {
+      "assertion": "CC-XA-07",
+      "verdict": "PASS",
+      "non_waivable": false,
+      "checks": ["spec", "mem"],
+      "evidence": "roles Client/Specialist → roles-permissions.md · terms → glossary.md · entities → domain-model.md · constraint C-T1 → constraints.md",
+      "reasoning": "nothing lives only in the spec.",
+      "findings": []
+    }
+  ]
+}

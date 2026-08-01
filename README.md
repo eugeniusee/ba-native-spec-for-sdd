@@ -12,7 +12,8 @@ not itself the installed thing.
 
 ## Status
 
-Phase 2 build, sessions **S1–S2 of S9** complete (foundation · M machinery). See
+Phase 2 build, sessions **S1–S3 of S9** complete (foundation · M machinery ·
+gate). See
 [`BUILD-LOG.md`](BUILD-LOG.md) for the per-session record and
 [`docs/methodology/ba-native-spec-phase2-build-plan.md`](docs/methodology/ba-native-spec-phase2-build-plan.md)
 §4 for the session plan.
@@ -21,7 +22,7 @@ Phase 2 build, sessions **S1–S2 of S9** complete (foundation · M machinery). 
 |---|---|---|
 | S1 | Repo skeleton · `install.sh` · payload overlay · 13 templates · mirrors · manifest | ✅ built |
 | S2 | 10 checker scripts · toy-world fixtures | ✅ built |
-| S3 | Gate skills · gate agent · 3 compiled cards | pending |
+| S3 | Gate skills · gate agent · 3 compiled cards · report/certification writer | ✅ built |
 | S4 | Orchestrator agent · 9 workflow skills | pending |
 | S5–S7 | 16 Band-1 technique skills · discovery agent | pending |
 | S8 | Band-2 pair · Tier-1/Tier-2 spine · analyst agent | pending |
@@ -54,7 +55,7 @@ Offline use needs `vendor/spec-kit-v0.12.5.zip` — see [`vendor/README.md`](ven
 ## Test
 
 ```sh
-tests/check-layout.sh --target /path/to/project --session S2   # this session's bar
+tests/check-layout.sh --target /path/to/project --session S3   # this session's bar
 tests/check-layout.sh --target /path/to/project                # full Phase-2 bar
 tests/check-m.sh                                               # the M-checker suite
 ```
@@ -84,6 +85,8 @@ ba-native-spec/
 └─ tests/
    ├─ check-layout.sh · layout.expected
    ├─ check-m.sh           the M-checker suite (S2)
+   ├─ check-gate.sh        the gate suite — runs 2→3 replay (S3)
+   ├─ check-cards.py       compiles + verifies the three cards (S3)
    ├─ fixtures/            the toy world (S2)
    └─ exit-test.md         the Phase-2 exit script (S9)
 ```

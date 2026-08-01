@@ -1,0 +1,38 @@
+{
+  "feature": "004-appointment-booking",
+  "run": 2,
+  "date": "2026-07-17",
+  "spec_revision": "r5",
+  "scopes": "F (+H pre-flight)",
+  "preflight": {"status": "clean"},
+  "carried": [],
+  "waivers": [
+    {
+      "id": "W-004-01",
+      "assertion": "CC-IN-03",
+      "element": "Specialist's external calendar",
+      "gap": "calendar-sync failure expectation deferred",
+      "reason": "provider contract unsigned",
+      "risk": "manual reconciliation during pilot",
+      "approver": "Y.K.",
+      "date": "2026-07-17",
+      "revisit": "before Phase-3 pilot exit",
+      "status": "fresh",
+      "also": [
+        {"assertion": "CC-G-03", "element": "§8 Integration Touchpoints"}
+      ]
+    }
+  ],
+  "overrides": [
+    {
+      "id": "O-004-01",
+      "assertion": "CC-AC-04",
+      "element": "US2 / acceptance \"Cancellation inside 24h of start_time keeps the Slot unavailable for rebooking (BR-002)\"",
+      "reason": "the flagged item is a checklist line, not a Gherkin scenario — CC-AC-04 does not reach it, and it carries the boundary datum BR-002 leaves implicit",
+      "approver": "Y.K.",
+      "status": "fresh"
+    }
+  ],
+  "signoffs": {},
+  "approval": null
+}

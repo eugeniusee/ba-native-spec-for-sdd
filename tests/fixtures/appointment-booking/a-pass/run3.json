@@ -1,0 +1,197 @@
+{
+  "script": "ba-gate (A pass)",
+  "run": 3,
+  "spec_revision": "r6",
+  "note": "the incremental re-run set (gate §9.2) minus CC-IN-03, which W-004-01 resolves through the §7.2 lifecycle before any checker is invoked",
+  "assertions": [
+    {
+      "assertion": "CC-G-02",
+      "verdict": "PASS",
+      "non_waivable": true,
+      "checks": ["spec"],
+      "evidence": "all ten sections carry feature-specific content; the three silent NFR categories carry `N/A — <reason>` lines, accessibility now among them (§5)",
+      "reasoning": "no empty body, no placeholder token; the r6 accessibility line states its reason.",
+      "findings": []
+    },
+    {
+      "assertion": "CC-G-05",
+      "verdict": "PASS",
+      "non_waivable": false,
+      "checks": ["spec"],
+      "evidence": "NFR-003 states a time budget, not a mechanism; §8 still names the calendar as a mandated constraint",
+      "reasoning": "no technology choice, endpoint, schema or layout directive entered at r6.",
+      "findings": []
+    },
+    {
+      "assertion": "CC-G-06",
+      "verdict": "PASS",
+      "non_waivable": false,
+      "checks": ["spec"],
+      "evidence": "9 SHALL occurrences, all inside FR-001…FR-009",
+      "reasoning": "every normative statement sits in an ID-bearing structure.",
+      "findings": []
+    },
+    {
+      "assertion": "CC-US-05",
+      "verdict": "PASS",
+      "non_waivable": false,
+      "checks": ["spec"],
+      "evidence": "US1 \"book an available Slot\" · US2 \"cancel my own Appointment\" · US3 \"cancel an Appointment I cannot attend\"",
+      "reasoning": "one capability per story; US4 was dropped at r6 and its chained concern with it.",
+      "findings": []
+    },
+    {
+      "assertion": "CC-AC-02",
+      "verdict": "PASS",
+      "non_waivable": false,
+      "checks": ["spec"],
+      "evidence": "7 checklist criteria, each one observable assertion",
+      "reasoning": "unchanged in substance from run 2; US4's item left with the story.",
+      "findings": []
+    },
+    {
+      "assertion": "CC-AC-03",
+      "verdict": "PASS",
+      "non_waivable": false,
+      "checks": ["spec"],
+      "evidence": "US1 / scenario \"Two Clients race for the last Slot\": named Specialist \"Dr. Ivanova\", timestamp 2026-07-20 10:00, the 3-second interval",
+      "reasoning": "the only scenario in the spec now carries named actors, a real timestamp and a quantity.",
+      "findings": []
+    },
+    {
+      "assertion": "CC-AC-04",
+      "verdict": "PASS",
+      "non_waivable": false,
+      "checks": ["spec"],
+      "evidence": "US1 / scenario \"Two Clients race for the last Slot\" carries the concurrent-confirmation path; FR-001 and FR-002 spell out neither the race nor its resolution order",
+      "reasoning": "the re-narration is gone — the scenario now adds a path the FR text does not contain. US2's acceptance block is byte-identical to r5 and stands under O-004-01.",
+      "findings": []
+    },
+    {
+      "assertion": "CC-FR-03",
+      "verdict": "PASS",
+      "non_waivable": false,
+      "checks": ["spec"],
+      "evidence": "FR-007 \"notify the Specialist of the new Appointment\" — one trigger, one response",
+      "reasoning": "every FR carries a single trigger→response.",
+      "findings": []
+    },
+    {
+      "assertion": "CC-FR-04",
+      "verdict": "PASS",
+      "non_waivable": false,
+      "checks": ["spec"],
+      "evidence": "FR-007 names the Specialist and the new Appointment; the notification is externally observable",
+      "reasoning": "actor and specific object present in all nine FRs.",
+      "findings": []
+    },
+    {
+      "assertion": "CC-NF-01",
+      "verdict": "PASS",
+      "non_waivable": false,
+      "checks": ["spec"],
+      "evidence": "NFR-003 \"within 60 seconds of the confirmation, under normal load\" — metric, target, condition",
+      "reasoning": "all three authored NFRs carry the triple; the timing concern removed from FR-007 landed here with a measurable target.",
+      "findings": []
+    },
+    {
+      "assertion": "CC-NF-03",
+      "verdict": "PASS",
+      "non_waivable": false,
+      "checks": ["spec", "gov"],
+      "evidence": "the accessibility line references the global Design & UX accessibility budget rather than restating it",
+      "reasoning": "the new N/A line is the CC-NF-03-compliant form: reference, no restatement.",
+      "findings": []
+    },
+    {
+      "assertion": "CC-BR-01",
+      "verdict": "PASS",
+      "non_waivable": false,
+      "checks": ["spec"],
+      "evidence": "BR-001…BR-003 unchanged; thresholds present",
+      "reasoning": "each BR is one testable rule with a stable ID.",
+      "findings": []
+    },
+    {
+      "assertion": "CC-BR-03",
+      "verdict": "PASS",
+      "non_waivable": false,
+      "checks": ["spec", "gov"],
+      "evidence": "no governance rule restated at r6",
+      "reasoning": "unchanged.",
+      "findings": []
+    },
+    {
+      "assertion": "CC-OS-02",
+      "verdict": "PASS",
+      "non_waivable": false,
+      "checks": ["spec"],
+      "evidence": "the new line \"Notification preferences — deferred, Phase 2 (epic Notifications, E-05)\" names its home",
+      "reasoning": "all five exclusions name where they live instead.",
+      "findings": []
+    },
+    {
+      "assertion": "CC-OS-03",
+      "verdict": "PASS",
+      "non_waivable": false,
+      "checks": ["spec", "oos"],
+      "evidence": "no line of §9 repeats a product-level boundary from out-of-scope.md",
+      "reasoning": "the added exclusion is epic-level.",
+      "findings": []
+    },
+    {
+      "assertion": "CC-OS-04",
+      "verdict": "PASS",
+      "non_waivable": false,
+      "checks": ["spec"],
+      "evidence": "notification preferences: no story and no FR specifies it after US4 was dropped",
+      "reasoning": "the fence and the spec content agree — this is the assertion the US4 drop had to keep true.",
+      "findings": []
+    },
+    {
+      "assertion": "CC-XA-01",
+      "verdict": "PASS",
+      "non_waivable": true,
+      "checks": ["spec", "roles"],
+      "evidence": "7 exercised tuples extracted; 7 explicit policy rows matched, incl. the (Specialist × Appointment × cancel) row added 2026-07-17",
+      "reasoning": "every role × entity × action the stories and FRs exercise now carries an explicit policy row.",
+      "findings": []
+    },
+    {
+      "assertion": "CC-XA-03",
+      "verdict": "PASS",
+      "non_waivable": false,
+      "checks": ["spec", "gloss"],
+      "evidence": "Appointment · Availability · Hold · No-show · Slot in canonical form; no synonym introduced at r6",
+      "reasoning": "no drift within the spec or against the glossary.",
+      "findings": []
+    },
+    {
+      "assertion": "CC-XA-04",
+      "verdict": "PASS",
+      "non_waivable": false,
+      "checks": ["spec", "dm"],
+      "evidence": "the race scenario relies on Slot→Availability and Appointment→Slot, both in domain-model.md",
+      "reasoning": "no new relationship is relied on at r6.",
+      "findings": []
+    },
+    {
+      "assertion": "CC-XA-06",
+      "verdict": "PASS",
+      "non_waivable": false,
+      "checks": ["spec", "brief"],
+      "evidence": "no spec content in brief §3 Excluded/Deferred; OQ-1 Answered → BR-001; OQ-2 Open → carried as [NEEDS CLARIFICATION] under W-004-01",
+      "reasoning": "the spec stays inside the brief and every touching open question is resolved or waiver-carried.",
+      "findings": []
+    },
+    {
+      "assertion": "CC-XA-07",
+      "verdict": "PASS",
+      "non_waivable": false,
+      "checks": ["spec", "mem"],
+      "evidence": "epic E-05 (Notifications) named in the new exclusion exists in roadmap.md; roles, terms and entities unchanged",
+      "reasoning": "nothing introduced at r6 lives only in the spec.",
+      "findings": []
+    }
+  ]
+}

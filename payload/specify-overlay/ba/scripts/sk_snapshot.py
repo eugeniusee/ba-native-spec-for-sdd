@@ -18,11 +18,23 @@ Subcommands
     verify         manifest vs. the live files — the adapter's hash guard
     rerun-set      the §9.2 incremental composition: re-run vs. carried
     anchor-diff    is a waiver/override anchor clean between two manifests?
+    report         verdict assembly (§6.1) + the report entry (§6.2)   [S3]
     certification  render the §11.1 certification block from a manifest
+
+`report` is the gate's **report/certification writer** (build plan §4, S3 row).
+It is not a checker and it never judges: it takes the M checkers' JSON, the
+gate agent's A-pass JSON, and the BA's P2–P5 rulings, then computes the verdict
+by the §6.1 rules and renders the §6.2 entry. The arithmetic of a gate run is
+deterministic by construction — an LLM-computed category summary would be the
+one number in the framework nobody could verify.
 
 The assertion table below carries **IDs and classes only** — no assertion text.
 The layering rule (contract §2) keeps the chain one-way: script → CC-ID →
-contract line → BABOK anchor.
+contract line → BABOK anchor. The one exception is deliberate and mandated:
+gate §7.1 step 3 requires a waiver request against a non-waivable assertion to
+be refused *"printing the contract's §8 rationale line for that ID"*, so those
+six lines are vendored below — operative text the runtime must be able to
+print, verified against the contract by `tests/check-cards.py`.
 
 Python 3, standard library only (D-P2-7).
 """
@@ -437,24 +449,483 @@ def cmd_anchor_diff(args) -> int:
     return 0 if clean else 1
 
 
+# ── report — verdict assembly (§6.1) + the report entry (§6.2) ───────────────
+
+# contract §8, the locked non-waivable set with each ID's refusal line. Printed
+# verbatim on a waiver request (gate §7.1 step 3 — "hard refusal").
+_AUTHZ = ('Authorization is the one class where a confident agent guess is a '
+          'security incident, and the constitution\'s "never infer permissions '
+          'from personas" principle exists precisely to be unwaivable.')
+NON_WAIVABLE = {
+    "CC-G-01": "An unparseable structure breaks every downstream consumer, "
+               "including this gate.",
+    "CC-G-02": "An *unnamed* gap cannot be risk-accepted. The path is: name it "
+               "— convert the stub to `[NEEDS CLARIFICATION: …]`, which fails "
+               "CC-G-03, which **is** waivable. Every accepted gap is thereby "
+               "a named gap, by construction.",
+    "CC-FR-01": "EARS is the house grammar. Waiving it un-defines what a "
+                "requirement is. What genuinely resists EARS is nearly always "
+                "an NFR, a business rule, or design in disguise — the fix is "
+                "re-classification, not exemption.",
+    "CC-TR-01": "A broken story⇄FR graph breaks `/tasks` tagging ([US1], "
+                "[US2]) and BA verification downstream.",
+    "CC-XA-01": _AUTHZ,
+    "CC-XA-02": _AUTHZ,
+}
+
+# contract §2 — the two assertions the BA signs individually, even on a PASS.
+FLAGGED = ("CC-XA-01", "CC-XA-06")
+
+# contract §8 — the six fields a waiver record must carry.
+WAIVER_FIELDS = ("assertion", "element", "reason", "risk", "approver", "revisit")
+
+CATEGORY = {aid: cat for aid, cat, _ in ASSERTIONS}
+SCOPE_F_IN_FORCE = len(ASSERTIONS)
+
+# A record applies to a gap when it names the same (assertion, element); an
+# empty element in the record means the whole assertion.
+LIVE, WAIVED, OVERRIDDEN = "LIVE", "WAIVED", "OVERRIDDEN"
+
+
+def gap_line(aid, finding, non_waivable=False):
+    """The contract's §7 named-gap grammar — the one place it is written.
+
+    D7 (BUILD-LOG S2): checkers emit the bare line and expose non_waivable in
+    their JSON; the `[non-waivable]` marker is rendered here, at report
+    assembly, because contract §7 prints CC-TR-01's line without it.
+    """
+    mark = " [non-waivable]" if non_waivable else ""
+    return "%s FAIL%s — %s: %s → %s" % (
+        aid, mark, finding.get("element", "?"), finding.get("problem", "?"),
+        finding.get("fix", "?"))
+
+
+def _load_verdicts(paths, run_root: Path):
+    """Merge checker + A-pass JSON into one assertion→record map."""
+    recs, seen = {}, {}
+    for rel in paths:
+        p = Path(rel)
+        if not p.is_absolute():
+            p = run_root / rel
+        if not p.is_file():
+            runtime_defect("report: no verdict file at %s" % p)
+        d = json.loads(p.read_text(encoding="utf-8"))
+        src = d.get("script", p.stem)
+        for a in d.get("assertions", []):
+            aid = a["assertion"]
+            if aid in recs:
+                runtime_defect("report: %s reported twice — by %s and by %s"
+                               % (aid, seen[aid], src))
+            seen[aid] = src
+            recs[aid] = {
+                "assertion": aid,
+                "verdict": a.get("verdict", "PASS"),
+                "non_waivable": bool(a.get("non_waivable")),
+                "evidence": a.get("evidence", ""),
+                "blocked_by": a.get("blocked_by", ""),
+                "findings": [dict(f) for f in a.get("findings", [])],
+                "source": src,
+            }
+    return recs
+
+
+def _matches(record, aid, element):
+    if record.get("assertion") != aid:
+        return False
+    e = (record.get("element") or "").strip()
+    return not e or e == (element or "").strip()
+
+
+def _covered_by(record, aid, element):
+    """A waiver covers its own (assertion, element) plus any `also` pairs.
+
+    One consciously accepted gap can surface as more than one assertion line:
+    contract §8 "Markers and waivers" keeps a waived `[NEEDS CLARIFICATION]`
+    marker in the text as the gap's named location, so the marker's CC-G-03
+    line and the underlying gap are the same acceptance. `also` names those
+    extra lines on the one record rather than minting a second W-number.
+    """
+    if _matches(record, aid, element):
+        return True
+    for extra in record.get("also", []):
+        if _matches(extra, aid, element):
+            return True
+    return False
+
+
+def _validate_waivers(waivers):
+    """gate §7.1 step 3 — waivable? all six fields? event-shaped revisit?"""
+    refusals = []
+    for w in waivers:
+        if w.get("status") in ("lapsed", "voided"):
+            continue
+        aid = w.get("assertion", "?")
+        if aid in NON_WAIVABLE:
+            refusals.append(
+                "REFUSED — %s is non-waivable: %s" % (aid, NON_WAIVABLE[aid]))
+            continue
+        missing = [f for f in WAIVER_FIELDS if not str(w.get(f, "")).strip()]
+        if missing:
+            refusals.append("REFUSED — %s (%s): waiver record incomplete, "
+                            "missing %s (contract §8)"
+                            % (w.get("id", "W-?"), aid, ", ".join(missing)))
+    return refusals
+
+
+def _disposition(recs, waivers, overrides):
+    """Attach LIVE / WAIVED / OVERRIDDEN to every finding (§6.1, §7.1, §7.3)."""
+    live, waived, overridden, skipped = [], [], [], []
+    in_force = [w for w in waivers if w.get("status") not in ("lapsed", "voided")]
+    applied = [o for o in overrides if o.get("status") != "revoked"]
+
+    for aid in sorted(recs, key=lambda a: [x[0] for x in ASSERTIONS].index(a)
+                      if a in CATEGORY else 999):
+        rec = recs[aid]
+        if rec["verdict"] == "SKIPPED":
+            skipped.append((aid, rec.get("element", "whole"),
+                            rec.get("blocked_by", "?")))
+        for f in rec["findings"]:
+            element = f.get("element", "")
+            o = next((o for o in applied if _matches(o, aid, element)), None)
+            w = next((w for w in in_force if _covered_by(w, aid, element)), None)
+            if o is not None:
+                f["_status"], f["_record"] = OVERRIDDEN, o.get("id", "O-?")
+                overridden.append((aid, f))
+            elif w is not None:
+                f["_status"], f["_record"] = WAIVED, w.get("id", "W-?")
+                waived.append((aid, f))
+            else:
+                f["_status"], f["_record"] = LIVE, None
+                live.append((aid, f))
+    return live, waived, overridden, skipped, in_force, applied
+
+
+def _verdict(live, skipped, in_force):
+    """gate §6.1, verbatim."""
+    if live or skipped:
+        return "FAIL (%d gaps)" % len(live)
+    if in_force:
+        return "PASS WITH WAIVERS"
+    return "PASS"
+
+
+def _category_summary(recs, carried, live, waived, overridden, skipped,
+                      in_force, applied):
+    """gate §6.2's totals. Three granularities, and they are not the same one:
+
+    * **assertion** counts — in force · evaluated · carried · passed · skipped
+    * **failure-line** count — failed (assertion × element; one assertion can
+      contribute several gaps, contract §7)
+    * **record** counts — waived · overridden (W-/O- records in force this run)
+
+    Both worked examples reconcile under exactly this reading: contract §7's
+    "61 checked · 54 passed" = the 55 Scope-F assertions + the 6 CC-H pre-flight
+    ones, and gate §14.3's "55 in force · 1 waived · 1 overridden (re-applied)".
+    """
+    failed_ids = {aid for aid, _ in live}
+    waived_ids = {aid for aid, _ in waived}
+    skipped_ids = {aid for aid, _, _ in skipped}
+    clean = set(recs) - failed_ids - waived_ids - skipped_ids
+    return {
+        "in force": SCOPE_F_IN_FORCE,
+        "evaluated": len(recs),
+        "carried": len(carried),
+        "passed": len(clean),
+        "failed": len(live),
+        "waived": len(in_force),
+        "overridden": len(applied),
+        "skipped": len(skipped),
+    }
+
+
+def _per_category(recs, carried, live, waived, overridden, skipped):
+    order, rows = [], {}
+    for aid, cat, _ in ASSERTIONS:
+        if cat not in rows:
+            order.append(cat)
+            rows[cat] = {"passed": 0, "failed": 0, "waived": 0,
+                         "overridden": 0, "skipped": 0, "carried": 0}
+    for c in carried:
+        rows[CATEGORY[c["assertion"]]]["carried"] += 1
+    for aid, _ in live:
+        rows[CATEGORY[aid]]["failed"] += 1
+    for aid, _ in waived:
+        rows[CATEGORY[aid]]["waived"] += 1
+    for aid, _ in overridden:
+        rows[CATEGORY[aid]]["overridden"] += 1
+    for aid, _, _ in skipped:
+        rows[CATEGORY[aid]]["skipped"] += 1
+    failed_ids = {aid for aid, _ in live} | {aid for aid, _ in waived} \
+        | {aid for aid, _, _ in skipped}
+    for aid in recs:
+        if aid not in failed_ids:
+            rows[CATEGORY[aid]]["passed"] += 1
+    return order, rows
+
+
+def _waiver_line(w, run):
+    status = w.get("status", "fresh")
+    tail = ("fresh" if status == "fresh"
+            else "re-affirmed run %s" % run if status == "re-affirmed"
+            else status)
+    line = ("%s · %s · %s · reason: %s · risk: %s · approver: %s · "
+            "revisit: %s · %s"
+            % (w.get("id", "W-?"), w.get("assertion", "?"),
+               w.get("gap") or w.get("element") or "whole", w.get("reason", "?"),
+               w.get("risk", "?"), w.get("approver", "?"),
+               w.get("revisit", "?"), tail))
+    if w.get("also"):
+        line += ("\n  also covers %s — the marker that names this gap "
+                 "(contract §8)"
+                 % " · ".join("%s (%s)" % (a.get("assertion"), a.get("element"))
+                              for a in w["also"]))
+    if w.get("basis"):
+        line += "\n  (%s)" % w["basis"]
+    return line
+
+
+def _override_line(o, run):
+    status = o.get("status", "fresh")
+    tail = ("fresh" if status == "fresh"
+            else "re-applied — evidence unchanged since run %s"
+            % o.get("since", int(run) - 1 if str(run).isdigit() else "?")
+            if status == "re-applied" else status)
+    return ("%s · %s · %s · %s · approver: %s · %s"
+            % (o.get("id", "O-?"), o.get("assertion", "?"),
+               o.get("element", "whole"), o.get("reason", "?"),
+               o.get("approver", "?"), tail))
+
+
+def _blocked_entry(run, spec):
+    gaps = spec.get("preflight", {}).get("gaps", [])
+    live_gaps = [g for g in gaps if not g.get("ha")]
+    out = ["## Gate run %s — %s — blocked at pre-flight"
+           % (run, spec.get("date", "—")),
+           "Feature: %s · Scopes: H (pre-flight over deps(F))"
+           % spec.get("feature", "?"),
+           "Verdict: BLOCKED AT PRE-FLIGHT (%d H gap%s)"
+           % (len(live_gaps), "" if len(live_gaps) == 1 else "s"),
+           "",
+           "Pre-flight gaps:"]
+    for g in live_gaps:
+        out.append(g.get("gap_line") or gap_line(g.get("assertion", "CC-H-?"), g))
+    lifted = [g for g in gaps if g.get("ha")]
+    if lifted:
+        out.append("Lifted by health acceptance: "
+                   + " · ".join("%s (%s)" % (g["ha"], g.get("assertion", "?"))
+                                for g in lifted))
+    out += ["",
+            "Nothing else was evaluated — a feature gate against rotten shared "
+            "artifacts is",
+            "meaningless (gate §4.1, Stage 0). Fix the artifact by the routing "
+            "discipline, or",
+            "grant a health acceptance at P1, then re-submit."]
+    return "\n".join(out) + "\n"
+
+
+def cmd_report(args) -> int:
+    run_file = Path(args.run_file)
+    spec = json.loads(run_file.read_text(encoding="utf-8"))
+    run_root = run_file.resolve().parent
+    run = spec.get("run", "1")
+    date = spec.get("date", "—")
+
+    preflight = spec.get("preflight", {}) or {}
+    if [g for g in preflight.get("gaps", []) if not g.get("ha")]:
+        text = _blocked_entry(run, spec)
+        _emit(text, args)
+        return 1
+
+    recs = _load_verdicts(list(spec.get("checkers", []))
+                          + ([spec["a_pass"]] if spec.get("a_pass") else []),
+                          run_root)
+
+    # the gate meets its own bar (gate §1 rule 2): every failure line this
+    # writer renders must equal the line its checker already produced.
+    for aid, rec in recs.items():
+        for f in rec["findings"]:
+            if f.get("gap_line") and f["gap_line"] != gap_line(aid, f):
+                runtime_defect(
+                    "report: %s's finding does not round-trip the named-gap "
+                    "grammar\n  checker: %s\n  writer : %s"
+                    % (aid, f["gap_line"], gap_line(aid, f)))
+
+    waivers = spec.get("waivers", []) or []
+    overrides = spec.get("overrides", []) or []
+    refusals = _validate_waivers(waivers)
+    if refusals:
+        for r in refusals:
+            print(r, file=sys.stderr)
+        return 2
+
+    carried = spec.get("carried", []) or []
+    live, waived, overridden, skipped, in_force, applied = _disposition(
+        recs, waivers, overrides)
+    verdict = _verdict(live, skipped, in_force)
+    pass_bound = verdict.startswith("PASS")
+
+    signoffs = spec.get("signoffs", {}) or {}
+    approval = spec.get("approval") or {}
+    effective = bool(pass_bound
+                     and all(signoffs.get(a) for a in FLAGGED)
+                     and approval.get("name"))
+
+    summary = _category_summary(recs, carried, live, waived, overridden,
+                                skipped, in_force, applied)
+
+    out = ["## Gate run %s — %s" % (run, date),
+           "Feature: %s · Spec revision: %s · Scopes: %s"
+           % (spec.get("feature", "?"), spec.get("spec_revision", "?"),
+              spec.get("scopes", "F (+H pre-flight)")),
+           "Verdict: %s%s" % (verdict, "" if effective or not pass_bound
+                              else "  (provisional — awaiting %s)"
+                              % (" + ".join(
+                                  ([ "⚑ sign-offs"] if not all(
+                                      signoffs.get(a) for a in FLAGGED) else [])
+                                  + (["BA approval"] if not approval.get("name")
+                                     else [])))),
+           "",
+           "Failures:"]
+    if live:
+        for aid, f in live:
+            out.append(gap_line(aid, f, recs[aid]["non_waivable"]))
+    else:
+        out.append("none")
+
+    out += ["", "Waivers in force:"]
+    out += [_waiver_line(w, run) for w in in_force] or ["none"]
+
+    out += ["", "Overrides this run:"]
+    out += [_override_line(o, run) for o in applied] or ["none"]
+
+    out += ["", "⚑ sign-offs:"]
+    if not pass_bound:
+        out += ["%s — (verdict FAIL)" % a for a in FLAGGED]
+    else:
+        for a in FLAGGED:
+            s = signoffs.get(a)
+            out.append("%s — %s · evidence reviewed · %s"
+                       % (a, s.get("summary", "?"), s.get("initials", "?"))
+                       if s else
+                       "%s — NOT SIGNED (required for an effective PASS)" % a)
+
+    out += ["", "Category summary: "
+            + " · ".join("%d %s" % (v, k) for k, v in summary.items())]
+    if not pass_bound:
+        order, rows = _per_category(recs, carried, live, waived, overridden,
+                                    skipped)
+        for cat in order:
+            r = rows[cat]
+            if any(r[k] for k in ("failed", "waived", "overridden", "skipped")):
+                out.append("  %-3s %s" % (cat, " · ".join(
+                    "%d %s" % (r[k], k) for k in
+                    ("passed", "failed", "waived", "overridden", "skipped",
+                     "carried") if r[k])))
+
+    out += ["", "BA approval: " + (
+        "%s · %s — effective PASS" % (approval["name"], approval.get("date", "—"))
+        if effective else
+        "— (verdict FAIL; resubmit after fixes)" if not pass_bound else
+        "— (provisional PASS; approval outstanding)")]
+
+    manifest = None
+    if spec.get("manifest"):
+        mp = Path(spec["manifest"])
+        if not mp.is_absolute():
+            mp = run_root / spec["manifest"]
+        manifest = json.loads(mp.read_text(encoding="utf-8"))
+        # gate §11.1: the certification manifest lists "every file the run read
+        # or produced". The snapshot holds what it read; `produced` adds what
+        # Stage 2 generated and Stage 5 commits — `traceability.md` (CC-TR-04:
+        # generated, never hand-authored).
+        known = {e["path"] for e in manifest["files"]}
+        for item in spec.get("produced", []):
+            rel = item if isinstance(item, str) else item["path"]
+            labels = ["trace"] if isinstance(item, str) else item.get(
+                "labels", ["trace"])
+            if rel in known:
+                continue
+            p = Path(manifest.get("root", ".")) / rel
+            if not p.is_file():
+                runtime_defect("report: run 5 cannot certify a file it did not "
+                               "produce — %s is absent" % rel)
+            manifest["files"].append({"labels": labels, "path": rel,
+                                      "sha256": sha256(p)})
+
+    out += ["", "Runtime record (gate definition §6.2):",
+            "Snapshot:             %s"
+            % ("%d files hashed — manifest at end of entry"
+               % len(manifest["files"]) if manifest else "—"),
+            "Pre-flight:           %s" % (
+                "clean" if not preflight.get("gaps") else
+                "%d gap(s) lifted by %s"
+                % (len(preflight["gaps"]),
+                   ", ".join(sorted({g["ha"] for g in preflight["gaps"]})))),
+            "%-21s %s" % (
+                "Carried from run %s:"
+                % (int(run) - 1 if str(run).isdigit() and int(run) > 1 else "—"),
+                " · ".join(c["assertion"] for c in carried) or "none")]
+    if carried:
+        bases = sorted({c.get("basis", "read set untouched by the diff")
+                        for c in carried})
+        out.append("                      (%s)" % "; ".join(bases))
+    out += ["Skipped:              %s"
+            % (" · ".join("%s · %s ← %s" % s for s in skipped) or "none"),
+            "Certification:        %s"
+            % ("manifest below" if effective else "— (not an effective PASS)")]
+
+    if effective and manifest:
+        out.append("")
+        out.append(_certification_block(manifest, run, date))
+        if getattr(args, "certification_out", None):
+            manifest["run"], manifest["date"] = run, date
+            Path(args.certification_out).write_text(
+                json.dumps(manifest, indent=2, ensure_ascii=False) + "\n",
+                encoding="utf-8")
+
+    _emit("\n".join(out) + "\n", args)
+    return 0 if pass_bound else 1
+
+
+def _emit(text, args):
+    if getattr(args, "append", None):
+        p = Path(args.append)
+        p.parent.mkdir(parents=True, exist_ok=True)
+        prefix = "" if not p.exists() or not p.read_text(
+            encoding="utf-8").strip() else "\n---\n\n"
+        with p.open("a", encoding="utf-8") as fh:
+            fh.write(prefix + text)
+        print("report: appended %d line(s) to %s"
+              % (text.count("\n"), args.append))
+    else:
+        sys.stdout.write(text)
+
+
 # ── certification — render the §11.1 block ───────────────────────────────────
+
+
+def _certification_block(m, run=None, date=None) -> str:
+    width = max((len(e["path"]) for e in m["files"]), default=40)
+    run = run if run is not None else m.get("run", "?")
+    out = ["Certification: run %s · effective PASS · %s"
+           % (run, date if date is not None else m.get("date", "—"))]
+    for e in m["files"]:
+        note = ""
+        if "trace" in e["labels"]:
+            note = "   (generated run %s)" % run
+        if "hist" in e["labels"]:
+            note = "   [hist]"
+        out.append("  %-*s  %s%s" % (width, e["path"], e["sha256"][:4] + "…",
+                                     note))
+    out.append("Adapter precondition: every hash matches the live file at "
+               "handoff — any\nmismatch → refuse handoff, print the diverged "
+               "paths, demand re-gate.")
+    return "\n".join(out)
 
 
 def cmd_certification(args) -> int:
     m = json.loads(Path(args.manifest).read_text(encoding="utf-8"))
-    width = max((len(e["path"]) for e in m["files"]), default=40)
-    print("Certification: run %s · effective PASS · %s"
-          % (m.get("run", "?"), m.get("date", "—")))
-    for e in m["files"]:
-        note = ""
-        if "trace" in e["labels"]:
-            note = "   (generated run %s)" % m.get("run", "?")
-        if "hist" in e["labels"]:
-            note = "   [hist]"
-        print("  %-*s  %s%s" % (width, e["path"], e["sha256"][:4] + "…", note))
-    print("Adapter precondition: every hash matches the live file at handoff — "
-          "any\nmismatch → refuse handoff, print the diverged paths, demand "
-          "re-gate.")
+    print(_certification_block(m))
     return 0
 
 
@@ -500,6 +971,14 @@ def main(argv=None) -> int:
     a.add_argument("--curr-spec")
     a.add_argument("--format", choices=("text", "json"), default="text")
     a.set_defaults(fn=cmd_anchor_diff)
+
+    rp = sub.add_parser("report", help="verdict assembly + the §6.2 entry")
+    rp.add_argument("run_file", help="the run record — see the ba-gate skill")
+    rp.add_argument("--append", help="append the entry to this gate-report.md")
+    rp.add_argument("--certification-out",
+                    help="write the §11.1 certification manifest here "
+                         "(effective PASS only) — the adapter verifies it")
+    rp.set_defaults(fn=cmd_report)
 
     c = sub.add_parser("certification", help="render the §11.1 block")
     c.add_argument("manifest")

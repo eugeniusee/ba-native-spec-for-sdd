@@ -215,6 +215,52 @@ else
   bad "$found_skills of 32 /ba-* skills installed — the full tree is the Phase-2 bar"
 fi
 
+# ───────────────────────────────── D-P2-2: frontmatter is the enforcement ──────
+# Every /ba-* skill ships `disable-model-invocation: true` — the corpus's
+# BA-invoked-never-auto-fired discipline (gate §2.2, orchestrator §7.1) enforced
+# by frontmatter, not by convention. Checked on whatever is installed, so each
+# session's units are covered the moment they land.
+printf '\n\033[1m▸ Skill & agent frontmatter (D-P2-2, D-P2-3)\033[0m\n'
+fm_bad=0; fm_seen=0
+for f in "$TARGET"/.claude/skills/ba-*/SKILL.md; do
+  [ -f "$f" ] || continue
+  fm_seen=$((fm_seen+1))
+  dir=$(basename "$(dirname "$f")")
+  head -12 "$f" | grep -qx -- "name: $dir" \
+    || { bad "$dir/SKILL.md — frontmatter name does not match its directory"; fm_bad=1; }
+  head -12 "$f" | grep -q '^description: .' \
+    || { bad "$dir/SKILL.md — no description in frontmatter"; fm_bad=1; }
+  head -12 "$f" | grep -qx 'disable-model-invocation: true' \
+    || { bad "$dir/SKILL.md — missing disable-model-invocation: true (D-P2-2)"; fm_bad=1; }
+done
+if [ "$fm_seen" -eq 0 ]; then
+  printf '  \033[33m○\033[0m no /ba-* skills installed yet — nothing to check\n'
+elif [ "$fm_bad" -eq 0 ]; then
+  pass=$((pass+1)); note "$fm_seen installed skill(s): name matches directory · description present · disable-model-invocation: true"
+fi
+
+ag_bad=0; ag_seen=0
+for f in "$TARGET"/.claude/agents/ba-*.md; do
+  [ -f "$f" ] || continue
+  ag_seen=$((ag_seen+1))
+  n=$(basename "$f" .md)
+  head -8 "$f" | grep -qx -- "name: $n" \
+    || { bad "agents/$n.md — frontmatter name does not match the file"; ag_bad=1; }
+  head -8 "$f" | grep -q '^description: .' \
+    || { bad "agents/$n.md — no description in frontmatter"; ag_bad=1; }
+done
+# the gate evaluator's read-only tool policy is gate §11.3 made mechanical
+if [ -f "$TARGET/.claude/agents/ba-gate.md" ]; then
+  if head -8 "$TARGET/.claude/agents/ba-gate.md" | grep -qE '^tools: *Read, *Grep, *Glob *$'; then
+    pass=$((pass+1)); note "ba-gate agent is read-only by tool policy (gate §11.3 — it never edits)"
+  else
+    bad "ba-gate agent must declare exactly 'tools: Read, Grep, Glob' — the A evaluator never edits"
+  fi
+fi
+if [ "$ag_seen" -gt 0 ] && [ "$ag_bad" -eq 0 ]; then
+  pass=$((pass+1)); note "$ag_seen installed agent(s): name matches file · description present"
+fi
+
 # ────────────────────────────────────────────────────────── manifest assertions ─
 printf '\n\033[1m▸ Manifest\033[0m\n'
 MANIFEST="$TARGET/.specify/ba/manifest.md"

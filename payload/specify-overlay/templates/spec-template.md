@@ -51,7 +51,14 @@
      global budgets are referenced from governance, never restated.
      All six categories carry an NFR or an explicit `N/A — <reason>`:
      performance · security/privacy · availability · accessibility ·
-     localization · scale. Silence fails. (CC-NF-01…03) -->
+     localization · scale. Silence fails. (CC-NF-01…03)
+
+     The category must be LABELLED — a keyword inside the sentence does not
+     count, so a category is recognised in exactly one of three forms:
+         NFR-0NN (<category>) — <metric + target + condition>
+         - <Category>: N/A — <reason>
+         | <Category> | … |            (a table row led by the category)
+     Anything else reads as silence and fails CC-NF-02. -->
 
 ## Business Rules
 
