@@ -1123,3 +1123,311 @@ new file, and adding a rule class is the pattern) · and **`canvas.md` is writte
 by four different sheets from S6 on** (T-07 §10 · T-08 §2/§12 · T-09 §§3–5/§11 ·
 T-10 §§6–9), so the proposed-edit-batch discipline on canvas-side writes is the
 thing to compile carefully — T-01 owns the file at Frame and nobody owns it after.
+
+---
+
+## S6 — Techniques II · 1 August 2026 · GREEN
+
+**Session prompt:** the standing pattern, build plan §4.
+**Grounding:** `docs/methodology/` at the pinned versions (S1's vector,
+unchanged) · build plan v0.2 §1.1, §2.1, §3, §4 (S6 row) · **catalogue b2 v0.2
+in full** (T-04…T-07) and **catalogue b3 v0.2 in full** (T-08…T-10) — each
+sheet's §2 depth, §3 contract, §4 procedure, §5 template/micro-example, §6
+hooks, §8 build-brief hook · catalogue index v0.2 rows T-04…T-10 as cross-check ·
+elicitation v0.3 §3.2.A/§3.2.C (the kit's citation form and assumption register),
+§3.3 (the depth table D-B3-4 rests on), §3.5 routing table, §8.1–§8.2 ·
+orchestrator v0.3 §3.3, §6.1–§6.4, §7.4, §8.1, §12 · S5's technique-skill shape
+and `ba-discovery`, as the interface these seven skills implement.
+
+### Units built — 7 of the 67 (running total 54)
+
+| Unit class | Built | Notes |
+|---|---|---|
+| Technique skills (§2.1) — 7 | `ba-t04` … `ba-t10`, each `SKILL.md` + `references/example.md` | all `disable-model-invocation: true`; 14 payload files |
+| Test harness | `tests/check-techniques2.sh` · 22 new rule classes in `tests/check-band1-artifacts.py` · `tests/fixtures/…/band1/elected/` · `tests/fixtures/…/band1/first-pass/constraints.md` | not §2 build units; the S6 exit test |
+| Prior-session fixture units touched | `project/canvas.md` · `project/.specify/memory/{context,constraints,competitive-analysis,roadmap}.md` · `band1/aspect-state.md` · `band1/aspect-plans.md` | D23–D26 — see below |
+
+No subagent this session: the seven skills are all dispatched under
+`ba-discovery`, which S5 built, so its three operating principles and its
+writing-standard discipline did not need restating per skill.
+
+### Compilation-rule application (§3)
+
+- **§3.1 travels verbatim.** Carried byte-faithful into the compiled prompts:
+  each sheet's §2 **Depth** boundary with its named forbidden zones · each §3
+  output-contract triple `{expected · class · destination}` · the three
+  transformation clauses **TC-1 · TC-2 · TC-3**, which ship inside `personas.md`
+  itself rather than in the prompt only · the two-value `Confirmed | Assumed`
+  status vocabulary · the `none identified — <basis>` and `N/A — <reason>`
+  ruling forms · `open — <what is unresolved>` on a connection row · the
+  `[CONFLICT: vision claims <X> · constraints.md §<n> "<row>" binds <Y>]` marker
+  grammar · the `→ P-n` / `→ O-n` / `→ <vision section>` linkage notation and the
+  ≤ 10 capability-line cap · the **EG-1** entity-ground clause, in the terms its
+  reader opens on.
+- **§3.2 compiled with transformation.** Each §2 metadata + §3 contract became
+  frontmatter plus the invocation-contract block: the P-O3 self-check in both
+  halves and the exact refusal when either is unmet. Each §8 build-brief hook
+  became the skill's wiring — inputs loaded **in order**, interaction pattern,
+  outputs written — with the "Phase 2 adds" list implemented: a TC-3 namespace
+  check at write time (T-04) · the constraints-vs-landscape routing assist
+  (T-05) · a curated class-probe library and Status-flip handling (T-06) · the
+  canvas-sync assist and the two-door reporting split (T-07) · the who-hurts ⇄
+  register diff and continuation-ID assignment (T-08) · the scan-table rendering
+  and marker mechanics (T-09) · the linkage-sweep rendering and open-slot
+  surfacing toward Tier-1 (T-10).
+- **D-P2-10 lands, seven more times.** Each §5 template + micro-example compiled
+  to `references/example.md` with a *what the example is showing* reading. Three
+  examples carry a second worked artifact the sheet implies but does not draw:
+  T-05's full-greenfield shape, T-07's no-market `N/A` shape, and **T-09's scan
+  table**, reported in full against a clean set — because a scan that prints only
+  its hits is indistinguishable from a scan that never ran.
+- **§3.3 never compiled.** No BABOK anchor, no §7 mining note, no review record
+  reached the payload. The leak scan in `check-techniques2.sh` additionally greps
+  for `D-B[0-9]-[0-9]` and `D-W[0-9]`: the b2/b3 sheets carry their decisions as
+  inline locked text, and a compiled prompt that cited a decision ID would be
+  pointing at a document the runtime never loads. **Zero `§` characters** appear
+  in the seven skills except in the two places where a section reference is
+  itself operative runtime grammar — T-06's `[constraints.md §2]` citation target
+  and T-09's conflict-marker form.
+- **§0 layering, at the technique layer.** No skill restates an AT criterion, and
+  every one of the seven refuses, in as many words, to confirm a criterion or
+  clear an aspect. T-07 goes one step further and refuses to claim AT-VI-2 met
+  even when it has supplied everything the criterion names — it reports the
+  precondition satisfied and says the statement is another run's act.
+
+### D-P2 bindings applied
+
+| ID | How it landed |
+|---|---|
+| D-P2-2 | All seven ship `disable-model-invocation: true`, asserted per skill |
+| **D-P2-4** | **1:1 technique↔skill holds at 10 of 20.** No sheet split, none merged — including T-07, which serves two aspects from one skill and one file |
+| D-P2-6 | Unbroken. `check-layout.sh --session S6` is green with all 19 runtime-born paths still asserted absent after a fresh install |
+| **D-P2-10** | **Seven more `references/example.md`**; the installed file count rises to 61 |
+
+### Architecture decisions
+
+**1 · The suite is a second file, not a longer first one.**
+`check-techniques2.sh` sits beside `check-techniques.sh` rather than extending
+it. The batches are the corpus's own unit of authorship, the exit tests are
+per-session by the plan's own discipline, and a single 700-line technique suite
+would make a red line ambiguous about which session owned it. The two share the
+validator, which is where the actual logic lives.
+
+**2 · The validator grew rule classes, not a second validator.**
+`check-band1-artifacts.py` went from 16 rules to 39 — `--context`,
+`--constraints`, `--competitive`, `--personas`, `--flip-early/--flip-later`, and
+an `--aspect-grade` flag on `--canvas`. The flag is the load-bearing one: the
+same canvas file is **legal at framing grade and illegal at aspect grade**, and
+the suite asserts both directions — the mature canvas passes `--aspect-grade`,
+the framed canvas fails it, and it fails on B35 and B36 specifically, which is
+exactly where framing stopped. A separate aspect-grade validator would have let
+those two readings drift.
+
+**3 · The elected charter lives outside the estate.**
+Build plan §4's S6 row asks for "TC-1…TC-3 surface present on any elected persona
+charter", and the world the fixture records is **charter-free by construction** —
+orchestrator §12.1's Stakeholders plan holds two techniques and no election, and
+the Requirements evidence table clears AT-RQ-2 *on the absence*: "no personas.md
+exists, so the persona→role principle is stated in the constitution's
+Authorization row". Dropping a charter into `.specify/memory/` would activate a
+dormant conditional clause and contradict a cleared table — for the one technique
+whose entire point is that it was never required. So the charter sits in
+`band1/elected/`, framed exactly as the sheet frames its own micro-example: the
+charter a BA election *would* have produced, the world's canonical artifacts
+unchanged. The suite asserts both halves — the charter validates against TC-1…3,
+and `.specify/memory/personas.md` does not exist.
+
+**4 · TC-3 is asserted with teeth, not by inspection.**
+The namespace clause is only worth compiling if something downstream depends on
+it. The suite greps the whole estate and every spec for the persona name and
+requires zero hits — which is the exact surface CC-XA-02 screens, and is only a
+meaningful assertion because `Marta` is a name no other artifact uses. It also
+asserts that `band1/elected/personas.md` and `negatives/personas.md` agree on
+their name set, so the screening fixture and the charter fixture cannot drift
+into two worlds.
+
+**5 · The Assumed → Confirmed flip is modelled as a second file, and checked as
+an edit.** `band1/first-pass/constraints.md` is the 07-09 file; the estate copy
+is the same file after the 07-14 ingestion batch. The only difference is one
+`Status` cell. B39 asserts that the flip **edits a row rather than replacing
+one** — same class, same wording, same position — and that the only legal
+direction is `Assumed → Confirmed`. That round trip is the whole argument for
+`Assumed` being a status rather than a marker, and it now fails loudly if a later
+session rewrites the row instead of flipping it.
+
+### Session exit test — GREEN
+
+`tests/check-techniques2.sh` — **122 checks, 0 failures.**
+
+| Exit-test clause (build plan §4, S6 row) | How it is proven |
+|---|---|
+| *constraints/context/competitive land* | The three files validate live against the shapes T-05/T-06/T-07 §3/§5 pin — two named landscape sections with a Disposition column, three numbered constraint classes at the two-value status vocabulary, five competitive columns with the status quo screened and every delta keyed |
+| *canvas §§2–12 filled per AT-VA/VI/SO* | `--aspect-grade` over the mature canvas: every P-line resolves to a register population · every O-line links · three product slots filled · the differentiation names an Unlike entry and keys its delta · four surface sections filled or ruled · all five functions linked · the connection row carries role and direction. The framed canvas fails the same pass, on B35/B36 |
+| *Context + Value + Vision + Solution clear on the toy* | Each aspect's §12 evidence table is **evidenced**, not trusted: AT-CX-1's two systems and the landscape are grepped from the file · AT-CX-2's per-class Confirmed rows are counted live · AT-CX-3's canvas Unlike names are each resolved against a competitive entry · AT-VA-2's baseline is on the line · **AT-VI-3's scan row set is recomputed from the 07-09 constraints file** and must equal `{§2, §3}` with `§1` Assumed · AT-SO-2's "all five linked" is counted |
+| *TC-1…TC-3 surface present on any elected persona charter* | The charter validates; TC-1's population resolves to a register entry; TC-3's name is disjoint from every register entry and appears in no spec |
+| *the suite is not vacuous* | 23 seeded defects, one per new rule, each asserted to trip **exactly** its own rule ID |
+
+**Regression — every prior suite re-run green after the fixture surgery:**
+`check-m.sh` · `check-gate.sh` · `check-orchestrator.sh` · `check-techniques.sh`
+(100 checks) · `check-cards.py` · `check-ledger.py`.
+`check-layout.sh --target <fresh install> --session S6` — **90 passed, 0 failed,
+13 pending** (S7–S9's units). The install was a real one: pinned Spec Kit
+v0.12.5 init + overlay, and the seven new skills land at
+`.claude/skills/ba-t04…t10/`.
+
+One expected-file refresh: `expected/gate-run3.entry` carries the certification
+manifest's content hashes, and two of them — `canvas.md`, `roadmap.md` — moved
+because this session edited those files. The hashes were refreshed; the gate
+suite re-verifies them live against the fixture, so the refresh is checked rather
+than asserted.
+
+### Divergences flagged (§3.2 discipline, generalized)
+
+**D23 · `context.md` carried a `Constraint` column — the one thing T-05 forbids.**
+The pre-S6 file had three numbered sections (`Operating context` · `Systems in
+the landscape` · `Adjacent initiatives`) and a systems table whose third column
+was `Constraint`, holding *"the calendars stay in place; the product does not
+replace them"*. T-05 §5 pins two named sections and a `Disposition (where
+stated)` column, and T-05 §2's depth boundary exists precisely to keep binding
+statements out of this file — that is D-W2's split, and the fixture was standing
+on the wrong side of it.
+
+*Resolution taken:* **fixed.** Two sections, the pinned header, the bind moved to
+`constraints.md` §1 with the landscape keeping the descriptive side — and B20 now
+fails any binding modal (`must` · `must not` · `may not` · `shall`) in a
+landscape cell, so the boundary is enforced rather than remembered. The three
+numbered sections' content did not vanish: the operating-context prose became a
+`Role today` cell and two landscape lines, and the adjacent-initiative line became
+a landscape line. *Doc-first:* no doc defect — the sheet was right and the fixture
+was wrong.
+
+**D24 · constraint IDs are a fixture invention with no corpus support.**
+`C-T1` / `C-B1` / `C-R1` were threaded through six fixture files and cited from
+canvas §13, `roadmap.md` and both ledgers. **The string `C-B1` appears nowhere in
+`docs/methodology/`.** Everywhere the corpus points at a constraint it points at
+the numbered class — `constraints.md §2` in b6's allocation basis, `[constraints.md
+§3]` in b5's out-of-scope row, `constraints.md §3` in b5's governance reference,
+and elicitation §3.2.A's kit-baseline citation form. T-06 §5's table is three
+columns, and b2's own conflict scan records the numbered classes as the thing
+that "gives elicitation §3.2's `[constraints.md §2]` citation form a resolvable
+target". A fourth `ID` column is a divergence from a pinned output template, and
+the citations it enabled were pointing at an anchor grade the corpus does not use.
+
+Separately, the `Status` cells read `Confirmed — 2026-07-14`. D-B2-4 pins a
+**two-value** column and rests on AT-CX-2 reading `Confirmed` *mechanically*; a
+decorated cell breaks that read.
+
+*Resolution taken:* **fixed, and the citation retargeted world-wide.** The `ID`
+column is gone, dates moved to `Source`, and every citation now resolves by class
+— canvas §13's three one-liners, `roadmap.md`'s E-04 source and allocation basis,
+both ledgers, and S5's own canvas assertion. B22 and B23 fail the old shapes.
+*Doc-first:* no doc defect.
+
+**D25 · the competitive table was a different table, and it wrote T-09's
+sentence.** The pre-S6 file's header was `Competitor · What they do · Where they
+are strong · Where they leave room · Source`; T-07 §5 pins `Alternative ·
+Category · Covers · Falls short · Source`. One delta read `(P-1)` where the sheet
+requires a `→ P-n` key, and the status quo was present but unlabelled, so the
+"always screened" rule was satisfied by accident rather than by construction.
+The file then closed with *"Differentiation (canvas §11): booking completes
+without a phone call…"* — which is the Our Solution statement, and T-07 §2's
+depth boundary says in as many words that this sheet supplies targets and deltas
+and **never** the statement.
+
+*Resolution taken:* **fixed.** Sheet header, status quo labelled `(status quo)`
+in the `Alternative` cell, every `Falls short` keyed, and the differentiation
+sentence deleted from this file — it already stands on canvas §11, which is where
+T-09 put it. B25/B26/B27 fail each of the three, and the suite additionally
+asserts the sentence's *absence* here.
+
+**D26 · canvas §7's fifth function had no objective link, and the ledger argued
+around it.** The mature canvas read *"Availability published by Specialists or
+their Clinic Admins `[call 2026-07-14]`"* with no `→ O-n`, and the Solution
+evidence row explained that the function *"serves O-2 through the Browse/Book
+pair"*. AT-SO-2 asks whether the function **names** the objective it serves, and
+prose in an evidence table is not the link. The corpus settles it twice over: b3
+T-10's own micro-example writes *"Specialists publish their Availability → O-2"*,
+and orchestrator §12.3's RO-1 reckoning states that *"the function's objective
+link is unchanged; only its actor list grew"* — which presupposes a link the
+fixture had dropped.
+
+Three smaller aspect-grade gaps travelled with it: §9 Localization read *"Single
+locale at launch"* where T-10 §3 wants languages · currencies · regions each
+stated or ruled — and b5's own conflict scan names canvas §9's
+`N/A — no payment surface in MVP scope` as an existing fact of this world; §11's
+differentiation carried no `→ P-n / O-n` key, which AT-VI-2's expected output
+requires; and §10 named one alternative where the analysis backs two.
+
+*Resolution taken:* **fixed, all four**, and the Solution and Vision evidence
+rows rewritten to claim what the canvas now shows. B37 fails an unlinked
+function, B36 an unruled surface facet, B35 an unkeyed differentiation.
+*Doc-first:* no doc defect — the corpus was right in both places the fixture
+diverged from it.
+
+**D27 · AT-VI-3's scan reads a set that moved after the aspect cleared — and no
+re-scan is due.** The scan ran 2026-07-09 against the Confirmed set as it then
+stood: `§2` and `§3`, with `§1` excluded because the calendar row was `Assumed`.
+On 07-14 the ingestion batch flipped `§1` to `Confirmed`, so AT-VI-3's own
+trigger — *"the scan has not run against the current statement + Confirmed-row
+set (either side changed since the last scan)"* — reads fired against a Vision
+aspect that is `first-pass-cleared`. Orchestrator §12.3 records *"Context, Value,
+Vision: untouched → flags drop"*, which is about RO-1's fix diff and does not
+speak to the flip.
+
+*Resolution taken:* **flagged, not invented.** Band 1 closed 07-10, and at
+closure custodianship of the spec-anchored estate hands to Scope H — a post-
+closure estate change is health ground and a reopen question, not a Band-1
+re-clear, so no ledger event was fabricated. What the fixture does record is the
+scan's *actual* input set, and the suite recomputes it from the 07-09 file and
+requires the evidence row to match: `§1` excluded as `Assumed`, `§2` and `§3`
+Confirmed. If a later session ever wants the re-scan modelled, it is an
+orchestrator-document question first (§3.5's one-way rule), not a fixture edit.
+
+**D28 · T-04 §5's own template and micro-example disagree on the charter
+heading.** The template block writes `## <Persona name> — details: <register
+population>`; the micro-example directly beneath writes `**Marta — details:
+Clients**`. Both are §5, so "the sheet governs" does not adjudicate between them.
+
+*Resolution taken:* **both accepted, template preferred.** S2's `sk_scan.py`
+already reads either form — its `PERSONA_HEAD_RE` comment names the divergence
+explicitly — so the shipped runtime checker had already ruled, and inventing a
+stricter reading at S6 would have made the harness and the runtime disagree about
+the same file. The compiled skill and the fixture both write the `##` form; the
+validator accepts either, with the same regex family `sk_scan` uses. *Doc-first:*
+a mirror candidate at catalogue-b2's next bump — render the micro-example heading
+in the template's form.
+
+**D29 · sheet ⇄ index, checked and clean.** Index v0.2 rows T-04…T-10 were read
+against b2 §§2–3 and b3 §§2–3 cell by cell — Serves, evidence triggers, skip-if,
+depth boundary, expected output, destination. **No divergence found**; the seven
+index rows are faithful condensations, including the two awkward ones (T-04's
+no-hole trigger cell and T-07's dual Serves). Recorded because the plan asks for
+the check, not only for its failures.
+
+### Open for the next session
+
+S7 — Techniques III + closure (`ba-t11`…`ba-t16`, six skills, from b4 v0.2 and
+b5 v0.2), plus `/ba-close-band1` and the arming Scope-H run.
+
+Inputs now in place: **the technique-skill shape**, unchanged since S5 and now
+proven across ten sheets · **`references/example.md`** as the compiled home of
+each §5 · **the validator's rule-class pattern** — a new artifact means a new
+`--flag` and a contiguous rule block, and the negative test is one `mutate` +
+`neg` pair per rule · **EG-1**, compiled into `ba-t10`'s Output section in the
+terms T-11 opens on, so the domain-model sheet's entry point is already written
+down on the producing side · **the canvas at aspect grade**, so T-11…T-16's
+destinations are the only ones left unvalidated.
+
+Three things S7 inherits as work. **(i)** The validator has no rules yet for
+`domain-model.md`, `roles-permissions.md`, `processes.md`, `design-standards.md`,
+`constitution.md` or `out-of-scope.md` — six destinations, and the Requirements
+evidence table's AT-RQ-1…4 rows currently stand un-evidenced against them. That
+is the largest single block of evidencing left in the fixture. **(ii)** T-12
+reads TC-1/TC-2 and nothing else from the elected charter — and the canonical
+world has no charter, so S7 must decide whether the persona→role transformation
+is exercised against `band1/elected/` or recorded as dormant, the way this
+session recorded the enrichment serve. **(iii)** `/ba-close-band1` and the arming
+run land in S7 by the plan's row, and the closure event is already in the fixture
+ledger (07-10, `HEALTHY`) — so the work is proving the skill against a ledger
+state that already records its outcome, which is the S3/S4 replay pattern rather
+than the S5/S6 authoring pattern.

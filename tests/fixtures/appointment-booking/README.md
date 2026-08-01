@@ -30,7 +30,13 @@ tier2-answer-sheet.md           the ≤ 7 GQ answers — the Tier-2 input
 band1/                          the orchestrator §12 ledgers (S4)
   first-pass/                   what T-01/T-02/T-03 produced (S5) — canvas at
                                 framing grade, the pre-RO-1 register, the
-                                6-term glossary; see that directory's README
+                                6-term glossary — plus T-06's constraints file
+                                BEFORE the 07-14 Status flip (S6); see that
+                                directory's README
+  elected/                      the persona charter a BA election would have
+                                produced (S6) — deliberately outside the estate,
+                                because the canonical timeline is charter-free;
+                                see that directory's README
 revisions/
   spec-r5.md                    the gate-§14 defect set, seeded
   spec-r6.md                    the same spec after §14.1's five fixes
@@ -49,13 +55,15 @@ expected/                       the recorded verdict table per case, plus the
 
 Run the M suite with `tests/check-m.sh`, the gate suite with
 `tests/check-gate.sh`, the orchestrator suite with `tests/check-orchestrator.sh`
-and the technique suite with `tests/check-techniques.sh` — all from the package
-root.
+and the technique suites with `tests/check-techniques.sh` (batch I) and
+`tests/check-techniques2.sh` (batch II) — all from the package root.
 
 ### The estate is in framework shape, and that is now checked
 
-`tests/check-band1-artifacts.py` validates `canvas.md`, `glossary.md` and
-`stakeholders.md` against the shapes their sheets pin, on **both** the
+`tests/check-band1-artifacts.py` validates `canvas.md` — at framing grade and,
+with `--aspect-grade`, against AT-VA/VI/SO — plus `glossary.md`,
+`stakeholders.md`, `context.md`, `constraints.md`, `competitive-analysis.md` and
+the elected `personas.md`, against the shapes their sheets pin, on **both** the
 `band1/first-pass/` set and this mature `project/` set, and asserts that every
 first-pass row survives into the mature one. Three things moved at S5 to make
 that true — recorded in `BUILD-LOG.md` as D20:
@@ -64,10 +72,30 @@ that true — recorded in `BUILD-LOG.md` as D20:
   Admins* — RO-1's resolution, which the ledger records and the canvas had not
   carried.
 - **canvas §3–§5, §7, §11** gained their citations, and §13's Business and
-  Regulatory one-liners now cite `constraints.md: C-B1 / C-R1` rather than the
+  Regulatory one-liners now cite `constraints.md §2` / `§3` rather than the
   kickoff notes, which say nothing about either.
 - **`glossary.md`** gained the `Merged synonyms` column and **`stakeholders.md`**
   became one six-column table — the shapes T-02 §5 and T-03 §5 pin.
+
+Four more moved at S6 — recorded in `BUILD-LOG.md` as D23–D26:
+
+- **`context.md`** became the two named sections T-05 §5 pins, with a
+  `Disposition` column in place of the `Constraint` column it carried. That
+  column put binding statements in the landscape file, which is the one split
+  T-05's depth boundary exists to enforce.
+- **`constraints.md`** lost the `ID` column T-06 §5 does not pin and the dates
+  inside its `Status` cells; downstream citation is by numbered class —
+  `[constraints.md §2]` is Business, everywhere in the world including
+  `roadmap.md` and canvas §13.
+- **`competitive-analysis.md`** became the five columns T-07 §5 pins, the status
+  quo labelled as such, every `Falls short` cell keyed to a `P-n` / `O-n` — and
+  it lost the trailing differentiation sentence, which is T-09's ground and never
+  this artifact's.
+- **canvas §7, §9, §10, §11, §12** reached aspect grade: the fifth function
+  carries the `→ O-2` the ledger's RO-1 reckoning always claimed it had, §9 names
+  its three facets with the currencies ruling explicit, §10 names both
+  alternatives the analysis backs, §11 keys its delta, and O-2 carries the
+  baseline AT-VA-2's "concrete enough to cite" is asking for.
 
 ### Two facts worth knowing before reading a verdict
 

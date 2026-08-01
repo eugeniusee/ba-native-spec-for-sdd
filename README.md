@@ -56,18 +56,24 @@ Offline use needs `vendor/spec-kit-v0.12.5.zip` — see [`vendor/README.md`](ven
 ## Test
 
 ```sh
-tests/check-layout.sh --target /path/to/project --session S5   # this session's bar
+tests/check-layout.sh --target /path/to/project --session S6   # this session's bar
 tests/check-layout.sh --target /path/to/project                # full Phase-2 bar
 tests/check-m.sh                                               # the M-checker suite
 tests/check-gate.sh                                            # the gate suite
 tests/check-orchestrator.sh                                    # the orchestrator suite
 tests/check-techniques.sh                                      # the technique suite, batch I
+tests/check-techniques2.sh                                     # the technique suite, batch II
 ```
 
 `check-m.sh` runs the ten vendored checkers against the appointment-booking
 fixture world, asserts each case against its recorded verdict table, reproduces
 gate run 2's M-detectable gaps verbatim, and fails if any of the 24 M assertions
 is not exercised with both a seeded FAIL and a PASS.
+
+`check-techniques2.sh` validates the Context estate, the Assumed → Confirmed
+round trip and the canvas at aspect grade, re-derives every row of the Context,
+Value, Vision and Solution evidence tables from the artifacts themselves, and
+seeds twenty-three distinct defects that must each trip their own rule.
 
 `check-orchestrator.sh` replays the orchestrator rules' §12 exhibits — the
 BA-planning loop, a threshold cleared into Band-1 closure, and the RO-1 reopen
@@ -100,10 +106,14 @@ ba-native-spec/
    ├─ check-orchestrator.sh  the orchestrator suite — §12 exhibits replayed (S4)
    ├─ check-ledger.py      aspect-ledger grammar validator (S4 harness; not installed)
    ├─ check-techniques.sh  the technique suite, batch I — T-01/T-02/T-03 (S5)
-   ├─ check-band1-artifacts.py  canvas/glossary/register validator (S5 harness;
-   │                       not installed — the technique layer ships no checker)
+   ├─ check-techniques2.sh the technique suite, batch II — T-04…T-10 (S6)
+   ├─ check-band1-artifacts.py  the Band-1 artifact validator — canvas (framing and
+   │                       aspect grade) · glossary · register · context · constraints ·
+   │                       competitive · personas (S5/S6 harness; not installed —
+   │                       the technique layer ships no checker)
    ├─ fixtures/            the toy world (S2) · band1/ the §12 ledgers (S4) ·
-   │                       presale-brief.md + band1/first-pass/ (S5)
+   │                       presale-brief.md + band1/first-pass/ (S5) ·
+   │                       band1/elected/ the BA-elected charter (S6)
    └─ exit-test.md         the Phase-2 exit script (S9)
 ```
 

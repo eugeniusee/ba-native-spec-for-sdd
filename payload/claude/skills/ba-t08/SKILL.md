@@ -1,0 +1,151 @@
+---
+name: ba-t08
+description: T-08 Value definition. Serves Value against AT-VA-1 and AT-VA-2. Completes the canvas Problems and Objectives sections at aspect grade - every problem naming who hurts and resolving to a register population, every objective linked to the problem it answers and concrete enough to be cited downstream. Writes canvas.md Problems and Objectives.
+disable-model-invocation: true
+---
+
+# `/ba-t08` — value definition
+
+**Serves:** Value. **Class:** Context — the canvas's own class ·
+**Destination:** `canvas.md` — the `Problems` and `Objectives` sections. **No new
+artifact is born here.**
+
+The value case as **pointable lines**: every problem naming who hurts, resolved
+against the register's populations; every objective linked to the problem it
+answers and stated concretely enough to be cited downstream. The decision this
+run lets the BA make: the value case is real and pointable — **who hurts, what
+changes, and how the two connect** — so vision work differentiates a stated value
+rather than a vibe.
+
+**A value claim that cannot be pointed at here cannot anchor a feature later.**
+Every brief's value anchor and every spec's overview claim resolves back to these
+lines, directly or through a brief. This run is what makes the anchor *citable*
+rather than merely present.
+
+## Invocation contract — check before you run
+
+**BA-invoked, never auto-fired.** This skill starts only from `/ba-run t08`.
+
+Self-check, and stop if either half fails:
+
+> the run is **on the composed plan** of the Value aspect, which is `open` or
+> `reopened`, **with its output contract pinned**:
+> `{problems + objectives at aspect grade — who-hurts resolving, every objective linked · Context · canvas.md — Problems · Objectives}`.
+
+On a miss, stop and name `/ba-run`, or `/ba-aspect value` to open and compose.
+Value opens on Stakeholders being `first-pass-cleared` or waived; if that edge is
+unmet, say so rather than running early.
+
+**Skip-if — refuse the run and say so:** AT-VA-1 and AT-VA-2 both read met in the
+current evidence table — for instance a presale canvas that arrived with
+who-hurts and linkage already at aspect grade, and the resolution pass confirms
+it. Benefit quantification and KPI trees are **enrichment on BA ask**, never a
+hole this run fills on its own initiative.
+
+## Depth boundary — value grade, and it is a hard edge
+
+Elicit **per problem**: one line — the pain, **who hurts**, and the evidence
+behind it where sourced. Elicit **per objective**: one line — the change sought,
+`→ P-n`, and a baseline or measure where the material gives one.
+
+**Must NOT descend into:**
+
+- **solution capabilities.** *"What it does"* answers Solution, not Value. A
+  candidate that is really a capability is proposed to the canvas Core Functions
+  section by batch — the solution run completes it later, and arrival is never
+  gated.
+- differentiation claims — the vision run's ground
+- KPI frameworks or benefit-realization models — enrichment, on BA ask
+- acceptance thresholds or NFR targets — spec ground, Tier 2
+- **register authoring.** An unresolved who-hurts is a **proposed register
+  edit**, never an inline cast edit from inside this run.
+
+## Inputs loaded
+
+In this order:
+
+1. `canvas.md` — **Problems and Objectives first**; the framing-grade lines are
+   what this run completes, and their IDs are carried, never reassigned
+2. `.specify/memory/stakeholders.md` — **the resolution target**: every who-hurts
+   is diffed against it
+3. presale material and kickoff notes
+4. `.specify/memory/glossary.md`
+
+## Procedure
+
+1. **BA act.** Value is opened and its plan composed; the run is invoked.
+
+2. **Framework act — pre-draft the completion.** Complete the two sections from
+   the framing-grade lines, the presale material, the kickoff notes, and any
+   routed arrivals. **Every line is cited or marked.**
+
+   **Line-IDs continue; they never restart.** A new problem or objective takes
+   the next unused `P-n` / `O-n`. **A retired line's ID is never reused** — the
+   removal is recorded in the run log or the batch, and the number dies with the
+   line.
+
+3. **Framework act — the resolution and linkage pass.**
+   - **per problem:** the named who-hurts is diffed against register populations.
+     That diff is what the criterion reads — a who-hurts resolving to nobody is
+     the hole, not a style issue.
+   - **per objective:** a `→ P-n` link is **proposed with its basis** where the
+     material implies but does not state one. Framing wrote only the stated links;
+     completing them is exactly this run's ground.
+   - **a concreteness check** flags any objective line too vague to be cited
+     downstream. "Improve the experience" cannot anchor a feature; say so and
+     ask.
+
+4. **Framework act — the remaining holes become questions.** Each question is
+   **destination-tagged before it is asked**: a problem's who-hurts or evidence,
+   an objective's link, baseline, or concreteness. **A question serving none of
+   those is illegal and must not be emitted.** There is no numeric cap and none is
+   needed — threshold grade bounds the set structurally.
+
+5. **BA act — the rulings.** The BA confirms or edits lines, rules each proposed
+   link, and rules each who-hurts resolution. Boundary routing and asymmetry:
+   - a **newly named population** is a pure addition — a proposed register edit
+     (and a canvas Customers edit) by batch
+   - a finding **contradicting the cleared cast** is a **reopen signal**, not an
+     addition
+   - a candidate that is really a **capability** is proposed to the canvas Core
+     Functions section by batch
+
+6. **Framework act — write and report.** Write the two sections under the
+   contract. Report which criteria the run moved — AT-VA-1 · AT-VA-2 — and what
+   remains open. The evidence-table refresh and the confirmation proposal belong
+   to `/ba-run`'s post-run touchpoint; the clearing itself is the BA's, at
+   `/ba-clear`.
+
+## Output
+
+`canvas.md`, two sections, at aspect grade:
+
+- **`Problems`** — `P-n` lines, one each: the pain, **who hurts** (register
+  populations), the evidence where sourced
+- **`Objectives`** — `O-n` lines, one each: the change sought, **`→ P-n`**, a
+  baseline or measure where sourced
+
+**Nothing else in the canvas is touched by this run.** Edits to any other section
+ride a proposed batch its owning aspect completes.
+
+The template and a worked example are in `references/example.md`.
+
+Plus the register, Customers and Core-Functions batches the passes demanded.
+
+## Signals
+
+- **Routing batch** — register and canvas Customers edits for newly named
+  populations; canvas Core Functions proposals for candidates that are really
+  capabilities. Proposed, BA-approved, then written.
+- **Reopen signal** — only once the contradicted aspect has been cleared or
+  waived: finding · contradicted artifact + line · conflict statement. Emit it and
+  stop; the reopen skill receives and rules it.
+
+## What this skill never does
+
+Never writes a solution capability into Problems or Objectives · never edits the
+register or canvas Customers inline · never reuses a retired line-ID · never
+renumbers an existing line · never infers a `→ P-n` link without proposing its
+basis · never accepts an objective too vague to cite · never emits a question
+without a destination · never touches a canvas section it does not own · never
+confirms an AT criterion or clears an aspect · never runs a CC assertion.

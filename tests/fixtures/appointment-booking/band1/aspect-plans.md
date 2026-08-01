@@ -47,7 +47,7 @@ Run log:
   signals: none
 2026-07-08 · Sponsor alignment interview · contract: fulfilled — confirmed picture at stakeholders.md
   signals: routing batch 2026-07-08 approved — the sponsor ties launch to the autumn
-           season (business constraint) written to constraints.md as C-B1.
+           season (business constraint) written to constraints.md §2 Business.
            Destination note: constraints.md is Context's home and Context is `untouched`
            — arrival is never gated; the Context aspect gate reads it as existing
            evidence when it runs. No scoped-H fired: Band 1, Scope H disarmed.
@@ -58,23 +58,23 @@ Suggestion — Context — 2026-07-08
 | # | Technique (catalogue \| custom sketch) | Addresses | Expected contribution |
 |---|---|---|---|
 | 1 | t05 context & landscape mapping | AT-CX-1 — no context.md | operating context + systems in the landscape |
-| 2 | t06 constraints elicitation | AT-CX-2 — technical and regulatory classes empty (C-B1 already landed 07-08) | ≥ 1 confirmed constraint per class, or `none identified — <basis>` |
+| 2 | t06 constraints elicitation | AT-CX-2 — technical and regulatory classes empty (the business row landed 07-08) | ≥ 1 confirmed constraint per class, or `none identified — <basis>` |
 | 3 | t07 competitive analysis | AT-CX-3 — canvas Competition→Unlike thin | the Unlike entries the differentiation will be read against |
 Sequence rationale: landscape first — constraints and competitors both read off it.
 
 Composed plan — 2026-07-08 · Y.K.
 | # | Technique | Source | Output contract {expected · class · destination} | Status |
 |---|---|---|---|---|
-| 1 | t05 context & landscape mapping | catalogue | {operating context + systems · Context · `context.md`} | run 2026-07-08 |
-| 2 | t06 constraints elicitation | catalogue | {confirmed constraints by class · Context · `constraints.md`} | run 2026-07-09 |
-| 3 | t07 competitive analysis | catalogue | {competitor set + differentiation room · Context · `competitive-analysis.md`} | run 2026-07-09 |
+| 1 | t05 context & landscape mapping | catalogue | {context & landscape — existing systems + organizational landscape, or the sourced greenfield line · Context · `.specify/memory/context.md`} | run 2026-07-08 |
+| 2 | t06 constraints elicitation | catalogue | {constraints & limitations — three class sections, each a Confirmed row or none identified — <basis> · Context · `.specify/memory/constraints.md`} | run 2026-07-09 |
+| 3 | t07 competitive analysis | catalogue | {competitive analysis — one entry per named alternative, the status quo screened · Context · `.specify/memory/competitive-analysis.md`} | run 2026-07-09 |
 
 Run log:
-2026-07-08 · t05 · contract: fulfilled — context.md §1–§3
+2026-07-08 · t05 · contract: fulfilled — context.md, 2 existing systems + landscape
   signals: none
-2026-07-09 · t06 · contract: fulfilled — constraints.md C-T1 · C-R1 (C-B1 pre-existing)
+2026-07-09 · t06 · contract: fulfilled — constraints.md §1 (Assumed) · §3 (§2 row pre-existing)
   signals: none
-2026-07-09 · t07 · contract: fulfilled — competitive-analysis.md, two competitors
+2026-07-09 · t07 · contract: fulfilled — competitive-analysis.md, 2 alternatives incl. the status quo
   signals: none
 
 ## Value
@@ -88,7 +88,7 @@ Sequence rationale: one technique covers both criteria; they are one act.
 Composed plan — 2026-07-08 · Y.K.
 | # | Technique | Source | Output contract {expected · class · destination} | Status |
 |---|---|---|---|---|
-| 1 | t08 value definition | catalogue | {problems + objectives, linked · Context · `canvas.md` §2, §12} | run 2026-07-09 |
+| 1 | t08 value definition | catalogue | {problems + objectives at aspect grade — who-hurts resolving, every objective linked · Context · `canvas.md` — Problems · Objectives} | run 2026-07-09 |
 
 Run log:
 2026-07-09 · t08 · contract: fulfilled — canvas P-1/P-2, O-1/O-2 with `→ P-1` links
@@ -105,7 +105,7 @@ Sequence rationale: AT-VI-3 is a read of the result against constraints.md, not 
 Composed plan — 2026-07-09 · Y.K.
 | # | Technique | Source | Output contract {expected · class · destination} | Status |
 |---|---|---|---|---|
-| 1 | t09 vision & differentiation | catalogue | {product statement + differentiation · Context · `canvas.md` §3–§5, §11} | run 2026-07-09 |
+| 1 | t09 vision & differentiation | catalogue | {product statement + differentiation against a named Unlike entry, the constraint scan run · Context · `canvas.md` — Product.The/Is/That · Competition.Our Solution} | run 2026-07-09 |
 
 Run log:
 2026-07-09 · t09 · contract: fulfilled — canvas §3–§5, §11
@@ -122,10 +122,10 @@ Sequence rationale: one pass over the four canvas surface sections.
 Composed plan — 2026-07-09 · Y.K.
 | # | Technique | Source | Output contract {expected · class · destination} | Status |
 |---|---|---|---|---|
-| 1 | t10 solution surface review | catalogue | {solution surface, each element with its why · Context · `canvas.md` §6–§9} | run 2026-07-10 |
+| 1 | t10 solution surface review | catalogue | {solution surface, each element linked or ruled · Context · `canvas.md` — Forms · Core Functions · Third-Party Connections · Localization} | run 2026-07-10 |
 
 Run log:
-2026-07-10 · t10 · contract: fulfilled — canvas §6–§9; §8 carries direction + role
+2026-07-10 · t10 · contract: fulfilled — canvas §6–§9; all 5 functions linked, §8 carries role + direction
   signals: none
 
 ## Requirements

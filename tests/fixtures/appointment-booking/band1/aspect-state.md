@@ -60,9 +60,9 @@ Aspect gate review — Stakeholders — 2026-07-08
 Aspect gate review — Context — 2026-07-09
   | AT | Evidence | Met |
   |---|---|---|
-  | AT-CX-1 | context.md §1–§3: eight clinics, phone-only booking today; Specialists' external calendars in §2 | ✓ |
-  | AT-CX-2 | constraints.md: technical C-T1 · business C-B1 · regulatory C-R1 — each class carries ≥ 1 confirmed constraint | ✓ |
-  | AT-CX-3 | canvas §10 Competition.Unlike (phone-and-paper) · §13 Context/Constraints (technical · business · regulatory) filled | ✓ |
+  | AT-CX-1 | context.md Existing systems: Specialists' external calendars · the clinic phone lines — each with role today, disposition and source, plus the sourced "no booking software exists today" absence line; Organizational landscape: the eight-clinic network under the COO | ✓ |
+  | AT-CX-2 | constraints.md §1 Technical · §2 Business · §3 Regulatory — every class carries ≥ 1 row at Status `Confirmed`; no class is silent | ✓ |
+  | AT-CX-3 | canvas §10 Competition.Unlike names two alternatives, both backed by competitive-analysis.md entries · §13 Context/Constraints filled across all three classes, each citing its constraints.md class | ✓ |
   → CLEARED · Y.K. · 2026-07-09
 
 2026-07-09 · T2 · Value · open → first-pass-cleared · Y.K. — AT-VA-1..2 evidence table (below)
@@ -71,7 +71,7 @@ Aspect gate review — Value — 2026-07-09
   | AT | Evidence | Met |
   |---|---|---|
   | AT-VA-1 | canvas §2 Problems: P-1 names Clients (unanswered calls) · P-2 names Specialists (late cancellations) — both resolve to register populations | ✓ |
-  | AT-VA-2 | canvas §12 Objectives: O-1 → P-1, O-2 → P-1, each concrete enough to cite | ✓ |
+  | AT-VA-2 | canvas §12 Objectives: O-1 → P-1, O-2 → P-1; O-2 carries the ~30% unanswered-call baseline, so both are concrete enough to cite downstream | ✓ |
   → CLEARED · Y.K. · 2026-07-09
 
 2026-07-09 · T1 · Vision · untouched → open · Y.K. — prerequisites: Context first-pass-cleared, Value first-pass-cleared
@@ -82,8 +82,8 @@ Aspect gate review — Vision — 2026-07-09
   | AT | Evidence | Met |
   |---|---|---|
   | AT-VI-1 | canvas §3–§5 Product.The/Is/That: all three slots filled | ✓ |
-  | AT-VI-2 | canvas §11 Competition.Our Solution differentiates against the §10 Unlike entry (phone-and-paper) | ✓ |
-  | AT-VI-3 | statement read once against constraints.md C-T1/C-B1/C-R1 — no contradiction; the calendars stay in place and the statement claims no replacement | ✓ |
+  | AT-VI-2 | canvas §11 Competition.Our Solution names the phone-and-paper Unlike entry and keys its delta `→ P-1` `→ O-2`, leaning on the entry's Falls-short cell in competitive-analysis.md | ✓ |
+  | AT-VI-3 | scan run once against the current statement and the Confirmed set as it stands today — constraints.md §2 autumn launch: compatible, the statement claims no date · §3 no medical-record data: compatible, no vision claim touches data handling. §1 excluded: Status `Assumed` at scan time, and the scan reads Confirmed rows only. Zero hits, nothing to resolve or name | ✓ |
   → CLEARED · Y.K. · 2026-07-09
 
 2026-07-09 · T1 · Solution · untouched → open · Y.K. — prerequisites: Vision first-pass-cleared
@@ -93,9 +93,9 @@ Aspect gate review — Vision — 2026-07-09
 Aspect gate review — Solution — 2026-07-10
   | AT | Evidence | Met |
   |---|---|---|
-  | AT-SO-1 | canvas §6 Forms · §7 Core Functions · §8 Third-Party Connections · §9 Localization — all four filled | ✓ |
-  | AT-SO-2 | canvas §7: four of five function lines carry `→ O-2`; "Publish Specialist Availability" serves O-2 through the Browse/Book pair, recorded on the line | ✓ |
-  | AT-SO-3 | canvas §8: Specialists' external calendars — direction `outbound`, role "appointment events mirrored to the calendar the Specialist already keeps" | ✓ |
+  | AT-SO-1 | canvas §6 Forms · §7 Core Functions · §8 Third-Party Connections · §9 Localization — all four filled; §9's currencies facet carries the explicit ruling `N/A — no payment surface in MVP scope`, so no facet is silent | ✓ |
+  | AT-SO-2 | canvas §7: all five function lines carry `→ O-2`; five lines against the ten-line ceiling | ✓ |
+  | AT-SO-3 | canvas §8: Specialists' external calendars — role "the Specialist's schedule lives there and booked Appointments must be visible in it", direction stated `outbound` | ✓ |
   → CLEARED · Y.K. · 2026-07-10
 
 2026-07-10 · T1 · Requirements · untouched → open · Y.K. — prerequisites: Solution first-pass-cleared

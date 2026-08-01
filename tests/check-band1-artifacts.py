@@ -63,6 +63,37 @@ REGISTER_HEADER = [
 
 KIND_VOCABULARY = {"individual", "population"}
 
+CONTEXT_SECTIONS = ["Existing systems", "Organizational landscape"]
+CONTEXT_HEADER = ["System", "Role today", "Disposition (where stated)", "Source"]
+GREENFIELD_RE = re.compile(r"greenfield\s*—\s*no existing systems\s*—\s*\S")
+BINDING_MODALS = re.compile(r"\b(must not|may not|must|shall)\b", re.IGNORECASE)
+
+CONSTRAINT_SECTIONS = ["1. Technical", "2. Business", "3. Regulatory"]
+CONSTRAINT_HEADER = ["Constraint", "Status", "Source"]
+STATUS_VOCABULARY = {"Confirmed", "Assumed"}
+NONE_IDENTIFIED_RE = re.compile(r"none identified\s*—\s*\S")
+
+COMPETITIVE_HEADER = ["Alternative", "Category", "Covers", "Falls short", "Source"]
+STATUS_QUO_RE = re.compile(r"status quo|current way of working", re.IGNORECASE)
+
+TC_CLAUSES = ("TC-1 — Details:", "TC-2 — System-facing activities:", "TC-3 — Namespace:")
+CHARTER_HEAD_RE = re.compile(
+    r"^\s*(?:#{1,6}\s+|\*\*)(?P<name>[A-Z][\w'’-]*)\s*[—–-]\s*details\s*:\s*(?P<pop>[^*\n]+?)\s*\**\s*$",
+    re.IGNORECASE,
+)
+CHARTER_FIELDS = [
+    "Goals",
+    "Behaviors & environment",
+    "Frustrations",
+    "System-facing activities",
+    "Source",
+]
+
+SURFACE_SECTIONS = ["Forms", "Core Functions", "Third-Party Connections", "Localization"]
+PRODUCT_SLOTS = ["Product.The", "Product.Is", "Product.That"]
+VISION_LINK_RE = re.compile(r"→\s*(Product\.(?:The|Is|That)|Our Solution)")
+KEY_RE = re.compile(r"→\s*[PO]-\d+")
+
 OPEN_MARKER = "open — no source material"
 NA_RE = re.compile(r"N/A\s*—\s*\S")
 BARE_NA_RE = re.compile(r"N/A(?!\s*—\s*\S)")
@@ -87,6 +118,29 @@ RULES = {
     "B14": "register — the sponsor's decision authority is explicit",
     "B15": "coherence — every canvas Customers entity resolves to a register entry",
     "B16": "continuity — the earlier artifact survives unchanged inside the later one",
+    "B17": "context — two sections, `Existing systems` then `Organizational landscape`",
+    "B18": "context — systems header is System · Role today · Disposition (where stated) · Source, or the sourced greenfield line stands instead",
+    "B19": "context — every systems row and every landscape line is cited or marked",
+    "B20": "context — no binding statement in the landscape; a bind belongs to constraints.md",
+    "B21": "constraints — three numbered class sections: 1. Technical · 2. Business · 3. Regulatory, in order",
+    "B22": "constraints — header is Constraint · Status · Source, in order",
+    "B23": "constraints — Status is `Confirmed` or `Assumed`, and nothing else",
+    "B24": "constraints — every class carries a row or `none identified — <basis>`; every row is sourced",
+    "B25": "competitive — header is Alternative · Category · Covers · Falls short · Source, in order",
+    "B26": "competitive — the status quo is screened as an alternative",
+    "B27": "competitive — every `Falls short` cell keys a `→ P-n` / `→ O-n`; every row is sourced",
+    "B28": "personas — the three transformation clauses TC-1 · TC-2 · TC-3 stand in the file",
+    "B29": "personas — every charter carries the `<Name> — details: <population>` heading and all five fields",
+    "B30": "personas — TC-1: each charter's population resolves to a register entry",
+    "B31": "personas — TC-3: no persona name collides with a register population or individual",
+    "B32": "canvas aspect grade — AT-VA-1: every P-line names a who-hurts resolving to a register population",
+    "B33": "canvas aspect grade — AT-VA-2: every O-line carries a `→ P-n` link",
+    "B34": "canvas aspect grade — AT-VI-1: the three Product slots are filled, none left open",
+    "B35": "canvas aspect grade — AT-VI-2: Our Solution names an Unlike entry and keys its delta",
+    "B36": "canvas aspect grade — AT-SO-1: the four surface sections are filled or `N/A — <reason>`, none left open",
+    "B37": "canvas aspect grade — AT-SO-2: every Core Function line carries `→ O-n` or a vision-section link",
+    "B38": "canvas aspect grade — AT-SO-3: every connection row carries its role, and a direction stated or explicitly open",
+    "B39": "status flip — a flipped constraint row keeps its class, wording and position; only Status moves",
 }
 
 
@@ -149,6 +203,43 @@ def read_table(path: pathlib.Path) -> tuple[list[str], list[list[str]]]:
 def segments(cell: str) -> list[str]:
     parts = [p.strip() for p in re.split(r"\s+·\s+", cell)]
     return [p for p in parts if p]
+
+
+def md_sections(path: pathlib.Path) -> list[tuple[str, list[str]]]:
+    """`## Heading` → its body lines, in file order. Comments stripped."""
+    out: list[tuple[str, list[str]]] = []
+    current: tuple[str, list[str]] | None = None
+    for ln in strip_comments(path.read_text(encoding="utf-8")).splitlines():
+        m = re.match(r"^##\s+(.*?)\s*$", ln)
+        if m:
+            current = (m.group(1), [])
+            out.append(current)
+        elif current is not None:
+            current[1].append(ln)
+    return out
+
+
+def table_of(lines: list[str]) -> tuple[list[str], list[list[str]]]:
+    """The first markdown table inside a block of lines."""
+    header: list[str] | None = None
+    rows: list[list[str]] = []
+    for ln in lines:
+        if not ln.strip().startswith("|"):
+            if header is not None and rows:
+                break
+            continue
+        cells = split_row(ln)
+        if is_separator(cells):
+            continue
+        if header is None:
+            header = cells
+        else:
+            rows.append(cells)
+    return header or [], rows
+
+
+def uncited(text: str) -> bool:
+    return not CITATION_RE.search(text)
 
 
 # ───────────────────────────────────────────────────────────────────── canvas ─
@@ -327,6 +418,306 @@ def check_register(path: pathlib.Path, rep: Report) -> dict[str, str]:
     return entries
 
 
+# ──────────────────────────────────────────────────────────────────── context ─
+
+
+def check_context(path: pathlib.Path, rep: Report) -> None:
+    secs = md_sections(path)
+    names = [n for n, _ in secs]
+    if names != CONTEXT_SECTIONS:
+        rep.fail("B17", f"{path.name}: sections are {names}, expected {CONTEXT_SECTIONS}")
+
+    body = dict(secs)
+    systems = body.get("Existing systems", [])
+    text = "\n".join(systems)
+    header, rows = table_of(systems)
+
+    if GREENFIELD_RE.search(text):
+        if rows:
+            rep.fail("B18", f"{path.name}: a greenfield ruling stands AND a systems table — one or the other")
+    elif header != CONTEXT_HEADER:
+        rep.fail("B18", f"{path.name}: systems header is {header}, expected {CONTEXT_HEADER}")
+
+    for row in rows:
+        if len(row) < 4:
+            rep.fail("B18", f"{path.name}: malformed systems row {row!r}")
+            continue
+        system, role, disposition, source = (c.strip() for c in row[:4])
+        if not system or not role:
+            rep.fail("B19", f"{path.name}: {system or row!r} — no role today")
+        if not source:
+            rep.fail("B19", f"{path.name}: {system!r} — no source")
+        for cell in (role, disposition):
+            if BINDING_MODALS.search(cell):
+                rep.fail(
+                    "B20",
+                    f"{path.name}: {system!r} — binding language in the landscape: {cell!r}",
+                )
+
+    # absence lines below the table carry a citation — wrapped prose is one line
+    paragraphs: list[str] = []
+    for line in systems:
+        s = line.strip()
+        if not s or s.startswith("|") or s.startswith("<"):
+            paragraphs.append("")
+            continue
+        if paragraphs and paragraphs[-1]:
+            paragraphs[-1] += " " + s
+        else:
+            paragraphs.append(s)
+    for para in (p for p in paragraphs if p):
+        if uncited(para) and not GREENFIELD_RE.search(para):
+            rep.fail("B19", f"{path.name}: absence line neither cited nor marked: {para!r}")
+
+    landscape = body.get("Organizational landscape", [])
+    bullets = [ln.strip() for ln in landscape if ln.strip().startswith("- ")]
+    if not bullets:
+        rep.fail("B17", f"{path.name}: Organizational landscape carries no lines")
+    joined: list[str] = []
+    for ln in landscape:
+        s = ln.strip()
+        if s.startswith("- "):
+            joined.append(s)
+        elif s and joined:
+            joined[-1] += " " + s
+    for line in joined:
+        if uncited(line):
+            rep.fail("B19", f"{path.name}: landscape line neither cited nor marked: {line!r}")
+        if BINDING_MODALS.search(CITATION_RE.sub("", line)):
+            rep.fail("B20", f"{path.name}: binding language in the landscape: {line!r}")
+
+
+# ──────────────────────────────────────────────────────────────── constraints ─
+
+
+def check_constraints(path: pathlib.Path, rep: Report) -> dict[str, tuple[str, str]]:
+    """→ {constraint text: (class, status)} for the flip check."""
+    secs = md_sections(path)
+    names = [n for n, _ in secs]
+    if names != CONSTRAINT_SECTIONS:
+        rep.fail("B21", f"{path.name}: sections are {names}, expected {CONSTRAINT_SECTIONS}")
+
+    found: dict[str, tuple[str, str]] = {}
+    for name, lines in secs:
+        text = "\n".join(lines)
+        header, rows = table_of(lines)
+        if NONE_IDENTIFIED_RE.search(text):
+            if rows:
+                rep.fail("B24", f"{path.name}: §{name} carries rows AND a none-identified line")
+            continue
+        if not rows:
+            rep.fail("B24", f"{path.name}: §{name} is silent — no row, no `none identified — <basis>`")
+            continue
+        if header != CONSTRAINT_HEADER:
+            rep.fail("B22", f"{path.name}: §{name} header is {header}, expected {CONSTRAINT_HEADER}")
+        for row in rows:
+            if len(row) < 3:
+                rep.fail("B22", f"{path.name}: §{name} malformed row {row!r}")
+                continue
+            constraint, status, source = (c.strip() for c in row[:3])
+            if not constraint:
+                rep.fail("B24", f"{path.name}: §{name} — a row states no constraint")
+            if not source:
+                rep.fail("B24", f"{path.name}: §{name} — {constraint!r} carries no source")
+            if status not in STATUS_VOCABULARY:
+                rep.fail(
+                    "B23",
+                    f"{path.name}: §{name} — Status {status!r} is outside "
+                    f"{sorted(STATUS_VOCABULARY)}; dates and callers belong in Source",
+                )
+            found[constraint] = (name, status)
+    return found
+
+
+def check_flip(early: pathlib.Path, later: pathlib.Path, rep: Report) -> None:
+    quiet = Report()
+    a, b = check_constraints(early, quiet), check_constraints(later, quiet)
+    for constraint, (cls, status) in a.items():
+        if constraint not in b:
+            rep.fail(
+                "B39",
+                f"{constraint!r} is in {early.name} and gone from {later.name} — "
+                "a flip edits a row, it does not replace one",
+            )
+            continue
+        later_cls, later_status = b[constraint]
+        if later_cls != cls:
+            rep.fail("B39", f"{constraint!r} moved class: {cls} → {later_cls}")
+        if later_status != status and (status, later_status) != ("Assumed", "Confirmed"):
+            rep.fail(
+                "B39",
+                f"{constraint!r} Status went {status} → {later_status}; "
+                "the only legal flip is Assumed → Confirmed",
+            )
+
+
+# ──────────────────────────────────────────────────────────────── competitive ─
+
+
+def check_competitive(path: pathlib.Path, rep: Report) -> None:
+    text = strip_comments(path.read_text(encoding="utf-8"))
+    header, rows = table_of(text.splitlines())
+
+    if not rows:
+        if not NA_RE.search(text):
+            rep.fail("B26", f"{path.name}: no entries and no `N/A — <reason>` ruling")
+        return
+
+    if header != COMPETITIVE_HEADER:
+        rep.fail("B25", f"{path.name}: header is {header}, expected {COMPETITIVE_HEADER}")
+
+    screened = False
+    for row in rows:
+        if len(row) < 5:
+            rep.fail("B25", f"{path.name}: malformed row {row!r}")
+            continue
+        alt, category, covers, falls, source = (c.strip() for c in row[:5])
+        if STATUS_QUO_RE.search(alt) or STATUS_QUO_RE.search(category):
+            screened = True
+        if not covers:
+            rep.fail("B27", f"{path.name}: {alt!r} — Covers is empty")
+        if not source:
+            rep.fail("B27", f"{path.name}: {alt!r} — no source")
+        if not KEY_RE.search(falls):
+            rep.fail(
+                "B27",
+                f"{path.name}: {alt!r} — `Falls short` keys no `→ P-n` / `→ O-n`; "
+                "an unkeyed delta is decoration, not differentiation ground",
+            )
+    if not screened:
+        rep.fail("B26", f"{path.name}: the status quo is not among the screened alternatives")
+
+
+# ─────────────────────────────────────────────────────────────────── personas ─
+
+
+def check_personas(path: pathlib.Path, register: dict[str, str] | None, rep: Report) -> list[str]:
+    raw = strip_comments(path.read_text(encoding="utf-8"))
+    for clause in TC_CLAUSES:
+        if clause not in re.sub(r"\s+", " ", raw):
+            rep.fail("B28", f"{path.name}: transformation clause missing: {clause!r}")
+
+    charters: list[tuple[str, str, list[str]]] = []
+    current: tuple[str, str, list[str]] | None = None
+    for ln in raw.splitlines():
+        m = CHARTER_HEAD_RE.match(ln.strip())
+        if m and m.group("name").lower() not in ("tc", "field"):
+            current = (m.group("name").strip(), m.group("pop").strip(), [])
+            charters.append(current)
+        elif current is not None:
+            current[2].append(ln)
+
+    if not charters:
+        rep.fail("B29", f"{path.name}: no charter carries a `<Name> — details: <population>` heading")
+        return []
+
+    names: list[str] = []
+    for name, population, lines in charters:
+        names.append(name)
+        _, rows = table_of(lines)
+        fields = {row[0].strip(): (row[1].strip() if len(row) > 1 else "") for row in rows}
+        for field in CHARTER_FIELDS:
+            if field not in fields:
+                rep.fail("B29", f"{path.name}: {name} — no `{field}` field")
+            elif not fields[field]:
+                rep.fail("B29", f"{path.name}: {name} — `{field}` is empty")
+        if register is not None:
+            if not any(population.lower() == who.lower() for who in register):
+                rep.fail(
+                    "B30",
+                    f"{path.name}: {name} details {population!r}, which resolves to no register entry",
+                )
+            for who in register:
+                if name.lower() == who.lower():
+                    rep.fail(
+                        "B31",
+                        f"{path.name}: persona name {name!r} collides with register entry {who!r}",
+                    )
+    return names
+
+
+# ──────────────────────────────────────────────────────── canvas aspect grade ─
+
+
+def check_canvas_aspect_grade(
+    path: pathlib.Path, register: dict[str, str] | None, rep: Report
+) -> None:
+    _, rows = read_table(path)
+    sections = {row[1].strip(): row[2].strip() for row in rows if len(row) >= 3}
+
+    # AT-VA-1 — every P-line names a who-hurts that resolves
+    if register is not None:
+        for seg in segments(sections.get("Problems", "")):
+            body = CITATION_RE.sub("", seg)
+            if not re.match(r"^P-\d+", body.strip()):
+                continue
+            if not any(re.search(rf"\b{re.escape(who)}\b", body, re.IGNORECASE) for who in register):
+                rep.fail("B32", f"{path.name}: {body.strip()[:60]!r} names no register population")
+
+    # AT-VA-2 — every O-line carries its link
+    for seg in segments(sections.get("Objectives", "")):
+        body = seg.strip()
+        if not re.match(r"^O-\d+", CITATION_RE.sub("", body).strip()):
+            continue
+        if not re.search(r"→\s*P-\d+", body):
+            rep.fail("B33", f"{path.name}: {CITATION_RE.sub('', body).strip()[:60]!r} carries no `→ P-n`")
+
+    # AT-VI-1 — the three slots
+    for slot in PRODUCT_SLOTS:
+        content = sections.get(slot, "")
+        if not content or OPEN_MARKER in content:
+            rep.fail("B34", f"{path.name}: §{slot} is empty or still open")
+
+    # AT-VI-2 — Our Solution names a target and keys its delta
+    ours = sections.get("Competition.Our Solution", "")
+    unlike = sections.get("Competition.Unlike", "")
+    if not ours or OPEN_MARKER in ours:
+        rep.fail("B35", f"{path.name}: §Competition.Our Solution is empty or still open")
+    else:
+        low = ours.lower()
+        named = any(
+            CITATION_RE.sub("", seg).strip().lower() in low
+            for seg in segments(unlike)
+            if CITATION_RE.sub("", seg).strip()
+        )
+        if not named:
+            rep.fail("B35", f"{path.name}: the differentiation names no Unlike entry")
+        if not KEY_RE.search(ours):
+            rep.fail("B35", f"{path.name}: the differentiation keys no `→ P-n` / `→ O-n`")
+
+    # AT-SO-1 — the surface, filled or ruled
+    for name in SURFACE_SECTIONS:
+        content = sections.get(name, "")
+        if not content or OPEN_MARKER in content:
+            rep.fail("B36", f"{path.name}: §{name} is empty or still open")
+
+    # AT-SO-2 — every function linked
+    for seg in segments(sections.get("Core Functions", "")):
+        if not re.search(r"→\s*O-\d+", seg) and not VISION_LINK_RE.search(seg):
+            rep.fail(
+                "B37",
+                f"{path.name}: function {CITATION_RE.sub('', seg).strip()[:60]!r} "
+                "carries no `→ O-n` and no vision-section link",
+            )
+
+    # AT-SO-3 — role, and direction stated or explicitly open
+    connections = sections.get("Third-Party Connections", "")
+    if connections and not NA_RE.search(connections):
+        for seg in re.split(r"\s+·\s+(?=[A-Z])", connections):
+            body = CITATION_RE.sub("", seg).strip()
+            if not body:
+                continue
+            parts = re.split(r"\bdirection\b", body, maxsplit=1, flags=re.IGNORECASE)
+            if len(parts) < 2:
+                rep.fail("B38", f"{path.name}: connection {body[:50]!r} states no direction")
+                continue
+            head, after = parts[0], parts[1]
+            if not re.search(r"[—:-]\s*\S", after):
+                rep.fail("B38", f"{path.name}: connection {body[:50]!r} — direction slot is empty")
+            if "—" not in head:
+                rep.fail("B38", f"{path.name}: connection {body[:50]!r} carries no role clause")
+
+
 # ────────────────────────────────────────────────────── coherence, continuity ─
 
 
@@ -361,8 +752,16 @@ def check_continuity(early: pathlib.Path, later: pathlib.Path, kind: str, rep: R
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--canvas", type=pathlib.Path)
+    ap.add_argument("--aspect-grade", action="store_true",
+                    help="judge the canvas at ASPECT grade too (AT-VA/VI/SO), not framing grade")
     ap.add_argument("--glossary", type=pathlib.Path)
     ap.add_argument("--register", type=pathlib.Path)
+    ap.add_argument("--context", type=pathlib.Path)
+    ap.add_argument("--constraints", type=pathlib.Path)
+    ap.add_argument("--competitive", type=pathlib.Path)
+    ap.add_argument("--personas", type=pathlib.Path)
+    ap.add_argument("--flip-early", type=pathlib.Path)
+    ap.add_argument("--flip-later", type=pathlib.Path)
     ap.add_argument("--early", type=pathlib.Path)
     ap.add_argument("--later", type=pathlib.Path)
     ap.add_argument("--kind", choices=("glossary", "register"))
@@ -386,6 +785,27 @@ def main() -> int:
     if canvas_facts is not None and register_facts is not None:
         check_coherence(canvas_facts, register_facts, rep)
         checked.append("coherence")
+    if args.canvas and args.aspect_grade:
+        check_canvas_aspect_grade(args.canvas, register_facts, rep)
+        checked.append("canvas(aspect grade)")
+    if args.context:
+        check_context(args.context, rep)
+        checked.append("context")
+    if args.constraints:
+        check_constraints(args.constraints, rep)
+        checked.append("constraints")
+    if args.competitive:
+        check_competitive(args.competitive, rep)
+        checked.append("competitive")
+    if args.personas:
+        check_personas(args.personas, register_facts, rep)
+        checked.append("personas")
+    if args.flip_early or args.flip_later:
+        if not (args.flip_early and args.flip_later):
+            print("--flip-early and --flip-later go together", file=sys.stderr)
+            return 2
+        check_flip(args.flip_early, args.flip_later, rep)
+        checked.append("status-flip")
     if args.early or args.later:
         if not (args.early and args.later and args.kind):
             print("--early, --later and --kind go together", file=sys.stderr)

@@ -150,7 +150,7 @@ grep '^| ' "$FP/canvas.md" | grep -q 'N/A' \
 # and the aspects filled every one of those holes, rather than the framing run
 has "$PROJ/canvas.md" "Booking completes without a phone call" \
     "the mature canvas has §11 filled — by the Vision aspect, not by framing"
-has "$PROJ/canvas.md" "C-B1" "…and §13 Business, by the Context aspect"
+has "$PROJ/canvas.md" "[constraints.md §2]" "…and §13 Business, by the Context aspect"
 
 # ── 2. T-02 and T-03 land glossary and register ──────────────────────────────
 
