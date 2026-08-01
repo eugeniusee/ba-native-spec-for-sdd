@@ -1,0 +1,137 @@
+# BA-Native Spec — expected installed layout (build plan §1.1)
+#
+# Format:  <session>|<kind>|<path>|<note>
+#
+#   session  SK  laid down by Spec Kit itself (pin v0.12.5)
+#            S1…S9  the build session that produces it (build plan §4)
+#            RT  runtime-born (◇) — asserted ABSENT on a fresh install
+#   kind     file · dir · absent
+#   path     relative to the installed project root
+#
+# `absent` entries are the mechanical enforcement of D-P2-6: the installer
+# creates directories and templates, ZERO content stubs — `absent` and `stubbed`
+# are the same AT/CC-H hole, and a field of installer-made stubs would pollute
+# the evidence triggers. Pass --allow-runtime once real acts have run.
+#
+# check-layout.sh --session Sn requires everything owned by SK…Sn and reports
+# later sessions as PENDING. With no --session it requires the whole tree —
+# that is the Phase-2 exit bar (build plan §5 step 2).
+
+# ── repo root ────────────────────────────────────────────────────────────────
+RT|absent|canvas.md|◇ T-01 (Frame)
+S1|file|AGENTS.md|portability mirror (standard essentials)
+S1|file|CLAUDE.md|framework block appended (file created if absent)
+
+# ── Spec Kit's own surface (pin v0.12.5) ─────────────────────────────────────
+# At v0.12.5 with --integration claude, Spec Kit ships its commands as
+# hyphenated SKILLS (/speckit-plan), not dotted commands. The corpus's
+# `/speckit.*` spelling is indicative — see BUILD-LOG.md, S1 divergence D1.
+SK|file|.claude/skills/speckit-specify/SKILL.md|
+SK|file|.claude/skills/speckit-plan/SKILL.md|the Mode-A handoff target
+SK|file|.claude/skills/speckit-tasks/SKILL.md|
+SK|file|.claude/skills/speckit-implement/SKILL.md|
+SK|file|.claude/skills/speckit-constitution/SKILL.md|
+SK|file|.claude/skills/speckit-analyze/SKILL.md|downstream backstop (gate §12)
+SK|file|.claude/skills/speckit-checklist/SKILL.md|downstream backstop (gate §12)
+SK|file|.specify/templates/plan-template.md|Spec Kit's own — untouched
+SK|file|.specify/templates/tasks-template.md|Spec Kit's own — untouched
+SK|dir|.specify/scripts|Spec Kit's own helpers — untouched
+
+# ── subagents — 4 (build plan §2.3, D-P2-3) ──────────────────────────────────
+S4|file|.claude/agents/ba-orchestrator.md|doc-5 persona (§10.2 discipline, P-O checkpoints)
+S5|file|.claude/agents/ba-discovery.md|Discovery BA — Band-1/2 technique execution persona
+S8|file|.claude/agents/ba-analyst.md|Requirements Analyst — Tier-2 authoring persona
+S3|file|.claude/agents/ba-gate.md|gate agent — A-pass evaluator, read-only tools
+
+# ── workflow skills — 12 (build plan §2.2, D-P2-1/D-P2-5) ────────────────────
+S4|file|.claude/skills/ba-frame/SKILL.md|Band-1 entry (orchestrator §8.1)
+S4|file|.claude/skills/ba-status/SKILL.md|ledger-head render
+S4|file|.claude/skills/ba-aspect/SKILL.md|open + suggestion + composition (P-O1/P-O2)
+S4|file|.claude/skills/ba-run/SKILL.md|P-O3 contract check → technique dispatch
+S4|file|.claude/skills/ba-clear/SKILL.md|evidence table → confirmation (P-O4)
+S4|file|.claude/skills/ba-waive-aspect/SKILL.md|AW acts (P-O5)
+S4|file|.claude/skills/ba-reopen/SKILL.md|RO ruling + execution (P-O6)
+S4|file|.claude/skills/ba-close-band1/SKILL.md|closure + arming request (P-O7)
+S4|file|.claude/skills/ba-enter-feature/SKILL.md|slicing confirmation, NNN assignment (P-O8)
+S3|file|.claude/skills/ba-gate/SKILL.md|Scope-F run, stages 0–5 (gate §4)
+S3|file|.claude/skills/ba-gate-health/SKILL.md|Scope-H runs [artifact | full] (gate §10)
+S9|file|.claude/skills/ba-handoff/SKILL.md|Mode-A adapter front (gate §11.2)
+
+# ── technique skills — 20 (build plan §2.1, D-P2-4) ──────────────────────────
+S5|file|.claude/skills/ba-t01/SKILL.md|discovery canvas framing
+S5|file|.claude/skills/ba-t02/SKILL.md|glossary discipline
+S5|file|.claude/skills/ba-t03/SKILL.md|stakeholder register
+S6|file|.claude/skills/ba-t04/SKILL.md|persona charters
+S6|file|.claude/skills/ba-t05/SKILL.md|context & landscape mapping
+S6|file|.claude/skills/ba-t06/SKILL.md|constraints elicitation
+S6|file|.claude/skills/ba-t07/SKILL.md|competitive analysis
+S6|file|.claude/skills/ba-t08/SKILL.md|value definition
+S6|file|.claude/skills/ba-t09/SKILL.md|vision & differentiation
+S6|file|.claude/skills/ba-t10/SKILL.md|solution surface review
+S7|file|.claude/skills/ba-t11/SKILL.md|domain (conceptual) modeling
+S7|file|.claude/skills/ba-t12/SKILL.md|roles & permissions
+S7|file|.claude/skills/ba-t13/SKILL.md|core process mapping
+S7|file|.claude/skills/ba-t14/SKILL.md|design & UX standards
+S7|file|.claude/skills/ba-t15/SKILL.md|constitution
+S7|file|.claude/skills/ba-t16/SKILL.md|global out-of-scope
+S8|file|.claude/skills/ba-t17/SKILL.md|epics decomposition
+S8|file|.claude/skills/ba-t18/SKILL.md|scope allocation (repeatable)
+S8|file|.claude/skills/ba-tier1/SKILL.md|modes: kit | ingest | supplement
+S8|file|.claude/skills/ba-tier2/SKILL.md|context load → draft → gap loop → submit
+
+# ── .specify/ — the framework's namespaced runtime home ──────────────────────
+S1|file|.specify/templates/spec-template.md|OVERRIDDEN → standard-§2 ten-heading skeleton
+S1|dir|.specify/memory/scope|⬒ dir · ◇ <epic>.md + <epic>.kit.md (Tier 1)
+S1|dir|specs|⬒ dir · ◇ NNN-<feature>/ born at /ba-enter-feature
+S1|file|.specify/ba/manifest.md|package version · doc vector · Spec Kit pin · hashes
+S1|file|.specify/ba/speckit-defaults/constitution.md|Spec Kit's default, set aside (D-P2-6)
+
+# templates & scaffolds — 10 under ba/templates (build plan §2.6)
+S1|file|.specify/ba/templates/canvas-template.md|b1 T-01 §5 (13 sections, P-n/O-n)
+S1|file|.specify/ba/templates/scope-brief-template.md|elicitation §4 (nine sections)
+S1|file|.specify/ba/templates/call-kit-template.md|elicitation §3.2 parts A–D
+S1|file|.specify/ba/templates/gate-report-entry.md|contract §7 + gate §6.2 runtime block
+S1|file|.specify/ba/templates/traceability-template.md|gate §8 (consumed by sk_idgraph)
+S1|file|.specify/ba/templates/aspect-state.md|orchestrator §2.4 head + events shape
+S1|file|.specify/ba/templates/aspect-plans.md|orchestrator §6.4 incl. ## Frame + ## Band 2
+S1|file|.specify/ba/templates/gate-health.md|gate §10.3 head + entries shape
+S1|file|.specify/ba/templates/gate-tuning.md|gate §7.4 two tables + §12 escape record
+S1|file|.specify/ba/templates/elicitation-tuning.md|doc 3 §10 three tables (D-P2-11)
+
+# vendored checker scripts — 11 (build plan §2.4, D-P2-7)
+S2|file|.specify/ba/scripts/sk_snapshot.py|gate §3 · §7.2 · §9.2
+S2|file|.specify/ba/scripts/sk_structure.py|gate §4.1–§4.2 · standard §2
+S2|file|.specify/ba/scripts/sk_scan.py|contract §4/§5/C12
+S2|file|.specify/ba/scripts/sk_stories.py|contract C2
+S2|file|.specify/ba/scripts/sk_acceptance.py|contract C3
+S2|file|.specify/ba/scripts/sk_ears.py|contract C4 · standard §4 (vendored EARS lint)
+S2|file|.specify/ba/scripts/sk_sections.py|contract C5–C7, C10
+S2|file|.specify/ba/scripts/sk_idgraph.py|contract C11 · gate §8
+S2|file|.specify/ba/scripts/sk_brief.py|contract C12 · elicitation §4
+S2|file|.specify/ba/scripts/sk_health.py|contract §6
+S9|file|.specify/ba/scripts/sk_handoff.py|gate §11.1–§11.2 · plan Q5
+
+# compiled cards — 3 (build plan §2.5)
+S3|file|.specify/ba/cards/assertions-f.md|34 Scope-F A cards (text + CC-ID only)
+S3|file|.specify/ba/cards/assertions-h.md|3 Scope-H A cards
+S3|file|.specify/ba/cards/at-thresholds.md|six aspects' AT criteria (text + AT-ID only)
+
+# ── runtime-born (◇) — must NOT exist after a fresh install (D-P2-6) ─────────
+RT|absent|.specify/memory/constitution.md|◇ T-15
+RT|absent|.specify/memory/glossary.md|◇ T-02
+RT|absent|.specify/memory/stakeholders.md|◇ T-03
+RT|absent|.specify/memory/personas.md|◇ T-04
+RT|absent|.specify/memory/context.md|◇ T-05
+RT|absent|.specify/memory/constraints.md|◇ T-06
+RT|absent|.specify/memory/competitive-analysis.md|◇ T-07
+RT|absent|.specify/memory/domain-model.md|◇ T-11
+RT|absent|.specify/memory/roles-permissions.md|◇ T-12
+RT|absent|.specify/memory/processes.md|◇ T-13
+RT|absent|.specify/memory/design-standards.md|◇ T-14
+RT|absent|.specify/memory/out-of-scope.md|◇ T-16
+RT|absent|.specify/memory/roadmap.md|◇ T-17/T-18
+RT|absent|.specify/aspect-state.md|◇ /ba-frame (orchestrator §2.4)
+RT|absent|.specify/aspect-plans.md|◇ /ba-frame
+RT|absent|.specify/gate-health.md|◇ arming run (gate §10.3)
+RT|absent|.specify/gate-tuning.md|◇ first O/E record (gate §7.4)
+RT|absent|.specify/elicitation-tuning.md|◇ first log entry (D-P2-11)
