@@ -1,0 +1,616 @@
+# Geniusee Orchestrator Rules
+### BA-Native Spec · aspect & band machinery · v0.3 — catalogue mirrors applied (30 July 2026; review incorporated 25 July 2026)
+**v0.3 change record:** five catalogue mirrors, all additive — D-B1-4 + D-B6-5 (plans-file `## Frame` and `## Band 2` sections) → §6.4 · D-B5-3 (AT-RQ-1 design-standards conditionality) + D-B4-4 (AT-RQ-4 significance criterion) → §3.3 · D-B6-3 (roadmap status vocabulary) → §8.4. No other changes.
+
+**What this is:** the machinery of Band 1 and the conductor of band transitions. The plan fixes the aspect model (Q1a), the gated DAG with its two safety valves (Q1b), and the BA-planning loop (Q2/Q2+); the completeness contract assigns Band-1 in-band quality here and deliberately contains zero aspect assertions ("the orchestrator rules (document 5) own the Band-1 aspect gates; aspect thresholds are out of scope here" — contract, header); the gate keeps Scope H disarmed until Band-1 closure (gate §10.1) and emits reopen signals here ("the gate emits; doc 5 executes" — gate §6.3); the elicitation engine emits three signal classes here and stops (doc 3 §1). This document is the receiving end of all of it: aspect states, aspect gates and their thresholds, aspect waivers, reopen execution, the BA-planning loop, technique-run orchestration, and the band transitions — including the closure act that arms the system.
+
+**Why it exists:** without it the corpus has senders and no executor. Doc 3's §8.2 routing log ends with a reopen signal on the Stakeholders aspect that no machinery yet executes; the gate's lane 3 emits into a void; Band-1 quality has an owner on paper (contract §3: "in-band quality belongs to the aspect gates") and no defined gates. This document closes Wave 1 by closing that loop — precisely enough that a human BA can run Band 1 and every band transition from the documents alone (Phase-1 exit criterion), and mechanically enough that Phase 2 can compile it into a subagent, slash commands, and checkpoints without inventing behavior.
+
+**Vocabulary rule (glossary discipline):** in this document, **"the gate," unqualified, always means document 4** — the contract runtime. This document's own gates are always written **"aspect gate"** — the threshold check that clears one aspect — and never abbreviated. An aspect gate runs no CC assertion and produces no gate report.
+
+**Three runtime rules of this document's own** (the gate's two, extended to a conductor):
+
+1. **The orchestrator never authors.** It schedules, routes, and records. Content is authored by techniques and the BA (docs 1, 3); checks are run by the gate (doc 4). The orchestrator's writes are confined to its own two ledgers (§2.4); every content write in its vicinity is a technique's contracted output landing, or a doc-3 routed edit under BA approval.
+2. **The orchestrator never decides alone.** Every state transition it executes — open, clear, waive, reopen, re-clear, band entry, closure — is a BA act. The framework proposes and assembles evidence; the BA rules; the orchestrator executes and records. This is the contract's "the gate never self-certifies," inherited at the aspect layer: an aspect gate never self-clears.
+3. **Every record names its element and its action** — the named-gap grammar family (contract §7), extended to state records: a transition without a basis, a waiver without its named unmet criteria, a reopen without the contradicted line — each is invalid orchestrator output, corrected before the ledger accepts it.
+
+And the standing idiom, restated once for the whole document: **no daemons.** Nothing here watches files, schedules timers, or fires on its own. Every detection is lazy, at a defined touchpoint — post-run updates (§7.4), signal moments (§9), band-transition acts (§8), ledger reads at prompt points (§10.1). Every scope is the smallest sufficient one, stated before acting.
+
+---
+
+## 1. Position — who this machinery talks to
+
+| Document | Owns | This document's relationship |
+|---|---|---|
+| **Plan** (doc 0) | Q1a six aspects + canvas anchoring (§3) · Q1b gated DAG + the two valves · Q2/Q2+ planning loop + output contracts · §5 bands · C1 allocation cadence · C3 vocabulary | Executed here. This document adds no aspect, no edge, no band — it defines the states, thresholds, records, and acts that make the locked model run. |
+| **Writing standard** (doc 1) | Output discipline for anything a technique writes | Inherited by every Band-1 output; aspect-gate evidence reads results already shaped by it (§3.2 rule 5). |
+| **Completeness contract** (doc 2) | Scope-F/H assertions · verdict meanings · W semantics · Scope-H cadence | Zero overlap by design: the contract owns *artifact done* from Band-1 closure on; this document owns *aspect first-pass* before it. AT thresholds (§3) are not assertions and never join the contract. The closure act (§8.2) is the contract's "run that arms the system." |
+| **Elicitation techniques** (doc 3) | Tier-1/Tier-2 techniques · §3.5 ingestion & routing-batch mechanics · signal emission (§1) · D5 slicing confirmation | Signals received and executed here (§9). Routing-batch mechanics are doc 3's — this document adds only bookkeeping around them (§7.3). Band-3 entry rides D5's confirmation act (§8.4). |
+| **Gate definition** (doc 4) | Contract runtime · Scope-H runs · W/O/HA records · §6.3 gap routing · §9.1 pass voiding · D-G7 cycle close | The orchestrator requests the arming full Scope-H run at closure (§8.2) and never runs a check itself. Gate lane-3 reopen signals execute here. Pass voiding, re-gates, HA machinery, cycle close: referenced, never touched. |
+| **Spec Kit** | Everything past `/speckit.plan` | No contact. The orchestrator has no Spec Kit surface at all — even the Mode-A adapter is the gate's neighbor, not this document's. |
+
+**Explicit non-responsibilities:** authoring or editing any content artifact (canvas, `memory/`, briefs, specs) · running any CC assertion, Scope F or H · ruling on W-, O-, or HA-records · question generation and legality (doc 3) · pass voiding and re-gates (gate §9.1) · anything inside the Band-3 delivery loop between entry and cycle close (docs 3 and 4 own it; the orchestrator reappears at cycle close, per gate D-G7, for band accounting only).
+
+---
+
+## 2. Aspect state model
+
+### 2.1 The six aspects — operational compilation
+
+Plan §3 is authoritative for aspect ↔ canvas anchoring; this table is its operational compilation (the gate §9.2 authority-note pattern): artifact homes are added, because reopen mapping (§5.2) and threshold evidence (§3.3) must resolve a contradicted artifact or an evidence pointer to its owning aspect. **Class and aspect are orthogonal:** class (Q3) says where an artifact lives and how it is governed; aspect (Q1a) says which discovery dimension its content answers. `roles-permissions.md` is class Governance and aspect Requirements; personas are class Context and aspect Stakeholders.
+
+| Aspect | Canvas anchoring (plan §3) | Artifact homes (evidence + reopen mapping) | Prerequisite |
+|---|---|---|---|
+| **Stakeholders** | Customers (+ sponsors/users) | `stakeholders.md` (#3) · personas (#6) | — (root) |
+| **Context** | Competition→Unlike · Context/Constraints element | `context.md` (#4) · `constraints.md` (#5) · competitive analysis (#7) | Stakeholders |
+| **Value** | Problems · Objectives | canvas-internal | Stakeholders |
+| **Vision** | Product→The/Is/That · Competition→Our Solution | canvas-internal | Context + Value |
+| **Solution** | Forms · Core Functions · Third-Party Connections · Localization | canvas-internal (its integration seeds feed future briefs) | Vision |
+| **Requirements** | *beyond the canvas* | `glossary.md` (#2) · `domain-model.md` (#8) · core processes (#9) · global `out-of-scope.md` (#10) · `constitution.md` (#13) · `roles-permissions.md` (#14) · design/UX standards (#15) | Solution |
+
+The roadmap (#11) and scope briefs (#12) are Band-2 ground and belong to no aspect. A contradiction with a *brief* is doc-3 territory (a brief edit), not an aspect reopen — unless the finding contradicts an aspect-owned artifact, in which case the signal names that artifact and maps normally.
+
+**D-O1 (locked) — artifact→aspect allocation.** Domain model and core processes sit under **Requirements**, not Solution: plan §3 anchors Solution to canvas sections only and marks Requirements "beyond the canvas" — the conceptual model and the process maps are exactly the beyond-canvas ground. Consequence: Solution clears on canvas evidence alone; the requirements infrastructure clears last, immediately before closure. Ruled in §13.
+
+### 2.2 The state set
+
+**D-O2 (locked).** Five states, held for the project's lifetime — aspects are never "closed"; they outlive Band 1 and remain reopenable through Bands 2–3:
+
+| State | Meaning | Progression effect |
+|---|---|---|
+| `untouched` | No Band-1 work begun on this aspect | — |
+| `open` | BA has opened it: planning and runs in progress; threshold not yet confirmed | none granted |
+| `first-pass-cleared` | Threshold evidence confirmed by the BA (§3.4) | dependents may open |
+| `waived` | Threshold NOT met; progression granted anyway under an AW record (§4) | dependents may open — debt on record |
+| `reopened` | Cleared-or-waived content stands contradicted; conflict live (§5) | blocks Band-1 closure; no *new* opening of dependents through this aspect; existing dependent states stand (§5.3) |
+
+**Arrival is never gated.** Content may land in any aspect's artifact homes at any time — a Stakeholders-planned interview surfaces a constraint; routing (doc 3 §3.5) carries it to `constraints.md` regardless of the Context aspect's state. The DAG gates *progression* — opening and clearing — never *where findings land*, never technique choice (Q2: the BA plans freely within an open aspect), never content correction. An aspect gate reads whatever evidence exists when it runs, whoever's technique produced it.
+
+### 2.3 Transitions — who may perform each
+
+All transitions are **BA acts, executed and recorded by the orchestrator**. The framework may propose, assemble evidence, and prompt — never transition (runtime rule 2).
+
+| # | Transition | Precondition | The act (BA) | Record basis |
+|---|---|---|---|---|
+| T1 | `untouched → open` | every prerequisite aspect `first-pass-cleared` or `waived` (root: Band 1 entered) | open the aspect (P-O1) | prerequisite states cited |
+| T2 | `open → first-pass-cleared` | threshold evidence table complete (§3.4) | confirm clearing (P-O4) | evidence table ref |
+| T3 | `open → waived` | AW record complete (§4.1) | grant the aspect waiver (P-O5) | AW-\<n\> |
+| T4 | `waived → first-pass-cleared` | evidence completed later | confirm clearing; AW closes `superseded` (P-O4) | evidence ref + AW closure |
+| T5 | `first-pass-cleared → reopened` · `waived → reopened` | reopen ruled Real (§5.2) | approve the reopen (P-O6) | RO-\<n\> |
+| T6 | `reopened → first-pass-cleared` | conflict resolved; delta evidence confirmed (§5.4) | confirm re-clearing (P-O4) | RO-\<n\> closure + delta evidence |
+| T7 | `reopened → waived` | BA accepts the conflict unresolved | grant AW naming the conflict (P-O5) | AW-\<n\> citing RO-\<n\> |
+| T8 | `waived → open` | AW lapsed by the BA (§4.2) | lapse the waiver (P-O5) | AW-\<n\> lapse |
+
+No other transition exists. In particular there is no `first-pass-cleared → open`: dissatisfaction with cleared content, absent a contradiction, is ordinary content work — run more techniques, route more findings; arrival is ungated. The cleared state asserts the *threshold*, not completeness (Q1b), and only a contradiction degrades it.
+
+**Event grammar** (runtime rule 3): `<date> · T<n> · <aspect> · <from → to> · <BA initials> — <basis ref>`.
+
+### 2.4 State home — the ledgers
+
+The gate's runtime-ledger rule (D-G1/D-G8), applied without exception: **orchestration state is a runtime record — none of the three content classes — and lives outside `memory/`**: out of CC-H-01's spec-anchored glob (the gate never audits orchestration state), out of the scoped-run write trigger (a ledger write must not fire an H run), out of any `memory/` mirror toward the coding agent (Mode A: an operational ledger is not certified content).
+
+**D-O3 (locked).** Two files, co-located with the gate's ledgers under `.specify/`:
+
+**`.specify/aspect-state.md`** — the aspect-state ledger: one mutable head + append-only events (the `gate-health.md` shape, gate §10.3).
+
+```markdown
+# Aspect State — <project>
+## Current state                        (head — rewritten in place)
+Band: 1 (open) | 1 (closed <date>) — Bands 2/3 capable
+| Aspect | State | Since | Basis |
+|---|---|---|---|
+| Stakeholders | first-pass-cleared | 2026-07-08 | evidence table, this file |
+| …six rows… |
+Standing aspect waivers:  AW-1 · Context · AT-CX-2 (regulatory) — revisit: <event>
+Open reopens:             none | RO-<n> · <aspect> — <conflict, one line>
+Upstream flags:           none | <aspect> flagged: prerequisite <aspect> reopened
+Deferred consequences:    none | RO-<n>: <item> — trigger: <event>
+
+## Events                               (append-only; event grammar §2.3)
+2026-07-08 · T2 · Stakeholders · open → first-pass-cleared · Y.K. — AT-ST-1..3
+  evidence table (below)
+…evidence tables, AW records, RO records, band events, threshold-gap
+candidates (§8.5) append here in full…
+```
+
+**`.specify/aspect-plans.md`** — the planning record: per aspect, the suggestion snapshot, the composed plan with pinned output contracts, and the run log (§6.4, §7.3).
+
+Rationale for the split: the state ledger is read at every touchpoint — session start, every P-O prompt, every band act — and must stay one screen at the head; plans are read when planning and running. Both files follow D-G1 for the same three reasons the gate's ledgers do.
+
+---
+
+## 3. The DAG & first-pass thresholds
+
+### 3.1 The locked graph
+
+```
+Stakeholders ──→ Context ──┐
+      │                    ├──→ Vision ──→ Solution ──→ Requirements ──→ [Band-1 closure]
+      └────────→ Value  ───┘
+```
+
+Q1b, verbatim from the plan's §3 prerequisites column. Vision opens only when **both** Context and Value are cleared-or-waived; every other gate is a single edge. This document adds no edge and removes none. Band-1 closure (§8.2) is not a seventh gate — it is the band act that requires all six.
+
+### 3.2 Threshold design rules
+
+The contract's design rule, transposed to threshold grade:
+
+1. **Thresholds, not completeness (Q1b).** A criterion asks for the *minimum evidence that makes dependent work non-speculative* — never "the aspect is done." Aspects are never done; they stay alive for the project's lifetime.
+2. **Evidence, not vibes.** Every criterion names the artifact or canvas section the BA points at and the condition it visibly meets. "Stakeholders are well understood" is banned by construction.
+3. **Silence fails.** Where a criterion enumerates classes or sections, each shows real content or an explicit `N/A — <reason>` / `none identified — <basis>` line — the CC-NF-02 pattern at threshold grade.
+4. **Not assertions.** AT criteria are BA-confirmed evidence checks: no M/A split, no checker, no gate report, no waiver-vs-override calculus. They are deliberately cheap — six confirmations per project, not sixty-one per feature. They never join the contract (contract header, division of labor).
+5. **Output discipline is inherited, not re-checked.** What techniques wrote is doc-1/doc-3-shaped (cited-or-marked); the aspect gate reads results and does not re-lint them.
+
+**IDs:** `AT-<AA>-<n>` — AT = Aspect Threshold; aspect codes ST · CX · VA · VI · SO · RQ. The ID family exists so waivers, gap notes, and tuning candidates can name their element (runtime rule 3).
+
+### 3.3 The thresholds
+
+**Stakeholders (root)**
+*Intent: everyone downstream cites who hurts, who decides, who uses. First-pass = the cast list exists and is coherent.*
+
+| ID | Minimum first-pass evidence |
+|---|---|
+| AT-ST-1 | Canvas Customers names ≥ 1 sponsor / economic decision-maker and ≥ 1 user population — real names or real groups; placeholders fail (CC-G-02's stub logic, borrowed at threshold grade, not invoked). |
+| AT-ST-2 | `stakeholders.md` exists, stub-free; every entry carries role-in-project plus decision rights or comms line; the sponsor's decision authority is explicit. |
+| AT-ST-3 | Register ⇄ canvas coherence: every canvas Customers population resolves to a register entry; no register entry contradicts the canvas picture. |
+
+**Context (← Stakeholders)**
+*Intent: the ground rules that bend everything else — systems, org, constraints — are on paper before vision work leans on them.*
+
+| ID | Minimum first-pass evidence |
+|---|---|
+| AT-CX-1 | `context.md` exists, stub-free: existing systems and organizational landscape at helicopter level, or explicit `greenfield — no existing systems` with its source. |
+| AT-CX-2 | `constraints.md`: each class — technical · business · regulatory — carries ≥ 1 confirmed constraint or an explicit `none identified — <basis>` line. Silence fails. |
+| AT-CX-3 | Canvas Competition→Unlike and the Context/Constraints element filled, or explicit `N/A — <reason>`. |
+
+**Value (← Stakeholders)**
+*Intent: the chain CC-OV-02 will one day walk (canvas → brief → spec) gets its first link.*
+
+| ID | Minimum first-pass evidence |
+|---|---|
+| AT-VA-1 | Canvas Problems: ≥ 1 problem, each naming who hurts — resolving to a register population (AT-ST-2's ground). |
+| AT-VA-2 | Canvas Objectives: ≥ 1 objective, each linked to ≥ 1 named problem and stated concretely enough to be cited downstream — a value claim that cannot be pointed at cannot anchor CC-OV-02 later. |
+
+**Vision (← Context + Value)**
+*Intent: one product statement, differentiated, and not at war with the constraints.*
+
+| ID | Minimum first-pass evidence |
+|---|---|
+| AT-VI-1 | Canvas Product→The/Is/That: all three slots filled — the product statement is complete. |
+| AT-VI-2 | Competition→Our Solution present, stating the differentiation against ≥ 1 named Unlike entry. |
+| AT-VI-3 | No vision claim contradicts a confirmed constraint (AT-CX-2's rows, read once against the statement); a found contradiction is resolved or named as an open conflict before clearing. |
+
+**Solution (← Vision)**
+*Intent: the solution surface is enumerated, and each element knows why it exists.*
+
+| ID | Minimum first-pass evidence |
+|---|---|
+| AT-SO-1 | Canvas Forms · Core Functions · Third-Party Connections · Localization: each filled or explicit `N/A — <reason>`. Silence fails. |
+| AT-SO-2 | Every core function names the objective or vision element it serves — coarse, line-level; the seed of the value chain briefs will later cite. |
+| AT-SO-3 | Every third-party connection carries direction + role in one line — the seed brief §4 and CC-IN-01 will later consume. |
+
+**Requirements (← Solution)**
+*Intent: the infrastructure every Band-2/3 artifact routes into exists and is seeded — the pre-arming image of Scope H.*
+
+| ID | Minimum first-pass evidence |
+|---|---|
+| AT-RQ-1 | Every spec-anchored home exists, seeded, stub-free at seed grade: `glossary.md` · `roles-permissions.md` · `domain-model.md` · core processes · global `out-of-scope.md` · `constitution.md` plus every governance file it references. Seeded = real initial content from Band-1 evidence, not headings. |
+| AT-RQ-2 | `roles-permissions.md` defines every role any Band-1 artifact references; if personas exist, the constitution states the persona→role principle ("never infer permissions from personas") and no persona is used as a role anywhere. |
+| AT-RQ-3 | `glossary.md` defines every term the canvas and Band-1 artifacts lean on; no known synonym pair left unmerged. |
+| AT-RQ-4 | `domain-model.md` seeds the entities the core functions imply, with business-level relations; core processes seed the major journeys of the primary roles. |
+
+**AT-RQ-1 conditionality — design standards (D-B5-3, catalogue-b5, locked):** `design-standards.md` is evidence-conditional, reached only through "`constitution.md` plus every governance file it references": where design/UX ground exists in Band-1 evidence, the constitution's reference lifts the file into this criterion's demand (and into CC-H-06's checked set at arming); where none exists, the constitution omits the reference, the omission stands on the aspect record, and AT-RQ-1 passes without it.
+
+**AT-RQ-4 significance — "primary roles" (D-B4-4, catalogue-b4, locked):** a role is significant at Band-1 grade iff it stands as the actor of ≥ 1 canvas Core Function line; the BA may elect further roles into the journey set (Q2). This keeps significance a checkable fact, not an adjective; roles entering later bring their journeys when their evidence does.
+
+**The handover rule.** AT-RQ is deliberately the pre-arming image of CC-H-01/-04/-05/-06. The aspect gate confirms this ground **once**; the closure act arms Scope H (§8.2); from that moment the contract owns it. AT-RQ is never re-run on armed ground: post-closure debt on spec-anchored artifacts is CC-H's, lifted by HA records (gate §10.4), never by aspect waivers. Re-clearing a reopened Requirements aspect post-closure touches only the contradicted evidence (§5.4 delta rule), not the CC-H estate.
+
+**D-O4 (locked) — the threshold set.** The 18 criteria above — grade, allocation, and the handover rule — ratified as proposed. The tuning loop (§8.5) keeps them honest from here.
+
+### 3.4 The confirmation act
+
+Per aspect, at a defined touchpoint (post-run update §7.4, or BA demand):
+
+1. **The framework assembles the evidence table** — per criterion: evidence pointer (file + section) · met / not met, with every miss named.
+2. **The BA reviews and rules** (P-O4): **CLEARED** — initials, date; T2 (or T6) executes · **NOT CLEARED** — the named misses stand as the aspect's visible to-do · **WAIVE** → §4 (T3).
+3. The table is appended to the aspect-state ledger as the transition's basis — the clearing names its evidence (runtime rule 3).
+
+```
+Aspect gate review — Stakeholders — 2026-07-08
+| AT | Evidence | Met |
+|---|---|---|
+| AT-ST-1 | canvas Customers: sponsor "Olena (network COO)"; populations Clients, Specialists | ✓ |
+| AT-ST-2 | stakeholders.md: 4 entries, rights/comms filled; sponsor authority explicit | ✓ |
+| AT-ST-3 | populations ⇄ register coherent; no contradiction | ✓ |
+→ CLEARED · Y.K. · 2026-07-08
+```
+
+The framework may *propose* confirmation when a refresh shows all criteria met ("threshold evidence complete — confirm?"); it never confirms. An aspect gate never self-clears.
+
+---
+
+## 4. Aspect waivers (AW)
+
+Q1b's second valve: "gates waivable with logged reason."
+
+### 4.1 Record
+
+`AW-<n>`, project-numbered — aspects are project-level (contrast the contract's per-feature `W-<NNN>-<nn>`). Fields carry the waiver family's shape (contract §8) with the aspect layer's element:
+
+| Field | Content |
+|---|---|
+| AW ID | `AW-<n>` |
+| Aspect + unmet criteria | The AT-IDs not met, each with exactly what is missing (named element) |
+| Reason | Why progression proceeds anyway |
+| Risk accepted | What downstream work now builds on, unverified — one line |
+| Approver · date | The BA, by name |
+| Revisit trigger | Event-shaped ("when the compliance consultant reports"), never a date wish |
+
+Home: the aspect-state ledger — the full record appends as an event; standing AWs list one line each in the head (§2.4).
+
+### 4.2 Lifecycle
+
+- **Granted** at T3 (`open → waived`) or T7 (`reopened → waived` — the record then names the unresolved conflict, citing its RO).
+- **Effect:** the aspect satisfies prerequisites exactly as `first-pass-cleared` does — dependents may open; Band-1 closure counts it (§8.2). The unmet criteria stay named in the ledger head as standing debt.
+- **Superseded by clearing** (T4): the evidence completes, the BA confirms, the AW closes `superseded — <date>`.
+- **Lapsed** (T8): the BA withdraws acceptance; the aspect returns to `open`. **Lapse is not reopen:** dependents cleared under the waiver keep their states — their clearing was a valid act on the record; what lapse blocks is *new* progression through this aspect until it re-clears or is re-waived. Content contradiction is the only thing that degrades a dependent, and that arrives as a reopen signal, not as a lapse side-effect.
+- **Voided by reopen** (T5 from `waived`): the conflict machinery supersedes the waiver; the RO record notes the voided AW.
+- **Re-affirmation — lazy, at defined touchpoints:** every standing AW is listed one line — re-affirm (initials) or lapse — at each band-transition act (Band-1 closure, every Band-3 entry) and whenever a P-O prompt renders the ledger head. Revisit triggers are displayed at those moments and read by the BA — no scheduler exists (the gate's P5/P8 discipline, inherited).
+
+**D-O5 (locked) — the AW instrument:** project numbering, the lifecycle above, lapse ≠ reopen (§13).
+
+### 4.3 Distinctness — three instruments, never conflated
+
+| | **AW** (this document) | **W-\<NNN\>-\<nn\>** (contract §8) | **HA-\<nn\>** (gate §10.4) |
+|---|---|---|---|
+| Layer | aspect gate | Scope-F assertion | Scope-H admission |
+| Element | one aspect's named AT misses | one feature × assertion × element | one project-health gap |
+| Grants | DAG progression + closure eligibility | feature PASS with the gap on record | Scope-F admission despite an H gap |
+| Numbered | per project | per feature | per project |
+| Home | `.specify/aspect-state.md` | feature `gate-report.md` | `.specify/gate-health.md` |
+| Ruled at | P-O5 (this doc) | P2 (gate) | P1 / P8 (gate) |
+
+An AW never lifts a Stage-0 admission block; an HA never unlocks an aspect; a W never touches either layer. Post-closure, debt on spec-anchored artifacts is HA territory (§3.3 handover rule); the AW remains the instrument only for aspect-layer acts (T3/T7), which exist as long as aspects do.
+
+---
+
+## 5. Reopen machinery
+
+Q1b's first valve: "downstream findings reopen upstream aspects." Everything upstream-shaped the corpus emits lands here.
+
+### 5.1 Intake
+
+| Source | Emission moment | Payload (the emitter's, received verbatim — doc 3 §1) |
+|---|---|---|
+| Doc 3 · Tier-1 ingestion (§3.5 step 4) | Batch assembly — BA present | finding · contradicted artifact + line · conflict statement |
+| Doc 3 · Tier-2 routing (§5.4) | An answer contradicts gated content — session, BA present | same |
+| Doc 4 · lane 3 (§6.3) | A gate gap reveals a contradiction with gated content — verdict review, BA present | same; the FAIL line supplies finding + element |
+
+**No daemon needed, by construction:** every emission moment is a BA-present moment — batch approval, Tier-2 session, verdict review. Receive and decide happen in the same sitting; nothing polls, nothing queues unattended.
+
+A received signal is logged `RO-<n>` (project-numbered), status `received` — logging is unconditional, so a declined signal is an audit record, never a silent drop.
+
+### 5.2 Decide — the BA ruling (P-O6)
+
+The framework proposes the aspect mapping — contradicted artifact → owning aspect, per §2.1's compilation. The BA rules:
+
+- **Real** → the reopen executes (§5.3).
+- **Not real** — the "contradiction" is a misreading, a stale quote, a non-conflict → RO closes `declined — <reason>`, and the decline is flagged toward the emitter's continuous-improvement loop (doc 3 §10 / gate §7.4–§12); which log receives it is the emitter's classification, not this document's. A false reopen signal is somebody's tuning input, never just noise.
+- **Real but brief-shaped** — it contradicts a scope brief, not an aspect artifact → not a reopen; it routes back as a brief edit under doc-3 mechanics (§2.1 note), with the pass-binding consequences the corpus already defines (doc 3 §4; gate §9.3).
+
+### 5.3 Execute — consequences, smallest sufficient scope
+
+On **Real**:
+
+1. **State.** T5 — the aspect → `reopened`. RO-\<n\> goes `open` with the full named record: `RO-<n> · <aspect> — <contradicted artifact:line>: <conflict statement> → <resolution path>`.
+2. **Blast radius — proposed, stated, then ruled.** Before anything else happens the framework assembles and states the affected set (smallest-sufficient-scope discipline):
+   - **Dependent aspects:** listed, **not** auto-reopened. They keep their states and take an `upstream reopened` flag in the ledger head — visibility, not a state change. Auto-cascade would punish five aspects for one wrong line; the delta reckoning at re-clear (§5.4 step 3) reads the *actual fix* instead.
+   - **Band-2/3 work in flight:** epics whose briefs cite the contradicted content (kit-baseline citations make this findable) · features whose `deps(F)` include the contradicted artifact, with their certification states listed. **Nothing here voids or preserves a PASS** — certifications are the gate's ground: if resolving the conflict edits a checked artifact, gate §9.1 voids and gate §10.2 notices, exactly as for any framework write. The orchestrator's list is advisory visibility.
+   - **Default: continue-with-visibility.** No freeze. The BA may explicitly pause named items (recorded in the RO); pausing is the exception that must be chosen, never the rule that must be undone.
+3. **Resolution routes as content.** The orchestrator never authors: resolving edits go through doc-3 §3.5's batch discipline — proposal → BA approval → framework writes → scoped Scope-H fires silently *if armed*. Often the resolving edits ride the very batch that emitted the signal (Tier-1 ingestion proposes them in the same sitting); the RO then binds those edits as its resolution refs rather than spawning a second batch.
+4. **Deferred consequences are event-shaped.** A consequence the BA elects not to execute now — a role addition that only matters when a proposed feature enters delivery — is recorded in the RO with its trigger event, listed in the ledger head, and lazy-read when that trigger's touchpoint renders. Never scheduled.
+
+### 5.4 Re-clear
+
+1. **The fix lands** — routed edits written under the approved batch.
+2. **Delta evidence — smallest sufficient scope, stated:** re-confirm only (a) the criteria whose evidence the contradiction or the fix touched, and (b) the corrected line itself. Untouched criteria carry, with the basis written down ("evidence untouched by RO-\<n\> fix diff") — the gate's carried-verdict pattern at threshold grade.
+3. **Dependent reckoning:** each flagged dependent's evidence table is diffed against the fix. Touched → the BA re-confirms that dependent (or, if the fix *contradicts* it, reopens it too — a new RO, ruled on its own). Untouched → the flag drops, one line.
+4. **The BA confirms** (P-O4, T6) → `first-pass-cleared`; RO closes `resolved — <refs>`; flags drop.
+
+Alternative close: T7 — `reopened → waived`; the BA accepts the conflict unresolved; the AW cites the RO; the ledger head carries both until superseded.
+
+**D-O6 (locked) — reopen consequence policy:** no auto-cascade (flags + delta reckoning), default continue-with-visibility with pause as a chosen exception, certifications strictly gate-§9.1 ground, declined signals flagged to the emitters' tuning loops (§13).
+
+---
+
+## 6. The BA-planning loop (Q2)
+
+Per aspect. The decision, restated once, verbatim: **BA planning, LLM assists** — the LLM suggests a recommended technique set + sequence from canvas evidence; the suggestion is **advisory, never a restriction**; the BA composes the real plan.
+
+### 6.1 Suggestion (framework — advisory)
+
+At aspect opening (T1), or on demand while the aspect is `open` or `reopened`, the framework reads the aspect's threshold criteria against current artifact evidence. This is doc 3's pre-draft philosophy lifted one level: **the unmet criteria are the holes; the holes are the suggestions.** Output, recorded as the suggestion snapshot:
+
+```
+Suggestion — <aspect> — <date>
+| # | Technique (catalogue | custom sketch) | Addresses | Expected contribution |
+|---|---|---|---|
+| 1 | <name> | AT-<..> — <the named hole> | <what evidence the run should produce> |
+Sequence rationale: <one line>
+```
+
+Every suggestion line is **evidence-grounded**: it names the hole (AT-ID + what is missing) it exists to fill. A suggestion that cannot name its hole must not be emitted — doc 3's destination discipline (principle 2), one level up. Suggesting into a cleared criterion is legal only as enrichment the BA asked for; the framework's own initiative stops at the threshold.
+
+### 6.2 Composition (BA — the real plan)
+
+**Select · drop · reorder · add custom** (Q2, verbatim). The composed plan is the BA's document; the suggestion snapshot stays beside it as audit trail and tuning input. Re-composition is legal at any time while the aspect is `open` or `reopened` — appended, dated; the plan never rewrites its own history.
+
+### 6.3 Output contracts pinned before any run (Q2+)
+
+Every planned technique — catalogue or custom — carries **{expected output · artifact class · destination file}** *before it may run*:
+
+- **Catalogue techniques** come pre-pinned by their sheets. Doc 3's two sheets serve Bands 2–3; the Band-1 catalogue is Wave-2 authoring — until it lands, Band-1 techniques enter by the custom path below. The loop is catalogue-agnostic by design: a technique is runnable iff its contract is pinned, wherever the contract came from.
+- **Custom techniques:** the BA supplies the contract, or the LLM proposes it and the BA confirms (Q2+, verbatim). An unconfirmed contract makes the run illegal — the orchestrator refuses to mark the technique planned-runnable, exactly as doc 3 refuses a question without a destination.
+
+**Skills note** (the from-scratch ruling, doc 3 §7/§11): in Phase 2, technique execution is by skills **authored from scratch to build briefs** — a catalogue sheet seeds a build brief; nothing imports an existing chat skill.
+
+### 6.4 The plan record
+
+`.specify/aspect-plans.md`, one section per aspect:
+
+```markdown
+## Stakeholders
+Suggestion snapshot — 2026-07-07  (§6.1 shape — kept verbatim, audit + tuning)
+Composed plan — 2026-07-07 · Y.K.
+| # | Technique | Source | Output contract {expected · class · destination} | Status |
+|---|---|---|---|---|
+| 1 | <name> | catalogue \| custom | {…} | planned · run <date> · dropped — <reason> |
+Run log:  (§7.3 lines append here)
+```
+
+**Two non-aspect sections, mirrored from the catalogue's ruling records:** the plans file additionally carries `## Frame` — T-01's plan line and run log, same row shape (D-B1-4, catalogue-b1, locked) — and `## Band 2` — T-17's and T-18's plan lines and run logs, every rerun with its trigger named, same row shape, contract-fulfillment bookkeeping per §7.3 (D-B6-5, catalogue-b6, locked). §8.1 and §8.3 define the acts; these sections pin only where their records land.
+
+---
+
+## 7. Technique-run orchestration
+
+### 7.1 Invocation
+
+**BA-invoked, never auto-fired** — the gate's invocation discipline (§2.2), inherited. The orchestrator may surface "next planned: \<technique\>" when a prompt point renders; the run starts only as a BA act (P-O3). Checked at invocation, nothing else: the technique is on the composed plan with a pinned contract (§6.3).
+
+### 7.2 The run itself is not orchestrated
+
+The technique executes per its own definition — sheet or build-brief skill; content authorship, question legality, interaction rules are the technique's own (docs 1, 3). **No mid-run interference:** the orchestrator does not interrupt, sample, or steer a run in progress — the gate's no-mid-run-drip rule, transposed. Everything below happens at run end.
+
+### 7.3 Output landing & routing — doc 3 §3.5 executes; this document keeps the books
+
+At run end, three things happen, none of them this document's invention:
+
+- **The primary output lands** at its contracted destination — the technique's own act under its pinned contract.
+- **Cross-cutting findings route per doc 3 §3.5, unchanged and unrepeated here:** the framework assembles proposed edits · **the BA approves the batch** · the framework writes · **scoped Scope-H checks fire silently per contract §3 — once armed.** In Band 1 proper, Scope H is disarmed (gate §10.1) and nothing fires: **in-band quality is the aspect gates', by design** — the next threshold review reads the results; nothing is silently certified pre-closure. Post-closure runs — Tier-1 ingestion, Tier-2, allocation reruns — get the armed cadence automatically, with no new rule here.
+- **Signals emitted by the run** enter §9 intake in the same sitting.
+
+The orchestrator's added duties are pure bookkeeping:
+
+| Duty | Record (run log, `.specify/aspect-plans.md`) |
+|---|---|
+| Contract fulfillment | `fulfilled` — output at destination · `partial — <what is missing>` · `failed — <why>` |
+| Signal receipt | RO- / routing- / overflow entries logged with source = this run (§9) |
+| Post-run aspect update | §7.4 |
+
+### 7.4 Post-run aspect-state update — the defined touchpoint
+
+After each run (or each approved ingestion batch), the framework refreshes the aspect's threshold-evidence table (§3.4). All criteria met → it proposes confirmation (P-O4). Some unmet → the misses are the aspect's named to-do, visible at the next prompt. **This is lazy detection's home in Band 1:** evidence is assembled at this touchpoint and on BA demand — never watched.
+
+---
+
+## 8. Band orchestration
+
+Bands (plan §5) are **cumulative capabilities, not a pointer**: closing Band 1 makes the project Band-2/3 capable; nothing ever "returns to Band 1." A reopen degrades one aspect's state in place (§5) while the band capabilities stand (D-O8, locked).
+
+### 8.1 Band-1 entry — Frame
+
+The act (BA): initialize the ledgers — aspect-state head at six × `untouched`, `Band: 1 (open)`; empty plans file — and confirm `canvas.md` is present and carried into the repo: the presale canvas is Band 1's substrate (Q1a). **No canvas** (a non-presale entry): producing one is the first Frame act — a custom-contract technique run before any aspect opens, contract {presale canvas incl. Context/Constraints element · Context · `canvas.md`}; its sections then serve as the aspects' shared substrate (part of D-O7, locked). With the substrate in place, Stakeholders — the root — is openable (T1).
+
+### 8.2 Band-1 closure — the arming act
+
+Preconditions, checked at the act, both visible in the ledger head:
+
+1. All six aspects `first-pass-cleared` or `waived`; **zero `reopened`** — a live conflict is neither.
+2. Every standing AW re-affirmed, one line each, explicitly *into the armed state*: "carried past closure — debt visible to CC-H where it touches spec-anchored ground."
+
+The act (BA, P-O7), recorded as the closure event — date · six-state snapshot · AWs carried — and then:
+
+3. **The orchestrator requests the full Scope-H run — the contract's "run that arms the system" (contract §3; gate §10.1).** The gate runs it — never the orchestrator; its entry lands in `.specify/gate-health.md`; from this run on the armed cadence governs: scoped silent checks on framework writes, pre-flight subsets, the session-start habit.
+4. **Closure completes when the arming entry exists — regardless of its verdict.** Gaps the arming run finds are the gate's ground from that moment: fixed via routing, or accepted via HA per gate §10.4. Rationale: AT-RQ is the pre-arming image of the same ground, so a heavy-gap arming run signals an *aspect-gate escape*, not closure prematurity — it feeds the threshold-tuning loop (§8.5) instead of blocking the band. (D-O7, locked.)
+
+Effects: **Scope H armed** — custodianship of the spec-anchored estate hands over per §3.3 · **Band 2 unlocked.**
+
+### 8.3 Band 2 — entry and repeatability
+
+**Entry = Band-1 closure. Full stop.** No partial-band entry: the waiver valve (§4) is the flexibility mechanism — an aspect that would otherwise delay closure is waived with its debt named; closure proceeds; Band 2 opens. One door, one logged key. (D-O7, locked.) One advisory, on the record, when it applies: decomposing on a **waived Solution** is decomposing a guess — the framework says so once when Band 2 opens over one; the BA's call stands.
+
+Inside Band 2 the orchestrator conducts nothing content-shaped — decomposition, Tier-1 interviews, and allocation are technique runs, and §7 applies to them unchanged (BA-invoked, contracted, routed). What is specifically Band-2-shaped:
+
+- **Repeatability (C1, restated once):** allocation is on-demand and repeatable; each rerun = recommended re-allocation with rationale + **diff vs. current** + BA approval; the living roadmap logs the change with reason. The orchestrator schedules reruns **on BA demand** — including when a gate lane-3 finding names "a Band-2 allocation act" (gate §6.3): that outcome is a BA decision to rerun C1, not a signal class (§9, boundary notes).
+- **Tracking split — no duplication** (reference-never-restate, applied to state): the **roadmap (#11)** tracks epics — statuses, phases, the re-allocation log; CC-H-02's ground once armed. The **briefs (#12)** track their own status (`Draft`/`Scoped`) and the slicing table (§8, D5). The **orchestrator ledger tracks neither** — it records band events only: closure, Band-3 entries, cycle closes, reopens. Content state lives in content artifacts; orchestration events live in the ledger; a second copy of either would rot in parallel.
+
+### 8.4 Band-3 entry — per feature, riding D5
+
+Doc 3's D5 owns the confirmation act: **brief §8 slicing row Status → `Confirmed — <date>`** — the machine-readable home CC-XA-05 reads. Band-3 entry for a feature *is* that act (BA, P-O8), performed inside doc-3 Tier-2 step 1; the status flip is doc-3 mechanics — a framework write, so the armed scoped-H fires silently and sibling pass-voiding runs per gate §9.1/§10.2 where it applies (referenced, not run here). The orchestrator records the band event — `<feature> entered Band 3 — brief §8 row` — and nothing else. Preconditions (brief exists, `Scoped`, slicing present) are **not re-checked here**: CC-H-03 and CC-XA-05 own them at gate time, and pre-flight is the hard guarantee (gate §10.1). One advisory renders at entry when the parent epic's ground touches an aspect flagged `reopened` or `upstream reopened`: visibility, never a block.
+
+**Roadmap status vocabulary (D-B6-3, catalogue-b6, locked):** four values, band-event-derived — `Defined` (row born, at decomposition) · `In delivery` (the epic's first feature enters Band 3 — this P-O8 band event prompts the flip, §8.5's mechanism one event earlier) · `Delivered` (the epic's last feature's cycle closes — §8.5's prompt) · `Retired — <reason>` (the row leaves scope by graduation-reversed routing or merge). Status writes are routed content edits at the band events, owned by the routing discipline — never a technique run's inline fix. Deliberately no `Scoped` value: the brief tracks `Draft`/`Scoped`, and the §8.3 tracking split forbids the mirror copy — CC-H-03 reads the brief ⇄ roadmap join directly.
+
+### 8.5 Band-3 close — reference — and the threshold-tuning loop
+
+The delivery cycle closes at **BA post-implementation verification close — gate D-G7, referenced, never redefined**; waiver expiry and new-cycle mechanics are the gate's consequences. The orchestrator's part: record the cycle-close band event · prompt the roadmap status update — a content edit under BA act via routing discipline, landing in CC-H-02's ground · surface the next roadmap selection.
+
+**Threshold tuning** (the contract §10 pattern at aspect grade): an arming-run gap on AT-claimed ground, or any post-closure catch that traces to Band-1 evidence the thresholds should have demanded, is a **threshold-gap candidate** — logged as an aspect-ledger event, tagged with the AT-ID that should have caught it or `none — new class`. Accepted candidates bump this document's version. Iterate thresholds and prompts, not tooling — Phase 3's mandate, applied here (D-O9, locked).
+
+---
+
+## 9. Signal intake — nothing arrives without an executor
+
+The complete table: the three doc-3 signal classes plus the gate's lane 3. Payloads are the emitters' (doc 3 §1), received verbatim. Per signal: **receive** (unconditional logging) / **decide** (always the BA) / **execute** (this document's machinery, or the referenced mechanics it books around).
+
+| Signal | Sources | Payload | Receive | Decide (BA) | Execute |
+|---|---|---|---|---|---|
+| **Routing** | doc 3 Tier-1 §3.5 · Tier-2 §5.4 · gate lane 2 (§6.3 upstream fixes) | finding · destination artifact · proposed edit | batch logged, run-log ref | **approve the batch** — the decision is doc 3 §3.5's, unmoved | doc 3 writes; orchestrator books destination fulfillment; scoped-H per contract §3 once armed (§7.3) |
+| **Reopen** | doc 3 Tier-1 §3.5 step 4 · Tier-2 §5.4 · **gate lane 3 (§6.3: "the gate emits; doc 5 executes")** | finding · contradicted artifact + line · conflict statement | `RO-<n> received` — unconditional | **Real / Not real / Brief-shaped** + aspect-mapping confirmation (P-O6) | §5.3–§5.4 end to end |
+| **Overflow** | doc 3 Tier-2 §5.4 (D7) | feature · unfilled blockers list · Tier-1-supplement recommendation | logged against the feature | **supplement · cap adjust · defer** (P-O9) | supplement → schedule the doc-3 §3.5 mini-loop as a technique invocation (P-O3) for the named gaps only · cap adjust → Tier-2 resumes under doc 3's BA-adjustable cap · defer → band event + roadmap note via routing |
+
+Boundary notes, so the table stays exhaustive:
+
+- The gate's **voided-certification notice** (gate §10.2) is not a signal into this machinery — it is gate-to-BA; the cheap re-gate is BA-invoked at the gate. The orchestrator neither receives nor executes it.
+- Gate lane 3's alternative outcome — "a Band-2 allocation act" — is a BA decision to rerun allocation (§8.3), not a signal class.
+- **Exhaustiveness rule (D-O10, locked):** a new signal class anywhere in the corpus requires a row here in the same version bump. Nothing may arrive without a defined executor — this table is the guarantee, and its incompleteness is a defect of this document, nobody else's.
+
+---
+
+## 10. Autonomy boundary & BA prompt points
+
+### 10.1 P-O prompt points — the complete list
+
+The gate §2.3 pattern: nothing outside this table interrupts the BA on this document's account. **No mid-run drip** (§7.2): technique runs complete before anything below renders; signal decisions ride the sittings where the signals are born (§5.1).
+
+| # | Moment | Trigger | The BA's act |
+|---|---|---|---|
+| P-O1 | Aspect opening | Prerequisites cleared/waived; the BA turns to the aspect | Open (T1) |
+| P-O2 | Plan composition | Suggestion snapshot ready, or the BA re-plans | Compose: select / drop / reorder / add custom; pin or confirm output contracts (§6.3) |
+| P-O3 | Technique invocation | A planned, contracted technique is next | Invoke the run |
+| P-O4 | Clearing confirmation | Evidence table complete — first-pass (§3.4) or delta (§5.4) | CLEARED / NOT CLEARED with named misses |
+| P-O5 | Aspect-waiver acts | A T3/T7 request, or a ledger-head render with standing AWs | Grant · re-affirm · lapse |
+| P-O6 | Reopen ruling | RO received (§5.1) | Real / Not real / Brief-shaped · blast-radius review · pause exceptions |
+| P-O7 | Band-1 closure | Six aspects cleared/waived, zero reopened | Declare closure; re-affirm AWs into the armed state; the arming Scope-H run is requested |
+| P-O8 | Band-3 entry | Feature selected from the roadmap | Confirm the slicing row (doc 3 D5 act; band event recorded) |
+| P-O9 | Overflow ruling | Overflow signal from Tier 2 | Supplement · cap adjust · defer |
+
+Doc 3's routing-batch approval and the gate's P1–P8 are those documents' prompt points. Where they share a sitting with a P-O — an ingestion batch that carries a reopen signal renders §3.5 approval and P-O6 together — each act stays owned by its document: one sitting, never one blurred decision.
+
+### 10.2 The discipline, and the boundaries table
+
+**The orchestrator schedules, routes, and records. It never authors content, never runs a contract check, never rules on a contract waiver.** Its hands touch two ledger files and nothing else.
+
+| Concern | Doc 2 · contract | Doc 3 · elicitation | Doc 4 · gate | **Doc 5 · this document** |
+|---|---|---|---|---|
+| Defines *done* | owns — 61 assertions | — | executes | never — thresholds are first-pass, not done, and never join the contract |
+| Runs checks | — | never (delivers to the gate) | owns, F + H | requests the arming run (§8.2); runs nothing |
+| Authors content / questions | — | owns generation | never | never |
+| Routing mechanics | — | owns (§3.5) | consumes (lane 2) | bookkeeping around them (§7.3) |
+| Waiver instruments | W semantics | — | W/O runtime + HA | AW only (§4.3) |
+| Reopen | — | emits | emits (lane 3) | **decides (BA) + executes** |
+| Aspect states · DAG · thresholds · bands | out of scope by header | emits into | never runs an aspect gate (§11.3) | **owns** |
+| Pass voiding · re-gates · cycle close | pass binding (§2) | notes the consequence (§4) | owns (§9, D-G7) | references only (§5.3, §8.5) |
+
+---
+
+## 11. Phase-2 binding & Phase-1 manual mode
+
+Names indicative — Phase 2 fixes them (the gate §13 convention). The **Orchestrator subagent** is plan §7's third persona, conducting under §10.2's discipline, with every P-O compiled to a plan-mode checkpoint.
+
+| Element | Phase-2 primitive |
+|---|---|
+| Aspect ledger + head render | Orchestrator subagent maintains `.specify/aspect-state.md`; `/ba.status` renders the head — the session-start habit's natural home |
+| Aspect opening + planning loop | `/ba.aspect <aspect>` → suggestion snapshot → composition checkpoint (P-O1, P-O2) |
+| Technique run | `/ba.run <technique>` — skills authored from scratch to build briefs (doc 3 §7 ruling); contract check at invocation (P-O3) |
+| Clearing | `/ba.clear <aspect>` — evidence table → confirmation checkpoint (P-O4) |
+| Aspect waiver | `/ba.waive-aspect <aspect>` (P-O5) |
+| Reopen | Signals surface at their native checkpoints (batch approval · Tier-2 session · gate verdict review); `/ba.reopen <aspect>` executes a Real ruling (P-O6) |
+| Band-1 closure | `/ba.close-band1` — precondition check → AW re-affirmations → closure record → invokes the gate's `/ba.gate-health full` as the arming run (P-O7) |
+| Band-3 entry | `/ba.enter-feature <epic>/<feature>` — renders the slicing row for confirmation; doc-3 mechanics perform the write (P-O8) |
+| Ledger hygiene | Append-only events + in-place head rewrite — the same file discipline as the gate's ledgers |
+
+**Phase-1 manual mode:** the BA maintains both ledgers by hand from this document's templates — §2.4's file shapes, §3.4's evidence table, §4.1's AW fields, §5.3's RO grammar, §8.2's closure checklist, §9's intake table. **Phase-1 exit criterion, met at corpus level with this document:** a BA can run Band 1, clear or waive its six aspect gates, execute every signal the corpus emits, close the band into an armed Scope H, and enter Bands 2–3 — from the documents alone. (Breadth of the Band-1 technique *catalogue* is Wave-2 authoring; until it lands, the custom-contract path (§6.3) carries Band 1 — the machinery is complete without the catalogue.)
+
+---
+
+## 12. Running example — E-03's world through the machinery
+
+The corpus's world, extended upstream and stitched through: the writing standard's feature (004), the contract's gate runs 2–3, doc 3's E-03 brief — and, before them all, the Band-1 fortnight of early July. Three exhibits: one aspect through the planning loop, one threshold cleared, and doc 3's §8.2 reopen signal — the one the corpus left unexecuted — executed end to end.
+
+### 12.1 One aspect through the BA-planning loop (Stakeholders, 2026-07-07 → 07-08)
+
+Band-1 entry (Frame) ran 2026-07-07: ledgers initialized, `canvas.md` present from presale. Stakeholders opened (T1 — root, no prerequisites).
+
+**Suggestion snapshot** (§6.1, condensed):
+
+```
+Suggestion — Stakeholders — 2026-07-07
+| # | Technique | Addresses | Expected contribution |
+| 1 | Presale-handoff mining (custom sketch) | AT-ST-2 — no register exists | register seed: names, roles, rights from presale materials |
+| 2 | Sponsor alignment interview (catalogue-future) | AT-ST-1/-3 — sponsor authority unstated; populations unconfirmed | confirmed sponsor + populations, decision rights |
+Sequence rationale: mine what presale already knows before spending a call.
+```
+
+**Composition (P-O2):** the BA keeps both, adds nothing, reorders nothing. Both enter as **custom** (the Band-1 catalogue is Wave-2): contracts pinned at composition — #1 {stakeholder inventory with decision rights · Context · `stakeholders.md`}, #2 {confirmed stakeholder picture + open risks · Context · `stakeholders.md`} — BA-supplied for #1, LLM-proposed and BA-confirmed for #2 (both Q2+ paths exercised).
+
+**Runs (P-O3, 07-07 and 07-08):** #1 lands its inventory (`fulfilled`). #2's call yields the confirmed picture plus one cross-cutting finding — the sponsor ties launch to the autumn season, a business constraint — routed per §3.5 as a one-line batch, BA-approved, written to `constraints.md`. Note where it landed: **Context's home, while Context is still `untouched` — arrival is never gated (§2.2)**; the Context aspect gate will read it as existing evidence when it runs. And **no scoped-H fires: Band 1, Scope H disarmed — by design (§7.3).**
+
+### 12.2 One threshold cleared (P-O4, 2026-07-08)
+
+Post-run update (§7.4) refreshes the evidence table; all criteria show met; the framework proposes confirmation:
+
+```
+Aspect gate review — Stakeholders — 2026-07-08
+| AT | Evidence | Met |
+| AT-ST-1 | canvas Customers: sponsor "Olena (network COO)"; populations Clients, Specialists | ✓ |
+| AT-ST-2 | stakeholders.md: 4 entries, rights/comms filled; sponsor authority explicit | ✓ |
+| AT-ST-3 | populations ⇄ register coherent | ✓ |
+→ CLEARED · Y.K. · 2026-07-08          (T2; event appended)
+```
+
+Context and Value become openable. The remaining aspects clear over 07-08 → 07-10 (Requirements last, its AT-RQ evidence being the seeded memory estate). **Band-1 closure, 2026-07-10 (P-O7):** six cleared, zero AWs, zero reopens → closure declared → the orchestrator requests the full Scope-H run → the gate runs it → first entry in `.specify/gate-health.md`: HEALTHY — **the system is armed.** Ledger head: `Band: 1 (closed 2026-07-10) — Bands 2/3 capable`. Band 2: decomposition run → roadmap #11 (E-01…E-08; E-03 booking, E-07 payments) → Tier-1 for E-03 invoked 07-14 — doc 3 §9.1's world, on schedule.
+
+### 12.3 The §8.2 Stakeholders reopen, end to end
+
+Doc 3's E-03 ingestion batch (2026-07-14) carries the signal its routing log records: *"Clinic admins currently manage some calendars (contradicts canvas self-manage picture) — reopen signal → Stakeholders aspect."*
+
+**Receive.** `RO-1 · received · 2026-07-14 · source: Tier-1 ingestion E-03`. Payload verbatim: finding — *clinic admins currently manage some specialists' calendars (call: Olena + 2 specialists)* · contradicted — `canvas.md`, Core Functions: *"Specialists self-publish availability"* (the line kit assumption A2 leaned on), plus `stakeholders.md` coverage (no admin population) · conflict — *the self-manage picture is wrong for part of the network.*
+
+**Decide (P-O6** — same sitting as the batch approval; doc 3 §9.1 step 7 is this moment from the emitter's side**).** Framework proposes the mapping: Stakeholders — the conflict is about who the actors are; the contradicted line and the register gap are its evidence. BA rules **Real**; mapping confirmed.
+
+**Execute.** T5: Stakeholders `first-pass-cleared → reopened`; RO-1 `open`:
+
+```
+RO-1 · Stakeholders — canvas.md:Core Functions "Specialists self-publish
+availability" + stakeholders.md (no admin population): call establishes
+clinic admins manage some specialists' calendars → correct the actor
+picture (register + canvas), assess role implication.
+```
+
+Blast radius, stated before anything else (§5.3): dependents Context · Value · Vision · Solution · Requirements flagged `upstream reopened` — no cascade. In flight: E-03 brief cites `[canvas: Customers]` baseline — flagged; feature 004 about to enter Tier-2; **no certifications exist to void** — noted, and voiding would be gate-§9.1 business anyway. Ruling: **continue-with-visibility** — Tier-2 for 004 proceeds (recorded in RO-1).
+
+**Resolution — rides the same approved batch** (§5.3 step 3; doc 3 §9.1 step 6 already proposed the edits): `stakeholders.md` gains the Clinic Admin population (comms via Olena); the canvas line becomes *"availability published by Specialists or their Clinic Admins."* The armed scoped-H fires silently on both writes — clean (doc 3 §9.1 step 8, seen from this side). One consequence deferred, event-shaped (§5.3 step 4): *a Clinic Admin **role** in `roles-permissions.md` — trigger: F2 (availability publishing) Band-3 entry* — a stakeholder population is register ground now; an authorization role enters governance when a feature exercises it (doc 3 §9.2 step 5's pattern).
+
+**Re-clear (P-O4, 2026-07-15).** Delta evidence, scope stated: AT-ST-2 (register now includes Clinic Admin) and AT-ST-3 (canvas ⇄ register coherent again) re-confirmed; AT-ST-1 carried — untouched by the fix diff. Dependent reckoning, one line each: the fix touched a **Solution**-owned line (canvas Core Functions) → Solution's table diffed → AT-SO-2 still met (the function's objective link is unchanged; only its actor list grew) → re-confirmed, flag drops. **Requirements** flagged by the diff too: does AT-RQ-2 ("every role any Band-1 artifact references") now demand a Clinic Admin role? BA rules: the canvas names a *population performing an activity*, not an authorization role; no feature exercises it; the RO-1 deferral covers it → re-confirmed, one-line basis. Context, Value, Vision: untouched → flags drop. T6 executes: Stakeholders `first-pass-cleared`; RO-1 `resolved — batch 07-14 refs · canvas line · deferral (F2 trigger)`.
+
+**And the timeline is continuous end to end:** Band 1 (07-07 → 07-10, closure arms Scope H) → E-03 brief (07-14) → **RO-1 (07-14 → 07-15)** → F1 Band-3 entry (07-15 — brief §8 `Confirmed — 2026-07-15`, doc 3's own date, P-O8) → OQ-1 answered (07-16) → policy row routed (07-17) → gate run 2 FAIL (07-17) → run 3 effective PASS (07-18) → handoff. At F2's future Band-3 entry, RO-1's deferred item renders at P-O8 — the lazy read — and the role row routes as a governance batch then.
+
+---
+
+## 13. Review record (v0.1 → v0.2)
+
+Ten decisions ruled by the BA Lead, 25 July 2026 — **all recommendations accepted as stated.** Rulings summarized below; the locked text stands inline at each section.
+
+| # | Decision | Ruling (adopted as recommended) | Where |
+|---|---|---|---|
+| **D-O1** | Artifact→aspect allocation | Domain model + core processes under **Requirements** (plan §3's "beyond the canvas"); Solution clears on canvas evidence alone; roadmap + briefs aspect-less (Band-2 ground) | §2.1 |
+| **D-O2** | State set | Five states — `untouched · open · first-pass-cleared · waived · reopened`; no terminal state (aspects live forever); reopen legal from cleared **and** waived; **arrival never gated** — the DAG gates opening and clearing only; no `cleared → open` (only contradiction degrades) | §2.2–2.3 |
+| **D-O3** | State home | Two runtime ledgers outside `memory/` per D-G1/D-G8: `.specify/aspect-state.md` (head + events) · `.specify/aspect-plans.md` (suggestions, plans, run logs) | §2.4 |
+| **D-O4** | Threshold set | The 18 AT criteria at threshold grade; AT-RQ as the pre-arming image of CC-H; the **handover rule** — post-closure debt on spec-anchored ground is HA territory, AT never re-runs on armed ground | §3.3 |
+| **D-O5** | Aspect-waiver instrument | `AW-<n>` project-numbered; lifecycle granted → superseded / lapsed / voided-by-reopen; **lapse ≠ reopen** (dependents keep their states); re-affirmation lazy at band acts + head renders | §4 |
+| **D-O6** | Reopen consequences | No auto-cascade — flags + delta reckoning at re-clear; default **continue-with-visibility**, pause as a chosen exception; certifications strictly gate-§9.1 ground; declined signals flagged to the emitter's tuning loop | §5.3–5.4 |
+| **D-O7** | Closure & Band-2 entry | Closure requires six cleared/waived + zero reopened; **completes regardless of the arming run's verdict** (gaps → gate machinery); **Band-2 entry = closure**, no partial-band entry — the waiver valve is the flexibility; canvas-absent Frame produces the canvas first | §8.1–8.3 |
+| **D-O8** | Band semantics | Bands are cumulative capabilities, never a pointer; no band regression — reopens degrade aspects in place | §8 |
+| **D-O9** | Threshold tuning | Arming-run gaps and post-closure catches on AT-claimed ground = threshold-gap candidates, tagged with the AT-ID that should have caught them; accepted candidates bump this document | §8.5 |
+| **D-O10** | Signal exhaustiveness | A new signal class anywhere in the corpus requires an intake row here in the same version bump; the voided-certification notice and the lane-3 allocation act are explicitly *not* signal classes | §9 |
+
+**Conflict scan against contract v0.2 · gate v0.2 · elicitation v0.3 · standard v0.3:** none found. This document consumes the corpus's anchors strictly by reference — D-G1/D-G8 (ledger homes), D-G7 (cycle close), gate §6.3/§9.1/§10.1–§10.4, contract §3 cadence and §8 W semantics, doc 3 §3.5 batch mechanics and D5/D7 — and redefines none of them. **No erratum issued.**
+
+**Wave-1 closure note:** with this review closed, the five-document spine is complete and review-closed; the Phase-1 spine exit criterion (§11) is met.
+
+---
+
+*v0.3 · catalogue mirrors applied 30 July 2026 (D-B1-4 · D-B4-4 · D-B5-3 · D-B6-3 · D-B6-5) · review incorporated 25 July 2026 · closes Wave 1 · conducts plan §5's bands over the Q1a/Q1b aspect model · owns the Band-1 aspect gates per the contract's division of labor (its header; §3 cadence) · executes the three doc-3 signals (§1) and the gate's lane-3 reopens (§6.3) · requests the arming full Scope-H run at Band-1 closure (contract §3 · gate §10.1) · thresholds: 18 AT criteria across six aspects · records: AW (aspect waiver) · RO (reopen) · runtime ledgers outside `memory/` per D-G1/D-G8: `.specify/aspect-state.md` · `.specify/aspect-plans.md` · decisions D-O1–D-O10 locked · v0.1→v0.2 review record in §13*
+
+

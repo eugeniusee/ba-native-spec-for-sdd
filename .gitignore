@@ -1,0 +1,12 @@
+.DS_Store
+__pycache__/
+*.pyc
+.venv/
+
+# Offline Spec Kit fallback — upstream's release artifact, not ours to commit.
+# See vendor/README.md for how to populate it.
+vendor/spec-kit-*.zip
+
+# Scratch install targets used while exercising install.sh / tests
+/toy/
+/.build-scratch/
