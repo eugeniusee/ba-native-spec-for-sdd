@@ -54,7 +54,7 @@ between framing grade and aspect grade:
 
 | | first pass (T-01, 07-07) | after the aspects and RO-1 (07-15) |
 |---|---|---|
-| §7 links | 2 of 5 functions carry `→ O-2` | 4 of 5 — T-10 completed them |
+| §7 links | 2 of 5 functions carry `→ O-2` | 5 of 5 — T-10 completed them (S6) |
 | §7 actors | `Publish Specialist availability` | `Availability published by Specialists or their Clinic Admins` — RO-1's resolution |
 | §11 Our Solution | `open — no source material` | the differentiation statement — T-09 |
 | §13 Business / Regulatory | `open — no source material` ×2 | cited to `constraints.md §2` / `§3` — T-06 |
