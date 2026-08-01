@@ -1,0 +1,139 @@
+# Toy-world fixture set — appointment booking
+
+Build plan §2.8's fixture unit: **the corpus's running world reconstructed as
+machine inputs.** Every "stakeholder" contribution in the Phase-2 exit script
+(§5 steps 4–7) is a file here, so the run is reproducible without improvisation.
+
+Run it with `tests/check-m.sh` from the package root.
+
+---
+
+## The world
+
+The appointment-booking world of writing standard §14, completeness contract §7,
+gate definition §14, elicitation techniques §8 and orchestrator §12 — at its
+**post-Band-1-closure state** (closure 2026-07-10 · decomposition and Allocation 1
+2026-07-11 · Tier-1 call 2026-07-14 · brief `Scoped` 2026-07-15 · Tier-2 spec r5
+2026-07-16 · gate run 2 FAIL 2026-07-17 · gate run 3 PASS WITH WAIVERS 2026-07-18).
+
+```
+project/                        the world as an installed project
+  canvas.md                     13 sections, P-1/P-2, O-1/O-2
+  .specify/memory/              the armed spec-anchored estate
+    glossary · stakeholders · context · constraints · competitive-analysis
+    domain-model · roles-permissions · processes · design-standards
+    out-of-scope · roadmap · constitution
+    scope/E-03.md               the filled brief (elicitation §8.2)
+    scope/E-03.kit.md           the call kit (elicitation §8.1)
+  specs/004-appointment-booking/spec.md      = revisions/spec-r6.md
+call-notes-E-03.md              scripted call notes — the ingestion input
+tier2-answer-sheet.md           the ≤ 7 GQ answers — the Tier-2 input
+revisions/
+  spec-r5.md                    the gate-§14 defect set, seeded
+  spec-r6.md                    the same spec after §14.1's five fixes
+  roles-permissions-r5.md       the pre-fix policy table (no Specialist cancel row)
+negatives/                      one focused FAIL surface per M script
+  neg-structure · neg-scan · neg-stories · neg-acceptance · neg-ears
+  neg-sections · neg-idgraph · personas.md · health/
+expected/                       the recorded verdict table per case
+```
+
+### Two facts worth knowing before reading a verdict
+
+**r6 still carries one `[NEEDS CLARIFICATION]` marker**, so `sk_scan` reports
+CC-G-03 FAIL on it. That is correct: the marker is OQ-2's named location, and
+gate §14.3 shows it carried under waiver **W-004-01** at P2. An M checker never
+applies a waiver — it reports the gap, and the runtime (S3) flips it to WAIVED
+during verdict assembly (gate §6.1). A checker that hid the gap because someone
+waived it would be reporting a decision, not a fact.
+
+**`roles-permissions.md` in `project/` is the post-fix table** — it carries the
+`(Specialist × Appointment × cancel)` row added 2026-07-17 in response to gate
+run 2's CC-XA-01 gap. `revisions/roles-permissions-r5.md` is the pre-fix table;
+`check-m.sh` builds the r5 snapshot from it, which is what makes the r5→r6
+diff touch a governance artifact exactly as gate §14.2 records.
+
+---
+
+## Expected verdicts, per M script
+
+`✓` = PASS · `✗` = FAIL. The machine-readable tables are in `expected/*.expect`
+(`script|CC-ID|VERDICT`, one line each); this table is their rendering.
+
+### Scope F — the spec cases
+
+| Case | G-01 | G-03 | G-04 | US-01 | US-02 | US-03 | US-04 | AC-01 | FR-01 | FR-02 | FR-05 | FL-02 | NF-02 | BR-02 | OS-01 | TR-01 | TR-02 | TR-03 | TR-04 | XA-02 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| **r5** — gate run 2 | ✓ | ✗ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ | ✓ | ✗ | ✓ | ✓ | ✓ | ✓ |
+| **r6** — gate run 3 | ✓ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| neg-structure | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| neg-scan | ✓ | ✗ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ |
+| neg-stories | ✓ | ✓ | ✓ | ✗ | ✗ | ✗ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| neg-acceptance | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ | ✓ | ✗ | ✓ |
+| neg-ears | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ | ✗ | ✗ | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ | ✓ | ✗ | ✓ |
+| neg-sections | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ | ✗ | ✗ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| neg-idgraph | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ | ✓ | ✓ | ✓ | ✓ | ✗ | ✗ | ✗ | ✗ | ✓ |
+
+Collateral failures are deliberate and recorded, never suppressed: a story with
+no acceptance breaks the traceability chain too, and leaves the FR row without a
+handle (neg-acceptance → CC-TR-01 · CC-TR-04); an FR pointing at a story that
+does not exist fails both the link check and the graph (neg-ears, neg-idgraph →
+CC-FR-05 · CC-TR-01 · CC-TR-04). A negative that failed *only* its target
+assertion would be a fixture that does not resemble a real spec.
+
+### CC-XA-05 — brief + slicing row
+
+| Case | Verdict | Why |
+|---|---|---|
+| `brief-confirmed` — 004 vs. E-03 | ✓ | §8 row present, `Confirmed — 2026-07-15` |
+| `brief-proposed` — 005 vs. E-03 | ✗ | §8 row present but still `Proposed` — the delivery-loop-entry confirmation is missing |
+| `brief-absent` — 004 vs. E-99 | ✗ | no brief at the path — the urgent-feature valve, waivable by design |
+
+### Scope H
+
+| Case | H-02 | H-03 | H-06 |
+|---|---|---|---|
+| `health-clean` — `project/` | ✓ | ✓ | ✓ |
+| `health-gaps` — `negatives/health/` | ✗ | ✗ | ✗ |
+
+`health-gaps` seeds: an epic row with no status · an epic row whose status is
+outside the D-B6-3 vocabulary · an allocation entry whose diff row carries
+neither a `from → to` nor a reason · an `In delivery` epic with no scope brief ·
+a constitution referencing a governance file that does not exist.
+
+---
+
+## The three lines this fixture exists to reproduce
+
+Gate run 2 (contract §7) names five gaps. Three are M-detectable, and `check-m.sh`
+asserts them **verbatim** — byte-for-byte, from `revisions/spec-r5.md`:
+
+```
+CC-G-04 FAIL — FR-007: banned word "quickly" → replace with a measurable target, or move the concern to an NFR with metric + condition.
+CC-NF-02 FAIL — accessibility: no NFR and no N/A — <reason> → add one or declare N/A with a reason.
+CC-TR-01 FAIL — US4: zero FRs reference it (story is unbuilt) → author its FRs or drop/demote the story.
+```
+
+The other two — CC-XA-01 (the missing `(Specialist × Appointment × cancel)`
+policy row) and CC-AC-04 (US1's re-narrating scenario) — are **A** assertions.
+Both are seeded in the same fixture and are S3's to catch: r5's US1 carries the
+`Successful booking` scenario that re-narrates FR-001, and
+`revisions/roles-permissions-r5.md` is the table that lacks the tuple.
+
+---
+
+## Authoring notes
+
+- **NFR numbering.** r5 carries NFR-001 and NFR-002; r6 adds **NFR-003**
+  (*notification … within 60 seconds of confirmation, under normal load*) — the
+  exact ID and content gate §14.1 records for the CC-G-04 fix. The other four
+  NFR categories are covered in both revisions by explicit
+  `- <Category>: N/A — <reason>` lines, which is why NFR-003 is the next free ID
+  at r6 rather than a renumbering.
+- **The E-03 brief** is elicitation §8.2's excerpt completed to the nine exact
+  headings, with one line added to §7 Captured Detail (the Specialist's
+  "if I'm ill I want to cancel it myself") — the ground US3 and the
+  `(Specialist × Appointment × cancel)` tuple both stand on.
+- **`negatives/personas.md`** exists only so CC-XA-02 has a non-dormant case.
+  The canonical world is charter-free (catalogue b4 T-12 §5, thread ii), so
+  `project/` deliberately has no `personas.md` and CC-XA-02 reads *dormant* there.

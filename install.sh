@@ -236,7 +236,8 @@ if [ "$DRY_RUN" -eq 1 ]; then
   say "[dry-run] copy payload/specify-overlay/ → .specify/"
 else
   ( cd "$PKG_ROOT/payload/specify-overlay" \
-      && find . -type f ! -name '.gitkeep' -print0 \
+      && find . -type f ! -name '.gitkeep' ! -name '*.pyc' \
+           ! -path '*/__pycache__/*' -print0 \
       | while IFS= read -r -d '' f; do
           mkdir -p "$TARGET/.specify/$(dirname "$f")"
           cp "$f" "$TARGET/.specify/$f"
@@ -256,7 +257,8 @@ else
   find "$TARGET/.claude/agents" -maxdepth 1 -name 'ba-*.md' -exec rm -f {} + 2>/dev/null || true
   find "$TARGET/.claude/skills" -maxdepth 1 -type d -name 'ba-*' -exec rm -rf {} + 2>/dev/null || true
   ( cd "$PKG_ROOT/payload/claude" \
-      && find . -type f ! -name '.gitkeep' -print0 \
+      && find . -type f ! -name '.gitkeep' ! -name '*.pyc' \
+           ! -path '*/__pycache__/*' -print0 \
       | while IFS= read -r -d '' f; do
           mkdir -p "$TARGET/.claude/$(dirname "$f")"
           cp "$f" "$TARGET/.claude/$f"

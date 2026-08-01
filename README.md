@@ -12,7 +12,7 @@ not itself the installed thing.
 
 ## Status
 
-Phase 2 build, session **S1 of S9** complete (foundation). See
+Phase 2 build, sessions **S1–S2 of S9** complete (foundation · M machinery). See
 [`BUILD-LOG.md`](BUILD-LOG.md) for the per-session record and
 [`docs/methodology/ba-native-spec-phase2-build-plan.md`](docs/methodology/ba-native-spec-phase2-build-plan.md)
 §4 for the session plan.
@@ -20,7 +20,7 @@ Phase 2 build, session **S1 of S9** complete (foundation). See
 | Session | Units | State |
 |---|---|---|
 | S1 | Repo skeleton · `install.sh` · payload overlay · 13 templates · mirrors · manifest | ✅ built |
-| S2 | 10 checker scripts · toy-world fixtures | pending |
+| S2 | 10 checker scripts · toy-world fixtures | ✅ built |
 | S3 | Gate skills · gate agent · 3 compiled cards | pending |
 | S4 | Orchestrator agent · 9 workflow skills | pending |
 | S5–S7 | 16 Band-1 technique skills · discovery agent | pending |
@@ -54,9 +54,15 @@ Offline use needs `vendor/spec-kit-v0.12.5.zip` — see [`vendor/README.md`](ven
 ## Test
 
 ```sh
-tests/check-layout.sh --target /path/to/project --session S1   # this session's bar
+tests/check-layout.sh --target /path/to/project --session S2   # this session's bar
 tests/check-layout.sh --target /path/to/project                # full Phase-2 bar
+tests/check-m.sh                                               # the M-checker suite
 ```
+
+`check-m.sh` runs the ten vendored checkers against the appointment-booking
+fixture world, asserts each case against its recorded verdict table, reproduces
+gate run 2's M-detectable gaps verbatim, and fails if any of the 24 M assertions
+is not exercised with both a seeded FAIL and a PASS.
 
 ---
 
@@ -77,6 +83,7 @@ ba-native-spec/
 │  └─ quickstart.md        BA quickstart (S9)
 └─ tests/
    ├─ check-layout.sh · layout.expected
+   ├─ check-m.sh           the M-checker suite (S2)
    ├─ fixtures/            the toy world (S2)
    └─ exit-test.md         the Phase-2 exit script (S9)
 ```
