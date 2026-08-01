@@ -21,7 +21,7 @@
 
 <!-- Section shape, repeated for each heading below:
 
-Suggestion snapshot — <date>            (orchestrator §6.1 shape — kept verbatim)
+Suggestion — <Aspect> — <date>          (orchestrator §6.1 block — kept verbatim)
 | # | Technique (catalogue \| custom sketch) | Addresses | Expected contribution |
 |---|---|---|---|
 | 1 | <name> | AT-<..> — <the named hole> | <what evidence the run should produce> |

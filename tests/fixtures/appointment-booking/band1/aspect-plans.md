@@ -1,0 +1,186 @@
+# Aspect Plans — Clinic Network Booking
+
+<!--
+  FIXTURE (S4). The orchestrator rules §12.1 planning-loop exhibit, plus the
+  five remaining aspects' plans and the Band-2 section, recorded in the §6.4
+  shape.
+
+  §12.1 is carried verbatim: the Stakeholders suggestion snapshot, both
+  techniques entering as **custom** (the exhibit's own words — the Band-1
+  catalogue was Wave-2 authoring at the time), both Q2+ contract paths
+  exercised (BA-supplied for #1, LLM-proposed and BA-confirmed for #2), and
+  run #2's cross-cutting finding routing to constraints.md while Context is
+  still `untouched` — arrival is never gated, and no scoped-H fires because
+  Band 1 has Scope H disarmed.
+
+  The other five aspects plan catalogue techniques, so both §6.3 paths appear.
+-->
+
+## Frame
+
+Composed plan — 2026-07-07 · Y.K.
+| # | Technique | Source | Output contract {expected · class · destination} | Status |
+|---|---|---|---|---|
+| 1 | T-01 discovery canvas framing | catalogue | {presale canvas incl. the Context/Constraints element · Context · `canvas.md`} | dropped — canvas.md present from presale, carried into the repo |
+
+Run log:
+2026-07-07 · (no run) · substrate confirmed present — canvas.md, 13 sections
+  signals: none
+
+## Stakeholders
+
+Suggestion — Stakeholders — 2026-07-07
+| # | Technique (catalogue \| custom sketch) | Addresses | Expected contribution |
+|---|---|---|---|
+| 1 | Presale-handoff mining (custom sketch) | AT-ST-2 — no register exists | register seed: names, roles, rights from presale materials |
+| 2 | Sponsor alignment interview (catalogue-future) | AT-ST-1/-3 — sponsor authority unstated; populations unconfirmed | confirmed sponsor + populations, decision rights |
+Sequence rationale: mine what presale already knows before spending a call.
+
+Composed plan — 2026-07-07 · Y.K.
+| # | Technique | Source | Output contract {expected · class · destination} | Status |
+|---|---|---|---|---|
+| 1 | Presale-handoff mining | custom | {stakeholder inventory with decision rights · Context · `stakeholders.md`} — BA-supplied | run 2026-07-07 |
+| 2 | Sponsor alignment interview | custom | {confirmed stakeholder picture + open risks · Context · `stakeholders.md`} — LLM-proposed, BA-confirmed | run 2026-07-08 |
+
+Run log:
+2026-07-07 · Presale-handoff mining · contract: fulfilled — inventory at stakeholders.md
+  signals: none
+2026-07-08 · Sponsor alignment interview · contract: fulfilled — confirmed picture at stakeholders.md
+  signals: routing batch 2026-07-08 approved — the sponsor ties launch to the autumn
+           season (business constraint) written to constraints.md as C-B1.
+           Destination note: constraints.md is Context's home and Context is `untouched`
+           — arrival is never gated; the Context aspect gate reads it as existing
+           evidence when it runs. No scoped-H fired: Band 1, Scope H disarmed.
+
+## Context
+
+Suggestion — Context — 2026-07-08
+| # | Technique (catalogue \| custom sketch) | Addresses | Expected contribution |
+|---|---|---|---|
+| 1 | t05 context & landscape mapping | AT-CX-1 — no context.md | operating context + systems in the landscape |
+| 2 | t06 constraints elicitation | AT-CX-2 — technical and regulatory classes empty (C-B1 already landed 07-08) | ≥ 1 confirmed constraint per class, or `none identified — <basis>` |
+| 3 | t07 competitive analysis | AT-CX-3 — canvas Competition→Unlike thin | the Unlike entries the differentiation will be read against |
+Sequence rationale: landscape first — constraints and competitors both read off it.
+
+Composed plan — 2026-07-08 · Y.K.
+| # | Technique | Source | Output contract {expected · class · destination} | Status |
+|---|---|---|---|---|
+| 1 | t05 context & landscape mapping | catalogue | {operating context + systems · Context · `context.md`} | run 2026-07-08 |
+| 2 | t06 constraints elicitation | catalogue | {confirmed constraints by class · Context · `constraints.md`} | run 2026-07-09 |
+| 3 | t07 competitive analysis | catalogue | {competitor set + differentiation room · Context · `competitive-analysis.md`} | run 2026-07-09 |
+
+Run log:
+2026-07-08 · t05 · contract: fulfilled — context.md §1–§3
+  signals: none
+2026-07-09 · t06 · contract: fulfilled — constraints.md C-T1 · C-R1 (C-B1 pre-existing)
+  signals: none
+2026-07-09 · t07 · contract: fulfilled — competitive-analysis.md, two competitors
+  signals: none
+
+## Value
+
+Suggestion — Value — 2026-07-08
+| # | Technique (catalogue \| custom sketch) | Addresses | Expected contribution |
+|---|---|---|---|
+| 1 | t08 value definition | AT-VA-1/-2 — canvas Problems name no who-hurts; Objectives unlinked | problems naming their population, objectives linked to problems |
+Sequence rationale: one technique covers both criteria; they are one act.
+
+Composed plan — 2026-07-08 · Y.K.
+| # | Technique | Source | Output contract {expected · class · destination} | Status |
+|---|---|---|---|---|
+| 1 | t08 value definition | catalogue | {problems + objectives, linked · Context · `canvas.md` §2, §12} | run 2026-07-09 |
+
+Run log:
+2026-07-09 · t08 · contract: fulfilled — canvas P-1/P-2, O-1/O-2 with `→ P-1` links
+  signals: none
+
+## Vision
+
+Suggestion — Vision — 2026-07-09
+| # | Technique (catalogue \| custom sketch) | Addresses | Expected contribution |
+|---|---|---|---|
+| 1 | t09 vision & differentiation | AT-VI-1/-2 — Product.That empty; Our Solution absent | the three product slots + the differentiation against a named Unlike entry |
+Sequence rationale: AT-VI-3 is a read of the result against constraints.md, not a run.
+
+Composed plan — 2026-07-09 · Y.K.
+| # | Technique | Source | Output contract {expected · class · destination} | Status |
+|---|---|---|---|---|
+| 1 | t09 vision & differentiation | catalogue | {product statement + differentiation · Context · `canvas.md` §3–§5, §11} | run 2026-07-09 |
+
+Run log:
+2026-07-09 · t09 · contract: fulfilled — canvas §3–§5, §11
+  signals: none
+
+## Solution
+
+Suggestion — Solution — 2026-07-09
+| # | Technique (catalogue \| custom sketch) | Addresses | Expected contribution |
+|---|---|---|---|
+| 1 | t10 solution surface review | AT-SO-1/-2/-3 — Third-Party Connections carries no direction/role line | the four surface sections filled, functions linked to objectives, connections with direction + role |
+Sequence rationale: one pass over the four canvas surface sections.
+
+Composed plan — 2026-07-09 · Y.K.
+| # | Technique | Source | Output contract {expected · class · destination} | Status |
+|---|---|---|---|---|
+| 1 | t10 solution surface review | catalogue | {solution surface, each element with its why · Context · `canvas.md` §6–§9} | run 2026-07-10 |
+
+Run log:
+2026-07-10 · t10 · contract: fulfilled — canvas §6–§9; §8 carries direction + role
+  signals: none
+
+## Requirements
+
+Suggestion — Requirements — 2026-07-10
+| # | Technique (catalogue \| custom sketch) | Addresses | Expected contribution |
+|---|---|---|---|
+| 1 | t02 glossary discipline | AT-RQ-3 — no glossary.md | the terms the canvas and Band-1 artifacts lean on, synonyms merged |
+| 2 | t11 domain (conceptual) modeling | AT-RQ-4 — no domain-model.md | entities the core functions imply, business-level relations |
+| 3 | t12 roles & permissions | AT-RQ-2 — no roles-permissions.md | the roles Band-1 artifacts reference, with policy rows |
+| 4 | t13 core process mapping | AT-RQ-4 — no processes.md | the major journeys of the primary roles (canvas §7 actors) |
+| 5 | t14 design & UX standards | AT-RQ-1 — design/UX ground exists in Band-1 evidence | global budgets + UX conventions |
+| 6 | t15 constitution | AT-RQ-1 — no constitution.md | principles + the governance references that lift the conditional files |
+| 7 | t16 global out-of-scope | AT-RQ-1 — no out-of-scope.md | the exclusions with dispositions |
+Sequence rationale: vocabulary before model before roles; the constitution last, so
+its governance references can name files that already exist.
+
+Composed plan — 2026-07-10 · Y.K.
+| # | Technique | Source | Output contract {expected · class · destination} | Status |
+|---|---|---|---|---|
+| 1 | t02 glossary discipline | catalogue | {defined terms · Governance · `.specify/memory/glossary.md`} | run 2026-07-10 |
+| 2 | t11 domain (conceptual) modeling | catalogue | {entities + relations · Governance · `.specify/memory/domain-model.md`} | run 2026-07-10 |
+| 3 | t12 roles & permissions | catalogue | {roles + policy rows · Governance · `.specify/memory/roles-permissions.md`} | run 2026-07-10 |
+| 4 | t13 core process mapping | catalogue | {major journeys · Governance · `.specify/memory/processes.md`} | run 2026-07-10 |
+| 5 | t14 design & UX standards | catalogue | {global budgets + UX conventions · Governance · `.specify/memory/design-standards.md`} | run 2026-07-10 |
+| 6 | t15 constitution | catalogue | {principles + governance references · Governance · `.specify/memory/constitution.md`} | run 2026-07-10 |
+| 7 | t16 global out-of-scope | catalogue | {exclusions + dispositions · Governance · `.specify/memory/out-of-scope.md`} | run 2026-07-10 |
+
+Run log:
+2026-07-10 · t02 · contract: fulfilled — glossary.md, 6 terms
+  signals: none
+2026-07-10 · t11 · contract: fulfilled — domain-model.md, 6 entities
+  signals: none
+2026-07-10 · t12 · contract: fulfilled — roles-permissions.md, Client + Specialist
+  signals: none
+2026-07-10 · t13 · contract: fulfilled — processes.md, booking + cancellation journeys
+  signals: none
+2026-07-10 · t14 · contract: fulfilled — design-standards.md, budgets + conventions
+  signals: none
+2026-07-10 · t15 · contract: fulfilled — constitution.md, 3 principles, 2 governance refs
+  signals: none
+2026-07-10 · t16 · contract: fulfilled — out-of-scope.md, 4 exclusions
+  signals: none
+
+## Band 2
+
+Composed plan — 2026-07-11 · Y.K.
+| # | Technique | Source | Output contract {expected · class · destination} | Status |
+|---|---|---|---|---|
+| 1 | t17 epics decomposition | catalogue | {epic set with statuses · Governance · `.specify/memory/roadmap.md`} | run 2026-07-11 |
+| 2 | t18 scope allocation (repeatable) | catalogue | {MVP allocation + diff vs. current + reason · Governance · `.specify/memory/roadmap.md`} | run 2026-07-11 |
+
+Run log:
+2026-07-11 · t17 · contract: fulfilled — roadmap.md E-01…E-08 (E-03 booking, E-07 payments)
+  signals: none
+2026-07-11 · t18 · contract: fulfilled — Allocation 1; diff vs. current + reason logged
+  trigger: first allocation after decomposition
+  signals: none

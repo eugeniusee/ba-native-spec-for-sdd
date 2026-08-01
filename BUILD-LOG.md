@@ -658,3 +658,220 @@ conditionality notes and the handover rule) · the gate's arming contract, so
 W/AW/HA distinctness table honoured on the gate side, so S4's AW machinery has
 nothing to reconcile. `check-layout.sh` now asserts skill frontmatter on
 whatever is installed, so S4's nine skills are covered the moment they land.
+
+---
+
+## S4 — Orchestrator · 1 August 2026 · GREEN
+
+**Session prompt:** the standing pattern, build plan §4.
+**Grounding:** `docs/methodology/` at the pinned versions (S1's vector,
+unchanged) · build plan v0.2 §1.1, §2.2, §2.3, §3, §4 (S4 row) · **orchestrator
+v0.3 in full** · `at-thresholds.md` (S3) · gate v0.3 §10.1/§10.4/§13 for the
+arming contract and the HA boundary · contract v0.2 §3 (cadence) and §8 (W
+semantics, for the distinctness table) · elicitation v0.3 §3.5/§5.4/D5/D7 for
+the three signal classes · S3's two gate skills and the gate agent, as the
+neighbours these nine must not overlap.
+
+### Units built — 10 of the 67 (running total 43)
+
+| Unit class | Built | Notes |
+|---|---|---|
+| Subagents (§2.3) — 1 | `ba-orchestrator` — the conductor, `tools: Read, Write, Edit, Grep, Glob` | **no Bash** — the mechanical half of "requests the arming run; runs nothing" (§10.2) |
+| Workflow skills (§2.2) — 9 | `ba-frame` · `ba-status` · `ba-aspect` · `ba-run` · `ba-clear` · `ba-waive-aspect` · `ba-reopen` · `ba-close-band1` · `ba-enter-feature` | all `disable-model-invocation: true` |
+| Test harness | `tests/check-orchestrator.sh` · `tests/check-ledger.py` · `tests/fixtures/appointment-booking/band1/` | not §2 build units; the S4 exit test — see decision 1 |
+| S1 unit touched | `ba/templates/aspect-plans.md` — the snapshot header recompiled to §6.1's block shape | see D16 |
+
+### Compilation-rule application (§3)
+
+- **§3.1 travels verbatim.** Carried byte-faithful into the compiled prompts:
+  the five states with their progression effects · **T1–T8** with preconditions
+  and record bases, and the statement that no other transition exists · the
+  event grammar `<date> · T<n> · <aspect> · <from → to> · <BA initials> —
+  <basis ref>` · the DAG, including Vision's two-edge gate · the artifact-home
+  table for evidence and reopen mapping · the AW record's six fields · the RO
+  record grammar · the three-instrument distinctness table (AW / W / HA) · the
+  signal-intake table with its two explicit non-signals · the **P-O1…P-O9**
+  definitions · Q2's `select · drop · reorder · add custom` · Q2+'s
+  `{expected output · artifact class · destination file}` · D-B6-3's four
+  roadmap statuses · the handover rule.
+- **§0 layering, at the aspect layer.** No skill restates an AT criterion.
+  `/ba-clear` and `/ba-aspect` read `.specify/ba/cards/at-thresholds.md` and are
+  told, in as many words, never to restate one from memory and never to soften
+  one. The chain stays: skill → AT-ID → card → orchestrator line. The two locked
+  conditionality notes (D-B5-3 design standards · D-B4-4 primary roles) travel
+  with their criteria into `/ba-clear`, because they change what the criterion
+  demands rather than explaining it.
+- **§3.2 compiled with transformation.** §11's binding table is the compile
+  source: each row became a skill with frontmatter (`name` · `description`
+  naming the act and its prompt point) and an **invocation-contract block** at
+  the top — the preconditions the skill checks, and the exact refusal when one
+  is unmet. Each P-O became a checkpoint script: what is rendered, what the BA
+  rules, what executes on each ruling.
+- **§3.3 never compiled.** A leak scan over the ten payload files finds zero
+  BABOK anchors, mining notes, review records or rationale prose; the scan runs
+  in `check-orchestrator.sh` on every run.
+
+### D-P2 bindings applied
+
+| ID | How it landed |
+|---|---|
+| D-P2-1 | Eight of the nine are §11's indicative names, hyphenated name-for-name: `/ba.status → /ba-status`, `/ba.aspect`, `/ba.run`, `/ba.clear`, `/ba.waive-aspect`, `/ba.reopen`, `/ba.close-band1`, `/ba.enter-feature` |
+| D-P2-2 | All nine ship `disable-model-invocation: true`; `check-layout.sh` asserts it on whatever is installed. Negative-tested this session: deleting the line from an installed `ba-clear` turns the layout check red |
+| D-P2-3 | The second of the four agents ships. Its tool policy is asserted exactly — adding `Bash` turns `check-orchestrator.sh` red, naming §10.2 |
+| **D-P2-5** | **`ba-frame` ships** — the one addition beyond the corpus's eleven indicative names. Without it §8.1's Band-1 entry act has no command and the two ◇ ledgers have no birth |
+| D-P2-6 | Unbroken. The installer still lays down zero content stubs, and both ledgers are asserted **absent** after a fresh install — `/ba-frame` births them. `/ba-enter-feature` creates `specs/NNN-<feature>/` as a **directory only**, and says so |
+| D-P2-11 | `.specify/elicitation-tuning.md` is named in `/ba-reopen` as one of the two destinations a declined signal is flagged toward — which log is the emitter's classification, not the orchestrator's |
+
+### Architecture decisions
+
+**1 · The ledger validator is a test harness, not a twelfth script.** The S4
+exit test needs something that can actually judge a ledger, and the obvious move
+would be `sk_aspect.py`. It is the wrong move twice over: build plan §2.4 pins
+the vendored script set at **eleven**, and — more decisively — orchestrator §3.2
+rule 4 says AT criteria have *no checker*, while §10.2 says this layer "requests
+the arming run; runs nothing". A shipped runtime ledger checker would contradict
+the document it compiles from. So `tests/check-ledger.py` lives in `tests/`, is
+never installed, and exists for exactly the reason `check-cards.py` does: to
+keep the compiled prompts honest against the pinned doc. The installed tree is
+unchanged — 40 files hashed, and the layout check still counts eleven scripts.
+
+**2 · The head is a derived quantity, and that is now mechanically checked.**
+§2.4's file discipline — *head rewritten in place, events append-only* — has a
+consequence the document does not spell out: the head must be exactly what
+replaying the events produces. `check-ledger.py` replays every event from six ×
+`untouched` and compares state, `Since`, the band line, the open reopens and the
+standing waivers against the head. A ledger whose head has drifted from its own
+history is now a caught defect rather than a slow rot.
+
+**3 · `/ba-enter-feature` owns the NNN assignment; the agent persona does not.**
+Build plan §1.1 gives the command the act ("assigns the next free `NNN` … so the
+Tier-2 destination path exists before the gate's Stage-0 admission"), while
+§10.2 confines the orchestrator's hands to two ledger files. Both stand: the
+**skill** creates the directory — a directory, never a file, per D-P2-6 — and
+the **agent persona** keeps its two-file confinement and never performs it. See
+D17.
+
+**4 · Negatives are mutation-derived in-suite, not committed as fixtures.** One
+legal base ledger plus fourteen single-defect mutations, in the idiom S3 used
+for the gate. Each case reads as "this one change made it illegal", and the base
+is validated clean first — if the base ever goes illegal the whole negative
+suite is measuring nothing, and the suite says so.
+
+### Session exit test — GREEN
+
+Build plan §4, S4 row: *orchestrator §12's three exhibits replayed on an empty
+fixture project: ledger heads/events land in §2.4 shape; P-O checkpoints render;
+the §8.2 reopen executes end to end.*
+
+```
+$ tests/check-orchestrator.sh
+
+▸ The §12 replay is grammar-legal            both ledgers, 14 rules, no violations
+▸ Exhibit 1 — the BA-planning loop            snapshot · both Q2+ paths · routed finding
+▸ Exhibit 2 — the threshold cleared, closure  T2 · evidence table · the arming act
+▸ Exhibit 3 — RO-1, the reopen, end to end    receive · Real · T5 · no cascade · T6
+▸ Seeded defects — 14 rules, 14 mutations     all fourteen caught
+▸ The nine P-O checkpoints                    P-O1…P-O9, with their refusals
+▸ The orchestrator agent                      no Bash · two-ledger confinement
+▸ Layering                                    zero methodology-layer leaks
+
+  passed: 120   failed: 0
+✓ GREEN — S4 orchestrator: §12 exhibits ×3 · ledger grammar · 14 seeded defects · P-O1–P-O9
+```
+
+**How much of that is real.** The **validator runs live** — a real parser over
+the state ledger, replaying every event against the §2.3 transition table, the
+§3.1 DAG, the §4.1 AW fields, the §5.3 RO grammar and the §8.2 closure
+preconditions. The **ledgers are recorded**, because writing one is an agent act
+and cannot be re-derived inside a regression suite — the same split S3 made for
+the gate's A pass. Every literal §12 supplies is carried verbatim (the RO-1
+record, the Stakeholders evidence table, the closure, the deferral and its
+trigger); the five intermediate aspect gates are the fixture's own, evidenced
+against the real artifacts in `fixtures/appointment-booking/project/`. What the
+suite proves is that the machinery these prompts compile from **accepts the
+corpus's own exhibits and rejects fourteen distinct violations of it** — not
+that a live agent produces them. That is the prompt's job, proven by running it.
+
+Supporting checks run this session, all green:
+
+| Check | Result |
+|---|---|
+| Fresh `--offline` install, then `check-layout.sh --session S4` | ✓ GREEN — 79 passed, 0 failed, 24 pending |
+| Full-bar `check-layout.sh` must still **fail** at S4 | ✓ exits non-zero — 25 units still owned by S5–S9 |
+| `verify-manifest.py` after the install | ✓ 40 files hashed, all matching (S3's 30 + S4's 10) |
+| Both ledgers absent after a fresh install | ✓ `/ba-frame` is their birth act, not the installer (D-P2-6) |
+| S2 regression — `check-m.sh` | ✓ GREEN, 40 passed |
+| S3 regression — `check-gate.sh` · `check-cards.py` | ✓ GREEN, 59 passed · cards byte-identical |
+| Delete `disable-model-invocation` from an installed S4 skill | ✓ **RED**, naming D-P2-2 |
+| Add `Bash` to the `ba-orchestrator` agent | ✓ **RED**, naming §10.2 |
+| Soften §12.3's "flagged `upstream reopened` (no cascade)" in the fixture | ✓ **RED** twice — the exhibit assertion *and* the validator's L10 |
+
+### Divergences flagged (§3.2 discipline, generalized)
+
+**D16 · §6.4's plan-record example labels the suggestion block
+`Suggestion snapshot — <date>`, while §6.1's block header — and §12.1's exhibit
+— is `Suggestion — <aspect> — <date>`.** The two cannot both be the shape that
+is "kept verbatim". *Resolution taken:* **§6.1 governs**, because §6.4's own
+annotation says so — it labels its example "(§6.1 shape — kept verbatim)". The
+S1 template's comment carried §6.4's label, so it was recompiled to §6.1's
+header this session, and the fixture snapshots use §6.1's block. This is a
+compilation correction, not a runtime change: no behaviour moved, and the
+one-way rule holds. *Doc-first (§3.5):* **orchestrator erratum candidate** —
+§6.4's example line should read `Suggestion — <aspect> — <date>`. A rendered
+example, not a rule.
+
+**D17 · Build plan §1.1 assigns `/ba-enter-feature` the creation of
+`specs/NNN-<feature>/`, while orchestrator §10.2 confines the orchestrator's
+hands to two ledger files and §8.4 says it "records the band event — and nothing
+else".** *Resolution taken:* the two statements govern different actors. The
+**skill** performs the assignment and creates the directory; the **agent
+persona** does not, and its instructions say so explicitly. The reading is
+defensible on the corpus's own terms: §8.4's "nothing else" is about what the
+*record* contains — it is the tracking-split rule, not a filesystem permission —
+and a directory is not content, which is exactly the line D-P2-6 draws. *No
+erratum implied;* recorded as a reading so a later session does not silently
+re-decide it.
+
+**D18 · §12.3's resolution rewrites the canvas Core Functions line to
+"availability published by Specialists or their Clinic Admins", but the S2
+fixture's `canvas.md` §7 reads "Publish Specialist Availability" — neither the
+pre- nor the post-RO-1 form — while its `stakeholders.md` *does* carry the
+post-RO-1 Clinic administrators row.** The fixture world is therefore
+post-RO-1 on the register side and its-own-rendering on the canvas side.
+*Resolution taken:* **flagged, not fixed.** The canvas is an S2 unit that
+`check-m.sh` and `check-gate.sh` both read (CC-XA-01's tuple extraction stands
+on it), and rewriting it inside S4 would risk two green suites to improve a line
+no S4 assertion reads — the S4 ledger states the resolution exactly as §12.3
+does. *Doc-first:* not a doc defect. **S2 fixture-consistency candidate**,
+naturally paid at S5, where T-01 is the skill that lands a canvas.
+
+**D19 · §12.2 compresses five of the six aspect gates into one sentence** ("the
+remaining aspects clear over 07-08 → 07-10, Requirements last"). The exhibit
+gives no evidence tables for Context, Value, Vision, Solution or Requirements.
+*Resolution taken:* the fixture authors them, evidenced line-by-line against the
+real artifacts in `fixtures/appointment-booking/project/` — including the two
+locked conditionality notes, which is how AT-RQ-1's design-standards branch and
+AT-RQ-4's "actor of ≥ 1 canvas Core Function line" get exercised at all. Marked
+in the fixture header as the fixture's own, so nobody later reads them as
+corpus text. *No erratum:* §12 is a running example, not a specification of six
+tables.
+
+### Open for the next session
+
+S5 — Techniques I (`ba-t01`…`ba-t03` · the `ba-discovery` agent · `/ba-run`
+dispatch proven). Inputs now in place: **`/ba-run`'s invocation contract**, which
+fixes what a technique skill is dispatched with (a plan row with a pinned
+`{expected · class · destination}` triple) and what it must return (the primary
+output at its destination, plus routed findings and emitted signals as separate
+things) — that is the interface every technique skill from S5 on implements ·
+the **`## Frame` plans section**, which is where T-01's plan line and run log
+land, and `/ba-frame` already dispatches T-01 by name on the canvas-absent
+branch · the **post-run touchpoint**, so a technique's output is read against
+the AT card the moment it lands, which is what makes S5's exit test ("Stakeholders
+reaches `first-pass-cleared` with a §3.4 evidence table") reachable at all ·
+`check-layout.sh` covers the new skills' frontmatter the moment they land, and
+`check-orchestrator.sh`'s layering scan extends to them by adding a path.
+
+One thing S5 inherits as work, not as input: **D18's canvas** — T-01 is the
+skill that lands a canvas, so the fixture's §7 line is naturally reconciled
+there rather than by an out-of-band edit.
