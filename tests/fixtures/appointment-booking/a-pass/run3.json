@@ -126,7 +126,7 @@
       "verdict": "PASS",
       "non_waivable": false,
       "checks": ["spec"],
-      "evidence": "the new line \"Notification preferences — deferred, Phase 2 (epic Notifications, E-05)\" names its home",
+      "evidence": "the new line \"Notification preferences — deferred, Phase 2 (epic Notification Delivery, E-05)\" names its home",
       "reasoning": "all five exclusions name where they live instead.",
       "findings": []
     },
@@ -189,7 +189,7 @@
       "verdict": "PASS",
       "non_waivable": false,
       "checks": ["spec", "mem"],
-      "evidence": "epic E-05 (Notifications) named in the new exclusion exists in roadmap.md; roles, terms and entities unchanged",
+      "evidence": "epic E-05 (Notification Delivery) named in the new exclusion exists in roadmap.md; roles, terms and entities unchanged",
       "reasoning": "nothing introduced at r6 lives only in the spec.",
       "findings": []
     }

@@ -33,10 +33,11 @@ freedom is the point of the planning loop.
   a proposed contract becomes real when the BA confirms it, and that
   confirmation is P-O2's act.
 
-Two techniques are planned outside an aspect and check against their own plans
-file sections: **T-01** against `## Frame`, **T-17 / T-18** against `## Band 2`.
-Tier 1 and Tier 2 are Band-2/3 techniques with their own entry acts — the
-contract check is the same.
+Some techniques are planned outside an aspect and check against their own plans
+file sections: **T-01** against `## Frame`; **T-17, T-18 and every Tier-1 mode**
+against `## Band 2`. **Tier 2** carries its contract per feature, entered at
+P-O8 — the contract check is the same, and its record is not the plans file
+(below).
 
 ## P-O3 — the act
 
@@ -91,6 +92,16 @@ Then set the plan row's `Status` to `run <date>`.
 `partial` and `failed` are **recorded, not retried silently**. A technique that
 did not fulfil its contract leaves its hole open, and the hole is what the next
 threshold refresh will name.
+
+**Where the line lands.** An aspect's runs append under that aspect's section;
+T-01's under `## Frame`; **T-17, T-18 and every Tier-1 mode under `## Band 2`**,
+each rerun naming its trigger.
+
+**Tier 2 gets no plans-file line.** A feature's record is its band event in the
+ledger, the spec at its contracted destination, and the gate report — and a
+second copy of feature state in the plans file is exactly the parallel-rotting
+mirror the tracking split forbids. What still lands in the ledger, against the
+feature: the Band-3 entry event, and a P-O9 overflow ruling if one is taken.
 
 ## Post-run aspect update — the defined touchpoint
 

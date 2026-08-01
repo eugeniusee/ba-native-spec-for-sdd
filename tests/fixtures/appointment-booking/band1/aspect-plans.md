@@ -178,12 +178,25 @@ Run log:
 Composed plan — 2026-07-11 · Y.K.
 | # | Technique | Source | Output contract {expected · class · destination} | Status |
 |---|---|---|---|---|
-| 1 | t17 epics decomposition | catalogue | {epic set with statuses · Governance · `.specify/memory/roadmap.md`} | run 2026-07-11 |
-| 2 | t18 scope allocation (repeatable) | catalogue | {MVP allocation + diff vs. current + reason · Governance · `.specify/memory/roadmap.md`} | run 2026-07-11 |
+| 1 | t17 epics decomposition | catalogue | {the roadmap's epic table — one row per epic: E-<nn> · Epic · Description · Phase (Unallocated at birth) · Status (Defined at birth) · Source; the set exclusively partitioned, coverage-complete, every row cited · Context · `.specify/memory/roadmap.md`} | run 2026-07-11 |
+| 2 | t18 scope allocation (repeatable) | catalogue | {the recommended allocation as a diff vs. current — changed rows from → to with a factor-tagged reason, held rows one line, the four-factor basis — and on approval the Phase cells plus one Allocation-log entry · Context · `.specify/memory/roadmap.md`} | run 2026-07-11 · rerun 2026-07-15 |
+
+Composed plan — appended 2026-07-12 · Y.K.
+| # | Technique | Source | Output contract {expected · class · destination} | Status |
+|---|---|---|---|---|
+| 3 | tier1 kit E-03 | spine | {the epic's scope brief at the nine-section shape, the call kit beside it, and a routed-findings batch · Context · `.specify/memory/scope/<epic>.md`} | run 2026-07-12 |
+| 4 | tier1 ingest E-03 | spine | {the epic's scope brief at the nine-section shape, the call kit beside it, and a routed-findings batch · Context · `.specify/memory/scope/<epic>.md`} | run 2026-07-15 |
 
 Run log:
 2026-07-11 · t17 · contract: fulfilled — roadmap.md E-01…E-08 (E-03 booking, E-07 payments)
-  signals: none
+  signals: routing batch 07-11 approved — out-of-scope payments row resolved → E-07
 2026-07-11 · t18 · contract: fulfilled — Allocation 1; diff vs. current + reason logged
-  trigger: first allocation after decomposition
+  trigger: post-decomposition — all eight rows stood at Unallocated
+  signals: none
+2026-07-12 · tier1 kit E-03 · contract: fulfilled — E-03.kit.md, 6 must-ask of 10, 2 assumptions, 2 sibling checks
+  signals: none
+2026-07-15 · tier1 ingest E-03 · contract: fulfilled — scope/E-03.md, status Scoped, slicing F1/F2 proposed
+  signals: routing batch 07-14 approved (constraints · glossary) · RO-1 emitted → Stakeholders
+2026-07-15 · t18 · contract: fulfilled — Allocation 2; no change, reason logged
+  trigger: post-ingestion E-03 — the brief closed and scope knowledge changed
   signals: none

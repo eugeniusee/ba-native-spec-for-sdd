@@ -78,6 +78,6 @@ GQ4 of 7 — [legality: resolves marker on the Hold duration; feeds CC-DA-02
 |---|---|
 | Slot duration | Cited, not asked — glossary defines Slot as the Specialist's service duration; a one-step consequence is citable (Guard 1). Drafted as BR-003. |
 | Which calendar providers sync at launch | **Stays a marker.** Brief OQ-2, blocked on R1 (provider contract unsigned). Carried into the spec as the named location the gate later waives as W-004-01. |
-| Notification channel breadth | Out of this epic — roadmap E-05 Notifications. Fenced in §9 Out of Scope rather than asked. |
+| Notification channel breadth | Out of this epic — roadmap E-05 Notification Delivery. Fenced in §9 Out of Scope rather than asked. |
 
 Question count: **4 of 7** — no overflow, so no Tier-1 supplement signal.

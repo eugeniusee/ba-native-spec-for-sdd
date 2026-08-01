@@ -165,7 +165,7 @@ States & transitions:
 - Recurring Appointments — not planned.
 - Publishing Specialist Availability — separate feature of this epic
   (005-specialist-availability-publishing, brief E-03 §8 F2).
-- Notification preferences — deferred, Phase 2 (epic Notifications, E-05).
+- Notification preferences — deferred, Phase 2 (epic Notification Delivery, E-05).
 
 ## References
 

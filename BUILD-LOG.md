@@ -1727,3 +1727,258 @@ gate and is consumed by it: it drafts the spec r5 that S2's fixtures already
 carry and S3's gate run 2 already fails, so its exit test is bounded on both
 sides by recorded outcomes — and the `≤ 7 GQ` cap plus cite-or-mark are the two
 properties that have to be provable from the answer sheet alone.
+
+---
+
+## S8 — Band 2 + spine · 1 August 2026 · GREEN
+
+**Session prompt:** the standing pattern, build plan §4.
+**Grounding:** `docs/methodology/` at the pinned versions (S1's vector,
+unchanged) · build plan v0.2 §1.1, §2.1, §3, §4 (S8 row), §7 (D-P2-4, D-P2-10) ·
+**catalogue b6 v0.2 in full** (T-17, T-18) — §2 depth, §3 contract, §4 procedure,
+§5 template/micro-example, §6 hooks, §8 build-brief hook, and the D-B6-1…-6
+rulings as they stand at their citation sites · **elicitation techniques v0.3 in
+full** — the three operating principles, §2's tier table, §3.1–§3.5 (kit
+generator, the Destination Test, the call, ingestion incl. the routing table and
+the contradiction/ambiguity rules), §4's brief template and assertion map,
+§5.1–§5.5 (context stack, draft-first, gap questions, D6 legality), §6's two
+guards and both answered-source sets, §7.1/§7.2's build briefs, §8's worked kit ·
+brief · GQ exchange, §10's three tuning logs · writing standard v0.3 §§1–15 ·
+catalogue index v0.2 rows T-17/T-18 as cross-check · orchestrator v0.3 §6.3–§6.4,
+§7.1–§7.4, §8.3–§8.5 · S5–S7's technique-skill shape and `ba-discovery`, S4's
+`ba-run` and `ba-enter-feature`, S3's `ba-gate`, as the interfaces this session's
+units meet.
+
+### Units built — 5 of the 67 (running total 65)
+
+| Unit class | Built | Notes |
+|---|---|---|
+| Technique skills (§2.1) — 2 | `ba-t17`, `ba-t18`, each `SKILL.md` + `references/example.md` | the Band-2 pair; 4 payload files |
+| Technique skills (§2.1) — 2 | `ba-tier1` (`SKILL.md` + `references/{destination-test,routing,example}.md`) · `ba-tier2` (`SKILL.md` + `references/{story-drafting,example}.md`) | the spine; 7 payload files. **The technique count closes at 20** |
+| Subagents (§2.3) — 1 | `ba-analyst.md` | the fourth and last agent — the persona set closes at 4 |
+| Test harness | `tests/check-spine.sh` · `tests/check-band2-artifacts.py` (33 new rule classes, B71–B103) | not §2 build units; the S8 exit test |
+| Prior-session units touched | `payload/claude/skills/ba-run/SKILL.md` (two paragraphs — D40) · `band1/aspect-plans.md` · `project/.specify/memory/{roadmap,scope/E-03.kit}.md` · `tier2-answer-sheet.md` · `revisions/spec-r6.md` · `project/specs/004-appointment-booking/spec.md` · `a-pass/run3.json` · `expected/gate-run3.entry` · `tests/check-orchestrator.sh` | D36–D41 — see below |
+
+**No new workflow skill.** The four techniques dispatch through `/ba-run`
+(S4) and Band-3 entry is `/ba-enter-feature` (S4); Tier 2 hands to `/ba-gate`
+(S3). With this session the package's authoring surface is complete: **20
+technique skills · 11 of 12 workflow skills · 4 agents.** Only S9's adapter
+(`ba-handoff` + `sk_handoff.py`) is outstanding.
+
+### Compilation-rule application (§3)
+
+**Travels verbatim (§3.1) — checked at the string, not the summary.**
+
+| Source | Landed in |
+|---|---|
+| The Destination Test's rule sentence and all five good/bad pairs | `ba-tier1/SKILL.md` (the rule) + `references/destination-test.md` (the pairs) |
+| The Citation Test's operational sentence, and both answered-source lists | `ba-tier1` (Tier-1 list) · `ba-tier2` (Tier-2 list, Captured Detail and sibling specs called out) |
+| D6's legality rule, with the cite-or-mark corollary as its companion | `ba-tier2/SKILL.md` |
+| The kit's `Q<n>` block grammar and the `A<n>` assumption grammar | `ba-tier1/SKILL.md`, in the fenced forms |
+| The `GQ<n>` packet grammar | `ba-tier2/SKILL.md` |
+| The locked constants — must-ask ≤ 12 · Tier-2 cap 7, BA-adjustable | both spine skills |
+| D4's three open-question statuses, reason mandatory on `Overtaken` | `ba-tier1` |
+| D5's slicing vocabulary (`Proposed` · `Confirmed — <date>`), and who writes which | `ba-tier1` (writes `Proposed`) · `ba-tier2` (reads the confirmation) |
+| The nine brief headings and the ten spec headings, exact and ordered | `ba-tier1` · `ba-tier2` |
+| The walking-skeleton rule, one sentence | `ba-t18` |
+| The sizing test — one epic = one scoping call and 1..N features | `ba-t17` |
+| The roadmap row and log grammars, the phase ladder, the status vocabulary | `ba-t17` (rows) · `ba-t18` (log) |
+
+**Compiled with transformation (§3.2).** Sheet §2 + §3 → frontmatter and the
+invocation-contract block, both Band-2 skills; sheet §8 → the wiring sections.
+The four contract triples are pinned in the fixture's `## Band 2` plan and
+carried **character-for-character** in the skills — the suite asserts it, as at
+S6/S7. The §7.2 two-column table compiled to
+`ba-tier2/references/story-drafting.md` as the from-scratch module: the right
+column became the musts, the left column's mechanics were rewritten
+framework-shaped, and the seven inherited-by-default behaviors are listed as
+**deliberately not inherited**, each with what replaced it — the mined patterns
+travel, the prose does not.
+
+**Micro-examples (D-P2-10)** compiled into `references/example.md` for all four
+skills: the decomposition rows, the two allocation entries including the
+no-change rerun, the kit and brief excerpts, and the GQ1 exchange with its three
+not-asked dispositions.
+
+**Never compiled (§3.3).** No BABOK anchor, no mining note, no review record, no
+`D-B6-n`/`D-P2-n` identifier reaches the payload. Asserted mechanically over all
+eleven S8 payload files.
+
+**The routing table has one home.** §3.5's seven destinations are used by both
+tiers (§5.4 says "same table"), so they are compiled once, to
+`ba-tier1/references/routing.md`, and `ba-tier2` points at that path. One file,
+two readers — reference-never-restate applied to the framework's own payload.
+
+### D-P2 bindings applied
+
+| ID | Application this session |
+|---|---|
+| **D-P2-4** | **Closed.** 1:1 technique↔skill, total **20**. `ba-tier1` carries `kit`/`ingest`/`supplement` as argument-selected modes of one skill; `ba-tier2` embeds §7.2 as `references/story-drafting.md` rather than a separately invocable story skill |
+| **D-P2-3** | **Closed.** `ba-analyst` is the fourth agent. Author, judge and scheduler are three actors: the analyst has an authoring tool policy and never evaluates; the gate agent stays read-only; the orchestrator never runs a contract check. The suite asserts all three tool policies together |
+| D-P2-2 | All four skills ship `disable-model-invocation: true`, asserted by `check-layout.sh` on the installed tree |
+| D-P2-10 | Micro-examples compiled in, four `references/example.md` files |
+| D-P2-11 | Both spine skills name `.specify/elicitation-tuning.md` as the home of the false-ask and wrong-draft findings they generate |
+| D-P2-6 | Nothing new is pre-created: `roadmap.md`, `scope/<epic>.md` and `<epic>.kit.md` stay ◇ — the installed tree still has an empty `memory/scope/` and no roadmap |
+
+### Architecture decisions
+
+**A1 · Tier 2 gets no plans-file run log; Tier 1 does.** Orchestrator §8.3 puts
+Tier-1 interviews under §7 unchanged, and §6.4's only Band-2 record is the
+`## Band 2` section — so Tier-1 runs record there, beside T-17 and T-18. Band 3
+has no plans-file section by construction: §8.4 says the orchestrator records the
+band event "and nothing else", elicitation §5.1 rules out a persistent Q&A log,
+and §8.3's tracking split forbids a second copy of feature state. **A feature's
+record is its band event in the ledger, its spec at the destination, and its gate
+report.** `/ba-run`'s bookkeeping section was amended to say both halves, and the
+suite asserts there is no `tier2` row in the plans file.
+
+**A2 · The Band-2/spine validator is a second file, sharing one rule namespace.**
+`check-band2-artifacts.py` owns B71–B103; `check-band1-artifacts.py` keeps
+B1–B70. The families are disjoint by artifact, but the rule numbers are the
+harness's, not the file's — a violation reads the same wherever it comes from.
+
+**A3 · The split the previous session asked for, drawn.** What the M scripts
+already judge is **contract ground and ships**: `sk_health` reads CC-H-02 (a
+status per row; a diff and a reason per allocation entry) and CC-H-03 (the brief
+⇄ roadmap join); `sk_brief` reads CC-XA-05; the `sk_*` family judges the spec's
+form. What the new validator adds is **sheet-shape ground and stays repo-side**:
+row and log grammar, the phase ladder, the status vocabulary, the kit's parts and
+caps, the Destination Test, the brief's nine headings and its two status
+vocabularies, the tier-2 session's anchors and cap. No assertion reads any of
+those, so **no runtime checker may** — the technique layer runs nothing, exactly
+as at Band 1.
+
+**A4 · Two rules state their bounds in the file, because a silently weakened rule
+is worse than a missing one.** B78 judges roadmap **coverage** and not
+exclusivity: a Source cell legitimately carries derivation evidence as well as
+ownership (E-01 cites the cancel line to justify accounts; it does not claim it),
+so an overlap verdict computed from Source mentions is noise — and the corpus
+resolves genuine adjacency through the kit's part-D sibling boundary check
+anyway. B101 judges that **every recorded answer landed at every destination its
+packet named**, not that no unmarked inference exists: elicitation §5.5 names
+overconfident unmarked inference as its residual risk *by construction* and
+assigns it to BA draft review and the wrong-draft log, because there is no
+question to rule on. A checker claiming to catch it would be claiming more than
+the document does.
+
+### Session exit test — GREEN
+
+`tests/check-spine.sh` — **134 checks, 0 failed, 33 seeded defects.**
+Build plan §4's S8 row, clause by clause:
+
+| Exit clause | Evidence |
+|---|---|
+| E-03 decomposed | `roadmap.md` validates clean: two sections, `E-<nn>` rows, 2–4-word names, 2–3-sentence descriptions, every row sourced, ladder single-valued, statuses in the four-value vocabulary, every canvas Core Function line resolving |
+| …and allocated (diff + log entry) | Allocation 1 in from → to form, every reason factor-tagged, Held + Basis present; Allocation 2 the `no change — <reason>` rerun, its trigger named on both sides — the log entry and the plans-file run log |
+| `ba-tier1 kit` ≤ 12 must-ask | 6 questions, 6 must-ask, asserted directly and by rule B86 |
+| every question destination-tagged | 6 of 6, and B87 refuses a tag that names a spec section |
+| zero §3.3 depth violations | B87 clean on the fixture kit; the seeded `NFR targets` destination turns it red |
+| scripted ingestion → brief `Scoped` with slicing | `Status: Scoped`, §8 carrying F1 `Confirmed — 2026-07-15` and F2 `Proposed`, OQ-2 still visibly `Open`, the contradiction left as a reopen signal |
+| `ba-tier2` drafts r5 with ≤ 7 GQs | 4 asked of 7; the answer sheet's own no-overflow line; B99 turns red at a cap of 7 with 8 packets |
+| every drafted value cited-or-marked | the decidable half proven: every ID the four packets named lands in the spec (B101), the one surviving marker names its location and traces to the brief's `Open` row (B102), and the write-back landed in D4 grammar (B103) |
+
+Beyond the row: `/ba-run` dispatch asserted from both ends for all four skills ·
+the compiled sheets' locked content (question-free decomposition, the writer
+split from both sides, `Later` is a phase not an exit, the two guards verbatim,
+D6, D7, the confidence rule) · the four personas' boundaries against each other ·
+layering clean over eleven payload files.
+
+**Regression sweep — all seven prior suites re-run, all green:**
+`check-m.sh` 40 · `check-gate.sh` 58 · `check-orchestrator.sh` 119 ·
+`check-techniques.sh` 100 · `check-techniques2.sh` 122 · `check-techniques3.sh`
+158 · `check-spine.sh` 134.
+
+**Install bar.** A real network install into a fresh `git init` directory, then
+`check-layout.sh --target toy --session S8`: **GREEN — 101 passed, 0 failed, 2
+pending** (both S9's). 85 files hashed, the 15-doc vector matching. The full-tree
+bar still fails, correctly, on exactly three assertions: `ba-handoff/SKILL.md`,
+`sk_handoff.py`, and the 31-of-32 skill count the adapter completes.
+
+### Divergences flagged (§3.2 discipline, generalized)
+
+**D36 · Two epic names in the fixture broke the sheet's naming grammar.** b6 §2
+and index row T-17 both pin *2–4 words, action-noun*; the S2 fixture carried
+`Notifications` (E-05) and `Reporting` (E-08), each one word. The sheet's own
+micro-example rows are all two.
+
+*Resolution taken:* **the fixture fixed, the sheet governing** — `Notification
+Delivery` and `Performance Reporting` — and the five references rippled in the
+same pass: the kit's part-D sibling check, the answer sheet's not-asked table,
+spec r6 and its identical project copy, and two evidence strings in
+`a-pass/run3.json`. The alternative was a validator that knows a rule and declines
+to apply it, which is the shape of every rule that later turns out to be
+decorative.
+
+**D37 · The consequence of D36 is arithmetic, and it is the manifest working.**
+Two certified files changed content, so two certification hashes in
+`expected/gate-run3.entry` changed. Regenerated. A fixture whose recorded hashes
+survive an edit to the hashed file would be a fixture proving the opposite of
+what the certification manifest is for.
+
+**D38 · The `## Band 2` plan's contract triples were S2-era placeholders, and
+both carried the wrong artifact class.** `{epic set with statuses · Governance ·
+…}` and `{MVP allocation + diff vs. current + reason · Governance · …}` — where
+b6 §3 says **Context** for both rows, twice each (the class line and the index).
+
+*Resolution taken:* **refined to the sheets' contracts and classes** — the S6/S7
+pattern, third application — and the suite now asserts each triple
+character-for-character against its skill. Tier-1's two runs were added to the
+same section with their own pinned triple, per A1.
+
+**D39 · An allocation entry existed with no run-log line.** `roadmap.md` carried
+Allocation 2 (2026-07-15, post-ingestion) while the plans file's run log stopped
+at 07-11. The roadmap is the content record and the plans file is the run record;
+a run that appears in one and not the other is a run nobody can audit.
+
+*Resolution taken:* **the missing t18 rerun logged**, plus the two tier1 runs
+that produced the kit and the brief, each with its trigger named. The suite now
+asserts, over the whole file, that **every allocation entry has a run-log line
+naming a trigger** — so the gap cannot silently reopen.
+
+**D40 · `/ba-run`'s bookkeeping said "append to the aspect's run log",
+unconditionally.** True for aspect runs, wrong for the three techniques that
+serve no aspect and undefined for Band 3.
+
+*Resolution taken:* **two paragraphs added to the S4 unit** — where each line
+lands (`## Frame` · `## Band 2` for T-17, T-18 and every Tier-1 mode), and that
+Tier 2 gets no line at all, with the reason (A1). The forward-reference sentence
+was corrected in the same pass. A one-way rule governs doc → package; a compiled
+unit that under-specifies an interface a later session implements is corrected in
+the package, and flagged here.
+
+**D41 · sheet ⇄ index, checked and clean.** Index v0.2 rows T-17 and T-18 were
+read against b6 §§2–3 cell by cell — Serves, class (Context, both), evidence
+triggers, skip-if, depth boundary, expected output, destination. **No divergence
+found**, including the two cells most likely to drift: T-18's event-shaped
+skip-if, which the index reproduces with all four triggers, and the
+column-ownership clause, which the index carries in its destination cell
+(*"Phase column + Allocation log only"*). Recorded because the plan asks for the
+check, not only for its failures.
+
+### Open for the next session
+
+S9 — Adapter + Phase-2 exit (`ba-handoff` skill · `sk_handoff.py` · Mode-B
+fallback note · README · `docs/quickstart.md` · `tests/exit-test.md`), from gate
+v0.3 §11 and plan Q5.
+
+Inputs now in place: **the authoring surface is complete** — every artifact the
+adapter hands off is now produced by a built unit, and the four personas that
+produce them are all in the payload · **the certified toy** — `a-pass/run3.json`,
+`expected/gate-run3.entry` and the run-3 certification manifest stand
+regenerated and green, which is exactly the state `sk_handoff.py`'s hash guard
+reads · **the negative check has its material** — the manifest's hash list is
+live and was proven this session to move when a certified file moves (D37),
+which is the property step 8 of the §5 exit script turns into a refusal.
+
+Three things S9 inherits as work. **(i)** The exit script's step 10 is the only
+clause no session has yet exercised in any form — `/speckit.plan` consuming a
+certified spec with zero manual rework — and its four sub-clauses are about
+operator behavior and hashes at plan time, not about anything the package
+computes; how much of it a scripted test can honestly assert needs deciding
+before `tests/exit-test.md` is written. **(ii)** `sk_handoff.py` is the first
+vendored script whose failure mode is a **refusal** rather than a verdict: it
+prints diverged paths and stops, so its negative test is the primary one and its
+happy path the secondary. **(iii)** The full-bar `check-layout.sh` becomes the
+Phase-2 exit bar the moment the adapter lands — the three assertions it still
+fails are the three units S9 builds, so S9 is the first session that can run the
+package's own final gate on itself.

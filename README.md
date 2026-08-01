@@ -27,7 +27,7 @@ gate · orchestrator · techniques I). See
 | S5 | `ba-t01`…`ba-t03` · discovery agent · `/ba-run` dispatch proven | ✅ built |
 | S6 | `ba-t04`…`ba-t10` · the Context estate in framework shape | ✅ built |
 | S7 | `ba-t11`…`ba-t16` · Requirements cleared · Band 1 closed · Scope H armed | ✅ built |
-| S8 | Band-2 pair · Tier-1/Tier-2 spine · analyst agent | pending |
+| S8 | Band-2 pair · Tier-1/Tier-2 spine · analyst agent | ✅ built |
 | S9 | Adapter · README · quickstart · Phase-2 exit test | pending |
 
 `tests/check-layout.sh` reports pending units by owning session — nothing is
@@ -57,7 +57,7 @@ Offline use needs `vendor/spec-kit-v0.12.5.zip` — see [`vendor/README.md`](ven
 ## Test
 
 ```sh
-tests/check-layout.sh --target /path/to/project --session S7   # this session's bar
+tests/check-layout.sh --target /path/to/project --session S8   # this session's bar
 tests/check-layout.sh --target /path/to/project                # full Phase-2 bar
 tests/check-m.sh                                               # the M-checker suite
 tests/check-gate.sh                                            # the gate suite
@@ -65,6 +65,7 @@ tests/check-orchestrator.sh                                    # the orchestrato
 tests/check-techniques.sh                                      # the technique suite, batch I
 tests/check-techniques2.sh                                     # the technique suite, batch II
 tests/check-techniques3.sh                                     # batch III + Band-1 closure
+tests/check-spine.sh                                           # Band 2 + the Tier-1/Tier-2 spine
 ```
 
 `check-m.sh` runs the ten vendored checkers against the appointment-booking
@@ -111,16 +112,21 @@ ba-native-spec/
    ├─ check-techniques2.sh the technique suite, batch II — T-04…T-10 (S6)
    ├─ check-techniques3.sh the technique suite, batch III + closure — T-11…T-16,
    │                       /ba-close-band1 and the arming Scope-H run (S7)
+   ├─ check-spine.sh       Band 2 + the spine — T-17/T-18, Tier 1, Tier 2 (S8)
    ├─ check-band1-artifacts.py  the Band-1 artifact validator — canvas (framing and
    │                       aspect grade) · glossary · register · context · constraints ·
    │                       competitive · personas · domain model · roles & permissions ·
    │                       processes · design standards · constitution · out-of-scope
    │                       (S5/S6/S7 harness; not installed —
    │                       the technique layer ships no checker)
+   ├─ check-band2-artifacts.py  the Band-2 & spine validator — roadmap rows and
+   │                       allocation log · the call kit · the scope brief · the
+   │                       Tier-2 session (S8 harness; not installed either)
    ├─ fixtures/            the toy world (S2) · band1/ the §12 ledgers (S4) ·
    │                       presale-brief.md + band1/first-pass/ (S5) ·
    │                       band1/elected/ the BA-elected charter (S6) ·
-   │                       band1/gate-health.md the arming Scope-H entry (S7)
+   │                       band1/gate-health.md the arming Scope-H entry (S7) ·
+   │                       tier2-answer-sheet.md the scripted Tier-2 session (S8)
    └─ exit-test.md         the Phase-2 exit script (S9)
 ```
 

@@ -135,7 +135,7 @@ has "$PLANS" "No scoped-H fired: Band 1, Scope H disarmed." \
     "no scoped health run fires in Band 1 — in-band quality is the aspect gates' (§7.3)"
 has "$PLANS" "## Frame" "the plans file carries the non-aspect \`## Frame\` section (D-B1-4)"
 has "$PLANS" "## Band 2" "…and the non-aspect \`## Band 2\` section (D-B6-5)"
-has "$PLANS" "trigger: first allocation after decomposition" \
+has "$PLANS" "trigger: post-decomposition" \
     "every Band-2 rerun names its trigger (D-B6-5 / §8.3 C1)"
 
 # ── 2. §12.2 — one threshold cleared, then the arming act ────────────────────
