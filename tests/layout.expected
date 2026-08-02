@@ -135,3 +135,7 @@ RT|absent|.specify/aspect-plans.md|◇ /ba-frame
 RT|absent|.specify/gate-health.md|◇ arming run (gate §10.3)
 RT|absent|.specify/gate-tuning.md|◇ first O/E record (gate §7.4)
 RT|absent|.specify/elicitation-tuning.md|◇ first log entry (D-P2-11)
+# Spec Kit's own feature pointer — how v0.12.x resolves FEATURE_DIR. Normally
+# written by /speckit-specify; under Mode A the adapter writes it at handoff
+# (gate §11.2, "any copies Spec Kit's layout requires"). Never installer-laid.
+RT|absent|.specify/feature.json|◇ /ba-handoff (Spec Kit feature pointer)

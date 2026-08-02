@@ -1,0 +1,238 @@
+# BA quickstart
+
+**For the business analyst.** How to run BA-Native Spec on a real project —
+and, if the package is not installed where you are, how to run the same method
+from the documents alone.
+
+You do not need to read the methodology corpus to use this. The corpus is what
+the package was compiled *from*; the skills carry the operative rules with them.
+
+---
+
+## What this is, in one paragraph
+
+Spec-Driven Development starts at a spec. This is the layer before that: it
+takes a project from a presale conversation to a **gate-certified feature
+spec** that a coding agent consumes without a human re-explaining anything. It
+does that in three bands — discover the project, decompose and scope it, then
+deliver features one at a time — with a completeness gate at the end that either
+passes or comes back with **named gaps**. You stay the author and the authority
+throughout: the framework schedules, drafts, checks, and refuses; it never
+decides.
+
+---
+
+## Install
+
+```sh
+cd /path/to/your/project        # must be a git repo
+/path/to/ba-native-spec/install.sh
+```
+
+It runs pinned Spec Kit v0.12.5, overlays the framework, writes the `AGENTS.md`
+and `CLAUDE.md` mirrors, and generates `.specify/ba/manifest.md`. Re-running is
+safe: it replaces installer-laid files and the fenced mirror blocks only, and
+never touches your content, your ledgers, or `specs/`.
+
+Then open Claude Code in the project. Everything below is a `/` command.
+
+**One thing to notice about a fresh install:** `.specify/memory/` is empty and
+there is no `canvas.md`. That is deliberate. An empty file and a missing file
+are the same hole to every check in this framework, and a field of
+installer-made stubs would make every one of those checks lie. Each artifact is
+born by the act that produces it.
+
+---
+
+## Band 1 — discovery
+
+```
+/ba-frame
+```
+
+Initializes the two ledgers and, if there is no `canvas.md` yet, runs the
+discovery-canvas technique to make one from whatever presale material you have.
+Six aspects open in dependency order: **Stakeholders → Context · Value → Vision
+→ Solution → Requirements**.
+
+Then, per aspect:
+
+```
+/ba-aspect stakeholders     # the framework suggests techniques from canvas evidence
+                            # you compose the plan: select · drop · reorder · add
+/ba-run t03                 # run a technique from the plan
+/ba-clear stakeholders      # evidence table → you confirm the aspect is cleared
+```
+
+`/ba-aspect` proposes; **you compose**. That is the whole shape of Band 1 —
+the framework never picks your techniques, and `/ba-run` refuses a technique
+that is not in the plan with its output contract pinned. If something you
+learn later invalidates a cleared aspect, `/ba-reopen` rules and executes the
+reopen; if an aspect cannot clear yet and you want to proceed anyway,
+`/ba-waive-aspect` puts that decision on the record with a revisit trigger.
+
+`/ba-status` renders where you are, at any moment.
+
+When all six are cleared:
+
+```
+/ba-close-band1
+```
+
+which records the closure and fires the **arming health run** — from here on,
+every framework write is silently health-checked, and you hear about it only
+when something breaks.
+
+---
+
+## Band 2 — decomposition and scoping
+
+```
+/ba-run t17                  # epics decomposition → the roadmap
+/ba-run t18                  # MVP / Phase 2 / Later allocation, with a diff and a reason
+/ba-run tier1 kit E-03       # a stakeholder-call kit for one epic
+```
+
+The kit is a question set at **scoping depth only** — crucial and significant
+areas, essential scope. Technical final-spec questions are forbidden there, and
+the kit refuses to ask them. **You run the call.** Then:
+
+```
+/ba-run tier1 ingest E-03    # your notes → the epic's scope brief
+```
+
+The brief comes back `Scoped`, with a **proposed feature slicing**: small epic →
+one feature, large epic → two or three. Findings that belong somewhere else — a
+new role, a new term, a constraint — are routed to their homes for your approval
+rather than buried in the brief.
+
+`/ba-run t18` is repeatable on purpose. Re-run it whenever scope knowledge
+changes; each run logs a diff and a reason on the roadmap.
+
+---
+
+## Band 3 — one feature at a time
+
+```
+/ba-enter-feature E-03/appointment-booking
+```
+
+Confirms the slicing row, assigns the next `NNN`, creates
+`specs/NNN-appointment-booking/`.
+
+```
+/ba-run tier2 004
+```
+
+The Tier-2 session loads the full project context **plus the parent epic's
+brief**, drafts a first-cut spec around its user stories, and then asks only the
+gaps — capped at seven by default, one at a time, each with a recommended
+answer. Two guards are always on: **never ask what is already answered; never
+ask what was not needed until now.** Every drafted value is either cited to its
+source or marked as an assumption for you to confirm.
+
+```
+/ba-gate 004
+```
+
+The completeness gate. Machine checkers first, then an evaluator agent against
+the contract's assertions, then your rulings: override a false positive, waive a
+real gap you consciously accept, sign the two flagged evidence bundles, approve.
+A FAIL comes back as named gaps — each with the element and the fix action — and
+you fix the spec and re-gate. Re-gates are cheap: only what your edit could have
+affected is re-run.
+
+```
+/ba-handoff 004
+```
+
+Verifies that every certified byte is still on disk, checks out the feature
+branch, confirms Spec Kit's plumbing, and reports ready. **If anything was
+edited after certification, it refuses and names the file.** That refusal is the
+framework working, not failing.
+
+Then the operator runs `/speckit-plan`, `/speckit-tasks`, `/speckit-implement`,
+and you re-enter to verify the built feature against its acceptance tier.
+
+---
+
+## The command index
+
+| Command | What it does |
+|---|---|
+| `/ba-frame` | Band-1 entry: ledgers initialized, canvas confirmed or created |
+| `/ba-status` | Where everything stands |
+| `/ba-aspect <aspect>` | Open an aspect: suggestions → you compose the plan |
+| `/ba-run <technique> [args]` | Run a planned technique |
+| `/ba-clear <aspect>` | Evidence table → you confirm the clearing |
+| `/ba-waive-aspect <aspect>` | Grant · re-affirm · lapse an aspect waiver |
+| `/ba-reopen <aspect>` | Rule and execute a reopen |
+| `/ba-close-band1` | Closure + the arming health run |
+| `/ba-enter-feature <epic>/<feature>` | Band-3 entry: confirm slicing, assign `NNN` |
+| `/ba-gate <feature>` | The completeness gate |
+| `/ba-gate-health [artifact\|full]` | Project health across the shared artifacts |
+| `/ba-handoff <feature>` | Hash guard → branch → ready for `/speckit-plan` |
+
+Techniques run through `/ba-run`: `t01`…`t18`, plus `tier1 <kit|ingest|supplement> <epic>`
+and `tier2 <NNN>`. Nothing fires by itself — every one of these is invoked by
+you, enforced in the skills' own frontmatter, not by convention.
+
+---
+
+## Four rules worth knowing on day one
+
+1. **Fix it in the spec.** A requirements defect found during implementation is
+   fixed in the spec and re-run downstream — never hand-patched in code. This is
+   the discipline the whole framework exists to make affordable.
+2. **A `[NEEDS CLARIFICATION]` marker is a decision, not a mess.** It means a
+   gap you consciously accepted, named where it lives, waived on the record. The
+   coding agent implements around it and surfaces it. It never guesses.
+3. **The ledgers are not content.** `.specify/aspect-state.md`,
+   `aspect-plans.md`, `gate-health.md`, `gate-tuning.md` and
+   `elicitation-tuning.md` are operational state. Don't edit them, don't quote
+   them into a spec.
+4. **Start the tuning logs now.** Every question the framework asked that was
+   already answered, every draft it got wrong, every question that produced
+   nothing — one line each. They are how the framework gets better at *your*
+   projects, and they are the only inputs nobody else can supply.
+
+---
+
+## If the package is not installed: Phase-1 manual mode
+
+The method predates the package and does not depend on it. A BA can run all of
+it from the thirteen methodology documents alone — that was Phase 1's exit
+criterion, and it was met at corpus level. In the package repo they sit in
+`docs/methodology/`.
+
+| What you need | Where it is |
+|---|---|
+| Band machinery, ledgers, thresholds, reopen/waiver | Orchestrator rules — §11's manual paragraph, ledger templates §2.4 / §6.4, thresholds §3.3, reopen/waiver §4–§5, band acts §8 |
+| Each technique's procedure and output template | Catalogue b1–b6 — every sheet's §4 and §5 |
+| Tier 1 and Tier 2 | Elicitation techniques §§3–6 |
+| How a spec is written | Writing standard §2 (the ten headings), §4 (EARS + banned words), §15 (the self-check) |
+| The gate | Gate definition §13's manual paragraph — §4.2 as the checklist, §5's M procedures as mechanical instructions, A assertions read against the snapshot with §5.4 evidence discipline, §6.2 filled by hand |
+
+Three manual substitutions: recorded revision marks stand in for content hashes ·
+an eyeball EARS review against the standard's §4 stands in for the lint · a
+session-start habit stands in for the scoped health run that would otherwise
+auto-fire.
+
+**Two things to start on paper immediately**, because they feed the next phase
+directly and nobody can reconstruct them later: the **tuning logs** (false-ask ·
+wrong-draft · dead-answer · escapes) from your first real use, and any
+**threshold-gap candidate** you notice — a moment where an aspect cleared but
+should not have, or vice versa. Both flow document-first into the framework when
+the package lands.
+
+---
+
+## Where to look next
+
+- `tests/exit-test.md` — the ten-step script that proves an install end to end;
+  it doubles as a worked walkthrough of the whole loop on a toy feature.
+- `docs/mode-b-fallback.md` — what to do when the handoff cannot write directly
+  into Spec Kit's layout, and what that costs.
+- `docs/methodology/` — the corpus, if you want the *why* behind any rule. It is
+  never installed and no runtime path reads it; it is for study and for the
+  build sessions.

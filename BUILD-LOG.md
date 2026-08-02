@@ -1982,3 +1982,283 @@ happy path the secondary. **(iii)** The full-bar `check-layout.sh` becomes the
 Phase-2 exit bar the moment the adapter lands — the three assertions it still
 fails are the three units S9 builds, so S9 is the first session that can run the
 package's own final gate on itself.
+
+---
+
+## S9 — Adapter + Phase-2 exit · 1 August 2026 · GREEN
+
+**Session prompt:** the standing pattern, build plan §4.
+**Grounding:** `docs/methodology/` at the pinned versions (S1's vector,
+unchanged) · build plan v0.2 §1.1, §1.2, §2.2, §2.4, §2.8, §3, §4 (S9 row), §5
+in full, §6, §7 (D-P2-1, D-P2-8, D-P2-9, D-P2-12) · **gate definition v0.3 §11
+in full** — §11.1's certification manifest and its adapter precondition, §11.2's
+ordered adapter acts, §11.3's never-list — plus §2.3 (P7), §3 (the static core
+the manifest is built from), §7.2/§7.3 (voiding), §10.2 (the voided-certification
+notice), §12 (escape logging), §13's Adapter row, §14.4's worked handoff ·
+**plan v2.13 Q5** (Mode A primary, Mode B the documented fallback; no LLM
+between gate and plan) + §5's Band-3 tail + §8's exit criterion · completeness
+contract v0.2 §2/§8 (waivers, the two-step, the marker as a named gap) ·
+orchestrator v0.3 §8.4 (Band-3 entry, the `NNN` the branch must match) ·
+elicitation v0.3 §9.2 (submission, the gate as Tier 2's last step) · S1–S8's
+payload as the interfaces this session's units meet, and **Spec Kit v0.12.5's
+own `common.sh` / `setup-plan.sh`**, read at the pin because §11.2's plumbing
+clause resolves against them and nothing else.
+
+### Units built — 3 of the 67 (running total 67 — the inventory closes)
+
+| Unit class | Built | Notes |
+|---|---|---|
+| Workflow skills (§2.2) — 12th of 12 | `ba-handoff/SKILL.md` | Mode-A adapter front (gate §11.2) |
+| Checker/adapter scripts (§2.4) — 11th of 11 | `ba/scripts/sk_handoff.py` | hash guard · artifact set · plumbing · branch · re-verify · feature pointer · ready report |
+| Fixture set · README · quickstart (§2.8) — 3rd of 3 | `docs/quickstart.md` | the BA's walkthrough + the manual-mode bridge (§6) |
+
+Alongside them, and not §2 build units: `docs/mode-b-fallback.md` (the §4 S9 row
+names it; §1.2's tree does not — **D44**) · `tests/exit-test.md` (the §5 script,
+agent-runnable) · `tests/check-exit.sh` (the mechanical harness) ·
+`tests/fixtures/appointment-booking/speckit-plan/` (the recorded `/speckit-plan`
+outputs and their README) · one new `RT|absent` row in `tests/layout.expected` ·
+`README.md` expanded, as S1 said it would be rather than a second file.
+
+**With this the inventory closes at 67/67 and every class is complete:** 20
+technique skills · 12 workflow skills · 4 subagents · 11 scripts · 3 cards · 13
+templates · 1 installer · fixture set + README + quickstart. 63 of them install.
+
+### Compilation-rule application (§3)
+
+**§3.1 travels verbatim.** Gate §11.1's adapter-precondition sentence, into the
+skill and into the refusal text the script prints · §11.2's ordered acts, as the
+skill's numbered procedure · §11.3's never-list, as the skill's own · the
+boundary sentence (*the gate's responsibility ends when the certification
+manifest is written*) · P7's escape-record trigger set · plan Q5's *"no LLM
+between gate and plan — the certified text is the read text"*, which is the one
+sentence the whole unit exists to enforce and appears verbatim in the skill, the
+script's refusal, and the Mode-B note.
+
+**§3.2 compiled with transformation.** Gate §11.2's prose ordering became an
+executable order with a property the prose does not state and the mechanism
+requires: **steps 1–4 have no side effects.** The refusal therefore leaves a
+project byte-identical to how it found it — no branch created, no branch
+switched, no file written — which is asserted in the exit test rather than
+assumed. §14.4's worked handoff (*"adapter verifies 11 hashes — clean · branch
+`004-appointment-booking` checked out · `.specify` plumbing confirmed"*) became
+the ready report's shape, and the toy run reproduces it line for line, 11 hashes
+included.
+
+**§3.3 never compiled.** No BABOK anchor, no mining note, no review record, no
+`D-P2-n` or `D-G-n` identifier reaches the payload. `docs/mode-b-fallback.md`
+and `docs/quickstart.md` are repo-side documentation: `install.sh` copies
+neither, and no runtime path reads `docs/`.
+
+### D-P2 bindings applied
+
+| ID | Application this session |
+|---|---|
+| **D-P2-1** | **Closed.** `ba.handoff → ba-handoff`, the last of the eleven renames. All 32 command names now exist as hyphenated skills; the dotted corpus spelling appears nowhere in the payload |
+| **D-P2-12** | **Closed.** The exit script keeps the seeded-defect **FAIL → fix → re-gate** cycle, one waiver + ⚑ pass, and the hash-refusal negative check — steps 7 and 8, both live, both load-bearing |
+| **D-P2-9** | The exit test's step 2 runs the real pinned install; `--offline` remains available and is exercised by `check-exit.sh --offline` |
+| **D-P2-8** | v0.12.5 re-verified at S9 open — and this session is the first to read the pin's *behavior*, not only its tag. See D42 |
+| D-P2-2 | `ba-handoff` ships `disable-model-invocation: true`; `check-layout.sh` asserts it on the installed tree with the other 31 |
+| D-P2-6 | The adapter creates no content. `.specify/feature.json` is Spec Kit's own pointer, written at handoff and never by the installer — a new `RT|absent` row enforces that on every fresh install |
+
+### Architecture decisions
+
+**A1 · What step 10 can honestly assert in a script — S8's inherited question,
+answered.** Build plan §5 step 10 operationalizes "zero manual rework" as four
+sub-clauses. Three are mechanical and are asserted live: **(a)** the operator
+performs no file operation between certification and plan — proven by running
+Spec Kit's own `setup-plan.sh --json` with no argument, no `SPECIFY_FEATURE_*`
+environment variable and no `/speckit-specify` run, and requiring it to resolve
+`FEATURE_SPEC`, `IMPL_PLAN` and `BRANCH`; **(c)** the marker inventory across
+the **certified artifact set** — the manifest's own file list, not just the
+spec — must be exactly one, and it must be the calendar-sync question the gate
+report names under W-004-01; **(d)** every certified hash still matches after
+the plan run. **(b)** — *the plan runs to a completed `plan.md` without
+requesting any spec edit* — is an agent act. It was **performed for real this
+session** against the certified toy spec, producing `plan.md`, `research.md`,
+`data-model.md`, `contracts/booking-api.md` and `quickstart.md`; those five are
+recorded under `tests/fixtures/appointment-booking/speckit-plan/` and the suite
+asserts them (no surviving template placeholder, a filled Constitution Check, no
+request for a spec amendment). The same split as the recorded A-pass at S3: a
+suite that claimed to re-derive an agent act would be a fiction, and one that
+skipped the act would leave the exit criterion unproven.
+
+**A2 · The guard runs twice, and the second run is this implementation's own.**
+Gate §11.2 fixes verify → plumbing → report. It does not contemplate the branch
+checkout itself moving a certified byte — but it can: an existing
+`NNN-feature` branch may carry a different revision of `spec.md`, and the
+checkout would swap the very file the guard just cleared, leaving the operator
+at `/speckit-plan` on uncertified text behind a clean report. So the guard runs
+again after the branch act, and a post-checkout divergence is the same refusal
+with the branch named as its cause. This **adds** a check inside the pinned
+order and removes none.
+
+**A3 · The ready report inventories carried markers; it never judges them.**
+Gate §14.4's handoff sentence is that the coding agent reads *"exactly one
+consciously accepted unknown — and nothing hidden"*. That was a claim with no
+observation point. The adapter now lists every `[NEEDS CLARIFICATION]` in the
+certified spec with its section, beside the waivers in force read from the
+certified run's report entry — both as report lines, with no verdict attached. A
+marker in a certified spec is a waived gap **by construction** (contract §8's
+two-step: name it, then waive it), so there is nothing for the adapter to rule
+on and it rules on nothing. The value is that the claim is now checkable at the
+line where it matters.
+
+**A4 · `check-exit.sh` is an integration suite, and says so.** It does not
+re-prove any unit: shape proofs are delegated to the validators that own them
+(`check-band1-artifacts.py`, `check-band2-artifacts.py`, `check-ledger.py`,
+`sk_health.py`, `sk_brief.py`), run **live against the installed toy** rather
+than against the fixture directory. What it proves is composition — that the
+units add up to plan §8's criterion in one project, in one sitting. That is why
+its 99 assertions overlap the seven unit suites' 733 without duplicating them.
+
+**A5 · Mode B is documented as a cost, not an option.** `docs/mode-b-fallback.md`
+names the three cases where Mode A's precondition genuinely does not hold, names
+four that are *not* triggers (a failing hash guard first among them — that is
+the guard working), and states the cost in the corpus's own terms: under Mode B
+the certification stops covering the artifact the coding agent reads. It carries
+the procedure, including the manual diff that substitutes for the hash guard and
+the `gate-report.md` line that records what the certification does and does not
+cover.
+
+### Exit test — build plan §4, S9 row: *"the §5 exit test, end to end, green"*
+
+`tests/check-exit.sh` — **99 passed, 0 failed**, deterministic across runs, on a
+real network install into a fresh `git init` directory.
+
+| Step | What ran | Result |
+|---|---|---|
+| 1 | Fresh `git init`, no prior Spec Kit | ✓ |
+| 2 | `install.sh` → `check-layout.sh` at the **full** bar, no `--session` | ✓ **104 passed, 0 failed, 0 pending** — the Phase-2 exit bar, first pass |
+| 3 | Canvas + both ledgers, validated live; nothing under `memory/` | ✓ |
+| 4 | The eleven Band-1 artifacts validated live in the install · closure in the ledger head · the arming Scope-H entry · `sk_health.py` CC-H-02/03/06 | ✓ |
+| 5 | Roadmap + allocation log · the kit (≤ 12 must-ask, tagged, zero depth violations) · brief `Scoped` with 004 sliced · CC-XA-05 live | ✓ |
+| 6 | Feature folder holding only `spec.md`; Tier-2 spec against the answer sheet; the defect seeded in FR-007 | ✓ |
+| 7 | Run 2 **FAIL (5 gaps)** naming `CC-G-04 — FR-007` verbatim · adapter refuses for want of a certification · fixes · run 3 incremental, 12 carried · W re-affirmed · O re-applied · ⚑ ×2 · P4 → **PASS WITH WAIVERS** · certification written, covering the produced `traceability.md` | ✓ |
+| 8 | One byte appended → **REFUSED**, diverged path printed, branch and pointer untouched · reverted → clean · a certified **governance** file edited → refused too | ✓ |
+| 9 | Hash guard 11/11 · branch `004-appointment-booking` · plumbing confirmed · pointer written · waiver and marker surfaced · second run idempotent | ✓ |
+| 10 | (a) `setup-plan.sh` resolves with no intervention · (b) the five plan artifacts, no placeholder, no spec-edit request · (c) exactly **1** marker across the certified set, the W-004-01 one · (d) 11/11 hashes still match | ✓ |
+
+**Vacuity check.** The step-10 assertions are load-bearing: removing the feature-
+pointer write from `sk_handoff.py` turns **six** assertions in steps 9–10 red,
+including `setup-plan.sh` itself failing. Restored, green again.
+
+**Regression sweep — all seven prior suites re-run, all green:**
+`check-m.sh` 40 · `check-gate.sh` 59 · `check-orchestrator.sh` 120 ·
+`check-techniques.sh` 100 · `check-techniques2.sh` 122 · `check-techniques3.sh`
+158 · `check-spine.sh` 134. Two of those counts sit one above the numbers the S8
+record cites (gate 58, orchestrator 119) with the suite files and every fixture
+**byte-identical to S8's commit** and both suites deterministic across repeated
+runs here — a transcription artifact in the S8 record, not a behavior change.
+Recorded rather than quietly corrected: an append-only log's value is that its
+numbers can be re-derived, and this one could not be.
+
+### Divergences flagged (§3.2 discipline, generalized)
+
+**D42 · Spec Kit v0.12.5 resolves the feature through `.specify/feature.json`,
+not the branch name — and under Mode A nothing was writing it.** At the pin,
+`common.sh`'s `get_feature_paths()` takes `SPECIFY_FEATURE_DIRECTORY`, else
+`.specify/feature.json`, else it **errors**. That file is normally written by
+`/speckit-specify` — the command Mode A deliberately never runs, because our
+spec is already at the destination. The first real `/speckit-plan` in the
+project's history therefore stopped on `ERROR: Feature directory not found`, and
+the operator would have had to intervene: precisely the manual rework step 10
+measures. The corpus's own §14.4 handoff line reads *"`.specify` plumbing
+confirmed"*, and gate §11.2 assigns the adapter *"any copies Spec Kit's layout
+requires"* — this is that clause, resolved at the pin.
+
+*Resolution taken:* **the adapter writes the pointer** — idempotently, mirroring
+`common.sh`'s own `_persist_feature_json` (repo-relative value, written only
+when missing or different), **after** the guard has passed and the branch is
+settled, so a refusal still writes nothing. `tests/layout.expected` gains an
+`RT|absent` row so a fresh install is asserted **not** to carry it (D-P2-6), and
+both the skill and `tests/exit-test.md` carry the reason at the point of use.
+The build plan's §1.1 tree does not list the file; it could not have, because
+the tree predates reading the pin's behavior. Flagged, not silently added.
+
+**D43 · The unit running total carried a +1 from S1, and it surfaces here
+because S9 is where the inventory has to close.** S1's record says *"16 of the
+67"*, but its own class rows sum to 15 — installer 1 + templates 13 + the
+package-repo `README.md` 1; the repo skeleton, the manifest generator and the
+test harness are explicitly not §2 units. Carried forward, the total after S8
+read 65 when the class arithmetic gives 64, which would have left S9 two slots
+for three units.
+
+*Resolution taken:* **reconciled by class, and the classes are what the plan
+pins.** 20 techniques (S5 3 + S6 7 + S7 6 + S8 4) · 12 workflow skills (S3 2 +
+S4 9 + S9 1) · 4 subagents (S3 · S4 · S5 · S8) · 11 scripts (S2 10 + S9 1) · 3
+cards (S3) · 13 templates (S1) · 1 installer (S1) · fixture set (S2) + README
+(S1) + quickstart (S9) = **67**, every class full. S1's record is append-only
+and stands; this entry is the correction, at the session that could prove it.
+
+**D44 · The Mode-B note is a §4 unit with no home in the §1.2 tree.** Build plan
+§4's S9 row names *"Mode-B fallback note"* among the session's units, and plan
+Q5 makes Mode B a documented fallback. §1.2's package-repo tree lists
+`docs/methodology/` and `docs/quickstart.md` and nothing else under `docs/`.
+
+*Resolution taken:* **`docs/mode-b-fallback.md`**, repo-side, never installed —
+the same layer as the quickstart. Folding it into the quickstart was the
+alternative and was rejected: the quickstart is read by a BA starting a project,
+the Mode-B note by someone deciding whether to break the Mode-A guarantee, and
+those are different readers at different moments. `README.md`'s tree and the
+`ba-handoff` skill both point at it.
+
+**D45 · The plan template's agent-context step has no script at the pin.** The
+`/speckit-plan` workflow's Phase-1 step *"Update agent context by running the
+agent script"* has nothing to run at v0.12.5: `.specify/scripts/bash/` ships
+`check-prerequisites.sh`, `common.sh`, `create-new-feature.sh`, `setup-plan.sh`
+and `setup-tasks.sh`, and nothing else.
+
+*Resolution taken:* **recorded, no action.** It is a no-op at our pin, and our
+own `AGENTS.md` / `CLAUDE.md` mirrors already carry the agent context that step
+would have written — which is the portability mirror doing exactly its job. It
+is written down in the `speckit-plan/README.md` fixture note so that a pin bump
+restoring the script is recognized as a change rather than met as a surprise.
+
+**D46 · The framework's claim about markers held under a real planning pass, and
+that is worth recording as evidence rather than as a hope.** The certified spec
+carries one `[NEEDS CLARIFICATION]` — the calendar-outage question under
+W-004-01. In the real `/speckit-plan` run, the plan did not resolve it: Phase 0
+decision 3 fences the dispatch behind an outbox so the booking path never
+depends on the answer, states explicitly what it is *not* deciding (retry
+policy, alerting, any user-visible signal), and `quickstart.md` has no scenario
+for it and says why. That is exactly the behavior the `CLAUDE.md` / `AGENTS.md`
+mirrors instruct — *implement around it and surface it; do not resolve it by
+guessing* — observed rather than asserted. Recorded because the plan asks for
+the check, not only for its failures.
+
+### Phase 2 — closed
+
+**Build plan §5's pass condition is met: all ten steps green in one scripted
+run.** The Phase-2 slice of the v1-done checklist clears — one-command install ·
+gated discovery with BA-planned techniques · decomposition + Tier-1 briefs +
+logged allocation · both question guards live · a classed artifact set ·
+named-gap blocking · zero-rework `/speckit-plan`. *"One real feature shipped
+end-to-end"* remains Phase 3's, by design.
+
+Three things Phase 3 inherits, stated so they are not rediscovered:
+
+**(i) The tuning logs are empty, and only real use can fill them.** Every
+runtime ledger exists and every act that writes one is built, but
+`.specify/gate-tuning.md` and `.specify/elicitation-tuning.md` are born at their
+first real entry. The false-ask, wrong-draft, dead-answer and escape records are
+the framework's only source of evidence about itself, they flow document-first
+through §3.5, and nobody can synthesize them. Build plan §6 already asks BAs in
+manual mode to start them on paper; that instruction is now also in
+`docs/quickstart.md`, day one.
+
+**(ii) The one-way rule is now the whole maintenance story.** Every unit is
+compiled, and §2's source-anchor column is the propagation map: a document bump
+recompiles exactly the units anchored to it, their session exit tests re-run,
+`VERSION` bumps, the manifest's doc vector updates. Compiled text is never
+patched in place — a wanted runtime change without a document change is a
+document defect first. D42 is the shape of the one legitimate exception and it
+is worth noting: the *environment* moved, not a document, and the resolution was
+still to resolve gate §11.2's existing clause at the pin rather than to invent
+behavior.
+
+**(iii) The pin is now behavioral, not just a tag.** Until this session, "Spec
+Kit v0.12.5" meant a version string in the manifest. It now also means a
+resolution mechanism (`feature.json`), a script inventory (D45), and a plan
+template whose Constitution Check reads our constitution. A pin bump is a
+Phase-4 rollout decision that has to re-run `check-exit.sh`, not only
+`check-layout.sh` — the layout bar would not have caught D42.

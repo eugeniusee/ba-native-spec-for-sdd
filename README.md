@@ -12,9 +12,14 @@ not itself the installed thing.
 
 ## Status
 
-Phase 2 build, sessions **S1–S5 of S9** complete (foundation · M machinery ·
-gate · orchestrator · techniques I). See
-[`BUILD-LOG.md`](BUILD-LOG.md) for the per-session record and
+**Phase 2 complete — all nine build sessions, all 67 units.** The Phase-2 exit
+test (`tests/check-exit.sh`) runs the ten-step script of build plan §5 end to
+end against one real install and is green: install → gated discovery →
+decomposition and Tier-1 brief → certified spec → named-gap FAIL → fix → PASS
+WITH WAIVERS → refusal on divergence → handoff → `/speckit-plan` consuming it
+with zero manual rework.
+
+See [`BUILD-LOG.md`](BUILD-LOG.md) for the per-session record and
 [`docs/methodology/ba-native-spec-phase2-build-plan.md`](docs/methodology/ba-native-spec-phase2-build-plan.md)
 §4 for the session plan.
 
@@ -28,10 +33,15 @@ gate · orchestrator · techniques I). See
 | S6 | `ba-t04`…`ba-t10` · the Context estate in framework shape | ✅ built |
 | S7 | `ba-t11`…`ba-t16` · Requirements cleared · Band 1 closed · Scope H armed | ✅ built |
 | S8 | Band-2 pair · Tier-1/Tier-2 spine · analyst agent | ✅ built |
-| S9 | Adapter · README · quickstart · Phase-2 exit test | pending |
+| S9 | `ba-handoff` · `sk_handoff.py` · Mode-B note · quickstart · exit test | ✅ built |
 
 `tests/check-layout.sh` reports pending units by owning session — nothing is
-silently missing.
+silently missing. With no `--session` it requires the whole tree, which is the
+Phase-2 exit bar; that bar passes as of S9.
+
+**New here?** Start with [`docs/quickstart.md`](docs/quickstart.md) — the BA's
+walkthrough of the whole loop, and the manual-mode bridge for projects where the
+package is not installed.
 
 ---
 
@@ -57,8 +67,9 @@ Offline use needs `vendor/spec-kit-v0.12.5.zip` — see [`vendor/README.md`](ven
 ## Test
 
 ```sh
-tests/check-layout.sh --target /path/to/project --session S8   # this session's bar
+tests/check-exit.sh                                            # the Phase-2 exit test — all ten steps
 tests/check-layout.sh --target /path/to/project                # full Phase-2 bar
+tests/check-layout.sh --target /path/to/project --session S8   # a single session's bar
 tests/check-m.sh                                               # the M-checker suite
 tests/check-gate.sh                                            # the gate suite
 tests/check-orchestrator.sh                                    # the orchestrator suite
@@ -67,6 +78,14 @@ tests/check-techniques2.sh                                     # the technique s
 tests/check-techniques3.sh                                     # batch III + Band-1 closure
 tests/check-spine.sh                                           # Band 2 + the Tier-1/Tier-2 spine
 ```
+
+`check-exit.sh` is the integration suite: it installs into a fresh git repo and
+runs build plan §5's ten steps against that one project — the full layout bar,
+the Band-1/Band-2 estate validated live, gate run 2 FAIL → fixes → run 3
+incremental PASS WITH WAIVERS with certification, the one-byte refusal, the
+handoff, and the four sub-clauses of "zero manual rework". Mechanical acts run
+live; agent acts are staged from recorded fixtures and validated in place. Add
+`--keep -v` to inspect the resulting project.
 
 `check-m.sh` runs the ten vendored checkers against the appointment-booking
 fixture world, asserts each case against its recorded verdict table, reproduces
@@ -100,7 +119,8 @@ ba-native-spec/
 ├─ docs/
 │  ├─ methodology/         the 13 pinned Phase-1 documents — the grounding every
 │  │                       build session reads; never installed
-│  └─ quickstart.md        BA quickstart (S9)
+│  ├─ quickstart.md        BA quickstart — the loop, and manual mode (S9)
+│  └─ mode-b-fallback.md   the documented handoff fallback, and its cost (S9)
 └─ tests/
    ├─ check-layout.sh · layout.expected
    ├─ check-m.sh           the M-checker suite (S2)
@@ -122,12 +142,14 @@ ba-native-spec/
    ├─ check-band2-artifacts.py  the Band-2 & spine validator — roadmap rows and
    │                       allocation log · the call kit · the scope brief · the
    │                       Tier-2 session (S8 harness; not installed either)
+   ├─ check-exit.sh        the Phase-2 exit test — §5's ten steps, one install (S9)
    ├─ fixtures/            the toy world (S2) · band1/ the §12 ledgers (S4) ·
    │                       presale-brief.md + band1/first-pass/ (S5) ·
    │                       band1/elected/ the BA-elected charter (S6) ·
    │                       band1/gate-health.md the arming Scope-H entry (S7) ·
-   │                       tier2-answer-sheet.md the scripted Tier-2 session (S8)
-   └─ exit-test.md         the Phase-2 exit script (S9)
+   │                       tier2-answer-sheet.md the scripted Tier-2 session (S8) ·
+   │                       speckit-plan/ the recorded /speckit-plan outputs (S9)
+   └─ exit-test.md         the Phase-2 exit script, agent-runnable (S9)
 ```
 
 **The layering rule.** Nothing under `docs/methodology/` is ever installed and no
