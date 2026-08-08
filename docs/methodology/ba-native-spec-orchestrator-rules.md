@@ -1,5 +1,6 @@
 # Geniusee Orchestrator Rules
-### BA-Native Spec · aspect & band machinery · v0.5 — session boundary · P-O2 checkpoint · flow profiles · project dashboard (7 Aug 2026)
+### BA-Native Spec · aspect & band machinery · v0.6 — §6.4 composed-plan row gains the code column (8 Aug 2026)
+**v0.6 change record:** one pinned-shape conformance fix — §6.4's composed-plan row gains the code: `| # | Technique |` → `| # | Code — technique |`, placeholder `<name>` → `<code — name · custom — name>` (register rule 5; closes the second half of audit finding F-11, build-log divergence D56). No other changes.
 **v0.5 change record:** five changes, ruled 7 Aug 2026 (R1–R7 → D-O11–D-O17, §14; origin: field-test feedback — stage escape into implementation, invisible planning step — and the same-day package diagnostic audit): the framework-wide session-mode boundary (§10.2; gate §11.3 carries the cross-reference) · P-O2 rebuilt as a stop-and-wait checkpoint with the new suggestion-snapshot shape (§6.1–§6.2; §12.1 example re-rendered) · flow profiles Discovery | Presale with P-O0 selection at Frame (§6.5 · §8.1 · §10.1; ledger head gains the Profile field, §2.4) · the project dashboard as `/ba.status`'s pinned render (§10.4; §10.3 rule-8 list extended) · §11 rebound — personas as compile sources, dispatch reserved for batch-shaped work.
 **v0.4 change record:** one additive section — §10.3 BA-facing communication register (8 rules: plain-language + information-economy + code-and-name referencing), origin first-BA field feedback (7 Aug 2026); ASD-STE100 mined as reference design per the C4 pattern — rules distilled, nothing imported. No other changes.
 **v0.3 change record:** five catalogue mirrors, all additive — D-B1-4 + D-B6-5 (plans-file `## Frame` and `## Band 2` sections) → §6.4 · D-B5-3 (AT-RQ-1 design-standards conditionality) + D-B4-4 (AT-RQ-4 significance criterion) → §3.3 · D-B6-3 (roadmap status vocabulary) → §8.4. No other changes.
@@ -374,9 +375,9 @@ Every planned technique — catalogue or custom — carries **{expected output �
 ## Stakeholders
 Suggestion snapshot — 2026-07-07  (§6.1 shape — kept verbatim, audit + tuning)
 Composed plan — 2026-07-07 · Y.K.
-| # | Technique | Source | Output contract {expected · class · destination} | Status |
+| # | Code — technique | Source | Output contract {expected · class · destination} | Status |
 |---|---|---|---|---|
-| 1 | <name> | catalogue \| custom | {…} | planned · run <date> · dropped — <reason> |
+| 1 | <code — name · custom — name> | catalogue \| custom | {…} | planned · run <date> · dropped — <reason> |
 Run log:  (§7.3 lines append here)
 ```
 
@@ -695,6 +696,6 @@ Seven decisions ruled by the BA Lead, 7 August 2026 — **all recommendations ac
 
 ---
 
-*v0.5 · session boundary + P-O2 checkpoint + flow profiles + dashboard applied 7 Aug 2026 (D-O11–D-O17, §14) · catalogue mirrors applied 30 July 2026 (D-B1-4 · D-B4-4 · D-B5-3 · D-B6-3 · D-B6-5) · review incorporated 25 July 2026 · closes Wave 1 · conducts plan §5's bands over the Q1a/Q1b aspect model · owns the Band-1 aspect gates per the contract's division of labor (its header; §3 cadence) · executes the three doc-3 signals (§1) and the gate's lane-3 reopens (§6.3) · requests the arming full Scope-H run at Band-1 closure (contract §3 · gate §10.1) · thresholds: 18 AT criteria across six aspects · records: AW (aspect waiver) · RO (reopen) · runtime ledgers outside `memory/` per D-G1/D-G8: `.specify/aspect-state.md` · `.specify/aspect-plans.md` · decisions D-O1–D-O17 locked · review records: v0.1→v0.2 in §13 · v0.4→v0.5 in §14*
+*v0.6 · §6.4 code-column fix applied 8 Aug 2026 (audit F-11 second half; build-log D56) · session boundary + P-O2 checkpoint + flow profiles + dashboard applied 7 Aug 2026 (D-O11–D-O17, §14) · catalogue mirrors applied 30 July 2026 (D-B1-4 · D-B4-4 · D-B5-3 · D-B6-3 · D-B6-5) · review incorporated 25 July 2026 · closes Wave 1 · conducts plan §5's bands over the Q1a/Q1b aspect model · owns the Band-1 aspect gates per the contract's division of labor (its header; §3 cadence) · executes the three doc-3 signals (§1) and the gate's lane-3 reopens (§6.3) · requests the arming full Scope-H run at Band-1 closure (contract §3 · gate §10.1) · thresholds: 18 AT criteria across six aspects · records: AW (aspect waiver) · RO (reopen) · runtime ledgers outside `memory/` per D-G1/D-G8: `.specify/aspect-state.md` · `.specify/aspect-plans.md` · decisions D-O1–D-O17 locked · review records: v0.1→v0.2 in §13 · v0.4→v0.5 in §14*
 
 

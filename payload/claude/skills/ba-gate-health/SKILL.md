@@ -144,3 +144,10 @@ Never edits an artifact to make a gap go away · never grants an acceptance on
 the BA's behalf · never runs a Scope-F assertion · never blocks anything
 directly — the block lives at `/ba-gate`'s Stage 0 · never writes inside
 `.specify/memory/`.
+
+**The session boundary (framework-wide).** This is an **analysis session**. It
+produces analysis artifacts only. It never produces an implementation plan, a
+task list, a prototype, or code — not as a proposal, not as a "next step," not as
+initiative. The boundary lifts **per feature**, and only by the pair: an
+effective PASS at `/ba-gate <feature>` and a completed `/ba-handoff <feature>`.
+Wanting to implement is never evidence of readiness: the only exit is the gate.

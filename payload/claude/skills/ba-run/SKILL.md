@@ -42,8 +42,8 @@ is not the plans file (below).
 
 ## P-O3 (technique invocation) — the act
 
-Render the plan row — technique, source, the pinned contract — and take the
-BA's invocation. Then dispatch the technique's skill (`/ba-t03`, `/ba-tier1`, …)
+Render the plan row — the technique's code and name, source, the pinned contract
+— and take the BA's invocation. Then dispatch the technique's skill (`/ba-t03`, `/ba-tier1`, …)
 or, for a custom technique, run it under the contract the BA pinned.
 
 ## The run itself is not orchestrated
@@ -140,3 +140,10 @@ edits it afterwards · never approves a routing batch on the BA's behalf · neve
 fires a Scope-H run (the armed cadence is the gate's; before closure nothing
 fires at all) · never confirms a threshold · never marks a partial contract
 fulfilled.
+
+**The session boundary (framework-wide).** This is an **analysis session**. It
+produces analysis artifacts only. It never produces an implementation plan, a
+task list, a prototype, or code — not as a proposal, not as a "next step," not as
+initiative. The boundary lifts **per feature**, and only by the pair: an
+effective PASS at `/ba-gate <feature>` and a completed `/ba-handoff <feature>`.
+Wanting to implement is never evidence of readiness: the only exit is the gate.

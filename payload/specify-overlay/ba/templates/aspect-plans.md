@@ -28,9 +28,9 @@ Suggestion — <Aspect> — <date>          (orchestrator §6.1 block — kept v
 Sequence rationale: <one line>
 
 Composed plan — <date> · <initials>
-| # | Technique | Source | Output contract {expected · class · destination} | Status |
+| # | Code — technique | Source | Output contract {expected · class · destination} | Status |
 |---|---|---|---|---|
-| 1 | <name> | catalogue \| custom | {…} | planned · run <date> · dropped — <reason> |
+| 1 | <code — name · custom — name> | catalogue \| custom | {…} | planned · run <date> · dropped — <reason> |
 
 Run log:
 <date> · <technique> · contract: fulfilled | partial — <what is missing> | failed — <why>

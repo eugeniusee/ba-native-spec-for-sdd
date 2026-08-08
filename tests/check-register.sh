@@ -17,6 +17,8 @@
 #   3.  the sweep — zero bare codes in a BA-facing string
 #   4.  the self-test — three seeded defects, one per render class, and the
 #       fenced-block probe: the suite is not vacuous
+#   5.  the session boundary — orchestrator §10.2 (D-O11) compiled into every
+#       skill, persona and mirror, byte-identical, with its own seeded control
 #
 # The scan joins soft-wrapped source lines into the paragraphs the BA actually
 # sees (a soft wrap is invisible in the render, so adjacency is tested on the
@@ -368,6 +370,213 @@ scan_root "$CORPUS" > "$TMP/fenced.out" 2>&1
   && ok "the same codes inside a fenced block draw no hit — rule 8: the shape governs" \
   || bad "the sweep reached into a fenced block; the pinned record shapes are not exempt"
 
+# ── 5. the session boundary — §10.2's block in every unit ────────────────────
+#
+# D-O11's rule ends: *"Compiled verbatim into both mirrors and into every skill's
+# and persona's never-list."* Sections 1–4 hold rule 5 down; this one holds that
+# sentence down. Two forms, one rule:
+#
+#   · skills and personas carry the **compiled block** — §10.2's boundary said in
+#     the unit's own voice, naming the two commands that lift it. Pinned here
+#     verbatim; every unit must match it byte for byte.
+#   · the two mirrors carry §10.2's **own paragraph**, derived from source: the
+#     document's line with the decision id and the trailing compile note dropped,
+#     which is the whole of the compile.
+#
+# The unit set comes from the same globs as the corpus, never a list: a skill
+# that ships without the block goes red by existing.
+
+if [ "$ONLY_SELFTEST" -eq 0 ]; then
+
+printf '\n▸ The session boundary — §10.2 (D-O11) in every skill, persona and mirror\n'
+
+sha_of() { if command -v shasum >/dev/null 2>&1; then shasum -a 256; else sha256sum; fi | cut -d' ' -f1; }
+
+BOUNDARY_HEAD='**The session boundary (framework-wide).**'
+cat > "$TMP/block.txt" <<'BLOCK'
+**The session boundary (framework-wide).** This is an **analysis session**. It
+produces analysis artifacts only. It never produces an implementation plan, a
+task list, a prototype, or code — not as a proposal, not as a "next step," not as
+initiative. The boundary lifts **per feature**, and only by the pair: an
+effective PASS at `/ba-gate <feature>` and a completed `/ba-handoff <feature>`.
+Wanting to implement is never evidence of readiness: the only exit is the gate.
+BLOCK
+BLOCK_N="$(wc -l < "$TMP/block.txt" | tr -d ' ')"
+BLOCK_SHA="$(sha_of < "$TMP/block.txt")"
+
+# the pin is grounded, not free-standing: §10.2's own paragraph must exist, and
+# the block's load-bearing sentences must be the document's words, not this
+# file's. The compiled wording is the sha's business; the rule is the document's.
+RULES="$DOCS/ba-native-spec-orchestrator-rules.md"
+grep -n '^\*\*Session mode — the analysis boundary' "$RULES" | head -1 \
+  | cut -d: -f1 > "$TMP/b-src-line" 2>/dev/null
+B_SRC_LINE="$(cat "$TMP/b-src-line" 2>/dev/null)"
+if [ -n "$B_SRC_LINE" ]; then
+  sed -n "${B_SRC_LINE}p" "$RULES" > "$TMP/b-src.txt"
+  ok "orchestrator §10.2 states the boundary — the block's source, line $B_SRC_LINE"
+else
+  : > "$TMP/b-src.txt"
+  bad "orchestrator §10.2 has no 'Session mode — the analysis boundary' paragraph"
+fi
+
+# both sides are unwrapped first: a soft wrap is invisible in the render, and the
+# block wraps where the document does not — section 3's reasoning, reused
+flatten() { tr '\n' ' ' < "$1" | sed 's/  */ /g; s/^ //; s/ $//'; }
+flatten "$TMP/b-src.txt" > "$TMP/b-src-flat.txt"
+flatten "$TMP/block.txt" > "$TMP/block-flat.txt"
+
+while IFS='|' read -r label phrase; do
+  [ -z "$label" ] && continue
+  in_src=1; in_blk=1
+  grep -qF -- "$phrase" "$TMP/b-src-flat.txt" || in_src=0
+  grep -qF -- "$phrase" "$TMP/block-flat.txt" || in_blk=0
+  if [ "$in_src" -eq 1 ] && [ "$in_blk" -eq 1 ]; then
+    ok "$label — the document's words, in the block"
+  elif [ "$in_src" -eq 0 ]; then
+    bad "§10.2 no longer states $label — the document moved; re-pin the block"
+  else
+    bad "the pinned block dropped $label — it no longer compiles §10.2"
+  fi
+done <<'PHRASES'
+the session is an analysis session|an **analysis session**
+what it never produces|It never produces an implementation plan, a task list, a prototype, or code — not as a proposal, not as a "next step," not as initiative.
+the boundary lifts per feature, by the pair|The boundary lifts **per feature**, and only by the pair:
+wanting is not readiness|Wanting to implement is never evidence of readiness: the only exit is the gate.
+PHRASES
+
+# ── the sweep: every skill and persona, against the pinned sha ────────────────
+#
+# prints one line per offender, then a summary line the caller parses — the
+# scanner's contract, in bash
+boundary_sweep() {
+  local root="$1" sk=0 ag=0 okc=0 miss=0 alt=0 f rel s
+  for f in "$root"/payload/claude/skills/*/SKILL.md "$root"/payload/claude/agents/*.md; do
+    [ -f "$f" ] || continue
+    case "$f" in *"/skills/"*) sk=$((sk+1)) ;; *) ag=$((ag+1)) ;; esac
+    rel="${f#"$root"/}"
+    if ! grep -qF -- "$BOUNDARY_HEAD" "$f"; then
+      miss=$((miss+1)); printf 'missing\t%s\n' "$rel"; continue
+    fi
+    s="$(awk -v n="$BLOCK_N" \
+      'index($0, "**The session boundary (framework-wide).**")==1 && !seen {seen=1; c=n}
+       c>0 {print; c--}' "$f" | sha_of)"
+    if [ "$s" = "$BLOCK_SHA" ]; then okc=$((okc+1))
+    else alt=$((alt+1)); printf 'altered\t%s\t%s\n' "$rel" "$(printf '%s' "$s" | cut -c1-12)"; fi
+  done
+  printf 'skills=%s personas=%s ok=%s missing=%s altered=%s\n' "$sk" "$ag" "$okc" "$miss" "$alt"
+}
+boundary_sweep "$PKG_ROOT" > "$TMP/bnd.out"
+B_SUM="$(grep '^skills=' "$TMP/bnd.out")"
+B_SK="$(printf '%s' "$B_SUM"  | sed -n 's/^skills=\([0-9]*\).*/\1/p')"
+B_AG="$(printf '%s' "$B_SUM"  | sed -n 's/.*personas=\([0-9]*\).*/\1/p')"
+B_OK="$(printf '%s' "$B_SUM"  | sed -n 's/.*[^a-z]ok=\([0-9]*\).*/\1/p')"
+B_MISS="$(printf '%s' "$B_SUM" | sed -n 's/.*missing=\([0-9]*\).*/\1/p')"
+B_ALT="$(printf '%s' "$B_SUM" | sed -n 's/.*altered=\([0-9]*\)$/\1/p')"
+B_UNITS=$((B_SK + B_AG))
+
+# vacuity first, on §2's reasoning: a stale glob that matches nothing would report
+# zero missing and pass
+[ "$B_SK" -gt 0 ] \
+  && ok "the skills glob derives a non-empty set — $B_SK skills" \
+  || bad "the skills glob matched nothing: the boundary check would pass vacuously"
+[ "$B_AG" -gt 0 ] \
+  && ok "the personas glob derives a non-empty set — $B_AG personas" \
+  || bad "the personas glob matched nothing: the boundary check would pass vacuously"
+
+if [ "$B_MISS" = "0" ]; then
+  ok "every one of the $B_UNITS units carries the boundary block — none missing"
+else
+  bad "$B_MISS unit(s) ship without the session boundary (§10.2's rule names every one):"
+  grep '^missing' "$TMP/bnd.out" | cut -f2 | sed 's/^/      /'
+fi
+
+if [ "$B_ALT" = "0" ]; then
+  ok "all $B_OK blocks are byte-identical — sha $(printf '%s' "$BLOCK_SHA" | cut -c1-12)"
+else
+  bad "$B_ALT unit(s) carry an altered block — the text is compiled verbatim, not paraphrased:"
+  grep '^altered' "$TMP/bnd.out" | awk -F'\t' '{printf "      %s  (%s…)\n", $2, $3}'
+fi
+
+# ── the mirrors: §10.2's paragraph, derived from the document ────────────────
+
+python3 - "$RULES" > "$TMP/mirror-expect.txt" 2>"$TMP/mirror-expect.err" <<'PY'
+import pathlib, re, sys
+txt = pathlib.Path(sys.argv[1]).read_text(encoding="utf-8")
+src = [l for l in txt.splitlines()
+       if l.startswith("**Session mode — the analysis boundary")]
+if not src:
+    sys.exit(1)
+line = src[0]
+# the two transformations the compile applies, and the only two
+line = line.replace("(framework-wide; D-O11)", "(framework-wide)")
+line = re.sub(r"\s*\*Compiled verbatim[^*]*\*\s*$", "", line)
+print(re.sub(r"\s+", " ", line).strip())
+PY
+if [ -s "$TMP/mirror-expect.txt" ]; then
+  ok "the mirrors' expected text derives from §10.2 — decision id and compile note dropped"
+else
+  bad "§10.2's paragraph does not derive: the mirrors cannot be checked from source"
+  sed 's/^/      /' "$TMP/mirror-expect.err"
+fi
+
+for m in payload/mirror/AGENTS.md payload/mirror/claude-block.md; do
+  awk '/^\*\*Session mode — the analysis boundary/ {f=1} f && /^$/ {exit} f {print}' \
+    "$PKG_ROOT/$m" > "$TMP/mirror-raw.txt"
+  flatten "$TMP/mirror-raw.txt" > "$TMP/mirror-got.txt"
+  if [ ! -s "$TMP/mirror-got.txt" ]; then
+    bad "$m carries no session-boundary paragraph — §10.2 names both mirrors"
+  elif [ "$(cat "$TMP/mirror-expect.txt")" = "$(cat "$TMP/mirror-got.txt")" ]; then
+    ok "$m carries §10.2's paragraph, word for word from the document"
+  else
+    bad "$m diverges from §10.2's paragraph:"
+    diff "$TMP/mirror-expect.txt" "$TMP/mirror-got.txt" | sed 's/^/      /' | head -8
+  fi
+done
+
+# ── the control: a unit without the block, and a unit that paraphrased it ─────
+#
+# same discipline as section 4 — the assertion above is worth nothing unless it
+# is shown to fail. Injected into a private copy; the payload is read, never
+# written.
+
+BND="$TMP/bnd-corpus"
+mkdir -p "$BND"
+( cd "$PKG_ROOT" && tar cf - payload/claude/skills payload/claude/agents ) \
+  | ( cd "$BND" && tar xf - )
+
+boundary_sweep "$BND" > "$TMP/bnd-clean.out"
+[ "$(sed -n 's/.*missing=\([0-9]*\).*/\1/p' "$TMP/bnd-clean.out")" = "0" ] \
+  && [ "$(sed -n 's/.*altered=\([0-9]*\)$/\1/p' "$TMP/bnd-clean.out")" = "0" ] \
+  && ok "the private copy starts clean — 0 missing, 0 altered" \
+  || bad "the boundary corpus copy is not clean before injection"
+
+D_MISS="$BND/payload/claude/skills/ba-t01/SKILL.md"
+D_ALT="$BND/payload/claude/agents/ba-gate.md"
+python3 -c 'import pathlib,sys
+p=pathlib.Path(sys.argv[1]); ls=p.read_text(encoding="utf-8").splitlines()
+i=[n for n,l in enumerate(ls) if l.startswith("**The session boundary")][0]
+p.write_text("\n".join(ls[:i]).rstrip("\n")+"\n", encoding="utf-8")' "$D_MISS"
+python3 -c 'import pathlib,sys
+p=pathlib.Path(sys.argv[1])
+t=p.read_text(encoding="utf-8").replace("the only exit is the gate.","the only way out is the gate.")
+p.write_text(t, encoding="utf-8")' "$D_ALT"
+
+boundary_sweep "$BND" > "$TMP/bnd-dirty.out"
+[ "$(sed -n 's/.*missing=\([0-9]*\).*/\1/p' "$TMP/bnd-dirty.out")" = "1" ] \
+  && ok "a skill shipped without the block is caught — exactly 1 missing" \
+  || bad "removing the block from ba-t01 did not register as missing"
+[ "$(sed -n 's/.*altered=\([0-9]*\)$/\1/p' "$TMP/bnd-dirty.out")" = "1" ] \
+  && ok "a persona that paraphrased one clause is caught — exactly 1 altered" \
+  || bad "rewording ba-gate's block did not register as altered"
+grep -q '^missing	payload/claude/skills/ba-t01/SKILL.md$' "$TMP/bnd-dirty.out" \
+  && ok "…and the missing one is named: payload/claude/skills/ba-t01/SKILL.md" \
+  || bad "the missing unit is not named in the report"
+grep -q '^altered	payload/claude/agents/ba-gate.md	' "$TMP/bnd-dirty.out" \
+  && ok "…and the altered one is named: payload/claude/agents/ba-gate.md" \
+  || bad "the altered unit is not named in the report"
+
+fi  # end of section 5
+
 # ── roll-up ──────────────────────────────────────────────────────────────────
 
 printf '\n  passed: %s   failed: %s\n' "$PASSED" "$FAILED"
@@ -375,8 +584,8 @@ if [ "$FAILED" -eq 0 ]; then
   if [ "$ONLY_SELFTEST" -eq 1 ]; then
     printf '✓ GREEN — the register self-test: 3 seeded defects, one per render class\n'
   else
-    printf '✓ GREEN — the BA-facing register: rule 5 across %s files · %s names from source · 3 seeded defects\n' \
-      "${F:-?}" "${NAMES_N:-?}"
+    printf '✓ GREEN — the BA-facing register: rule 5 across %s files · %s names from source · §10.2 in %s units + 2 mirrors · 5 seeded defects\n' \
+      "${F:-?}" "${NAMES_N:-?}" "${B_UNITS:-?}"
   fi
   exit 0
 fi

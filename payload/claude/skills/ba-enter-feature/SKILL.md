@@ -129,3 +129,10 @@ CC-XA-05 preconditions — the gate owns them · never mirrors brief or roadmap
 state into the ledger · never edits the roadmap directly (the flip routes as
 content under BA approval) · never blocks an entry on an advisory · never enters
 Band 3 before Band-1 closure · never assigns an `NNN` that is already taken.
+
+**The session boundary (framework-wide).** This is an **analysis session**. It
+produces analysis artifacts only. It never produces an implementation plan, a
+task list, a prototype, or code — not as a proposal, not as a "next step," not as
+initiative. The boundary lifts **per feature**, and only by the pair: an
+effective PASS at `/ba-gate <feature>` and a completed `/ba-handoff <feature>`.
+Wanting to implement is never evidence of readiness: the only exit is the gate.

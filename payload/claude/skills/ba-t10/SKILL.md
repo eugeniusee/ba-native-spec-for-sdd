@@ -161,3 +161,10 @@ models an entity, maps a journey, slices a feature or specifies a screen · neve
 edits `context.md`, `constraints.md` or a canvas section it does not own outside
 an approved batch · never confirms an AT criterion or clears an aspect · never
 runs a CC assertion.
+
+**The session boundary (framework-wide).** This is an **analysis session**. It
+produces analysis artifacts only. It never produces an implementation plan, a
+task list, a prototype, or code — not as a proposal, not as a "next step," not as
+initiative. The boundary lifts **per feature**, and only by the pair: an
+effective PASS at `/ba-gate <feature>` and a completed `/ba-handoff <feature>`.
+Wanting to implement is never evidence of readiness: the only exit is the gate.

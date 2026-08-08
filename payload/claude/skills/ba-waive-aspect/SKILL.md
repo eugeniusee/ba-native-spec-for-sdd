@@ -134,3 +134,10 @@ missing its unmet criteria, its risk line, or an event-shaped trigger · never
 waives an aspect nobody has assessed · never lifts a gate admission block, never
 satisfies a CC assertion, never touches a W- or HA-record · never degrades a
 dependent on a lapse · never edits content to close the debt it just recorded.
+
+**The session boundary (framework-wide).** This is an **analysis session**. It
+produces analysis artifacts only. It never produces an implementation plan, a
+task list, a prototype, or code — not as a proposal, not as a "next step," not as
+initiative. The boundary lifts **per feature**, and only by the pair: an
+effective PASS at `/ba-gate <feature>` and a completed `/ba-handoff <feature>`.
+Wanting to implement is never evidence of readiness: the only exit is the gate.

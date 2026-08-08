@@ -157,3 +157,10 @@ unnamed field · never resolves a scan hit on the BA's behalf · never reads
 `Assumed` rows into the scan · never reports a scan without its full row table ·
 never touches a canvas section it does not own · never confirms an AT criterion
 or clears an aspect · never runs a CC assertion.
+
+**The session boundary (framework-wide).** This is an **analysis session**. It
+produces analysis artifacts only. It never produces an implementation plan, a
+task list, a prototype, or code — not as a proposal, not as a "next step," not as
+initiative. The boundary lifts **per feature**, and only by the pair: an
+effective PASS at `/ba-gate <feature>` and a completed `/ba-handoff <feature>`.
+Wanting to implement is never evidence of readiness: the only exit is the gate.

@@ -67,6 +67,8 @@ Offline use needs `vendor/spec-kit-v0.12.5.zip` — see [`vendor/README.md`](ven
 ## Test
 
 ```sh
+tests/run-all.sh                                               # the regression — all twelve checks, one table
+tests/run-all.sh --file-only                                   # the ten file-only checks; no install, no network
 tests/check-exit.sh                                            # the Phase-2 exit test — all ten steps
 tests/check-layout.sh --target /path/to/project                # full Phase-2 bar
 tests/check-layout.sh --target /path/to/project --session S8   # a single session's bar
@@ -79,6 +81,15 @@ tests/check-techniques3.sh                                     # batch III + Ban
 tests/check-spine.sh                                           # Band 2 + the Tier-1/Tier-2 spine
 tests/check-register.sh                                        # the BA-facing communication register
 ```
+
+`run-all.sh` runs the whole regression and prints the roll-up table this
+package's BUILD-LOG entries carry: the ten file-only checks, then the two that
+install first — the full layout bar on a fresh offline install, and the Phase-2
+exit test. It asserts nothing of its own. Every verdict is the check's own exit
+code and every count is parsed from the check's own roll-up line, so a suite
+that stops printing counts reports that, not a passing row. `--file-only` runs
+the ten that need no install and no network; `--keep` keeps the installed
+projects; `-v` streams each check's output as it runs.
 
 `check-exit.sh` is the integration suite: it installs into a fresh git repo and
 runs build plan §5's ten steps against that one project — the full layout bar,
@@ -104,8 +115,12 @@ soft-wrapped lines into the paragraphs the BA actually sees, skips fenced blocks
 (rule 8 — the pinned shape governs), and requires every `T-nn` / `P-On` to carry
 its name. The names are read from the catalogue index and orchestrator §10.1's
 Moment column, not hardcoded, so a rename in either document breaks the scan
-instead of drifting past it. `--self-test` runs the seeded-defect control alone;
-`--list` prints the derived name table.
+instead of drifting past it. Its fifth section holds down the other rule that
+compiles into every unit — orchestrator §10.2's session boundary: byte-identical
+in all 32 skills and 4 personas, and §10.2's own paragraph in both mirrors,
+derived from the document rather than pinned here. A new skill that ships
+without the block goes red by existing. `--self-test` runs the seeded-defect
+control alone; `--list` prints the derived name table.
 
 `check-orchestrator.sh` replays the orchestrator rules' §12 exhibits — the
 BA-planning loop, a threshold cleared into Band-1 closure, and the RO-1 reopen
@@ -132,6 +147,8 @@ ba-native-spec/
 │  ├─ quickstart.md        BA quickstart — the loop, and manual mode (S9)
 │  └─ mode-b-fallback.md   the documented handoff fallback, and its cost (S9)
 └─ tests/
+   ├─ run-all.sh           the regression runner — all twelve checks, one table
+   │                       (Lane D; closes the hand-assembled roll-up)
    ├─ check-layout.sh · layout.expected
    ├─ check-m.sh           the M-checker suite (S2)
    ├─ check-gate.sh        the gate suite — runs 2→3 replay (S3)

@@ -282,3 +282,10 @@ Never invokes any `/speckit-*` command · never edits a spec, a memory artifact,
 or code · never rewords content to pass its own checks · never waives, accepts
 or approves on the BA's behalf · never runs a Band-1 aspect gate (that is
 `/ba-clear`) · never writes into `.specify/memory/`.
+
+**The session boundary (framework-wide).** This is an **analysis session**. It
+produces analysis artifacts only. It never produces an implementation plan, a
+task list, a prototype, or code — not as a proposal, not as a "next step," not as
+initiative. The boundary lifts **per feature**, and only by the pair: an
+effective PASS at `/ba-gate <feature>` and a completed `/ba-handoff <feature>`.
+Wanting to implement is never evidence of readiness: the only exit is the gate.

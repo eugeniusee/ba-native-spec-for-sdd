@@ -328,3 +328,10 @@ silently reconciles a contradiction · never interprets a hedged statement ·
 never deletes an Open Question — it is answered or `Overtaken — <reason>` ·
 never writes `Confirmed` into §8 · never drafts stories, requirements or
 acceptance · never runs a check, clears an aspect, or rules a reopen.
+
+**The session boundary (framework-wide).** This is an **analysis session**. It
+produces analysis artifacts only. It never produces an implementation plan, a
+task list, a prototype, or code — not as a proposal, not as a "next step," not as
+initiative. The boundary lifts **per feature**, and only by the pair: an
+effective PASS at `/ba-gate <feature>` and a completed `/ba-handoff <feature>`.
+Wanting to implement is never evidence of readiness: the only exit is the gate.

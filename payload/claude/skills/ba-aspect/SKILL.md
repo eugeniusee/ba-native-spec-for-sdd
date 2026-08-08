@@ -173,9 +173,9 @@ Append to the aspect's section, dated:
 
 ```
 Composed plan — <date> · <initials>
-| # | Technique | Source | Output contract {expected · class · destination} | Status |
+| # | Code — technique | Source | Output contract {expected · class · destination} | Status |
 |---|---|---|---|---|
-| 1 | <name> | catalogue | {…} | planned |
+| 1 | <code — name · custom — name> | catalogue | {…} | planned |
 ```
 
 `Status` values: `planned` · `run <date>` · `dropped — <reason>`. Re-composition

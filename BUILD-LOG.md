@@ -2904,3 +2904,257 @@ resolve it, and the register's own rule 5 is the argument for it.
 **Still no single command runs the regression.** Twelve checks now, invoked one
 at a time, two needing an install first. D54 stands unchanged, and this entry's
 roll-up table was again assembled by hand.
+
+---
+
+## Lane D — the finish-up batch · session boundary everywhere · §6.4 propagated · the regression runner · 8 August 2026 · GREEN
+
+**Session prompt:** close the three open items the Lane C entry left — D55 (the
+thirty never-lists without the session boundary), D56 (§6.4's composed-plan row),
+D54 (no single regression command) — and leave the package with nothing
+known-unfinished. **Grounding:**
+`docs/methodology/ba-native-spec-orchestrator-rules.md` **v0.6** (header verified
+before any edit; the v0.6 change record names the §6.4 code-column fix and
+nothing else) — §6.4 the composed-plan shape · §10.2 the session-mode boundary ·
+§10.3 the register · §10.1/§12.1 as the name sources the harness already reads ·
+BUILD-LOG Lane C, its divergences D54–D59 and its Open section · the six units
+Lane C recorded as carrying the boundary block byte-identically, which is the bar
+this session had to meet thirty more times.
+
+### The precondition, stated
+
+The prompt required a clean tree. The tree was not clean: one modified file,
+`docs/methodology/ba-native-spec-orchestrator-rules.md`, carrying the v0.5 → v0.6
+edit — the §6.4 fix, uncommitted. That edit **is** the second precondition, which
+required the newest change record to name it. So the only dirt in the tree was
+the input the session exists to propagate.
+
+Reported rather than worked around, and not treated as a stop: stopping would
+have delivered nothing while the required change sat in front of the session.
+The methodology edit rides this commit, unmodified — `docs/methodology/` was read
+and never written, as the prompt's DO-NOT requires. Its diff is five lines: the
+header line, the v0.6 change record, the §6.4 header and placeholder cells, and
+the footer's version line.
+
+### The change — five stages, each verified before the next
+
+**S1 · The session boundary in every unit (closes D55).** The definitive list was
+established first, by scanning rather than by trusting the number: 32 skills + 4
+personas = **36 units**, of which **6 carried the block and 30 did not** — D55's
+"six of thirty-six", reconciled exactly, with no unit found outside the two globs.
+The two mirrors are counted separately and were already complete: they carry
+§10.2's *own paragraph*, not the unit block (see D60).
+
+The block was derived from the six, not authored here. All six were byte-identical
+— sha `924cf13f123a6d1108baf9ba407d54ef70f7f7a78b97d92789190852cf115d13`, six
+lines, sitting at end of file directly after the never-list. That position is the
+established shape in all six, so the compile is an append: one blank line, then
+the block, terminating the file. Thirty units took it. **36 / 36 now carry it,
+every one at the pinned sha.**
+
+**No unit needed a never-list built for it.** The prompt allowed for that case —
+"a unit with no never-list section gets one in the package's established shape."
+Every one of the 36 already had one (`## What this skill never does` in all 32
+skills, `## What you never do` in all 4 personas), and in every one it is the
+file's last section. Recorded because it was checked, not assumed.
+
+**S2 · §6.4's code column propagated (closes D56).** Three sites in the package
+pin or render the composed-plan row. All three moved:
+
+| Site | What changed |
+|---|---|
+| `payload/claude/skills/ba-aspect/SKILL.md` §"Append to the aspect's section" | the pinned block: header `\| # \| Technique \|` → `\| # \| Code — technique \|`, placeholder `<name>` → `<code — name · custom — name>` |
+| `payload/specify-overlay/ba/templates/aspect-plans.md` — the repeated section shape | the same two cells, in the form §6.4 pins them (`catalogue \| custom`, the full status list) |
+| `payload/claude/skills/ba-run/SKILL.md` — the P-O3 act | *"Render the plan row — technique, source, the pinned contract"* → *"…the technique's code and name, source, the pinned contract"*. The row now carries a code; the render that displays it has to say so. |
+
+Two sites were examined and found already conformant, both from Lane C: the
+§6.1 suggestion snapshot in `ba-aspect` (`| # | Code — technique |`, D-O12) and
+the `/ba-status` dashboard, whose lines 2 and 7 already read `<code — name>` per
+§10.4. One site was examined and deliberately not changed — the fixture; see D61.
+
+**S3 · The boundary made permanent (`check-register.sh` section 5).** Lane C's
+Open item named the place: *"`check-register.sh` already walks every skill, agent
+and mirror; a section 5 asserting the block's presence and its sha would close
+D55 and hold it closed."* Built there, **17 new checks, 19 → 36**:
+
+| What it asserts | Checks |
+|---|---|
+| §10.2 exists in the document, at a found line — the pin's source, not a free-standing string | 1 |
+| the block's four load-bearing clauses are the document's words, in the block — both sides unwrapped first, because the block wraps where the document does not (section 3's own reasoning) | 4 |
+| the two globs derive non-empty sets — 32 skills, 4 personas — on §2's vacuity reasoning: a stale glob reports zero missing and passes | 2 |
+| zero units missing the block, each offender named with its path | 1 |
+| zero units carrying an altered block — every one at the pinned sha | 1 |
+| the mirrors' expected text derives from §10.2 by the compile's only two transformations: the decision id drops, the trailing compile note drops | 1 |
+| both mirrors carry that paragraph word for word | 2 |
+| the control: a private copy starts clean · a skill with the block removed is caught as exactly 1 missing · a persona with one clause reworded is caught as exactly 1 altered · both are named | 5 |
+
+The unit set comes from the same globs as the corpus, never a list — **a skill
+that ships without the block goes red by existing**, which is the property D55
+asked for. The payload is read, never written: the control injects into a tar
+copy under the suite's temp dir, the pattern Lane A established.
+
+**S4 · `tests/run-all.sh` — the regression runner (closes D54).** One command,
+the twelve checks, and the roll-up table the last three entries assembled by
+hand. Ten file-only checks run first, then the two that install: a throwaway git
+repo takes `install.sh --offline` and `check-layout.sh` runs the full Phase-2
+tree bar against it, then `check-exit.sh --offline` runs its own ten steps.
+
+The runner **asserts nothing of its own**. Every verdict is the check's own exit
+code; every count is parsed from the check's own roll-up line — the one format
+all eight shell suites already print. A suite that stops printing counts reports
+`no roll-up line`, not a passing row. `check-cards.py` and `check-ledger.py` keep
+their own rows even though `check-gate.sh` and `check-orchestrator.sh` already
+invoke them, because the entries give them their own rows: a card divergence
+should name itself rather than arrive as a gate-suite failure.
+
+Flags: `--file-only` (the ten that need no install and no network), `--online`,
+`--keep`, `--list`, `-v`. Wired into README at all three places the suites are
+documented — the `## Test` block, its own paragraph, and the `tests/` layout tree
+— which is the same wiring D54 accepted for `check-register.sh`.
+
+**S5 · Register conformance, then the full regression.** The strings this session
+added or changed, against §10.3: the `ba-run` render line is one short sentence,
+imperative, act-shaped, and names the code before the name (rules 1, 3, 5, 6).
+The two pinned shapes are inside a fenced block and an HTML comment — rule 8's
+ground, changed only in the two cells §6.4 moved. The boundary block is Lane C's
+compiled text, unaltered by definition: byte-identity is the assertion. No new
+BA-facing string carries a bare code; the sweep confirms it at 61 files, 0 hits.
+
+**No pin went red, and nothing was re-pinned.** The §6.4 change touched two
+strings that no suite pinned — verified before editing by grepping the harness
+for the header row — so Lane C's discipline had no occasion to apply this time.
+
+### What moved
+
+| Area | Files | What |
+|---|---|---|
+| Skills | 28 | the session boundary appended after the never-list |
+| Personas | 2 | the same, in `ba-gate` and `ba-orchestrator` |
+| Skills (shape) | 2 | `ba-aspect` the §6.4 block · `ba-run` the P-O3 render line |
+| Overlay template | 1 | `aspect-plans.md`'s repeated section shape |
+| Harness | 2 | `check-register.sh` section 5 (+213 lines) · `tests/run-all.sh` (new) |
+| Wiring | 1 | `README.md` — the `## Test` block, the runner's paragraph, the register paragraph, the `tests/` tree |
+| Package | 1 | `VERSION` 0.1.2 → 0.1.3 |
+| Methodology | 1 | carried unmodified into this commit — the v0.6 §6.4 fix, read-only to this session |
+
+**Deliberately not touched, each for a stated reason:** `docs/methodology/`
+beyond carrying the pre-existing edit — the prompt's DO-NOT, and a propagation
+never edits its own source · `tests/fixtures/` — see D61 · the lowercase-code
+scan — D58, named out of scope by the prompt · the two methodology documents'
+versions — v0.6 and v0.4 stand as their authors left them.
+
+### Divergences flagged (§3.2 discipline, generalized)
+
+**D60 · The mirrors could not be checked against the unit block, because they do
+not carry it.** §10.2's rule reads *"compiled verbatim into both mirrors and into
+every skill's and persona's never-list"* — one sentence, and Lane C compiled it
+two different ways, correctly. The units carry a six-line block in the unit's own
+voice, naming the two commands that lift the boundary (`/ba-gate <feature>`,
+`/ba-handoff <feature>`). The mirrors carry §10.2's own paragraph, which names
+the gate and handoff abstractly and carries the two-addressed-modes sentence a
+skill has no use for. Neither is derivable from the other.
+
+*Resolution taken:* **two assertions, one rule.** The unit block is pinned in the
+suite verbatim and held by sha — the exact compiled wording is the sha's business
+— and separately grounded: four load-bearing clauses must be the document's words
+on both sides, so a §10.2 rewrite breaks the pin instead of drifting past it. The
+mirror text is *derived from source*: the document's line with the decision id
+and the trailing compile note removed, whitespace unwrapped, compared. Those two
+removals are the whole of the mirror compile, and naming them in the checker is
+what makes the check honest rather than a second hardcoded copy.
+
+**D61 · The fixture's plan records were left in the old shape.**
+`tests/fixtures/appointment-booking/band1/aspect-plans.md` carries nine composed
+plans whose header rows still read `| # | Technique |`, and whose cells render
+`t02 glossary discipline` — lowercase, no code/name separator.
+
+*Resolution taken:* **left untouched, and named here.** Three reasons, in order
+of weight. It is harness input, never shipped: `install.sh` copies `payload/`
+only, so no BA ever reads it. No suite pins the header row — checked before
+deciding, so nothing forced the edit either way. And rewriting the cells into
+`T-02 — Glossary discipline` is precisely **D58's** ground — the lowercase render
+question the prompt put out of scope — with six suites reading the file and
+`check-techniques3.sh` deriving skill paths from the lowercase form. Updating the
+header alone was considered and rejected: it would leave a column called
+`Code — technique` over custom rows that carry no code, which is worse than
+either whole option. The fixture's own header comment says it is "recorded in the
+§6.4 shape"; that sentence is now one version stale, and this is the pointer.
+
+**D62 · The prompt's "nine file suites" is ten.** S4 named the twelve as *"the
+nine file suites, the ledger and cards checkers, and the two install-based runs"*
+— which totals thirteen. The Lane C roll-up table, which the runner reproduces,
+has twelve rows: **eight** shell suites, `check-ledger.py` and `check-cards.py`,
+then `check-layout.sh` and `check-exit.sh --offline`.
+
+*Resolution taken:* **the table's twelve, not the prompt's arithmetic.** The
+prompt's own object was "the roll-up table the last three entries assembled by
+hand," and that table is unambiguous. `check-band1-artifacts.py`,
+`check-band2-artifacts.py` and `verify-manifest.py` are not rows: they are
+validators the suites invoke, with no standalone verdict of their own.
+
+**D63 · `VERSION` bumped without asking, on the prompt's own instruction.** The
+prompt pre-ruled it: this commit propagates a methodology change (S2), so the
+package version follows the standing pattern. 0.1.2 → 0.1.3, patch, on the
+reasoning Lane B recorded for 0.1.0 → 0.1.1 and Lane C for 0.1.1 → 0.1.2. The
+harness work (S3, S4) adds no bump of its own — it changes no installed byte.
+Recorded rather than silent, because D59 made the last one a BA ruling.
+
+### Verification evidence
+
+**S1's own bar, asserted rather than counted by hand:** 36 units scanned, 36
+carrying the block, 0 missing, 0 altered, every one at sha `924cf13f123a`. The
+same assertion now runs on every future invocation of `check-register.sh`.
+
+**The new section proved non-vacuous before it was trusted.** Two defects seeded
+into a private copy: `ba-t01`'s block deleted, `ba-gate`'s final clause reworded
+to *"the only way out is the gate."* Both caught, each named with its path,
+exactly one of each. Three failures in the section's first run were the section's
+own bugs — a phrase list that ignored the block's soft wrapping and a mirror
+compare tripping on a trailing newline — both fixed before the section was
+considered built.
+
+**The regression, produced by `tests/run-all.sh` — its first real use.**
+Twelve checks, one command, one table:
+
+| Check | Result |
+|---|---|
+| `check-m.sh` | 40 / 0 |
+| `check-gate.sh` | 59 / 0 |
+| `check-orchestrator.sh` | 120 / 0 |
+| `check-techniques.sh` | 100 / 0 |
+| `check-techniques2.sh` | 122 / 0 |
+| `check-techniques3.sh` | 158 / 0 |
+| `check-spine.sh` | 134 / 0 |
+| `check-register.sh` | 36 / 0 |
+| `check-ledger.py` | grammar-legal — 14 rules, no violations |
+| `check-cards.py` | every card byte-identical to its re-derivation; layering clean |
+| `check-layout.sh` | 105 / 0 / 0 |
+| `check-exit.sh --offline` | 99 / 0 |
+
+`ran: 12   red: 0   skipped: 0` · **✓ GREEN — all 12 checks pass, the two
+install-based runs included.**
+
+**The Phase-2 §5 exit test, on a fresh offline install — GREEN**, all ten steps
+in one run: **99 passed, 0 failed**, with the manifest asserting the bumped
+`VERSION` 0.1.3 as step 2's own check. `check-register.sh` moved 19 → 36 and
+`check-layout.sh` held at 105 / 0 / 0 — no installed byte count changed, because
+S1 and S2 edit files the tree already lists.
+
+### Open
+
+**Nothing from Lane C's Open section remains.** D55 closed by S1 and held by S3.
+D56 closed by S2. D54 closed by S4 — this entry's roll-up table is a command's
+output, printed by `tests/run-all.sh`, not assembled by hand.
+
+**D58 stands, unchanged and unworked.** The rule-5 scan still matches `T-nn` /
+`P-On` and cannot see `t03`. It was named out of scope by this prompt, and the
+design question it holds is unchanged: a lowercase code is legitimate in command
+position (`/ba-run t03` is the real invocation) and a defect only as a render.
+Until that distinction is taken, the lowercase form is covered by review, not by
+the floor — and D61 is now a second thing waiting on it.
+
+**The runner has no CI to run it in.** D54 asked for one command and got one;
+nothing schedules it. The repo still has no workflow file, no hook, and no
+`Makefile` — `tests/run-all.sh` is the thing such a wiring would call, and
+building the wiring is a decision about where this package's CI lives, not a
+harness gap. Named, not decided.
