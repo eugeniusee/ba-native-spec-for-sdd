@@ -1,6 +1,6 @@
 ---
 name: ba-reopen
-description: Receive, rule and execute a reopen signal (P-O6). Logs RO-<n> unconditionally, proposes the contradicted-artifact-to-aspect mapping, takes the BA's Real / Not real / Brief-shaped ruling, then executes - T5, the stated blast radius with no auto-cascade, resolution routed as content, and event-shaped deferrals. The corpus's upstream valve; the gate emits, this executes.
+description: P-O6 - reopen ruling: receive, rule and execute a reopen signal. Logs RO-<n> unconditionally, proposes the contradicted-artifact-to-aspect mapping, takes the BA's Real / Not real / Brief-shaped ruling, then executes - T5, the stated blast radius with no auto-cascade, resolution routed as content, and event-shaped deferrals. The corpus's upstream valve; the gate emits, this executes.
 disable-model-invocation: true
 ---
 
@@ -35,7 +35,7 @@ evidence, and a reworded conflict statement is a different conflict.
 BA-present moment — batch approval, a Tier-2 session, verdict review. Receive and
 decide happen in the same sitting; nothing polls, nothing queues unattended.
 
-## Step 2 — P-O6: the ruling
+## Step 2 — P-O6 (reopen ruling): the ruling
 
 **Propose the aspect mapping** — contradicted artifact → owning aspect:
 

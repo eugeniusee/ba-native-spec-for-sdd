@@ -1,4 +1,4 @@
-# T-07 — output template & worked example
+# T-07 — Competitive analysis · output template & worked example
 
 ## The template
 

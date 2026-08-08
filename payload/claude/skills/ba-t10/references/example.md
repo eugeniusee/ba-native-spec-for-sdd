@@ -1,4 +1,4 @@
-# T-10 — output template & worked example
+# T-10 — Solution surface review · output template & worked example
 
 ## The template
 

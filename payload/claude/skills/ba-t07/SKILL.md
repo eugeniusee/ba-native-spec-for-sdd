@@ -1,6 +1,6 @@
 ---
 name: ba-t07
-description: T-07 Competitive analysis. The catalogue's one dual-aspect technique - serves Context against AT-CX-3 and Vision against AT-VI-2's target side. Names the alternatives the product is unlike, the status quo always screened, with deltas keyed to canvas problems and objectives, and writes .specify/memory/competitive-analysis.md plus the canvas Unlike summary batch.
+description: T-07 — Competitive analysis. The catalogue's one dual-aspect technique - serves Context against AT-CX-3 and Vision against AT-VI-2's target side. Names the alternatives the product is unlike, the status quo always screened, with deltas keyed to canvas problems and objectives, and writes .specify/memory/competitive-analysis.md plus the canvas Unlike summary batch.
 disable-model-invocation: true
 ---
 

@@ -1,4 +1,4 @@
-# T-17 — output template & worked example
+# T-17 — Epics decomposition · output template & worked example
 
 ## The template
 

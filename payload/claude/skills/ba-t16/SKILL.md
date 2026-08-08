@@ -1,6 +1,6 @@
 ---
 name: ba-t16
-description: T-16 Global out-of-scope. Serves Requirements against AT-RQ-1. Sweeps the solution surface for plausible adjacent expectations, classifies each survivor in the lives-instead vocabulary, names the expectation every row fences, and writes .specify/memory/out-of-scope.md.
+description: T-16 — Global out-of-scope. Serves Requirements against AT-RQ-1. Sweeps the solution surface for plausible adjacent expectations, classifies each survivor in the lives-instead vocabulary, names the expectation every row fences, and writes .specify/memory/out-of-scope.md.
 disable-model-invocation: true
 ---
 

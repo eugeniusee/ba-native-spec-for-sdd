@@ -41,6 +41,39 @@ points. Every scope is the smallest sufficient one, **stated before acting**.
 `/ba-gate-health`). Your own gates are always written **"aspect gate"**, never
 abbreviated. An aspect gate runs no CC assertion and produces no gate report.
 
+## BA-facing communication register
+
+The framework speaks in three registers, one owner each: **artifact text** — the
+writing standard; **stakeholder-facing questions** — elicitation §3.2 (no
+framework jargon, no EARS, no artifact names); **BA-facing conversation** — this
+register. Everything rendered to the BA — prompt points, status lines,
+suggestion snapshots, verdicts, free conversation — falls under it. It never
+touches artifact content: spec precision, EARS grammar, and pinned record shapes
+are out of its reach.
+
+1. **Short sentences.** One point per sentence; target ≤ 20 words. Split before
+   you subordinate.
+2. **Common words.** The everyday word, never the formal synonym: *use*, not
+   *utilize* · *before*, not *prior to* · *then*, not *subsequently* · *start*,
+   not *commence* · *need*, not *necessitate*. The pattern, not a closed list.
+3. **Active voice; imperative for BA acts.** "Run the check," never "the check
+   should be performed."
+4. **One term per concept.** Framework vocabulary verbatim — aspect, threshold,
+   waiver, reopen. Never rotate synonyms for one thing.
+5. **Code + name, always.** Every technique, stage, or assertion rendered to the
+   BA carries its code *and* its name: "T-05 — Context & landscape mapping,"
+   "P-O4 — clearing confirmation." First mention in a sitting adds a one-line
+   purpose. A bare code is a render defect.
+6. **State first, then the act.** Open every render with where the work stands
+   and what the BA does next. Background only on ask.
+7. **Only what the next decision needs.** No methodology explanation mid-flow —
+   name the owning document and section instead. Outside pinned formats, a
+   render past ~10 lines is a cut candidate.
+8. **Pinned formats stay pinned.** Recurring renders (suggestion snapshot §6.1,
+   ledger head §2.4, P-O prompts) keep their shapes; never re-narrate what a
+   format already shows. On conflict between this register and a pinned shape,
+   the shape governs.
+
 ## The two ledgers
 
 **`.specify/aspect-state.md`** — one mutable **head** (rewritten in place) plus
@@ -51,8 +84,9 @@ events, threshold-gap candidates — appends to `## Events` in full.
 
 **`.specify/aspect-plans.md`** — per aspect: the suggestion snapshot (kept
 verbatim as audit trail and tuning input), the composed plan with pinned output
-contracts, and the run log. Plus two non-aspect sections: `## Frame` (T-01's plan
-line and run log) and `## Band 2` (T-17's and T-18's, every rerun with its
+contracts, and the run log. Plus two non-aspect sections: `## Frame` (the plan
+line and run log of T-01 — Discovery canvas framing) and `## Band 2` (those of
+T-17 — Epics decomposition and T-18 — Scope allocation, every rerun with its
 trigger named).
 
 Both live at `.specify/` top level, **deliberately outside `.specify/memory/`**:
@@ -82,14 +116,14 @@ outlive Band 1 and stay reopenable through Bands 2–3:
 
 | # | Transition | Precondition | Recorded basis | Checkpoint |
 |---|---|---|---|---|
-| T1 | `untouched → open` | every prerequisite `first-pass-cleared` or `waived` (root: Band 1 entered) | prerequisite states cited | P-O1 |
-| T2 | `open → first-pass-cleared` | threshold evidence table complete | evidence table ref | P-O4 |
-| T3 | `open → waived` | AW record complete | `AW-<n>` | P-O5 |
-| T4 | `waived → first-pass-cleared` | evidence completed later | evidence ref + AW closure `superseded` | P-O4 |
-| T5 | `first-pass-cleared → reopened` · `waived → reopened` | reopen ruled Real | `RO-<n>` | P-O6 |
-| T6 | `reopened → first-pass-cleared` | conflict resolved; delta evidence confirmed | `RO-<n>` closure + delta evidence | P-O4 |
-| T7 | `reopened → waived` | BA accepts the conflict unresolved | `AW-<n>` citing `RO-<n>` | P-O5 |
-| T8 | `waived → open` | AW lapsed by the BA | `AW-<n>` lapse | P-O5 |
+| T1 | `untouched → open` | every prerequisite `first-pass-cleared` or `waived` (root: Band 1 entered) | prerequisite states cited | P-O1 — aspect opening |
+| T2 | `open → first-pass-cleared` | threshold evidence table complete | evidence table ref | P-O4 — clearing confirmation |
+| T3 | `open → waived` | AW record complete | `AW-<n>` | P-O5 — aspect-waiver acts |
+| T4 | `waived → first-pass-cleared` | evidence completed later | evidence ref + AW closure `superseded` | P-O4 — clearing confirmation |
+| T5 | `first-pass-cleared → reopened` · `waived → reopened` | reopen ruled Real | `RO-<n>` | P-O6 — reopen ruling |
+| T6 | `reopened → first-pass-cleared` | conflict resolved; delta evidence confirmed | `RO-<n>` closure + delta evidence | P-O4 — clearing confirmation |
+| T7 | `reopened → waived` | BA accepts the conflict unresolved | `AW-<n>` citing `RO-<n>` | P-O5 — aspect-waiver acts |
+| T8 | `waived → open` | AW lapsed by the BA | `AW-<n>` lapse | P-O5 — aspect-waiver acts |
 
 In particular **there is no `first-pass-cleared → open`.** Dissatisfaction with
 cleared content, absent a contradiction, is ordinary content work — run more
@@ -189,8 +223,8 @@ work, refuse and name the right one.
 | Signal | Sources | Receive | Decide (BA) | Execute |
 |---|---|---|---|---|
 | **Routing** | Tier-1 ingestion · Tier-2 · gate lane 2 | batch logged, run-log ref | approve the batch (the elicitation act, unmoved) | elicitation writes; you book destination fulfillment; the scoped Scope-H run fires per the armed cadence |
-| **Reopen** | Tier-1 ingestion · Tier-2 · **gate lane 3** | `RO-<n> received` — **unconditional** | Real / Not real / Brief-shaped, + aspect-mapping confirmation (P-O6) | the reopen machinery, end to end |
-| **Overflow** | Tier-2 (the GQ cap) | logged against the feature | supplement · cap adjust · defer (P-O9) | supplement → schedule the Tier-1-supplement mini-loop for the named gaps only · cap adjust → Tier 2 resumes under the adjusted cap · defer → band event + roadmap note via routing |
+| **Reopen** | Tier-1 ingestion · Tier-2 · **gate lane 3** | `RO-<n> received` — **unconditional** | Real / Not real / Brief-shaped, + aspect-mapping confirmation (P-O6 — reopen ruling) | the reopen machinery, end to end |
+| **Overflow** | Tier-2 (the GQ cap) | logged against the feature | supplement · cap adjust · defer (P-O9 — overflow ruling) | supplement → schedule the Tier-1-supplement mini-loop for the named gaps only · cap adjust → Tier 2 resumes under the adjusted cap · defer → band event + roadmap note via routing |
 
 Logging is **unconditional**, so a declined signal is an audit record, never a
 silent drop — and a declined reopen is flagged toward its emitter's tuning log
@@ -225,7 +259,8 @@ drip:** a technique run completes before any of these render.
 | P-O9 | overflow ruling | supplement · cap adjust · defer | raised inside a Tier-2 session |
 
 Where a P-O shares a sitting with another document's prompt point — an ingestion
-batch that carries a reopen signal renders batch approval and P-O6 together —
+batch that carries a reopen signal renders batch approval and
+P-O6 — reopen ruling together —
 **each act stays owned by its document: one sitting, never one blurred
 decision.**
 

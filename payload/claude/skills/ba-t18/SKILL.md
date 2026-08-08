@@ -1,6 +1,6 @@
 ---
 name: ba-t18
-description: T-18 Scope allocation, repeatable. Recommends a phase per epic in the four locked factors, renders the recommendation as a diff against the current allocation, and on BA approval writes the Phase cells and appends one Allocation-log entry — including on a no-change rerun. Owns the Phase column and the log, and nothing else in the roadmap.
+description: T-18 — Scope allocation, repeatable. Recommends a phase per epic in the four locked factors, renders the recommendation as a diff against the current allocation, and on BA approval writes the Phase cells and appends one Allocation-log entry — including on a no-change rerun. Owns the Phase column and the log, and nothing else in the roadmap.
 disable-model-invocation: true
 ---
 
@@ -49,7 +49,8 @@ The event set, each with its ground:
 | **priority shift** | BA-declared: a sponsor or market change. The declaration itself is the trigger, and it is logged as the entry's trigger |
 
 **Never this run's ground:** feature sequencing inside a phase, and next-feature
-selection — both BA acts at the roadmap. Epic-set changes are T-17's.
+selection — both BA acts at the roadmap.
+Epic-set changes belong to T-17 — Epics decomposition.
 
 ## Depth boundary — phase grain, and it is a hard edge
 
@@ -63,17 +64,18 @@ this technique's.
 
 **Must NOT expand into:**
 
-- **editing rows, names, descriptions or sources.** Those are T-17's columns. A
-  set-change need is proposed as a T-17 rerun.
+- **editing rows, names, descriptions or sources.** Those columns belong to
+  T-17 — Epics decomposition. A set-change need is proposed as a
+  T-17 (Epics decomposition) rerun.
 - **flipping statuses.** Status writes are routed edits at band events, owned by
   the routing discipline.
 - **slicing features or settling scope questions.** An allocation blocked on an
   open scope question **recommends the call — never the answer.**
 - **emitting a delivery sequence inside a phase.** Dependency order is a
   rationale factor; a sequence column would duplicate the BA's own selection act.
-- **retiring or creating epics.** An epic leaving scope is proposed as a
-  T-17-side routed pair — graduation reversed. **`Later` is a phase, not an
-  exit.**
+- **retiring or creating epics.** An epic leaving scope is proposed as a routed
+  pair on the T-17 — Epics decomposition side — graduation reversed. **`Later`
+  is a phase, not an exit.**
 
 ## The four factors — the whole rationale vocabulary
 
@@ -92,7 +94,8 @@ entry says which BA judgment did.
 ## The write discipline — one file, three writers
 
 **Yours are the Phase column and the `## Allocation log`.** Row existence, ID,
-Epic, Description and Source are T-17's; Status flips are the routing
+Epic, Description and Source belong to T-17 — Epics decomposition; Status flips
+are the routing
 discipline's. A run needing another writer's ground **proposes that run or a
 routed edit — never an inline fix.**
 
@@ -149,7 +152,7 @@ line in the roadmap.
 
    | Finding | Where it goes |
    |---|---|
-   | a set-change need — split · merge · new · retire | a **T-17 rerun proposal** |
+   | a set-change need — split · merge · new · retire | a **T-17 (Epics decomposition) rerun proposal** |
    | a contradiction with gated Band-1 content | a **reopen signal** (`/ba-reopen`) |
    | an open scope question | **that epic's Tier-1 act** |
 
@@ -188,7 +191,8 @@ The template and a worked example are in `references/example.md`.
 
 ## Signals
 
-- **T-17 rerun proposal** — a set-change need, named and handed back.
+- **T-17 — Epics decomposition rerun proposal** — a set-change need, named and
+  handed back.
 - **Reopen signal** — a contradiction with gated Band-1 content. Emit and stop.
 - **Tier-1 referral** — an open scope question blocking a phase call: the
   question and the act that answers it, never a guessed answer.

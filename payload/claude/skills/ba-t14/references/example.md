@@ -1,4 +1,4 @@
-# T-14 — output template & worked example
+# T-14 — Design & UX standards · output template & worked example
 
 ## The template
 

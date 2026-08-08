@@ -1,6 +1,6 @@
 ---
 name: ba-enter-feature
-description: Band-3 entry for one feature (P-O8). Renders the parent brief's slicing row for confirmation, assigns the next free NNN under Spec Kit's convention, creates the specs/NNN-<feature>/ directory, records the band event, and prompts the roadmap status flip to In delivery. The slicing-row write is elicitation mechanics; entry rides that confirmation act.
+description: P-O8 - Band-3 entry, for one feature. Renders the parent brief's slicing row for confirmation, assigns the next free NNN under Spec Kit's convention, creates the specs/NNN-<feature>/ directory, records the band event, and prompts the roadmap status flip to In delivery. The slicing-row write is elicitation mechanics; entry rides that confirmation act.
 disable-model-invocation: true
 ---
 

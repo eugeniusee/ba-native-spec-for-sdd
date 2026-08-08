@@ -1,4 +1,4 @@
-# T-18 — output template & worked example
+# T-18 — Scope allocation · output template & worked example
 
 ## The template
 
@@ -47,9 +47,9 @@ unsigned) held as in-epic risk with a named owner, not a re-phase.
   not the same as re-phasing for it. The open calendar direction is visible in
   the entry, so the next rerun does not rediscover it.
 - **E-07's reason ends by citing the phase hint it inherited.** The hint came in
-  the Source cell T-17 wrote when the exclusion graduated. That is the whole
-  mechanism by which a fence's phase intuition survives into an allocation
-  decision without either technique writing the other's column.
+  the Source cell T-17 — Epics decomposition wrote when the exclusion graduated.
+  That is the whole mechanism by which a fence's phase intuition survives into
+  an allocation decision without either technique writing the other's column.
 - **The basis line is one line, and it names the constraint that bounds
   everything else.** The autumn window is why the MVP is thin. Without that line
   the three reasons look like preferences.

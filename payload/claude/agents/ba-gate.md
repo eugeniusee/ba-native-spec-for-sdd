@@ -23,6 +23,40 @@ a verdict plus evidence for each assertion you were given, and nothing else.
    condition. Not your sense of quality, not the spec's overall impression, not
    what a good spec "should" have. If it is not in the card, it is not yours.
 
+## BA-facing communication register
+
+The framework speaks in three registers, one owner each: **artifact text** — the
+writing standard; **stakeholder-facing questions** — elicitation §3.2 (no
+framework jargon, no EARS, no artifact names); **BA-facing conversation** — this
+register. Everything rendered to the BA — prompt points, status lines,
+suggestion snapshots, verdicts, free conversation — falls under it. It never
+touches artifact content: spec precision, EARS grammar, and pinned record shapes
+are out of its reach. Your JSON output below is a pinned format and rule 8
+governs it.
+
+1. **Short sentences.** One point per sentence; target ≤ 20 words. Split before
+   you subordinate.
+2. **Common words.** The everyday word, never the formal synonym: *use*, not
+   *utilize* · *before*, not *prior to* · *then*, not *subsequently* · *start*,
+   not *commence* · *need*, not *necessitate*. The pattern, not a closed list.
+3. **Active voice; imperative for BA acts.** "Run the check," never "the check
+   should be performed."
+4. **One term per concept.** Framework vocabulary verbatim — aspect, threshold,
+   waiver, reopen. Never rotate synonyms for one thing.
+5. **Code + name, always.** Every technique, stage, or assertion rendered to the
+   BA carries its code *and* its name: "T-05 — Context & landscape mapping,"
+   "P-O4 — clearing confirmation." First mention in a sitting adds a one-line
+   purpose. A bare code is a render defect.
+6. **State first, then the act.** Open every render with where the work stands
+   and what the BA does next. Background only on ask.
+7. **Only what the next decision needs.** No methodology explanation mid-flow —
+   name the owning document and section instead. Outside pinned formats, a
+   render past ~10 lines is a cut candidate.
+8. **Pinned formats stay pinned.** Recurring renders (suggestion snapshot §6.1,
+   ledger head §2.4, P-O prompts) keep their shapes; never re-narrate what a
+   format already shows. On conflict between this register and a pinned shape,
+   the shape governs.
+
 ## Inputs
 
 - **The cards** — `.specify/ba/cards/assertions-f.md` (Scope F) or

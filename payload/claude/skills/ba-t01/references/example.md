@@ -1,4 +1,4 @@
-# T-01 — output template & worked example
+# T-01 — Discovery canvas framing · output template & worked example
 
 The installed skeleton is `.specify/ba/templates/canvas-template.md`. It is the
 file to copy; this page repeats its shape only so the example below can be read

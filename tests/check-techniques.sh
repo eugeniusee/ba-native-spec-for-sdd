@@ -317,9 +317,9 @@ has "$RUN" "the technique is **on the composed plan** with a **pinned output con
     "/ba-run checks exactly one thing at invocation"
 has "$RUN" "dispatch the technique's skill (\`/ba-t03\`, \`/ba-tier1\`, …)" \
     "/ba-run dispatches by skill name — the technique skills are its callees"
-has "$RUN" "**T-01** against \`## Frame\`" \
+has "$RUN" "**T-01 — Discovery canvas framing** against \`## Frame\`" \
     "/ba-run knows T-01 checks against the plans file's ## Frame section"
-has "$SKILLS/ba-frame/SKILL.md" "Dispatch **T-01** (\`/ba-run t01\`)" \
+has "$SKILLS/ba-frame/SKILL.md" "Dispatch **T-01 — Discovery canvas framing** (\`/ba-run t01\`)" \
     "/ba-frame dispatches T-01 through /ba-run, never directly"
 
 for t in t01 t02 t03; do
@@ -367,7 +367,7 @@ printf '\n▸ The three sheets, compiled (b1 §2 depth · §4 procedure · signa
 
 T1="$SKILLS/ba-t01/SKILL.md"
 has "$T1" "A framed canvas is never re-framed." "ba-t01 refuses a re-frame — the trigger cannot recur"
-has "$T1" "T-01 runs no question loop at all." "ba-t01 asks nothing — the holes are the suggestion engine's input"
+has "$T1" "T-01 — Discovery canvas framing runs no question loop at all." "ba-t01 asks nothing — the holes are the suggestion engine's input"
 has "$T1" "open — no source material" "ba-t01 carries the open-hole marker"
 has "$T1" "\`N/A — <reason>\` is a BA ruling" "…and keeps it distinct from the BA's ruling"
 has "$T1" "[CONFLICT: <A> says … · <B> says …]" "ba-t01 carries both readings under the conflict marker"
@@ -380,7 +380,7 @@ T2="$SKILLS/ba-t02/SKILL.md"
 has "$T2" "is **not a technique run**" "ba-t02 separates the standing discipline from the consolidation run (D-B1-3)"
 has "$T2" "What is **not** legal is the framework proposing this technique outside Requirements" \
     "…and keeps BA election legal while framework initiative stays evidence-grounded"
-has "$T2" "role definitions — T-12's ground" "ba-t02 refuses to define a role (standard rule 5)"
+has "$T2" "role definitions belong to T-12 — Roles & permissions." "ba-t02 refuses to define a role (standard rule 5)"
 has "$T2" "a definition that enumerates fields or transitions has crossed the line" \
     "ba-t02 carries the testable depth edge"
 has "$T2" "never silently averaged" "a meaning conflict is ruled, never averaged"

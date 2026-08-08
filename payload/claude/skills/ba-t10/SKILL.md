@@ -1,6 +1,6 @@
 ---
 name: ba-t10
-description: T-10 Solution surface review. Serves Solution against AT-SO-1, AT-SO-2 and AT-SO-3. Completes the canvas Forms, Core Functions, Third-Party Connections and Localization sections to the silence-fails discipline - each filled or explicitly N/A, every function linked to the objective or vision element it serves, every connection carrying role plus direction stated or explicitly open.
+description: T-10 — Solution surface review. Serves Solution against AT-SO-1, AT-SO-2 and AT-SO-3. Completes the canvas Forms, Core Functions, Third-Party Connections and Localization sections to the silence-fails discipline - each filled or explicitly N/A, every function linked to the objective or vision element it serves, every connection carrying role plus direction stated or explicitly open.
 disable-model-invocation: true
 ---
 

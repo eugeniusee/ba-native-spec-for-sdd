@@ -61,7 +61,8 @@ A2 — Specialists self-publish availability · source: implied by canvas
   is *Slicing rationale*: the answer is expected to reveal a second primary role,
   and that is a cut in §8, not a capability in §2.
 - **Q3 is a sibling boundary check, phrased as a confirmation.** It exists
-  because the roadmap holds payments elsewhere. It is the shape an honest T-17
+  because the roadmap holds payments elsewhere. It is the shape an honest
+  T-17 — Epics decomposition
   open edge takes once it reaches the right room.
 - **A2's impact line names a governance consequence.** *An admin role enters
   scope* — that is why the assumption is worth a minute of a call: being wrong

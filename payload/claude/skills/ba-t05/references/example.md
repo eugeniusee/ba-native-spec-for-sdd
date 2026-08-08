@@ -1,4 +1,4 @@
-# T-05 — output template & worked example
+# T-05 — Context & landscape mapping · output template & worked example
 
 ## The template
 

@@ -1,4 +1,4 @@
-# T-02 — output template & worked example
+# T-02 — Glossary discipline · output template & worked example
 
 ## The template
 

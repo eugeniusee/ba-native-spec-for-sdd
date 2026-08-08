@@ -1,6 +1,6 @@
 ---
 name: ba-t09
-description: T-09 Vision & differentiation. Serves Vision against AT-VI-1, AT-VI-2 and AT-VI-3. Authors the three-slot product statement and the Our Solution differentiation against named Unlike entries, then runs the constraint-contradiction scan over every Confirmed constraint row. Writes canvas.md Product.The/Is/That and Competition.Our Solution.
+description: T-09 — Vision & differentiation. Serves Vision against AT-VI-1, AT-VI-2 and AT-VI-3. Authors the three-slot product statement and the Our Solution differentiation against named Unlike entries, then runs the constraint-contradiction scan over every Confirmed constraint row. Writes canvas.md Product.The/Is/That and Competition.Our Solution.
 disable-model-invocation: true
 ---
 

@@ -1,4 +1,4 @@
-# T-15 — output template & worked example
+# T-15 — Constitution · output template & worked example
 
 ## The template
 

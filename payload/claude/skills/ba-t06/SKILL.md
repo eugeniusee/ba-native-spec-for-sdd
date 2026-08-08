@@ -1,6 +1,6 @@
 ---
 name: ba-t06
-description: T-06 Constraints elicitation. Serves Context against AT-CX-2. Probes the binding rules class by class - technical, business, regulatory - to the silence-fails discipline, rules each candidate Confirmed or Assumed, closes every empty class with a sourced basis, and writes .specify/memory/constraints.md.
+description: T-06 — Constraints elicitation. Serves Context against AT-CX-2. Probes the binding rules class by class - technical, business, regulatory - to the silence-fails discipline, rules each candidate Confirmed or Assumed, closes every empty class with a sourced basis, and writes .specify/memory/constraints.md.
 disable-model-invocation: true
 ---
 

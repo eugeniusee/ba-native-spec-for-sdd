@@ -1,6 +1,6 @@
 ---
 name: ba-t08
-description: T-08 Value definition. Serves Value against AT-VA-1 and AT-VA-2. Completes the canvas Problems and Objectives sections at aspect grade - every problem naming who hurts and resolving to a register population, every objective linked to the problem it answers and concrete enough to be cited downstream. Writes canvas.md Problems and Objectives.
+description: T-08 — Value definition. Serves Value against AT-VA-1 and AT-VA-2. Completes the canvas Problems and Objectives sections at aspect grade - every problem naming who hurts and resolving to a register population, every objective linked to the problem it answers and concrete enough to be cited downstream. Writes canvas.md Problems and Objectives.
 disable-model-invocation: true
 ---
 

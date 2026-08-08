@@ -2262,3 +2262,187 @@ resolution mechanism (`feature.json`), a script inventory (D45), and a plan
 template whose Constitution Check reads our constitution. A pin bump is a
 Phase-4 rollout decision that has to re-run `check-exit.sh`, not only
 `check-layout.sh` — the layout bar would not have caught D42.
+
+---
+
+## Lane B — orchestrator rules v0.4 §10.3 · BA-facing communication register · 7 August 2026 · GREEN
+
+**Session prompt:** Lane B rebuild — propagate orchestrator rules v0.4 §10.3
+into the mirrors, the four personas, and every BA-facing render string.
+**Grounding:** `docs/methodology/ba-native-spec-orchestrator-rules.md` **v0.4**
+(header verified before any edit) — §10.3 in full, the eight register rules and
+the three-register framing; §10.1's Moment column, the verbatim name source for
+`P-O1`–`P-O9`; §3.3 (thresholds, read to establish that AT criteria carry no
+names) · `ba-native-spec-catalogue-index.md` v0.2, rows T-01–T-18, the verbatim
+name source for the technique codes · S1–S9's payload as the compiled surface
+this change recompiles · BUILD-LOG S9 closure note (ii), the one-way rule, as
+the propagation discipline actually applied (see D47).
+
+### The change
+
+**One additive document section, propagated.** §10.3 is v0.4's only change: the
+third register — BA-facing conversation — with eight rules, alongside the
+writing standard (artifact text) and elicitation §3.2 (stakeholder-facing
+questions). Two acts followed from it:
+
+1. **The eight rules compiled verbatim** into the `CLAUDE.md` fenced framework
+   block template, the `AGENTS.md` mirror, and all four personas — the compile
+   target §10.3 names in its own preamble.
+2. **The rule-5 sweep:** every bare technique or stage code in a BA-facing
+   render string paired with its name. `T-nn` names verbatim from the catalogue
+   index; `P-On` names verbatim from §10.1's Moment column. Rule 5's own
+   examples — *"T-05 — Context & landscape mapping," "P-O4 — clearing
+   confirmation"* — fix both the sources and the format.
+
+### Units touched — 55 files
+
+| Class | Count | Files |
+|---|---|---|
+| Mirrors (register compiled) | 2 | `claude-block.md` · `AGENTS.md` |
+| Subagents (register compiled + sweep) | 4 | `ba-orchestrator` · `ba-discovery` · `ba-analyst` · `ba-gate` |
+| Workflow skills (sweep) | 8 of 12 | `ba-frame` · `ba-aspect` · `ba-run` · `ba-clear` · `ba-waive-aspect` · `ba-reopen` · `ba-close-band1` · `ba-enter-feature` |
+| Technique skills (sweep) | 19 of 20 | `ba-t01`…`ba-t18` · `ba-tier1` |
+| Technique `references/example.md` (sweep) | 19 | the same nineteen |
+| Session exit tests (assertion strings re-pinned) | 2 | `check-techniques.sh` · `check-spine.sh` |
+| `VERSION` | 1 | 0.1.0 → 0.1.1 |
+
+**Deliberately not touched, each for a stated reason:** the three compiled cards
+(D48) · the 13 artifact templates and the 11 checker scripts — the register
+governs conversation with the BA, never artifact content or machine-read
+records · `ba-status`, `ba-gate`, `ba-gate-health`, `ba-handoff`, `ba-tier2` —
+swept and clean, no bare code to pair · `install.sh` — the mirrors it copies
+changed, the installer did not.
+
+### Compilation-rule application (§3)
+
+- **§3.1 travels verbatim.** The eight rules are byte-identical across all six
+  units — `sha256` of the rule list, all six: `276a3507f8860975…`. Wording
+  diffed against §10.3 with wrapping normalised: identical. Hard wrapping at 80
+  is the payload's own shape and the register pins no wrapping.
+- **The §-refs inside rules 7 and 8 travelled with them** (`§6.1`, `§2.4`,
+  elicitation `§3.2`). Verbatim was the instruction, and these are operative,
+  not rationale — rule 7 *tells* the framework to name the owning document and
+  section. Recorded because the runtime cannot read `docs/methodology/`; the
+  refs identify the pinned shapes, they are not an instruction to go read them.
+- **§3.3 never compiled:** no BABOK tag, mining note, review record or rationale
+  prose entered the payload. §10.3's ASD-STE100 provenance line — the C4 mining
+  pattern — stayed in the document, as §3.3 requires.
+- **Pinned formats untouched, per rule 8's own last clause.** The sweep skipped
+  every fenced block in the payload: ledger event grammar, evidence tables, the
+  suggestion snapshot and composed-plan shapes, run-log lines, the gate's JSON
+  contract and its `gap_line` grammar. On conflict the shape governs, and the
+  report writer refuses a run whose `gap_line` does not match.
+
+### Verification evidence
+
+**The sweep, mechanically.** `bare_codes.py` scans the 61 skill / agent / mirror
+files, joins soft-wrapped source lines into the paragraphs the BA actually sees,
+skips fenced blocks, and requires each `T-nn` / `P-On` to carry a name
+immediately adjacent (em-dash, parenthesis, colon, comma or table-cell
+boundary).
+
+```
+files scanned: 61
+BARE CODES IN BA-FACING STRINGS: 0
+```
+
+**Negative control — the sweep is not vacuous.** Three defects injected, one per
+render class: a prose heading (`## P-O3 — the act`), a mid-sentence prose
+mention (`(that is P-O2)`), and a table cell (`| P-O7 | closure act |`). The
+detector reported exactly 3 and named all three sites; restoring returned it to
+0. A checker that cannot fail is not evidence, so it was made to fail first.
+
+**Regression — all seven suites, plus the cards, the layout bar and the exit
+script:**
+
+| Check | Result |
+|---|---|
+| `check-m.sh` | 40 / 0 |
+| `check-gate.sh` | 59 / 0 |
+| `check-orchestrator.sh` | 120 / 0 |
+| `check-techniques.sh` | 100 / 0 |
+| `check-techniques2.sh` | 122 / 0 |
+| `check-techniques3.sh` | 158 / 0 |
+| `check-spine.sh` | 134 / 0 |
+| `check-cards.py` | every card byte-identical to its re-derivation |
+| `check-layout.sh` (real `--offline` install) | 105 / 0 / 0 — full §1.1 tree |
+| `check-exit.sh` | 99 / 0 — all ten steps in one run |
+
+733 suite assertions plus 204 install-and-exit assertions, zero failures. The
+install was a real one into a fresh repo: the register block reaches both
+`CLAUDE.md` and `AGENTS.md`, and the manifest reads `orchestrator rules | v0.4`
+and `Package version | 0.1.1` — the doc vector propagates on its own, from the
+document headers, exactly as the one-way rule assumes.
+
+### Divergences flagged (§3.2 discipline, generalized)
+
+**D47 · The maintenance guide the session prompt names does not exist.** The
+prompt cites `docs/ba-native-spec-framework-maintenance.md` (v2.0) and its
+"Lane B rebuild recipe" as the procedure to follow. That file is absent from the
+working tree, absent from `git ls-files`, absent from every branch and from the
+history of every branch; the string "Lane B" appears nowhere in the corpus.
+
+*Resolution taken:* **proceeded under the discipline the corpus does carry, and
+said so.** The one-way rule is written down — S9's closure note (ii): a document
+bump recompiles exactly the units anchored to it, their session exit tests
+re-run, `VERSION` bumps, the manifest's doc vector updates. All four were
+performed and are evidenced above. The entry format follows the S1–S9 records.
+Two things a real guide would have decided and this entry decided instead: the
+`VERSION` increment (patch, on an additive doc section) and the fenced-block
+sweep boundary. Both are stated here so a guide, when written, can overrule them
+in one place.
+
+**D48 · The compiled cards cannot take rule 5, and the reason is structural.**
+The prompt's sweep names the compiled cards. They cannot carry names. `at-
+thresholds.md` pins its own shape in its header — *"AT-ID + the criterion's exact
+text — nothing else"* — and all three cards are re-derived and byte-compared
+against the methodology documents by `check-cards.py`, whose `--record` mode is
+the only legitimate way to change them. A hand-added name would fail that check
+on the next run.
+
+*Resolution taken:* **cards untouched, and the sweep found nothing there to
+fix anyway.** Register rule 8 settles it on its own terms: on conflict between
+this register and a pinned shape, the shape governs. Changing this needs a
+source-document change first — which is the one-way rule working, not a gap.
+
+**D49 · `AT-*` and `CC-*` have no names to pair, and one of them is out of rule
+5's reach.** The prompt's sweep lists all four code families. Only two have a
+name source. The catalogue index names T-01–T-18; §10.1 names P-O1–P-O9. No
+document in the corpus gives an AT criterion or a CC assertion a name — both
+carry a code plus their operative text, and the assertion cards name only
+categories (`C1 · Overview & Value`). Rule 5 reaches "technique, stage, or
+assertion", and the AT card states in its own second line that AT criteria are
+**not** assertions — so AT sits outside rule 5 as written, as well as outside
+any name source.
+
+*Resolution taken:* **no names invented, and nothing needed changing.** Every
+`CC-*` in the payload sits in gate machinery or in the pinned JSON contract, not
+in a BA-facing render; the BA-facing assertion render is the gate report, which
+the prompt excludes and whose `gap_line` grammar the report writer enforces
+byte-wise. Every `AT-*` sits in threshold-evidence assembly, where the criterion
+text travels with the code. Naming them is a document decision, not a payload
+one: it would need a name column in orchestrator §3.3 and in the contract, and
+then a card-shape change. Recorded so the next register bump can take it up
+deliberately rather than discover it.
+
+**D50 · Six exit-test assertions pinned the exact strings the register
+changed.** `check-techniques.sh` (4) and `check-spine.sh` (2) assert literal
+payload text — *"`**T-01** against `## Frame`"*, *"P-O9 — the overflow ruling"*
+and four more. All six went red on the recompiled text, which is the regression
+floor doing its job: it noticed.
+
+*Resolution taken:* **the assertions were re-pinned to the recompiled strings,
+never loosened.** No assertion was deleted, weakened to a substring, or made
+name-agnostic — each still pins one exact string, now the register-compliant
+one. That is the one-way rule's "their session exit tests re-run" clause: the
+test tracks the compiled text, and a test that stopped pinning it would stop
+being a floor.
+
+### Open
+
+**The register is compiled but not yet checked.** Nothing in `tests/` asserts
+rule 5 — the sweep above ran from a scratch script, not from the harness, so the
+next unit that renders a bare code will ship. The natural home is a
+`check-register.sh` carrying the paragraph-aware scan and its negative control,
+run beside the other suites. Left undone deliberately: the prompt scoped this
+session to propagation, and a new test file is a harness unit, not a Lane B one.

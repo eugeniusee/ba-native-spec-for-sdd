@@ -165,10 +165,10 @@ Plus risk probes — where this epic's domain typically hides scope: payment
 edges, permission edges, integration failure ownership, data migration.
 
 **D. Sibling boundary checks.** Where this epic's edges touch other roadmap
-epics or existing briefs, one check per touchpoint:
-*"the roadmap holds X in epic Y — confirm nothing X-shaped belongs here."*
-These feed the brief's Boundaries section and prevent silent scope overlap.
-**This is where a T-17 open edge lands** — an adjacency carried honestly in a
+epics or existing briefs, one check per touchpoint: *"the roadmap holds X in
+epic Y — confirm nothing X-shaped belongs here."* These feed the brief's
+Boundaries section and prevent silent scope overlap. **This is where a T-17 —
+Epics decomposition open edge lands** — an adjacency carried honestly in a
 description becomes a check asked in the right room.
 
 ### Output
@@ -263,9 +263,9 @@ worked brief is in `references/example.md`.
 
 Two sections carry vocabularies rather than free text:
 
-- **§8 Status** — `Proposed`, or `Confirmed — <date>` once Band-3 entry
-  confirms the slice. **You write `Proposed`.** The confirmation is P-O8's act,
-  performed at `/ba-enter-feature`.
+- **§8 Status** — `Proposed`, or `Confirmed — <date>` once Band-3 entry confirms
+  the slice. **You write `Proposed`.** The confirmation is the act of P-O8 —
+  Band-3 entry, performed at `/ba-enter-feature`.
 - **§3** carries both sub-headings — `### Excluded — not this epic` and
   `### Deferred — this epic, later` — and every item names where it lives
   instead, or its target phase and what substitutes at launch.

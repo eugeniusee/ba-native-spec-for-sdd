@@ -1,6 +1,6 @@
 ---
 name: ba-t13
-description: T-13 Core process mapping. Serves Requirements against AT-RQ-4's journeys clause. Establishes the significant-role set, pre-drafts each role's major journeys at helicopter grade with roles cited verbatim and entities named from the domain model, runs the coherence pass, and writes .specify/memory/processes.md.
+description: T-13 — Core process mapping. Serves Requirements against AT-RQ-4's journeys clause. Establishes the significant-role set, pre-drafts each role's major journeys at helicopter grade with roles cited verbatim and entities named from the domain model, runs the coherence pass, and writes .specify/memory/processes.md.
 disable-model-invocation: true
 ---
 

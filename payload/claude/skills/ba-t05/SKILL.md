@@ -1,6 +1,6 @@
 ---
 name: ba-t05
-description: T-05 Context & landscape mapping. Serves Context against AT-CX-1. Puts the ground the solution lands on onto paper at helicopter grade - the systems that exist today and the organizational landscape - or the sourced greenfield line where systems genuinely do not exist, and writes .specify/memory/context.md.
+description: T-05 — Context & landscape mapping. Serves Context against AT-CX-1. Puts the ground the solution lands on onto paper at helicopter grade - the systems that exist today and the organizational landscape - or the sourced greenfield line where systems genuinely do not exist, and writes .specify/memory/context.md.
 disable-model-invocation: true
 ---
 

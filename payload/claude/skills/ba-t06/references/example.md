@@ -1,4 +1,4 @@
-# T-06 — output template & worked example
+# T-06 — Constraints elicitation · output template & worked example
 
 ## The template
 

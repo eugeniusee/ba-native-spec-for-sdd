@@ -1,4 +1,4 @@
-# T-12 — output template & worked example
+# T-12 — Roles & permissions · output template & worked example
 
 ## The template
 

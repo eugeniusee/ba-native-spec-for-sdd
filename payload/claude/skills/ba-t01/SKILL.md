@@ -1,6 +1,6 @@
 ---
 name: ba-t01
-description: T-01 Discovery canvas framing. Serves Frame - carries a presale canvas into the repo in framework shape, or drafts one where no presale ran, and extends it with the Context/Constraints element. Writes canvas.md at the repo root, the shared evidence substrate every Band-1 aspect gate reads.
+description: T-01 — Discovery canvas framing. Serves Frame - carries a presale canvas into the repo in framework shape, or drafts one where no presale ran, and extends it with the Context/Constraints element. Writes canvas.md at the repo root, the shared evidence substrate every Band-1 aspect gate reads.
 disable-model-invocation: true
 ---
 
@@ -23,18 +23,21 @@ complete and clear them.
 
 Self-check, and stop if either half fails:
 
-> the run is **on a composed plan** — for T-01 that is the `## Frame` section of
+> the run is **on a composed plan** — for T-01 (Discovery canvas framing) that
+> is the `## Frame` section of
 > `.specify/aspect-plans.md`, not an aspect section — **with its output contract
 > pinned**: `{presale canvas incl. the Context/Constraints element · Context · canvas.md}`.
 
-On a miss, stop and name `/ba-run` (which owns P-O3) or `/ba-frame` (which owns
-the Frame plan line). Do not proceed on an unpinned contract.
+On a miss, stop and name `/ba-run` (which owns P-O3 — technique invocation) or
+`/ba-frame` (which owns the Frame plan line). Do not proceed on an unpinned
+contract.
 
 **Skip-if — refuse the run and say which:** `canvas.md` is already present in
 framework shape (thirteen sections, `P-n`/`O-n` line-IDs) and confirmed carried.
 **A framed canvas is never re-framed.** Deepening its sections is aspect-sheet
-ground — T-03 and T-05…T-10 — and the trigger cannot recur, because Band-1 entry
-happens once.
+ground: T-03 — Stakeholder register, and T-05 — Context & landscape mapping
+through T-10 — Solution surface review. The trigger cannot recur, because
+Band-1 entry happens once.
 
 ## Depth boundary — framing grade, and it is a hard edge
 
@@ -43,14 +46,14 @@ populations · one-line problems and objectives with line-IDs · the three
 product-statement slots · enumerated functions · forms · connections ·
 constraint one-liners.
 
-**Must NOT descend into aspect-grade completion** — register rows (T-03),
-constraint classes with `none identified — <basis>` bases (T-06),
-function→objective linkage sweeps (T-10) — **nor anything spec-depth**, which is
-Tier-2 ground.
+**Must NOT descend into aspect-grade completion** — register rows (T-03 —
+Stakeholder register), constraint classes with `none identified — <basis>` bases
+(T-06 — Constraints elicitation), function→objective linkage sweeps (T-10 —
+Solution surface review) — **nor anything spec-depth**, which is Tier-2 ground.
 
-**T-01 runs no question loop at all.** Holes stay visibly open; they are the
-aspect suggestion engine's input. A question here would pre-empt the aspect that
-owns the hole.
+**T-01 — Discovery canvas framing runs no question loop at all.** Holes stay
+visibly open; they are the aspect suggestion engine's input. A question here
+would pre-empt the aspect that owns the hole.
 
 ## Inputs loaded
 
@@ -124,10 +127,10 @@ lands is the orchestrator's, and `/ba-frame` says it.
 
 ## Signals
 
-None. T-01 emits no routing batch and no reopen — at Frame there is nothing
-gated to contradict, and every artifact home but this one is still empty. A
-finding that would route elsewhere is carried as an open line or a `[CONFLICT: …]`
-marker in the canvas and read by the aspect that owns it.
+None. T-01 (Discovery canvas framing) emits no routing batch and no reopen — at
+Frame there is nothing gated to contradict, and every artifact home but this one
+is still empty. A finding that would route elsewhere is carried as an open line
+or a `[CONFLICT: …]` marker in the canvas and read by the aspect that owns it.
 
 ## What this skill never does
 

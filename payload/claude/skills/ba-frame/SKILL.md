@@ -1,6 +1,6 @@
 ---
 name: ba-frame
-description: Band-1 entry. Initializes the two aspect ledgers at six untouched aspects, confirms the presale canvas is present and carried into the repo, and runs T-01 to produce one when it is absent. The birth act for .specify/aspect-state.md and .specify/aspect-plans.md; after it, the Stakeholders aspect is openable.
+description: Band-1 entry. Initializes the two aspect ledgers at six untouched aspects, confirms the presale canvas is present and carried into the repo, and runs T-01 - Discovery canvas framing to produce one when it is absent. The birth act for .specify/aspect-state.md and .specify/aspect-plans.md; after it, the Stakeholders aspect is openable.
 disable-model-invocation: true
 ---
 
@@ -24,7 +24,8 @@ openable.
   Band 1". A reopen degrades one aspect's state in place; it does not re-enter
   the band.
 - **The orchestrator never authors.** This skill writes exactly two files, both
-  ledgers. The canvas, if one has to be produced, is **T-01's** output under its
+  ledgers. The canvas, if one has to be produced, is the output of
+**T-01 — Discovery canvas framing** under its
   own contract — dispatched, not written here.
 
 ## Step 1 — the ledgers
@@ -65,8 +66,8 @@ than an aspect's.
 1. Pin the output contract, and state it before running:
    `{presale canvas incl. the Context/Constraints element · Context · canvas.md}`
 2. Record the plan line in `## Frame`.
-3. Dispatch **T-01** (`/ba-run t01`) with any presale material the BA supplied.
-   T-01 authors `canvas.md`; this skill does not.
+3. Dispatch **T-01 — Discovery canvas framing** (`/ba-run t01`) with any presale
+   material the BA supplied. That run authors `canvas.md`; this skill does not.
 4. Book contract fulfillment in the `## Frame` run log —
    `fulfilled` · `partial — <what is missing>` · `failed — <why>`.
 

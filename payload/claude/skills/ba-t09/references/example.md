@@ -1,4 +1,4 @@
-# T-09 — output template & worked example
+# T-09 — Vision & differentiation · output template & worked example
 
 ## The template
 

@@ -1,6 +1,6 @@
 ---
 name: ba-waive-aspect
-description: The aspect-waiver acts (P-O5) - grant an AW so a threshold-missing aspect still grants progression, re-affirm standing waivers at band acts and head renders, or lapse one. Project-numbered AW-<n> records with named unmet criteria, reason, risk accepted, approver and an event-shaped revisit trigger. Lapse is not reopen.
+description: P-O5 - aspect-waiver acts: grant an AW so a threshold-missing aspect still grants progression, re-affirm standing waivers at band acts and head renders, or lapse one. Project-numbered AW-<n> records with named unmet criteria, reason, risk accepted, approver and an event-shaped revisit trigger. Lapse is not reopen.
 disable-model-invocation: true
 ---
 
@@ -121,7 +121,7 @@ record.
 | Grants | DAG progression + closure eligibility | feature PASS with the gap on record | Scope-F admission despite an H gap |
 | Numbered | per project | per feature | per project |
 | Home | `.specify/aspect-state.md` | feature `gate-report.md` | `.specify/gate-health.md` |
-| Ruled at | **P-O5, here** | P2 | P1 / P8 |
+| Ruled at | **P-O5 — aspect-waiver acts, here** | P2 | P1 / P8 |
 
 **Post-closure, debt on spec-anchored artifacts is HA territory** — the handover
 rule. The AW remains the instrument only for aspect-layer acts (T3/T7), which

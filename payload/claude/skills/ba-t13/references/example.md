@@ -1,4 +1,4 @@
-# T-13 — output template & worked example
+# T-13 — Core process mapping · output template & worked example
 
 ## The template
 

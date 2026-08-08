@@ -1,6 +1,6 @@
 ---
 name: ba-t17
-description: T-17 Epics decomposition. The opening Band-2 act. Sweeps the closed Band-1 estate for epic candidates, sizes each by the one-call-and-1..N-features test, checks coverage and exclusivity against the canvas capability ground, and writes the roadmap's epic rows at the shape every Tier-1 kit consumes.
+description: T-17 — Epics decomposition. The opening Band-2 act. Sweeps the closed Band-1 estate for epic candidates, sizes each by the one-call-and-1..N-features test, checks coverage and exclusivity against the canvas capability ground, and writes the roadmap's epic rows at the shape every Tier-1 kit consumes.
 disable-model-invocation: true
 ---
 
@@ -64,7 +64,8 @@ one of them:
 - an **epic candidate contradicts a standing exclusion**
 
 **Deepening an epic is never this run's ground.** Per-epic essential scope,
-boundaries and slicing are Tier 1's, in the brief. Phases are T-18's.
+boundaries and slicing belong to Tier 1 — epic scoping interview, in the brief.
+Phases belong to T-18 — Scope allocation.
 Re-partition of a stable set is enrichment — only on BA ask.
 
 ## Depth boundary — epic grain, and it is a hard edge
@@ -85,8 +86,8 @@ estate's capability ground.
   one epic or two, where does X live — is BA-ruled at review, or carried as
   honest description adjacency the kit generator converts into sibling-boundary
   checks.
-- **allocating phases.** The Phase column is T-18's, and the birth value is the
-  only value this run writes into it.
+- **allocating phases.** The Phase column belongs to T-18 — Scope allocation,
+  and the birth value is the only value this run writes into it.
 - **restating estate content** beyond the description's 2–3 sentences. The
   Source cites; the description names.
 
@@ -97,13 +98,13 @@ existence and `ID · Epic · Description · Source`, plus both birth values.**
 
 | Writer | Owns |
 |---|---|
-| **T-17 — this run** | row existence · ID · Epic · Description · Source · the birth values `Unallocated` and `Defined` |
-| T-18 | the Phase column · the `## Allocation log` |
+| **T-17 — Epics decomposition · this run** | row existence · ID · Epic · Description · Source · the birth values `Unallocated` and `Defined` |
+| T-18 — Scope allocation | the Phase column · the `## Allocation log` |
 | the routing discipline | Status flips at band events · graduation retires |
 
 **A run needing another writer's ground proposes that run or a routed edit —
 never an inline fix.** You never pre-fill a phase: a phase hint travels in the
-Source cell, where T-18's evidence assembly reads it.
+Source cell, where the evidence assembly of T-18 — Scope allocation reads it.
 
 ## Inputs loaded
 
@@ -201,7 +202,8 @@ epics by ID, and a retired row's ID retires with it.
 scope, and the Source cell is where that claim is made checkable.
 
 **You create the `## Allocation log` heading and leave it empty** — the section
-is T-18's ground, and its absence would leave the next run nowhere to write.
+is the ground of T-18 — Scope allocation, and its absence would leave the next
+run nowhere to write.
 
 The template and a worked example are in `references/example.md`.
 

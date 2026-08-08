@@ -1,6 +1,6 @@
 ---
 name: ba-close-band1
-description: The Band-1 closure act (P-O7) - the arming act. Checks the two preconditions (six aspects cleared or waived, zero reopened; every standing AW re-affirmed into the armed state), records the closure event, then requests the full Scope-H run from /ba-gate-health that arms the system. Closure completes when the arming entry exists, whatever its verdict. Band 2 unlocks.
+description: P-O7 - Band-1 closure, the arming act. Checks the two preconditions (six aspects cleared or waived, zero reopened; every standing AW re-affirmed into the armed state), records the closure event, then requests the full Scope-H run from /ba-gate-health that arms the system. Closure completes when the arming entry exists, whatever its verdict. Band 2 unlocks.
 disable-model-invocation: true
 ---
 
@@ -53,7 +53,7 @@ A **lapse** at this moment returns that aspect to `open` (T8) and precondition 1
 is no longer met: say so and stop. Dependents keep their states — lapse is not
 reopen.
 
-## P-O7 — the act
+## P-O7 (Band-1 closure) — the act
 
 Take the BA's declaration and record the closure event in `## Events`:
 

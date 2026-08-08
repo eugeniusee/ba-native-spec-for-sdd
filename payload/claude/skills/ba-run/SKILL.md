@@ -1,6 +1,6 @@
 ---
 name: ba-run
-description: Invoke a planned technique - the P-O3 contract check, dispatch to the technique skill, then the bookkeeping at run end (contract fulfillment, routed findings, emitted signals) and the post-run refresh of the aspect's threshold evidence. The only legal way to start a technique run.
+description: Invoke a planned technique - the P-O3 - technique invocation contract check, dispatch to the technique skill, then the bookkeeping at run end (contract fulfillment, routed findings, emitted signals) and the post-run refresh of the aspect's threshold evidence. The only legal way to start a technique run.
 disable-model-invocation: true
 ---
 
@@ -29,17 +29,18 @@ freedom is the point of the planning loop.
   exactly what the loop exists to prevent.
 - *On the plan, contract unpinned or unconfirmed* → **the run is illegal.**
   Render the missing part of `{expected output · artifact class · destination
-  file}` and send the BA back to P-O2. Do not propose-and-proceed in one breath:
-  a proposed contract becomes real when the BA confirms it, and that
-  confirmation is P-O2's act.
+  file}` and send the BA back to P-O2 — plan composition. Do not
+  propose-and-proceed in one breath: a proposed contract becomes real when the
+  BA confirms it, and that confirmation is the act of P-O2 — plan composition.
 
 Some techniques are planned outside an aspect and check against their own plans
-file sections: **T-01** against `## Frame`; **T-17, T-18 and every Tier-1 mode**
-against `## Band 2`. **Tier 2** carries its contract per feature, entered at
-P-O8 — the contract check is the same, and its record is not the plans file
-(below).
+file sections: **T-01 — Discovery canvas framing** against `## Frame`; **T-17 —
+Epics decomposition, T-18 — Scope allocation and every Tier-1 mode** against `##
+Band 2`. **Tier 2 — spec-depth gap-filling** carries its contract per feature,
+entered at P-O8 (Band-3 entry) — the contract check is the same, and its record
+is not the plans file (below).
 
-## P-O3 — the act
+## P-O3 (technique invocation) — the act
 
 Render the plan row — technique, source, the pinned contract — and take the
 BA's invocation. Then dispatch the technique's skill (`/ba-t03`, `/ba-tier1`, …)
@@ -74,9 +75,9 @@ the technique's own prompt points, not to yours.
      still `untouched`, and Context's aspect gate reads it as existing evidence
      when it runs.
 3. **Signals emitted by the run enter intake in the same sitting** — reopen
-   (`/ba-reopen`), overflow (P-O9, below), and the routing batch above. Receive
-   and decide happen together, because every emission moment is a BA-present
-   moment.
+   (`/ba-reopen`), overflow (P-O9 — overflow ruling, below), and the routing
+   batch above. Receive and decide happen together, because every emission
+   moment is a BA-present moment.
 
 ## The bookkeeping — your added duty, and it is pure bookkeeping
 
@@ -94,8 +95,9 @@ did not fulfil its contract leaves its hole open, and the hole is what the next
 threshold refresh will name.
 
 **Where the line lands.** An aspect's runs append under that aspect's section;
-T-01's under `## Frame`; **T-17, T-18 and every Tier-1 mode under `## Band 2`**,
-each rerun naming its trigger.
+those of T-01 — Discovery canvas framing under `## Frame`.
+**T-17 — Epics decomposition, T-18 — Scope allocation and every Tier-1 mode
+land under `## Band 2`**, each rerun naming its trigger.
 
 **Tier 2 gets no plans-file line.** A feature's record is its band event in the
 ledger, the spec at its contracted destination, and the gate report — and a
@@ -117,7 +119,7 @@ threshold-evidence table against `.specify/ba/cards/at-thresholds.md`:
 **This is lazy detection's home in Band 1.** Evidence is assembled at this
 touchpoint and on BA demand — never watched.
 
-## P-O9 — the overflow ruling
+## P-O9 — overflow ruling
 
 A Tier-2 session that hits the question cap with blockers still unfilled emits an
 **overflow signal**: feature · unfilled blockers list · Tier-1-supplement
@@ -125,15 +127,16 @@ recommendation. Log it against the feature and take the BA's ruling:
 
 | Ruling | Execution |
 |---|---|
-| **supplement** | schedule the Tier-1-supplement mini-loop as a technique invocation (a fresh P-O3) **for the named gaps only** |
+| **supplement** | schedule the Tier-1-supplement mini-loop as a technique invocation (a fresh P-O3 — technique invocation) **for the named gaps only** |
 | **cap adjust** | Tier 2 resumes under the BA-adjusted cap — the cap is BA-adjustable by design |
 | **defer** | band event + roadmap note via the routing discipline |
 
 ## What this skill never does
 
 Never starts a run that is not on a composed plan with a pinned contract · never
-pins or confirms a contract itself (that is P-O2) · never interrupts a run in
-progress · never writes the technique's output, and never edits it afterwards ·
-never approves a routing batch on the BA's behalf · never fires a Scope-H run
-(the armed cadence is the gate's; before closure nothing fires at all) · never
-confirms a threshold · never marks a partial contract fulfilled.
+pins or confirms a contract itself (that is P-O2 — plan composition) · never
+interrupts a run in progress · never writes the technique's output, and never
+edits it afterwards · never approves a routing batch on the BA's behalf · never
+fires a Scope-H run (the armed cadence is the gate's; before closure nothing
+fires at all) · never confirms a threshold · never marks a partial contract
+fulfilled.

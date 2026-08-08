@@ -1,4 +1,4 @@
-# T-08 — output template & worked example
+# T-08 — Value definition · output template & worked example
 
 ## The template
 

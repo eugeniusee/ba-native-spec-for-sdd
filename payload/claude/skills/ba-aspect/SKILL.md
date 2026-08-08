@@ -1,6 +1,6 @@
 ---
 name: ba-aspect
-description: Open a Band-1 aspect and compose its technique plan - prerequisite check, T1 opening, the evidence-grounded suggestion snapshot, and the BA's composition with output contracts pinned before any run. Carries prompt points P-O1 (open) and P-O2 (compose). Also re-plans an aspect that is already open or reopened.
+description: Open a Band-1 aspect and compose its technique plan - prerequisite check, T1 opening, the evidence-grounded suggestion snapshot, and the BA's composition with output contracts pinned before any run. Carries prompt points P-O1 - aspect opening and P-O2 - plan composition. Also re-plans an aspect that is already open or reopened.
 disable-model-invocation: true
 ---
 
@@ -10,9 +10,10 @@ disable-model-invocation: true
 `solution` · `requirements`. Case-insensitive; resolve it to the ledger's
 spelling before writing anything.
 
-Two prompt points in one act: **P-O1** opens the aspect, **P-O2** composes its
-plan. On an aspect that is already `open` or `reopened`, this skill re-plans —
-P-O1 is skipped and the composition appends.
+Two prompt points in one act: **P-O1 — aspect opening** opens the aspect;
+**P-O2 — plan composition** composes its plan. On an aspect that is already
+`open` or `reopened`, this skill re-plans — P-O1 (aspect opening) is skipped and
+the composition appends.
 
 ## Invocation contract — check before you run
 
@@ -51,7 +52,7 @@ content, absent a contradiction, is ordinary content work — run more technique
 under the existing plan, route more findings; arrival is never gated. Only a
 contradiction degrades a cleared aspect, and that arrives as a reopen signal.
 
-## Step 2 — P-O1: the opening act
+## Step 2 — P-O1 (aspect opening): the opening act
 
 Present the prerequisite states as the basis and take the BA's act. On **open**:
 
@@ -94,7 +95,7 @@ so `/ba-run` can dispatch it. Where none does, sketch a **custom** technique —
 the loop is catalogue-agnostic by design: a technique is runnable iff its
 contract is pinned, wherever the contract came from.
 
-## Step 4 — P-O2: composition (the BA's plan)
+## Step 4 — P-O2 (plan composition): the BA's plan
 
 Present the snapshot and take the composition: **select · drop · reorder · add
 custom**. The composed plan is the BA's document; the snapshot stays beside it
@@ -131,9 +132,9 @@ next act — `/ba-run <technique>` for the first planned line.
 
 ## What this skill never does
 
-Never opens an aspect whose prerequisite is unmet or `reopened` · never
-re-opens a cleared aspect · never runs a technique (that is `/ba-run`, its own
-BA act at P-O3) · never confirms a threshold (that is `/ba-clear`) · never
-authors content or edits an artifact — it writes the two ledgers only · never
-emits a suggestion that cannot name its AT hole · never treats its own
+Never opens an aspect whose prerequisite is unmet or `reopened` · never re-opens
+a cleared aspect · never runs a technique (that is `/ba-run`, its own BA act at
+P-O3 — technique invocation) · never confirms a threshold (that is `/ba-clear`)
+· never authors content or edits an artifact — it writes the two ledgers only ·
+never emits a suggestion that cannot name its AT hole · never treats its own
 suggestion as a restriction on the BA's plan.

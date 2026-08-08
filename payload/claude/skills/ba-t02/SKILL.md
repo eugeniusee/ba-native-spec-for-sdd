@@ -1,6 +1,6 @@
 ---
 name: ba-t02
-description: T-02 Glossary discipline - the deliberate sweep-and-merge consolidation run. Serves Requirements against AT-RQ-3; suggestion-anchored there, BA-electable into any open aspect's plan. Writes .specify/memory/glossary.md - canonical terms, business-level definitions, and the merge record that makes later drift detectable.
+description: T-02 — Glossary discipline - the deliberate sweep-and-merge consolidation run. Serves Requirements against AT-RQ-3; suggestion-anchored there, BA-electable into any open aspect's plan. Writes .specify/memory/glossary.md - canonical terms, business-level definitions, and the merge record that makes later drift detectable.
 disable-model-invocation: true
 ---
 
@@ -53,12 +53,13 @@ Elicit **one term, one project meaning, plus the merge record**.
 **Must NOT descend into:**
 
 - per-field data definitions — a data dictionary is not a v1 artifact
-- entity attributes or relations — that is T-11's domain-model ground
+- entity attributes or relations — that is the domain-model ground of
+  T-11 — Domain (conceptual) modeling
 - state vocabularies — spec Data-section ground
 - UI copy
-- **role definitions — T-12's ground.** A glossary entry that restates a role
-  double-defines it. Role nouns are *used* in definitions here, never *defined*
-  here.
+- **role definitions belong to T-12 — Roles & permissions.** A glossary entry
+  that restates a role double-defines it. Role nouns are *used* in definitions
+  here, never *defined* here.
 
 The testable edge: **a definition that enumerates fields or transitions has
 crossed the line.** Cut it back to the business meaning.

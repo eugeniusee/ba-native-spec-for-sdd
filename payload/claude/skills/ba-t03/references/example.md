@@ -1,4 +1,4 @@
-# T-03 — output template & worked example
+# T-03 — Stakeholder register · output template & worked example
 
 ## The template
 
@@ -37,8 +37,9 @@ populations are first-class entries, not a footnote under the people.
   "canvas: Customers · kickoff notes" where two sources agree.
 - **No charters, no roles.** "Publish availability; deliver appointments" is a
   role-in-project line, not a persona narrative and not a permission. Goals,
-  frustrations and environment are T-04's; a `(Specialist × Availability ×
-  publish)` policy row is T-12's.
+  frustrations and environment belong to T-04 — Persona charters; a
+  `(Specialist × Availability × publish)` policy row belongs to
+  T-12 — Roles & permissions.
 - **Coherence with the canvas is visible.** Canvas Customers names Olena,
   Clients and Specialists; all three resolve to entries here. That diff is what
   AT-ST-3 reads.

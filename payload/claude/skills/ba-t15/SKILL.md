@@ -1,6 +1,6 @@
 ---
 name: ba-t15
-description: T-15 Constitution. Serves Requirements against AT-RQ-1 and the persona-principle clause of AT-RQ-2. Seeds the two framework principles unconditionally, sweeps the estate for project principles through the principle-vs-detail screen, resolves the Governance-class reference spine, and writes .specify/memory/constitution.md.
+description: T-15 — Constitution. Serves Requirements against AT-RQ-1 and the persona-principle clause of AT-RQ-2. Seeds the two framework principles unconditionally, sweeps the estate for project principles through the principle-vs-detail screen, resolves the Governance-class reference spine, and writes .specify/memory/constitution.md.
 disable-model-invocation: true
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: ba-t04
-description: T-04 Persona charters. Serves Stakeholders as enrichment - BA-elected, never framework-suggested, because no threshold criterion demands a persona. Pre-drafts one transformation-ready charter per elected register population - goals, behaviors and environment, frustrations, system-facing activities - and writes .specify/memory/personas.md.
+description: T-04 — Persona charters. Serves Stakeholders as enrichment - BA-elected, never framework-suggested, because no threshold criterion demands a persona. Pre-drafts one transformation-ready charter per elected register population - goals, behaviors and environment, frustrations, system-facing activities - and writes .specify/memory/personas.md.
 disable-model-invocation: true
 ---
 
@@ -33,11 +33,11 @@ Self-check, and stop if either half fails:
 On a miss, stop and name `/ba-run`, or `/ba-aspect` to open and compose.
 
 **This technique is never suggested.** No threshold criterion demands a persona,
-so the framework has no hole to name — and a suggestion that cannot name its hole
-must not be emitted. T-04 enters a plan two ways only: the **BA elects it** into
-an open aspect's composed plan, or the BA asks for enrichment options and it is
-**listed among them**. If you arrived here from a framework suggestion, the
-suggestion was illegal; stop and say so.
+so the framework has no hole to name — and a suggestion that cannot name its
+hole must not be emitted. T-04 (Persona charters) enters a plan two ways only:
+the **BA elects it** into an open aspect's composed plan, or the BA asks for
+enrichment options and it is **listed among them**. If you arrived here from a
+framework suggestion, the suggestion was illegal; stop and say so.
 
 **Skip-if — refuse the run and say which:** **always skippable.** Charter absence
 is a legal end state, not a hole — the persona clause that reads this file is
@@ -73,7 +73,8 @@ In this order:
 
 ## Procedure
 
-1. **BA act.** The BA elects T-04 into an open aspect's composed plan and **names
+1. **BA act.** The BA elects T-04 — Persona charters into an open aspect's
+   composed plan and **names
    the populations to charter**; the run is invoked. Re-composition is legal
    while the aspect is `open`, so an election mid-aspect is ordinary.
 

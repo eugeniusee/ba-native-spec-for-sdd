@@ -1,4 +1,4 @@
-# T-04 — output template & worked example
+# T-04 — Persona charters · output template & worked example
 
 ## The template
 

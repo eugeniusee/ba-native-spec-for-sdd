@@ -1,6 +1,6 @@
 ---
 name: ba-t03
-description: T-03 Stakeholder register. Serves Stakeholders, the DAG root, against AT-ST-2 and AT-ST-3. Pre-drafts the project's cast - populations and decision-relevant individuals with role-in-project, decision rights and comms line - asks only destination-tagged questions for what is left, and writes .specify/memory/stakeholders.md.
+description: T-03 — Stakeholder register. Serves Stakeholders, the DAG root, against AT-ST-2 and AT-ST-3. Pre-drafts the project's cast - populations and decision-relevant individuals with role-in-project, decision rights and comms line - asks only destination-tagged questions for what is left, and writes .specify/memory/stakeholders.md.
 disable-model-invocation: true
 ---
 
@@ -33,7 +33,8 @@ compose.
 **Skip-if — refuse the run and say so:** AT-ST-2 and AT-ST-3 both read met in the
 current evidence table — for instance a register carried from a prior engagement
 and confirmed current at Frame. **Persona work is never this run's ground**: if
-what the BA wants is charters, that is T-04, and it is enrichment the BA elects,
+what the BA wants is charters, that is T-04 — Persona charters, and it is
+enrichment the BA elects,
 never a hole this technique fills.
 
 ## Depth boundary — the cast at project grade, and it is a hard edge
@@ -44,8 +45,9 @@ comms line.
 
 **Must NOT descend into:**
 
-- persona charters — T-04's ground
-- authorization roles or permission rows — T-12's governance ground. **A register
+- persona charters belong to T-04 — Persona charters
+- authorization roles or permission rows belong to the governance ground of
+  T-12 — Roles & permissions. **A register
   population is never a role.** The register says who exists and who decides;
   governance says who may act on what.
 - org-chart completeness beyond project relevance

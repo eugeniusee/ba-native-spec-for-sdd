@@ -1,6 +1,6 @@
 ---
 name: ba-t11
-description: T-11 Domain (conceptual) modeling. Serves Requirements against AT-RQ-4's entity clause. Sweeps the completed canvas surface for the entities the core functions imply, proposes business-level relations, disposes every connection system as a boundary reference, and writes .specify/memory/domain-model.md.
+description: T-11 — Domain (conceptual) modeling. Serves Requirements against AT-RQ-4's entity clause. Sweeps the completed canvas surface for the entities the core functions imply, proposes business-level relations, disposes every connection system as a boundary reference, and writes .specify/memory/domain-model.md.
 disable-model-invocation: true
 ---
 

@@ -1,4 +1,4 @@
-# T-16 — output template & worked example
+# T-16 — Global out-of-scope · output template & worked example
 
 ## The template
 

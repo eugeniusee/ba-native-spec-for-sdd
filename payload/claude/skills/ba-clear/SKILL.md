@@ -1,6 +1,6 @@
 ---
 name: ba-clear
-description: The aspect-gate confirmation act (P-O4). Assembles the threshold-evidence table for one aspect - per AT criterion an evidence pointer and met/not-met with every miss named - and takes the BA's CLEARED / NOT CLEARED / WAIVE ruling. Handles first-pass clearing (T2/T4) and delta re-clearing after a reopen (T6). An aspect gate never self-clears.
+description: P-O4 - clearing confirmation, the aspect-gate confirmation act. Assembles the threshold-evidence table for one aspect - per AT criterion an evidence pointer and met/not-met with every miss named - and takes the BA's CLEARED / NOT CLEARED / WAIVE ruling. Handles first-pass clearing (T2/T4) and delta re-clearing after a reopen (T6). An aspect gate never self-clears.
 disable-model-invocation: true
 ---
 
@@ -89,7 +89,7 @@ table against the fix.
   it, that dependent reopens too — a new RO, ruled on its own at `/ba-reopen`.
 - **Untouched** → the flag drops, one line, with its basis.
 
-## Step 3 — P-O4: the BA rules
+## Step 3 — P-O4 (clearing confirmation): the BA rules
 
 Present the table and take one of three:
 

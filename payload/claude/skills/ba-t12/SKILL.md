@@ -1,6 +1,6 @@
 ---
 name: ba-t12
-description: T-12 Roles & permissions, incl. the persona-to-role transformation. Serves Requirements against AT-RQ-2. Derives roles from the actors Band-1 artifacts reference, pre-drafts one explicit policy row per role x entity x action tuple with entities verbatim from the domain model, screens persona names out, and writes .specify/memory/roles-permissions.md.
+description: T-12 — Roles & permissions, incl. the persona-to-role transformation. Serves Requirements against AT-RQ-2. Derives roles from the actors Band-1 artifacts reference, pre-drafts one explicit policy row per role x entity x action tuple with entities verbatim from the domain model, screens persona names out, and writes .specify/memory/roles-permissions.md.
 disable-model-invocation: true
 ---
 

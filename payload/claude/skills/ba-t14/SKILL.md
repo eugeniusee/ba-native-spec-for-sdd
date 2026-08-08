@@ -1,6 +1,6 @@
 ---
 name: ba-t14
-description: T-14 Design & UX standards. Serves Requirements against AT-RQ-1 via the constitution-reference clause. Sweeps the estate for design and UX ground, runs the conditionality check first, pre-drafts named global budgets and product-wide conventions in the name-metric-target-condition grammar, and writes .specify/memory/design-standards.md.
+description: T-14 — Design & UX standards. Serves Requirements against AT-RQ-1 via the constitution-reference clause. Sweeps the estate for design and UX ground, runs the conditionality check first, pre-drafts named global budgets and product-wide conventions in the name-metric-target-condition grammar, and writes .specify/memory/design-standards.md.
 disable-model-invocation: true
 ---
 

@@ -1,4 +1,4 @@
-# T-11 — output template & worked example
+# T-11 — Domain (conceptual) modeling · output template & worked example
 
 ## The template
 

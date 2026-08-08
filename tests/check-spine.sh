@@ -371,9 +371,9 @@ neg "tier 2: an answered question with no write-back" B103 --spec "$R5" --answer
 
 printf '\n▸ /ba-run dispatch: the interface the four skills implement (P-O3)\n'
 
-has "$RUN" "T-17, T-18 and every Tier-1 mode" "ba-run routes the Band-2 runs to the ## Band 2 section"
+has "$RUN" "T-17 — Epics decomposition, T-18 — Scope allocation and every Tier-1 mode" "ba-run routes the Band-2 runs to the ## Band 2 section"
 has "$RUN" "Tier 2 gets no plans-file line" "…and states where a Band-3 run records instead"
-has "$RUN" "P-O9 — the overflow ruling" "ba-run owns the overflow ruling the Tier-2 signal raises"
+has "$RUN" "P-O9 — overflow ruling" "ba-run owns the overflow ruling the Tier-2 signal raises"
 for s in t17 t18 tier1 tier2; do
   has "$SKILLS/ba-$s/SKILL.md" "BA-invoked, never auto-fired" "ba-$s refuses to auto-fire"
   grep -q '^disable-model-invocation: true$' "$SKILLS/ba-$s/SKILL.md" \
