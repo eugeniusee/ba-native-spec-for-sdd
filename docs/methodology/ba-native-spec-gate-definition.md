@@ -1,5 +1,6 @@
 # Geniusee Gate Definition
-### BA-Native Spec · contract runtime · v0.3 — D-B6-1 mirror applied (30 July 2026; review incorporated 24 July 2026)
+### BA-Native Spec · contract runtime · v0.4 — orchestrator session-boundary cross-reference (§11.3, 7 Aug 2026)
+**v0.4 change record:** one additive sentence — §11.3's boundary sentence gains the cross-reference to orchestrator §10.2's framework-wide session-mode rule (D-O11, ruled 7 Aug 2026). No other changes.
 **v0.3 change record:** one catalogue-b6 mirror — D-B6-1 → §11.1: the manifest example's rendered word "backlog (E-03 rows)" → "roadmap (E-03 rows)" (a rendered example, not a rule). No other changes.
 
 **What this is:** the runtime of the Completeness Contract — how a gate run actually executes, end to end: admission, snapshotting, checker execution, verdict assembly, waiver and override handling, traceability generation, re-gates, Scope-H health runs, and the boundary where Mode A takes over. The contract (document 2) defines *what is checked and what verdicts mean*; this document defines *how it runs* — its own header fixes that division, and this document never re-defines an assertion, a verdict meaning, or the non-waivable set. On any conflict, **the contract wins and this document takes an erratum.**
@@ -375,7 +376,7 @@ In order: **verify every manifest hash** against the live files — the runtime 
 
 Never invokes any `/speckit.*` command · never edits a spec, a memory artifact, or code · never rewords content to pass its own checks · never waives or accepts silently · never runs a Band-1 aspect gate.
 
-**Boundary sentence:** *the gate's responsibility ends when the certification manifest is written. The adapter owns the plumbing and the hash guard; the operator owns the pipeline from `/speckit.plan`; the BA re-enters at Band-3 verification.*
+**Boundary sentence:** *the gate's responsibility ends when the certification manifest is written. The adapter owns the plumbing and the hash guard; the operator owns the pipeline from `/speckit.plan`; the BA re-enters at Band-3 verification.* *The session-wide form of this boundary — no implementation before PASS + handoff, for any reader — is orchestrator §10.2's session-mode rule (D-O11); this section is its gate-local instance.*
 
 ---
 
@@ -495,4 +496,4 @@ Nine decisions ruled, 24 July 2026 — D-G1…D-G3 by the BA Lead directly; D-G4
 
 ---
 
-*v0.3 · D-B6-1 mirror applied 30 July 2026 · review incorporated 24 July 2026 · runtime of completeness contract v0.2 — 61 assertions: 24 M · 37 A (2 ⚑) · consumes writing standard v0.3 (its §15 = the writer's half) · receives specs from elicitation techniques v0.3 (Tier 2) and returns named gaps as its legality anchors · emits reopen signals to orchestrator rules (document 5) · hands to the Mode-A adapter at the certification manifest · runtime ledgers: `.specify/gate-health.md` · `.specify/gate-tuning.md` · v0.1→v0.2 review record in §15*
+*v0.4 · session-boundary cross-reference applied 7 Aug 2026 (D-O11) · D-B6-1 mirror applied 30 July 2026 · review incorporated 24 July 2026 · runtime of completeness contract v0.2 — 61 assertions: 24 M · 37 A (2 ⚑) · consumes writing standard v0.3 (its §15 = the writer's half) · receives specs from elicitation techniques v0.3 (Tier 2) and returns named gaps as its legality anchors · emits reopen signals to orchestrator rules (document 5) · hands to the Mode-A adapter at the certification manifest · runtime ledgers: `.specify/gate-health.md` · `.specify/gate-tuning.md` · v0.1→v0.2 review record in §15*

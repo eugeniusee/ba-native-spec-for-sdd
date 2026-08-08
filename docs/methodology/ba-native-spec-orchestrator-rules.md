@@ -1,5 +1,7 @@
 # Geniusee Orchestrator Rules
-### BA-Native Spec · aspect & band machinery · v0.3 — catalogue mirrors applied (30 July 2026; review incorporated 25 July 2026)
+### BA-Native Spec · aspect & band machinery · v0.5 — session boundary · P-O2 checkpoint · flow profiles · project dashboard (7 Aug 2026)
+**v0.5 change record:** five changes, ruled 7 Aug 2026 (R1–R7 → D-O11–D-O17, §14; origin: field-test feedback — stage escape into implementation, invisible planning step — and the same-day package diagnostic audit): the framework-wide session-mode boundary (§10.2; gate §11.3 carries the cross-reference) · P-O2 rebuilt as a stop-and-wait checkpoint with the new suggestion-snapshot shape (§6.1–§6.2; §12.1 example re-rendered) · flow profiles Discovery | Presale with P-O0 selection at Frame (§6.5 · §8.1 · §10.1; ledger head gains the Profile field, §2.4) · the project dashboard as `/ba.status`'s pinned render (§10.4; §10.3 rule-8 list extended) · §11 rebound — personas as compile sources, dispatch reserved for batch-shaped work.
+**v0.4 change record:** one additive section — §10.3 BA-facing communication register (8 rules: plain-language + information-economy + code-and-name referencing), origin first-BA field feedback (7 Aug 2026); ASD-STE100 mined as reference design per the C4 pattern — rules distilled, nothing imported. No other changes.
 **v0.3 change record:** five catalogue mirrors, all additive — D-B1-4 + D-B6-5 (plans-file `## Frame` and `## Band 2` sections) → §6.4 · D-B5-3 (AT-RQ-1 design-standards conditionality) + D-B4-4 (AT-RQ-4 significance criterion) → §3.3 · D-B6-3 (roadmap status vocabulary) → §8.4. No other changes.
 
 **What this is:** the machinery of Band 1 and the conductor of band transitions. The plan fixes the aspect model (Q1a), the gated DAG with its two safety valves (Q1b), and the BA-planning loop (Q2/Q2+); the completeness contract assigns Band-1 in-band quality here and deliberately contains zero aspect assertions ("the orchestrator rules (document 5) own the Band-1 aspect gates; aspect thresholds are out of scope here" — contract, header); the gate keeps Scope H disarmed until Band-1 closure (gate §10.1) and emits reopen signals here ("the gate emits; doc 5 executes" — gate §6.3); the elicitation engine emits three signal classes here and stops (doc 3 §1). This document is the receiving end of all of it: aspect states, aspect gates and their thresholds, aspect waivers, reopen execution, the BA-planning loop, technique-run orchestration, and the band transitions — including the closure act that arms the system.
@@ -97,6 +99,7 @@ The gate's runtime-ledger rule (D-G1/D-G8), applied without exception: **orchest
 # Aspect State — <project>
 ## Current state                        (head — rewritten in place)
 Band: 1 (open) | 1 (closed <date>) — Bands 2/3 capable
+Profile: <Discovery | Presale> — picked <date> (P-O0); switches append to Events with a reason
 | Aspect | State | Since | Basis |
 |---|---|---|---|
 | Stakeholders | first-pass-cleared | 2026-07-08 | evidence table, this file |
@@ -332,18 +335,27 @@ Per aspect. The decision, restated once, verbatim: **BA planning, LLM assists** 
 At aspect opening (T1), or on demand while the aspect is `open` or `reopened`, the framework reads the aspect's threshold criteria against current artifact evidence. This is doc 3's pre-draft philosophy lifted one level: **the unmet criteria are the holes; the holes are the suggestions.** Output, recorded as the suggestion snapshot:
 
 ```
-Suggestion — <aspect> — <date>
-| # | Technique (catalogue | custom sketch) | Addresses | Expected contribution |
-|---|---|---|---|
-| 1 | <name> | AT-<..> — <the named hole> | <what evidence the run should produce> |
+Suggestion — <aspect> — <date> · profile: <Discovery | Presale>
+State: <n> of <m> threshold criteria met. Nothing runs until you compose the plan
+(P-O2 — plan composition).
+
+| # | Code — technique | Purpose (one line) | Addresses | Status |
+|---|---|---|---|---|
+| 1 | T-05 — Context & landscape mapping | Maps today's systems and org landscape | AT-CX-1 — <the named hole> | recommended — criterion unmet |
+| 2 | <code — name · custom — name> | <purpose> | <AT-ID — hole · —> | done — <date> · dropped — <date> |
+
+Enrichment — electable, no unmet criterion behind them:
+| E1 | T-04 — Persona charters | Charters the elected user populations | — | optional |
+
+Outside this profile (electable by code): <codes> — say "show all" for full rows.
 Sequence rationale: <one line>
 ```
 
-Every suggestion line is **evidence-grounded**: it names the hole (AT-ID + what is missing) it exists to fill. A suggestion that cannot name its hole must not be emitted — doc 3's destination discipline (principle 2), one level up. Suggesting into a cleared criterion is legal only as enrichment the BA asked for; the framework's own initiative stops at the threshold.
+Every **recommended** line is **evidence-grounded**: it names the hole (AT-ID + what is missing) it exists to fill. A recommendation that cannot name its hole must not be emitted — doc 3's destination discipline (principle 2), one level up. **Status vocabulary, closed set (D-O12):** `recommended — criterion unmet` · `done — <date>` (run under a prior composition; its evidence stands) · `optional` (enrichment — no hole behind it) · `dropped — <date>` (BA-dropped in a prior composition; the row resurfaces marked, never re-pushed). **The enrichment block is standing:** no-hole techniques serving the aspect (T-04's D-B2-1 pattern) render there on every snapshot — the on-ask entry path made a standing ask. Listing is not recommending: election remains the BA's act, an enrichment row carries `optional`, never `recommended`, and the framework's own initiative still stops at the threshold. Out-of-profile techniques collapse to the one-line list, electable by code (§6.5).
 
 ### 6.2 Composition (BA — the real plan)
 
-**Select · drop · reorder · add custom** (Q2, verbatim). The composed plan is the BA's document; the suggestion snapshot stays beside it as audit trail and tuning input. Re-composition is legal at any time while the aspect is `open` or `reopened` — appended, dated; the plan never rewrites its own history.
+**Select · drop · reorder · add custom** (Q2, verbatim). **P-O2 is a full checkpoint under §10.1's discipline (D-O13):** the framework renders the snapshot (§6.1 shape), then the four acts as an explicit choice line, then **stops and waits**. **Silence is never consent; a rendered suggestion is never a plan.** The framework never composes, records, or begins executing a plan the BA did not state; the composed plan exists only once the BA has stated it, recorded verbatim (§6.4). *Compiled into the planning skill's never-list: "never composes or records a plan the BA did not compose."* The composed plan is the BA's document; the suggestion snapshot stays beside it as audit trail and tuning input. Re-composition is legal at any time while the aspect is `open` or `reopened` — appended, dated; the plan never rewrites its own history.
 
 ### 6.3 Output contracts pinned before any run (Q2+)
 
@@ -369,6 +381,14 @@ Run log:  (§7.3 lines append here)
 ```
 
 **Two non-aspect sections, mirrored from the catalogue's ruling records:** the plans file additionally carries `## Frame` — T-01's plan line and run log, same row shape (D-B1-4, catalogue-b1, locked) — and `## Band 2` — T-17's and T-18's plan lines and run logs, every rerun with its trigger named, same row shape, contract-fulfillment bookkeeping per §7.3 (D-B6-5, catalogue-b6, locked). §8.1 and §8.3 define the acts; these sections pin only where their records land.
+
+### 6.5 Flow profiles (Discovery | Presale)
+
+A profile is a **recommendation default, never a restriction (D-O14):** it filters which techniques the suggestion engine surfaces as full rows (§6.1) and declares the flow's destination. It changes no threshold, no assertion, no gate — the quality machinery is profile-blind. Out-of-profile techniques stay electable by code at any P-O2. The profile is picked at Frame (P-O0, §8.1), lives in the ledger head (§2.4), and is switchable later — the switch appends to the ledger's Events: `<date> · profile · <from → to> · <BA initials> — <reason>`.
+
+**Discovery** — the full path. All 20 techniques in profile (18 catalogue + 2 spine). Destination: certified feature specs and handoff (Band 3).
+
+**Presale** — the minimum path to a scoped roadmap under limited client access. Destination: **Band-2 exit** — a current roadmap (epics + phases), the open-question roll-up, and every assumption on record via markers and aspect waivers. Aspect waivers are the expected instrument here, debt named — not an anomaly. Band-3 entry (P-O8) is out of profile: it requires a recorded switch to Discovery. In profile (D-O15): **T-01 — Discovery canvas framing · T-02 — Glossary discipline · T-03 — Stakeholder register · T-05 — Context & landscape mapping · T-06 — Constraints elicitation · T-08 — Value definition · T-09 — Vision & differentiation · T-10 — Solution surface review · T-16 — Global out-of-scope · T-17 — Epics decomposition · T-18 — Scope allocation**, plus **Tier 1 — epic scoping interview** as electable where a client call exists. Out of profile: T-04 · T-07 · T-11 · T-12 · T-13 · T-14 · T-15 · Tier 2. Set edits are one-line re-rulings.
 
 ---
 
@@ -410,7 +430,17 @@ Bands (plan §5) are **cumulative capabilities, not a pointer**: closing Band 1 
 
 ### 8.1 Band-1 entry — Frame
 
-The act (BA): initialize the ledgers — aspect-state head at six × `untouched`, `Band: 1 (open)`; empty plans file — and confirm `canvas.md` is present and carried into the repo: the presale canvas is Band 1's substrate (Q1a). **No canvas** (a non-presale entry): producing one is the first Frame act — a custom-contract technique run before any aspect opens, contract {presale canvas incl. Context/Constraints element · Context · `canvas.md`}; its sections then serve as the aspects' shared substrate (part of D-O7, locked). With the substrate in place, Stakeholders — the root — is openable (T1).
+The act (BA): initialize the ledgers — aspect-state head at six × `untouched`, `Band: 1 (open)`; empty plans file — **pick the flow profile (P-O0 — flow-profile selection; §6.5) against the pinned picker below** — and confirm `canvas.md` is present and carried into the repo: the presale canvas is Band 1's substrate (Q1a). **No canvas** (a non-presale entry): producing one is the first Frame act — a custom-contract technique run before any aspect opens, contract {presale canvas incl. Context/Constraints element · Context · `canvas.md`}; its sections then serve as the aspects' shared substrate (part of D-O7, locked). With the substrate and the profile in place, Stakeholders — the root — is openable (T1).
+
+**The profile picker — pinned shape (P-O0):**
+
+```
+Flow profile — pick one before any aspect opens (P-O0 — flow-profile selection):
+1. Discovery — the full analysis path. Destination: certified feature specs.
+2. Presale — the minimum technique set for limited client access.
+   Destination: roadmap + open questions + assumptions on record. Waivers expected.
+Waiting for your pick. Switchable later; the switch is logged.
+```
 
 ### 8.2 Band-1 closure — the arming act
 
@@ -475,6 +505,7 @@ The gate §2.3 pattern: nothing outside this table interrupts the BA on this doc
 
 | # | Moment | Trigger | The BA's act |
 |---|---|---|---|
+| P-O0 | Flow-profile selection | Band-1 entry — Frame, before any aspect opens (§8.1) | Pick the profile: Discovery · Presale (§6.5); later switches are logged with a reason |
 | P-O1 | Aspect opening | Prerequisites cleared/waived; the BA turns to the aspect | Open (T1) |
 | P-O2 | Plan composition | Suggestion snapshot ready, or the BA re-plans | Compose: select / drop / reorder / add custom; pin or confirm output contracts (§6.3) |
 | P-O3 | Technique invocation | A planned, contracted technique is next | Invoke the run |
@@ -489,6 +520,8 @@ Doc 3's routing-batch approval and the gate's P1–P8 are those documents' promp
 
 ### 10.2 The discipline, and the boundaries table
 
+**Session mode — the analysis boundary (framework-wide; D-O11).** Every conversation this framework conducts is an **analysis session**. An analysis session produces analysis artifacts only. It never produces an implementation plan, a task list, a prototype, or code — not as a proposal, not as a "next step," not as initiative. The boundary lifts **per feature**, and only by the pair: effective PASS at the gate **and** completed handoff (gate §11). Downstream of that pair, implementation belongs to the coding agent and the operator; the analysis session continues unchanged for every other feature. Standing project instructions (the compiled CLAUDE.md block, AGENTS.md) carry two addressed modes — analysis-session rules and coding-agent rules — and every instruction names its reader; an instruction addressed to the coding agent is inert in an analysis session. Wanting to implement is never evidence of readiness: the only exit is the gate. *Compiled verbatim into both mirrors and into every skill's and persona's never-list.*
+
 **The orchestrator schedules, routes, and records. It never authors content, never runs a contract check, never rules on a contract waiver.** Its hands touch two ledger files and nothing else.
 
 | Concern | Doc 2 · contract | Doc 3 · elicitation | Doc 4 · gate | **Doc 5 · this document** |
@@ -502,15 +535,51 @@ Doc 3's routing-batch approval and the gate's P1–P8 are those documents' promp
 | Aspect states · DAG · thresholds · bands | out of scope by header | emits into | never runs an aspect gate (§11.3) | **owns** |
 | Pass voiding · re-gates · cycle close | pass binding (§2) | notes the consequence (§4) | owns (§9, D-G7) | references only (§5.3, §8.5) |
 
+### 10.3 BA-facing communication register
+
+*(v0.4 — origin: first-BA field feedback, 7 Aug 2026. ASD-STE100 Simplified Technical English mined as reference design — rules distilled, nothing imported: the C4 pattern.)*
+
+**The third register.** The framework speaks in three registers, one owner each: **artifact text** — the writing standard; **stakeholder-facing questions** — elicitation §3.2 (no framework jargon, no EARS, no artifact names); **BA-facing conversation** — this section. Everything the framework renders to the BA — prompt points, status lines, suggestion snapshots, verdicts, free conversation — falls under this register. It never touches artifact content: spec precision, EARS grammar, and pinned record shapes are out of its reach.
+
+**The rules** — compiled verbatim into the CLAUDE.md framework block and all four personas (§11; the four-agent set is the build plan's D-P2-3):
+
+1. **Short sentences.** One point per sentence; target ≤ 20 words. Split before you subordinate.
+2. **Common words.** The everyday word, never the formal synonym: *use*, not *utilize* · *before*, not *prior to* · *then*, not *subsequently* · *start*, not *commence* · *need*, not *necessitate*. The pattern, not a closed list.
+3. **Active voice; imperative for BA acts.** "Run the check," never "the check should be performed."
+4. **One term per concept.** Framework vocabulary verbatim — aspect, threshold, waiver, reopen. Never rotate synonyms for one thing.
+5. **Code + name, always.** Every technique, stage, or assertion rendered to the BA carries its code *and* its name: "T-05 — Context & landscape mapping," "P-O4 — clearing confirmation." First mention in a sitting adds a one-line purpose. A bare code is a render defect.
+6. **State first, then the act.** Open every render with where the work stands and what the BA does next. Background only on ask.
+7. **Only what the next decision needs.** No methodology explanation mid-flow — name the owning document and section instead. Outside pinned formats, a render past ~10 lines is a cut candidate.
+8. **Pinned formats stay pinned.** Recurring renders (suggestion snapshot §6.1, ledger head §2.4, profile picker §8.1, project dashboard §10.4, P-O prompts) keep their shapes; never re-narrate what a format already shows. On conflict between this register and a pinned shape, the shape governs.
+
+### 10.4 The project dashboard — `/ba.status`'s pinned render (D-O17)
+
+Read-only, from the ledgers alone — the aspect-state head and events (§2.4), the plans file's composed plans and run logs (§6.4, §7.3), `gate-health.md`, the briefs' open-question statuses (doc 3 D4), W/O/HA records, and the certification manifests. The command never writes, never transitions, never proposes content — rendering is its whole act (§10.2's discipline, read side). Every number is a ledger count; nothing is estimated, no composite score is invented. Rendered on demand and as the session-start habit (§11).
+
+```
+Project status — <project> — <date> · profile: <…> · Band: <…>
+1 · Aspects: <k>/6 cleared · <w> waived (debt on record) · <r> reopened
+2 · Techniques: <done> run / <planned> planned · next planned: <code — name>
+3 · Questions: <o> open · <a> answered · <v> overtaken · oldest open: <ref>
+4 · Artifact health: Scope H <armed — HEALTHY | n gaps | disarmed (pre-closure)> · standing acceptances: <n>
+5 · Delivery: <c> certified · <h> handed off · <b> in Band 3
+6 · Handoff risk per certified feature: | Feature | W | O | surviving markers | HAs in deps | Risk |
+    Rule: low = all zero · elevated = any one non-zero · high = an Override, or ≥ 3 combined
+7 · Next: <the one act the state points to — code + name>
+```
+
+The risk verdict (line 6) is a stated rule over four countable facts — waivers (W), overrides (O), surviving `[NEEDS CLARIFICATION]` markers, and health acceptances touching the feature's dependency set — tunable in the field by version bump, never silently.
+
 ---
 
 ## 11. Phase-2 binding & Phase-1 manual mode
 
-Names indicative — Phase 2 fixes them (the gate §13 convention). The **Orchestrator subagent** is plan §7's third persona, conducting under §10.2's discipline, with every P-O compiled to a plan-mode checkpoint.
+Names indicative — Phase 2 fixes them (the gate §13 convention). The **Orchestrator persona** is plan §7's third persona. Its discipline (§10.2) and the register (§10.3) are **compile sources (D-O16):** their text compiles verbatim into the mirrors and into every skill that conducts a checkpoint — guards live where the conversation lives. Sub-agent **dispatch is reserved for batch-shaped work** that takes no BA ruling mid-flight (the gate's checks are the model). Every interactive P-O compiles to a checkpoint **in the main conversation** — a dispatched sub-agent cannot stop and take a ruling.
 
 | Element | Phase-2 primitive |
 |---|---|
-| Aspect ledger + head render | Orchestrator subagent maintains `.specify/aspect-state.md`; `/ba.status` renders the head — the session-start habit's natural home |
+| Aspect ledger + head + dashboard | The orchestration machinery, compiled into the workflow skills, maintains `.specify/aspect-state.md`; `/ba.status` renders the head and the §10.4 project dashboard — the session-start habit's natural home |
+| Frame + profile selection | `/ba.frame` — ledger init → the §8.1 pinned profile picker (P-O0) → canvas confirmation |
 | Aspect opening + planning loop | `/ba.aspect <aspect>` → suggestion snapshot → composition checkpoint (P-O1, P-O2) |
 | Technique run | `/ba.run <technique>` — skills authored from scratch to build briefs (doc 3 §7 ruling); contract check at invocation (P-O3) |
 | Clearing | `/ba.clear <aspect>` — evidence table → confirmation checkpoint (P-O4) |
@@ -535,10 +604,11 @@ Band-1 entry (Frame) ran 2026-07-07: ledgers initialized, `canvas.md` present fr
 **Suggestion snapshot** (§6.1, condensed):
 
 ```
-Suggestion — Stakeholders — 2026-07-07
-| # | Technique | Addresses | Expected contribution |
-| 1 | Presale-handoff mining (custom sketch) | AT-ST-2 — no register exists | register seed: names, roles, rights from presale materials |
-| 2 | Sponsor alignment interview (catalogue-future) | AT-ST-1/-3 — sponsor authority unstated; populations unconfirmed | confirmed sponsor + populations, decision rights |
+Suggestion — Stakeholders — 2026-07-07 · profile: Discovery
+State: 0 of 3 threshold criteria met. Nothing runs until you compose the plan (P-O2).
+| # | Code — technique | Purpose (one line) | Addresses | Status |
+| 1 | custom — Presale-handoff mining | Mines presale materials for a register seed | AT-ST-2 — no register exists | recommended — criterion unmet |
+| 2 | custom — Sponsor alignment interview | Confirms sponsor authority + populations | AT-ST-1/-3 — sponsor authority unstated; populations unconfirmed | recommended — criterion unmet |
 Sequence rationale: mine what presale already knows before spending a call.
 ```
 
@@ -609,8 +679,22 @@ Ten decisions ruled by the BA Lead, 25 July 2026 — **all recommendations accep
 
 **Wave-1 closure note:** with this review closed, the five-document spine is complete and review-closed; the Phase-1 spine exit criterion (§11) is met.
 
+## 14. Review record (v0.4 → v0.5)
+
+Seven decisions ruled by the BA Lead, 7 August 2026 — **all recommendations accepted as stated** ("apply as recommended," R1–R8; R8 assigns numbering and versioning to this record). Origin: the 7 Aug 2026 field-test feedback — the stage escape into implementation and the invisible planning step — and the same-day package diagnostic audit.
+
+| # | Decision | Ruling (adopted as recommended) | Where |
+|---|---|---|---|
+| **D-O11** | Session boundary | Framework-wide session-mode rule: analysis sessions produce no plan, no tasks, no prototype, no code; the boundary lifts per feature only at PASS + handoff; mirrors carry two addressed modes, every instruction names its reader; compiled into both mirrors and every never-list. Gate §11.3 carries the cross-reference | §10.2 |
+| **D-O12** | Suggestion-snapshot shape | Code + name · purpose · Addresses · Status columns; closed status vocabulary (`recommended — criterion unmet` · `done` · `optional` · `dropped`); standing enrichment block — D-B2-1's on-ask path made standing, listing ≠ recommending; out-of-profile collapsed line | §6.1 |
+| **D-O13** | P-O2 checkpoint | Stop-and-wait: snapshot → explicit four-choice line → wait; silence is never consent; a rendered suggestion is never a plan; the never-line compiled into the planning skill | §6.2 |
+| **D-O14** | Flow profiles | Recommendation defaults, never restrictions; thresholds, assertions, and gates profile-blind; picked at Frame (P-O0), held in the ledger head, switches logged with a reason; Presale destination = Band-2 exit, Band-3 entry requires a recorded switch to Discovery | §6.5 · §8.1 · §10.1 · §2.4 |
+| **D-O15** | The Presale set | In profile: T-01 · T-02 · T-03 · T-05 · T-06 · T-08 · T-09 · T-10 · T-16 · T-17 · T-18, plus Tier 1 electable; out: T-04 · T-07 · T-11 · T-12 · T-13 · T-14 · T-15 · Tier 2. Set edits are one-line re-rulings | §6.5 |
+| **D-O16** | Compile, don't dispatch | Personas are compile sources; sub-agent dispatch reserved for batch-shaped work (the gate's checks are the model); every interactive P-O is a main-conversation checkpoint | §11 |
+| **D-O17** | Project dashboard | `/ba.status` renders the §10.4 pinned shape — read-only, ledger counts only, no composite score; banded risk rule over four countable facts, tunable by version bump, never silently | §10.4 · §10.3 rule 8 |
+
 ---
 
-*v0.3 · catalogue mirrors applied 30 July 2026 (D-B1-4 · D-B4-4 · D-B5-3 · D-B6-3 · D-B6-5) · review incorporated 25 July 2026 · closes Wave 1 · conducts plan §5's bands over the Q1a/Q1b aspect model · owns the Band-1 aspect gates per the contract's division of labor (its header; §3 cadence) · executes the three doc-3 signals (§1) and the gate's lane-3 reopens (§6.3) · requests the arming full Scope-H run at Band-1 closure (contract §3 · gate §10.1) · thresholds: 18 AT criteria across six aspects · records: AW (aspect waiver) · RO (reopen) · runtime ledgers outside `memory/` per D-G1/D-G8: `.specify/aspect-state.md` · `.specify/aspect-plans.md` · decisions D-O1–D-O10 locked · v0.1→v0.2 review record in §13*
+*v0.5 · session boundary + P-O2 checkpoint + flow profiles + dashboard applied 7 Aug 2026 (D-O11–D-O17, §14) · catalogue mirrors applied 30 July 2026 (D-B1-4 · D-B4-4 · D-B5-3 · D-B6-3 · D-B6-5) · review incorporated 25 July 2026 · closes Wave 1 · conducts plan §5's bands over the Q1a/Q1b aspect model · owns the Band-1 aspect gates per the contract's division of labor (its header; §3 cadence) · executes the three doc-3 signals (§1) and the gate's lane-3 reopens (§6.3) · requests the arming full Scope-H run at Band-1 closure (contract §3 · gate §10.1) · thresholds: 18 AT criteria across six aspects · records: AW (aspect waiver) · RO (reopen) · runtime ledgers outside `memory/` per D-G1/D-G8: `.specify/aspect-state.md` · `.specify/aspect-plans.md` · decisions D-O1–D-O17 locked · review records: v0.1→v0.2 in §13 · v0.4→v0.5 in §14*
 
 
