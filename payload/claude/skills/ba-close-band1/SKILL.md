@@ -110,7 +110,8 @@ are what get iterated, not tooling.
    `/ba-gate-health` — **never by an aspect waiver**. AT-RQ is never re-run on
    armed ground.
 2. **Band 2 unlocked.** Decomposition and allocation become available:
-   `/ba-run t17` → the roadmap; `/ba-run t18` → the MVP allocation, on-demand and
+   **T-17 — Epics decomposition** (`/ba-run t17`) → the roadmap; **T-18 — Scope
+   allocation** (`/ba-run t18`) → the MVP allocation, on-demand and
    repeatable, each rerun carrying rationale + a diff vs. current + BA approval,
    logged with reason in the living roadmap.
 3. **The aspects stay alive.** All six remain reopenable through Bands 2–3; the

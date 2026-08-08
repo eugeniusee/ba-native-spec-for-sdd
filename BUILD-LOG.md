@@ -2636,3 +2636,271 @@ pass silently rather than failing. That is correct today — no document names a
 AT criterion or a CC assertion — but it means the suite's coverage tracks the
 name sources, not rule 5's full reach. When §3.3 or the contract grows a name
 column, the codes join the sweep by existing, and this note is the pointer.
+
+---
+
+## Lane C — orchestrator rules v0.5 + gate v0.4 · stage boundary · P-O2 checkpoint · flow profiles · dashboard · 8 August 2026 · GREEN
+
+**Session prompt:** one combined session — fix the twelve package defects from
+`diagnostics/audit-stage-escape-and-planning.md` and propagate the methodology
+changes (orchestrator rules v0.5, gate definition v0.4) into the package.
+**Grounding:** `docs/methodology/ba-native-spec-orchestrator-rules.md` **v0.5**
+(header verified before any edit; the v0.5 change record names D-O11–D-O17) —
+§2.4 ledger head · §6.1–§6.5 snapshot shape, P-O2 checkpoint, flow profiles ·
+§8.1 profile picker · §10.1 P-O0 · §10.2 session-mode boundary · §10.3 register ·
+§10.4 dashboard · §11 compile-not-dispatch · §14 the seven rulings ·
+`ba-native-spec-gate-definition.md` **v0.4** §11.3 (the appended
+cross-reference) · `diagnostics/audit-stage-escape-and-planning.md` F-01…F-14 ·
+BUILD-LOG Lane A and Lane B tails, as the compiled surface this recompiles.
+
+### The precondition failed, and the session stopped on it
+
+The prompt required a clean tree with Lane B committed. `HEAD` was S9 and
+**nothing after it was committed** — 59 modified files plus three untracked
+paths, carrying three distinct bodies of work: the methodology v0.5/v0.4
+upgrade, Lane B, and Lane A. Two specifics against the prompt as written: the
+last BUILD-LOG entry was **Lane A**, not Lane B, and `tests/check-register.sh`
+was untracked — its disposition described in the Lane A entry, the file itself
+never in git.
+
+Reported rather than worked around: the prompt ends in a single commit, which on
+that tree would have absorbed three sessions' work under this entry's name and
+carried a `VERSION` bump this session did not make. The BA ruled **Option A** —
+file the pre-existing work first, one commit per body of work, in a stated
+order. Four commits landed before this session's own work began:
+`7754cf1` Lane B · `cd15e35` Lane A · `d7a85ca` the diagnostic audit ·
+`b9ecfe6` the methodology upgrade. The BUILD-LOG was split at the Lane
+A/Lane B boundary so each entry rode its own commit, and the reassembly was
+verified byte-identical to the pre-split file.
+
+### The change — seven stages, each verified before the next
+
+**S1 · Mode-aware mirrors (F-01, F-03, F-04).** Both mirrors restructured into
+two addressed sections. **Analysis session — the default mode** carries §10.2's
+session-mode boundary; **Coding agent — downstream of handoff** opens with an
+explicit reader line and receives the certified-text, implement-around-markers
+and never-invent bullets. Every instruction now names its reader, and an
+instruction addressed to the coding agent is visibly inert in an analysis
+session. The audit's F-03 defect — the analysis session reading *"Implement
+around it and surface it"* as a standing instruction — is closed structurally,
+not by deletion: the sentence is still there, under the reader it was written
+for.
+
+**S2 · Never-lists (F-05, F-06, F-07, F-10).** The session boundary compiled
+into four never-lists — `ba-tier2`, `ba-analyst`, `ba-discovery`, `ba-aspect` —
+**byte-identical across all four**, sha256 of the normalised block
+`56fdb8fab4b0f483…`. `ba-aspect` additionally took D-O13's compiled never-line,
+verbatim: *"never composes or records a plan the BA did not compose."*
+
+**S3 · P-O2 checkpoint (F-09, F-11, F-13, F-14).** `ba-aspect` Step 4 rebuilt on
+the `/ba-clear` Step 3 model. Step 3 now writes the §6.1 pinned shape — profile
+in the header, `Code — technique`, purpose, Addresses, the closed status
+vocabulary, the standing enrichment block, the out-of-profile collapsed line.
+Step 4 renders it, then the explicit four-choice line, then **stops and waits**.
+F-14's gap — *nothing converts the output into a choice* — is closed by the
+choice line; F-13's — *no step lists enrichment techniques* — by the enrichment
+block being **standing** rather than on-ask, which is D-O12 making D-B2-1's
+election path reachable at last.
+
+**S4 · Bare-code sweep (F-12).** `ba-aspect` Step 3's lowercase `t03`-style
+references now render `T-03 — Stakeholder register` and keep `t03` only as the
+command argument, with the distinction stated in the skill. Two further rule-5
+defects the harness cannot see were found by hand and fixed:
+`ba-close-band1` rendered *"`/ba-run t17` → the roadmap"* and `ba-reopen`
+*"Name `/ba-run t18`"* — both now carry code + name on the `ba-frame` model.
+
+**S5 · Personas as compile sources (F-02, per D-O16).** `ba-orchestrator`'s
+description claimed invocation by nine skills; no skill implemented it, so its
+stop-at-every-checkpoint rule and its code prohibition never loaded. The claim
+is removed and replaced with what the persona actually is. All three of
+`ba-orchestrator`, `ba-discovery`, `ba-analyst` now state: *a compile source,
+not a dispatch target — no skill dispatches it, and none should.*
+`ba-orchestrator` gained a section on why, from §11: every interactive P-O is a
+main-conversation checkpoint, and a dispatched sub-agent cannot stop and take a
+ruling. **`ba-gate`'s dispatch stays** — it is batch-shaped work taking no BA
+ruling mid-flight, and both its sites are intact. The guards F-02 found inert
+are now compiled into the mirrors' analysis-session section, where they load on
+every turn.
+
+**S6 · Flow profiles (D-O14, D-O15).** `/ba-frame` gained Step 2 — **P-O0 —
+flow-profile selection** — rendering §8.1's pinned picker before any aspect
+opens, then stopping. The ledger-head template gained the `Profile` field and
+the switch-event grammar; `/ba-status`'s head render matches. `/ba-aspect`
+refuses to open with no profile on record, and never assumes Discovery.
+Suggestion rendering filters by profile: in-profile full rows, out-of-profile
+one collapsed line electable by code. The Presale set is compiled exactly as
+§6.5 lists it — eleven in profile plus Tier 1 electable, seven plus Tier 2 out —
+and `/ba-enter-feature` blocks Band-3 entry under Presale, naming the recorded
+switch to Discovery as the way through.
+
+**S7 · Dashboard (D-O17).** `/ba-status` extended to §10.4's pinned render:
+seven lines, a source table naming which ledger each line is read from, the risk
+rule verbatim, and the standing prohibitions — never writes, never transitions,
+never proposes content, never invents a composite score. Command naming follows
+the package's hyphen convention; the methodology's `/ba.status` is indicative
+per the gate §13 convention.
+
+**S8 · Register conformance.** Rule 5 is mechanically green across the corpus.
+Rule 8's pinned-format list was extended to v0.5's — profile picker §8.1 and
+project dashboard §10.4 — in all six compiled units. Two of this session's own
+sentences ran past the ≤ 20-word target and were split.
+
+### Units touched — 16 files
+
+| Class | Count | Files |
+|---|---|---|
+| Mirrors (two addressed modes + rule 8) | 2 | `claude-block.md` · `AGENTS.md` |
+| Personas (compile-source correction + rule 8 + boundary) | 4 | `ba-orchestrator` · `ba-discovery` · `ba-analyst` · `ba-gate` |
+| Workflow skills | 7 | `ba-aspect` · `ba-frame` · `ba-status` · `ba-tier2` · `ba-enter-feature` · `ba-close-band1` · `ba-reopen` |
+| Template (ledger head gains Profile) | 1 | `ba/templates/aspect-state.md` |
+| Harness (assertion re-pinned) | 1 | `tests/check-register.sh` |
+| `VERSION` | 1 | 0.1.1 → 0.1.2 |
+
+**Deliberately not touched, each for a stated reason:** `docs/methodology/` —
+read-only ground truth this session compiles from · the three compiled cards —
+D48's structural bar stands, and `check-cards.py` byte-compares them · the 13
+artifact templates other than the ledger head, and the 11 checker scripts — the
+changes are conversation-layer, and no pinned record shape moved except the one
+§2.4 changed · `install.sh` — the mirrors it copies changed, the installer did
+not · the manifest's doc vector — derived at install time from the documents
+themselves, so it self-updated to orchestrator v0.5 / gate v0.4 with no edit
+(verified on a real install).
+
+### Verification evidence
+
+**The mission's own VERIFY, as an executable sweep — 70 checks, 0 failures.**
+Paragraph-aware, because every one of these strings is soft-wrapped in the
+payload and a line-based grep reports a false miss on all of them:
+
+| Check | Result |
+|---|---|
+| session boundary in both mirrors **and** all four never-lists | 6 / 6 |
+| *"Implement around it"* only under the coding-agent heading | 2 / 2 — one heading each, all hits below it |
+| picker renders before any aspect can open | 4 / 4 — picker verbatim, step order, never-default, `ba-aspect` refusal |
+| P-O2 has an explicit wait | 4 / 4 — four-choice line, wait line, stop rule, silence-is-never-consent |
+| §6.1 snapshot shape | 8 / 8 — columns, profile header, enrichment block, out-of-profile line, four status values |
+| status skill renders §10.4 sections 1–7 | 9 / 9 — seven sections, risk rule verbatim, never-writes |
+| Presale set exactly as §6.5 lists it | 21 / 21 — 11 in, 8 out, Tier 1 electable, Band-3 blocked |
+| ledger head Profile field | 3 / 3 — template, switch grammar, `/ba-status` render |
+| personas are compile sources, `ba-gate`'s dispatch stays | 6 / 6 — 2 dispatch sites intact |
+| rule 8 extended in all six compiled units | 6 / 6 |
+
+**The audit's clean negative, re-confirmed.** Eight `/speckit-plan`,
+`-tasks`, `-implement` mentions across all skills and personas; **all eight** sit
+in `ba-gate/SKILL.md` or `ba-handoff/SKILL.md`. Nothing pre-certification
+reaches or suggests them. The finding stands after the change, as it did before.
+
+**The Phase-2 §5 exit test, end to end on a fresh install — GREEN.**
+`check-exit.sh --offline`, all ten steps in one run: **99 passed, 0 failed.**
+Re-run after the `VERSION` bump: 99 / 0 again.
+
+**Regression — every suite, plus the cards, the layout bar and the exit script:**
+
+| Check | Result |
+|---|---|
+| `check-m.sh` | 40 / 0 |
+| `check-gate.sh` | 59 / 0 |
+| `check-orchestrator.sh` | 120 / 0 |
+| `check-techniques.sh` | 100 / 0 |
+| `check-techniques2.sh` | 122 / 0 |
+| `check-techniques3.sh` | 158 / 0 |
+| `check-spine.sh` | 134 / 0 |
+| `check-register.sh` | 19 / 0 |
+| `check-ledger.py` | 14 rules, no violations — including a head carrying the new `Profile` line |
+| `check-cards.py` | every card byte-identical to its re-derivation |
+| `check-layout.sh` (real `--offline` install) | 105 / 0 / 0 |
+| `check-exit.sh --offline` | 99 / 0 |
+
+752 suite assertions plus 204 install-and-exit assertions, zero failures, every
+prior count unmoved — and 70 mission-VERIFY checks on top.
+
+**Two test assertions re-pinned, both recorded rather than loosened.**
+
+1. `check-register.sh` §1 pinned the stage set at `P-O1…P-O9`. v0.5 added
+   **P-O0 — flow-profile selection** to §10.1, so the suite went red on the
+   *document*, before any payload edit — the name-from-source hardening Lane A
+   built doing exactly what it was built for. Re-pinned to `P-O0…P-O9`, 10 rows;
+   the derived name table grew 27 → 28.
+2. `check-orchestrator.sh` pinned *"select · drop · reorder · add custom"* in
+   `ba-aspect`, and S3's rebuild replaced that one-liner with an enumerated
+   render. **The assertion was not re-pinned.** The phrase is Q2's own verbatim
+   wording; the right fix was to restore it to the skill beside the enumerated
+   choice line, which is what happened. A test pinning methodology-verbatim text
+   should win that argument, and it did.
+
+### Divergences flagged (§3.2 discipline, generalized)
+
+**D55 · §10.2 demands more never-lists than this session was scoped to touch.**
+The rule ends *"compiled verbatim into both mirrors and into every skill's and
+persona's never-list."* Every skill is 32 units; every persona is 4. The prompt
+scoped S2 to four — `ba-tier2`, `ba-analyst`, `ba-discovery`, `ba-aspect` — and
+set its VERIFY bar at those four.
+
+*Resolution taken:* **the four the prompt named, plus two more where this session
+was already rewriting the file** — `ba-frame` and `ba-status`, which now carry
+the block because their never-lists were being edited anyway. Six of thirty-six.
+The remaining thirty are named here rather than swept in silently: widening a
+stated scope is the BA's call, not the build's. The block is byte-identical
+everywhere it appears, so the remainder is a mechanical pass whenever it is
+ruled — and `check-register.sh` is the natural place to assert it.
+
+**D56 · F-11 named two pinned shapes; v0.5 fixed one.** The audit classed F-11 a
+**methodology gap** — the §6.1 snapshot and the §6.4 composed-plan record both
+rendered a bare `<name>`. D-O12 rebuilt §6.1 with `Code — technique`. **§6.4 was
+not touched**, and still pins `| 1 | <name> |`.
+
+*Resolution taken:* **§6.1's shape updated, §6.4's left exactly as the document
+pins it.** Register rule 8 settles it on its own terms — on conflict between the
+register and a pinned shape, the shape governs — and D48 set the precedent that
+a pinned record shape is not the sweep's to fix. Changing it here would invent a
+rule the documents do not state. Half of F-11 closes; the other half needs a
+§6.4 change first, and this is the pointer.
+
+**D57 · The audit's Problem-2 fix sketch is superseded by D-O16.** The audit's
+first remedy was *"add an explicit dispatch line to each of the nine
+orchestrator-owned workflow skills."* v0.5 ruled the opposite: personas are
+compile sources, dispatch is reserved for batch-shaped work, every interactive
+P-O is a main-conversation checkpoint.
+
+*Resolution taken:* **the ruling followed, the sketch not.** F-02's *defect* is
+real and is closed — the guards were inert — but by compiling them into the
+mirrors and correcting the false claim, not by wiring nine dispatches. Recorded
+because a reader comparing the audit to this entry will otherwise see a fix
+sketch that was ignored. It was overruled, on the record, by a document dated
+the same day.
+
+**D58 · The rule-5 harness cannot see the lowercase form.**
+`check-register.sh`'s scan matches `T-nn` / `P-On`; F-12's defect was `t03`,
+which the pattern never sees. The three sites fixed in S4 were found by hand.
+
+*Resolution taken:* **fixed by hand, harness left alone, and the gap named.** A
+lowercase `t03` is *legitimate* in command position — `/ba-run t03` is the real
+invocation — and illegitimate only as a render. Teaching the scan that
+difference is a real design question, not a one-line regex change, and it is not
+this session's scope. Until it is taken, the lowercase form is covered by review,
+not by the floor.
+
+**D59 · `VERSION` bumped on a BA ruling, against the prompt's own DO-NOT.** The
+prompt said *bump no document version*. Asked, the BA scoped that to the two
+methodology documents — their v0.5 / v0.4 stand untouched — and directed the
+package `VERSION` to follow the standing pattern: a commit that propagates a
+methodology change bumps it. 0.1.1 → 0.1.2, patch, on the same reasoning Lane B
+recorded for 0.1.0 → 0.1.1.
+
+### Open
+
+**Thirty never-lists still lack the session boundary.** D55 is the decision;
+this is the work it leaves. The block is fixed text, so the pass is mechanical —
+but it should land with an assertion, or the next new skill ships without it.
+`check-register.sh` already walks every skill, agent and mirror; a section 5
+asserting the block's presence and its sha would close D55 and hold it closed.
+
+**§6.4's composed-plan shape still renders a bare name.** D56. A BA reading the
+plan record sees `| 1 | Stakeholder register |` with no code, one screen after
+reading `T-03 — Stakeholder register` in the snapshot. Consistent with the
+document, inconsistent with what the BA just read. A one-line §6.4 change would
+resolve it, and the register's own rule 5 is the argument for it.
+
+**Still no single command runs the regression.** Twelve checks now, invoked one
+at a time, two needing an install first. D54 stands unchanged, and this entry's
+roll-up table was again assembled by hand.

@@ -164,7 +164,8 @@ superseded.
 - The gate's **voided-certification notice** is gate-to-BA. The cheap re-gate is
   BA-invoked at the gate. Do not receive it here.
 - Gate lane 3's alternative outcome — **"a Band-2 allocation act"** — is a BA
-  decision to rerun allocation, not a signal class. Name `/ba-run t18`.
+  decision to rerun allocation, not a signal class. Name **T-18 — Scope
+  allocation** (`/ba-run t18`).
 
 ## What this skill never does
 

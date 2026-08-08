@@ -7,16 +7,24 @@
   spec-anchored glob, out of the scoped-run write trigger, out of any memory/
   mirror toward the coding agent.
 
-  Born by /ba-frame at Band-1 entry: head at six × `untouched`, `Band: 1 (open)`.
+  Born by /ba-frame at Band-1 entry: head at six × `untouched`, `Band: 1 (open)`,
+  the flow profile picked at P-O0 — flow-profile selection.
   File discipline: the head is REWRITTEN IN PLACE; events are APPEND-ONLY.
 
   States (D-O2): untouched · open · first-pass-cleared · waived · reopened.
   Transitions T1–T8 are all BA acts; an aspect gate never self-clears.
   Event grammar: <date> · T<n> · <aspect> · <from → to> · <BA initials> — <basis ref>
+
+  Flow profile (D-O14): a recommendation default, never a restriction. It filters
+  which techniques the suggestion snapshot surfaces as full rows; it changes no
+  threshold, no assertion, no gate. Out-of-profile techniques stay electable by
+  code at any P-O2 — plan composition. A switch is a ledger event with a reason:
+  Profile switch grammar: <date> · profile · <from → to> · <BA initials> — <reason>
 -->
 
 ## Current state
 Band: 1 (open)
+Profile: <Discovery | Presale> — picked <date> (P-O0); switches append to Events with a reason
 
 | Aspect | State | Since | Basis |
 |---|---|---|---|

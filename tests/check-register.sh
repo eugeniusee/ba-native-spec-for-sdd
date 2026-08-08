@@ -10,7 +10,7 @@
 # the pinned record shapes (ledger events, evidence tables, run-log lines,
 # snapshot shapes, gate JSON). Register rule 8: on conflict the shape governs.
 #
-#   1.  the name sources — T-01…T-18 from the catalogue index, P-O1…P-O9 from
+#   1.  the name sources — T-01…T-18 from the catalogue index, P-O0…P-O9 from
 #       orchestrator §10.1's Moment column; names verified against them, never
 #       hardcoded here and never taken on adjacency alone
 #   2.  the corpus — derived from the payload globs, all four render classes
@@ -66,7 +66,7 @@ cat > "$SCAN" <<'PY'
 """Rule-5 scan — no bare technique/stage code in a BA-facing string.
 
 Names are not hardcoded: T-01…T-18 come from the catalogue index's rows and
-P-O1…P-O9 from orchestrator §10.1's Moment column, so a document rename breaks
+P-O0…P-O9 from orchestrator §10.1's Moment column, so a document rename breaks
 this scan instead of drifting silently past it. Adjacency alone would accept
 any word sitting after the code; the name has to be the source's name.
 """
@@ -243,9 +243,9 @@ want_t="$(for i in $(seq -w 1 18); do printf 'T-%s ' "$i"; done)"
   || bad "the catalogue index yields [$got_t], expected [$want_t]"
 
 got_p="$(awk -F'\t' '$1 ~ /^P-O/ {print $1}' "$TMP/names.txt" | sort | tr '\n' ' ')"
-want_p="$(for i in $(seq 1 9); do printf 'P-O%s ' "$i"; done)"
+want_p="$(for i in $(seq 0 9); do printf 'P-O%s ' "$i"; done)"
 [ "$got_p" = "$want_p" ] \
-  && ok "P-O1…P-O9 all named by orchestrator §10.1's Moment column — 9 rows, no gaps" \
+  && ok "P-O0…P-O9 all named by orchestrator §10.1's Moment column — 10 rows, no gaps" \
   || bad "orchestrator §10.1 yields [$got_p], expected [$want_p]"
 
 # rule 5's own two examples, resolved against the sources rather than asserted

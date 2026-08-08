@@ -22,6 +22,10 @@ the composition appends.
   it does not open it.
 - **The ledgers must exist.** No `.specify/aspect-state.md` → Band 1 has not been
   entered; stop and name `/ba-frame`.
+- **The flow profile must be on record.** No `Profile:` line in the ledger head →
+  **P-O0 — flow-profile selection** was never taken; stop and name `/ba-frame`.
+  The snapshot filters by profile and cannot render without one. Never pick a
+  profile here, and never assume Discovery.
 - **The suggestion is advisory, never a restriction.** The decision is *BA
   planning, LLM assists*: you suggest a recommended technique set and sequence
   from the evidence; the BA composes the real plan.
@@ -79,28 +83,80 @@ its hole must not be emitted.** Suggesting into a criterion that is already met
 is legal only as enrichment the BA asked for; your own initiative stops at the
 threshold.
 
+**Filter by the profile.** Read `Profile:` from the ledger head. An in-profile
+technique renders as a full row. An out-of-profile technique renders no row — it
+collapses into the one-line list at the foot, electable by code. A profile is a
+recommendation default, never a restriction.
+
+**The enrichment block is standing.** Techniques that serve this aspect with no
+unmet criterion behind them render on every snapshot, not only when the BA asks.
+Listing is not recommending: an enrichment row carries `optional`, never
+`recommended`.
+
+**`Status` is a closed set** — `recommended — criterion unmet` · `done — <date>` ·
+`optional` · `dropped — <date>`. A `dropped` row resurfaces marked; it is never
+re-pushed. Nothing else may appear in that column.
+
 Write the snapshot into the aspect's section of `.specify/aspect-plans.md`,
 verbatim in this shape — it is kept as audit trail and as tuning input:
 
 ```
-Suggestion — <Aspect> — <date>
-| # | Technique (catalogue | custom sketch) | Addresses | Expected contribution |
-|---|---|---|---|
-| 1 | <name> | AT-<..> — <the named hole> | <what evidence the run should produce> |
+Suggestion — <aspect> — <date> · profile: <Discovery | Presale>
+State: <n> of <m> threshold criteria met. Nothing runs until you compose the plan
+(P-O2 — plan composition).
+
+| # | Code — technique | Purpose (one line) | Addresses | Status |
+|---|---|---|---|---|
+| 1 | T-05 — Context & landscape mapping | Maps today's systems and org landscape | AT-CX-1 — <the named hole> | recommended — criterion unmet |
+| 2 | <code — name · custom — name> | <purpose> | <AT-ID — hole · —> | done — <date> · dropped — <date> |
+
+Enrichment — electable, no unmet criterion behind them:
+| E1 | T-04 — Persona charters | Charters the elected user populations | — | optional |
+
+Outside this profile (electable by code): <codes> — say "show all" for full rows.
 Sequence rationale: <one line>
 ```
 
-Where a catalogue technique fits the hole, name it by its skill (`t03`, `t06`, …)
-so `/ba-run` can dispatch it. Where none does, sketch a **custom** technique —
-the loop is catalogue-agnostic by design: a technique is runnable iff its
-contract is pinned, wherever the contract came from.
+Where a catalogue technique fits the hole, render it as **code + name** — `T-03 —
+Stakeholder register`, `T-06 — Constraints elicitation` — and name its invocation
+as `/ba-run t03`, `/ba-run t06`. The lowercase form is the command's argument,
+never a render: a bare code in a row is a render defect. Where no catalogue
+technique fits, sketch a **custom** technique — the loop is catalogue-agnostic by
+design: a technique is runnable iff its contract is pinned, wherever the contract
+came from.
 
 ## Step 4 — P-O2 (plan composition): the BA's plan
 
-Present the snapshot and take the composition: **select · drop · reorder · add
-custom**. The composed plan is the BA's document; the snapshot stays beside it
+**A full checkpoint: render, then stop.** The BA's four acts are Q2's, verbatim:
+**select · drop · reorder · add custom**.
+
+Render the snapshot to the BA in the Step 3 shape — profile in the header, then
+`Code — technique`, `Purpose`, `Addresses`, `Status` for every in-profile row,
+then the standing enrichment block, then the out-of-profile line. Then render the
+choice line, exactly:
+
+```
+Compose the plan — P-O2 (plan composition). Four acts, in any combination:
+1. select      — take rows by number
+2. drop        — remove rows by number
+3. reorder     — give the sequence you want
+4. add custom  — name a technique not listed; you pin its output contract
+Out-of-profile techniques are electable by code. Say "show all" for full rows.
+Waiting for your composition. Nothing runs until you state it.
+```
+
+Then **stop and wait.** Do not compose. Do not record. Do not start a run.
+**Silence is never consent; a rendered suggestion is never a plan.** The composed
+plan exists only once the BA has stated it, and it is recorded verbatim as
+stated. The composed plan is the BA's document; the snapshot stays beside it
 unchanged. Never edit a snapshot to match what the BA chose — the divergence
 between the two *is* the tuning signal.
+
+You may **propose** a sequence when the evidence points one way. You never
+compose. **The plan is the BA's act.**
+
+Re-composition is legal at any time while the aspect is `open` or `reopened`. It
+runs this same checkpoint and appends.
 
 **Output contracts are pinned before any run.** Every planned technique —
 catalogue or custom — carries `{expected output · artifact class · destination
@@ -137,4 +193,12 @@ a cleared aspect · never runs a technique (that is `/ba-run`, its own BA act at
 P-O3 — technique invocation) · never confirms a threshold (that is `/ba-clear`)
 · never authors content or edits an artifact — it writes the two ledgers only ·
 never emits a suggestion that cannot name its AT hole · never treats its own
-suggestion as a restriction on the BA's plan.
+suggestion as a restriction on the BA's plan · **never composes or records a plan
+the BA did not compose**.
+
+**The session boundary (framework-wide).** This is an **analysis session**. It
+produces analysis artifacts only. It never produces an implementation plan, a
+task list, a prototype, or code — not as a proposal, not as a "next step," not as
+initiative. The boundary lifts **per feature**, and only by the pair: an
+effective PASS at `/ba-gate <feature>` and a completed `/ba-handoff <feature>`.
+Wanting to implement is never evidence of readiness: the only exit is the gate.

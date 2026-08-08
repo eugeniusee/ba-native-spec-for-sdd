@@ -20,6 +20,12 @@ the number, creates the destination, and records the band event — nothing else
   head reads `Band: 1 (closed <date>) — Bands 2/3 capable` — and a scope brief
   that proposes the slice. If the head still reads `1 (open)`, stop and name
   `/ba-close-band1`.
+- **Presale profile blocks entry.** If the ledger head reads `Profile: Presale`,
+  stop. Band-3 entry is out of that profile: Presale's destination is Band-2 exit
+  — roadmap, open questions, assumptions on record. Entry needs a **recorded
+  switch to Discovery** first, logged as a ledger event with a reason
+  (`<date> · profile · Presale → Discovery · <BA initials> — <reason>`). Never
+  switch the profile here; say what is needed and stop.
 - **Preconditions are NOT re-checked here.** Brief exists · brief is `Scoped` ·
   the slicing table is present — those belong to CC-H-03 and CC-XA-05 at gate
   time, and the Scope-F pre-flight is the hard guarantee. Rendering the row is

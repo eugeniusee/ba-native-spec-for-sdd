@@ -79,8 +79,8 @@ Do not invoke them on your own initiative and do not simulate their effects.
 
 | Command | Act |
 |---|---|
-| `/ba-frame` | Band-1 entry: initialize the two aspect ledgers, confirm the canvas |
-| `/ba-status` | Render the aspect-ledger head |
+| `/ba-frame` | Band-1 entry: initialize the two aspect ledgers, pick the flow profile (P-O0 — flow-profile selection), confirm the canvas |
+| `/ba-status` | Render the aspect-ledger head and the project dashboard |
 | `/ba-aspect <aspect>` | Open an aspect; suggestion snapshot → plan composition |
 | `/ba-run <technique> [args]` | Contract check, then dispatch a technique |
 | `/ba-clear <aspect>` | Evidence table → clearing confirmation |
@@ -146,16 +146,53 @@ are out of its reach.
    name the owning document and section instead. Outside pinned formats, a
    render past ~10 lines is a cut candidate.
 8. **Pinned formats stay pinned.** Recurring renders (suggestion snapshot §6.1,
-   ledger head §2.4, P-O prompts) keep their shapes; never re-narrate what a
+   ledger head §2.4, profile picker §8.1, project dashboard §10.4,
+P-O prompts) keep their shapes; never re-narrate what a
    format already shows. On conflict between this register and a pinned shape,
    the shape governs.
 
-### Discipline
+### Analysis session — the default mode
 
+**Reader: you, in this conversation.** Every conversation in this project starts
+here and stays here, for every feature that has not both passed the gate and been
+handed off. The rules below are yours.
+
+**Session mode — the analysis boundary (framework-wide).** Every conversation
+this framework conducts is an **analysis session**. An analysis session produces
+analysis artifacts only. It never produces an implementation plan, a task list, a
+prototype, or code — not as a proposal, not as a "next step," not as initiative.
+The boundary lifts **per feature**, and only by the pair: effective PASS at the
+gate **and** completed handoff (gate §11). Downstream of that pair, implementation
+belongs to the coding agent and the operator; the analysis session continues
+unchanged for every other feature. Standing project instructions (the compiled
+CLAUDE.md block, AGENTS.md) carry two addressed modes — analysis-session rules
+and coding-agent rules — and every instruction names its reader; an instruction
+addressed to the coding agent is inert in an analysis session. Wanting to
+implement is never evidence of readiness: the only exit is the gate.
+
+Here that pair is `/ba-gate <feature>` reaching an effective PASS, then
+`/ba-handoff <feature>` completing. Until both land for a feature, you are in
+analysis mode for it.
+
+- **You never author.** You schedule, route, and record. Content is authored by
+  techniques and the BA; checks are run by the gate. If a step seems to need you
+  to edit `canvas.md`, a file under `.specify/memory/`, a brief, a spec or code —
+  it is not your step.
+- **You never decide alone.** Where a skill names a P-O checkpoint, stop there
+  and take the ruling; never infer it from the evidence looking complete, from
+  context, or from the BA having ruled the same way before.
 - **Runtime ledgers are not content.** `.specify/aspect-state.md`,
   `aspect-plans.md`, `gate-health.md`, `gate-tuning.md`, and
   `elicitation-tuning.md` are the framework's operational state. Never edit
   them, never mirror them into a spec, never treat them as project context.
+
+### Coding agent — downstream of handoff
+
+**Reader: the coding agent working a feature that has passed the gate and
+completed `/ba-handoff <feature>`.** If that pair has not landed for the feature
+in front of you, these rules are inert. You are in an analysis session, and the
+section above governs.
+
 - **The certified text is the read text.** A spec that reached `/speckit-plan`
   passed the gate and its hashes were verified at handoff. Editing it silently
   voids that certification. Spec errors are fixed **in the spec** and re-run

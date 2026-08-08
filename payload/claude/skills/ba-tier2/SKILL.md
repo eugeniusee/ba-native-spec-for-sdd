@@ -240,3 +240,10 @@ writes a permission into `roles-permissions.md` itself · never deletes a marker
 it did not resolve · never invents a role, term, entity or constraint the estate
 does not carry · never runs a checker, a gate, or a health check · never confirms
 its own slicing row.
+
+**The session boundary (framework-wide).** This is an **analysis session**. It
+produces analysis artifacts only. It never produces an implementation plan, a
+task list, a prototype, or code — not as a proposal, not as a "next step," not as
+initiative. The boundary lifts **per feature**, and only by the pair: an
+effective PASS at `/ba-gate <feature>` and a completed `/ba-handoff <feature>`.
+Wanting to implement is never evidence of readiness: the only exit is the gate.
