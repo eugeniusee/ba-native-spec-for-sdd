@@ -2446,3 +2446,193 @@ next unit that renders a bare code will ship. The natural home is a
 `check-register.sh` carrying the paragraph-aware scan and its negative control,
 run beside the other suites. Left undone deliberately: the prompt scoped this
 session to propagation, and a new test file is a harness unit, not a Lane B one.
+
+---
+
+## Lane A — the register sweep promoted into the harness · `check-register.sh` · 7 August 2026 · GREEN
+
+**Session prompt:** Lane A — promote the register sweep into the harness as
+`check-register.sh`, carrying the scratch script's logic, with the negative
+control built in as a self-test, optional source-verification of the paired
+names if cheap, wired to run beside the other suites.
+**Grounding:** BUILD-LOG *Lane B — orchestrator rules v0.4 §10.3* (7 Aug 2026),
+section **Open** — the item this session closes · `bare_codes.py`, the scratch
+script Lane B's sweep ran from, as the logic to carry ·
+`docs/methodology/ba-native-spec-orchestrator-rules.md` **v0.4** §10.3 (rules 5
+and 8) and §10.1's Moment column · `ba-native-spec-catalogue-index.md` v0.2,
+rows T-01–T-18 · `check-spine.sh` (S8) as the suite shape and the seeded-defect
+idiom this file matches.
+
+### The change
+
+**One new harness unit, and two README wirings.** Lane B left rule 5 compiled
+but unchecked: the sweep lived in a scratch script, so the next unit rendering a
+bare code would have shipped. `tests/check-register.sh` is that sweep with a
+floor under it.
+
+1. **The scan, carried whole.** The file set derives from the payload globs —
+   `skills/*/SKILL.md` · `skills/*/references/*.md` · `agents/*.md` ·
+   `mirror/*.md` — and is counted at run time, never pinned at 61. Soft-wrapped
+   source lines join into the paragraphs the BA actually sees; headings, table
+   rows and quotes stand alone as hard lines; fenced blocks are skipped whole
+   (rule 8 — on conflict the pinned shape governs). Every `T-nn` / `P-On` must
+   carry its name immediately adjacent, across em-dash, en-dash, hyphen, colon,
+   parenthesis, comma or table-cell boundary.
+2. **The hardening was cheap, and was taken.** Names are no longer a dict in the
+   checker. `T-01`–`T-18` are read from the catalogue index's rows, `P-O1`–`P-O9`
+   from orchestrator §10.1's Moment column, at every run. Adjacency alone would
+   accept any word sitting after the code; the scan now requires *the source's
+   name*. A rename in either document breaks the suite instead of drifting past
+   it — which is the one-way rule reaching the harness.
+3. **The negative control is built in**, as section 4 of every run and as
+   `--self-test` on its own.
+
+### Units touched — 2 files
+
+| Class | Count | Files |
+|---|---|---|
+| New suite | 1 | `tests/check-register.sh` |
+| Wiring | 1 | `README.md` — the `## Test` block, the suite's paragraph, the `tests/` layout tree |
+
+**Deliberately not touched, each for a stated reason:** the whole `payload/`
+tree — harness-only session, and the sweep reads it, never writes it (verified:
+`git diff --stat HEAD -- payload` is Lane B's 52 files, unchanged) ·
+`docs/methodology/` — the suite reads the two name sources, and a checker never
+edits its own grounding · `VERSION` — no payload byte changed, so the installed
+package is identical · the other ten suites — none needed re-pinning, all ran
+green unaltered · `.claude/settings.local.json` — a permission allowlist, not a
+place suites run together (see D54).
+
+### What the suite asserts — 19 checks in four sections
+
+| § | Checks | What it holds down |
+|---|---|---|
+| 1 · the name sources | 5 | both documents parse; `T-01…T-18` complete with no gaps; `P-O1…P-O9` complete with no gaps; rule 5's own two examples resolve *from source* — `T-05 — Context & landscape mapping`, `P-O4 — clearing confirmation` |
+| 2 · the corpus | 5 | the globs derive a non-empty set (61 today), and each of the four render classes contributes files — a stale glob fails loudly rather than sweeping nothing |
+| 3 · the sweep | 1 | zero bare codes across the corpus; on failure every site prints with file, line and the joined paragraph |
+| 4 · the self-test | 8 | the copy starts clean at 0 · the scan exits non-zero when dirty · **exactly 3** hits · each of the three sites named with its file and line · restored to 0 · the fenced-block probe draws 0 |
+
+Sections 1 and 2 exist because the two ways this suite could go vacuous are an
+empty name table (an unknown code is skipped, silently) and an empty file set.
+Both are now assertions, not assumptions.
+
+### Verification evidence
+
+**The suite on the current payload.**
+
+```
+files scanned: 61 · names from source: 27 · bare codes: 0
+passed: 19   failed: 0
+```
+
+**Negative control — the same three defect classes Lane B injected.** One per
+render class, each into a different file so the report has to name three
+distinct sites: a prose heading (`## P-O3 — the act`) into `ba-run/SKILL.md`, a
+mid-sentence prose mention (`(that is P-O2)`) into `ba-orchestrator.md`, and a
+table cell (`| P-O7 | closure act |`) into `AGENTS.md`. The detector reported
+**exactly 3**, named all three with file and line, and returned to **0** on
+restore. A checker that cannot fail is not evidence, so it is made to fail on
+every run, not once.
+
+**The control discriminates, and the payload proves it.** `ba-run/SKILL.md:137`
+already carries *"(that is P-O2 — plan composition)"* — the paired form of the
+very construct injected as defect 2. It draws no hit. The scan is testing the
+pairing, not the substring.
+
+**Rule 8's boundary, probed rather than asserted.** After the restore the same
+codes are appended *inside* a fenced block. The sweep draws 0 — the pinned
+record shapes stay exempt, and the exemption is now demonstrated rather than
+claimed in a comment.
+
+**Regression — all eight suites, plus the cards, the layout bar and the exit
+script:**
+
+| Check | Result |
+|---|---|
+| `check-m.sh` | 40 / 0 |
+| `check-gate.sh` | 59 / 0 |
+| `check-orchestrator.sh` | 120 / 0 |
+| `check-techniques.sh` | 100 / 0 |
+| `check-techniques2.sh` | 122 / 0 |
+| `check-techniques3.sh` | 158 / 0 |
+| `check-spine.sh` | 134 / 0 |
+| **`check-register.sh`** | **19 / 0** |
+| `check-cards.py` | every card byte-identical to its re-derivation |
+| `check-layout.sh` (real `--offline` install) | 105 / 0 / 0 — full §1.1 tree |
+| `check-exit.sh --offline` | 99 / 0 — all ten steps in one run |
+
+752 suite assertions plus 204 install-and-exit assertions, zero failures — Lane
+B's 733 plus this suite's 19, with every prior count unmoved. The suite also
+runs green from an arbitrary working directory (paths derive from
+`BASH_SOURCE`).
+
+### Divergences flagged (§3.2 discipline, generalized)
+
+**D51 · The catalogue index's names are not the rendered names, and the
+difference needed a stated rule.** Three rows carry decoration the payload does
+not render: `Discovery canvas framing ★` and `Epics decomposition ★` (the
+starred pair), `Roles & permissions (incl. persona→role transformation)` and
+`Scope allocation (repeatable)` (trailing qualifiers). A fourth,
+`Domain (conceptual) modeling`, carries a parenthetical that *is* part of the
+name. No document states which decoration is rendered and which is not.
+
+*Resolution taken:* **one derivation rule, narrow and written into the
+checker — strip a trailing `★` and a trailing parenthetical; keep parentheticals
+that are not trailing.** Both the trimmed and the full form are accepted, so a
+unit rendering `T-18 — Scope allocation (repeatable)` also passes. This
+reproduces the scratch script's hardcoded list exactly, which is the check on
+the rule: 27 names derived, 27 names matched. Recorded because it is a
+derivation the corpus does not state, and a future index row with new decoration
+will need it revisited.
+
+**D52 · §10.1's Moment column is title-case; the payload renders lower-case —
+and rule 5's own example follows the payload.** The table reads
+`| P-O4 | Clearing confirmation |`; rule 5's example reads *"P-O4 — clearing
+confirmation."* Pinning the source's case would fail the rule's own example.
+
+*Resolution taken:* **the name match is case-insensitive; nothing else was
+loosened.** The name still has to be the source's name, word for word — only
+capitalization is free. The alternative, a case-normalization rule in §10.3,
+is a document change, not a harness one.
+
+**D53 · The Lane B negative control edited payload files, and this session may
+not.** Lane B injected into the real payload and restored it. This session is
+harness-only.
+
+*Resolution taken:* **the corpus is copied into the suite's temp dir and the
+defects are injected there; restore copies the pristine file back over.** Same
+three classes, same "exactly 3", same restore-to-0 — and the payload is opened
+read-only for the whole run, which is the property a checker should have anyway.
+This also matches `check-spine.sh`'s `mutate`-to-`$TMP` idiom rather than
+diverging from it, so the harness now has one seeded-defect pattern, not two.
+
+**D54 · There is no place the suites actually run together.** The prompt says to
+wire the new suite in "wherever they run together." They do not: the repo has no
+`Makefile`, no CI workflow, no git hook and no aggregate runner. The three
+places every suite is *listed* are `README.md`'s `## Test` block, `README.md`'s
+`tests/` layout tree, and `.claude/settings.local.json` — the last a per-command
+permission allowlist, which is a record of what has been approved, not a runner.
+
+*Resolution taken:* **wired into both README locations, and nothing invented.**
+`check-register.sh` now sits in the `## Test` block, has its own paragraph beside
+`check-m.sh`'s and `check-orchestrator.sh`'s, and has a layout-tree entry.
+A runner was not built: it would be a new harness unit this prompt did not
+scope, and it would need a decision about `check-layout.sh` and `check-exit.sh`,
+which take a target and do a real install. Left as an Open item rather than
+decided in passing.
+
+### Open
+
+**No single command runs the regression.** Eleven checks, invoked one at a time,
+with two of them needing an install first — the roll-up table in every BUILD-LOG
+entry since S2 has been assembled by hand. A `tests/run-all.sh` that runs the
+eight file-only suites plus `check-cards.py`, and optionally drives an
+`--offline` install for `check-layout.sh` and `check-exit.sh`, would make that
+table a command's output. Left undone deliberately: see D54.
+
+**`AT-*` and `CC-*` are still outside the sweep, and D49 is why.** The scan
+skips any code with no name source, so the two families Lane B could not pair
+pass silently rather than failing. That is correct today — no document names an
+AT criterion or a CC assertion — but it means the suite's coverage tracks the
+name sources, not rule 5's full reach. When §3.3 or the contract grows a name
+column, the codes join the sweep by existing, and this note is the pointer.

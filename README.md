@@ -77,6 +77,7 @@ tests/check-techniques.sh                                      # the technique s
 tests/check-techniques2.sh                                     # the technique suite, batch II
 tests/check-techniques3.sh                                     # batch III + Band-1 closure
 tests/check-spine.sh                                           # Band 2 + the Tier-1/Tier-2 spine
+tests/check-register.sh                                        # the BA-facing communication register
 ```
 
 `check-exit.sh` is the integration suite: it installs into a fresh git repo and
@@ -96,6 +97,15 @@ is not exercised with both a seeded FAIL and a PASS.
 round trip and the canvas at aspect grade, re-derives every row of the Context,
 Value, Vision and Solution evidence tables from the artifacts themselves, and
 seeds twenty-three distinct defects that must each trip their own rule.
+
+`check-register.sh` enforces orchestrator §10.3's register rule 5 across the
+skill / agent / mirror layer: it derives the file set from the payload, joins
+soft-wrapped lines into the paragraphs the BA actually sees, skips fenced blocks
+(rule 8 — the pinned shape governs), and requires every `T-nn` / `P-On` to carry
+its name. The names are read from the catalogue index and orchestrator §10.1's
+Moment column, not hardcoded, so a rename in either document breaks the scan
+instead of drifting past it. `--self-test` runs the seeded-defect control alone;
+`--list` prints the derived name table.
 
 `check-orchestrator.sh` replays the orchestrator rules' §12 exhibits — the
 BA-planning loop, a threshold cleared into Band-1 closure, and the RO-1 reopen
@@ -143,6 +153,9 @@ ba-native-spec/
    │                       allocation log · the call kit · the scope brief · the
    │                       Tier-2 session (S8 harness; not installed either)
    ├─ check-exit.sh        the Phase-2 exit test — §5's ten steps, one install (S9)
+   ├─ check-register.sh    the BA-facing communication register — §10.3 rule 5
+   │                       across the skill/agent/mirror layer, names read from
+   │                       the catalogue index and §10.1 (Lane A)
    ├─ fixtures/            the toy world (S2) · band1/ the §12 ledgers (S4) ·
    │                       presale-brief.md + band1/first-pass/ (S5) ·
    │                       band1/elected/ the BA-elected charter (S6) ·

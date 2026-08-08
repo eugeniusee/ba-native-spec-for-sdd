@@ -10,3 +10,8 @@ vendor/spec-kit-*.zip
 # Scratch install targets used while exercising install.sh / tests
 /toy/
 /.build-scratch/
+
+# Local Claude Code state — a per-command permission allowlist and the
+# session worktrees under .claude/worktrees/. Machine-local, never package
+# content: a worktree there is a checkout of this repo, not a source of it.
+/.claude/
