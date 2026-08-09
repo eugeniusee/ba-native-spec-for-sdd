@@ -125,7 +125,20 @@ GQ<n> of <cap> — [legality: <CC-ID(s)> | marker <ref>] [destination(s): <spec 
 
 **The recommended answer is never a hedge.** "It depends on the business" is not
 a recommendation; it is the question asked twice. Recommend the concrete value
-you would defend, name the basis, and let the BA confirm, edit, or reject.
+you would defend, name the basis, and let the BA confirm, edit, reject, or defer.
+
+**Defer — the fourth disposition.** A deferred question records **no answer**:
+the draft keeps its marked recommended value, the `[NEEDS CLARIFICATION]` marker
+stands as the record, and the brief's Open Question statuses stay open. Legal for
+any question, and the **expected** disposition under the **Presale** profile for
+questions that cannot reach the client. Under Presale, propose the
+client-unreachable subset of the queue as **one deferral batch** — the BA
+confirms, edits, or dissolves it in a single act, never per-question drip and
+never the framework's own call — then re-evaluate the queue **once** after it.
+When Tier 2 resumes with client access after a recorded switch to Discovery,
+every surviving marker is a legal question under the legality rule below (it
+resolves an open marker): the deferred packets re-render, answers land, markers
+resolve. Resume, not rewrite.
 
 **The cap: 7 per feature by default, BA-adjustable per feature.** Everything
 beyond the cap has a dignified path — it stays as a marker and meets the gate's

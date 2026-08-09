@@ -58,7 +58,8 @@ aspect opens**. Render the picker, exactly:
 Flow profile — pick one before any aspect opens (P-O0 — flow-profile selection):
 1. Discovery — the full analysis path. Destination: certified feature specs.
 2. Presale — the minimum technique set for limited client access.
-   Destination: roadmap + open questions + assumptions on record. Waivers expected.
+   Destination: roadmap + open questions + assumptions on record;
+   draft specs optional. Waivers expected.
 Waiting for your pick. Switchable later; the switch is logged.
 ```
 
@@ -75,22 +76,32 @@ by code at any **P-O2 — plan composition**.
 the 2 spine techniques. Destination: certified feature specs and handoff (Band 3).
 
 **Presale** — the minimum path to a scoped roadmap under limited client access.
-Destination: **Band-2 exit** — a current roadmap (epics + phases), the
-open-question roll-up, and every assumption on record via markers and aspect
-waivers. Aspect waivers are the expected instrument here, debt named — not an
-anomaly. **Band-3 entry (P-O8 — Band-3 entry) is out of profile:** it requires a
-recorded switch to Discovery.
+Destination: **Band-2 exit, extendable to draft specs (D-O18)** — a current
+roadmap (epics + phases), the open-question roll-up, every assumption on record
+via markers and aspect waivers, and, where the presale needs them, **draft
+feature specs**. A **draft spec** is not a new class or format: it is an ordinary
+`spec.md` that stops before its effective PASS, carrying its unknowns as
+`[NEEDS CLARIFICATION]` markers. Aspect waivers are the expected instrument here,
+debt named — not an anomaly. **Band-3 drafting is in profile:** feature entry
+(P-O8 — Band-3 entry) and **Tier 2 — spec-depth gap-filling** run in **assumption
+posture** — draft-and-mark, with the gap questions that cannot reach the client
+deferred as a BA-confirmed batch, standing as their markers. Certification and
+handoff are not the presale destination: they stay behind existing gate law — no
+effective PASS, no certification, no handoff — and are expected after a recorded
+switch to Discovery. The gate stays BA-invocable at any time; on a draft spec its
+FAIL report is an informative named-gap list — the client Q&A agenda.
 
 In profile for Presale: **T-01 — Discovery canvas framing · T-02 — Glossary
 discipline · T-03 — Stakeholder register · T-05 — Context & landscape mapping ·
 T-06 — Constraints elicitation · T-08 — Value definition · T-09 — Vision &
 differentiation · T-10 — Solution surface review · T-16 — Global out-of-scope ·
-T-17 — Epics decomposition · T-18 — Scope allocation**, plus **Tier 1 — epic
-scoping interview** as electable where a client call exists. Out of profile:
-T-04 — Persona charters · T-07 — Competitive analysis · T-11 — Domain
+T-17 — Epics decomposition · T-18 — Scope allocation · Tier 2 — spec-depth
+gap-filling (assumption posture)**, plus **Tier 1 — epic scoping interview** as
+electable where a client call exists; where none exists, its ingestion step runs
+on captured client material (RFP, client documents) as the notes input. Out of
+profile: T-04 — Persona charters · T-07 — Competitive analysis · T-11 — Domain
 (conceptual) modeling · T-12 — Roles & permissions · T-13 — Core process mapping ·
-T-14 — Design & UX standards · T-15 — Constitution · Tier 2 — spec-depth
-gap-filling.
+T-14 — Design & UX standards · T-15 — Constitution.
 
 Write the pick into the ledger head:
 

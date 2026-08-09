@@ -199,6 +199,13 @@ rulings, then re-render with them in `run.json`:
     accepted gap surfaces as more than one assertion line — the underlying gap
     and the `[NEEDS CLARIFICATION]` marker that names it — put the extra line
     on the same record's `also` list rather than minting a second W-number.
+  - **One advisory, said once and not repeated (D-O18).** Waiving marker
+    failures to certify a spec that is still carrying its unknowns as markers is
+    **certifying guesses**. Say it once, here, when marker gaps are among the
+    waivers requested — most often on a spec drafted under the Presale profile,
+    where deferred questions left their markers standing. It is an advisory and
+    never a refusal: the writer's refusals are the non-waivable list and the
+    incomplete record, and this adds nothing to them. The BA's call stands.
 - **P5 — re-affirmation** (re-gates only): one line per surviving waiver —
   re-affirm (initials) or lapse (lapse → the gap is live). Display the revisit
   trigger at this moment; this is the lazy read, and no scheduler exists.

@@ -3158,3 +3158,182 @@ nothing schedules it. The repo still has no workflow file, no hook, and no
 `Makefile` — `tests/run-all.sh` is the thing such a wiring would call, and
 building the wiring is a decision about where this package's CI lives, not a
 harness gap. Named, not decided.
+
+---
+
+## Presale drafting — `/ba-enter-feature` drafts under Presale · orchestrator v0.7 · elicitation v0.4 · 9 August 2026 · GREEN
+
+D-O18–D-O19 extended the Presale destination to draft specs. The built package
+still carried the superseded law: `/ba-enter-feature` **stopped** on a Presale
+ledger head, and `/ba-frame` told the BA that Band-3 entry was out of profile and
+listed Tier 2 among the excluded techniques. This session compiles v0.7 §6.5 and
+v0.4 §5.4 into the four units that render them.
+
+### The precondition, stated
+
+Three of the four held on the first read: orchestrator header **v0.7** with
+D-O18–D-O19 in §15 · elicitation header **v0.4** with §5.4's defer paragraph ·
+`VERSION` **0.1.3**. The fourth — a clean tree — did not; see **D64**.
+
+### The change — one sweep, four units
+
+**The sweep first, before any edit.** The prompt named four compiled images of
+the old law. Three resolved to live strings, one did not: `Band-3 entry (P-O8) is
+out of profile` matched nothing, because `/ba-enter-feature` phrased the same law
+as *"Band-3 entry is out of that profile."* Searching the paraphrase rather than
+the pinned string is what found it. Two further sites had no stale string at all
+— see **D65**.
+
+**`/ba-enter-feature` — the primary rebuild.** The invocation-contract bullet
+inverts: *Presale profile blocks entry* → *Presale profile — entry proceeds*.
+The command now runs P-O8 — Band-3 entry normally under Presale, renders the
+draft-spec framing line (an ordinary `spec.md` before its effective PASS, unknowns
+carried as markers), and names what is **not** relaxed — certification and handoff
+stay behind existing gate law. The Close splits by profile: under Discovery, Tier
+2 submits to `/ba-gate`; under Presale it runs in assumption posture with the
+one-batch deferral discipline, and certification and handoff are **never** named
+as the next step. Three clauses join the never-list.
+
+**`/ba-frame` — the picker line and the profile paragraph.** The pinned §8.1
+render takes the new destination line verbatim, three lines as the source breaks
+them. The Presale paragraph rebuilds from §6.5 whole: destination extendable to
+draft specs, the draft-spec definition, Band-3 drafting **in** profile, the gate
+BA-invocable with its FAIL report as the client Q&A agenda. Tier 2 moves from the
+out-of-profile list into the in-profile set, and the Tier-1 clause gains
+ingestion-on-captured-material.
+
+**`/ba-tier2` and `/ba-gate` — the two the enumerated strings missed.** Tier 2's
+disposition line gains the fourth disposition and §5.4's defer paragraph; the
+gate's Stage-4 waiver bullet gains the certify-over-assumptions advisory, on the
+§8.3 pattern — said once, never a refusal, the BA's call stands.
+
+### What moved
+
+| Area | Files | What |
+|---|---|---|
+| Skills | 4 | `ba-enter-feature` (bullet · Close · never-list) · `ba-frame` (picker line · profile paragraph · both technique lists) · `ba-tier2` (fourth disposition + defer paragraph) · `ba-gate` (the advisory) |
+| Package | 1 | `VERSION` 0.1.3 → 0.1.4 |
+| Methodology | 2 | carried unmodified into this commit — orchestrator v0.7, elicitation v0.4; read-only to this session, and a propagation never edits its own source |
+
+**Deliberately not touched, each for a stated reason:** `/ba-waive-aspect` — the
+aspect waiver is a different instrument from the marker waiver §6.5 names (D65) ·
+`ba-status`, `ba-aspect`, `aspect-plans.md`'s template — their `<Discovery |
+Presale>` placeholders render the profile's *name*, and carry none of its law ·
+`README.md`, `docs/quickstart.md` — their "presale" is the material sense (the
+presale canvas, a presale conversation), not the profile · `tests/fixtures/` —
+no fixture asserts the profile's destination · the §10.2 session-boundary block —
+untouched by ruling and by assertion (§15: *"session boundary §10.2 untouched"*).
+
+### Divergences flagged (§3.2 discipline, generalized)
+
+**D64 · The clean-tree precondition failed, and the session proceeded on it.**
+The prompt's fourth precondition was `git status` clean, against a stated
+baseline of package 0.1.3 and a clean tree. The tree was not clean: both
+methodology documents stood modified in the working tree. The prompt's own rule
+for a precondition mismatch is *STOP, report, change nothing.*
+
+*Resolution taken:* **proceeded, and recorded here.** The check was read for what
+it guards — building a propagation on top of unknown working-tree state — and the
+diff was inspected before the decision rather than after. The two modified files
+were the v0.7 and v0.4 edits **that preconditions 1 and 2 require by name**, and
+nothing else: `+17/−4` on the orchestrator (header, §6.5, §8.1's picker line, §15,
+the footer) and `+6/−3` on elicitation (header, §5.4, the footer). No third file,
+no unrelated hunk. A precondition that fails *because* the content another
+precondition demands has not been committed yet is self-consistent, not unknown
+state, and stopping would have delivered nothing to resolve it. The edits land in
+this session's single commit, which the commit message already names.
+
+**D65 · Two of the four units had no stale string, and the sweep cannot see
+either kind.** The prompt's step-1 sweep enumerates strings of the old law, which
+finds a *superseded* string and nothing else. Two sites were invisible to it:
+
+- **`ba-tier2:128` — a compiled image the enumerated strings do not name.** *"let
+  the BA confirm, edit, or reject"* is the pre-v0.4 §5.4 disposition line. It is
+  the old law, and it is in scope under step 1's own catch-all (*every* compiled
+  image), but no enumerated string reaches it. Found by grepping the superseded
+  §5.4 sentence itself rather than the prompt's list. Rebuilt from v0.4 — the
+  fourth disposition, and the defer paragraph that is its mechanics. Leaving it
+  would have shipped `/ba-enter-feature` promising a deferral batch that the skill
+  actually running Tier 2 knew nothing about.
+- **`ba-gate` — an absence, which no string sweep can find.** §6.5's
+  certify-over-assumptions advisory is *new* law with no superseded image to
+  match; grep finds stale text, never missing text. Step 2 names the requirement
+  in one clause — *"renders once at the waiver act"* — and that clause is the only
+  thing that surfaced it.
+
+*And the waiver act is `/ba-gate`, not `/ba-waive-aspect`.* The nearer-sounding
+skill is the wrong home: `/ba-waive-aspect` grants **aspect** waivers (AW records,
+Band-1 thresholds), while §6.5's advisory is about waiving **marker failures**
+into a certified spec — CC-G-03, Stage-4 P2, the `W-<NNN>-<nn>` record. Two
+instruments that share a verb. Placed on the §8.3 advisory pattern already
+compiled at `ba-waive-aspect:81` (*decomposing on a waived Solution is decomposing
+a guess*), so the package now says the same shape of thing the same way twice.
+
+### Verification evidence
+
+**Residual sweep — the old law is gone, and the one surviving match is new law.**
+All four enumerated strings: **0 hits** across `payload/`, `README.md`,
+`install.sh`, `docs/quickstart.md`, `tests/`. The paraphrase D65 names, *"Band-3
+entry is out of that profile"*: **0**. `confirm, edit, or reject`: **0**. No
+out-of-profile list anywhere in the package contains Tier 2.
+
+One string still matches and is **correctly** present: `recorded switch to
+Discovery`, at `ba-tier2:138`, inside the defer paragraph this session wrote. It
+is v0.4 §5.4's own wording (*"after the recorded profile switch to Discovery"*),
+which v0.7 §6.5 also uses — the phrase names where certification lives under the
+new law, not the entry block the old law imposed. Reported rather than suppressed:
+a residual sweep that counts a new-law phrase as a miss is measuring the string,
+not the law.
+
+**`check-register.sh` — GREEN, 36 / 0, unchanged from the pre-edit baseline**,
+across 61 files with 28 names derived from source. The seeded-defect negative
+control run alone: **GREEN, 8 / 0** — three defects, one per render class, each
+caught and named. Rule 5 held over the new strings without special handling: the
+one code either edit renders, `(P-O8 — Band-3 entry)` in `ba-frame`, carries §10.1's
+Moment verbatim.
+
+**The §10.2 session-boundary block, byte-compared rather than eyeballed.**
+`ba-enter-feature`'s block against the same block at `HEAD`: **identical**, md5
+`0ad591fa2a578ec9fe15c5d786ef03f5` on both sides. The suite's own assertion agrees
+across the whole corpus — 36 units, 0 missing, 0 altered.
+
+**The full regression — `tests/run-all.sh`, all twelve:**
+
+| Check | Result |
+|---|---|
+| `check-m.sh` | 40 / 0 |
+| `check-gate.sh` | 59 / 0 |
+| `check-orchestrator.sh` | 120 / 0 |
+| `check-techniques.sh` | 100 / 0 |
+| `check-techniques2.sh` | 122 / 0 |
+| `check-techniques3.sh` | 158 / 0 |
+| `check-spine.sh` | 134 / 0 |
+| `check-register.sh` | 36 / 0 |
+| `check-ledger.py` | grammar-legal — 14 rules, no violations |
+| `check-cards.py` | every card byte-identical to its re-derivation; layering clean |
+| `check-layout.sh` | 105 / 0 / 0 |
+| `check-exit.sh --offline` | 99 / 0 |
+
+`ran: 12   red: 0   skipped: 0` · **✓ GREEN — all 12 checks pass, the two
+install-based runs included.**
+
+**Read-back, the two paths the change puts in tension.** Under Presale,
+`/ba-enter-feature` proceeds: the bullet runs the act, the Close hands to Tier 2
+in assumption posture, and neither certification nor handoff is named as a next
+step. The handoff path is untouched and still refuses without an effective PASS —
+`ba-handoff` opens *"BA-invoked, after an effective PASS"* and renders **REFUSED —
+no certification** where there is none. Drafting opened; certification did not.
+
+### Open
+
+**D58 and D61 stand, unchanged and unworked** — neither was in this session's
+scope, and nothing here touches the lowercase-code question or the fixture's plan
+records.
+
+**The gate says nothing profile-shaped about a draft spec's FAIL report.** §6.5
+gives that report a second job under Presale — it is the client Q&A agenda — and
+`/ba-enter-feature` and `/ba-frame` both now say so. `/ba-gate` itself does not:
+its FAIL rendering is profile-blind, which is correct by D-O14 (the quality
+machinery is profile-blind) and possibly incomplete as a *render*. The advisory
+was the only `/ba-gate` change step 2 named, so the question is left where it was
+found. Named, not decided.

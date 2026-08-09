@@ -20,12 +20,15 @@ the number, creates the destination, and records the band event — nothing else
   head reads `Band: 1 (closed <date>) — Bands 2/3 capable` — and a scope brief
   that proposes the slice. If the head still reads `1 (open)`, stop and name
   `/ba-close-band1`.
-- **Presale profile blocks entry.** If the ledger head reads `Profile: Presale`,
-  stop. Band-3 entry is out of that profile: Presale's destination is Band-2 exit
-  — roadmap, open questions, assumptions on record. Entry needs a **recorded
-  switch to Discovery** first, logged as a ledger event with a reason
-  (`<date> · profile · Presale → Discovery · <BA initials> — <reason>`). Never
-  switch the profile here; say what is needed and stop.
+- **Presale profile — entry proceeds (D-O18).** If the ledger head reads
+  `Profile: Presale`, run this act normally: Band-3 drafting is **in** profile.
+  Presale's destination extends to **draft specs**, and a **draft spec** is not a
+  new class or format — it is an ordinary `spec.md` that stops before its
+  effective PASS, carrying its unknowns as `[NEEDS CLARIFICATION]` markers. What
+  stays outside the profile is unchanged, and is not this skill's to relax:
+  certification and handoff sit behind existing gate law — no effective PASS, no
+  certification, no handoff — and are expected after a recorded switch to
+  Discovery. Never switch the profile here.
 - **Preconditions are NOT re-checked here.** Brief exists · brief is `Scoped` ·
   the slicing table is present — those belong to CC-H-03 and CC-XA-05 at gate
   time, and the Scope-F pre-flight is the hard guarantee. Rendering the row is
@@ -118,8 +121,20 @@ where they chose to pause something.
 ## Close
 
 Name the next act: the Tier-2 session (`/ba-run tier2 <NNN>`), which loads the
-context stack, drafts first, runs the guided-question loop under the cap, and
-submits to `/ba-gate <NNN>`.
+context stack, drafts first, and runs the guided-question loop under the cap.
+
+**Under Discovery** it submits to `/ba-gate <NNN>`.
+
+**Under Presale** it runs in **assumption posture**: draft-and-mark is unchanged,
+and the gap questions that cannot reach the client are offered as **one
+BA-confirmed deferral batch** — the framework proposes the client-unreachable
+subset, the BA confirms, edits, or dissolves it in a single act, never
+per-question drip and never the framework's own call. A deferred question records
+no answer; its `[NEEDS CLARIFICATION]` marker stands as the record. The queue
+re-evaluates once after the batch. The gate stays BA-invocable at any time, and
+on a draft spec its FAIL report is an informative named-gap list — the client Q&A
+agenda. Do **not** name certification or handoff as the next step: both need an
+effective PASS, which is Discovery's destination, after a recorded switch.
 
 ## What this skill never does
 
@@ -127,8 +142,11 @@ Never writes the brief's slicing row itself (elicitation mechanics own the write
 · never creates `spec.md` or any other content file · never re-checks CC-H-03 /
 CC-XA-05 preconditions — the gate owns them · never mirrors brief or roadmap
 state into the ledger · never edits the roadmap directly (the flip routes as
-content under BA approval) · never blocks an entry on an advisory · never enters
-Band 3 before Band-1 closure · never assigns an `NNN` that is already taken.
+content under BA approval) · never blocks an entry on an advisory · never blocks
+entry on the Presale profile — drafting is in profile · never switches the
+profile itself · never offers certification or handoff as the next step under
+Presale · never enters Band 3 before Band-1 closure · never assigns an `NNN` that
+is already taken.
 
 **The session boundary (framework-wide).** This is an **analysis session**. It
 produces analysis artifacts only. It never produces an implementation plan, a
