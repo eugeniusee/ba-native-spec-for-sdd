@@ -3733,10 +3733,7 @@ install-based runs included.** Every count equals the pre-build baseline except
 
 **D58 and D61 stand, unchanged and unworked** — neither was in scope here.
 
-**D69 and D70 want a one-line ruling each**, and neither blocks anything: the
-export runs, and both reads are inside sources the framework already treats as
-read-only. They are recorded so the read set and the Role rule can be squared in
-the document rather than in the code.
+D69 and D70 — ruled 10 Aug 2026, ratified as built; wording carried in orchestrator v0.10 (see Divergences).
 
 **The estimate headers remain the open carry item.** When the company sample WBS
 fixes the set, the change is `COLUMNS` and `WIDTHS` in `sk_wbs.py`, the two
