@@ -43,9 +43,10 @@ S5|file|.claude/agents/ba-discovery.md|Discovery BA — Band-1/2 technique execu
 S8|file|.claude/agents/ba-analyst.md|Requirements Analyst — Tier-2 authoring persona
 S3|file|.claude/agents/ba-gate.md|gate agent — A-pass evaluator, read-only tools
 
-# ── workflow skills — 12 (build plan §2.2, D-P2-1/D-P2-5) ────────────────────
+# ── workflow skills — 13 (build plan §2.2, D-P2-1/D-P2-5) ────────────────────
 S4|file|.claude/skills/ba-frame/SKILL.md|Band-1 entry (orchestrator §8.1)
 S4|file|.claude/skills/ba-status/SKILL.md|ledger-head render
+S9|file|.claude/skills/ba-wbs/SKILL.md|WBS export (orchestrator §10.5) — added in package 0.1.6, after S9
 S4|file|.claude/skills/ba-aspect/SKILL.md|open + suggestion + composition (P-O1/P-O2)
 S4|file|.claude/skills/ba-run/SKILL.md|P-O3 contract check → technique dispatch
 S4|file|.claude/skills/ba-clear/SKILL.md|evidence table → confirmation (P-O4)
@@ -98,7 +99,7 @@ S1|file|.specify/ba/templates/gate-health.md|gate §10.3 head + entries shape
 S1|file|.specify/ba/templates/gate-tuning.md|gate §7.4 two tables + §12 escape record
 S1|file|.specify/ba/templates/elicitation-tuning.md|doc 3 §10 three tables (D-P2-11)
 
-# vendored checker scripts — 11 (build plan §2.4, D-P2-7)
+# vendored scripts — 13 (build plan §2.4, D-P2-7): 11 M checkers + the WBS pair
 S2|file|.specify/ba/scripts/sk_snapshot.py|gate §3 · §7.2 · §9.2
 S2|file|.specify/ba/scripts/sk_structure.py|gate §4.1–§4.2 · standard §2
 S2|file|.specify/ba/scripts/sk_scan.py|contract §4/§5/C12
@@ -110,6 +111,8 @@ S2|file|.specify/ba/scripts/sk_idgraph.py|contract C11 · gate §8
 S2|file|.specify/ba/scripts/sk_brief.py|contract C12 · elicitation §4
 S2|file|.specify/ba/scripts/sk_health.py|contract §6
 S9|file|.specify/ba/scripts/sk_handoff.py|gate §11.1–§11.2 · plan Q5
+S9|file|.specify/ba/scripts/sk_wbs.py|orchestrator §10.5 — the WBS export generator (0.1.6)
+S9|file|.specify/ba/scripts/sk_xlsx.py|orchestrator §10.5 — the stdlib xlsx writer (0.1.6)
 
 # compiled cards — 3 (build plan §2.5)
 S3|file|.specify/ba/cards/assertions-f.md|34 Scope-F A cards (text + CC-ID only)

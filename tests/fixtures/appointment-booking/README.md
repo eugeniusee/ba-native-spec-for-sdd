@@ -24,6 +24,14 @@ project/                        the world as an installed project
     scope/E-03.md               the filled brief (elicitation §8.2)
     scope/E-03.kit.md           the call kit (elicitation §8.1)
   specs/004-appointment-booking/spec.md      = revisions/spec-r6.md
+    …/gate-report.md            runs 2 + 3 as the report file the gate would
+                                have appended — = expected/gate-run2.entry +
+                                expected/gate-run3.entry (the WBS export reads
+                                the certification manifest from here)
+  specs/005-specialist-availability-publishing/spec.md
+                                the brief's F2 slice as a Presale DRAFT — never
+                                gated, two open markers; the uncertified side of
+                                the WBS export's selection defaults
 presale-brief.md                raw presale + kickoff material — the Frame input (S5)
 call-notes-E-03.md              scripted call notes — the ingestion input
 tier2-answer-sheet.md           the ≤ 7 GQ answers — the Tier-2 input
@@ -50,7 +58,11 @@ gate-runs/                      the BA's P2–P5 rulings per run (S3)
   run2-rulings.json             W-004-01 granted · O-004-01 ruled
   run3-rulings.json             re-affirmed · re-applied · ⚑ ×2 · approval
 expected/                       the recorded verdict table per case, plus the
-                                two recorded gate-report entries (S3)
+                                two recorded gate-report entries (S3) and the
+                                two golden WBS renders (0.1.6):
+  wbs-discovery.csv             certified features only — 004's three stories
+                                plus the epic's one deferred row
+  wbs-presale.csv               every drafted feature — 005's two stories too
 ```
 
 Run the M suite with `tests/check-m.sh`, the gate suite with

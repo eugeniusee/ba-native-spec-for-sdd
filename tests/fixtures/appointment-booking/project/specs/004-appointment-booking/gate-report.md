@@ -1,0 +1,86 @@
+## Gate run 2 — 2026-07-17
+Feature: 004-appointment-booking · Spec revision: r5 · Scopes: F (+H pre-flight)
+Verdict: FAIL (5 gaps)
+
+Failures:
+CC-G-04 FAIL — FR-007: banned word "quickly" → replace with a measurable target, or move the concern to an NFR with metric + condition.
+CC-AC-04 FAIL — US1 / scenario "Successful booking": re-narrates FR-001, no new data or path → convert to a checklist line, or make it carry the race-for-last-slot path with concrete data.
+CC-NF-02 FAIL — accessibility: no NFR and no N/A — <reason> → add one or declare N/A with a reason.
+CC-TR-01 FAIL [non-waivable] — US4: zero FRs reference it (story is unbuilt) → author its FRs or drop/demote the story.
+CC-XA-01 FAIL [non-waivable] — (Specialist × Appointment × cancel): no policy row in roles-permissions.md, but US3/FR-009 exercise it → add the row (governance change) or remove Specialist-initiated cancellation from scope.
+
+Waivers in force:
+W-004-01 · CC-IN-03 · calendar-sync failure expectation deferred · reason: provider contract unsigned · risk: manual reconciliation during pilot · approver: Y.K. · revisit: before Phase-3 pilot exit · fresh
+  also covers CC-G-03 (§8 Integration Touchpoints) — the marker that names this gap (contract §8)
+
+Overrides this run:
+O-004-01 · CC-AC-04 · US2 / acceptance "Cancellation inside 24h of start_time keeps the Slot unavailable for rebooking (BR-002)" · the flagged item is a checklist line, not a Gherkin scenario — CC-AC-04 does not reach it, and it carries the boundary datum BR-002 leaves implicit · approver: Y.K. · fresh
+
+⚑ sign-offs:
+CC-XA-01 — (verdict FAIL)
+CC-XA-06 — (verdict FAIL)
+
+Category summary: 55 in force · 55 evaluated · 0 carried · 48 passed · 5 failed · 1 waived · 1 overridden · 0 skipped
+  G   4 passed · 1 failed · 1 waived
+  AC  3 passed · 1 failed · 1 overridden
+  NF  2 passed · 1 failed
+  IN  2 passed · 1 waived
+  TR  3 passed · 1 failed
+  XA  6 passed · 1 failed
+
+BA approval: — (verdict FAIL; resubmit after fixes)
+
+Runtime record (gate definition §6.2):
+Snapshot:             10 files hashed — manifest at end of entry
+Pre-flight:           clean
+Carried from run 1:   none
+Skipped:              none
+Certification:        — (not an effective PASS)
+
+---
+
+## Gate run 3 — 2026-07-18
+Feature: 004-appointment-booking · Spec revision: r6 · Scopes: F (+H pre-flight)
+Verdict: PASS WITH WAIVERS
+
+Failures:
+none
+
+Waivers in force:
+W-004-01 · CC-IN-03 · calendar-sync failure expectation deferred · reason: provider contract unsigned · risk: manual reconciliation during pilot · approver: Y.K. · revisit: before Phase-3 pilot exit · re-affirmed run 3
+  also covers CC-G-03 (§8 Integration Touchpoints) — the marker that names this gap (contract §8)
+  (§Integration Touchpoints and brief untouched since grant)
+
+Overrides this run:
+O-004-01 · CC-AC-04 · US2 / acceptance "Cancellation inside 24h of start_time keeps the Slot unavailable for rebooking (BR-002)" · the flagged item is a checklist line, not a Gherkin scenario — CC-AC-04 does not reach it, and it carries the boundary datum BR-002 leaves implicit · approver: Y.K. · re-applied — evidence unchanged since run 2
+
+⚑ sign-offs:
+CC-XA-01 — 7 exercised tuples extracted; 7 explicit policy rows matched, incl. the (Specialist × Appointment × cancel) row added 2026-07-17 · evidence reviewed · Y.K.
+CC-XA-06 — no spec content in brief §3 Excluded/Deferred; OQ-1 Answered → BR-001, OQ-2 Open → carried as [NEEDS CLARIFICATION] under W-004-01 · evidence reviewed · Y.K.
+
+Category summary: 55 in force · 42 evaluated · 12 carried · 41 passed · 0 failed · 1 waived · 1 overridden · 0 skipped
+
+BA approval: Y. Kliukin · 2026-07-18 — effective PASS
+
+Runtime record (gate definition §6.2):
+Snapshot:             11 files hashed — manifest at end of entry
+Pre-flight:           clean
+Carried from run 2:   CC-OV-01 · CC-OV-02 · CC-FL-01 · CC-FL-03 · CC-FL-04 · CC-FL-05 · CC-DA-01 · CC-DA-02 · CC-DA-03 · CC-DA-04 · CC-IN-01 · CC-IN-02
+                      (read set untouched by the diff)
+Skipped:              none
+Certification:        manifest below
+
+Certification: run 3 · effective PASS · 2026-07-18
+  specs/004-appointment-booking/spec.md          9a2a…
+  .specify/memory/roles-permissions.md           573a…
+  .specify/memory/glossary.md                    18d4…
+  .specify/memory/domain-model.md                32ba…
+  .specify/memory/scope/E-03.md                  6f9f…
+  canvas.md                                      4545…
+  .specify/memory/constitution.md                c3ae…
+  .specify/memory/out-of-scope.md                4c0d…
+  .specify/memory/roadmap.md                     6088…
+  .specify/memory/design-standards.md            47f8…
+  specs/004-appointment-booking/traceability.md  044a…   (generated run 3)
+Adapter precondition: every hash matches the live file at handoff — any
+mismatch → refuse handoff, print the diverged paths, demand re-gate.

@@ -3519,3 +3519,224 @@ read, never asked, and it reaches nothing but what is printed.
 is a cross-reference on the §11.3 pattern, and the package renders it in the one
 place a BA meets it. If a second surface ever needs it, the source to recompile
 from is gate §6.1 — not `/ba-gate`'s render.
+
+---
+
+## WBS export — `/ba-wbs` · orchestrator v0.9 §10.5 · 10 August 2026 · GREEN
+
+Orchestrator **v0.9** adds one additive capability: **§10.5 — the WBS export**,
+six rulings D-O20–D-O25 (its §16). A read-only render command emits the
+client-facing work-breakdown spreadsheet from what the framework already
+produces — no new artifact, no new BA step, no new field anywhere. This session
+builds it: two generator scripts, one command unit, one test suite, wired into
+the runner.
+
+### The precondition, stated
+
+Read from the placed files, not from the prompt: orchestrator header **v0.9**
+carrying §10.5 (line 578) and §16 (line 745) · elicitation **v0.4** · gate
+**v0.5** · `VERSION` **0.1.5** · `BUILD-LOG.md` carrying both presale-drafting
+entries — the 0.1.4 build (`## Presale drafting …`) and the 0.1.5 build
+(`## FAIL-as-agenda + advisory instrument precision …`). The tree was dirty on
+exactly one methodology path, `ba-native-spec-orchestrator-rules.md`, and
+nothing else. §10.5 and §16 were read in full before a line was written.
+
+### The build — three units and their fixture
+
+**Two generator scripts**, in the repo's own scripts home
+(`payload/specify-overlay/ba/scripts/` → `.specify/ba/scripts/`), Python 3
+standard library only (D-P2-7), following the vendored checkers' idiom —
+`sys.dont_write_bytecode`, `sys.path.insert` on the script's own directory,
+imports across the family:
+
+- `sk_wbs.py` — the read-set parsers, the row model, selection, the register,
+  the csv writer and the generation summary. It reuses `sk_structure.parse_spec`
+  as the shared parse surface rather than re-parsing the spec, exactly as the M
+  checkers do. Its one local re-parse is the acceptance items: `sk_structure`
+  stops an acceptance at its line, and a WBS cell needs the assertion whole, so
+  the story block is re-walked with soft wraps joined.
+- `sk_xlsx.py` — the hand-built writer. There is no stdlib xlsx, so a `.xlsx` is
+  assembled as what it is: a zip of six XML parts, every string inline
+  (`t="inlineStr"`), a two-format stylesheet (body wrapped and top-aligned, the
+  header bold), `<cols>` widths, and **no `mergeCell` anywhere** — §10.5's "the
+  Epic value repeats per row". The zip carries fixed timestamps so two identical
+  runs produce identical bytes. Deliberately not implemented: formulas, numbers,
+  dates, colours, sheets past the first.
+
+**Writers in D-O23's order** — xlsx first, then csv, both in the one build, one
+row model behind them. Stable paths, overwritten per run.
+
+**The command unit** `/ba-wbs`, packaged exactly as `/ba-status` is: a single
+`payload/claude/skills/ba-wbs/SKILL.md`, frontmatter `name` matching the
+directory, `disable-model-invocation: true`, the session-boundary block verbatim
+at the foot. Its behavior text compiles §10.5 and nothing else — the read set,
+the selection defaults, the pinned columns, Deferred rows, the register, formats
+and paths, the boundaries. Read-only; no gate interaction; no `/speckit-*` call;
+stage-neutral — §10.2 untouched.
+
+**The fixture, extended minimally from the corpus's own worked examples** (repo
+mechanics, not methodology):
+
+| File | What it is |
+|---|---|
+| `tests/fixtures/appointment-booking/project/specs/004-appointment-booking/gate-report.md` | the two recorded entries — `expected/gate-run2.entry` (FAIL) + `expected/gate-run3.entry` (PASS WITH WAIVERS, certification manifest, `W-004-01`) — joined by the `---` separator `sk_snapshot.py`'s own append writes. Nothing authored. |
+| `tests/fixtures/appointment-booking/project/specs/005-specialist-availability-publishing/spec.md` | the brief's own F2 slice (E-03 §8, status `Proposed`) as a Presale **draft** spec: ten sections, two stories, two open markers, never gated. The uncertified side of the selection defaults. |
+| `tests/fixtures/appointment-booking/expected/wbs-discovery.csv` | golden render — certified only |
+| `tests/fixtures/appointment-booking/expected/wbs-presale.csv` | golden render — every draft |
+
+The fixture README's tree block names all four.
+
+### The renders, read back
+
+Discovery over the fixture: **4 rows** — 004's three stories plus the epic's one
+Deferred row (`Reschedule-in-place`, Phase 2, launch-substitute note in Comments
+/ Questions), 005 excluded with its reason and the act that admits it. Presale:
+**6 rows** — 005's two stories join. `--include 005` under Discovery renders
+byte-identically to the Presale file: one generator, the profiles differing only
+in the defaults.
+
+A worked cell, US2's acceptance — six numbered items: two requirements restated,
+three acceptance items, then `BR-002` folded as its own item (D-O24's companion
+rule). Its Role reads `Client, Specialist`: the actor first, then the role named
+in a linked requirement. US3's reads `Specialist, Client` for the same reason —
+the D-O24 extension is exercised, not merely implemented.
+
+### Recorded derivations — inside what §10.5 fixes
+
+Four behaviors §10.5 fixes in substance but not in mechanism. Each is written
+into `sk_wbs.py`'s docstring at its site, so the resolution travels with the
+code:
+
+1. **The disposition ladder.** §10.5 names four dispositions and the facts each
+   reads from; the order is most-specific-first — no report or no run entry →
+   `no gate run`; a certification manifest in the latest entry → `certified —
+   <run date>`; verdict FAIL → `FAIL(n)`; anything else is a run on record that
+   is not an effective PASS → `draft` (§6.5's own definition of a draft spec).
+   Void detection is never re-run: gate §9.1 keeps it lazy and owns it.
+2. **Marker attribution.** The summary carries *"per-feature and per-row
+   open-marker counts"*, so markers attribute to rows: a marker inside a row's
+   own source text belongs to that row; a marker anywhere else in the spec is
+   feature-level and rides every row of the feature, as the Integrations value
+   does. That is what makes §10.5's *"every deferred question stands as its
+   marker"* true of the column.
+3. **Markers render in one column.** Comments / Questions carries the marker
+   text, brackets stripped; every other cell drops the marker whole. D-O22's own
+   reasoning is that a second copy is duplication — and a bracket-stripped
+   marker spliced mid-sentence into an acceptance item is not a plain sentence.
+4. **Restatement is a case transformation.** "Restated as plain sentences" brings
+   the EARS caps down and leaves the words: `THE SYSTEM SHALL create` →
+   `the system shall create`. Conjugating the verb would be authoring, and this
+   command never authors.
+
+The manual estimate headers stand as the placeholder pair `Estimate — min` ·
+`Estimate — max`. **This is not a divergence** — §16 carries it open until the
+column-completeness check against the company sample WBS.
+
+**One harness mechanic, noted not diverged.** `tests/layout.expected`'s session
+column admits `SK`, `S1`…`S9`, `RT` only — `check-layout.sh` greps `^S[0-9]` and
+ranks the tags, and a new token would break three assertions. The three new rows
+are tagged `S9` (the full-tree bar, which is what the tag governs) with their
+real origin in the note column: *"added in package 0.1.6, after S9"*.
+
+### Divergences
+
+**D69 · §10.5's Role column names a source D-O25's read set excludes.** The Role
+rule reads *"the story's actor, verbatim from `roles-permissions.md`"*; D-O25's
+enumerated read set is `spec.md` · `gate-report.md` · the parent brief ·
+`roadmap.md`, and it *supersedes* the mapping exercise's narrower sentence.
+`roles-permissions.md` is in neither. Resolved **inside the read set**: the
+spec's §10 References line carries `(roles used: Client, Specialist)`, and the
+writing standard already requires story actors to be verbatim from
+`roles-permissions.md` — so the spec's own §10 is that file's faithful image for
+this purpose, and the export never opens a fifth file. Blocked unit: none; the
+Role column is built and tested. **The ruling worth taking:** whether D-O25's
+read set should name `roles-permissions.md` explicitly, or §10.5's Role rule
+should cite §10 References as its source.
+
+**D70 · The flow profile drives selection and sits in no D-O25 source.** §10.5's
+selection defaults turn on Discovery vs. Presale; the profile lives in the ledger
+head (§2.4, `.specify/aspect-state.md`), which the read set does not enumerate.
+Read from the head, never asked — the same act build 0.1.5 established for
+`/ba-gate`'s FAIL-as-agenda render (*"the profile is read, never asked"*). The
+read is one regex over one line and touches nothing else. `--profile` overrides
+it for a headless run; the command surface stays `[--include NNN …]` as §11's
+binding row fixes it. **The ruling worth taking:** whether the read set's
+enumeration is content-only by design, or should name the head as the selection
+input.
+
+**D71 · Deferred-row position inside an epic is unfixed.** §10.5 fixes grouping
+(*"by epic in roadmap row order"*) and that each Deferred item is its own row,
+but not where those rows sit relative to the epic's story rows. Placed **after**
+them: they are the epic's later-phase tail, and the Phase column reads MVP down
+the story rows then `Phase 2` on the Deferred row, which is the phase spread the
+ruling exists to restore. One line to re-rule if the sample WBS orders otherwise.
+
+### Verification evidence
+
+**`tests/check-wbs.sh` — GREEN, 49 / 0**, six sections, wired into the runner as
+check 9 of thirteen:
+
+| Section | Holds down |
+|---|---|
+| the golden csv | both profiles byte-identical to their expected files · the pinned column set read off the file, in order · every row's estimate cells empty |
+| the xlsx | unzips, `testzip()` clean, all six parts parse as XML · 7 sheet rows against the csv's 6 + header · header row matches · bold, wrapped, widths present · **no `mergeCell`** · 5 multi-line acceptance cells survive the write, the first opening `1. When a Client selects…` · the Deferred row present, Topic `Reschedule-in-place`, Phase `Phase 2` — its own, not the epic's |
+| selection | Discovery admits the certified feature and excludes the other **with its reason and the act that admits it** · `--include 005` admits it · the `--include` render equals the Presale render · Presale excludes nothing · **every** `specs/NNN-*` folder named in the summary with its disposition · per-row and per-feature marker counts present |
+| the disposition ladder | all four rungs — `certified — 2026-07-18` and `no gate run` from the fixture; `FAIL(2)` and `draft` produced on a private copy so the fixture keeps its canonical timeline. The FAIL entry's `CC-G-03` lines are asserted **absent** from every cell — D-O22 |
+| the register | 0 leaks across every generated cell of both renders · both named exceptions exercised, not merely tolerated — the waiver tag in Comments / Questions, `"Booked"` in acceptance text |
+| read-only | the fixture project's file hashes identical before and after a run · no stray `exports/` in the source tree · `--summary-only` writes nothing at all |
+
+**The negative control fires.** Three defects seeded into a copy of a clean
+render — an EARS sentence into Acceptance Criteria, a `[NEEDS CLARIFICATION`
+bracket into Comments / Questions, a `CC-IN-03` into Role. The sweep exits **1**,
+reports **exactly 3** hits, and names each by row, column and kind; the EARS hit
+is asserted to land in `Acceptance Criteria` specifically. `check-wbs.sh
+--self-test` runs that control alone.
+
+**The register suite reaches the new unit by existing.** `check-register.sh` is
+**36 / 0**, equal to the pre-build baseline, now across **62 files** with the
+session boundary in **37 units + 2 mirrors** (was 36 + 2) — `/ba-wbs`'s block is
+byte-identical to the pinned sha, and its one technique-code mention renders as
+`T-18 — Scope allocation`, resolved against the catalogue index rather than
+asserted here.
+
+**End-to-end from an installed layout**, not only from the payload: the scripts
+copied to `.specify/ba/scripts/`, invoked as `python3
+.specify/ba/scripts/sk_wbs.py --root .` against a project whose ledger head reads
+`Profile: Presale` — 6 rows, the Presale defaults applied from the head with no
+flag, `exports/wbs.xlsx` (4,154 B) and `exports/wbs.csv` written.
+
+**The full regression — `tests/run-all.sh`, all thirteen:**
+
+| Check | Result |
+|---|---|
+| `check-m.sh` | 40 / 0 |
+| `check-gate.sh` | 59 / 0 |
+| `check-orchestrator.sh` | 120 / 0 |
+| `check-techniques.sh` | 100 / 0 |
+| `check-techniques2.sh` | 122 / 0 |
+| `check-techniques3.sh` | 158 / 0 |
+| `check-spine.sh` | 134 / 0 |
+| `check-register.sh` | 36 / 0 |
+| `check-wbs.sh` | 49 / 0 |
+| `check-ledger.py` | grammar-legal — 14 rules, no violations |
+| `check-cards.py` | every card byte-identical to its re-derivation; layering clean |
+| `check-layout.sh` | 108 / 0 / 0 |
+| `check-exit.sh --offline` | 99 / 0 |
+
+`ran: 13   red: 0   skipped: 0` · **✓ GREEN — all 13 checks pass, the two
+install-based runs included.** Every count equals the pre-build baseline except
+`check-layout.sh` (105 → 108: the three new installed paths) and the new row.
+
+### Open
+
+**D58 and D61 stand, unchanged and unworked** — neither was in scope here.
+
+**D69 and D70 want a one-line ruling each**, and neither blocks anything: the
+export runs, and both reads are inside sources the framework already treats as
+read-only. They are recorded so the read set and the Role rule can be squared in
+the document rather than in the code.
+
+**The estimate headers remain the open carry item.** When the company sample WBS
+fixes the set, the change is `COLUMNS` and `WIDTHS` in `sk_wbs.py`, the two
+golden csv files, and the header assertion in `check-wbs.sh` — nothing else. The
+cells stay empty either way; that part is law, not a placeholder.

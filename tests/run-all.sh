@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 #
-# BA-Native Spec — the regression runner. One command, twelve checks.
+# BA-Native Spec — the regression runner. One command, thirteen checks.
 #
 # Every BUILD-LOG entry since S2 has closed with the same roll-up table, and
-# every one of them was assembled by hand from twelve separate invocations —
+# every one of them was assembled by hand from separate invocations —
 # two of which need a real install first. That is D54. This script is the table.
 #
-# The twelve, in the order the entries print them:
+# The thirteen, in the order the entries print them:
 #
-#   ten file-only checks — read the payload, the docs and the fixtures
+#   eleven file-only checks — read the payload, the docs and the fixtures
 #     1  check-m.sh              the ten vendored M checkers
 #     2  check-gate.sh           the gate: cards · Scope F · W/O/HA · P1–P8
 #     3  check-orchestrator.sh   the §12 exhibits · ledger grammar
@@ -17,12 +17,13 @@
 #     6  check-techniques3.sh    T-11…T-16 · Band-1 closure
 #     7  check-spine.sh          Band 2 · Tier 1 · Tier 2
 #     8  check-register.sh       the BA-facing register · the session boundary
-#     9  check-ledger.py         the aspect ledger against its grammar
-#    10  check-cards.py          the three compiled cards vs. their sources
+#     9  check-wbs.sh            the WBS export — rows · selection · register
+#    10  check-ledger.py         the aspect ledger against its grammar
+#    11  check-cards.py          the three compiled cards vs. their sources
 #
 #   two install-based runs — each installs into a throwaway git repo
-#    11  check-layout.sh         the full Phase-2 tree bar on a fresh install
-#    12  check-exit.sh --offline the Phase-2 §5 exit test, all ten steps
+#    12  check-layout.sh         the full Phase-2 tree bar on a fresh install
+#    13  check-exit.sh --offline the Phase-2 §5 exit test, all ten steps
 #
 # `check-cards.py` and `check-ledger.py` also run inside `check-gate.sh` and
 # `check-orchestrator.sh`. They keep their own rows because the entries give
@@ -33,12 +34,12 @@
 # code; every count is parsed from the check's own roll-up line. A check that
 # prints no count reports its summary sentence instead — never an invented one.
 #
-#   run-all.sh                run all twelve
-#   run-all.sh --file-only    the ten file-only checks; no install, no network
+#   run-all.sh                run all thirteen
+#   run-all.sh --file-only    the eleven file-only checks; no install, no network
 #   run-all.sh --online       let the install-based runs fetch Spec Kit
 #                             (default: --offline, from vendor/)
 #   run-all.sh --keep         keep the installed projects and print their paths
-#   run-all.sh --list         print the twelve rows and exit
+#   run-all.sh --list         print the thirteen rows and exit
 #   run-all.sh -v             stream each check's full output as it runs
 
 set -uo pipefail
@@ -54,7 +55,7 @@ for a in "$@"; do
     --keep)      KEEP=1 ;;
     --list)      LIST=1 ;;
     -v|--verbose) VERBOSE=1 ;;
-    -h|--help)   sed -n '2,46p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
+    -h|--help)   sed -n '2,43p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
     *) printf 'unknown option: %s\n' "$a" >&2; exit 2 ;;
   esac
 done
@@ -126,11 +127,11 @@ skip_check() {
 }
 
 if [ "$LIST" -eq 1 ]; then
-  sed -n '/^#   ten file-only checks/,/^#    12 /p' "$0" | sed 's/^# \{0,1\}//'
+  sed -n '/^#   eleven file-only checks/,/^#    13 /p' "$0" | sed 's/^# \{0,1\}//'
   exit 0
 fi
 
-# ── the ten file-only checks ─────────────────────────────────────────────────
+# ── the eleven file-only checks ──────────────────────────────────────────────
 
 printf '\n▸ The file-only checks — payload, docs and fixtures, no install\n'
 
@@ -142,6 +143,7 @@ run_check "check-techniques2.sh"  suite "$HERE/check-techniques2.sh"
 run_check "check-techniques3.sh"  suite "$HERE/check-techniques3.sh"
 run_check "check-spine.sh"        suite "$HERE/check-spine.sh"
 run_check "check-register.sh"     suite "$HERE/check-register.sh"
+run_check "check-wbs.sh"          suite "$HERE/check-wbs.sh"
 run_check "check-ledger.py"       line  python3 "$HERE/check-ledger.py" \
           "$HERE/fixtures/appointment-booking/band1/aspect-state.md"
 run_check "check-cards.py"        line  python3 "$HERE/check-cards.py"

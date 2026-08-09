@@ -4,7 +4,7 @@
 #
 # Asserts the build plan §1.1 tree in an installed project, plus the three
 # checks the S1 session exit test names beyond the tree: Spec Kit present, all
-# 32 /ba-* skills registered, manifest vector correct.
+# 33 /ba-* skills registered, manifest vector correct.
 #
 # The expected tree lives in tests/layout.expected, one entry per line, each
 # tagged with the build session that owns it. Two bars:
@@ -194,25 +194,25 @@ References'
   fi
 fi
 
-# ─────────────────────────────────────────────── the 32 /ba-* skills, by name ──
-printf '\n\033[1m▸ /ba-* skill registry — 32 expected (build plan §2.9)\033[0m\n'
+# ─────────────────────────────────────────────── the 33 /ba-* skills, by name ──
+printf '\n\033[1m▸ /ba-* skill registry — 33 expected (build plan §2.9)\033[0m\n'
 expected_skills=$(grep -c '^S[0-9]|file|\.claude/skills/ba-' "$EXPECTED" | tr -d ' ')
 found_skills=$(find "$TARGET/.claude/skills" -maxdepth 1 -mindepth 1 -type d -name 'ba-*' 2>/dev/null | wc -l | tr -d ' ')
 
-if [ "$expected_skills" -ne 32 ]; then
-  bad "layout.expected registers $expected_skills /ba-* skills, not 32 — the manifest itself is wrong"
+if [ "$expected_skills" -ne 33 ]; then
+  bad "layout.expected registers $expected_skills /ba-* skills, not 33 — the manifest itself is wrong"
 else
   pass=$((pass+1))
-  note "layout.expected registers all 32 by name (12 workflow + 20 technique)"
+  note "layout.expected registers all 33 by name (13 workflow + 20 technique)"
 fi
 
-if [ "$found_skills" -eq 32 ]; then
-  ok "32 of 32 /ba-* skills installed"
+if [ "$found_skills" -eq 33 ]; then
+  ok "33 of 33 /ba-* skills installed"
 elif [ -n "$SESSION" ]; then
-  printf '  \033[33m○\033[0m %s of 32 /ba-* skills installed — %s pending, itemized below\n' \
-    "$found_skills" "$((32 - found_skills))"
+  printf '  \033[33m○\033[0m %s of 33 /ba-* skills installed — %s pending, itemized below\n' \
+    "$found_skills" "$((33 - found_skills))"
 else
-  bad "$found_skills of 32 /ba-* skills installed — the full tree is the Phase-2 bar"
+  bad "$found_skills of 33 /ba-* skills installed — the full tree is the Phase-2 bar"
 fi
 
 # ───────────────────────────────── D-P2-2: frontmatter is the enforcement ──────

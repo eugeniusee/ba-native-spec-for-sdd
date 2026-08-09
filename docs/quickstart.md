@@ -172,6 +172,7 @@ and you re-enter to verify the built feature against its acceptance tier.
 | `/ba-gate <feature>` | The completeness gate |
 | `/ba-gate-health [artifact\|full]` | Project health across the shared artifacts |
 | `/ba-handoff <feature>` | Hash guard → branch → ready for `/speckit-plan` |
+| `/ba-wbs [--include NNN …]` | The client-facing WBS → `exports/wbs.xlsx` + `.csv` |
 
 Techniques run through `/ba-run`: `t01`…`t18`, plus `tier1 <kit|ingest|supplement> <epic>`
 and `tier2 <NNN>`. Nothing fires by itself — every one of these is invoked by
