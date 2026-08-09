@@ -3671,6 +3671,8 @@ them: they are the epic's later-phase tail, and the Phase column reads MVP down
 the story rows then `Phase 2` on the Deferred row, which is the phase spread the
 ruling exists to restore. One line to re-rule if the sample WBS orders otherwise.
 
+D69–D71 ratified as built, 10 Aug 2026 — orchestrator v0.10 carries the wording (BA Lead ruling).
+
 ### Verification evidence
 
 **`tests/check-wbs.sh` — GREEN, 49 / 0**, six sections, wired into the runner as
