@@ -1,5 +1,6 @@
 # Geniusee Gate Definition
-### BA-Native Spec · contract runtime · v0.4 — orchestrator session-boundary cross-reference (§11.3, 7 Aug 2026)
+### BA-Native Spec · contract runtime · v0.5 — FAIL-as-agenda cross-reference for Presale drafts (§6.1, 9 Aug 2026)
+**v0.5 change record:** one additive bullet + one dependency refresh, 9 Aug 2026 (Presale drafting follow-up; orchestrator D-O18, build-log D65 context): §6.1 gains the **FAIL-as-agenda** cross-reference — on a draft spec under the Presale profile, the FAIL report's named-gap lines double as the client Q&A agenda (orchestrator §6.5); no verdict machinery changes, the gate stays profile-blind (orchestrator D-O14). Footer dependency line: elicitation v0.3 → v0.4. No other changes.
 **v0.4 change record:** one additive sentence — §11.3's boundary sentence gains the cross-reference to orchestrator §10.2's framework-wide session-mode rule (D-O11, ruled 7 Aug 2026). No other changes.
 **v0.3 change record:** one catalogue-b6 mirror — D-B6-1 → §11.1: the manifest example's rendered word "backlog (E-03 rows)" → "roadmap (E-03 rows)" (a rendered example, not a rule). No other changes.
 
@@ -155,6 +156,7 @@ The report (§6.2) prints failures, waivers, overrides, and ⚑ bundles in full;
 - **PASS WITH WAIVERS:** zero live failures, zero skips, ≥ 1 waiver in force (fresh or re-affirmed).
 - **PASS:** zero live failures, zero skips, zero waivers in force.
 - **Provisional → effective:** a pass-bound verdict becomes effective only through P3 (⚑, individually) + P4 (approval, holistic). A FAIL needs no approval — it is final until fixed, overridden, or waived (contract §2).
+- **FAIL as agenda (Presale drafts):** on a draft spec under the **Presale** profile, the FAIL report carries a second, informative job — its named-gap lines are the client Q&A agenda (orchestrator §6.5, D-O18). Nothing in the verdict machinery changes: the gate stays profile-blind (orchestrator D-O14); the FAIL stays final until fixed, overridden, or waived; certification still requires an effective PASS. A cross-reference on the §11.3 pattern, not new law.
 
 ### 6.2 The report entry — contract §7 core + runtime record
 
@@ -496,4 +498,4 @@ Nine decisions ruled, 24 July 2026 — D-G1…D-G3 by the BA Lead directly; D-G4
 
 ---
 
-*v0.4 · session-boundary cross-reference applied 7 Aug 2026 (D-O11) · D-B6-1 mirror applied 30 July 2026 · review incorporated 24 July 2026 · runtime of completeness contract v0.2 — 61 assertions: 24 M · 37 A (2 ⚑) · consumes writing standard v0.3 (its §15 = the writer's half) · receives specs from elicitation techniques v0.3 (Tier 2) and returns named gaps as its legality anchors · emits reopen signals to orchestrator rules (document 5) · hands to the Mode-A adapter at the certification manifest · runtime ledgers: `.specify/gate-health.md` · `.specify/gate-tuning.md` · v0.1→v0.2 review record in §15*
+*v0.5 · FAIL-as-agenda cross-reference applied 9 Aug 2026 (orchestrator D-O18 follow-up) · session-boundary cross-reference applied 7 Aug 2026 (D-O11) · D-B6-1 mirror applied 30 July 2026 · review incorporated 24 July 2026 · runtime of completeness contract v0.2 — 61 assertions: 24 M · 37 A (2 ⚑) · consumes writing standard v0.3 (its §15 = the writer's half) · receives specs from elicitation techniques v0.4 (Tier 2) and returns named gaps as its legality anchors · emits reopen signals to orchestrator rules (document 5) · hands to the Mode-A adapter at the certification manifest · runtime ledgers: `.specify/gate-health.md` · `.specify/gate-tuning.md` · v0.1→v0.2 review record in §15*

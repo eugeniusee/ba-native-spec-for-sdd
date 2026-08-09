@@ -3337,3 +3337,185 @@ its FAIL rendering is profile-blind, which is correct by D-O14 (the quality
 machinery is profile-blind) and possibly incomplete as a *render*. The advisory
 was the only `/ba-gate` change step 2 named, so the question is left where it was
 found. Named, not decided.
+
+---
+
+## FAIL-as-agenda + advisory instrument precision · gate v0.5 · orchestrator v0.8 · 9 August 2026 · GREEN
+
+The previous session closed leaving one question named and not decided: *"the
+gate says nothing profile-shaped about a draft spec's FAIL report."* D65 had
+placed the certify-over-assumptions advisory but left its instrument unnamed.
+Both documents then moved — gate **v0.5** adds the §6.1 FAIL-as-agenda bullet,
+orchestrator **v0.8** names the advisory's instrument at §6.5. This session
+compiles both into the one unit that renders them, `/ba-gate`.
+
+### The precondition, stated
+
+Read from the **placed** files, not from the prompt: gate header **v0.5** with
+the *"FAIL as agenda (Presale drafts)"* bullet at §6.1 · orchestrator header
+**v0.8** with §6.5 reading *"at the gate's waiver act"* · `VERSION` **0.1.4** ·
+commit **73da656** present, local. The tree was dirty on exactly the two
+methodology paths and nothing else. See **D66** for what "placed" meant here.
+
+### The sweep — two of its three targets found nothing, and that is the finding
+
+**The enumerated superseded string does not exist.** *"says so once at the waiver
+act"* — the pre-v0.8 §6.5 wording — returns **0 hits** across `payload/`,
+`tests/`, `README.md`, `install.sh` and the package docs. It was never compiled
+verbatim: D65 wrote `/ba-gate`'s advisory as its own paraphrase, so the sweep's
+pinned string had nothing to match. Found instead by grepping the *idea* —
+`certifying guesses` — which resolves to exactly one site, `ba-gate:202`.
+
+**The §6.1 compiled image is two paragraphs, both in `/ba-gate`.** The verdict
+rules at `:177` (FAIL / PASS WITH WAIVERS / PASS) and the finality clause at
+`:231` (*"a FAIL needs no approval — it is final until fixed, overridden or
+waived"*). Neither carried the new bullet. The pinned record shapes —
+`gate-report-entry.md`, `sk_snapshot.py`'s verdict strings — are shapes, not §6.1
+prose, and stay untouched under register rule 8.
+
+**`ba-frame` and `ba-enter-feature` carry compiled §6.5 text and no advisory at
+all** — see **D67**.
+
+### The change — one unit, two edits and a never-list clause
+
+**(a) The FAIL render's agenda line.** A new paragraph at Stage 4, immediately
+after the verdict-computation rule, where the FAIL is rendered. Two conditions,
+both required: the ledger head at `.specify/aspect-state.md` reads `Profile:
+Presale`, **and** the feature has no effective PASS on record — no `cert.json`
+under `.specify/ba/runs/<NNN-feature>/`, deliberately the same fact
+`/ba-handoff` reads, so the two skills cannot disagree about what "certified"
+means. Then exactly one line is appended under the presented FAIL. The profile is
+**read** from the head; the paragraph says *never ask the BA for it*, and a
+missing or non-Presale head appends nothing and says nothing — silence, not a
+note about profiles.
+
+The paragraph then fences the change in on all four sides: the verdict stays FAIL
+and stays final until fixed, overridden or waived · the named-gap lines are
+unchanged · no waiver, override or approval is implied · certification still
+needs an effective PASS. One boundary the source does not state and the package
+needs: **the line goes to what the BA sees, never into the `gate-report.md`
+entry.** That entry is a pinned shape, and a render-only change that quietly
+edited a pinned shape would not be render-only.
+
+**(b) The advisory names its instrument.** D65's paraphrase said *"say it once,
+here"* and stopped, leaving the reader to infer which waiver it meant — the
+ambiguity v0.8 §6.5 exists to remove. Two sentences added, recompiled from the
+v0.8 source: the instrument is the **contract waiver** `W-<NNN>-<nn>` granted at
+this step; never the **aspect waiver** `AW-<n>`, which is `/ba-waive-aspect`'s
+act over a Band-1 aspect and certifies nothing. Placement was already correct —
+the advisory sits inside the Waiver bullet — so this is wording, not a move.
+
+**The never-list gains two clauses** — see **D68**: never asks the BA for the
+flow profile, and never lets the profile touch a verdict, a threshold or an
+assertion. The first makes *"never asked"* enforceable in the file's own idiom;
+the second keeps D-O14 (the quality machinery is profile-blind) visible at the
+one place in `/ba-gate` where a profile is now read at all.
+
+### Divergences
+
+**D66 · No files were attached; the two documents were already in place.** Step 0
+directed a copy of two attached methodology files over `docs/methodology/`. No
+attachment arrived with the prompt. Both target files were already present in the
+working tree carrying exactly the content the preconditions demand — gate v0.5
+with the §6.1 bullet, orchestrator v0.8 with *"at the gate's waiver act"* — and
+`git status` showed those two paths modified and nothing else, which is precisely
+the state step 0's own check defines as correct. Placement was therefore
+**verified rather than performed**: nothing was copied, nothing overwritten. The
+alternative — stopping on a missing attachment whose entire intended effect is
+already present and verifiable — would have delivered nothing. The diff was read
+in full before proceeding, not assumed: `+3/−2` on the gate (header, §6.1 bullet,
+footer), `+4/−3` on the orchestrator (header, §6.5 sentence, footer). No third
+file, no unrelated hunk.
+
+**D67 · Step 3's premise does not hold, and acting on it would have contradicted
+the source.** Step 3 states that `ba-frame` and `ba-enter-feature` carry compiled
+§6.5 advisory text from build 0.1.4 and directs a recompile of the advisory
+sentence in each. They carry compiled §6.5 text, but **neither carries the
+advisory at all**: both stop at the FAIL-as-agenda clause (*"on a draft spec its
+FAIL report is an informative named-gap list — the client Q&A agenda"*) and go no
+further. `grep` for `advisory` in `ba-frame`: **0**. For `certifying guesses`
+across the payload: **1**, in `/ba-gate`.
+
+That absence is the design, not a gap. Source §6.5 says the framework says it
+**once**, at the gate's waiver act; D-O18 says *"one certify-over-assumptions
+advisory at the waiver act"*; `/ba-gate`'s own compiled image says *"one
+advisory, said once and not repeated … say it once, **here**."* Compiling the
+sentence into two more units would have made the package say three times what
+the source rules is said once — recompiling the letter of step 3 while breaking
+the rule it compiles. Both files left unchanged. The three other *"one advisory,
+said once and not repeated"* sites — `ba-waive-aspect:81`, `ba-close-band1:120`,
+`ba-t17:46` — were checked and are the **waived-Solution** advisory, a different
+advisory on the same §8.3 pattern; correctly untouched.
+
+**D68 · Two clauses added to `/ba-gate`'s never-list, beyond the two named
+edits.** Step 2 names two changes. *"Profile read from the ledger head, never
+asked"* is stated inside change (a)'s own paragraph, but in this package a
+constraint that must hold is also written into the unit's never-list — that is
+where every other `/ba-gate` prohibition lives and where the harness looks for
+refusal discipline. Two clauses, no new behavior, and the second one restates
+D-O14 rather than adding to it.
+
+### Verification evidence
+
+**Residual sweep.** *"says so once at the waiver act"*: **0 hits** across the
+whole repository, before and after — the string never existed here (D66's
+counterpart finding, recorded rather than reported as a pass). `certifying
+guesses`: **1**, at `ba-gate:227`, now naming both instruments. `client Q&A
+agenda` as a rendered string: **2** — `ba-frame:92` (compiled §6.5, unchanged)
+and `ba-gate:190` (the new appended line); `ba-enter-feature:135` carries the
+same clause soft-wrapped and is unchanged. No compiled §6.1 image is left without
+the bullet's substance.
+
+**`check-register.sh` — GREEN, 36 / 0, equal to the pre-edit baseline**, across
+61 files with 28 names derived from source. The seeded-defect control run alone:
+**GREEN, 8 / 0**. Both new codes carry their plain names on first use — *contract
+waiver* `W-<NNN>-<nn>`, *aspect waiver* `AW-<n>` — and the appended agenda line
+sits in a fenced block, where register rule 8 gives the shape the last word.
+
+**The §10.2 session-boundary block, byte-compared rather than eyeballed.**
+`/ba-gate`'s block against the same block at `HEAD`: **identical**, sha-256
+`924cf13f123a6d11…` on both sides. Concatenated across all 36 units, both sides:
+`e153fd73671496e7…`. The suite's own assertion agrees — 36 units, 0 missing, 0
+altered.
+
+**The full regression — `tests/run-all.sh`, all twelve:**
+
+| Check | Result |
+|---|---|
+| `check-m.sh` | 40 / 0 |
+| `check-gate.sh` | 59 / 0 |
+| `check-orchestrator.sh` | 120 / 0 |
+| `check-techniques.sh` | 100 / 0 |
+| `check-techniques2.sh` | 122 / 0 |
+| `check-techniques3.sh` | 158 / 0 |
+| `check-spine.sh` | 134 / 0 |
+| `check-register.sh` | 36 / 0 |
+| `check-ledger.py` | grammar-legal — 14 rules, no violations |
+| `check-cards.py` | every card byte-identical to its re-derivation; layering clean |
+| `check-layout.sh` | 105 / 0 / 0 |
+| `check-exit.sh --offline` | 99 / 0 |
+
+`ran: 12   red: 0   skipped: 0` · **✓ GREEN — all 12 checks pass, the two
+install-based runs included.** Every count equals the pre-edit baseline.
+
+**Read-back, the four paths the change puts in tension.** *Presale + no
+certification* → the agenda line renders, one line, under a FAIL that is still
+final. *Discovery* → the render is byte-for-byte what it was; the paragraph's own
+last sentence says so. *Presale + already certified* → nothing appended; the
+`cert.json` condition is what stops it. *Handoff* → untouched, `git diff` on
+`ba-handoff/` empty, and it still opens *"BA-invoked, after an effective PASS"*
+and renders **REFUSED — no certification** where there is none. The FAIL gained a
+second job; it gained no new power.
+
+### Open
+
+**D58 and D61 stand, unchanged and unworked** — neither was in scope here.
+
+**The previous session's open question is closed.** `/ba-gate`'s FAIL render now
+carries §6.1's second job under Presale, and does it as a render: the profile is
+read, never asked, and it reaches nothing but what is printed.
+
+**Nothing in the payload compiles §6.1's bullet as law, by design.** The bullet
+is a cross-reference on the §11.3 pattern, and the package renders it in the one
+place a BA meets it. If a second surface ever needs it, the source to recompile
+from is gate §6.1 — not `/ba-gate`'s render.

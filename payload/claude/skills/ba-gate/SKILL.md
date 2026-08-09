@@ -178,6 +178,29 @@ The writer computes the verdict — it is not yours to compute. **FAIL (n)** wit
 n live failure lines, or any skip at all; **PASS WITH WAIVERS** with zero live
 failures, zero skips and ≥ 1 waiver in force; **PASS** with none of those.
 
+**FAIL as agenda — one appended line under Presale (gate §6.1).** A FAIL on a
+presale draft has a second, informative job: its named-gap lines are the client
+Q&A agenda. Render that job when **both** hold — the ledger head at
+`.specify/aspect-state.md` reads `Profile: Presale`, and this feature has no
+effective PASS on record (no `cert.json` under
+`.specify/ba/runs/<NNN-feature>/`, the same fact the adapter reads). Then append
+exactly one line under the presented FAIL:
+
+```
+These named-gap lines are also the client Q&A agenda.
+```
+
+Read the profile from the head. **Never ask the BA for it.** If the head is
+missing, or its `Profile:` line does not read `Presale`, append nothing and say
+nothing about profiles — silence is the correct render.
+
+This is a render and nothing else. The verdict stays FAIL and stays final until
+fixed, overridden or waived; the named-gap lines are unchanged; no waiver,
+override or approval is implied; certification still needs an effective PASS.
+The line goes to what the BA sees, never into the `gate-report.md` entry — that
+entry's shape is pinned. On a pass-bound verdict, under `Profile: Discovery`, or
+on a feature already certified, the render is exactly what it was.
+
 **P2 — verdict review.** Present the provisional result and take the BA's
 rulings, then re-render with them in `run.json`:
 
@@ -203,9 +226,12 @@ rulings, then re-render with them in `run.json`:
     failures to certify a spec that is still carrying its unknowns as markers is
     **certifying guesses**. Say it once, here, when marker gaps are among the
     waivers requested — most often on a spec drafted under the Presale profile,
-    where deferred questions left their markers standing. It is an advisory and
-    never a refusal: the writer's refusals are the non-waivable list and the
-    incomplete record, and this adds nothing to them. The BA's call stands.
+    where deferred questions left their markers standing. The instrument is
+    named: the **contract waiver** `W-<NNN>-<nn>`, granted at this step. Never
+    the **aspect waiver** `AW-<n>` — that is `/ba-waive-aspect`'s act over a
+    Band-1 aspect, and it certifies nothing. It is an advisory and never a
+    refusal: the writer's refusals are the non-waivable list and the incomplete
+    record, and this adds nothing to them. The BA's call stands.
 - **P5 — re-affirmation** (re-gates only): one line per surviving waiver —
   re-affirm (initials) or lapse (lapse → the gap is live). Display the revisit
   trigger at this moment; this is the lazy read, and no scheduler exists.
@@ -288,7 +314,10 @@ defect, not its success.
 Never invokes any `/speckit-*` command · never edits a spec, a memory artifact,
 or code · never rewords content to pass its own checks · never waives, accepts
 or approves on the BA's behalf · never runs a Band-1 aspect gate (that is
-`/ba-clear`) · never writes into `.specify/memory/`.
+`/ba-clear`) · never writes into `.specify/memory/` · never asks the BA for the
+flow profile — it is read from the ledger head or not read at all · never lets
+the profile touch a verdict, a threshold or an assertion: the quality machinery
+is profile-blind, and the appended agenda line is a render.
 
 **The session boundary (framework-wide).** This is an **analysis session**. It
 produces analysis artifacts only. It never produces an implementation plan, a
