@@ -58,6 +58,15 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import sk_xlsx  # noqa: E402
 from sk_structure import parse_spec, table_rows  # noqa: E402
 
+# §10 References is read with the gate's own readers, imported rather than
+# restated. The gate is the authority on what a valid References section looks
+# like (CC-TR-02 finds a required reference by its **path**, the label being
+# decorative; CC-TR-03 finds the declaration by `roles used:`, bulleted or
+# not) — and this render must never be stricter than the check that certified
+# the spec it is rendering. A second copy of these patterns is a second thing
+# to drift.
+from sk_idgraph import PATH_RE, ROLES_DECL_RE  # noqa: E402
+
 # ── the pinned column set (§10.5) ─────────────────────────────────────────────
 #
 # Eight generated columns, then the manual estimate pair. The estimate headers
@@ -370,27 +379,52 @@ def section_body(spec, name: str) -> str:
     return sec.body if sec else ""
 
 
-def reference_line(spec, label: str) -> str:
-    for line in section_body(spec, "References").splitlines():
-        if re.match(r"^\s*[-*]\s*%s\s*:" % re.escape(label), line, re.I):
-            return line
-    return ""
+def reference_lines(spec):
+    """§10 References, the lines the gate reads — fenced and comment lines out.
+
+    The same line set `sk_idgraph.declared_paths` walks for CC-TR-02. The
+    template's labelled bullets are one legal shape, not the only one: a bare
+    path bullet with a standalone `Roles used:` line passes both checks, and a
+    spec written that way certifies. This render reads whatever the gate reads.
+    """
+    sec = spec.section("References")
+    if sec is None:
+        return []
+    return [(n, t) for n, t in sec.lines
+            if not spec.fenced[n - 1] and not t.strip().startswith("<!--")]
 
 
 def spec_epic_id(spec) -> str:
-    """The parent epic, from the spec's own §10 References line."""
-    ref = reference_line(spec, "Parent epic scope brief")
-    m = re.search(r"scope/(E-\d+)\.md", ref) or re.search(r"\b(E-\d+)\b", ref)
-    return m.group(1) if m else ""
+    """The parent epic, from §10 References — found by path, as the gate finds it.
+
+    CC-TR-02's own needle for the parent brief is `scope/`; the epic id is that
+    path's stem. A bare `E-nn` mention anywhere in the section is the fallback.
+    """
+    for _, text in reference_lines(spec):
+        for m in PATH_RE.finditer(text):
+            if "scope/" in m.group(1):
+                stem = re.search(r"(E-\d+)", Path(m.group(1)).stem)
+                if stem:
+                    return stem.group(1)
+    for _, text in reference_lines(spec):
+        m = re.search(r"\b(E-\d+)\b", text)
+        if m:
+            return m.group(1)
+    return ""
 
 
 def spec_roles(spec):
-    """The role vocabulary this spec declares in §10 — `(roles used: …)`."""
-    ref = reference_line(spec, "Roles & permissions")
-    m = re.search(r"roles used:\s*(?P<list>[^)]*)", ref, re.I)
-    if not m:
-        return []
-    return [r.strip() for r in m.group("list").split(",") if r.strip()]
+    """The role vocabulary this spec declares — CC-TR-03's own declaration read.
+
+    `roles used: …`, bulleted or not, parenthesised or not; the list splits on
+    the two separators the gate splits on.
+    """
+    for _, text in reference_lines(spec):
+        m = ROLES_DECL_RE.search(text)
+        if m:
+            return [r.strip() for r in re.split(r"[,·]", m.group("list"))
+                    if r.strip()]
+    return []
 
 
 def integrations(spec):
@@ -676,6 +710,17 @@ def collect(root: Path, profile: str, include):
         rows.extend(d_rows)
         epic_rowcount[epic_name or eid] = (
             sum(len(f.rows) for f in mine), len(d_rows))
+
+    # A selected feature whose §10 References names no parent brief has no epic
+    # to group under. It is rendered anyway, at the tail, with Epic and Phase
+    # empty — an absent source renders an empty cell, never a guess — because
+    # §10.5's rule is that nothing is silently dropped. The summary names it.
+    unlinked = [f for f in features if f.included and not f.epic_id]
+    for f in sorted(unlinked, key=lambda x: x.nnn):
+        rows.extend(f.rows)
+    if unlinked:
+        epic_rowcount["— no parent epic linked"] = (
+            sum(len(f.rows) for f in unlinked), 0)
     return features, rows, epic_rowcount
 
 
@@ -702,6 +747,14 @@ def write_csv(path: Path, rows):
 def summary(features, rows, epic_rowcount, profile, xlsx_path, csv_path):
     default = ("every drafted feature" if profile == "presale"
                else "certified features only")
+    # Counted off the rows that were actually emitted, never off what was
+    # built: a table that can disagree with the file it describes is worse
+    # than no table.
+    emitted = {}
+    for r in rows:
+        if r.feature:
+            emitted[r.feature] = emitted.get(r.feature, 0) + 1
+
     out = [
         "WBS export — %d rows → %s · %s" % (len(rows), xlsx_path, csv_path),
         "Profile: %s · selection default: %s" % (profile.capitalize(), default),
@@ -712,7 +765,7 @@ def summary(features, rows, epic_rowcount, profile, xlsx_path, csv_path):
     for f in sorted(features, key=lambda x: x.nnn):
         out.append("| %s | %s | %s | %d |" % (
             f.folder, f.disposition,
-            len(f.rows) if f.included else "excluded", f.markers))
+            emitted.get(f.folder, 0) if f.included else "excluded", f.markers))
     out.append("")
 
     for epic, (story_n, def_n) in epic_rowcount.items():
@@ -728,6 +781,17 @@ def summary(features, rows, epic_rowcount, profile, xlsx_path, csv_path):
                 for f in features if not f.included]
     out.append("Included: %s" % (", ".join(included) if included else "none"))
     out.append("Excluded: %s" % ("; ".join(excluded) if excluded else "none"))
+
+    unlinked = [f.folder for f in features if f.included and not f.epic_id]
+    if unlinked:
+        out.append("Unlinked: %s — §10 References names no parent epic scope "
+                   "brief; the rows render with Epic and Phase empty"
+                   % ", ".join(unlinked))
+    empty = [f.folder for f in features
+             if f.included and not emitted.get(f.folder)]
+    if empty:
+        out.append("No rows: %s — selected, but §2 yielded no User Story"
+                   % ", ".join(empty))
     out.append("Next: open %s — the two estimate columns are the client's to fill"
                % xlsx_path)
     return "\n".join(out)

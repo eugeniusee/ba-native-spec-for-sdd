@@ -4183,3 +4183,139 @@ and D80's inherited act for tier1. Both are single-paragraph moves.
 **`/ba-run`'s custom path is asserted, not exercised.** The suite proves the
 alias text and the custom-path check string are present; no fixture runs a
 custom plan line end to end, because none exists. Named, not claimed.
+
+---
+
+## WBS export — the References-shape defect · package 0.1.8 · 11 August 2026 · GREEN
+
+A field run of `/ba-wbs` over a 36-spec estate produced **an empty export** —
+`exports/wbs.xlsx` and `exports/wbs.csv` with the header row and nothing under
+it — while the generation summary still reported rows per feature. Three
+defects, one visible.
+
+### The defect, reproduced before it was fixed
+
+**`sk_wbs.py` read §10 References more strictly than the gate does.** Its
+`reference_line()` required a labelled bullet — `- Parent epic scope brief: …`,
+`- Roles & permissions: …` — which is the template's shape but not the only
+shape that certifies. The gate's own reader is permissive:
+
+- **CC-TR-02** (`sk_idgraph.declared_paths`) finds each required reference by
+  its **path**, anywhere in a non-fenced, non-comment References line. The label
+  is decorative.
+- **CC-TR-03** finds the roles declaration with `roles?\s+used\s*:` anywhere in
+  such a line — bulleted or not, parenthesised or not.
+
+So a References section of bare-path bullets plus a standalone `Roles used:
+Client, Specialist` line **passes the gate and certifies** — and the export read
+neither the parent brief nor the roles off it. `spec_epic_id()` returned empty,
+no feature matched an epic in the grouping loop, and every row was dropped
+before the writers ran.
+
+Reproduced against the fixture before touching the fix: both fixture specs'
+§10 rewritten to the bare-path shape → `sk_idgraph.py` returns **CC-TR-02 PASS
+— 4/4 required references listed and resolving** and **CC-TR-03 PASS — 2 role(s)
+declared = 2 used**; `sk_wbs.py` on the same tree returns **0 rows**. The gate's
+verdict and the render's verdict on one spec disagreed, and the render was the
+one that was wrong.
+
+**Two more defects the first one hid behind:**
+
+- **A feature whose epic does not resolve was dropped silently.** §10.5's rule is
+  that *nothing is silently dropped or silently included* — the summary names
+  every `specs/NNN-*` folder. An unlinkable feature was named in the disposition
+  table and then vanished from the file with no line saying so.
+- **The summary counted rows that were never written.** The per-feature Rows
+  column read `len(f.rows)` — rows *built*, not rows *emitted*. That is why the
+  empty run still reported 3 and 2: the table could disagree with the file it
+  described, and did.
+
+### The fix — three changes, all in `sk_wbs.py`
+
+1. **The gate's readers, imported rather than restated.** `PATH_RE` and
+   `ROLES_DECL_RE` now come `from sk_idgraph`, and a new `reference_lines()`
+   walks the same line set `declared_paths` walks. The epic id is the stem of
+   the References path containing `scope/` — CC-TR-02's own needle for the
+   parent brief — with a bare `E-nn` mention as fallback; the roles vocabulary
+   is CC-TR-03's declaration, split on its two separators. **The gate is the
+   authority on what a valid References section looks like, and this render is
+   never stricter than the check that certified the spec it renders.** A second
+   copy of those patterns is a second thing to drift, so there is no second copy.
+2. **An unlinked feature renders at the tail** with Epic and Phase empty — an
+   absent source renders an empty cell, never a guess — and the summary gains an
+   `Unlinked: <folder> — §10 References names no parent epic scope brief` line.
+   Nothing is dropped without a word.
+3. **The summary counts emitted rows**, per feature and in the headline, and
+   gains a `No rows: <folder> — selected, but §2 yielded no User Story` line for
+   a feature that contributes nothing.
+
+Consistent with **orchestrator v0.10**, which ratified D69 as built: the Role
+scan's vocabulary is *"the spec's own §10 References 'roles used' line"* and
+`roles-permissions.md` stays outside the read set. v0.10 fixes the **source**;
+it does not fix that line's **shape**, which is why the gate's reader is the
+right authority for it.
+
+### Verification evidence
+
+**`tests/check-wbs.sh` — GREEN, 62 / 0** (was 49 / 0). Two new sections, thirteen
+new assertions:
+
+| Section | Holds down |
+|---|---|
+| §10 References, read as the gate reads it | the premise proved, not asserted — `sk_idgraph.py` returns CC-TR-02 PASS and CC-TR-03 PASS on the bare-path shape · the export is **byte-identical across both References shapes** · the epic resolves from a bare path · Role cells populate · a feature with no resolvable epic is **named** in the summary, its rows **still render**, its Epic cell is **empty**, and its Role cell still reads |
+| the summary counts what was written | the headline row count equals the file's rows · no feature is credited rows the file does not carry — checked on the normal render and on the unlinked case |
+
+**The fix's own negative control.** The two new sections were run against the
+pre-fix parser (`git stash push` on `sk_wbs.py` alone): **7 failures**, including
+*"the render disagrees with itself across References shapes"*, *"the unlinkable
+feature vanished without a word in the summary"*, and *"the per-feature rows sum
+to 5, the file has 3"* — the lying summary, caught by its own assertion. Restored:
+62 / 0.
+
+The two golden renders are **unchanged** — `expected/wbs-discovery.csv` and
+`expected/wbs-presale.csv` byte-identical before and after. The fix widens what
+the parser accepts; it changes nothing about what it produces from the shape it
+already read.
+
+**The full regression — `tests/run-all.sh`, all thirteen:**
+
+| Check | Result |
+|---|---|
+| `check-m.sh` | 40 / 0 |
+| `check-gate.sh` | 59 / 0 |
+| `check-orchestrator.sh` | 122 / 0 |
+| `check-techniques.sh` | 101 / 0 |
+| `check-techniques2.sh` | 122 / 0 |
+| `check-techniques3.sh` | 158 / 0 |
+| `check-spine.sh` | 146 / 0 |
+| `check-register.sh` | 51 / 0 |
+| `check-wbs.sh` | 62 / 0 |
+| `check-ledger.py` | grammar-legal — 14 rules, no violations |
+| `check-cards.py` | every card byte-identical to its re-derivation; layering clean |
+| `check-layout.sh` | 108 / 0 / 0 |
+| `check-exit.sh --offline` | 99 / 0 |
+
+`ran: 13   red: 0   skipped: 0` · **✓ GREEN.** Every count equals the 0.1.7
+baseline except `check-wbs.sh` (49 → 62).
+
+### Divergences
+
+**None.** The fix implements §10.5 as written; nothing here required a behavior
+the document does not fix.
+
+### Open
+
+**The lesson, named so it is not relearned.** The 0.1.6 suite tested the export
+against one fixture, and that fixture used the template's shape. Every assertion
+passed and the unit was still unusable on a real estate. A parser that consumes
+a gate-checked artifact should read it **through the gate's own reader**, not
+through a second reader written against the template — and where it cannot, the
+suite needs a second authored shape, not a second run of the first one.
+
+**The estate needs no edit.** The 36 specs' References sections are valid as
+authored; re-authoring them would have been spec editing on certified-path text
+for no gain the gate asks for. The defect was the render's.
+
+**Field action:** re-run `/ba-wbs`. The header-only `exports/wbs.xlsx` left by
+the failed run is overwritten in place — the paths are stable and every run
+rewrites both files.

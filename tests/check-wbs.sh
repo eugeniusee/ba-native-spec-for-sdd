@@ -296,6 +296,121 @@ grep -qE '\| 005-specialist-availability-publishing \| no gate run \| 2 \| 2 \|'
   && ok "…and the per-feature count beside them — 005 carries 2 markers" \
   || bad "005's per-feature marker count is not 2"
 
+# ── 3b. §10 References, read as the gate reads it ────────────────────────────
+#
+# The template's labelled bullets are one legal shape, not the only one. A spec
+# whose References carries bare-path bullets and a standalone `Roles used:`
+# line passes CC-TR-02 and CC-TR-03 — so it certifies, and this render has to
+# read it. Field defect, package 0.1.6: it did not, and the whole export came
+# out empty with a summary that still reported rows per feature.
+
+printf '\n▸ §10 References — whatever shape the gate certifies, this render reads\n'
+
+SHAPE="$TMP/shape"
+mkdir -p "$SHAPE"
+( cd "$PROJ" && tar cf - . ) | ( cd "$SHAPE" && tar xf - )
+python3 - "$SHAPE" <<'PY'
+"""Rewrite both specs' §10 into the bare-path shape the field authors."""
+import pathlib, sys
+root = pathlib.Path(sys.argv[1])
+bare = """
+- .specify/memory/roles-permissions.md
+- .specify/memory/glossary.md
+- .specify/memory/domain-model.md
+- .specify/memory/scope/E-03.md
+Roles used: Client, Specialist
+"""
+for spec in sorted(root.glob("specs/*/spec.md")):
+    head, sep, _ = spec.read_text(encoding="utf-8").partition("## References\n")
+    spec.write_text(head + sep + bare, encoding="utf-8")
+PY
+
+# the premise, proved rather than asserted: the gate passes this shape
+python3 "$SK/sk_idgraph.py" --root "$SHAPE" --feature 004-appointment-booking \
+        --brief "$SHAPE/.specify/memory/scope/E-03.md" > "$TMP/idgraph.out" 2>&1
+grep -q '^CC-TR-02 PASS' "$TMP/idgraph.out" \
+  && ok "the gate's CC-TR-02 passes the bare-path References shape" \
+  || bad "CC-TR-02 does not pass the shape this section is built on"
+grep -q '^CC-TR-03 PASS' "$TMP/idgraph.out" \
+  && ok "…and CC-TR-03 reads its roles declaration off a bulletless line" \
+  || bad "CC-TR-03 does not read the standalone roles declaration"
+
+wbs --root "$SHAPE" --profile presale --out-dir "$TMP/shape-out" \
+    > "$TMP/shape.summary" 2>&1
+diff -q "$TMP/shape-out/wbs.csv" "$EXPECT/wbs-presale.csv" > /dev/null \
+  && ok "the export is byte-identical across both References shapes" \
+  || { bad "the render disagrees with itself across References shapes"
+       diff -u "$EXPECT/wbs-presale.csv" "$TMP/shape-out/wbs.csv" \
+         | head -20 | sed 's/^/      /'; }
+
+# the epic linkage, and the roles it feeds — named, so a regression says which
+grep -q '^Rows — Appointment Booking:' "$TMP/shape.summary" \
+  && ok "the parent epic resolves from a bare path — rows group under it" \
+  || bad "the epic did not resolve from a bare-path References line"
+awk -F, 'NR>1 && $0 ~ /Specialist/ {n++} END {exit n?0:1}' "$TMP/shape-out/wbs.csv" \
+  && ok "the roles declaration resolves — Role cells are populated" \
+  || bad "no Role cell carries a declared role"
+
+# the silent drop this defect hid behind: no epic at all
+NOEPIC="$TMP/noepic"
+mkdir -p "$NOEPIC"
+( cd "$PROJ" && tar cf - . ) | ( cd "$NOEPIC" && tar xf - )
+python3 - "$NOEPIC" <<'PY'
+"""Strip the parent-brief reference from one spec — the unlinkable case."""
+import pathlib, sys
+p = pathlib.Path(sys.argv[1], "specs/004-appointment-booking/spec.md")
+lines = [l for l in p.read_text(encoding="utf-8").splitlines()
+         if "scope/E-03.md" not in l]
+p.write_text("\n".join(lines) + "\n", encoding="utf-8")
+PY
+wbs --root "$NOEPIC" --profile presale --out-dir "$TMP/noepic-out" \
+    > "$TMP/noepic.summary" 2>&1
+grep -q '^Unlinked: 004-appointment-booking' "$TMP/noepic.summary" \
+  && ok "a feature with no resolvable epic is named, not silently dropped" \
+  || bad "the unlinkable feature vanished without a word in the summary"
+python3 - "$TMP/noepic-out/wbs.csv" > "$TMP/noepic.txt" <<'PY'
+import csv, sys
+rows = list(csv.reader(open(sys.argv[1], encoding="utf-8")))[1:]
+blank = [r for r in rows if not r[0] and r[2]]
+print("%d\t%d\t%s" % (len(rows), len(blank), blank[0][6] if blank else ""))
+PY
+read -r NE_ALL NE_BLANK NE_ROLE < "$TMP/noepic.txt"
+[ "${NE_ALL:-0}" -gt 0 ] \
+  && ok "…and its rows still render — $NE_ALL row(s) in the file" \
+  || bad "the unlinkable feature's rows were dropped from the export"
+[ "${NE_BLANK:-0}" -gt 0 ] \
+  && ok "…with the Epic cell empty, never a guessed epic name" \
+  || bad "an unlinked row carries an Epic value from nowhere"
+[ -n "${NE_ROLE:-}" ] \
+  && ok "…and its Role cell still reads — the roles line is read independently" \
+  || bad "losing the epic reference also lost the roles declaration"
+
+# the summary must never disagree with the file it describes
+printf '\n▸ The summary counts the rows that were written, not the rows that were built\n'
+for case in presale:"$TMP/presale" noepic:"$TMP/noepic-out"; do
+  label="${case%%:*}"; dir="${case#*:}"
+  sums="$TMP/$label.summary"
+  [ "$label" = "noepic" ] && sums="$TMP/noepic.summary"
+  python3 - "$dir/wbs.csv" "$sums" > "$TMP/$label.count" 2>&1 <<'PY'
+import csv, re, sys
+rows = list(csv.reader(open(sys.argv[1], encoding="utf-8")))[1:]
+# the file's own per-feature counts are not in the csv, so compare the total
+total = len(rows)
+text = open(sys.argv[2], encoding="utf-8").read()
+claimed = int(re.search(r"WBS export — (\d+) rows", text).group(1))
+per = [int(m) for m in re.findall(r"^\| \d{3}-\S+ \| [^|]+ \| (\d+) \|",
+                                  text, re.M)]
+print("%d\t%d\t%d" % (total, claimed, sum(per)))
+PY
+  read -r T C P < "$TMP/$label.count"
+  [ "$T" = "$C" ] \
+    && ok "$label: the headline row count equals the file's rows — $T" \
+    || bad "$label: the summary claims $C rows, the file has $T"
+  [ "$P" -le "$T" ] \
+    && ok "$label: no feature is credited rows the file does not carry" \
+    || bad "$label: the per-feature rows sum to $P, the file has $T"
+done
+
 # ── 4. the disposition ladder ────────────────────────────────────────────────
 #
 # certified and no-gate-run are the fixture's own two. The other two rungs are
