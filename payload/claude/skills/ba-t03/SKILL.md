@@ -1,6 +1,6 @@
 ---
 name: ba-t03
-description: T-03 — Stakeholder register. Serves Stakeholders, the DAG root, against AT-ST-2 and AT-ST-3. Pre-drafts the project's cast - populations and decision-relevant individuals with role-in-project, decision rights and comms line - asks only destination-tagged questions for what is left, and writes .specify/memory/stakeholders.md.
+description: T-03 — Stakeholder register. Serves Stakeholders, the root aspect, against AT-ST-2 and AT-ST-3. Pre-drafts the project's cast - populations and decision-relevant individuals with role-in-project, decision rights and comms line - asks only destination-tagged questions for what is left, and writes .specify/memory/stakeholders.md.
 disable-model-invocation: true
 ---
 
@@ -23,9 +23,15 @@ is coherent with the canvas and complete enough that dependent aspects open on
 Self-check, and stop if either half fails:
 
 > the run is **on the composed plan** of the Stakeholders aspect, which is `open`
-> or `reopened`, **with its output contract pinned**: `{stakeholder register —
-> one row per population and per decision-relevant individual, sponsor authority
-> explicit · Context · .specify/memory/stakeholders.md}`.
+> or `reopened`, **with its output contract pinned**: `{Stakeholder register —
+> one row per population and per decision-relevant individual: Stakeholder ·
+> Kind (individual | population) · Role in project · Decision rights · Comms
+> line · Source; the sponsor's authority explicit · Context (spec-anchored —
+> Q7) · .specify/memory/stakeholders.md}`.
+
+That triple is the sheet's pre-pinned contract, verbatim. It is what `/ba-aspect`
+renders at P-O2 — plan composition, in full and uncompressed; nothing on the path
+may trim a field list or shorten the class string.
 
 On a miss, stop and name `/ba-run`, or `/ba-aspect stakeholders` to open and
 compose.

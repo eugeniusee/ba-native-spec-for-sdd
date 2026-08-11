@@ -30,11 +30,36 @@ the composition appends.
   planning, LLM assists*: you suggest a recommended technique set and sequence
   from the evidence; the BA composes the real plan.
 
-## Step 1 — the prerequisite check (T1's precondition)
+## Render rules — standing, over every string this skill shows the BA
+
+These govern prose, table cells, headers, the out-of-profile line and the close
+alike. Inside a pinned shape the shape governs (register rule 8); nothing here
+licenses editing one.
+
+- **Code + name, always** (register rule 5). Every technique, stage or assertion
+  code carries its name: `T-03 — Stakeholder register`, `T-06 — Constraints
+  elicitation`, `P-O2 — plan composition`. First mention in a sitting adds a
+  one-line purpose. **A bare code is a render defect — in prose exactly as in a
+  row.** A technique named mid-sentence carries its name there too: write
+  `T-01 — Discovery canvas framing owned canvas Customers`, never the code alone.
+- **Codes render canonical — capital T, hyphen, two digits**, as in
+  `T-04 — Persona charters`. A lowercase or hyphenless variant is a render
+  defect, in the out-of-profile line exactly as in a row. The lowercase form is
+  the command's argument and nothing else: name invocations as `/ba-run t03`,
+  `/ba-run t06`, and never let that form leak into a render.
+- **Plain words** (register rule 2). Say **root**, never "DAG". Framework
+  document vocabulary stays in the documents.
+- **One term per concept** (register rule 4). **Prerequisite** — never also
+  "precondition", never "dependency". Same for aspect, threshold, waiver,
+  reopen.
+- **State the prerequisite basis once.** Step 1 checks it; Step 2 cites it as
+  the opening basis. It is not restated a third time in the same sitting.
+
+## Step 1 — T1's prerequisite check
 
 | Aspect | Prerequisite |
 |---|---|
-| Stakeholders | — (root; Band 1 entered is the whole precondition) |
+| Stakeholders | — (root; Band 1 entered is the whole prerequisite) |
 | Context | Stakeholders |
 | Value | Stakeholders |
 | Vision | Context **and** Value |
@@ -117,23 +142,31 @@ Outside this profile (electable by code): <codes> — say "show all" for full ro
 Sequence rationale: <one line>
 ```
 
-Where a catalogue technique fits the hole, render it as **code + name** — `T-03 —
-Stakeholder register`, `T-06 — Constraints elicitation` — and name its invocation
-as `/ba-run t03`, `/ba-run t06`. The lowercase form is the command's argument,
-never a render: a bare code in a row is a render defect. Where no catalogue
-technique fits, sketch a **custom** technique — the loop is catalogue-agnostic by
-design: a technique is runnable iff its contract is pinned, wherever the contract
-came from.
+Where a catalogue technique fits the hole, render it under the standing render
+rules above — code + name, canonical form, everywhere in the snapshot including
+the out-of-profile line. Where no catalogue technique fits, sketch a **custom**
+technique — the loop is catalogue-agnostic by design: a technique is runnable iff
+its contract is pinned, wherever the contract came from.
 
 ## Step 4 — P-O2 (plan composition): the BA's plan
 
 **A full checkpoint: render, then stop.** The BA's four acts are Q2's, verbatim:
 **select · drop · reorder · add custom**.
 
-Render the snapshot to the BA in the Step 3 shape — profile in the header, then
-`Code — technique`, `Purpose`, `Addresses`, `Status` for every in-profile row,
-then the standing enrichment block, then the out-of-profile line. Then render the
-choice line, exactly:
+Render the snapshot to the BA in the Step 3 shape — **the whole pinned block,
+every line of it, in its own order**: the `Suggestion` header with the profile,
+the `State:` line, the in-profile table, the standing enrichment block, the
+out-of-profile line, the `Sequence rationale:` line. The BA-facing render and the
+`.specify/aspect-plans.md` write carry the same shape; the file is not the only
+place it renders whole.
+
+**Two lines the render drops most often, and never may.** The `State:` line is
+**two sentences** — the count, then *Nothing runs until you compose the plan
+(P-O2 — plan composition)*. Both stand in the block, directly under the header;
+neither moves to the tail of the message. And `Sequence rationale: <one line>`
+closes **every** snapshot, single-row ones included.
+
+Then render the choice line, exactly:
 
 ```
 Compose the plan — P-O2 (plan composition). Four acts, in any combination:
@@ -162,12 +195,20 @@ runs this same checkpoint and appends.
 catalogue or custom — carries `{expected output · artifact class · destination
 file}` before it may run:
 
-- **Catalogue techniques** come pre-pinned by their sheets; render the pinned
-  contract for confirmation rather than inventing one.
-- **Custom techniques**: the BA supplies the contract, or you propose it and the
-  BA confirms. **An unconfirmed contract makes the run illegal** — do not mark
-  such a technique planned-runnable, and `/ba-run` will refuse it. This is the
-  same discipline as refusing a question without a destination, one level up.
+- **Catalogue techniques** come pre-pinned by their sheets. Read the pinned
+  triple from the technique's own skill — its invocation self-check carries it —
+  and **render it verbatim, all three fields**: the expected output in full, the
+  artifact class string whole **including any parenthetical qualifier**, and the
+  destination file. **Never compress a pre-pinned contract.** A dropped field
+  list, a trimmed class string, a paraphrase — each is a render defect, not a
+  summary: `Context (spec-anchored — Q7)` never renders as `Context`. It renders
+  **for visibility**, not for confirmation: what is pre-pinned is already pinned,
+  and asking the BA to confirm it invents a checkpoint the loop does not have.
+- **Custom techniques** — the one path that takes a confirmation. The BA supplies
+  the contract, or you propose it and the BA confirms. **An unconfirmed contract
+  makes the run illegal** — do not mark such a technique planned-runnable, and
+  `/ba-run` will refuse it. This is the same discipline as refusing a question
+  without a destination, one level up.
 
 Append to the aspect's section, dated:
 

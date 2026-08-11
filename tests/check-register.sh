@@ -3,22 +3,27 @@
 # BA-Native Spec — the BA-facing communication register (orchestrator rules §10.3).
 #
 # Register rule 5: a technique, stage or assertion code never renders bare to the
-# BA — it carries its name. Rule 5's own examples fix the format and the sources:
-# *"T-05 — Context & landscape mapping," "P-O4 — clearing confirmation."*
+# BA — it carries its name, in canonical form. Rule 5's own examples fix the
+# format and the sources: *"T-05 — Context & landscape mapping," "P-O4 — clearing
+# confirmation."* A lowercase or hyphenless variant is the same defect said
+# differently (pilot R0, D1) and the sweep catches both.
 #
 # BA-facing = the skill / agent / mirror layer, EXCEPT fenced blocks, which are
 # the pinned record shapes (ledger events, evidence tables, run-log lines,
-# snapshot shapes, gate JSON). Register rule 8: on conflict the shape governs.
+# snapshot shapes, gate JSON). Register rule 8: on conflict the shape governs —
+# and section 6 holds one of those shapes to the document byte for byte.
 #
 #   1.  the name sources — T-01…T-18 from the catalogue index, P-O0…P-O9 from
 #       orchestrator §10.1's Moment column; names verified against them, never
 #       hardcoded here and never taken on adjacency alone
 #   2.  the corpus — derived from the payload globs, all four render classes
-#   3.  the sweep — zero bare codes in a BA-facing string
-#   4.  the self-test — three seeded defects, one per render class, and the
-#       fenced-block probe: the suite is not vacuous
+#   3.  the sweep — zero bare and zero non-canonical codes in a BA-facing string
+#   4.  the self-test — four seeded defects, one per render class plus the field
+#       defect, the argument-form probe and the fenced-block probe
 #   5.  the session boundary — orchestrator §10.2 (D-O11) compiled into every
 #       skill, persona and mirror, byte-identical, with its own seeded control
+#   6.  the pinned suggestion snapshot — orchestrator §6.1's block byte-identical
+#       in the planning skill, with three seeded shape defects of its own
 #
 # The scan joins soft-wrapped source lines into the paragraphs the BA actually
 # sees (a soft wrap is invisible in the render, so adjacency is tested on the
@@ -44,7 +49,7 @@ for a in "$@"; do
     -v|--verbose) VERBOSE=1 ;;
     --self-test) ONLY_SELFTEST=1 ;;
     --list) LIST=1 ;;
-    -h|--help) sed -n '2,33p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
+    -h|--help) sed -n '2,38p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
     *) printf 'unknown option: %s\n' "$a" >&2; exit 2 ;;
   esac
 done
@@ -65,12 +70,22 @@ bad() { FAILED=$((FAILED+1)); printf '  ✗ %s\n' "$1"; }
 SCAN="$TMP/register_scan.py"
 cat > "$SCAN" <<'PY'
 #!/usr/bin/env python3
-"""Rule-5 scan — no bare technique/stage code in a BA-facing string.
+"""Rule-5 scan — no bare, and no non-canonical, code in a BA-facing string.
 
 Names are not hardcoded: T-01…T-18 come from the catalogue index's rows and
 P-O0…P-O9 from orchestrator §10.1's Moment column, so a document rename breaks
 this scan instead of drifting silently past it. Adjacency alone would accept
 any word sitting after the code; the name has to be the source's name.
+
+Two defect classes, one sweep — rule 5's sentence has two halves:
+
+  bare      a known code rendered without its name  ("P-O3" alone)
+  noncanon  a code rendered in a non-canonical form ("t04", "t-04", "T04")
+
+The canonical render is `T-nn` — capital T, hyphen, two digits. The lowercase
+form is the command's argument and nothing else, so it is legal only inside a
+`/ba-run tnn` span or the bare `tnn` cell that names that argument. Field origin:
+pilot R0's out-of-profile line rendered `t04` (defect D1).
 """
 import argparse
 import re
@@ -80,6 +95,10 @@ from pathlib import Path
 CODE = re.compile(r"\b(T-\d{2}|P-O\d)\b")
 # the separators rule 5's examples use, plus the table-cell boundary
 SEP = r"\**\s*[—–\-:(,|]?\s*\**"
+# the three non-canonical forms; the lookarounds keep `ba-t03` and `part03` out
+NONCANON = re.compile(r"(?<![A-Za-z0-9_-])(t-\d{2}|t\d{2}|T\d{2})(?![A-Za-z0-9_-])")
+# the argument's two legal spellings — everything else lowercase is a render
+ARGSPAN = re.compile(r"`(?:/ba-run\s+)?t\d{2}`")
 
 
 def trim(name):
@@ -178,7 +197,12 @@ def scan(path, table):
             if code not in table:
                 continue
             if not paired(para[: m.start()], para[m.end():], table[code]):
-                yield n, code, para
+                yield n, code, "bare", para
+        spans = [s.span() for s in ARGSPAN.finditer(para)]
+        for m in NONCANON.finditer(para):
+            if any(a <= m.start() and m.end() <= b for a, b in spans):
+                continue  # the command's argument, not a render
+            yield n, m.group(1), "noncanon", para
 
 
 def main():
@@ -203,9 +227,9 @@ def main():
 
     total = 0
     for p in targets:
-        for n, code, para in scan(p, table):
+        for n, code, rule, para in scan(p, table):
             total += 1
-            print(f"{p.relative_to(a.root)}:{n}\t{code}\t{para[:150]}")
+            print(f"{p.relative_to(a.root)}:{n}\t{code}\t{rule}\t{para[:150]}")
     print(f"files={len(targets)} hits={total}")
     return 1 if total else 0
 
@@ -287,23 +311,33 @@ done
 
 # ── 3. the sweep ─────────────────────────────────────────────────────────────
 
-printf '\n▸ The sweep — zero bare codes in a BA-facing string (rule 5)\n'
+printf '\n▸ The sweep — zero bare and zero non-canonical codes in a BA-facing string (rule 5)\n'
 
 scan_root "$PKG_ROOT" > "$TMP/sweep.out" 2>&1
 SW=$?
 H="$(hits_of "$TMP/sweep.out")"; F="$(files_of "$TMP/sweep.out")"
 if [ "$SW" -eq 0 ] && [ "${H:-x}" = "0" ]; then
-  ok "$F files scanned, 0 bare codes — every T-nn / P-On carries its name"
+  ok "$F files scanned, 0 hits — every T-nn / P-On carries its name"
 else
-  bad "${H:-?} bare code(s) in BA-facing strings across ${F:-?} files"
+  bad "${H:-?} defect(s) in BA-facing strings across ${F:-?} files"
   grep -v '^files=' "$TMP/sweep.out" | sed 's/^/      /'
 fi
+
+# the two halves reported apart, so a regression names which rule broke
+NB="$(awk -F'\t' '$3=="bare"' "$TMP/sweep.out" | wc -l | tr -d ' ')"
+NN="$(awk -F'\t' '$3=="noncanon"' "$TMP/sweep.out" | wc -l | tr -d ' ')"
+[ "$NB" = "0" ] \
+  && ok "no bare code — every rendered T-nn / P-On carries its name" \
+  || bad "$NB bare code(s): a code rendered without its name"
+[ "$NN" = "0" ] \
+  && ok "no non-canonical code — no lowercase, hyphenless or bare-digit form renders" \
+  || bad "$NN non-canonical code form(s): the render is T-nn, capital T and hyphen"
 
 fi  # end of the non-self-test sections
 
 # ── 4. the self-test — the seeded defects ────────────────────────────────────
 
-printf '\n▸ Self-test — 3 seeded defects, one per render class: the suite is not vacuous\n'
+printf '\n▸ Self-test — 4 seeded defects, one per render class + the field defect: the suite is not vacuous\n'
 
 CORPUS="$TMP/corpus"
 mkdir -p "$CORPUS"
@@ -318,15 +352,18 @@ scan_root "$CORPUS" > "$TMP/base.out" 2>&1
 D_HEAD="$CORPUS/payload/claude/skills/ba-run/SKILL.md"
 D_PROSE="$CORPUS/payload/claude/agents/ba-orchestrator.md"
 D_TABLE="$CORPUS/payload/mirror/AGENTS.md"
+D_NONCAN="$CORPUS/payload/claude/skills/ba-aspect/SKILL.md"
 
-for f in "$D_HEAD" "$D_PROSE" "$D_TABLE"; do
+for f in "$D_HEAD" "$D_PROSE" "$D_TABLE" "$D_NONCAN"; do
   [ -f "$f" ] || bad "injection target missing from the copy: ${f#$CORPUS/}"
 done
 
-# one defect per render class, as the Lane B negative control ran them
+# one defect per render class, as the Lane B negative control ran them, plus the
+# non-canonical form pilot R0 actually rendered (D1) — the out-of-profile line
 printf '\n## P-O3 — the act\n' >> "$D_HEAD"
 printf '\nThe orchestrator opens the run (that is P-O2) and records the result.\n' >> "$D_PROSE"
 printf '\n| P-O7 | closure act |\n' >> "$D_TABLE"
+printf '\nOutside this profile (electable by code): t04 — say "show all" for full rows.\n' >> "$D_NONCAN"
 
 scan_root "$CORPUS" > "$TMP/seeded.out" 2>&1
 SEED=$?
@@ -334,32 +371,44 @@ SH="$(hits_of "$TMP/seeded.out")"
 [ "$SEED" -eq 1 ] \
   && ok "the scan exits non-zero on a dirty corpus" \
   || bad "the scan exited $SEED with defects present — it does not fail"
-[ "${SH:-x}" = "3" ] \
-  && ok "exactly 3 hits — no more, no fewer" \
-  || bad "expected exactly 3 hits, got ${SH:-?}"
+[ "${SH:-x}" = "4" ] \
+  && ok "exactly 4 hits — no more, no fewer" \
+  || bad "expected exactly 4 hits, got ${SH:-?}"
 
 for site in \
-  "ba-run/SKILL.md|P-O3|the prose heading" \
-  "ba-orchestrator.md|P-O2|the mid-sentence prose mention" \
-  "AGENTS.md|P-O7|the table cell"
+  "ba-run/SKILL.md|P-O3|bare|the prose heading" \
+  "ba-orchestrator.md|P-O2|bare|the mid-sentence prose mention" \
+  "AGENTS.md|P-O7|bare|the table cell" \
+  "ba-aspect/SKILL.md|t04|noncanon|the out-of-profile line's non-canonical code (D1)"
 do
-  where="${site%%|*}"; rest="${site#*|}"; code="${rest%%|*}"; label="${rest#*|}"
-  grep -qE "^[^ ]*$where:[0-9]+	$code	" "$TMP/seeded.out" \
+  where="${site%%|*}"; rest="${site#*|}"
+  code="${rest%%|*}"; rest="${rest#*|}"
+  rule="${rest%%|*}"; label="${rest#*|}"
+  grep -qE "^[^ ]*$where:[0-9]+	$code	$rule	" "$TMP/seeded.out" \
     && ok "$label is named, with its file and line" \
     || bad "$label was not reported at $where"
 done
 
+# the lowercase form stays legal where it is the command's argument, and nowhere
+# else — the rule has to admit `/ba-run t03` or the payload could not name a run
+printf '\nInvoke it with `/ba-run t04`, and the dispatch table lists it as `t04`.\n' >> "$D_NONCAN"
+scan_root "$CORPUS" > "$TMP/argform.out" 2>&1
+[ "$(hits_of "$TMP/argform.out")" = "4" ] \
+  && ok "the argument spellings draw no hit — /ba-run tnn and the bare tnn cell stay legal" \
+  || bad "the argument form was flagged: the scan cannot tell an argument from a render"
+
 # restore: the pristine files back over the injected ones
 for rel in payload/claude/skills/ba-run/SKILL.md \
            payload/claude/agents/ba-orchestrator.md \
-           payload/mirror/AGENTS.md; do
+           payload/mirror/AGENTS.md \
+           payload/claude/skills/ba-aspect/SKILL.md; do
   cp "$PKG_ROOT/$rel" "$CORPUS/$rel"
 done
 
 scan_root "$CORPUS" > "$TMP/restored.out" 2>&1
 REST=$?
 [ "$REST" -eq 0 ] && [ "$(hits_of "$TMP/restored.out")" = "0" ] \
-  && ok "restored: back to 0 — the 3 hits were the injections and nothing else" \
+  && ok "restored: back to 0 — the 4 hits were the injections and nothing else" \
   || bad "the restored corpus does not return to 0 hits"
 
 # rule 8's boundary, probed rather than asserted: the same defect inside a fence
@@ -577,14 +626,214 @@ grep -q '^altered	payload/claude/agents/ba-gate.md	' "$TMP/bnd-dirty.out" \
 
 fi  # end of section 5
 
+# ── 6. the pinned suggestion snapshot — §6.1's block, byte for byte ──────────
+#
+# Register rule 8: recurring renders keep their shapes, and on conflict the shape
+# governs. §6.1's snapshot is the shape the BA-planning loop renders at P-O2 —
+# and pilot R0 lost two of its lines to a paraphrase (D3, the State line's second
+# sentence; D4, the closing Sequence rationale). Sections 1–4 hold rule 5 down
+# and section 5 holds §10.2 down; this one holds rule 8 down for the one pinned
+# shape the planning skill carries.
+#
+# Neither side is pinned in this file: the document's block is extracted from
+# §6.1 and the unit's from the compiled skill, then the two are compared. A
+# reworded document breaks the check instead of drifting past it. A unit that
+# references the shape instead of embedding it is not exempt — the reference has
+# to resolve to that same block, which is the same assertion one indirection out.
+
+if [ "$ONLY_SELFTEST" -eq 0 ]; then
+
+printf '\n▸ The pinned suggestion snapshot — §6.1 in the planning skill, byte for byte\n'
+
+ORC="$DOCS/ba-native-spec-orchestrator-rules.md"
+PLANNER="payload/claude/skills/ba-aspect/SKILL.md"
+
+SNAP="$TMP/snapshot_shape.py"
+cat > "$SNAP" <<'PY'
+#!/usr/bin/env python3
+"""§6.1's suggestion-snapshot block: from the document, and from a compiled unit.
+
+--mode doc     the first fenced block inside orchestrator §6.1
+--mode unit    the fenced block the unit carries, found by its own first line
+               ('Suggestion — '). A unit that only *references* the shape prints
+               'REFERENCE\t<section>' instead, so the caller can resolve it.
+--mode mutate  rewrite the unit's block in place, one named defect at a time —
+               the negative control; run against a private copy, never the payload.
+"""
+import argparse
+import re
+import sys
+from pathlib import Path
+
+HEAD = "Suggestion — "
+
+
+def blocks(text):
+    """(first_line, body) for every fenced block, in order."""
+    out, buf, fenced = [], None, False
+    for line in text.splitlines():
+        if line.lstrip().startswith("```"):
+            if fenced:
+                out.append("\n".join(buf))
+                buf = None
+            else:
+                buf = []
+            fenced = not fenced
+            continue
+        if fenced:
+            buf.append(line)
+    return out
+
+
+def doc_block(path):
+    txt = Path(path).read_text(encoding="utf-8")
+    sec = re.search(r"^### 6\.1\b.*?(?=^### 6\.2\b)", txt, re.M | re.S)
+    if not sec:
+        sys.exit("orchestrator §6.1 not found — the shape has no source")
+    found = [b for b in blocks(sec.group(0)) if b.startswith(HEAD)]
+    if not found:
+        sys.exit("§6.1 carries no suggestion-snapshot block")
+    return found[0]
+
+
+def unit_block(path):
+    txt = Path(path).read_text(encoding="utf-8")
+    found = [b for b in blocks(txt) if b.startswith(HEAD)]
+    if found:
+        return found[0]
+    ref = re.search(r"§\s*(6\.1)\b", txt)
+    if ref:
+        print(f"REFERENCE\t{ref.group(1)}")
+        sys.exit(3)
+    sys.exit("the unit neither embeds nor references the §6.1 shape")
+
+
+MUTATIONS = {
+    # D4 — the closing line the field render dropped
+    "drop-rationale": lambda b: "\n".join(
+        l for l in b.splitlines() if not l.startswith("Sequence rationale:")),
+    # D3 — the State line cut to one sentence, its second moved out of the block
+    "truncate-state": lambda b: re.sub(
+        r"^State: (.*?) met\..*?\n\(P-O2 — plan composition\)\.$",
+        r"State: \1 met.", b, flags=re.M | re.S),
+    # D1's other half — the one-line out-of-profile sentence split in two
+    "split-outside": lambda b: b.replace(
+        '(electable by code): <codes> — say "show all" for full rows.',
+        '(electable by code): <codes>. Say "show all" for full rows.'),
+}
+
+
+def mutate(path, name):
+    p = Path(path)
+    txt = p.read_text(encoding="utf-8")
+    block = unit_block(path)
+    changed = MUTATIONS[name](block)
+    if changed == block:
+        sys.exit(f"mutation {name} changed nothing — the control would be vacuous")
+    p.write_text(txt.replace(block, changed, 1), encoding="utf-8")
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--mode", required=True, choices=("doc", "unit", "mutate"))
+    ap.add_argument("--path", required=True)
+    ap.add_argument("--defect", choices=sorted(MUTATIONS))
+    a = ap.parse_args()
+    if a.mode == "mutate":
+        mutate(a.path, a.defect)
+        return 0
+    print(doc_block(a.path) if a.mode == "doc" else unit_block(a.path))
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
+PY
+
+python3 "$SNAP" --mode doc --path "$ORC" > "$TMP/snap-doc.txt" 2>"$TMP/snap-doc.err"
+if [ -s "$TMP/snap-doc.txt" ]; then
+  ok "§6.1 yields the snapshot block — the shape's source, $(wc -l < "$TMP/snap-doc.txt" | tr -d ' ') lines"
+else
+  bad "§6.1's fenced block does not extract: the shape cannot be checked from source"
+  sed 's/^/      /' "$TMP/snap-doc.err"
+fi
+
+# vacuity, on section 2's reasoning: an emptied or reshaped block that still
+# extracts would let a byte-match pass while asserting nothing
+while IFS='|' read -r label phrase; do
+  [ -z "$label" ] && continue
+  grep -qF -- "$phrase" "$TMP/snap-doc.txt" \
+    && ok "the source block still carries $label" \
+    || bad "§6.1's block no longer carries $label — re-read the document before trusting this section"
+done <<'LINES'
+the profile header|Suggestion — <aspect> — <date> · profile:
+the State line's second sentence|Nothing runs until you compose the plan
+the out-of-profile line, one sentence with the dash|Outside this profile (electable by code): <codes> — say "show all" for full rows.
+the closing sequence rationale|Sequence rationale: <one line>
+LINES
+
+python3 "$SNAP" --mode unit --path "$PKG_ROOT/$PLANNER" > "$TMP/snap-skill.txt" 2>"$TMP/snap-skill.err"
+SNAP_RC=$?
+if [ "$SNAP_RC" -eq 0 ] && [ -s "$TMP/snap-skill.txt" ]; then
+  ok "$PLANNER embeds the shape — the block is carried, not paraphrased"
+elif [ "$SNAP_RC" -eq 3 ]; then
+  # the reference branch: it resolves iff the named section is the one above
+  grep -q '^REFERENCE	6.1$' "$TMP/snap-skill.txt" \
+    && ok "$PLANNER references §6.1, and the reference resolves to the extracted block" \
+    || bad "$PLANNER references a section that is not §6.1"
+else
+  bad "$PLANNER carries neither the §6.1 block nor a reference to it"
+  sed 's/^/      /' "$TMP/snap-skill.err"
+fi
+
+if diff -u "$TMP/snap-doc.txt" "$TMP/snap-skill.txt" > "$TMP/snap.diff" 2>&1; then
+  ok "byte-identical to §6.1 — the compiled skill carries the document's shape"
+else
+  bad "the compiled block diverges from §6.1 — the pinned shape is compiled, not rewritten:"
+  sed 's/^/      /' "$TMP/snap.diff" | head -20
+fi
+
+# ── the control: three shape defects, the ones pilot R0 rendered ─────────────
+#
+# same discipline as sections 4 and 5 — a byte-match assertion is worth nothing
+# until it is shown to fail. Injected into a private copy; the payload is read,
+# never written.
+
+SNAPC="$TMP/snap-corpus"
+mkdir -p "$SNAPC/$(dirname "$PLANNER")"
+
+for defect in drop-rationale truncate-state split-outside; do
+  cp "$PKG_ROOT/$PLANNER" "$SNAPC/$PLANNER"
+  python3 "$SNAP" --mode mutate --path "$SNAPC/$PLANNER" --defect "$defect" \
+    2>"$TMP/snap-mut.err"
+  if [ $? -ne 0 ]; then
+    bad "the $defect injection failed: $(cat "$TMP/snap-mut.err")"
+    continue
+  fi
+  python3 "$SNAP" --mode unit --path "$SNAPC/$PLANNER" > "$TMP/snap-dirty.txt" 2>&1
+  if diff -q "$TMP/snap-doc.txt" "$TMP/snap-dirty.txt" >/dev/null 2>&1; then
+    bad "the $defect defect slips through — the byte-match does not hold"
+  else
+    ok "$defect is caught — the seeded shape defect goes red"
+  fi
+done
+
+cp "$PKG_ROOT/$PLANNER" "$SNAPC/$PLANNER"
+python3 "$SNAP" --mode unit --path "$SNAPC/$PLANNER" > "$TMP/snap-restored.txt" 2>&1
+diff -q "$TMP/snap-doc.txt" "$TMP/snap-restored.txt" >/dev/null 2>&1 \
+  && ok "restored: back to byte-identical — the three reds were the injections" \
+  || bad "the restored copy does not match §6.1"
+
+fi  # end of section 6
+
 # ── roll-up ──────────────────────────────────────────────────────────────────
 
 printf '\n  passed: %s   failed: %s\n' "$PASSED" "$FAILED"
 if [ "$FAILED" -eq 0 ]; then
   if [ "$ONLY_SELFTEST" -eq 1 ]; then
-    printf '✓ GREEN — the register self-test: 3 seeded defects, one per render class\n'
+    printf '✓ GREEN — the register self-test: 4 seeded defects, one per render class + the field defect\n'
   else
-    printf '✓ GREEN — the BA-facing register: rule 5 across %s files · %s names from source · §10.2 in %s units + 2 mirrors · 5 seeded defects\n' \
+    printf '✓ GREEN — the BA-facing register: rule 5 across %s files · %s names from source · §10.2 in %s units + 2 mirrors · §6.1 byte-identical in the planner · 9 seeded defects\n' \
       "${F:-?}" "${NAMES_N:-?}" "${B_UNITS:-?}"
   fi
   exit 0

@@ -3739,3 +3739,275 @@ D69 and D70 — ruled 10 Aug 2026, ratified as built; wording carried in orchest
 fixes the set, the change is `COLUMNS` and `WIDTHS` in `sk_wbs.py`, the two
 golden csv files, and the header assertion in `check-wbs.sh` — nothing else. The
 cells stay empty either way; that part is law, not a placeholder.
+
+---
+
+## Aspect-suggestion render fidelity — the pilot R0 fix batch · package 0.1.7 · 10 August 2026 · GREEN
+
+A field run of `/ba-aspect stakeholders` (pilot R0, 10 Aug 2026) put five render
+defects on the record. The methodology documents are not implicated in any of
+them: orchestrator §6.1's pinned snapshot, §10.3's register and catalogue B1's
+T-03 sheet all say the right thing. What deviated is the compiled package —
+Lane A, source build units only, no hand-edit of installed output.
+
+### The precondition, stated
+
+Read from the placed files, not from the prompt: orchestrator header **v0.10**
+(10 Aug 2026, §10.5 wording precision, D69–D71 ratified) · catalogue B1 **v0.3**
+· `VERSION` **0.1.6** · commit **468cf81** present, local · working tree clean.
+The three ground-truth reads were done against the documents directly, by line:
+**§6.1** at `ba-native-spec-orchestrator-rules.md:342–357` (the fenced block),
+**§10.3** at `:544–559` (rules 1–8), **T-03 §3** at
+`ba-native-spec-catalogue-b1.md:164–169` (Expected output · Artifact class ·
+Destination file). No methodology document was edited in this batch.
+
+### Step 0 — the diagnosis, one root-cause line per defect
+
+The question the diagnosis had to answer: is §6.1's pinned block **embedded**,
+**referenced**, or **absent** on the compiled path? The answer differs per
+defect, and that is the whole finding — the block is embedded, but only on one
+of the two paths that need it.
+
+**D1 · non-canonical code (`t04`) in the out-of-profile line — embedded, but
+uncovered by the rule beside it.** The block is embedded and correct; its
+`<codes>` placeholder carries no canonical-form instruction, and the skill's
+only code-form rule was scoped to table rows — *"a bare code **in a row** is a
+render defect"* — sitting one clause away from the lowercase `/ba-run t03`
+invocation examples, which were the nearest antecedent for what fills `<codes>`.
+
+**D2 · bare technique code in prose — absent.** Register rule 5 was carried by
+the personas and the two mirrors and by **no** part of `ba-aspect/SKILL.md`; the
+skill's own code+name rule was row-scoped. Prose outside the pinned block was
+governed by nothing on this path.
+
+**D3 · truncated State line — embedded on the file-write path, paraphrased on
+the render path.** Step 3 introduces the block with *"Write the snapshot into the
+aspect's section of `.specify/aspect-plans.md`, verbatim in this shape"* — the
+block is scoped to the **file**. Step 4's BA-facing render was governed instead
+by a paraphrase enumeration — *"profile in the header, then `Code — technique`,
+`Purpose`, `Addresses`, `Status` … then the standing enrichment block, then the
+out-of-profile line"* — which silently omits the State line's second sentence.
+
+**D4 · missing `Sequence rationale` — same root cause as D3.** The closing line
+is the last line of the embedded block and the one line Step 4's paraphrase
+enumeration never reached. Embedded for the file, absent for the render.
+
+**D5 · abridged pre-pinned contract — absent, and reproduced verbatim in
+source.** Nothing on the compiled path carried T-03's §3 contract: the sheets
+are not installed (the layering rule), and `ba-aspect` said only *"render the
+pinned contract for confirmation"* with no source named and no verbatim rule.
+The one compiled contract string on the path — `ba-t03/SKILL.md`'s invocation
+self-check — was **already** the field defect, byte for byte: the six-field list
+dropped and the class string cut from `Context (spec-anchored — Q7)` to
+`Context`. The field render did not compress the contract; it copied a
+compressed one.
+
+### The change — three units
+
+**(a) `payload/claude/skills/ba-aspect/SKILL.md` — the render unit.** A new
+standing section, **Render rules**, placed before Step 1 so it governs every
+string the skill shows the BA rather than one step's table: code + name with the
+mid-sentence case spelled out (D2) · codes render canonical, capital T, hyphen,
+two digits, *"in the out-of-profile line exactly as in a row"*, with the
+lowercase form pinned to its one legal use as the command's argument (D1) ·
+plain words — say **root**, never "DAG" (S-b) · one term per concept —
+**prerequisite**, never "precondition" or "dependency" (S-a) · state the
+prerequisite basis once (S-a). Step 1's heading and its root row lost the
+synonym. Step 3's row-scoped paragraph now points at the standing rules instead
+of restating a narrower version of them.
+
+Step 4's render instruction was rewritten against D3/D4: **the whole pinned
+block, every line of it, in its own order**, with the two dropped lines named
+explicitly — the `State:` line is *two sentences* and neither moves to the tail
+of the message, and `Sequence rationale:` closes **every** snapshot, single-row
+ones included. One sentence carries the finding itself: *the BA-facing render
+and the `.specify/aspect-plans.md` write carry the same shape; the file is not
+the only place it renders whole.*
+
+The catalogue-contract bullet was rewritten against D5 and S-c: read the pinned
+triple from the technique's own skill, render it **verbatim, all three fields**,
+class string whole **including any parenthetical qualifier**, never compress —
+with `Context (spec-anchored — Q7)` never rendering as `Context` named as the
+worked case. And the confirmation wording is gone: a pre-pinned contract renders
+**for visibility**, *"asking the BA to confirm it invents a checkpoint the loop
+does not have."* The custom bullet is now labelled as the one path that does
+take a confirmation, which is §6.3's actual split.
+
+**(b) `payload/claude/skills/ba-t03/SKILL.md` — the D5 carrier.** The invocation
+self-check's contract triple is restored to the sheet's §3 text verbatim: the
+full six-field list (`Stakeholder · Kind (individual | population) · Role in
+project · Decision rights · Comms line · Source`), `the sponsor's authority
+explicit`, the class string whole as `Context (spec-anchored — Q7)`, destination
+unchanged. Two sentences follow saying what the triple is for — the text
+`/ba-aspect` renders at P-O2 — plan composition, in full and uncompressed. The
+frontmatter's *"the DAG root"* became *"the root aspect"* (S-b): the description
+is BA-visible, and it was the nearest source of the word.
+
+**(c) `tests/check-register.sh` — T-a and T-b.** Both extend the existing suite
+rather than standing beside it, so a new skill joins them by existing.
+
+### What moved
+
+| Unit | Change |
+|---|---|
+| `payload/claude/skills/ba-aspect/SKILL.md` | +60 / −19 — the standing Render rules section; Step 1 heading + root row; Step 3 paragraph; Step 4 render instruction; the catalogue-contract bullet |
+| `payload/claude/skills/ba-t03/SKILL.md` | +10 / −4 — the contract triple verbatim from sheet §3; frontmatter description |
+| `tests/check-register.sh` | +278 / −29 — T-a in the scanner and sections 3–4; T-b as section 6; header, help range and roll-up |
+| `VERSION` | 0.1.6 → 0.1.7 |
+
+Nothing else was touched. The finish-up batch's items — boundary blocks across
+the 30 skill files, the saved-plan bare-name fix, the test runner — stay where
+they were.
+
+### T-a — the detector now catches the form, not only the omission
+
+Rule 5 has two halves and the sweep had been holding down one. The scanner gained
+`NONCANON` — `t-nn`, `tnn`, `Tnn` — with lookarounds that keep `ba-t03` and
+ordinary words out, and `ARGSPAN`, the two legal spellings of the command's
+argument: a `` `/ba-run tnn` `` span, or the bare `` `tnn` `` cell that names
+that argument in the dispatch table. A match inside an argument span is skipped;
+everything else is a hit. Without that exemption the payload could not name a
+run at all, so it is asserted, not assumed — the self-test appends both argument
+spellings to the dirty copy and requires the hit count **not** to move.
+
+Hits now carry their rule in a third column (`bare` / `noncanon`) and the sweep
+reports the two halves apart, so a regression names which half broke. The seeded
+control gained a fourth defect — the field render itself, `Outside this profile
+(electable by code): t04 — say "show all" for full rows.`, appended to a private
+copy of `ba-aspect/SKILL.md` — and the count assertion moved 3 → 4, exact in
+both directions.
+
+### T-b — the pinned shape, held to the document
+
+New **section 6**. Neither side is pinned in the test file: §6.1's fenced block
+is extracted from the document (first fenced block inside `### 6.1`, found by
+its own `Suggestion — ` first line) and the skill's from the compiled unit, then
+the two are compared byte for byte. A reworded document breaks the check instead
+of drifting past it. The skill **embeds**, so the byte-match branch runs; the
+reference branch is implemented and asserted anyway — a unit that referenced the
+shape instead would have to resolve to that same §6.1 block, which is the same
+assertion one indirection out.
+
+Vacuity is guarded on section 2's reasoning: a reshaped block that still
+extracts would let a byte-match pass while asserting nothing, so four
+load-bearing lines are required in the **source** block before the comparison is
+trusted — the profile header, the State line's second sentence, the
+out-of-profile line *as one sentence with the dash*, and the closing sequence
+rationale.
+
+Three seeded shape defects, and they are the ones pilot R0 actually rendered:
+`drop-rationale` (D4), `truncate-state` (D3), `split-outside` (D1's other half —
+the one-line out-of-profile sentence split in two). Each is injected into a
+private copy, must go red, and the mutator refuses to run if it changed nothing
+— a control that silently no-ops is worse than no control. Restoration back to
+byte-identical closes the section.
+
+### Verification evidence
+
+**`tests/check-register.sh` — GREEN, 51 / 0**, up from the 0.1.6 baseline of
+36 / 0 measured in a detached worktree at 468cf81. The +15: two in the sweep
+(the two halves reported apart), two in the self-test (the fourth seeded defect
+and the argument-form probe), eleven in section 6.
+
+**The suite goes red against a dirty payload, not only against private copies.**
+The new file was run in a pristine worktree at 468cf81 with two defects seeded
+into the payload itself — `t04` appended in the out-of-profile shape, and the
+`Sequence rationale` line deleted from the embedded block. Result: **✗ RED,
+10 failed**, naming *"1 non-canonical code form(s): the render is T-nn, capital
+T and hyphen"* and *"the compiled block diverges from §6.1 — the pinned shape is
+compiled, not rewritten."* The cascade behind those two is the vacuity guard
+working as designed: the private-copy controls are built **from** the payload, so
+a dirty payload makes them unreadable and they say so — *"the copied corpus is
+not clean at 0; the control cannot be read"* — instead of passing quietly.
+
+**`--self-test` alone: GREEN, 10 / 0** — the four seeded register defects, the
+argument-form probe and the fenced-block probe, no payload assertions.
+
+**The full regression — `tests/run-all.sh`, all thirteen:**
+
+| Check | Result |
+|---|---|
+| `check-m.sh` | 40 / 0 |
+| `check-gate.sh` | 59 / 0 |
+| `check-orchestrator.sh` | 120 / 0 |
+| `check-techniques.sh` | 100 / 0 |
+| `check-techniques2.sh` | 122 / 0 |
+| `check-techniques3.sh` | 158 / 0 |
+| `check-spine.sh` | 134 / 0 |
+| `check-register.sh` | 51 / 0 |
+| `check-wbs.sh` | 49 / 0 |
+| `check-ledger.py` | grammar-legal — 14 rules, no violations |
+| `check-cards.py` | every card byte-identical to its re-derivation; layering clean |
+| `check-layout.sh` | 108 / 0 / 0 |
+| `check-exit.sh --offline` | 99 / 0 |
+
+`ran: 13   red: 0   skipped: 0` · **✓ GREEN — all 13 checks pass, the two
+install-based runs included.** Every count equals the 0.1.6 baseline except
+`check-register.sh` (36 → 51). `check-cards.py` reporting byte-identical
+re-derivation is the rebuild evidence on the compiled-card side: no methodology
+document moved, so no card did. `check-layout.sh` and `check-exit.sh` are the
+rebuild evidence on the payload side — both install from `payload/` into a fresh
+throwaway repo, Spec Kit from `vendor/`.
+
+`check-techniques.sh`'s pin on ba-t03's contract triple — `has "$SKILLS/ba-t03/
+SKILL.md" ".specify/memory/stakeholders.md}"` — was checked before the edit and
+survives it: the triple's closing brace and destination are unchanged, only the
+two compressed fields ahead of them were restored.
+
+### Divergences
+
+**D72 · The version in the brief is stale; shipped 0.1.7, not 0.1.3.** The brief
+stamps this batch "package v0.1.2 → v0.1.3". `VERSION` read **0.1.6** at the
+precondition and the log carries 0.1.4, 0.1.5 and 0.1.6 entries. 0.1.3 would
+regress the package below shipped state, so the patch was taken from the actual
+head: **0.1.6 → 0.1.7**. Renumbering is a one-line change to `VERSION` and this
+heading if the planning conversation meant a different line.
+
+**D73 · `ba-t03/SKILL.md` is inside the render path, and had to be.** The brief
+scoped the batch to *"the `/ba-aspect` skill and everything it loads"*. The grep
+found D5's defect not in `ba-aspect` but in `ba-t03`'s invocation self-check —
+the compiled string is the field output byte for byte. Fixing the render unit
+alone would have left it rendering a compressed contract faithfully. Both were
+fixed; the pair is the render path for this defect.
+
+**D74 · D5 is fixed for T-03 only; the other seventeen technique skills carry
+the same compressed form.** Every `ba-t<nn>` self-check states its contract as a
+one-line triple with the parenthetical class qualifier dropped —
+`ba-t04`'s reads `… · Context · .specify/memory/personas.md` where sheet §3 says
+`Context (spec-anchored — Q7; joins the CC-H-01 estate at arming once the file
+exists)`. That is the same defect at seventeen more sites. It was **not** fixed
+here: the brief's scope boundary names the render path and warns off the
+thirty-file sweep, and seventeen technique skills is that sweep. Named as a
+carry item, not silently narrowed — and now cheap to close, because
+`ba-aspect`'s rule already says where to read the triple from.
+
+**D75 · "DAG" survives in four units outside this batch's path.** `ba-aspect`
+did not contain the word before this batch and now carries it once, inside the
+rule that forbids it; the leak's nearest source was `ba-t03`'s description, now
+fixed. Still carrying it: `ba-status` (two sites), `ba-frame` (two),
+`ba-waive-aspect` (two) and the `ba-orchestrator` persona (three). Whether each
+site is a BA-facing render or a model-facing instruction is a per-site call that
+belongs to whoever owns those units; the standing rule now exists in `ba-aspect`
+to copy.
+
+**D76 · `aspect-plans.md`'s template carries a divergent §6.1 section shape.**
+The template's HTML comment sketches the snapshot as a four-column table
+(`Technique | Addresses | Expected contribution`) where §6.1 pins five (`Code —
+technique | Purpose (one line) | Addresses | Status`), and it carries the
+`Sequence rationale` line but no `State:` line. It is the write-path template,
+not the render path, and the skill's embedded block governs what actually gets
+written — so it was left alone rather than swept in. T-b covers the skill; it
+does **not** cover the template. Flagged for the batch that owns the templates.
+
+### Open
+
+**D58 and D61 stand, unchanged and unworked** — neither was in scope here.
+
+**D74 and D76 are the two carry items this batch created**: the seventeen
+remaining compressed contract triples, and the template's §6.1 sketch. Both are
+mechanical, both are now specified, neither belongs to the finish-up batch as it
+is currently scoped.
+
+**The pilot's other observations are not in this entry.** This batch closed D1–D5
+and S-a/S-b/S-c on the aspect-planning path. Anything R0 surfaced outside that
+path was not looked for and is not claimed.
