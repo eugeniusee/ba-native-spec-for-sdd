@@ -487,15 +487,17 @@ for t in t11 t12 t13 t14 t15 t16; do
   [ -f "$SKILLS/ba-$t/references/example.md" ] \
     || bad "ba-$t — no references/example.md (D-P2-10)"
   flat_has "$f" "BA-invoked, never auto-fired" || bad "ba-$t — does not inherit the invocation discipline"
-  flat_has "$f" "This skill starts only from \`/ba-run $t\`" || bad "ba-$t — does not name /ba-run as its only entry"
+  flat_has "$f" "is the one-step entry" || bad "ba-$t — does not carry the one-step entry sentence"
+  flat_has "$f" "P-O3 (technique invocation), compiled in" || bad "ba-$t — the contract check is not compiled into its heading"
+  flat_has "$f" "## At run end — compiled bookkeeping" || bad "ba-$t — no compiled run-end bookkeeping block"
   flat_has "$f" "Self-check, and stop if either half fails" || bad "ba-$t — no P-O3 self-check at the top"
   flat_has "$f" "Skip-if" || bad "ba-$t — no skip-if condition"
   flat_has "$f" "Depth boundary" || bad "ba-$t — no depth boundary"
   flat_has "$f" "What this skill never does" || bad "ba-$t — no refusal discipline stated"
   flat_has "$f" "never confirms an AT criterion or clears an aspect" \
     || bad "ba-$t — does not refuse to clear its own aspect"
-  flat_has "$f" "belong to \`/ba-run\`'s post-run touchpoint" \
-    || bad "ba-$t — does not leave the evidence-table refresh to /ba-run (§7.4)"
+  flat_has "$f" "belong to this skill's run-end block" \
+    || bad "ba-$t — does not leave the evidence-table refresh to its own run-end block (§7.4)"
 done
 ok "six technique skills: frontmatter · references/example.md · self-check · skip-if · depth · refusals · touchpoint"
 

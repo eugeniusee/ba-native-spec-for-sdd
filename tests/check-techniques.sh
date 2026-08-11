@@ -313,14 +313,16 @@ neg "B16 continuity — a first-pass term gone from the mature estate" B16 \
 printf '\n▸ /ba-run dispatch proven (orchestrator §6.3/§7.1, build plan §4 S5)\n'
 
 RUN="$SKILLS/ba-run/SKILL.md"
-has "$RUN" "the technique is **on the composed plan** with a **pinned output contract**" \
-    "/ba-run checks exactly one thing at invocation"
-has "$RUN" "dispatch the technique's skill (\`/ba-t03\`, \`/ba-tier1\`, …)" \
-    "/ba-run dispatches by skill name — the technique skills are its callees"
-has "$RUN" "**T-01 — Discovery canvas framing** against \`## Frame\`" \
-    "/ba-run knows T-01 checks against the plans file's ## Frame section"
-has "$SKILLS/ba-frame/SKILL.md" "Dispatch **T-01 — Discovery canvas framing** (\`/ba-run t01\`)" \
-    "/ba-frame dispatches T-01 through /ba-run, never directly"
+has "$RUN" "thin alias for" \
+    "/ba-run is a thin alias — the catalogue technique's own command is the entry"
+has "$RUN" "execute it as the procedure" \
+    "…it reads the technique's skill file and runs it, re-checking nothing"
+has "$RUN" "check P-O3 (technique invocation) here" \
+    "/ba-run keeps the contract check on the custom-technique path"
+has "$SKILLS/ba-t01/SKILL.md" "append under \`## Frame\` in \`.specify/aspect-plans.md\`" \
+    "T-01 books its own run under the plans file's ## Frame section"
+has "$SKILLS/ba-frame/SKILL.md" "read \`.claude/skills/ba-t01/SKILL.md\` and execute it as the" \
+    "/ba-frame runs T-01 by reading its skill file — one step, no second command"
 
 for t in t01 t02 t03; do
   f="$SKILLS/ba-$t/SKILL.md"
@@ -333,8 +335,12 @@ for t in t01 t02 t03; do
     || bad "ba-$t — no references/example.md (D-P2-10: the micro-example ships as a few-shot)"
   flat_has "$f" "BA-invoked, never auto-fired" \
     || bad "ba-$t — does not inherit the invocation discipline"
-  flat_has "$f" "This skill starts only from \`/ba-run $t\`" \
-    || bad "ba-$t — does not name /ba-run as its only entry"
+  flat_has "$f" "is the one-step entry" \
+    || bad "ba-$t — does not carry the one-step entry sentence"
+  flat_has "$f" "P-O3 (technique invocation), compiled in" \
+    || bad "ba-$t — the contract check is not compiled into its heading"
+  flat_has "$f" "## At run end — compiled bookkeeping" \
+    || bad "ba-$t — no compiled run-end bookkeeping block"
   flat_has "$f" "Self-check, and stop if either half fails" \
     || bad "ba-$t — no P-O3 self-check at the top"
   flat_has "$f" "Skip-if" || bad "ba-$t — no skip-if condition"
@@ -357,8 +363,8 @@ has "$SKILLS/ba-t03/SKILL.md" ".specify/memory/stakeholders.md}" "ba-t03 carries
 
 # each skill reports; none of them confirms
 for t in t02 t03; do
-  has "$SKILLS/ba-$t/SKILL.md" "belong to \`/ba-run\`'s post-run touchpoint" \
-      "ba-$t reports its criteria and leaves the refresh to /ba-run (§7.4)"
+  has "$SKILLS/ba-$t/SKILL.md" "belong to this skill's run-end block" \
+      "ba-$t reports its criteria and leaves the refresh to its own run-end block (§7.4)"
 done
 
 # ── 6. the compiled skills' locked content ───────────────────────────────────

@@ -60,13 +60,13 @@ Then, per aspect:
 ```
 /ba-aspect stakeholders     # the framework suggests techniques from canvas evidence
                             # you compose the plan: select · drop · reorder · add
-/ba-run t03                 # run a technique from the plan
+/ba-t03                     # run a technique from the plan
 /ba-clear stakeholders      # evidence table → you confirm the aspect is cleared
 ```
 
 `/ba-aspect` proposes; **you compose**. That is the whole shape of Band 1 —
-the framework never picks your techniques, and `/ba-run` refuses a technique
-that is not in the plan with its output contract pinned. If something you
+the framework never picks your techniques, and every technique's compiled P-O3
+check refuses a run that is not in the plan with its output contract pinned. If something you
 learn later invalidates a cleared aspect, `/ba-reopen` rules and executes the
 reopen; if an aspect cannot clear yet and you want to proceed anyway,
 `/ba-waive-aspect` puts that decision on the record with a revisit trigger.
@@ -88,9 +88,9 @@ when something breaks.
 ## Band 2 — decomposition and scoping
 
 ```
-/ba-run t17                  # epics decomposition → the roadmap
-/ba-run t18                  # MVP / Phase 2 / Later allocation, with a diff and a reason
-/ba-run tier1 kit E-03       # a stakeholder-call kit for one epic
+/ba-t17                      # epics decomposition → the roadmap
+/ba-t18                      # MVP / Phase 2 / Later allocation, with a diff and a reason
+/ba-tier1 kit E-03           # a stakeholder-call kit for one epic
 ```
 
 The kit is a question set at **scoping depth only** — crucial and significant
@@ -98,7 +98,7 @@ areas, essential scope. Technical final-spec questions are forbidden there, and
 the kit refuses to ask them. **You run the call.** Then:
 
 ```
-/ba-run tier1 ingest E-03    # your notes → the epic's scope brief
+/ba-tier1 ingest E-03        # your notes → the epic's scope brief
 ```
 
 The brief comes back `Scoped`, with a **proposed feature slicing**: small epic →
@@ -106,7 +106,7 @@ one feature, large epic → two or three. Findings that belong somewhere else �
 new role, a new term, a constraint — are routed to their homes for your approval
 rather than buried in the brief.
 
-`/ba-run t18` is repeatable on purpose. Re-run it whenever scope knowledge
+`/ba-t18` is repeatable on purpose. Re-run it whenever scope knowledge
 changes; each run logs a diff and a reason on the roadmap.
 
 ---
@@ -121,7 +121,7 @@ Confirms the slicing row, assigns the next `NNN`, creates
 `specs/NNN-appointment-booking/`.
 
 ```
-/ba-run tier2 004
+/ba-tier2 004
 ```
 
 The Tier-2 session loads the full project context **plus the parent epic's
@@ -163,7 +163,7 @@ and you re-enter to verify the built feature against its acceptance tier.
 | `/ba-frame` | Band-1 entry: ledgers initialized, canvas confirmed or created |
 | `/ba-status` | Where everything stands |
 | `/ba-aspect <aspect>` | Open an aspect: suggestions → you compose the plan |
-| `/ba-run <technique> [args]` | Run a planned technique |
+| `/ba-t<NN>` · `/ba-tier1` · `/ba-tier2` [args] | Run a planned technique — one step |
 | `/ba-clear <aspect>` | Evidence table → you confirm the clearing |
 | `/ba-waive-aspect <aspect>` | Grant · re-affirm · lapse an aspect waiver |
 | `/ba-reopen <aspect>` | Rule and execute a reopen |
@@ -174,9 +174,11 @@ and you re-enter to verify the built feature against its acceptance tier.
 | `/ba-handoff <feature>` | Hash guard → branch → ready for `/speckit-plan` |
 | `/ba-wbs [--include NNN …]` | The client-facing WBS → `exports/wbs.xlsx` + `.csv` |
 
-Techniques run through `/ba-run`: `t01`…`t18`, plus `tier1 <kit|ingest|supplement> <epic>`
-and `tier2 <NNN>`. Nothing fires by itself — every one of these is invoked by
-you, enforced in the skills' own frontmatter, not by convention.
+Techniques run one-step: `/ba-t01`…`/ba-t18`,
+`/ba-tier1 <kit|ingest|supplement> <epic>`, `/ba-tier2 <NNN>`. `/ba-run <technique>`
+remains as a thin alias and the custom-technique entry. Nothing fires by itself —
+every one of these is invoked by you, enforced in the skills' own frontmatter,
+not by convention.
 
 ---
 

@@ -17,9 +17,11 @@ Our Solution → AT-VI-2 · Forms / Core Functions / Third-Party / Localization 
 AT-SO-1/-2/-3. This run seeds them at **framing grade**; the owning aspects
 complete and clear them.
 
-## Invocation contract — check before you run
+## Invocation contract — P-O3 (technique invocation), compiled in
 
-**BA-invoked, never auto-fired.** This skill starts only from `/ba-run t01`.
+**BA-invoked, never auto-fired.** `/ba-t01` is the one-step entry: typing it
+**is** the BA's invocation act — P-O3, technique invocation. No prior command
+is required; none is requested.
 
 Self-check, and stop if either half fails:
 
@@ -28,9 +30,11 @@ Self-check, and stop if either half fails:
 > `.specify/aspect-plans.md`, not an aspect section — **with its output contract
 > pinned**: `{presale canvas incl. the Context/Constraints element · Context · canvas.md}`.
 
-On a miss, stop and name `/ba-run` (which owns P-O3 — technique invocation) or
-`/ba-frame` (which owns the Frame plan line). Do not proceed on an unpinned
-contract.
+**On a pass** — render one line: `T-01 — Discovery canvas framing → canvas.md`,
+and begin. No confirmation dialog: the command was the act.
+
+**On a miss** — stop in ≤ 2 lines: the failed check, and the single act that
+unblocks — `/ba-frame`. Nothing else runs; nothing else is explained.
 
 **Skip-if — refuse the run and say which:** `canvas.md` is already present in
 framework shape (thirteen sections, `P-n`/`O-n` line-IDs) and confirmed carried.
@@ -131,6 +135,20 @@ None. T-01 (Discovery canvas framing) emits no routing batch and no reopen — a
 Frame there is nothing gated to contradict, and every artifact home but this one
 is still empty. A finding that would route elsewhere is carried as an open line
 or a `[CONFLICT: …]` marker in the canvas and read by the aspect that owns it.
+
+## At run end — compiled bookkeeping
+
+1. **The primary output lands** at its contracted destination — this run's own
+   act under its pinned contract.
+2. **Cross-cutting findings route** as one proposed batch: the framework
+   assembles the edits · the BA approves the batch · the framework writes. In
+   Band 1 proper Scope H is disarmed and nothing fires; post-closure runs get
+   the armed cadence automatically.
+3. **Run log** — append under `## Frame` in `.specify/aspect-plans.md`:
+   `<date> · <CODE> · contract: fulfilled | partial — <what is missing> | failed — <why>`
+   `  signals: RO-<n> received | routing batch <ref> approved | none`
+   Then set the plan row's Status to `run <date>`. `partial` and `failed` are
+   recorded, never silently retried.
 
 ## What this skill never does
 

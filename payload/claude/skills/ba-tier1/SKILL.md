@@ -14,19 +14,20 @@ Tier 1 carries **a one-line epic to a scoped brief**. Three modes, one technique
 
 | Mode | Invocation | What it does |
 |---|---|---|
-| **kit** | `/ba-run tier1 kit E-03` | pre-drafts the brief from everything known and emits the call kit — the questions that would complete it |
-| **ingest** | `/ba-run tier1 ingest E-03` | turns the call's notes or transcript into the finished brief, plus the routed batch and the signals |
-| **supplement** | `/ba-run tier1 supplement E-03` | the same loop at small radius: a mini-kit for **named gaps only**, ingested as an append |
+| **kit** | `/ba-tier1 kit E-03` | pre-drafts the brief from everything known and emits the call kit — the questions that would complete it |
+| **ingest** | `/ba-tier1 ingest E-03` | turns the call's notes or transcript into the finished brief, plus the routed batch and the signals |
+| **supplement** | `/ba-tier1 supplement E-03` | the same loop at small radius: a mini-kit for **named gaps only**, ingested as an append |
 
 **The BA runs the call.** The framework's role is *before* and *after*. There is
 no live copilot, no transcription analysis, nothing in the room. The BA works
 from the composed agenda, exercises full judgment — including deliberately
 crossing the depth line when the moment justifies it — and brings back notes.
 
-## Invocation contract — check before you run
+## Invocation contract — P-O3 (technique invocation), compiled in
 
-**BA-invoked, never auto-fired.** This skill starts only from
-`/ba-run tier1 <mode> <epic>`.
+**BA-invoked, never auto-fired.** `/ba-tier1 <mode> <epic>` is the one-step
+entry: typing it **is** the BA's invocation act — P-O3, technique invocation.
+No prior command is required; none is requested.
 
 Self-check, and stop if it fails:
 
@@ -38,7 +39,7 @@ Self-check, and stop if it fails:
 
 - **kit** — the epic exists as a roadmap row **at the complete shape**: name,
   2–3-sentence description, **and a phase**. A row still reading `Unallocated` is
-  a row whose allocation has not happened; say so and name `/ba-run t18`. The kit
+  a row whose allocation has not happened; say so and name `/ba-t18`. The kit
   leans on sibling phases, and it cannot lean on a blank.
 - **ingest** — the kit exists at `<epic>.kit.md`, and the BA supplies the notes
   or transcript. Without the kit there is no parsing frame: the kit's question
@@ -46,6 +47,14 @@ Self-check, and stop if it fails:
 - **supplement** — a brief exists and **the gaps are named** — normally by a
   Tier-2 overflow signal. A supplement with no named gap list is a second full
   call wearing a smaller name; refuse it and ask which gaps.
+
+**On a pass** — render one line:
+`Tier 1 <mode> — <epic> → <mode's destination>`, and begin. No confirmation
+dialog: the command was the act.
+
+**On a miss** — stop in ≤ 2 lines: the failed check, and the single act that
+unblocks — `/ba-aspect` to compose the Band-2 plan. Nothing else runs; nothing
+else is explained.
 
 ## The two guards — both are tests, and both are falsifiable
 
@@ -316,6 +325,21 @@ better brief, never a longer interrogation.
 
 You emit; you never execute. `/ba-reopen` rules and runs the reopen; the routing
 batch is written only after the BA approves it.
+
+## At run end — compiled bookkeeping
+
+1. **The primary output lands** at its contracted destination — this run's own
+   act under its pinned contract.
+2. **Cross-cutting findings route** as one proposed batch: the framework
+   assembles the edits · the BA approves the batch · the framework writes. In
+   Band 1 proper Scope H is disarmed and nothing fires; post-closure runs get
+   the armed cadence automatically.
+3. **Run log** — append under `## Band 2` in `.specify/aspect-plans.md`,
+   each rerun naming its trigger:
+   `<date> · <CODE> · contract: fulfilled | partial — <what is missing> | failed — <why>`
+   `  signals: RO-<n> received | routing batch <ref> approved | none`
+   Then set the plan row's Status to `run <date>`. `partial` and `failed` are
+   recorded, never silently retried.
 
 ## What this skill never does
 

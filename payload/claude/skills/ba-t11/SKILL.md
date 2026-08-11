@@ -26,9 +26,11 @@ check, a coding agent reading certified text — needs parseable names and
 relations. A diagram is a **derived view**, produced from the tables if the BA
 wants one, and never the source of truth.
 
-## Invocation contract — check before you run
+## Invocation contract — P-O3 (technique invocation), compiled in
 
-**BA-invoked, never auto-fired.** This skill starts only from `/ba-run t11`.
+**BA-invoked, never auto-fired.** `/ba-t11` is the one-step entry: typing it
+**is** the BA's invocation act — P-O3, technique invocation. No prior command
+is required; none is requested.
 
 Self-check, and stop if either half fails:
 
@@ -36,9 +38,16 @@ Self-check, and stop if either half fails:
 > or `reopened`, **with its output contract pinned**:
 > `{domain model at seed grade — entities the core functions imply, relations at business level, boundary references disposed external · Context · .specify/memory/domain-model.md}`.
 
-On a miss, stop and name `/ba-run`, or `/ba-aspect requirements` to open and
-compose. Requirements opens on Solution being `first-pass-cleared` or waived —
-the surface this run sweeps has to be finished before there is anything to sweep.
+Requirements opens on Solution being `first-pass-cleared` or waived — the
+surface this run sweeps has to be finished before there is anything to sweep.
+
+**On a pass** — render one line:
+`T-11 — Domain (conceptual) modeling → .specify/memory/domain-model.md`, and
+begin. No confirmation dialog: the command was the act.
+
+**On a miss** — stop in ≤ 2 lines: the failed check, and the single act that
+unblocks — `/ba-aspect requirements` to open and compose. Nothing else runs;
+nothing else is explained.
 
 **Skip-if — refuse the run and say so:** AT-RQ-4's **entity clause** reads met in
 the current evidence table — a conceptual model already stands, confirmed current
@@ -117,9 +126,9 @@ In this order:
      register — is a **reopen signal**
 
 6. **Framework act — write and report.** Write `domain-model.md`. Report which
-   criteria the run moved — AT-RQ-4's entity clause — and what remains open. The
-   evidence-table refresh and the confirmation proposal belong to `/ba-run`'s
-   post-run touchpoint; the clearing itself is the BA's, at `/ba-clear`.
+   criteria the run moved — AT-RQ-4's entity clause — and what remains open.
+   The evidence-table refresh and the confirmation proposal belong to this
+   skill's run-end block; the clearing itself is the BA's, at `/ba-clear`.
 
 ## Output
 
@@ -150,6 +159,26 @@ Plus routed batches where the rulings demand them — glossary-first, then conte
   stop; the reopen skill receives and rules it.
 - **Derived view** — a diagram, on BA ask, generated from the tables and labelled
   as derived. It never becomes the file's source of truth.
+
+## At run end — compiled bookkeeping
+
+1. **The primary output lands** at its contracted destination — this run's own
+   act under its pinned contract.
+2. **Cross-cutting findings route** as one proposed batch: the framework
+   assembles the edits · the BA approves the batch · the framework writes. In
+   Band 1 proper Scope H is disarmed and nothing fires; post-closure runs get
+   the armed cadence automatically.
+3. **Run log** — append under the aspect's section in
+   `.specify/aspect-plans.md`:
+   `<date> · <CODE> · contract: fulfilled | partial — <what is missing> | failed — <why>`
+   `  signals: RO-<n> received | routing batch <ref> approved | none`
+   Then set the plan row's Status to `run <date>`. `partial` and `failed` are
+   recorded, never silently retried.
+4. **Threshold refresh (the §7.4 touchpoint)** — refresh the aspect's
+   threshold-evidence table against `.specify/ba/cards/at-thresholds.md`.
+   All met → propose in one line: "threshold evidence complete —
+   `/ba-clear <aspect>`?" Some unmet → name the misses, one line each.
+   Proposing is not confirming; an aspect gate never self-clears.
 
 ## What this skill never does
 

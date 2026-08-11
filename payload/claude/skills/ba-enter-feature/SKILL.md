@@ -120,7 +120,7 @@ where they chose to pause something.
 
 ## Close
 
-Name the next act: the Tier-2 session (`/ba-run tier2 <NNN>`), which loads the
+Name the next act: the Tier-2 session (`/ba-tier2 <NNN>`), which loads the
 context stack, drafts first, and runs the guided-question loop under the cap.
 
 **Under Discovery** it submits to `/ba-gate <NNN>`.

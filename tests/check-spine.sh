@@ -371,18 +371,24 @@ neg "tier 2: an answered question with no write-back" B103 --spec "$R5" --answer
 
 printf '\n▸ /ba-run dispatch: the interface the four skills implement (P-O3)\n'
 
-has "$RUN" "T-17 — Epics decomposition, T-18 — Scope allocation and every Tier-1 mode" "ba-run routes the Band-2 runs to the ## Band 2 section"
-has "$RUN" "Tier 2 gets no plans-file line" "…and states where a Band-3 run records instead"
-has "$RUN" "P-O9 — overflow ruling" "ba-run owns the overflow ruling the Tier-2 signal raises"
+has "$RUN" "thin alias for" "ba-run forwards a catalogue technique to its own one-step command"
+has "$RUN" "execute it as the procedure" "…by reading the technique's skill file, re-checking nothing"
+has "$T17" "append under \`## Band 2\`" "T-17 books its own run under the ## Band 2 section"
+has "$T18" "append under \`## Band 2\`" "T-18 books its own run there too, each rerun naming its trigger"
+has "$TI1" "append under \`## Band 2\`" "Tier 1 books its own run under ## Band 2"
+has "$TI2" "no plans-file line" "Tier 2 keeps no plans-file line — ledger, spec, gate report instead"
+has "$TI2" "P-O9 — overflow ruling" "the Tier-2 run takes its own overflow ruling in the same sitting"
 for s in t17 t18 tier1 tier2; do
   has "$SKILLS/ba-$s/SKILL.md" "BA-invoked, never auto-fired" "ba-$s refuses to auto-fire"
+  has "$SKILLS/ba-$s/SKILL.md" "is the one-step entry" "…and is entered in one step, by its own command"
+  has "$SKILLS/ba-$s/SKILL.md" "## At run end — compiled bookkeeping" "…with its bookkeeping compiled in"
   grep -q '^disable-model-invocation: true$' "$SKILLS/ba-$s/SKILL.md" \
     && ok "…and enforces it in frontmatter" \
     || bad "ba-$s lacks disable-model-invocation: true"
   has "$SKILLS/ba-$s/SKILL.md" "Self-check, and stop if" "ba-$s runs the P-O3 self-check before anything else"
 done
-has "$TI1" "/ba-run tier1 <mode> <epic>" "ba-tier1 names its own invocation, modes included"
-has "$TI2" "/ba-run tier2 <feature>" "ba-tier2 names its own invocation"
+has "$TI1" "/ba-tier1 <mode> <epic>" "ba-tier1 names its own invocation, modes included"
+has "$TI2" "/ba-tier2 <feature>" "ba-tier2 names its own invocation"
 has "$TI2" "name \`/ba-enter-feature <epic>/<feature>\`" "…and hands back to P-O8 when entry has not happened"
 has "$TI2" "name \`/ba-gate <feature>\`" "…and hands to the gate at the end, without running it"
 

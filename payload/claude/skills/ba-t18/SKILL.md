@@ -20,9 +20,11 @@ The decision this run lets the BA make: **what gets built when** — re-decidabl
 whenever scope knowledge changes, with every change on the record and carrying
 its reason.
 
-## Invocation contract — check before you run
+## Invocation contract — P-O3 (technique invocation), compiled in
 
-**BA-invoked, never auto-fired.** This skill starts only from `/ba-run t18`.
+**BA-invoked, never auto-fired.** `/ba-t18` is the one-step entry: typing it
+**is** the BA's invocation act — P-O3, technique invocation. No prior command
+is required; none is requested.
 
 Self-check, and stop if either half fails:
 
@@ -51,6 +53,14 @@ The event set, each with its ground:
 **Never this run's ground:** feature sequencing inside a phase, and next-feature
 selection — both BA acts at the roadmap.
 Epic-set changes belong to T-17 — Epics decomposition.
+
+**On a pass** — render one line:
+`T-18 — Scope allocation → .specify/memory/roadmap.md`, and begin. No
+confirmation dialog: the command was the act.
+
+**On a miss** — stop in ≤ 2 lines: the failed check, and the single act that
+unblocks — `/ba-aspect` to compose the Band-2 plan, or `/ba-close-band1` where
+Band 1 does not yet stand closed. Nothing else runs; nothing else is explained.
 
 ## Depth boundary — phase grain, and it is a hard edge
 
@@ -196,6 +206,21 @@ The template and a worked example are in `references/example.md`.
 - **Reopen signal** — a contradiction with gated Band-1 content. Emit and stop.
 - **Tier-1 referral** — an open scope question blocking a phase call: the
   question and the act that answers it, never a guessed answer.
+
+## At run end — compiled bookkeeping
+
+1. **The primary output lands** at its contracted destination — this run's own
+   act under its pinned contract.
+2. **Cross-cutting findings route** as one proposed batch: the framework
+   assembles the edits · the BA approves the batch · the framework writes. In
+   Band 1 proper Scope H is disarmed and nothing fires; post-closure runs get
+   the armed cadence automatically.
+3. **Run log** — append under `## Band 2` in `.specify/aspect-plans.md`,
+   each rerun naming its trigger:
+   `<date> · <CODE> · contract: fulfilled | partial — <what is missing> | failed — <why>`
+   `  signals: RO-<n> received | routing batch <ref> approved | none`
+   Then set the plan row's Status to `run <date>`. `partial` and `failed` are
+   recorded, never silently retried.
 
 ## What this skill never does
 

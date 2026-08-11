@@ -17,9 +17,11 @@ against the statement, every hit resolved or named before the aspect can clear.
 The decision this run lets the BA make: **one product statement — complete,
 differentiated against something named, and not at war with what binds.**
 
-## Invocation contract — check before you run
+## Invocation contract — P-O3 (technique invocation), compiled in
 
-**BA-invoked, never auto-fired.** This skill starts only from `/ba-run t09`.
+**BA-invoked, never auto-fired.** `/ba-t09` is the one-step entry: typing it
+**is** the BA's invocation act — P-O3, technique invocation. No prior command
+is required; none is requested.
 
 Self-check, and stop if either half fails:
 
@@ -27,9 +29,16 @@ Self-check, and stop if either half fails:
 > `reopened`, **with its output contract pinned**:
 > `{product statement + differentiation against a named Unlike entry, the constraint scan run · Context · canvas.md — Product.The/Is/That · Competition.Our Solution}`.
 
-On a miss, stop and name `/ba-run`, or `/ba-aspect vision` to open and compose.
 **Vision is the only two-edge aspect:** it opens on Context **and** Value both
 `first-pass-cleared` or waived. If either edge is unmet, say which and stop.
+
+**On a pass** — render one line:
+`T-09 — Vision & differentiation → canvas.md — Product.The/Is/That · Competition.Our Solution`,
+and begin. No confirmation dialog: the command was the act.
+
+**On a miss** — stop in ≤ 2 lines: the failed check, and the single act that
+unblocks — `/ba-aspect vision` to open and compose. Nothing else runs; nothing
+else is explained.
 
 **Skip-if — refuse the run and say which:** AT-VI-1 through AT-VI-3 all read met
 in the current evidence table — a complete, differentiated statement carried from
@@ -111,16 +120,13 @@ In this order:
    run the competitive technique first.
 
 6. **Framework act — write and report.** Write the four sections under the
-   contract. Report which criteria the run moved — AT-VI-1 · AT-VI-2 · AT-VI-3 —
-   and what remains open.
-
-   **Clearing over a named conflict is legal** — the criterion's own text allows
-   "resolved **or** named as an open conflict". The marker stays visible on the
-   canvas and travels into the clearing's evidence line. Say so rather than
-   implying the conflict must be resolved first.
-
-   The evidence-table refresh and the confirmation proposal belong to `/ba-run`'s
-   post-run touchpoint; the clearing itself is the BA's, at `/ba-clear`.
+   contract. Report which criteria the run moved — AT-VI-1 · AT-VI-2 · AT-VI-3
+   — and what remains open. **Clearing over a named conflict is legal** — the
+   criterion's own text allows "resolved **or** named as an open conflict". The
+   marker stays visible on the canvas and travels into the clearing's evidence
+   line. Say so rather than implying the conflict must be resolved first. The
+   evidence-table refresh and the confirmation proposal belong to this skill's
+   run-end block; the clearing itself is the BA's, at `/ba-clear`.
 
 ## Output
 
@@ -147,6 +153,26 @@ Plus the reopen signals where a constraint challenge stands.
   finding · contradicted artifact + line · conflict statement. Emit it and stop;
   the reopen skill receives and rules it. The marker stands until the reopen
   resolves.
+
+## At run end — compiled bookkeeping
+
+1. **The primary output lands** at its contracted destination — this run's own
+   act under its pinned contract.
+2. **Cross-cutting findings route** as one proposed batch: the framework
+   assembles the edits · the BA approves the batch · the framework writes. In
+   Band 1 proper Scope H is disarmed and nothing fires; post-closure runs get
+   the armed cadence automatically.
+3. **Run log** — append under the aspect's section in
+   `.specify/aspect-plans.md`:
+   `<date> · <CODE> · contract: fulfilled | partial — <what is missing> | failed — <why>`
+   `  signals: RO-<n> received | routing batch <ref> approved | none`
+   Then set the plan row's Status to `run <date>`. `partial` and `failed` are
+   recorded, never silently retried.
+4. **Threshold refresh (the §7.4 touchpoint)** — refresh the aspect's
+   threshold-evidence table against `.specify/ba/cards/at-thresholds.md`.
+   All met → propose in one line: "threshold evidence complete —
+   `/ba-clear <aspect>`?" Some unmet → name the misses, one line each.
+   Proposing is not confirming; an aspect gate never self-clears.
 
 ## What this skill never does
 

@@ -16,9 +16,11 @@ who-question resolve against. The decision this run lets the BA make: the cast
 is coherent with the canvas and complete enough that dependent aspects open on
 **named people, not placeholders**.
 
-## Invocation contract — check before you run
+## Invocation contract — P-O3 (technique invocation), compiled in
 
-**BA-invoked, never auto-fired.** This skill starts only from `/ba-run t03`.
+**BA-invoked, never auto-fired.** `/ba-t03` is the one-step entry: typing it
+**is** the BA's invocation act — P-O3, technique invocation. No prior command
+is required; none is requested.
 
 Self-check, and stop if either half fails:
 
@@ -33,8 +35,13 @@ That triple is the sheet's pre-pinned contract, verbatim. It is what `/ba-aspect
 renders at P-O2 — plan composition, in full and uncompressed; nothing on the path
 may trim a field list or shorten the class string.
 
-On a miss, stop and name `/ba-run`, or `/ba-aspect stakeholders` to open and
-compose.
+**On a pass** — render one line:
+`T-03 — Stakeholder register → .specify/memory/stakeholders.md`, and begin. No
+confirmation dialog: the command was the act.
+
+**On a miss** — stop in ≤ 2 lines: the failed check, and the single act that
+unblocks — `/ba-aspect stakeholders` to open and compose. Nothing else runs;
+nothing else is explained.
 
 **Skip-if — refuse the run and say so:** AT-ST-2 and AT-ST-3 both read met in the
 current evidence table — for instance a register carried from a prior engagement
@@ -107,9 +114,9 @@ In this order:
    later is a **reopen signal**, not a correction.
 
 6. **Framework act — write and report.** Write `stakeholders.md`. Report which
-   criteria the run moved — AT-ST-1 · AT-ST-2 · AT-ST-3 — and what remains open.
-   The evidence-table refresh and the confirmation proposal belong to `/ba-run`'s
-   post-run touchpoint; the clearing itself is the BA's, at `/ba-clear`.
+   criteria the run moved — AT-ST-1 · AT-ST-2 · AT-ST-3 — and what remains
+   open. The evidence-table refresh and the confirmation proposal belong to
+   this skill's run-end block; the clearing itself is the BA's, at `/ba-clear`.
 
 ## Output
 
@@ -127,6 +134,26 @@ Plus a canvas-side proposed-edit batch when the coherence pass demands one.
 - **Reopen signal** — only once the aspect has been cleared or waived: finding ·
   contradicted artifact + line · conflict statement. Emit it and stop.
   `/ba-reopen` receives and rules it; this skill never executes a reopen.
+
+## At run end — compiled bookkeeping
+
+1. **The primary output lands** at its contracted destination — this run's own
+   act under its pinned contract.
+2. **Cross-cutting findings route** as one proposed batch: the framework
+   assembles the edits · the BA approves the batch · the framework writes. In
+   Band 1 proper Scope H is disarmed and nothing fires; post-closure runs get
+   the armed cadence automatically.
+3. **Run log** — append under the aspect's section in
+   `.specify/aspect-plans.md`:
+   `<date> · <CODE> · contract: fulfilled | partial — <what is missing> | failed — <why>`
+   `  signals: RO-<n> received | routing batch <ref> approved | none`
+   Then set the plan row's Status to `run <date>`. `partial` and `failed` are
+   recorded, never silently retried.
+4. **Threshold refresh (the §7.4 touchpoint)** — refresh the aspect's
+   threshold-evidence table against `.specify/ba/cards/at-thresholds.md`.
+   All met → propose in one line: "threshold evidence complete —
+   `/ba-clear <aspect>`?" Some unmet → name the misses, one line each.
+   Proposing is not confirming; an aspect gate never self-clears.
 
 ## What this skill never does
 

@@ -26,7 +26,8 @@ tests/check-exit.sh --offline    # install from vendor/spec-kit-v0.12.5.zip
 
 **As an agent, in Claude Code —** open a session in a fresh directory and work
 the ten steps below by invoking the real skills. This is the version that
-exercises the framework as a BA meets it: `/ba-frame`, `/ba-aspect`, `/ba-run`,
+exercises the framework as a BA meets it: `/ba-frame`, `/ba-aspect`,
+`/ba-t<NN>` · `/ba-tier1` · `/ba-tier2` (one step each; `/ba-run` aliases them),
 `/ba-clear`, `/ba-close-band1`, `/ba-enter-feature`, `/ba-gate`, `/ba-handoff`.
 
 **What the difference is, exactly.** Some acts in this framework are agent acts
@@ -96,7 +97,7 @@ would join CC-H-01's glob and fire the scoped-H write trigger on itself.
 ## Step 4 — Band 1
 
 Per aspect, in DAG order: `/ba-aspect <aspect>` → suggestion snapshot → the BA
-composes the plan → `/ba-run <technique>` for each → `/ba-clear <aspect>` with
+composes the plan → `/ba-t<NN>` for each → `/ba-clear <aspect>` with
 its evidence table. All six reach `first-pass-cleared`.
 
 The script includes one deliberate `/ba-waive-aspect` + lapse round trip, to
@@ -119,11 +120,11 @@ against the estate.
 ## Step 5 — Band 2
 
 ```
-/ba-run t17                      # epics decomposition → roadmap rows
-/ba-run t18                      # MVP allocation: diff vs. current + reason
-/ba-run tier1 kit E-03           # the call kit
+/ba-t17                          # epics decomposition → roadmap rows
+/ba-run t18                      # MVP allocation — via the alias, on purpose
+/ba-tier1 kit E-03               # the call kit
    … the BA runs the call …
-/ba-run tier1 ingest E-03        # with fixtures/…/call-notes-E-03.md
+/ba-tier1 ingest E-03            # with fixtures/…/call-notes-E-03.md
 ```
 
 **Green when:** `roadmap.md` carries the epic rows at the locked shape, E-03
@@ -139,7 +140,7 @@ ingestion leaves the brief **`Scoped`**, its routing batch approved, and
 
 ```
 /ba-enter-feature E-03/004-appointment-booking      # slicing row → Confirmed
-/ba-run tier2 004                                   # the Tier-2 session
+/ba-tier2 004                                       # the Tier-2 session
 ```
 
 Context stack loaded in §5.2 order · draft-first skeleton · **≤ 7** guided

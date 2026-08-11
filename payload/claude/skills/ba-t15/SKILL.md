@@ -26,9 +26,11 @@ infer permissions from personas*. The roles file is that principle's enforcement
 surface; the per-feature spec check is its enforcement act; **this file is its
 statement**, and nowhere else states it.
 
-## Invocation contract — check before you run
+## Invocation contract — P-O3 (technique invocation), compiled in
 
-**BA-invoked, never auto-fired.** This skill starts only from `/ba-run t15`.
+**BA-invoked, never auto-fired.** `/ba-t15` is the one-step entry: typing it
+**is** the BA's invocation act — P-O3, technique invocation. No prior command
+is required; none is requested.
 
 Self-check, and stop if either half fails:
 
@@ -36,10 +38,17 @@ Self-check, and stop if either half fails:
 > or `reopened`, **with its output contract pinned**:
 > `{constitution at principle grade — named MUST-form principles incl. the two framework seeds, plus the Governance-class reference spine · Governance · .specify/memory/constitution.md}`.
 
-On a miss, stop and name `/ba-run`, or `/ba-aspect requirements` to open and
-compose. **Run after the roles model** — the Authorization principle's
-enforcement surface must exist to be named — **and after design standards where
-design ground exists**, so every reference resolves at authoring.
+**Run after the roles model** — the Authorization principle's enforcement
+surface must exist to be named — **and after design standards where design
+ground exists**, so every reference resolves at authoring.
+
+**On a pass** — render one line:
+`T-15 — Constitution → .specify/memory/constitution.md`, and begin. No
+confirmation dialog: the command was the act.
+
+**On a miss** — stop in ≤ 2 lines: the failed check, and the single act that
+unblocks — `/ba-aspect requirements` to open and compose. Nothing else runs;
+nothing else is explained.
 
 **Skip-if — refuse the run and say so:** the constitution is present, seeded,
 stub-free, **every reference resolving**, and the persona clause
@@ -121,8 +130,8 @@ In this order:
 6. **Framework act — write and report.** Write `constitution.md`. Report which
    criteria the run moved — AT-RQ-1, plus AT-RQ-2's persona clause read
    met-or-dormant — and what remains open. The evidence-table refresh and the
-   confirmation proposal belong to `/ba-run`'s post-run touchpoint; the clearing
-   itself is the BA's, at `/ba-clear`.
+   confirmation proposal belong to this skill's run-end block; the clearing itself
+   is the BA's, at `/ba-clear`.
 
 ## Output
 
@@ -158,6 +167,26 @@ Plus routed batches where the screen sent detail to its files.
 - **Dangling reference** — a spine entry that would not resolve, reported as a
   planning defect before the file is written, with the run that would fix it
   named.
+
+## At run end — compiled bookkeeping
+
+1. **The primary output lands** at its contracted destination — this run's own
+   act under its pinned contract.
+2. **Cross-cutting findings route** as one proposed batch: the framework
+   assembles the edits · the BA approves the batch · the framework writes. In
+   Band 1 proper Scope H is disarmed and nothing fires; post-closure runs get
+   the armed cadence automatically.
+3. **Run log** — append under the aspect's section in
+   `.specify/aspect-plans.md`:
+   `<date> · <CODE> · contract: fulfilled | partial — <what is missing> | failed — <why>`
+   `  signals: RO-<n> received | routing batch <ref> approved | none`
+   Then set the plan row's Status to `run <date>`. `partial` and `failed` are
+   recorded, never silently retried.
+4. **Threshold refresh (the §7.4 touchpoint)** — refresh the aspect's
+   threshold-evidence table against `.specify/ba/cards/at-thresholds.md`.
+   All met → propose in one line: "threshold evidence complete —
+   `/ba-clear <aspect>`?" Some unmet → name the misses, one line each.
+   Proposing is not confirming; an aspect gate never self-clears.
 
 ## What this skill never does
 

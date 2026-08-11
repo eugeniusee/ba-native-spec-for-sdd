@@ -45,8 +45,8 @@ licenses editing one.
 - **Codes render canonical — capital T, hyphen, two digits**, as in
   `T-04 — Persona charters`. A lowercase or hyphenless variant is a render
   defect, in the out-of-profile line exactly as in a row. The lowercase form is
-  the command's argument and nothing else: name invocations as `/ba-run t03`,
-  `/ba-run t06`, and never let that form leak into a render.
+  the command name and nothing else: name invocations as `/ba-t03`,
+  `/ba-t06`, and never let that form leak into a render.
 - **Plain words** (register rule 2). Say **root**, never "DAG". Framework
   document vocabulary stays in the documents.
 - **One term per concept** (register rule 4). **Prerequisite** — never also
@@ -207,8 +207,9 @@ file}` before it may run:
 - **Custom techniques** — the one path that takes a confirmation. The BA supplies
   the contract, or you propose it and the BA confirms. **An unconfirmed contract
   makes the run illegal** — do not mark such a technique planned-runnable, and
-  `/ba-run` will refuse it. This is the same discipline as refusing a question
-  without a destination, one level up.
+  the technique's compiled P-O3 (technique invocation) check will refuse it.
+  This is the same discipline as refusing a question without a destination, one
+  level up.
 
 Append to the aspect's section, dated:
 
@@ -225,14 +226,14 @@ appends a new dated plan block; **the plan never rewrites its own history**.
 ## Close
 
 Render: the aspect's state, its named misses (the unmet AT criteria), and the
-next act — `/ba-run <technique>` for the first planned line.
+next act — `/ba-t<NN>` for the first planned line.
 
 ## What this skill never does
 
 Never opens an aspect whose prerequisite is unmet or `reopened` · never re-opens
-a cleared aspect · never runs a technique (that is `/ba-run`, its own BA act at
-P-O3 — technique invocation) · never confirms a threshold (that is `/ba-clear`)
-· never authors content or edits an artifact — it writes the two ledgers only ·
+a cleared aspect · never runs a technique (that is the technique's own one-step
+command, a BA act at P-O3 — technique invocation) · never confirms a threshold
+(that is `/ba-clear`) · never authors content or edits an artifact — it writes the two ledgers only ·
 never emits a suggestion that cannot name its AT hole · never treats its own
 suggestion as a restriction on the BA's plan · **never composes or records a plan
 the BA did not compose**.

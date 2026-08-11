@@ -19,9 +19,11 @@ its register entry**.
 A charter is context and only context. **A persona never travels into the build
 as authorization.**
 
-## Invocation contract — check before you run
+## Invocation contract — P-O3 (technique invocation), compiled in
 
-**BA-invoked, never auto-fired.** This skill starts only from `/ba-run t04`.
+**BA-invoked, never auto-fired.** `/ba-t04` is the one-step entry: typing it
+**is** the BA's invocation act — P-O3, technique invocation. No prior command
+is required; none is requested.
 
 Self-check, and stop if either half fails:
 
@@ -30,7 +32,13 @@ Self-check, and stop if either half fails:
 > aspect is legal — **with its output contract pinned**:
 > `{persona charters — one per elected register population, transformation-ready per TC-1…TC-3 · Context · .specify/memory/personas.md}`.
 
-On a miss, stop and name `/ba-run`, or `/ba-aspect` to open and compose.
+**On a pass** — render one line:
+`T-04 — Persona charters → .specify/memory/personas.md`, and begin. No
+confirmation dialog: the command was the act.
+
+**On a miss** — stop in ≤ 2 lines: the failed check, and the single act that
+unblocks — `/ba-aspect` to open and compose. Nothing else runs; nothing else is
+explained.
 
 **This technique is never suggested.** No threshold criterion demands a persona,
 so the framework has no hole to name — and a suggestion that cannot name its
@@ -146,6 +154,26 @@ Plus the routed batches the sweep found — governance findings, register edits.
 - **Reopen signal** — only once the contradicted aspect has been cleared or
   waived: finding · contradicted artifact + line · conflict statement. Emit it and
   stop; the reopen skill receives and rules it.
+
+## At run end — compiled bookkeeping
+
+1. **The primary output lands** at its contracted destination — this run's own
+   act under its pinned contract.
+2. **Cross-cutting findings route** as one proposed batch: the framework
+   assembles the edits · the BA approves the batch · the framework writes. In
+   Band 1 proper Scope H is disarmed and nothing fires; post-closure runs get
+   the armed cadence automatically.
+3. **Run log** — append under the aspect's section in
+   `.specify/aspect-plans.md`:
+   `<date> · <CODE> · contract: fulfilled | partial — <what is missing> | failed — <why>`
+   `  signals: RO-<n> received | routing batch <ref> approved | none`
+   Then set the plan row's Status to `run <date>`. `partial` and `failed` are
+   recorded, never silently retried.
+4. **Threshold refresh (the §7.4 touchpoint)** — refresh the aspect's
+   threshold-evidence table against `.specify/ba/cards/at-thresholds.md`.
+   All met → propose in one line: "threshold evidence complete —
+   `/ba-clear <aspect>`?" Some unmet → name the misses, one line each.
+   Proposing is not confirming; an aspect gate never self-clears.
 
 ## What this skill never does
 

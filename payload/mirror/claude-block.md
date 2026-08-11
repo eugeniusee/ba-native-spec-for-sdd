@@ -82,7 +82,7 @@ Do not invoke them on your own initiative and do not simulate their effects.
 | `/ba-frame` | Band-1 entry: initialize the two aspect ledgers, pick the flow profile (P-O0 — flow-profile selection), confirm the canvas |
 | `/ba-status` | Render the aspect-ledger head and the project dashboard |
 | `/ba-aspect <aspect>` | Open an aspect; suggestion snapshot → plan composition |
-| `/ba-run <technique> [args]` | Contract check, then dispatch a technique |
+| `/ba-t<NN>` · `/ba-tier1` · `/ba-tier2` | One-step technique run — the P-O3 (technique invocation) check compiled in; `/ba-run` = alias + custom runner |
 | `/ba-clear <aspect>` | Evidence table → clearing confirmation |
 | `/ba-waive-aspect <aspect>` | Grant · re-affirm · lapse an aspect waiver |
 | `/ba-reopen <aspect>` | Rule and execute a reopen signal |
@@ -92,7 +92,7 @@ Do not invoke them on your own initiative and do not simulate their effects.
 | `/ba-gate-health [artifact \| full]` | Scope-H project health run |
 | `/ba-handoff <feature>` | Mode-A adapter: hash guard, branch, ready report |
 
-**Techniques — 20** (invoke via `/ba-run <id>`; the contract check lives there)
+**Techniques — 20** (one-step via `/ba-<id>`; the P-O3 (technique invocation) check compiled into each; `/ba-run <id>` aliases)
 
 | ID | Technique | Lands in |
 |---|---|---|

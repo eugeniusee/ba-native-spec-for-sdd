@@ -26,9 +26,11 @@ Tier-1 call exists to resolve — a decomposition-time scoping question would
 front-run the depth-calibrated kit and would fail the destination discipline
 besides: its answer's home is a brief section that does not exist yet.
 
-## Invocation contract — check before you run
+## Invocation contract — P-O3 (technique invocation), compiled in
 
-**BA-invoked, never auto-fired.** This skill starts only from `/ba-run t17`.
+**BA-invoked, never auto-fired.** `/ba-t17` is the one-step entry: typing it
+**is** the BA's invocation act — P-O3, technique invocation. No prior command
+is required; none is requested.
 
 Self-check, and stop if either half fails:
 
@@ -48,9 +50,6 @@ the flexibility mechanism. If the head still reads `1 (open)`, stop and name
 is decomposing a guess.* Then proceed — the BA's call stands. It is visibility,
 never a block.
 
-On a contract miss, stop and name `/ba-run`, or `/ba-aspect` to compose the
-Band-2 plan.
-
 **Skip-if — refuse the run and say so:** the roadmap stands current — rows whole
 (every row carrying its status), **no candidate and no conflict standing**.
 Re-decomposition has its own named grounds, and "the set could be tidier" is not
@@ -67,6 +66,14 @@ one of them:
 boundaries and slicing belong to Tier 1 — epic scoping interview, in the brief.
 Phases belong to T-18 — Scope allocation.
 Re-partition of a stable set is enrichment — only on BA ask.
+
+**On a pass** — render one line:
+`T-17 — Epics decomposition → .specify/memory/roadmap.md`, and begin. No
+confirmation dialog: the command was the act.
+
+**On a miss** — stop in ≤ 2 lines: the failed check, and the single act that
+unblocks — `/ba-aspect` to compose the Band-2 plan. Nothing else runs; nothing
+else is explained.
 
 ## Depth boundary — epic grain, and it is a hard edge
 
@@ -178,7 +185,7 @@ The complete estate, in this order:
    scoped health check fires silently on the writes — it is the gate's cadence,
    not yours to run.
 
-   **Close by recommending the initial allocation — `/ba-run t18`, in the same
+   **Close by recommending the initial allocation — `/ba-t18`, in the same
    sitting.** It is what makes every row whole at the Tier-1 shape before any kit
    reads it.
 
@@ -219,6 +226,21 @@ Plus the routed graduation batch to `out-of-scope.md`.
   finding · contradicted artifact + line · conflict statement. Emit and stop;
   `/ba-reopen` receives and rules it. The roadmap itself is aspect-less, so a
   roadmap-internal contradiction is Band-2 rerun ground, never an aspect reopen.
+
+## At run end — compiled bookkeeping
+
+1. **The primary output lands** at its contracted destination — this run's own
+   act under its pinned contract.
+2. **Cross-cutting findings route** as one proposed batch: the framework
+   assembles the edits · the BA approves the batch · the framework writes. In
+   Band 1 proper Scope H is disarmed and nothing fires; post-closure runs get
+   the armed cadence automatically.
+3. **Run log** — append under `## Band 2` in `.specify/aspect-plans.md`,
+   each rerun naming its trigger:
+   `<date> · <CODE> · contract: fulfilled | partial — <what is missing> | failed — <why>`
+   `  signals: RO-<n> received | routing batch <ref> approved | none`
+   Then set the plan row's Status to `run <date>`. `partial` and `failed` are
+   recorded, never silently retried.
 
 ## What this skill never does
 

@@ -21,9 +21,11 @@ this run from landscape mapping: that sheet describes what exists, this one prob
 for what **binds**. A solution decision with no imposer is a choice, not a
 constraint, and it belongs to vision or solution work.
 
-## Invocation contract — check before you run
+## Invocation contract — P-O3 (technique invocation), compiled in
 
-**BA-invoked, never auto-fired.** This skill starts only from `/ba-run t06`.
+**BA-invoked, never auto-fired.** `/ba-t06` is the one-step entry: typing it
+**is** the BA's invocation act — P-O3, technique invocation. No prior command
+is required; none is requested.
 
 Self-check, and stop if either half fails:
 
@@ -31,7 +33,13 @@ Self-check, and stop if either half fails:
 > `reopened`, **with its output contract pinned**:
 > `{constraints & limitations — three class sections, each a Confirmed row or none identified — <basis> · Context · .specify/memory/constraints.md}`.
 
-On a miss, stop and name `/ba-run`, or `/ba-aspect context` to open and compose.
+**On a pass** — render one line:
+`T-06 — Constraints elicitation → .specify/memory/constraints.md`, and begin.
+No confirmation dialog: the command was the act.
+
+**On a miss** — stop in ≤ 2 lines: the failed check, and the single act that
+unblocks — `/ba-aspect context` to open and compose. Nothing else runs; nothing
+else is explained.
 
 **Skip-if — refuse the run and say so:** AT-CX-2 reads met in the current
 evidence table — **every class shows a Confirmed row or its none-identified
@@ -107,8 +115,8 @@ In this order:
 
 6. **Framework act — write and report.** Write `constraints.md`. Report which
    criteria the run moved — AT-CX-2, per class — and what remains open. The
-   evidence-table refresh and the confirmation proposal belong to `/ba-run`'s
-   post-run touchpoint; the clearing itself is the BA's, at `/ba-clear`.
+   evidence-table refresh and the confirmation proposal belong to this skill's
+   run-end block; the clearing itself is the BA's, at `/ba-clear`.
 
 ## Output
 
@@ -143,6 +151,26 @@ summaries.
 - **Status flip** — when a later approved batch confirms an `Assumed` row, the
   flip is a write to this file with the confirming source recorded. It is an
   edit, not a new row, and the row keeps its place.
+
+## At run end — compiled bookkeeping
+
+1. **The primary output lands** at its contracted destination — this run's own
+   act under its pinned contract.
+2. **Cross-cutting findings route** as one proposed batch: the framework
+   assembles the edits · the BA approves the batch · the framework writes. In
+   Band 1 proper Scope H is disarmed and nothing fires; post-closure runs get
+   the armed cadence automatically.
+3. **Run log** — append under the aspect's section in
+   `.specify/aspect-plans.md`:
+   `<date> · <CODE> · contract: fulfilled | partial — <what is missing> | failed — <why>`
+   `  signals: RO-<n> received | routing batch <ref> approved | none`
+   Then set the plan row's Status to `run <date>`. `partial` and `failed` are
+   recorded, never silently retried.
+4. **Threshold refresh (the §7.4 touchpoint)** — refresh the aspect's
+   threshold-evidence table against `.specify/ba/cards/at-thresholds.md`.
+   All met → propose in one line: "threshold evidence complete —
+   `/ba-clear <aspect>`?" Some unmet → name the misses, one line each.
+   Proposing is not confirming; an aspect gate never self-clears.
 
 ## What this skill never does
 

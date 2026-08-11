@@ -372,7 +372,10 @@ for s in ba-frame ba-status ba-aspect ba-run ba-clear ba-waive-aspect \
 done
 ok "nine skills: frontmatter name · description · disable-model-invocation: true"
 
-ALL="$TMP/all-skills.txt"; cat "$SKILLS"/ba-{frame,status,aspect,run,clear,waive-aspect,reopen,close-band1,enter-feature}/SKILL.md > "$ALL"
+# P-O9 — overflow ruling is taken inside the Tier-2 run itself (one-step
+# invocation: the run that raises the signal takes the BA's ruling), so
+# ba-tier2 joins the sweep for the checkpoint set to be complete.
+ALL="$TMP/all-skills.txt"; cat "$SKILLS"/ba-{frame,status,aspect,run,clear,waive-aspect,reopen,close-band1,enter-feature}/SKILL.md "$SKILLS/ba-tier2/SKILL.md" > "$ALL"
 for p in P-O1 P-O2 P-O3 P-O4 P-O5 P-O6 P-O7 P-O8 P-O9; do
   has "$ALL" "$p" "$p renders in the skill set"
 done
@@ -395,11 +398,17 @@ has "$SKILLS/ba-aspect/SKILL.md" "An unconfirmed contract makes the run illegal"
     "ba-aspect pins output contracts before any run (Q2+, §6.3)"
 has "$SKILLS/ba-aspect/SKILL.md" "there is no \`first-pass-cleared → open\` transition" \
     "ba-aspect refuses to re-open a cleared aspect (§2.3)"
-has "$SKILLS/ba-run/SKILL.md" "BA-invoked, never auto-fired" "ba-run inherits the invocation discipline (§7.1)"
-has "$SKILLS/ba-run/SKILL.md" "No mid-run interference" "ba-run does not steer a run in progress (§7.2)"
-has "$SKILLS/ba-run/SKILL.md" "Arrival is never gated:" "ba-run lets findings land in any aspect's home (§2.2)"
-has "$SKILLS/ba-run/SKILL.md" "Scope H is disarmed and nothing fires" \
-    "ba-run states the Band-1 silence rule (§7.3)"
+has "$SKILLS/ba-run/SKILL.md" "thin alias for" "ba-run aliases the technique's own one-step command (§7.1)"
+has "$SKILLS/ba-run/SKILL.md" "check P-O3 (technique invocation) here" \
+    "ba-run keeps the contract check on the custom-technique path (§7.1)"
+has "$SKILLS/ba-t03/SKILL.md" "BA-invoked, never auto-fired" \
+    "the invocation discipline is compiled into each technique skill (§7.1)"
+has "$AGENTS/ba-orchestrator.md" "No mid-run drip" \
+    "the orchestrator does not steer a run in progress (§7.2)"
+has "$AGENTS/ba-discovery.md" "Arrival is never gated:" \
+    "findings land in any aspect's artifact home (§2.2)"
+has "$SKILLS/ba-t03/SKILL.md" "Scope H is disarmed and nothing fires" \
+    "the Band-1 silence rule rides in every run-end block (§7.3)"
 has "$SKILLS/ba-clear/SKILL.md" "An aspect gate never self-clears." \
     "ba-clear proposes and never confirms (§3.4)"
 has "$SKILLS/ba-clear/SKILL.md" "Silence fails." "ba-clear carries threshold design rule 3 (§3.2)"

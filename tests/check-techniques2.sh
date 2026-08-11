@@ -456,7 +456,9 @@ for t in t04 t05 t06 t07 t08 t09 t10; do
   [ -f "$SKILLS/ba-$t/references/example.md" ] \
     || bad "ba-$t — no references/example.md (D-P2-10)"
   flat_has "$f" "BA-invoked, never auto-fired" || bad "ba-$t — does not inherit the invocation discipline"
-  flat_has "$f" "This skill starts only from \`/ba-run $t\`" || bad "ba-$t — does not name /ba-run as its only entry"
+  flat_has "$f" "is the one-step entry" || bad "ba-$t — does not carry the one-step entry sentence"
+  flat_has "$f" "P-O3 (technique invocation), compiled in" || bad "ba-$t — the contract check is not compiled into its heading"
+  flat_has "$f" "## At run end — compiled bookkeeping" || bad "ba-$t — no compiled run-end bookkeeping block"
   flat_has "$f" "Self-check, and stop if either half fails" || bad "ba-$t — no P-O3 self-check at the top"
   flat_has "$f" "Skip-if" || bad "ba-$t — no skip-if condition"
   flat_has "$f" "Depth boundary" || bad "ba-$t — no depth boundary"
@@ -468,8 +470,8 @@ ok "seven technique skills: frontmatter · references/example.md · self-check �
 
 # each aspect-serving skill reports and leaves the refresh to /ba-run
 for t in t05 t06 t07 t08 t09 t10; do
-  has "$SKILLS/ba-$t/SKILL.md" "belong to \`/ba-run\`'s post-run touchpoint" \
-      "ba-$t reports its criteria and leaves the refresh to /ba-run (§7.4)"
+  has "$SKILLS/ba-$t/SKILL.md" "belong to this skill's run-end block" \
+      "ba-$t reports its criteria and leaves the refresh to its own run-end block (§7.4)"
 done
 # T-04 is the exception, and says why in as many words
 has "$SKILLS/ba-t04/SKILL.md" "Enrichment feeds no evidence-table row" \

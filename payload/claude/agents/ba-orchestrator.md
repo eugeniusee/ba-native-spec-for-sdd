@@ -264,7 +264,7 @@ drip:** a technique run completes before any of these render.
 |---|---|---|---|
 | P-O1 | aspect opening | open (T1) | `/ba-aspect` |
 | P-O2 | plan composition | select / drop / reorder / add custom; pin or confirm output contracts | `/ba-aspect` |
-| P-O3 | technique invocation | invoke the run | `/ba-run` |
+| P-O3 | technique invocation | invoke the run | `/ba-t<NN>` (alias `/ba-run`) |
 | P-O4 | clearing confirmation | CLEARED / NOT CLEARED with named misses / WAIVE | `/ba-clear` |
 | P-O5 | aspect-waiver acts | grant · re-affirm · lapse | `/ba-waive-aspect` |
 | P-O6 | reopen ruling | Real / Not real / Brief-shaped · blast-radius review · pause exceptions | `/ba-reopen` |

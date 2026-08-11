@@ -4011,3 +4011,175 @@ is currently scoped.
 **The pilot's other observations are not in this entry.** This batch closed D1–D5
 and S-a/S-b/S-c on the aspect-planning path. Anything R0 surfaced outside that
 path was not looked for and is not claimed.
+
+---
+
+## One-step technique invocation — WS-1, Lane A · package 0.1.7 · 11 August 2026 · GREEN
+
+Typing a technique's own command **is** its invocation. That is what this batch
+compiles: P-O3 — technique invocation, and the run-end bookkeeping that used to
+sit one command upstream, both now stand inside all twenty technique skills.
+`/ba-run` stays — as a thin alias for the catalogue, and as the runner for
+custom plan lines, which have no skill of their own to compile into. That is
+the satellite ruling R1, taken as given here.
+
+No methodology document changed its law. Orchestrator **§7.1** and the **§11**
+binding row are mechanics sentences and were re-worded to say what the package
+now does; nothing about *what* is checked, *when*, or *by whose act* moved.
+
+### The precondition, stated
+
+Read from the placed files, not from the prompt: `VERSION` **0.1.7** · commit
+**468cf81** present, local · orchestrator header **v0.10** · working tree **not
+clean** — it carried the un-pushed pilot R0 fix batch (BUILD-LOG, package 0.1.7,
+10 Aug 2026), which had already taken the 0.1.6 → 0.1.7 bump. WS-1 therefore
+rides that same uncommitted package rather than bumping again (D78). Baseline
+before the first edit: `tests/run-all.sh --file-only` **11/11 green**.
+
+### The change — twenty skills, one alias, four cross-reference surfaces
+
+**The twenty technique skills** (`ba-t01`…`ba-t18`, `ba-tier1`, `ba-tier2`) each
+took four compiled edits and their line syncs:
+
+- the section heading — *check before you run* → **P-O3 (technique invocation),
+  compiled in**
+- the entry sentence — *starts only from `/ba-run <id>`* → **its own command is
+  the one-step entry; typing it is the BA's invocation act**
+- **on a pass / on a miss**, replacing the on-miss paragraph that named
+  `/ba-run`. The pass line renders `<CODE> — <name> → <destination>` instantiated
+  per skill from that skill's own pinned-contract quote; the miss names the one
+  unblocking act, carried verbatim from the paragraph it replaces
+- **`## At run end — compiled bookkeeping`** before the never-does list — output
+  lands · findings route as one batch · the run-log line under the skill's own
+  plans-file section · and, for the fourteen aspect-serving runs, the §7.4
+  threshold refresh with its one-line `/ba-clear` proposal
+
+Every precondition the replaced paragraphs carried survives verbatim, lifted
+into its own paragraph ahead of the pass/miss pair: the DAG-edge lines in
+t05/t08/t09/t10/t11 and the ordering lines in t12/t13/t14/t15.
+
+**`ba-run/SKILL.md`** was replaced body-whole. Catalogue path: read
+`.claude/skills/ba-<id>/SKILL.md` and execute it as the procedure, the compiled
+check governing, nothing re-checked and nothing confirmed. Custom path: the
+P-O3 check runs here, because a custom plan line has no skill to compile into.
+
+**Cross-references** followed to the one-step surface: `ba-frame` now runs T-01
+by reading its skill file · `ba-aspect` names `/ba-t<NN>` as the next act and
+points its refusal at the technique's own compiled check · `ba-close-band1`,
+`ba-enter-feature`, the `ba-orchestrator` persona's P-O3 row and
+`mirror/claude-block.md`'s two lines · orchestrator rules §7.1 and §11, with the
+header taken to **v0.11** and a change record in the block's own grammar ·
+`docs/quickstart.md` at ten sites, code-fence alignment re-struck.
+
+### Verification evidence
+
+| Check | Result |
+|---|---|
+| `check-m.sh` | 40 / 0 |
+| `check-gate.sh` | 59 / 0 |
+| `check-orchestrator.sh` | 122 / 0 |
+| `check-techniques.sh` | 101 / 0 |
+| `check-techniques2.sh` | 122 / 0 |
+| `check-techniques3.sh` | 158 / 0 |
+| `check-spine.sh` | 146 / 0 |
+| `check-register.sh` | 51 / 0 |
+| `check-wbs.sh` | 49 / 0 |
+| `check-ledger.py` | grammar-legal — 14 rules, no violations |
+| `check-cards.py` | every card byte-identical to its re-derivation; layering clean |
+| `check-layout.sh` | 108 / 0 / 0 |
+| `check-exit.sh --offline` | 99 / 0 |
+
+`ran: 13   red: 0   skipped: 0` · **✓ GREEN — all 13 checks pass, the two
+install-based runs included.** Against the pre-batch baseline three counts moved
+and the rest held: `check-orchestrator.sh` 120 → 122, `check-techniques.sh`
+100 → 101, `check-spine.sh` 134 → 146 — all three from assertions added, none
+from assertions dropped. `check-cards.py` byte-identical is the evidence that no
+compiled card moved: no card's source document did.
+
+Residual sweeps, all **0**: `starts only from` across payload, tests and
+quickstart · `dispatch the technique` across payload and tests · `` `/ba-run`'s post-run touchpoint `` across payload and tests.
+
+### Divergences
+
+**D77 · The brief's heading string renders a bare code; it ships paired.**
+`## Invocation contract — P-O3, compiled in` fails register rule 5 — the code
+stands with no name beside it. Verified before writing, not after: a probe
+corpus carrying that one heading drew exactly one `bare` hit from
+`check-register.sh`'s own scanner. Shipped instead:
+**`— P-O3 (technique invocation), compiled in`**, the parenthetical being a
+separator rule 5's scan already accepts. The same pairing was applied at five
+more sites the brief specified bare — `ba-run`'s two P-O3 mentions and its P-O2
+mention, `ba-aspect`'s refuse-it clause, and `mirror/claude-block.md`'s two
+lines. E7's loop assertion follows the shipped string.
+
+**D78 · `VERSION` was already at 0.1.7 and uncommitted; WS-1 rides that
+package.** The brief proposed 0.1.6 → 0.1.7. The working tree had already taken
+that bump for the pilot R0 fix batch, un-pushed. Ruled by EK at the precondition:
+**hold at 0.1.7** — one package, two entries. `VERSION` is untouched by this
+batch.
+
+**D79 · The brief's `ba-aspect` line numbers are stale.** :122 · :169 · :187 ·
+:192 map to `468cf81`; the uncommitted R0 batch moved all four. Every edit was
+taken by content with an exactly-once string assertion, so the drift changed
+nothing but the addressing.
+
+**D80 · `ba-tier1` has no on-miss act in the brief's list, and now has one.**
+T-A4's act table names t01, t02–t16, t17 and tier2; tier1 is absent, and its
+file carried no on-miss paragraph to carry forward. Given: **`/ba-aspect` to
+compose the Band-2 plan** — t17's act, tier1 sharing t17's `## Band 2` plan
+home. Judgment call, stated.
+
+**D81 · `ba-t18`'s on-miss is authored, as the brief flagged.** Shipped:
+`/ba-aspect` to compose the Band-2 plan, **or `/ba-close-band1` where Band 1
+does not yet stand closed**. Worth recording precisely: t18's own file states no
+Band-1-closure precondition today — t17's does, and t18 runs under the same
+`## Band 2` section. The second act is therefore inherited from the section, not
+quoted from the skill.
+
+**D82 · "T-A3/T-A4 close the section" was read literally, and it moves t17's
+on-miss.** For t17 · t18 · tier1 · tier2 the pass/miss pair stands as the last
+paragraphs of `## Invocation contract`. In t17 that puts them **after** the
+skip-if rather than before it, where the replaced paragraph sat; t01–t16 keep
+the pair in the replaced paragraph's own position. The alternative reading —
+"close the contract-check block, ahead of the skip-if" — is a four-file move if
+EK meant that one.
+
+**D83 · E2's wholesale body drops three statements `ba-run` alone carried; each
+was re-homed before its assertion was flipped.** `No mid-run interference`
+(§7.2), `Arrival is never gated:` (§2.2) and the P-O9 ruling table lived nowhere
+else in the payload's skill set. Verified homes: §7.2 → the `ba-orchestrator`
+persona, which states it as **"No mid-run drip"** · §2.2 → `ba-discovery`, colon
+form intact · **P-O9 → `ba-tier2`**, where E1e's overflow rewrite now takes the
+ruling in the same sitting. That last one has a test consequence:
+`check-orchestrator.sh`'s P-O sweep concatenated the nine checkpoint-owning
+skills, and P-O9 no longer appears in any of them — `ba-tier2` joins the
+concatenation, with the reason in a comment above it.
+
+**D84 · `docs/quickstart.md` keeps its frontmatter-enforcement clause.** E6's
+replacement text for :177–178 ends *"every one of these is invoked by you."*; the
+sentence it replaces continues *", enforced in the skills' own frontmatter, not
+by convention."* The clause is a fact about the package, not a `/ba-run`
+reference, so it was carried rather than dropped.
+
+**D85 · E7's closing sweep item is a no-op, and `check-register.sh` needed no
+edit at all.** Nothing in `tests/` greps the §7.1 or §11 sentences this batch
+re-worded — neither `check-orchestrator.sh` nor `check-register.sh` ever
+referenced them. And the register scanner's own lookarounds already exclude the
+new spelling: `NONCANON`'s `(?<![A-Za-z0-9_-])` refuses to match the `t03` in
+`` `/ba-t03` ``, exactly as its docstring says. The `ARGSPAN` allowance for
+`` `/ba-run tnn` `` stays where it is — the alias still spells it that way.
+
+### Open
+
+**D58, D61, D74, D75, D76 stand, unchanged and unworked** — none was in scope
+here. D74's carry item is worth re-reading against this batch: the seventeen
+compressed contract triples are in the same twenty files WS-1 just touched, and
+every one of them now has a pass-line render quoting its destination beside the
+triple. The sweep did not get cheaper to *find*; it got cheaper to *verify*.
+
+**Two placement readings are live, not closed:** D82's section-close for t17,
+and D80's inherited act for tier1. Both are single-paragraph moves.
+
+**`/ba-run`'s custom path is asserted, not exercised.** The suite proves the
+alias text and the custom-path check string are present; no fixture runs a
+custom plan line end to end, because none exists. Named, not claimed.

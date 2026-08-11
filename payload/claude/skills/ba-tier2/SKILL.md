@@ -19,10 +19,11 @@ minutes of a BA's attention, not an interrogation.
 
 **This skill delivers a spec to the gate and stops. It never runs a check.**
 
-## Invocation contract — check before you run
+## Invocation contract — P-O3 (technique invocation), compiled in
 
-**BA-invoked, never auto-fired.** This skill starts only from
-`/ba-run tier2 <feature>`.
+**BA-invoked, never auto-fired.** `/ba-tier2 <feature>` is the one-step entry:
+typing it **is** the BA's invocation act — P-O3, technique invocation. No prior
+command is required; none is requested.
 
 Self-check, and stop if it fails:
 
@@ -44,6 +45,14 @@ band upstream.
 homes; the session conversation is the working record. Traceability is at
 structurally derivable granularity — story to requirement to acceptance — and
 question-to-line links are deliberately not v1's.
+
+**On a pass** — render one line:
+`Tier 2 — <feature> → specs/NNN-<feature>/spec.md`, and begin. No confirmation
+dialog: the command was the act.
+
+**On a miss** — stop in ≤ 2 lines: the failed check, and the single act that
+unblocks — `/ba-enter-feature <epic>/<feature>`. Nothing else runs; nothing
+else is explained.
 
 ## Step 1 — load the context stack, in this order
 
@@ -147,8 +156,11 @@ fail-then-waive machinery, where the BA decides consciously and on the record.
 **The overflow rule.** If **blocking** questions — classes 1 and 2 — exceed the
 cap, the correct diagnosis is **not a longer interrogation. It is a thin brief.**
 Stop and emit the **overflow signal**: feature · the unfilled blockers, listed ·
-the recommendation of a Tier-1 supplement for those named gaps. `/ba-run` takes
-the BA's ruling — supplement, cap adjust, or defer.
+the recommendation of a Tier-1 supplement for those named gaps. **This run takes
+the BA's ruling in the same sitting**, per P-O9 — overflow ruling: **supplement**
+— the Tier-1 mini-loop for the named gaps only · **cap adjust** — resume under
+the BA-adjusted cap · **defer** — a band event plus a roadmap note, via the
+routing discipline.
 
 **This keeps the tiers honest: Tier 2 fills gaps; it does not re-run discovery.**
 
@@ -240,6 +252,17 @@ worked gap-question exchange is in `references/example.md`.
 | **Overflow** | blocking questions exceed the cap | feature · unfilled blockers list · Tier-1-supplement recommendation |
 | **Routing** | an answer's content belongs to a governance/context artifact | finding · destination · proposed edit, as a BA-approved batch |
 | **Reopen** | an answer *contradicts* content of a gated aspect | finding · contradicted artifact + line · conflict statement |
+
+## At run end — compiled bookkeeping
+
+1. **The primary output lands** at its contracted destination — this run's own
+   act under its pinned contract.
+2. **Cross-cutting findings route** as one proposed batch: the framework
+   assembles the edits · the BA approves the batch · the framework writes. In
+   Band 1 proper Scope H is disarmed and nothing fires; post-closure runs get
+   the armed cadence automatically.
+3. **Record** — no plans-file line: the feature's record is its band event
+   in the ledger, the spec at its destination, and the gate report.
 
 ## What this skill never does
 

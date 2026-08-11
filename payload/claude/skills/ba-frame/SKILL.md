@@ -133,8 +133,11 @@ than an aspect's.
 1. Pin the output contract, and state it before running:
    `{presale canvas incl. the Context/Constraints element · Context · canvas.md}`
 2. Record the plan line in `## Frame`.
-3. Dispatch **T-01 — Discovery canvas framing** (`/ba-run t01`) with any presale
-   material the BA supplied. That run authors `canvas.md`; this skill does not.
+3. Run **T-01 — Discovery canvas framing** with any presale material the
+   BA supplied: read `.claude/skills/ba-t01/SKILL.md` and execute it as the
+   procedure — its compiled P-O3 (technique invocation) check governs; no
+   second command from the BA. That run authors `canvas.md`; this skill does
+   not.
 4. Book contract fulfillment in the `## Frame` run log —
    `fulfilled` · `partial — <what is missing>` · `failed — <why>`.
 

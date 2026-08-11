@@ -23,9 +23,11 @@ reader can locate a feature inside — that is the whole test of a good step.
 Band-1 grade **iff it stands as the actor of ≥ 1 canvas Core Function line**. The
 BA may elect further roles into the journey set; the floor is not negotiable.
 
-## Invocation contract — check before you run
+## Invocation contract — P-O3 (technique invocation), compiled in
 
-**BA-invoked, never auto-fired.** This skill starts only from `/ba-run t13`.
+**BA-invoked, never auto-fired.** `/ba-t13` is the one-step entry: typing it
+**is** the BA's invocation act — P-O3, technique invocation. No prior command
+is required; none is requested.
 
 Self-check, and stop if either half fails:
 
@@ -33,9 +35,16 @@ Self-check, and stop if either half fails:
 > or `reopened`, **with its output contract pinned**:
 > `{the major journeys of each significant role — role verbatim, trigger → outcome, numbered helicopter steps · Context · .specify/memory/processes.md}`.
 
-On a miss, stop and name `/ba-run`, or `/ba-aspect requirements` to open and
-compose. **Run after the roles model** — journeys cite roles verbatim, and a
-verbatim citation needs something to be verbatim against.
+**Run after the roles model** — journeys cite roles verbatim, and a verbatim
+citation needs something to be verbatim against.
+
+**On a pass** — render one line:
+`T-13 — Core process mapping → .specify/memory/processes.md`, and begin. No
+confirmation dialog: the command was the act.
+
+**On a miss** — stop in ≤ 2 lines: the failed check, and the single act that
+unblocks — `/ba-aspect requirements` to open and compose. Nothing else runs;
+nothing else is explained.
 
 **Skip-if — refuse the run and say so:** AT-RQ-4's **journeys clause** reads met
 in the current evidence table — journey maps already stand, confirmed against the
@@ -106,8 +115,8 @@ In this order:
 
 7. **Framework act — write and report.** Write the file. Report which criteria
    the run moved — AT-RQ-4's journeys clause — and what remains open. The
-   evidence-table refresh and the confirmation proposal belong to `/ba-run`'s
-   post-run touchpoint; the clearing itself is the BA's, at `/ba-clear`.
+   evidence-table refresh and the confirmation proposal belong to this skill's
+   run-end block; the clearing itself is the BA's, at `/ba-clear`.
 
 ## Output
 
@@ -140,6 +149,26 @@ Plus routed batches where the coherence pass found misses.
   stop; the reopen skill receives and rules it.
 - **Depth refusal** — a hole that only spec depth can answer is reported as such
   and left unasked. Reporting it is the signal; asking it would be the defect.
+
+## At run end — compiled bookkeeping
+
+1. **The primary output lands** at its contracted destination — this run's own
+   act under its pinned contract.
+2. **Cross-cutting findings route** as one proposed batch: the framework
+   assembles the edits · the BA approves the batch · the framework writes. In
+   Band 1 proper Scope H is disarmed and nothing fires; post-closure runs get
+   the armed cadence automatically.
+3. **Run log** — append under the aspect's section in
+   `.specify/aspect-plans.md`:
+   `<date> · <CODE> · contract: fulfilled | partial — <what is missing> | failed — <why>`
+   `  signals: RO-<n> received | routing batch <ref> approved | none`
+   Then set the plan row's Status to `run <date>`. `partial` and `failed` are
+   recorded, never silently retried.
+4. **Threshold refresh (the §7.4 touchpoint)** — refresh the aspect's
+   threshold-evidence table against `.specify/ba/cards/at-thresholds.md`.
+   All met → propose in one line: "threshold evidence complete —
+   `/ba-clear <aspect>`?" Some unmet → name the misses, one line each.
+   Proposing is not confirming; an aspect gate never self-clears.
 
 ## What this skill never does
 

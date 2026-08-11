@@ -1,5 +1,6 @@
 # Geniusee Orchestrator Rules
-### BA-Native Spec · aspect & band machinery · v0.10 — §10.5 wording precision, D69–D71 ratified (10 Aug 2026)
+### BA-Native Spec · aspect & band machinery · v0.11 — one-step invocation sync (§7.1, §11) (11 Aug 2026)
+**v0.11 change record:** one mechanics sync, 11 Aug 2026 (package build 0.1.7, WS-1 — one-step technique invocation): §7.1's invocation check names both plan homes and records that the check **compiles into each technique skill** — the technique's own command is the one-step entry (P-O3 is the typed act itself), and `/ba.run` is a thin alias plus the custom-technique path; §11's Technique-run binding row is re-bound in step. No behavioral change — the same single check, at the same moment, by the same BA act. No threshold, assertion, gate, or session-boundary (§10.2) text touched.
 **v0.10 change record:** three wording-precision fixes, 10 Aug 2026 (build-log D69–D71 ratified as built, package 0.1.6 — the v0.8 pattern: the package already behaves as ruled, no behavioral change): the §10.5 Role row sources the actor from the US grammar itself (the standard's §3 law) and takes the other-role scan's vocabulary from the spec's own §10 References "roles used" line — `roles-permissions.md` stays outside the read set (D69) · the read set gains the ledger head's profile field (§2.4) as the selection-default source, `--profile` a headless override only (D70) · Deferred rows render after their epic's story rows (D71). No other changes.
 **v0.9 change record:** one additive capability, ruled 10 Aug 2026 (satellite design conversation — WBS generation; six rulings D-O20–D-O25, §16): **§10.5 — the WBS export** — a read-only render command (`/ba.wbs`, name indicative) emitting the client-facing work-breakdown spreadsheet (xlsx primary + csv, one build) from certified specs and, under the Presale profile, draft specs (D-O18's anticipated consumer); read set spec.md · gate-report.md · parent brief · roadmap.md, all read-only — no new artifact, step, or field; brief-§3 Deferred items render as later-phase rows; manual estimate columns stay empty by law (T-18's never-numeric rule). §10.3 rule-8 list and the §11 binding table extended in step. No threshold, assertion, gate, or session-boundary (§10.2) text touched.
 **v0.8 change record:** one wording-precision fix, 9 Aug 2026 (build-log D65, package build 0.1.4): §6.5's certify-over-assumptions advisory names its instrument — the **gate's** waiver act (contract waiver W, gate §7.1), never the aspect waiver (AW, §4.3). No behavioral change. Companion: gate v0.5 adds the FAIL-as-agenda cross-reference (its §6.1). No other changes.
@@ -401,7 +402,7 @@ A profile is a **recommendation default, never a restriction (D-O14):** it filte
 
 ### 7.1 Invocation
 
-**BA-invoked, never auto-fired** — the gate's invocation discipline (§2.2), inherited. The orchestrator may surface "next planned: \<technique\>" when a prompt point renders; the run starts only as a BA act (P-O3). Checked at invocation, nothing else: the technique is on the composed plan with a pinned contract (§6.3).
+**BA-invoked, never auto-fired** — the gate's invocation discipline (§2.2), inherited. The orchestrator may surface "next planned: \<technique\>" when a prompt point renders; the run starts only as a BA act (P-O3). Checked at invocation, nothing else: the technique is on the composed plan — of an `open` or `reopened` aspect, or its own plans-file section — with a pinned contract (§6.3). The check compiles into each technique skill: the technique's own command is the one-step entry (P-O3 is the typed act itself), and `/ba.run` is a thin alias plus the custom-technique path.
 
 ### 7.2 The run itself is not orchestrated
 
@@ -618,7 +619,7 @@ Names indicative — Phase 2 fixes them (the gate §13 convention). The **Orches
 | WBS export | `/ba.wbs [--include NNN …]` — the §10.5 pinned render to `exports/wbs.xlsx` + `exports/wbs.csv`; prints the generation summary; read-only against its §10.5 read set |
 | Frame + profile selection | `/ba.frame` — ledger init → the §8.1 pinned profile picker (P-O0) → canvas confirmation |
 | Aspect opening + planning loop | `/ba.aspect <aspect>` → suggestion snapshot → composition checkpoint (P-O1, P-O2) |
-| Technique run | `/ba.run <technique>` — skills authored from scratch to build briefs (doc 3 §7 ruling); contract check at invocation (P-O3) |
+| Technique run | `/ba.t<NN>` · `/ba.tier1` · `/ba.tier2` — one-step entry, the P-O3 contract check compiled into each technique skill (skills authored from scratch to build briefs, doc 3 §7 ruling); `/ba.run <technique>` — thin alias + the custom-technique path |
 | Clearing | `/ba.clear <aspect>` — evidence table → confirmation checkpoint (P-O4) |
 | Aspect waiver | `/ba.waive-aspect <aspect>` (P-O5) |
 | Reopen | Signals surface at their native checkpoints (batch approval · Tier-2 session · gate verdict review); `/ba.reopen <aspect>` executes a Real ruling (P-O6) |

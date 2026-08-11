@@ -23,9 +23,11 @@ are *referenced*, and keeping the two grains apart is what makes that possible.
 solution surface and the requirements infrastructure visible — against a visible
 estate, not a guess.
 
-## Invocation contract — check before you run
+## Invocation contract — P-O3 (technique invocation), compiled in
 
-**BA-invoked, never auto-fired.** This skill starts only from `/ba-run t16`.
+**BA-invoked, never auto-fired.** `/ba-t16` is the one-step entry: typing it
+**is** the BA's invocation act — P-O3, technique invocation. No prior command
+is required; none is requested.
 
 Self-check, and stop if either half fails:
 
@@ -33,8 +35,13 @@ Self-check, and stop if either half fails:
 > or `reopened`, **with its output contract pinned**:
 > `{the product-level fence — at least one exclusion, each naming where it lives instead and the expectation it fences · Context · .specify/memory/out-of-scope.md}`.
 
-On a miss, stop and name `/ba-run`, or `/ba-aspect requirements` to open and
-compose.
+**On a pass** — render one line:
+`T-16 — Global out-of-scope → .specify/memory/out-of-scope.md`, and begin. No
+confirmation dialog: the command was the act.
+
+**On a miss** — stop in ≤ 2 lines: the failed check, and the single act that
+unblocks — `/ba-aspect requirements` to open and compose. Nothing else runs;
+nothing else is explained.
 
 **Skip-if — refuse the run and say so:** the file is present, seeded (**≥ 1
 exclusion**), stub-free, and **no unfenced adjacency stands** in the current
@@ -112,8 +119,8 @@ In this order:
 
 6. **Framework act — write and report.** Write `out-of-scope.md`. Report which
    criteria the run moved — AT-RQ-1 — and what remains open. The evidence-table
-   refresh and the confirmation proposal belong to `/ba-run`'s post-run
-   touchpoint; the clearing itself is the BA's, at `/ba-clear`.
+   refresh and the confirmation proposal belong to this skill's run-end block; the
+   clearing itself is the BA's, at `/ba-clear`.
 
 ## Output
 
@@ -148,6 +155,26 @@ Plus routed batches where the sweep found cross-cutting ground.
 - **Waiver referral** — where the sweep genuinely finds no adjacency worth
   fencing, say so and name the aspect waiver as the instrument. Do not write a
   row.
+
+## At run end — compiled bookkeeping
+
+1. **The primary output lands** at its contracted destination — this run's own
+   act under its pinned contract.
+2. **Cross-cutting findings route** as one proposed batch: the framework
+   assembles the edits · the BA approves the batch · the framework writes. In
+   Band 1 proper Scope H is disarmed and nothing fires; post-closure runs get
+   the armed cadence automatically.
+3. **Run log** — append under the aspect's section in
+   `.specify/aspect-plans.md`:
+   `<date> · <CODE> · contract: fulfilled | partial — <what is missing> | failed — <why>`
+   `  signals: RO-<n> received | routing batch <ref> approved | none`
+   Then set the plan row's Status to `run <date>`. `partial` and `failed` are
+   recorded, never silently retried.
+4. **Threshold refresh (the §7.4 touchpoint)** — refresh the aspect's
+   threshold-evidence table against `.specify/ba/cards/at-thresholds.md`.
+   All met → propose in one line: "threshold evidence complete —
+   `/ba-clear <aspect>`?" Some unmet → name the misses, one line each.
+   Proposing is not confirming; an aspect gate never self-clears.
 
 ## What this skill never does
 
