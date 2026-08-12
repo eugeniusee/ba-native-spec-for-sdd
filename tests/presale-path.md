@@ -53,14 +53,25 @@ inside eight. Whether a live agent holds it is what the agent run answers.
 /ba-frame Presale
 ```
 
-The ledgers initialize, `Profile: Presale` lands in the head, the canvas is
-confirmed or drafted. Under Presale the canvas confirms as **one artifact-level
-batch** — one confirm per artifact, never per section (D-O14 profile default),
-so the drafting does not spend the budget a section at a time.
+The ledgers initialize, `Profile: Presale` lands in the head, the **scope frame**
+is set, and the canvas is confirmed or drafted.
+
+The profile picker and the scope-frame block render **together, as one stop**
+(D-O42). Auto-pickup pre-fills the frame's values with their citations from the
+material on hand — delivery boundary, budget envelope, client label, the
+parameters — and the BA answers both blocks in **one reply**. `Boundary:`,
+`Budget:`, `Client label:`, `Parameters:` and the derived `Capacity:` line land
+in the head beside `Profile:`. The frame is a safety-floor act: no autonomy
+grant ever takes it (§10.7), so it is a BA interaction in every mode — this one.
+
+Under Presale the canvas confirms as **one artifact-level batch** — one confirm
+per artifact, never per section (D-O14 profile default), so the drafting does
+not spend the budget a section at a time.
 
 The framework then renders the route. The render is not an interaction.
 
-**Green when:** the head reads `Profile: Presale`, `canvas.md` is present, and a
+**Green when:** the head reads `Profile: Presale` and carries the five
+scope-frame lines, `canvas.md` is present, one reply answered both blocks, and a
 route render in the §10.6 shape has been emitted.
 
 ---

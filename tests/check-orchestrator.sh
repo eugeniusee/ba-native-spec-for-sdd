@@ -516,7 +516,8 @@ printf '\n▸ The section inventory — every section the corpus references exis
 
 RULES_DOC="$PKG_ROOT/docs/methodology/ba-native-spec-orchestrator-rules.md"
 for sec in "### 7.5 Plan-as-route" "### 10.6 The route render" "## 18. Review record" \
-           "### 4.4 The autonomy grant" "### 10.7 Autonomous mode" "## 19. Review record"; do
+           "### 4.4 The autonomy grant" "### 10.7 Autonomous mode" "## 19. Review record" \
+           "## 20. Review record"; do
   grep -qF -- "$sec" "$RULES_DOC" \
     && ok "the document carries \`$sec\`" \
     || bad "the document is missing \`$sec\` — referenced but absent"
@@ -529,18 +530,20 @@ has "$RULES_DOC" "WBS export §10.5, route render §10.6, resumption report §10
     "§10.3 rule 8's pinned-formats list names all three renders"
 has "$RULES_DOC" "v0.13" "the change-record stack keeps the edition WS-2 produced"
 has "$RULES_DOC" "D-O30–D-O34" "…and the decisions it ruled"
-head -2 "$RULES_DOC" | grep -q 'v0\.14' \
-  && ok "the header states the edition WS-3 produced — v0.14" \
-  || bad "the header does not name v0.14: the edition and the change record disagree"
-has "$RULES_DOC" "D-O35–D-O39" "…and the change record names the WS-3 ruling block"
+has "$RULES_DOC" "v0.14" "…and the edition WS-3 produced"
+has "$RULES_DOC" "D-O35–D-O39" "…and the WS-3 ruling block"
 has "$RULES_DOC" "D-O40–D-O41" "…and the two locked amendments it carries"
+head -2 "$RULES_DOC" | grep -q 'v0\.15' \
+  && ok "the header states the live edition — v0.15, the scope frame" \
+  || bad "the header does not name v0.15: the edition and the change record disagree"
+has "$RULES_DOC" "D-O42–D-O44" "…and the change record names the scope-frame ruling block"
 
 # the ruling block is contiguous from the live high-water mark: no gap, no reuse
-python3 - "$RULES_DOC" <<'PYX' && ok "the D-O block runs 1…41 with no gap and no skipped number" \
+python3 - "$RULES_DOC" <<'PYX' && ok "the D-O block runs 1…44 with no gap and no skipped number" \
   || bad "the D-O decision block is not contiguous — a number is missing or reused"
 import re, sys
 seen = {int(n) for n in re.findall(r"D-O(\d+)", open(sys.argv[1], encoding="utf-8").read())}
-sys.exit(0 if seen == set(range(1, 42)) else 1)
+sys.exit(0 if seen == set(range(1, 45)) else 1)
 PYX
 
 # ── 7. layering — no methodology leaks into the payload ──────────────────────

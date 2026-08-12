@@ -122,7 +122,7 @@ has_joined "$DOC" "**AG-\<n\> · scope: \<full workflow | until \<event\>\> · g
     "§4.4 states the AG record, field for field"
 has_joined "$DOC" "an AG waives nothing and rules nothing — it moves the *moment* of consent, never the *content* of a ruling" \
     "…and the distinctness clause that keeps it out of §4.3's table"
-has_joined "$DOC" "An AG never grants what the safety floor reserves (§10.7): ⚑ sign-offs, effective PASS, and handoff stay BA-only." \
+has_joined "$DOC" "An AG never grants what the safety floor reserves (§10.7): ⚑ sign-offs, effective PASS, handoff, and the scope frame (P-O0b) stay BA-only." \
     "…and names the floor inside the instrument itself"
 
 # the head line, in the §2.4 exhibit and in the shipped template — one grammar
@@ -135,16 +135,20 @@ has "$TPL" 'AG-<n> · scope: <full workflow | until <event>> · granted-by: <ini
     "…and the AG record grammar"
 has "$TPL" '<date> · AUTO (AG-<n>) · <act> · <basis>' "…and the AUTO stamp grammar"
 
-# the Auto line sits after Profile, where §10.7's mode read expects to find it
+# the Auto line sits after Profile, where §10.7's mode read expects to find it.
+# Ordering, not adjacency: D-O43 put the five scope-frame lines between them,
+# and both rulings say only *after* — D-O38's own wording, D-O42's placement.
 python3 - "$DOC" <<'PY' && ok "the Auto line follows the Profile line in the §2.4 head" \
-  || bad "the §2.4 head does not carry Auto immediately after Profile"
+  || bad "the §2.4 head does not carry Auto after Profile"
 import sys
 lines = open(sys.argv[1], encoding="utf-8").read().splitlines()
+prof = auto = None
 for i, l in enumerate(lines):
-    if l.startswith("Profile: <Discovery | Presale>") and i + 1 < len(lines):
-        if lines[i + 1].startswith("Auto: off | on"):
-            sys.exit(0)
-sys.exit(1)
+    if prof is None and l.startswith("Profile: <Discovery | Presale>"):
+        prof = i
+    elif prof is not None and auto is None and l.startswith("Auto: off | on"):
+        auto = i
+sys.exit(0 if prof is not None and auto is not None and auto > prof else 1)
 PY
 
 # the three ledger events — the grant's whole lifecycle, on the record
@@ -322,8 +326,8 @@ sweep "$CTL" > "$TMP/ctl-neg.out" 2>&1
   || bad "a negated floor sentence was flagged: the sweep cannot read a prohibition"
 
 # the floor said in full, in the document and on the surfaces that execute it
-has_joined "$DOC" "the **⚑ sign-offs** (CC-XA-01 authorization, CC-XA-06 the scope boundary — gate P3), the **effective PASS** (gate P3 + P4), and **\`/ba-handoff\`**" \
-    "§10.7 names the three floor acts"
+has_joined "$DOC" "the **⚑ sign-offs** (CC-XA-01 authorization, CC-XA-06 the scope boundary — gate P3), the **effective PASS** (gate P3 + P4), **\`/ba-handoff\`**, and **the scope frame** (P-O0b, §8.1)" \
+    "§10.7 names the four floor acts"
 has_joined "$DOC" "auto therefore terminates at **\"done, awaiting ratification\"**" \
     "…and where auto terminates per feature"
 for pair in "$AUTO|the skill" "$PKG_ROOT/payload/claude/skills/ba-handoff/SKILL.md|ba-handoff" \

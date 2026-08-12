@@ -5398,3 +5398,234 @@ the ledger, which is where its four facts live — and it renders only when a gr
 exists, so a project that has never run autonomously sees no difference. Whether
 the script should learn to count AUTO stamps is a build item behind the first
 field grant, not a ruling.
+
+
+---
+
+## The Scope Frame — documents-first pass, Lane B · orchestrator v0.15 · 13 August 2026 · GREEN
+
+Run-1 field feedback, 12 August 2026: the framework generated a twenty-epic
+full-roadmap WBS against a client POC constraint of ≤ $50K that lived in Slack
+and in client documents. **No home existed at Frame for budget or
+engagement-scale constraints**, so the constraint arrived after the WBS and
+forced a full re-run. The ruling is the **scope frame** — a second pinned Frame
+block, a set of ledger-head fields, one new C1 trigger, one advisory, and an
+optional directive input.
+
+**Documents only, by the apply package's own scope.** The three source documents
+are edited; the payload, the skills, the templates, the cards and the suites are
+a follow-up conversation. Nothing was written that a ruling did not cover.
+
+**Code registration note** (the D-O20–D-O25 precedent): the apply package's own
+task code **F-01** collides with the 7 August 2026 diagnostic audit's finding
+codes F-01…F-14 (`diagnostics/audit-stage-escape-and-planning.md`), so no F-code
+appears in this block or in the documents. The ruling is named by its content —
+*the scope frame* — and its decisions register as **D-O42–D-O44 · D-B6-7–D-B6-9 ·
+D-B1-5**, each block contiguous from the live high-water mark read in the file.
+No code is reused.
+
+**Parameters, allocated from the live tree.** HEAD is `f8c4459`, the package's
+own orientation commit, so nothing needed reconciling. The D-O high-water mark
+41 → the contiguous block **D-O42–D-O44** · D-B6 6 → **D-B6-7–D-B6-9** · D-B1 4
+→ **D-B1-5** · divergences from **D103**. Versions are proposed, not stamped, so
+no VERSION, no edition number and no review-record section is written here.
+
+**Proposed, then stamped in the same sitting.** The pass ran to its deliverable
+with versions unstamped and two suite parameters deliberately red (D103, D104)
+rather than quietly relaxed, and surfaced three conflicts as numbered questions.
+The BA Lead ruled all three on the spot — **P-O0b is a safety-floor act**, never
+AUTO under any grant · **one render, one reply** at Frame, so the ≤ 8 budget
+stands · the client label's §10.5 slot **deferred** to the §10.5 rework bump —
+and the stamp followed: orchestrator **v0.15** · catalogue-b6 **v0.3** ·
+catalogue-b1 **v0.4** · index **v0.3**, regenerated. `VERSION` and the payload
+are untouched; the package rebuild is still the follow-up conversation.
+
+### S1 — the orchestrator (D-O42 · D-O43 · D-O44)
+
+§2.4's head gains five lines beside `Profile:` — `Boundary:` · `Budget:` ·
+`Client label:` · `Parameters:` · the derived `Capacity:` — plus the
+`scope-frame` switch event and the paragraph that fixes their grammar. §8.1
+gains the pinned **scope-frame block (P-O0b)**, the auto-pickup rule, the
+ladder-values-only negative rule, and the two capacity operations — the
+always-on conversion and the removable, default-on check. §10.1 gains the
+**P-O0b** row; §10.3 rule 8's pinned-formats list and §11's Frame binding row
+extend in step, the way every prior pinned shape has.
+
+### S2 — T-18, catalogue-b6 (D-B6-7 · D-B6-8 · D-B6-9)
+
+The C1 event set gains the **scope-frame event**. §4 step 3 gains the
+**scope-frame advisory** in both forms — number-free always, plus the
+assumption-grade capacity comparison where the check is on — and **directed
+reallocation**, parsed into the three buckets (phase-shaped · not phase-shaped ·
+impossible). The Depth cell states the boundary the advisory must not cross:
+capacity figures live in this run's advisory prose and enter no artifact. The
+log grammar gains the `scope-frame` and `BA-directed` trigger values.
+
+### S3 — T-01, catalogue-b1 (D-B1-5)
+
+One additive mirror clause, no restructuring: the framing run carries the scope
+frame's detail into canvas §13 Context/Constraints as cited lines. The ledger
+head holds the machine-readable summary; the canvas holds the cited detail. The
+§5 template row and the §8 build hook name the landing site and the source.
+
+### S4 — the three rulings, taken in the same sitting
+
+**The frame is the floor's fourth act.** P-O0b joins the ⚑ sign-offs, the
+effective PASS and `/ba-handoff` outside every autonomy grant — §10.7's floor
+paragraph names four acts, §4.4's instrument sentence names four, and the policy
+table gains a row that says *never AUTO* and why: the boundary and the envelope
+are what every later act is measured against, and a grant that could set them
+would be a run choosing its own budget. The floor is **extended by new ruling**,
+in the D-O27 manner — nothing it already reserved was weakened.
+
+**One render, one reply.** The picker and the frame block are the Frame act's
+single stop. Frame costs one BA interaction, D-O33's ≤ 8 Presale budget and its
+slack stand untouched, and `tests/presale-path.md` interaction 1 now carries the
+frame explicitly — including why it is an interaction in every mode.
+
+**The label's WBS slot is deferred, by ruling.** §8.1's mirror-candidate flag
+becomes a named deferral: the Estimate-column removal, the client-label header,
+and boundary/billable marking travel as one §10.5 rework bump. The flag pattern
+is D-B6-1's; what changed is that it now names the bundle it rides.
+
+### Test run — 17 of 17
+
+`check-m` 40/0 · `check-gate` 59/0 · `check-orchestrator` 151/0 ·
+`check-techniques` 101/0 · `check-techniques2` 122/0 · `check-techniques3`
+158/0 · `check-spine` 159/0 · `check-register` 62/0 · `check-wbs` 62/0 ·
+`check-status` 94/0 · `check-ledger` grammar-legal — 14 rules, no violations ·
+`check-cards` every card byte-identical to its re-derivation · `check-layout`
+111/0/0 · `check-exit --offline` 99/0 · `check-install` 64/0 · `check-budget`
+37/0 — the Presale path still 8 ≤ 8 · `check-auto` 88/0. **Zero red, nothing
+skipped**, the three install-based runs included. The two reds the pass opened
+with closed at the stamp, not by relaxation: `check-orchestrator` asserts the
+live edition and the contiguous block 1…44, `check-auto` asserts ordering and a
+four-act floor.
+
+### Divergences
+
+**D103 · The D-O block runs 1…44 while the review record stops at D-O41.**
+`check-orchestrator.sh` asserts contiguity against a hard-coded
+`set(range(1, 42))` — the assertion WS-3's D96 added so contiguity would be
+checked rather than trusted. The apply package rules *propose, do not stamp*,
+so the body cites `D-O42`–`D-O44` and no §20 review record exists to hold them.
+*Resolution taken:* held red through the deliverable, then closed at the stamp —
+**§20 Review record (v0.14 → v0.15)** landed with the three rows, the header,
+change record and footer took v0.15, and the bound moved `range(1, 42)` →
+`range(1, 45)`. The assertion was never relaxed to buy a green board; it went
+green because the thing it asserts became true.
+
+**D104 · `check-auto.sh` asserts `Auto:` on the line immediately after
+`Profile:`, and five scope-frame lines now sit between them.** The ruling the
+assertion serves — D-O38 — says `Auto:` joins the §2.4 head **after**
+`Profile:`, which the head still satisfies; the strictness is the test's, not
+the ruling's. The placement is deliberate: `Profile:` (P-O0) and the scope-frame
+fields (P-O0b) are both Frame-time picks and belong together, and *beside
+Profile* is the ruling's own wording. *Resolution taken:* the document
+stands and the check became an ordering check — `Auto:` after `Profile:`, not
+adjacent to it — with the two rulings it now serves named in its own comment.
+
+**D105 · §10.7's policy table gains no row for P-O0b.** D-O36 rules **one policy
+row per surviving §10.1 stop**, and P-O0b is a new §10.1 stop. The table already
+carries no row for P-O0, P-O1 or P-O3 — P-O0 is handled in §10.7's entry
+paragraph instead (argument, else inferred and logged; never switches mid-auto)
+— so the gap has a precedent but no ruling. *Resolution taken:* surfaced as open
+question 1 rather than invented — an AUTO policy over a budget constraint is a
+ruling, not an application. **Ruled the same sitting: P-O0b is BA-only, standing
+AG or not, and the scope frame joins the safety-floor set as its fourth act.**
+Applied at §10.7 (the floor paragraph and a policy row) and §4.4 (the
+instrument's own naming of the floor); `check-auto.sh`'s two byte-identity
+assertions on the floor text moved with it (see D110).
+
+**D106 · The new Frame stop and the ≤ 8 interaction budget have not been
+reconciled.** §6.5's D-O33 fixes the Presale path — Frame to a rendered WBS —
+at ≤ 8 BA interactions, and `tests/presale-path.md` spends seven with the eighth
+held as slack. A P-O0b that stops and waits on its own makes the live path nine
+unless it rides the Frame act's existing interaction. `check-budget.sh` still
+reads 8 ≤ 8 because it counts the script, and the script is a payload-lane file
+the documents-only pass did not touch — **the suite measures the script, not the
+live path**, and that limitation is load-bearing here. *Resolution taken:*
+surfaced as open question 2. **Ruled the same sitting: P-O0b folds into the Frame
+act's interaction 1 — one render carrying both blocks, one BA reply.** §8.1 gains
+the operative sentence, `tests/presale-path.md` interaction 1 was rewritten to
+carry the frame, and §6.5's ≤ 8 with its one interaction of slack is untouched.
+The heading count is unchanged at eight, so the budget check reads the same
+number for a different and now correct reason.
+
+**D107 · The client label's second destination has no slot.** The ruling makes
+the label communication for two surfaces: the canvas and the client-facing WBS.
+The canvas half landed (D-B1-5). §10.5's pinned columns define no header or
+label line, and the apply package holds §10.5 untouched. *Resolution taken:*
+recorded in §8.1 as a mirror candidate rather than silently added to a pinned
+render, and surfaced as open question 3. **Ruled the same sitting: deferred.**
+The flag now names the bundle it rides — the §10.5 rework, where the
+Estimate-column removal, this label header, and boundary/billable marking travel
+as one bump. §10.5's pinned columns stay untouched in this edition.
+
+**D108 · The catalogue index diverges from T-18's sheet on three cells.**
+`ba-native-spec-catalogue-index.md` v0.2 carries T-18's Evidence triggers,
+Depth boundary and Expected output as they read before this pass. Its own
+header rules replace-on-update — *regenerated at any batch-file version bump* —
+and the sheet governs on any divergence. *Resolution taken:* held as a note through
+the deliverable, by the apply package's instruction, then **regenerated at the
+stamp** — index **v0.3**, T-18's Evidence-triggers, Depth and Expected-output
+cells re-derived from the sheet, 17 of 18 rows unchanged, both provenance lines
+updated. T-01's row needed no change: the mirror clause is procedure-level and
+touches no cell the index carries.
+
+**D109 · The ruling is seven numbers, not three.** The apply package tables its
+design as §2.1–§2.7 rather than as an R-list, so the granularity of the decision
+block was the applier's to choose: one number per touched document, or one per
+ruled sub-section. *Resolution taken:* **one per sub-section**, the WS-2/WS-3
+shape (R1–R5 → five numbers each) — **D-O42** the pinned P-O0b block · **D-O43**
+the ledger head and its switch event · **D-O44** the capacity arithmetic ·
+**D-B6-7** the scope-frame trigger · **D-B6-8** the advisory · **D-B6-9**
+directed reallocation · **D-B1-5** the canvas mirror. The deciding argument is
+D-O44's own content: §2.3 rules the capacity check *separately removable*, and a
+module that can be removed by one ruling needs a number of its own to remove.
+Coarser numbering would have made its deletion an amendment to a ruling about
+something else. Each block stays contiguous from the live high-water mark, which
+is what the parameter rule requires.
+
+**D110 · Four suite parameters moved, not two.** The stamp instruction named
+two — `check-orchestrator`'s contiguity bound and `check-auto`'s adjacency test.
+Two more were forced by rulings the same instruction gave, each by the assertion's
+own text. (a) `check-auto.sh` carries **byte-identity assertions on the floor
+text** in two places — §4.4's instrument sentence and §10.7's naming of the floor
+acts. A ruling that makes the floor four acts moves both, or the suite asserts a
+three-act floor the document no longer states. (b) `check-orchestrator.sh` pins
+**the live edition** in the file's first two lines and the ruling block in its
+change record; v0.15 moved both, and the same pass added the v0.14 stack line the
+shape had always implied, an assertion for `D-O42–D-O44`, and `## 20. Review
+record` to the section inventory. *Resolution taken:* all four applied, none
+loosened — every one still asserts a fact, and the facts moved. The floor's
+**sweep token list** was deliberately left alone: it hunts compiled payload
+sentences, the payload carries no scope-frame text yet, and a token that can
+match nothing is a check that proves nothing. It joins the list in the rebuild,
+with the compiled surfaces it exists to sweep.
+
+### Open
+
+**The advisory's numbers are governed by prose, and prose is not a compiler.**
+Two rules keep capacity figures out of the estate — the §8.1 numbers-only-in-
+advisory-prose limit and T-18's Depth clause — and both are sentences a live
+agent reads. The WBS side has a real guard (§10.5's Estimate cells re-emit empty
+every run); the roadmap side has the D-B6-4 column ownership and nothing
+narrower. A check that greps `roadmap.md` for digits in an Allocation-log reason
+is the obvious candidate, and it is a build item, not a ruling.
+
+**Auto-pickup reads sources the framework does not control.** It scans client
+documents, Slack extracts and the canvas for budget and scope constraints and
+pre-fills the block with citations. Cite-or-mark bounds the risk — every value
+carries a citation or `open — no source material`, and the BA confirms or
+corrects before anything is recorded — but a mis-parsed envelope that the BA
+confirms without reading is a wrong constraint with a real citation behind it.
+The confirmation stop is the whole of the guard, which is one more reason
+question 2's answer matters.
+
+**The capacity check claims zero tentacles, and the claim is testable.** The
+module's removability is stated in §8.1 and rests on one consumer: the T-18
+advisory text. A sweep that proves no other rule in the corpus or the payload
+reads `Capacity:` would turn the claim into a checked fact. Nothing in this pass
+proves it — the claim is a design commitment, held on the record until the
+rebuild can test it.
