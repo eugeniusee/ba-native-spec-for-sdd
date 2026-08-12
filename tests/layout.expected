@@ -99,7 +99,8 @@ S1|file|.specify/ba/templates/gate-health.md|gate §10.3 head + entries shape
 S1|file|.specify/ba/templates/gate-tuning.md|gate §7.4 two tables + §12 escape record
 S1|file|.specify/ba/templates/elicitation-tuning.md|doc 3 §10 three tables (D-P2-11)
 
-# vendored scripts — 13 (build plan §2.4, D-P2-7): 11 M checkers + the WBS pair
+# vendored scripts — 14 (build plan §2.4, D-P2-7): 11 M checkers + the WBS pair
+#                     + the dashboard
 S2|file|.specify/ba/scripts/sk_snapshot.py|gate §3 · §7.2 · §9.2
 S2|file|.specify/ba/scripts/sk_structure.py|gate §4.1–§4.2 · standard §2
 S2|file|.specify/ba/scripts/sk_scan.py|contract §4/§5/C12
@@ -113,6 +114,7 @@ S2|file|.specify/ba/scripts/sk_health.py|contract §6
 S9|file|.specify/ba/scripts/sk_handoff.py|gate §11.1–§11.2 · plan Q5
 S9|file|.specify/ba/scripts/sk_wbs.py|orchestrator §10.5 — the WBS export generator (0.1.6)
 S9|file|.specify/ba/scripts/sk_xlsx.py|orchestrator §10.5 — the stdlib xlsx writer (0.1.6)
+S9|file|.specify/ba/scripts/sk_status.py|orchestrator §10.4 — the project dashboard (0.1.9)
 
 # compiled cards — 3 (build plan §2.5)
 S3|file|.specify/ba/cards/assertions-f.md|34 Scope-F A cards (text + CC-ID only)
@@ -136,6 +138,7 @@ RT|absent|.specify/memory/roadmap.md|◇ T-17/T-18
 RT|absent|.specify/aspect-state.md|◇ /ba-frame (orchestrator §2.4)
 RT|absent|.specify/aspect-plans.md|◇ /ba-frame
 RT|absent|.specify/gate-health.md|◇ arming run (gate §10.3)
+RT|absent|.specify/status.html|◇ /ba-status --html (orchestrator §10.4)
 RT|absent|.specify/gate-tuning.md|◇ first O/E record (gate §7.4)
 RT|absent|.specify/elicitation-tuning.md|◇ first log entry (D-P2-11)
 # Spec Kit's own feature pointer — how v0.12.x resolves FEATURE_DIR. Normally

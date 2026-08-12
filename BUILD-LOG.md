@@ -4319,3 +4319,234 @@ for no gain the gate asks for. The defect was the render's.
 **Field action:** re-run `/ba-wbs`. The header-only `exports/wbs.xlsx` left by
 the failed run is overwritten in place — the paths are stable and every run
 rewrites both files.
+
+## Dashboard v2 — `/ba-status` at orchestrator §10.4 · the two bookkeeping defects · package 0.1.9 · 12 August 2026 · GREEN
+
+The first live Presale field render of `/ba-status` (11 Aug) was read against a
+real estate and found to be answering a question nobody had: the D-O17 shape
+predated Presale drafting (D-O18) and the WBS export (D-O20–D-O25), so it
+reported six aspect states and a certification count over a project whose actual
+work was **eight epics, one brief, two draft specs and no certifications at
+all**. No Band-2 coverage. No denominators — `2 certified` says nothing without
+the `of what`. And the Discovery-shaped lines read as failure under a profile
+that rules them out of scope.
+
+The satellite design conversation ruled the rebuild (D-O26–D-O29, orchestrator
+§17, v0.11). The same render surfaced **two package defects of its own**, and
+both ride this build: the run log under-records what the framework does, and the
+health head cannot say whether it is stale.
+
+This build propagates the methodology change. It writes nothing under
+`docs/methodology/`.
+
+### S1 — the nine-line shape (D-O26)
+
+`/ba-status` renders §10.4's pinned nine lines. The command keeps its ledger-head
+half unchanged — the head read verbatim, the openable-aspect derivation, the lazy
+read of revisit triggers — and its dashboard half is now
+`.specify/ba/scripts/sk_status.py`, on the `/ba-wbs` precedent: a render command
+whose counts are a script's, whose shape is the document's.
+
+**Two source classes (D-O28).** Activity reads the ledgers. Coverage reads the
+estate on disk — `specs/NNN-*/`, the latest `gate-report.md` entry per feature,
+the briefs and kits, the roadmap. Every number renders with a named source, and
+a count whose source is silent renders `—`.
+
+**The read is §10.5's, imported, not restated.** `sk_status.py` takes
+`read_gate_report`, `spec_epic_id`, `feature_folders`, `read_roadmap`,
+`read_profile` and `MARKER_RE` from `sk_wbs.py` — which in turn takes its §10
+References readers from the gate's own `sk_idgraph`. The dashboard and the export
+therefore cannot disagree about what *certified* means or which epic a spec hangs
+under. That is the 0.1.8 lesson applied before it could be relearned: a second
+reader is a second thing to drift.
+
+**Formula §10.4-F (D-O27), verbatim in the skill.** B1 = settled/6 · B2 =
+briefs/epics · B3 = drafted/entered under Presale, certified/entered under
+Discovery; the workflow line is their mean. Bars are ten cells. **A zero
+denominator renders `—`, never 0%** — on the bands and on the workflow line
+alike: a project with no epics is not 0% through Band 2, it has not been asked
+the question yet. The workflow line is the **one sanctioned composite**; the
+skill's never-list was amended to say so and to keep every other composite
+banned.
+
+**Line 8 switches on profile (D-O26).** Discovery renders the handoff-risk table
+with its four countable facts and the unchanged banded rule. Presale renders exit
+readiness — roadmap currency, drafted/entered, open markers, and whether
+`/ba-wbs` can run. Out-of-profile facts render as **law**: under Presale,
+"certification & handoff out of profile" names where the method ends, not where
+the project is behind.
+
+### S2 — line 6 · the ledger-coverage self-report (D-O26)
+
+The instrument names its own blind spots. Line 6 compares the estate on disk
+against the §7.3 run-log lines in `.specify/aspect-plans.md` and names the
+divergence: `run log under-records Band 3: 2 on disk vs 0 logged`.
+
+Only run lines that **name an element** are counted, because only those can be
+read against the estate — a `## Band 2` section also holds the project-wide T-17
+(epics decomposition) and T-18 (scope allocation) lines, which produce no
+per-epic artifact. An epic-named Tier-1 line stands against its brief or its kit
+one to one; a feature-named Band-3 line stands against its entered feature.
+
+### S3 — line 5 · the refresh state — defect fix 1 of 2
+
+**The defect:** the health head could be months stale and the render said nothing.
+Line 5 now compares the **full runs recorded** in `.specify/gate-health.md`
+against the gate's own cadence — one full run per scope-brief ingestion batch,
+plus the arming run at Band-1 closure (contract §3) — and reports
+`current` or `overdue: <n> runs vs cadence`, showing both sides.
+
+**Display only.** The refresh act stays `/ba-gate-health`'s. The line reports and
+names no act of its own; the skill's never-list says so, and the suite asserts
+the render never proposes the refresh as automatic. A Scope H that has never run
+still reads `disarmed (pre-closure)` — a fact, not a gap.
+
+### S4 — the run log records what it books — defect fix 2 of 2
+
+**The defect, in two halves.** `ba-tier1` runs **per epic** and booked
+`<date> · <CODE> · contract: …` — no epic named, so five per-epic runs left five
+indistinguishable lines and the log could not say how much of the estate the work
+had reached. `ba-tier2` booked **nothing at all**: *"no plans-file line: the
+feature's record is its band event in the ledger, the spec, and the gate report."*
+
+§7.3 owes a contract-fulfillment line for **every** run, and the document's third
+runtime rule is that every record names its element and its action. Both were
+fixed to that:
+
+- **Tier 1** — `<date> · <CODE> <mode> <E-nn> · contract: …`, one line per mode
+  per epic. This restores what §6.4's own exhibit already carries: the fixture's
+  Band-2 log has read `tier1 kit E-03` and `tier1 ingest E-03` since S8. The
+  skill's compiled line had lost the element the exhibit shows.
+- **Tier 2** — `<date> · TIER-2 <NNN-feature> · contract: …` under `## Band 3`.
+  It does not replace the feature's other records; it is the run's own line.
+
+**Forward-only, stated in both skills.** A run that was never logged stays
+unlogged. Nothing was reconstructed, and **the fixture was not touched** — which
+is why the fixture still renders `under-records Band 3: 2 on disk vs 0 logged`.
+The instrument reporting a real historical gap is the instrument working.
+
+`/ba-run` needed no change: it forwards a catalogue technique to that technique's
+own skill, so both fixes reach the alias path unmodified.
+
+### S5 — the `--html` derived render (D-O29)
+
+`/ba-status --html` additionally writes `.specify/status.html` — beside the
+runtime ledgers, under the D-G1/D-G8 rule that keeps them out of
+`.specify/memory/`, so the file never enters CC-H-01's spec-anchored glob and its
+own write never fires a scoped health run.
+
+Self-contained: inline styles only, **zero external resources** — no stylesheet,
+no font, no script, no fetched image. The same counts and the same formula; the
+chat render is embedded verbatim, because presentation is the whole of the
+difference. Derived on the gate's `traceability.md` precedent — regenerated every
+invocation, never hand-edited, and the suite proves a hand edit dies at the next
+run. The chat render stays primary.
+
+### S6 — register, tests, version
+
+Register (§10.3) conformance holds: `check-register.sh` is **51 / 0** unchanged,
+with every P-O and technique code in the new strings carrying its name.
+
+**One re-pin, recorded.** `check-spine.sh` pinned the defect:
+
+```
+has "$TI2" "no plans-file line" "Tier 2 keeps no plans-file line — …"
+```
+
+That assertion held down package behavior, not methodology-verbatim text, so it
+was **re-pinned to the fixed behavior** rather than loosened — four assertions in
+its place (Tier-1's element, Tier-2's section, Tier-2's element, the forward-only
+rule), with the reason and the previous needles recorded inline at the site.
+No methodology-verbatim pin was touched anywhere.
+
+### Verification evidence
+
+**`tests/check-status.sh` — GREEN, 94 / 0**, a new suite on the `check-wbs.sh`
+precedent. Nine sections:
+
+| Section | Holds down |
+|---|---|
+| the pinned shape | the nine lines, once each, in order, with §10.4's prefixes · four ten-cell bars · the workflow line naming its own formula |
+| the counts | every number against the §12 estate, whose values are known — settled, briefs/kits, entered, drafted, gated, certified, the questions and their oldest open one |
+| formula §10.4-F | Discovery 54% and Presale 71% computed from the same estate — the B3 term swap is visible in the mean · a full ratio fills ten cells · **zero denominators render `—`, and `0/0` appears nowhere** |
+| line 5 · refresh | `current` on the fixture · `overdue: 1 run vs cadence (2 recorded of 3 …)` once a second brief is ingested · `—` while disarmed · the act never proposed |
+| line 6 · coverage | the fixture's own Band-3 divergence, named with both sides · a seeded Band-2 gap caught the same way · `clean` when there is nothing to under-record |
+| line 8 · profile | each variant present under its own profile and **absent under the other** · the risk rule stated in full · out-of-profile facts as law |
+| the HTML render | eight external-resource probes, all absent · inline styling present · the same counts embedded · a hand edit dying at the next run |
+| read-only | the estate hashes identical across four runs · a run without `--html` writes nothing · the fixture unchanged |
+| the skill | the pinned shape and formula §10.4-F carried verbatim against the document's own text · the never-list amended, not dropped · the session boundary intact |
+
+**The full regression — `tests/run-all.sh`, all fourteen:**
+
+| Check | Result |
+|---|---|
+| `check-m.sh` | 40 / 0 |
+| `check-gate.sh` | 59 / 0 |
+| `check-orchestrator.sh` | 122 / 0 |
+| `check-techniques.sh` | 101 / 0 |
+| `check-techniques2.sh` | 122 / 0 |
+| `check-techniques3.sh` | 158 / 0 |
+| `check-spine.sh` | 149 / 0 |
+| `check-register.sh` | 51 / 0 |
+| `check-wbs.sh` | 62 / 0 |
+| `check-status.sh` | 94 / 0 |
+| `check-ledger.py` | grammar-legal — 14 rules, no violations |
+| `check-cards.py` | every card byte-identical to its re-derivation; layering clean |
+| `check-layout.sh` | 110 / 0 / 0 |
+| `check-exit.sh --offline` | 99 / 0 |
+
+`ran: 14   red: 0   skipped: 0` · **✓ GREEN**, the fresh-install layout bar and
+the Phase-2 exit test included. Every count equals the 0.1.8 baseline except
+`check-spine.sh` (146 → 149, the re-pin), `check-layout.sh` (108 → 110,
+`sk_status.py` plus `.specify/status.html` asserted runtime-born-absent), and the
+new `check-status.sh`. **The runner is now fourteen checks, not thirteen** — its
+header, its `--list` output and its roll-up were updated in step.
+
+### Divergences
+
+**D86 · §6.4 houses no run log for a Band-3 run, and §7.3 owes one.** §7.3's
+bookkeeping table mandates a contract-fulfillment line for every run and names
+the file (`.specify/aspect-plans.md`); §6.4 enumerates the section homes — one
+per aspect, `## Frame` (D-B1-4), `## Band 2` for T-17 and T-18 (D-B6-5) — and
+names none for Tier 2. Read against it, §8.4's *"the orchestrator records the
+band event … and nothing else"* can be read as closing the question. *Resolution
+taken:* the two govern different acts — §8.4 scopes the **band event**, §7.3
+scopes the **run** — so Tier 2 books its line, and the package places it in a
+`## Band 3` section created on first use. This placement is **the build's, not a
+ruling**: the template comment says so at the site. *Doc-first (§3.5):*
+**orchestrator amendment candidate** — one line in §6.4 naming Band-3's section
+home, and one clause in §8.4 confirming its "nothing else" is about the band
+event. Not legislated here.
+
+**D87 · §10.4 counts "handed off" from a handoff record the package does not
+write.** The count definition reads *"handed off = the handoff record present"*.
+`/ba-handoff` produces no per-feature record: it re-points `.specify/feature.json`
+(single-valued, one feature at a time) and cuts the branch. Neither is countable
+per feature, and reading git state would add a source class §10.4 does not name.
+*Resolution taken:* the count renders **`handed off —`**, its missing source
+named — §10.4's own discipline, the instrument reporting its blind spot rather
+than guessing. The suite pins it. *Doc-first (§3.5):* **package or orchestrator
+question** — either `/ba-handoff` gains a durable per-feature record, or §10.4's
+count definition names a source that exists. One line either way; not chosen
+here.
+
+### Open
+
+**The line-9 ladder stops at Band 1, deliberately.** `Next:` names an act from
+what the documents already fix — the DAG says which aspect is openable (§5),
+§8.2 says when closure is due, the plans file says which technique is next
+planned. Past Band 1 no document fixes an ordering, so the render prints `—`
+rather than inventing one, and the skill's derived section is where the BA reads
+the available acts. If the field wants a Band-2/3 next-act ladder, it is a
+ruling, not a build decision.
+
+**The HTML file's name is indicative.** §10.4 says so — `.specify/status.html`,
+beside the ledgers, is the package's choice under a name the document leaves to
+Phase 2.
+
+**The methodology file is not in this commit.** Its working-tree revision reverts
+§7.1 and the §11 Technique-run binding row to their pre-0.1.7 wording and
+overwrites the v0.11 one-step-invocation change record, because it was authored
+against the pre-0.1.7 base. That is a methodology repair, and this build does not
+write methodology. The package ships dashboard v2 against §10.4 as ruled; the
+document reconciliation is the BA Lead's, outside this commit.

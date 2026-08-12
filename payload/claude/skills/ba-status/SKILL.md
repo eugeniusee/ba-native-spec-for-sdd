@@ -1,25 +1,28 @@
 ---
 name: ba-status
-description: Render the aspect-ledger head - the band line, the flow profile, the six aspect states, standing aspect waivers, open reopens, upstream flags and deferred consequences - plus the next available acts and the project dashboard, seven ledger-counted lines with the banded handoff-risk rule. The session-start habit's natural home. Read-only: it renders state, never changes it, never proposes content.
+description: Render the aspect-ledger head - the band line, the flow profile, the six aspect states, standing aspect waivers, open reopens, upstream flags and deferred consequences - plus the next available acts and the project dashboard, nine lines with per-band coverage bars, the workflow line, the ledger-coverage self-report and the banded handoff-risk rule. Takes --html for the derived offline render. The session-start habit's natural home. Read-only: it renders state, never changes it, never proposes content.
 disable-model-invocation: true
 ---
 
-# `/ba-status` — the ledger head
+# `/ba-status [--html]` — the ledger head
 
-**Argument:** none.
+**Argument:** none, or `--html` — additionally write the derived HTML render.
 
-One screen, read from `.specify/aspect-state.md`. This is the **session-start
-habit's natural home**: the corpus has no daemon, so the way drift and standing
-debt get seen is that somebody looks, at a defined touchpoint, and this is that
-touchpoint.
+One screen, read from `.specify/aspect-state.md` and the estate it conducts.
+This is the **session-start habit's natural home**: the corpus has no daemon,
+so the way drift and standing debt get seen is that somebody looks, at a
+defined touchpoint, and this is that touchpoint.
 
 ## Invocation contract
 
 - **Read-only.** This skill changes nothing — not a state, not a record, not the
-  head. If rendering the head reveals that something should change, say so and
-  name the skill that does it. Rendering is not deciding.
+  head, not one file in the estate it counts. If rendering reveals that
+  something should change, say so and name the skill that does it. Rendering is
+  not deciding.
 - If `.specify/aspect-state.md` does not exist, say so and name `/ba-frame` —
   Band 1 has not been entered.
+- **The one file it may write is the derived HTML render**, and only on
+  `--html`. Nothing else, ever.
 
 ## The render
 
@@ -74,57 +77,132 @@ the debt is now evidenced). Do not act on it.
 
 ## The project dashboard
 
-The wider view, rendered under the head. **Read-only, from the ledgers alone.**
-Every number is a **ledger count**. Nothing is estimated. **No composite score is
-invented** — the seven lines are seven facts, not a rating.
+The wider view, rendered under the head. **Read-only, two source classes.**
 
-Sources, one per line — read them, do not reconstruct them:
+| Class | Reads | For |
+|---|---|---|
+| **Activity** | the ledgers — the aspect-state head and events, `.specify/aspect-plans.md` (composed plans and run logs), `.specify/gate-health.md`, the W/O/HA records | what the framework has done |
+| **Coverage** | the estate on disk — `specs/NNN-*/` and their `spec.md`, the latest `gate-report.md` entry per feature, the briefs and kits in `.specify/memory/scope/`, `.specify/memory/roadmap.md`, the briefs' open-question statuses | how much of the project the work has reached |
 
-| Line | Read from |
-|---|---|
-| 1 · Aspects | the head's six-row table |
-| 2 · Techniques | `.specify/aspect-plans.md` — composed plans and run logs |
-| 3 · Questions | the briefs' open-question statuses, `.specify/memory/scope/<epic>.md` |
-| 4 · Artifact health | `.specify/gate-health.md` — the latest Scope-H entry |
-| 5 · Delivery | the certification manifests, plus the band events in the state ledger |
-| 6 · Handoff risk | W- and O-records, surviving `[NEEDS CLARIFICATION]` markers in the certified spec, HA records touching the feature's dependency set |
-| 7 · Next | the state, read against the DAG and the plans file |
+Coverage reads the estate on the WBS export's precedent: the same certified
+check, the same parent-epic hop off the spec's own §10 References. Two renders
+of one fact must never disagree, so neither re-reads it its own way.
 
-The pinned shape:
+### Running it
+
+```bash
+python3 .specify/ba/scripts/sk_status.py --root .
+python3 .specify/ba/scripts/sk_status.py --root . --html
+```
+
+The profile is read from the ledger head, never asked. `--profile` overrides it
+for a headless run.
+
+### The pinned shape
 
 ```
 Project status — <project> — <date> · profile: <…> · Band: <…>
-1 · Aspects: <k>/6 cleared · <w> waived (debt on record) · <r> reopened
-2 · Techniques: <done> run / <planned> planned · next planned: <code — name>
-3 · Questions: <o> open · <a> answered · <v> overtaken · oldest open: <ref>
-4 · Artifact health: Scope H <armed — HEALTHY | n gaps | disarmed (pre-closure)> · standing acceptances: <n>
-5 · Delivery: <c> certified · <h> handed off · <b> in Band 3
-6 · Handoff risk per certified feature: | Feature | W | O | surviving markers | HAs in deps | Risk |
-    Rule: low = all zero · elevated = any one non-zero · high = an Override, or ≥ 3 combined
-7 · Next: <the one act the state points to — code + name>
+Workflow ▕██████░░░░▏ <p>% — §10.4-F
+1 · Band 1 — Foundations ▕██████████▏ <s>/6 settled (<c> cleared · <w> waived — debt on record) · closed <date> | open
+2 · Band 2 — Scoping     ▕████████░░▏ briefs <b>/<e> epics · kits <k>/<e> · roadmap current <date> | missing
+3 · Band 3 — Delivery    ▕██████░░░░▏ entered <n> across <x>/<e> epics · drafted <d>/<n> · gated <g> (latest: <verdicts>) · certified <c> · handed off <h>
+      Presale note: certification & handoff out of profile — destination: draft specs + the Q&A agenda (§6.5)
+4 · Questions: <o> open · <a> answered · <v> overtaken · oldest: <ref — one line, standing since <where>>
+5 · Health: Scope H <armed — HEALTHY | n gaps | disarmed (pre-closure)> · refresh <current | overdue: <r> runs vs cadence> · acceptances: <n>
+6 · Ledger coverage: <clean | run log under-records: <k> on disk vs <l> logged (<where>)>
+7 · Techniques: <runs> run / <planned> planned · next planned: <code — name>
+8 · Discovery → Handoff risk per certified feature: | Feature | W | O | surviving markers | HAs in deps | Risk |
+       Rule: low = all zero · elevated = any one non-zero · high = an Override, or ≥ 3 combined
+    Presale  → Exit readiness: roadmap <current?> · drafted <d>/<n> · open markers <m> · `/ba-wbs` <ready | blocked: <why>>
+9 · Next: <the one act the state points to — code + name>
 ```
 
-**The risk rule is the whole of line 6's verdict** — a stated rule over four
-countable facts: waivers (W), overrides (O), surviving `[NEEDS CLARIFICATION]`
-markers, and health acceptances touching the feature's dependency set. It is
-tunable in the field by version bump, **never silently**. Do not soften it, do
-not add a fifth factor, do not average it into a score.
+### The counts, each with its source
 
-Line 2 and line 7 carry **code + name** — `T-05 — Context & landscape mapping`,
-never a bare code. Where a source is missing, say which and render the line as
+| Count | Is |
+|---|---|
+| **settled** | `first-pass-cleared` or `waived` in the head |
+| **briefs · kits** | files in `.specify/memory/scope/`, against the roadmap's epic rows |
+| **entered** | a `specs/NNN-*/` folder exists |
+| **drafted** | its `spec.md` carries at least one User Story |
+| **gated** | at least one `gate-report.md` entry; the latest verdict is shown |
+| **certified** | the latest entry carries a certification manifest — the gate's own fact, never re-verified here |
+| **handed off** | the handoff record present |
+| **epic breadth** | distinct parent epics among the entered features |
+| **open markers** | surviving `[NEEDS CLARIFICATION]` markers across drafted specs |
+
+`/ba-wbs` reads *ready* when the roadmap is current and at least one spec is
+drafted; *blocked* names the missing piece.
+
+### The formula
+
+**§10.4-F.** B1 = settled/6 · B2 = briefs/epics · B3 = drafted/entered under
+Presale, certified/entered under Discovery. Workflow % = the mean of the three;
+each band's bar is its own ratio at ten cells; the top bar is the mean. A zero
+denominator renders `—`, never 0%. The formula is this text — tunable by
+version bump, never silently.
+
+**The workflow line is the one sanctioned composite.** Every other composite
+stays banned: do not average the risk table into a score, do not roll the nine
+lines into a rating, do not invent a second percentage anywhere on this render.
+
+### Three lines that need saying plainly
+
+- **Line 5 is display only.** It compares the full runs recorded in
+  `.specify/gate-health.md` against the gate's own cadence — one full run per
+  scope-brief ingestion batch, plus the arming run at Band-1 closure. Reporting
+  `overdue` is the whole of this line's act. **The refresh belongs to
+  `/ba-gate-health`**, which this skill never runs and never proposes as
+  automatic.
+- **Line 6 is the instrument reporting its own blind spots.** It compares the
+  Band-2 and Band-3 artifacts on disk against their run-log lines in
+  `.specify/aspect-plans.md` and names the divergence in both directions. An
+  under-recording ledger is a fact to show, never one to paper over — and never
+  one to repair in passing: this skill does not write the run log.
+- **Line 8 renders one variant, by profile.** Out-of-profile facts render as
+  **law, not failure**: under Presale, "certification & handoff out of profile"
+  is where the method ends, not where the project is behind. Never render an
+  out-of-profile count as a gap.
+
+**The risk rule is the whole of line 8's Discovery verdict** — a stated rule
+over four countable facts: waivers (W), overrides (O), surviving
+`[NEEDS CLARIFICATION]` markers, and health acceptances touching the feature's
+dependency set. It is tunable in the field by version bump, **never silently**.
+Do not soften it, do not add a fifth factor, do not average it into a score.
+
+Line 7 and line 9 carry **code + name** — `T-05 — Context & landscape mapping`,
+never a bare code. Where a source is missing, say which and render the value as
 `—`; never guess a count. A Scope H that has never run reads
 `disarmed (pre-closure)`, which is a fact, not a gap.
+
+## The HTML render
+
+On `--html`, the command additionally writes `.specify/status.html` — beside the
+runtime ledgers, under the same rule that keeps them out of `.specify/memory/`.
+
+- **Self-contained.** Inline styles only, **zero external resources** — no
+  stylesheet, no font, no script, no image fetched from anywhere. It opens on a
+  plane.
+- **The same counts and the same formula.** Presentation, never new data: the
+  chat render is embedded in the file verbatim.
+- **Derived, never hand-edited.** Regenerated on every invocation; a hand edit
+  dies at the next run. It is the gate's `traceability.md` precedent, applied
+  to a dashboard.
+- **The chat render stays primary.** The file is for sharing and for reading
+  later, never the thing the BA is answered with.
 
 ## What this skill never does
 
 Never edits the head or appends an event · never confirms a clearing, grants or
 lapses a waiver, or rules a reopen · never runs a CC assertion or a health run
 (`/ba-gate-health` is the gate's, and its own session-start habit is separate
-from this one) · never re-derives the head from the events and silently
-"corrects" it — a head that contradicts its events is a defect to report, not to
-repair in passing · **never writes, never transitions, never proposes content** —
-rendering is its whole act · never invents a composite score or estimates a
-count the ledgers do not carry.
+from this one) · never writes a run-log line to repair the divergence line 6
+reports · never re-derives the head from the events and silently "corrects" it —
+a head that contradicts its events is a defect to report, not to repair in
+passing · **never writes, never transitions, never proposes content** —
+rendering is its whole act · never invents a composite beyond the one workflow
+line the formula sanctions, and never estimates a count the sources do not
+carry.
 
 **The session boundary (framework-wide).** This is an **analysis session**. It
 produces analysis artifacts only. It never produces an implementation plan, a

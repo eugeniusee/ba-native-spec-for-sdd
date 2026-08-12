@@ -376,7 +376,18 @@ has "$RUN" "execute it as the procedure" "…by reading the technique's skill fi
 has "$T17" "append under \`## Band 2\`" "T-17 books its own run under the ## Band 2 section"
 has "$T18" "append under \`## Band 2\`" "T-18 books its own run there too, each rerun naming its trigger"
 has "$TI1" "append under \`## Band 2\`" "Tier 1 books its own run under ## Band 2"
-has "$TI2" "no plans-file line" "Tier 2 keeps no plans-file line — ledger, spec, gate report instead"
+# Re-pinned at 0.1.9 (dashboard v2, S4 — run-log under-recording). Was:
+#   TI1 "<date> · <CODE> · contract:"   — one line per technique
+#   TI2 "no plans-file line"            — Band-3 runs booked nothing
+# §7.3 owes a contract-fulfillment line for every run, and §10.4's
+# ledger-coverage line reads the log epic by epic and feature by feature — a
+# line that names no element cannot be read that way. Forward-only: no
+# historical entry was reconstructed, and the fixture is untouched, which is
+# why it still renders the divergence the line exists to show.
+has "$TI1" "the line names its epic" "…one line per mode per epic, the element named"
+has "$TI2" "append under \`## Band 3\`" "Tier 2 books its own run under ## Band 3"
+has "$TI2" "the line names its feature" "…one line per feature, the element named"
+has "$TI2" "Append forward only" "…and never reconstructs a run it did not log"
 has "$TI2" "P-O9 — overflow ruling" "the Tier-2 run takes its own overflow ruling in the same sitting"
 for s in t17 t18 tier1 tier2; do
   has "$SKILLS/ba-$s/SKILL.md" "BA-invoked, never auto-fired" "ba-$s refuses to auto-fire"

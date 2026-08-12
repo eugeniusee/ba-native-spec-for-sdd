@@ -80,7 +80,7 @@ Do not invoke them on your own initiative and do not simulate their effects.
 | Command | Act |
 |---|---|
 | `/ba-frame` | Band-1 entry: initialize the two aspect ledgers, pick the flow profile (P-O0 — flow-profile selection), confirm the canvas |
-| `/ba-status` | Render the aspect-ledger head and the project dashboard |
+| `/ba-status [--html]` | Render the aspect-ledger head and the nine-line project dashboard; `--html` also writes the derived offline render |
 | `/ba-aspect <aspect>` | Open an aspect; suggestion snapshot → plan composition |
 | `/ba-t<NN>` · `/ba-tier1` · `/ba-tier2` | One-step technique run — the P-O3 (technique invocation) check compiled in; `/ba-run` = alias + custom runner |
 | `/ba-clear <aspect>` | Evidence table → clearing confirmation |

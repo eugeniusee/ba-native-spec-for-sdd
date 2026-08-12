@@ -261,8 +261,20 @@ worked gap-question exchange is in `references/example.md`.
    assembles the edits · the BA approves the batch · the framework writes. In
    Band 1 proper Scope H is disarmed and nothing fires; post-closure runs get
    the armed cadence automatically.
-3. **Record** — no plans-file line: the feature's record is its band event
-   in the ledger, the spec at its destination, and the gate report.
+3. **Run log** — append under `## Band 3` in `.specify/aspect-plans.md`; create
+   the section on first use. **This run is per feature, so the line names its
+   feature:**
+   `<date> · TIER-2 <NNN-feature> · contract: fulfilled | partial — <what is missing> | failed — <why>`
+   `  signals: overflow <ref> | routing batch <ref> approved | RO-<n> emitted | none`
+   `partial` and `failed` are recorded, never silently retried.
+
+   This is the contract-fulfillment bookkeeping every run owes, and a Band-3
+   run owes it like any other. It does not replace the feature's other records
+   — the band event in the ledger, the spec at its destination, the gate
+   report — it is the run's own line, and without it the plans file cannot say
+   which confirmed slices were actually carried. **Append forward only:** a run
+   that was never logged stays unlogged; nothing is reconstructed after the
+   fact.
 
 ## What this skill never does
 

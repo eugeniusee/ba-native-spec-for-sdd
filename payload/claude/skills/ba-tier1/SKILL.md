@@ -335,11 +335,18 @@ batch is written only after the BA approves it.
    Band 1 proper Scope H is disarmed and nothing fires; post-closure runs get
    the armed cadence automatically.
 3. **Run log** — append under `## Band 2` in `.specify/aspect-plans.md`,
-   each rerun naming its trigger:
-   `<date> · <CODE> · contract: fulfilled | partial — <what is missing> | failed — <why>`
+   each rerun naming its trigger. **This run is per epic, so the line names its
+   epic** — one line per mode per epic, never one line for the technique:
+   `<date> · <CODE> <mode> <E-nn> · contract: fulfilled | partial — <what is missing> | failed — <why>`
    `  signals: RO-<n> received | routing batch <ref> approved | none`
    Then set the plan row's Status to `run <date>`. `partial` and `failed` are
    recorded, never silently retried.
+
+   Every record names its element and its action. A run log that says only
+   which technique ran cannot say **how much of the estate it reached** — and
+   `/ba-status`'s ledger-coverage line reads exactly that, epic by epic.
+   **Append forward only:** a run that was never logged stays unlogged; the
+   line records this run, and history is never reconstructed after the fact.
 
 ## What this skill never does
 

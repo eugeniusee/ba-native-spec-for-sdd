@@ -60,4 +60,22 @@ Run log:
      rerun names its trigger; contract-fulfillment bookkeeping per §7.3.
      Allocation is on-demand and repeatable (C1): each rerun = recommended
      re-allocation with rationale + diff vs. current + BA approval; the living
-     roadmap logs the change with reason. -->
+     roadmap logs the change with reason.
+
+     Tier-1 runs are per epic, so their run lines name their epic — one line
+     per mode per epic:
+       <date> · TIER-1 kit E-nn · contract: …
+       <date> · TIER-1 ingest E-nn · contract: … -->
+
+## Band 3
+
+<!-- Tier-2 run lines, one per feature:
+       <date> · TIER-2 NNN-feature · contract: …
+
+     §7.3 owes a contract-fulfillment line for every run; §6.4 enumerates
+     section homes for the aspects, `## Frame` and `## Band 2`, and names none
+     for a Band-3 run. This section is the PACKAGE's placement of a line the
+     methodology mandates but does not house — recorded as a build divergence,
+     awaiting a one-line §6.4 re-ruling. Nothing else about Band 3 is recorded
+     here: the band event stays in the state ledger (§8.4), the spec at its
+     destination, the verdict in the gate report. -->
