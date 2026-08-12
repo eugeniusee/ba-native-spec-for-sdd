@@ -48,28 +48,52 @@ package is not installed.
 ## Install (into a target project)
 
 ```sh
+cd /path/to/your/project
+curl -fsSL https://raw.githubusercontent.com/eugeniusee/ba-native-spec-for-sdd/main/bootstrap.sh | bash
+```
+
+No clone, no GitHub account. `bootstrap.sh` downloads the package, runs
+`git init` if the directory is not a repository yet, and hands over to
+`install.sh --target "$PWD"` — whose output you see verbatim and whose exit code
+you get. Installer options pass straight through:
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/eugeniusee/ba-native-spec-for-sdd/main/bootstrap.sh | bash -s -- --offline
+```
+
+It refuses to run inside this package repo: the repo *builds* the payload, it is
+not a place to install it into.
+
+**The manual path** — a clone you can pin, and what the bootstrap does under the
+hood:
+
+```sh
 cd /path/to/your/project      # a git repo
 /path/to/ba-native-spec/install.sh
 ```
 
-The installer runs pinned Spec Kit **v0.12.5** (D-P2-8), overlays the framework
-payload, writes the `AGENTS.md` / `CLAUDE.md` mirrors, and generates
-`.specify/ba/manifest.md`. It is idempotent: a re-run replaces installer-laid
-files and the fenced mirror blocks only — never runtime content, ledgers, or
-`specs/`.
+Either way, the installer runs pinned Spec Kit **v0.12.5** (D-P2-8), overlays
+the framework payload, writes the `AGENTS.md` / `CLAUDE.md` mirrors, and
+generates `.specify/ba/manifest.md`. It is idempotent: a re-run replaces
+installer-laid files and the fenced mirror blocks only — never runtime content,
+ledgers, or `specs/`.
 
 ```
-install.sh [--offline] [--dry-run] [--force-speckit] [--target <dir>]
+install.sh [--offline] [--dry-run] [--force-speckit] [--skip-speckit] [--target <dir>]
 ```
 
 Offline use needs `vendor/spec-kit-v0.12.5.zip` — see [`vendor/README.md`](vendor/README.md).
+The archive is upstream's artifact and is not committed, so it is a
+clone-and-populate step: a bootstrap install has no vendored Spec Kit to fall
+back to, and `uv` is required on both paths (D88).
 
 ## Test
 
 ```sh
-tests/run-all.sh                                               # the regression — all twelve checks, one table
-tests/run-all.sh --file-only                                   # the ten file-only checks; no install, no network
+tests/run-all.sh                                               # the regression — all fifteen checks, one table
+tests/run-all.sh --file-only                                   # the twelve file-only checks; no install, no network
 tests/check-exit.sh                                            # the Phase-2 exit test — all ten steps
+tests/check-install.sh                                         # the install UX — bootstrap · self-guard · uv-free
 tests/check-layout.sh --target /path/to/project                # full Phase-2 bar
 tests/check-layout.sh --target /path/to/project --session S8   # a single session's bar
 tests/check-m.sh                                               # the M-checker suite
@@ -83,12 +107,12 @@ tests/check-register.sh                                        # the BA-facing c
 ```
 
 `run-all.sh` runs the whole regression and prints the roll-up table this
-package's BUILD-LOG entries carry: the ten file-only checks, then the two that
-install first — the full layout bar on a fresh offline install, and the Phase-2
-exit test. It asserts nothing of its own. Every verdict is the check's own exit
+package's BUILD-LOG entries carry: the twelve file-only checks, then the three
+that install first — the full layout bar on a fresh offline install, the Phase-2
+exit test, and the install-UX suite. It asserts nothing of its own. Every verdict is the check's own exit
 code and every count is parsed from the check's own roll-up line, so a suite
 that stops printing counts reports that, not a passing row. `--file-only` runs
-the ten that need no install and no network; `--keep` keeps the installed
+the twelve that need no install and no network; `--keep` keeps the installed
 projects; `-v` streams each check's output as it runs.
 
 `check-exit.sh` is the integration suite: it installs into a fresh git repo and
@@ -134,6 +158,7 @@ their own rule.
 
 ```
 ba-native-spec/
+├─ bootstrap.sh            the one-liner: fetch + git init + hand over to install.sh
 ├─ install.sh              pinned init + overlay + mirror + manifest
 ├─ VERSION                 package semver
 ├─ payload/                byte-exact copy source for everything installed
@@ -147,7 +172,7 @@ ba-native-spec/
 │  ├─ quickstart.md        BA quickstart — the loop, and manual mode (S9)
 │  └─ mode-b-fallback.md   the documented handoff fallback, and its cost (S9)
 └─ tests/
-   ├─ run-all.sh           the regression runner — all twelve checks, one table
+   ├─ run-all.sh           the regression runner — all fifteen checks, one table
    │                       (Lane D; closes the hand-assembled roll-up)
    ├─ check-layout.sh · layout.expected
    ├─ check-m.sh           the M-checker suite (S2)
@@ -170,6 +195,8 @@ ba-native-spec/
    │                       allocation log · the call kit · the scope brief · the
    │                       Tier-2 session (S8 harness; not installed either)
    ├─ check-exit.sh        the Phase-2 exit test — §5's ten steps, one install (S9)
+   ├─ check-install.sh     the install UX — the bootstrap one-liner, the package-repo
+   │                       self-guard, the uv-free case (Lane A)
    ├─ check-register.sh    the BA-facing communication register — §10.3 rule 5
    │                       across the skill/agent/mirror layer, names read from
    │                       the catalogue index and §10.1 (Lane A)

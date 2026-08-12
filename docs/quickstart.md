@@ -24,15 +24,29 @@ decides.
 
 ## Install
 
+One line, run inside the project folder you want the framework in:
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/eugeniusee/ba-native-spec-for-sdd/main/bootstrap.sh | bash
+```
+
+No clone, no GitHub account, nothing to check out first. It fetches the package,
+runs `git init` for you if the folder is not a repository yet, and installs into
+it. You need `git`, `python3` 3.11 or newer, and `uv` on the machine.
+
+If the package is already checked out somewhere — or you want to install from a
+copy pinned to a known version rather than from `main` — run the installer
+directly:
+
 ```sh
 cd /path/to/your/project        # must be a git repo
 /path/to/ba-native-spec/install.sh
 ```
 
-It runs pinned Spec Kit v0.12.5, overlays the framework, writes the `AGENTS.md`
-and `CLAUDE.md` mirrors, and generates `.specify/ba/manifest.md`. Re-running is
-safe: it replaces installer-laid files and the fenced mirror blocks only, and
-never touches your content, your ledgers, or `specs/`.
+Either way it runs pinned Spec Kit v0.12.5, overlays the framework, writes the
+`AGENTS.md` and `CLAUDE.md` mirrors, and generates `.specify/ba/manifest.md`.
+Re-running is safe: it replaces installer-laid files and the fenced mirror
+blocks only, and never touches your content, your ledgers, or `specs/`.
 
 Then open Claude Code in the project. Everything below is a `/` command.
 

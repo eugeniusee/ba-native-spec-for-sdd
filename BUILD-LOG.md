@@ -4550,3 +4550,204 @@ overwrites the v0.11 one-step-invocation change record, because it was authored
 against the pre-0.1.7 base. That is a methodology repair, and this build does not
 write methodology. The package ships dashboard v2 against §10.4 as ruled; the
 document reconciliation is the BA Lead's, outside this commit.
+
+---
+
+## Install UX — the bootstrap one-liner · the uv-free fallback held at D88 · 12 August 2026 · GREEN
+
+The install UX was ruled in two levels: **L1**, a one-line install needing no
+clone and no GitHub account, and **L2**, an install that survives a machine with
+no `uv`. **L1 ships**, proven end to end over the network into an empty
+directory. **L2 does not**, and the reason is a reading rather than a
+preference: the path L2 was to reuse is not uv-free. D88 carries it, nothing was
+improvised in its place, and `install.sh` is byte-identical to 0.1.9.
+
+This build writes no methodology and touches no spine document. It adds
+`bootstrap.sh` and one suite, wires that suite into the runner, and rewrites the
+install sections of the two repo docs.
+
+### S1 — `bootstrap.sh` — Level 1
+
+```sh
+cd /path/to/your/project
+curl -fsSL https://raw.githubusercontent.com/eugeniusee/ba-native-spec-for-sdd/main/bootstrap.sh | bash
+```
+
+A public raw URL and a public tarball: no auth anywhere on the path. The script
+fetches `archive/refs/heads/main.tar.gz` into a `mktemp -d` workdir under a
+cleanup trap, unpacks it, and hands over to the package's own `install.sh
+--target "$PWD"`. `BNS_SOURCE=<checkout>` substitutes a local checkout for the
+download — the test hook, and the identical code path from the handover on.
+
+**It installs nothing of its own.** Every file the target ends up with is
+`install.sh`'s work. The installer's output is not captured, not filtered and not
+summarized, and its exit code is the one bootstrap leaves with. Remaining
+arguments pass through untouched — `… | bash -s -- --offline`.
+
+**The git guard is satisfied, not relaxed.** `install.sh` still refuses a target
+that is not a repository; bootstrap owns the `git init` and announces it before
+doing it, so the installer's preflight reads exactly as it always did.
+
+**The self-guard.** The package repo *builds* the payload and is not a place to
+install it into. Detection is the triple **VERSION + `payload/` + `install.sh`**,
+checked before the download and before any write; the refusal names both the
+fact and the fix.
+
+`--help` is answered by bootstrap rather than forwarded: the installer's usage is
+one download and one `git init` away, and neither is a side effect anybody asked
+for by typing `--help`.
+
+### S2 — Level 2, read and held (D88)
+
+The ruling was: *uv missing + `vendor/spec-kit-v0.12.5.zip` present → take the
+existing `--offline` path.* The preflight was read first, as instructed, and
+today's behavior confirmed: `command -v uvx` or die. The second half does not
+hold. `--offline` selects where the Spec Kit **source** comes from; the run
+itself is `uvx --from "$SPECKIT_FROM" specify init` on **both** paths —
+`vendor/README.md` has said so since S1. The vendored archive is upstream's
+source tree, its CLI declares nine third-party dependencies, not one is vendored
+as a wheel, and not one is importable from a stock `python3`. Verified, not
+assumed.
+
+Taking the offline path on a uv-less machine would therefore replace an accurate
+refusal *at preflight, before any write* with a later death carrying a wrong
+reason — *"Re-run with --offline once vendor/… is in place"* — while already
+offline. That is a regression, so the change was not made and the installer was
+left untouched.
+
+What a uv-less machine can do today is `--skip-speckit`: the whole BA payload
+lands, with no Spec Kit under it. A partial install, and the suite names it as
+one rather than letting it read as L2.
+
+### S3 — `tests/check-install.sh` — 43 / 0
+
+A new suite on the `check-exit.sh` precedent: it installs for real, into
+throwaway directories of its own.
+
+| Section | Holds down |
+|---|---|
+| 1 · (a) bootstrap → a fresh non-git directory | exit 0 · `.git` created, and announced before it was · `/ba-frame` laid down · `.specify/ba/manifest.md` present, carrying this package version · all 33 `/ba-*` skills — a bootstrap install is a full install · the installer's own voice surfaced verbatim · `--offline` forwarded · `--help` with no side effects |
+| 2 · (c) the self-guard | non-zero exit and a naming refusal on a decoy carrying the triple · the refusal writes nothing · the real repo carries the triple the decoy imitates · bootstrap refuses inside this working tree too, which is byte-for-byte unchanged after |
+| 3 · (b) the uv-free case | the vendor archive in place · `uvx` shadowed off PATH with `python3` surviving the shadowing · the refusal, its reason and its zero writes · **the cause pinned in the installer's own text** · `--skip-speckit` completing uv-free, and what that costs |
+
+Section 3 pins **today's** behavior, and the pin that matters is on the cause:
+the assertion reads `install.sh` itself for `uvx --from "$SPECKIT_FROM" specify
+init`. The day L2 becomes reachable, that assertion goes red and names itself —
+the pin cannot be outlived silently. Both the target behavior and the re-pin
+instruction are recorded inline at the site, on the `check-spine.sh` precedent
+from 0.1.9.
+
+The self-guard is exercised against a decoy **first**, deliberately: a regressed
+guard must not be able to install into this working tree mid-suite. The run
+inside the real repo comes after it and passes `--dry-run`, which `install.sh`
+honours by writing nothing at all — so even a regressed guard leaves the tree
+clean, and the suite asserts that it did.
+
+### S4 — the runner, and the two docs
+
+`run-all.sh` is **fifteen checks**, not fourteen: the header, `--list`, `--help`,
+the `--file-only` skip row, the roll-up table and the GREEN line all moved in
+step. `check-install.sh` joins the install-based group and owns its own targets —
+a bootstrap run must start from a directory that is not yet a repository, which
+no runner-made repo can be. (`--help` also stopped cutting its own last line;
+the range was one short.)
+
+`README.md` and `docs/quickstart.md` now **lead with the one-liner** and keep the
+clone + `install.sh` path as the documented manual variant, for a pinned copy or
+an existing checkout. README's layout tree gained `bootstrap.sh` and
+`check-install.sh`, and its test-section counts — already two behind — were
+brought to fifteen and twelve. The external front-door guide
+(install-and-first-run) is out of scope here and is rewritten separately.
+
+### Verification evidence
+
+**`tests/check-install.sh` — GREEN, 43 / 0.** Plus one manual run the suite
+cannot own, because it needs the public network and a pushed `main`: the
+one-liner's **download** branch, end to end into an empty directory —
+tarball fetched anonymously, unpacked, `git init`, full install with Spec Kit,
+`rc=0`.
+
+**The full regression — `tests/run-all.sh`, all fifteen:**
+
+| Check | Result |
+|---|---|
+| `check-m.sh` | 40 / 0 |
+| `check-gate.sh` | 59 / 0 |
+| `check-orchestrator.sh` | 122 / 0 |
+| `check-techniques.sh` | 101 / 0 |
+| `check-techniques2.sh` | 122 / 0 |
+| `check-techniques3.sh` | 158 / 0 |
+| `check-spine.sh` | 149 / 0 |
+| `check-register.sh` | 51 / 0 |
+| `check-wbs.sh` | 62 / 0 |
+| `check-status.sh` | 94 / 0 |
+| `check-ledger.py` | grammar-legal — 14 rules, no violations |
+| `check-cards.py` | every card byte-identical to its re-derivation; layering clean |
+| `check-layout.sh` | 110 / 0 / 0 |
+| `check-exit.sh --offline` | 99 / 0 |
+| `check-install.sh` | 43 / 0 |
+
+`ran: 15   red: 0   skipped: 0` · **✓ GREEN**. Every pre-existing count equals
+the 0.1.9 baseline exactly — 1167 assertions, unchanged, plus 43 new ones. The
+payload was not touched, and the numbers say so.
+
+### Divergences
+
+**D88 · the `--offline` path is not uv-free, so L2 is not reachable by reusing
+it.** `--offline` swaps the Spec Kit *source* from `git+…@v0.12.5` to the
+unpacked `vendor/spec-kit-v0.12.5.zip`; the invocation is `uvx --from
+"$SPECKIT_FROM" specify init` either way. The archive is upstream's **source
+tree**, not a runnable CLI: `specify-cli` declares `typer`, `click`, `rich`,
+`platformdirs`, `readchar`, `pyyaml`, `packaging`, `pathspec`, `json5`, and eight
+of the nine are absent from a stock `python3` (probed). No wheelhouse is
+vendored. *Resolution taken:* **the change was not made.** `install.sh` is
+unchanged; `tests/check-install.sh` §3 pins the current refusal and, more
+importantly, its cause. *Candidates, neither chosen here:* **(i)** vendor the
+CLI's wheels and run the pinned Spec Kit from a `python3 -m venv` +
+`--no-index --find-links` install — a genuinely air-gapped, uv-free path, and
+new machinery in `vendor/`; **(ii)** on uv-missing-but-networked machines, build
+that venv with a plain `pip install <vendored source>` — uv-free but not
+offline, and a second install mechanism to maintain. Both are the BA Lead's
+call, not a build decision.
+
+**D89 · bootstrap hands over as a child process, not `exec`.** The ruling asked
+for a `mktemp -d` workdir under a cleanup trap *and* an `exec` of the installer.
+The two exclude each other: `install.sh` is read **out of that workdir**, and
+`exec` replaces the shell, so the `EXIT` trap never fires and every bootstrap run
+would leave an unpacked package tree in `$TMPDIR`. *Resolution taken:* run the
+installer as a child, then `exit` with its code. The caller's contract is the one
+that was ruled — output verbatim, exit code the installer's — and the workdir is
+actually cleaned up. Related, same site: the child is given `</dev/null`, because
+the flagship invocation is `curl … | bash`, where the script itself is on stdin
+and bash reads a piped script a line at a time; anything downstream that read
+stdin would eat the rest of the script.
+
+**D90 · the tarball carries no `vendor/` archive, so L1 and L2 cannot compose.**
+`vendor/spec-kit-*.zip` is gitignored by design — it is upstream's release
+artifact, not ours to commit — so it is absent from
+`archive/refs/heads/main.tar.gz`. A bootstrap install therefore has no vendored
+Spec Kit to fall back to: `bootstrap.sh --offline` over the download branch dies
+with *"offline install needs …/vendor/spec-kit-v0.12.5.zip"* (reproduced). This
+holds **independently of D88**: even a fixed L2 would not reach a one-liner user.
+*Resolution taken:* documented, not worked around — README's install section says
+it in place. *Candidates:* bootstrap fetches the pinned archive from upstream's
+own release URL when `--offline` is asked for, or the offline story is declared
+clone-only. Not chosen here.
+
+### Open
+
+**`VERSION` is untouched at `0.1.9`.** Version stamping is the BA Lead's act; a
+bump is proposed in this workstream's report, not taken here.
+
+**`--dry-run` through bootstrap still `git init`s.** The ruling makes the init
+unconditional and it was left that way. The consequence is narrow but real: a
+dry run in a non-repository directory writes the one thing bootstrap writes
+before `install.sh` — which then honours `--dry-run` and writes nothing itself.
+Making the init dry-run-aware is a one-line change and was not taken, because it
+is behavior the ruling did not ask for.
+
+**The download branch is verified by hand, not by the suite.** It needs the
+public network and a `main` that already carries `bootstrap.sh` — a chicken-and-
+egg the suite cannot hold. `BNS_SOURCE` covers everything from the handover on;
+what remains uncovered is `curl` + `tar` + "find the unpacked directory", and
+that is what the manual run above exercised.

@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 #
-# BA-Native Spec — the regression runner. One command, fourteen checks.
+# BA-Native Spec — the regression runner. One command, fifteen checks.
 #
 # Every BUILD-LOG entry since S2 has closed with the same roll-up table, and
 # every one of them was assembled by hand from separate invocations —
 # two of which need a real install first. That is D54. This script is the table.
 #
-# The fourteen, in the order the entries print them:
+# The fifteen, in the order the entries print them:
 #
 #   twelve file-only checks — read the payload, the docs and the fixtures
 #     1  check-m.sh              the ten vendored M checkers
@@ -22,9 +22,10 @@
 #    11  check-ledger.py         the aspect ledger against its grammar
 #    12  check-cards.py          the three compiled cards vs. their sources
 #
-#   two install-based runs — each installs into a throwaway git repo
+#   three install-based runs — each installs into a throwaway git repo
 #    13  check-layout.sh         the full Phase-2 tree bar on a fresh install
 #    14  check-exit.sh --offline the Phase-2 §5 exit test, all ten steps
+#    15  check-install.sh        the install UX — bootstrap · self-guard · uv-free
 #
 # `check-cards.py` and `check-ledger.py` also run inside `check-gate.sh` and
 # `check-orchestrator.sh`. They keep their own rows because the entries give
@@ -35,12 +36,12 @@
 # code; every count is parsed from the check's own roll-up line. A check that
 # prints no count reports its summary sentence instead — never an invented one.
 #
-#   run-all.sh                run all fourteen
+#   run-all.sh                run all fifteen
 #   run-all.sh --file-only    the twelve file-only checks; no install, no network
 #   run-all.sh --online       let the install-based runs fetch Spec Kit
 #                             (default: --offline, from vendor/)
 #   run-all.sh --keep         keep the installed projects and print their paths
-#   run-all.sh --list         print the fourteen rows and exit
+#   run-all.sh --list         print the fifteen rows and exit
 #   run-all.sh -v             stream each check's full output as it runs
 
 set -uo pipefail
@@ -56,7 +57,7 @@ for a in "$@"; do
     --keep)      KEEP=1 ;;
     --list)      LIST=1 ;;
     -v|--verbose) VERBOSE=1 ;;
-    -h|--help)   sed -n '2,43p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
+    -h|--help)   sed -n '2,45p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
     *) printf 'unknown option: %s\n' "$a" >&2; exit 2 ;;
   esac
 done
@@ -128,7 +129,7 @@ skip_check() {
 }
 
 if [ "$LIST" -eq 1 ]; then
-  sed -n '/^#   twelve file-only checks/,/^#    14 /p' "$0" | sed 's/^# \{0,1\}//'
+  sed -n '/^#   twelve file-only checks/,/^#    15 /p' "$0" | sed 's/^# \{0,1\}//'
   exit 0
 fi
 
@@ -150,12 +151,13 @@ run_check "check-ledger.py"       line  python3 "$HERE/check-ledger.py" \
           "$HERE/fixtures/appointment-booking/band1/aspect-state.md"
 run_check "check-cards.py"        line  python3 "$HERE/check-cards.py"
 
-# ── the two install-based runs ───────────────────────────────────────────────
+# ── the three install-based runs ─────────────────────────────────────────────
 
 if [ "$FILE_ONLY" -eq 1 ]; then
   printf '\n▸ The install-based runs — skipped (--file-only)\n'
   skip_check "check-layout.sh"      "skipped — --file-only"
   skip_check "check-exit.sh"        "skipped — --file-only"
+  skip_check "check-install.sh"     "skipped — --file-only"
 else
   printf '\n▸ The install-based runs — a throwaway git repo each%s\n' \
     "$([ -n "$OFFLINE" ] && printf ', Spec Kit from vendor/')"
@@ -182,6 +184,10 @@ else
             "$HERE/check-exit.sh" --target "$EXIT_PROJ" --keep $OFFLINE
   KEPT="$KEPT$EXIT_PROJ
 "
+
+  # The install UX owns its own targets — a bootstrap run must start from a
+  # directory that is not yet a repository, which no runner-made repo can be.
+  run_check "check-install.sh" suite "$HERE/check-install.sh" $OFFLINE
 fi
 
 # ── the table ────────────────────────────────────────────────────────────────
@@ -206,7 +212,7 @@ if [ "$KEEP" -eq 1 ] && [ -n "$KEPT" ]; then
 fi
 
 if [ "$RED" -eq 0 ] && [ "$SKIPPED" -eq 0 ]; then
-  printf '✓ GREEN — all %s checks pass, the two install-based runs included\n' "$RAN"
+  printf '✓ GREEN — all %s checks pass, the three install-based runs included\n' "$RAN"
   exit 0
 elif [ "$RED" -eq 0 ]; then
   printf '✓ GREEN — %s checks pass; %s not run (see the table)\n' "$RAN" "$SKIPPED"
