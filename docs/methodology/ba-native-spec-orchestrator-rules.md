@@ -1,5 +1,6 @@
 # Geniusee Orchestrator Rules
-### BA-Native Spec · aspect & band machinery · v0.13 — manual-mode UX: the checkpoint law · plan-as-route · the route render (13 Aug 2026)
+### BA-Native Spec · aspect & band machinery · v0.14 — autonomous mode: the autonomy grant · the §10.7 policy table · the safety floor (13 Aug 2026)
+**v0.14 change record:** one instrument, one section, two locked amendments, ruled 13 Aug 2026 (WS-3 — autonomous mode; R1–R5 → **D-O35–D-O39**, plus the amendments **D-O40–D-O41**, §19; origin: the question WS-2 left open — may the framework run a stretch of the flow while the BA is away?): **the autonomy grant** (new §4.4) — `AG-<n>`, the fourth instrument, which waives nothing and rules nothing and moves only the *moment* of consent (D-O35) · **autonomous mode** (new §10.7) — `/ba.auto on|off`, the entry act, the profile rule (argument, else inferred and logged; never switches mid-auto), **one policy row per surviving §10.1 stop**, the AUTO stamp grammar, and the pinned **resumption report** at `off` with ratification as one batch act (D-O36; §10.3 rule 8's list extended in step) · **the safety floor** — ⚑ sign-offs, the effective PASS and `/ba-handoff` outside every AG, so auto terminates per feature at "done, awaiting ratification" (D-O37) · **the mode in the ledger head** — `Auto:` after `Profile:` in §2.4, the on/off/ratification event lines, and `/ba.status`'s append-only auto-trail section (D-O38, §10.4; the nine numbered lines untouched) · **P-O9's supplement lane** under an AG (D-O39). Two standing rulings amended by new ruling, both locked: **D-O13** — a standing AG is explicit consent recorded in advance, not silence (D-O40, §6.2) · **§1 principle 2** — a transition under a recorded, revocable grant is not a self-clear (D-O41, §1; the §3.4 echo cross-referenced in step). §7.5 and §11 gain the route-runner and `/ba.auto` bindings. Companion: gate v0.6 (its §7.1). No threshold, assertion, gate-verdict or session-boundary (§10.2) text touched; the ambiguity law and the non-waivable set stand untouched in every mode.
 **v0.13 change record:** one interaction-model ruling set, ruled 13 Aug 2026 (WS-2 — manual-mode UX; R1–R5 → **D-O30–D-O34**, §18; origin: the manual-mode field read of the Presale path, 12 Aug 2026): **the checkpoint law** (§10.1) — a stop is legitimate only where the BA decides between materially different outcomes or accepts debt; the acknowledgement-only stop becomes a banned class, and §10.3 rule 7 carries the render half (D-O30) · **plan-as-route** (new §7.5) with **the route render** (new §10.6, §10.3 rule-8 list extended in step) — the composed plan executes on one `go`, each row under its own compiled P-O3, stopping only at §10.1 decision points or a contract miss (D-O31) · **auto-repair** (§10.2) — an unreachable destination is answered with one repair route, never a list of commands to type (D-O32) · **Presale defaults** (§6.5) — the Band-2 pair reruns on the default route, artifact-level canvas confirmation, plan-as-route as the profile's interaction mode, and an **≤ 8 BA-interaction budget** the harness counts (D-O33) · **batch Band-3 entry** (§8.4) — `/ba.run specs all | specs <epic-list>`, one P-O8 table then Tier 2 per feature with one consolidated defer-confirm (D-O34). §11 gains the route-runner and batch-driver rows. No threshold, assertion, gate, or session-boundary (§10.2 session mode) text touched: the invariant stands — no state change without a BA act; only the granularity of the act changes.
 **v0.12 change record:** one section rebuilt plus two ratifications, ruled 12 Aug 2026 ("apply as recommended", R1–R7 → D-O26–D-O29, §17; origin: the first live Presale field render of `/ba.status`, 11 Aug 2026): **§10.4 dashboard v2** — per-band coverage bars with named denominators from a disk-extended read set (the §10.5 precedent) · the §10.4-F workflow line, the one sanctioned composite, amending D-O17's no-composite clause by new ruling · profile-switched line 8 with Presale exit readiness · the ledger-coverage self-report line · the `--html` derived render. Companion build items (run-log bookkeeping per §7.3's mandate; health-refresh-overdue display) ride the propagation build. **Provenance, on the record:** dashboard v2 was ruled 12 Aug 2026 against a stale **v0.10** base, while the one-step invocation sync (§7.1, §11) had already been committed as v0.11 — the two collided on one version number. This edition **rebases the dashboard section onto v0.11 by ruling**: v0.11's §7.1 and §11 text stands untouched and keeps its own change record below; the dashboard section takes v0.12. **Ratified as built** (the v0.8 pattern — the package already behaves as ruled, no behavioral change; package 0.1.9, no payload byte changes): §6.4's section list names `## Band 3` as the home of Tier-2 run lines, the placement §7.3's mandate already requires and the package already ships (build-log D86) · §10.4's *handed off* count renders `—` with its missing source named — `/ba-handoff` re-points `.specify/feature.json` and cuts a branch, neither countable per feature; a countable handoff record is a future ruling (build-log D87). No threshold, assertion, gate, or session-boundary (§10.2) text touched.
 **v0.11 change record:** one mechanics sync, 11 Aug 2026 (package build 0.1.7, WS-1 — one-step technique invocation): §7.1's invocation check names both plan homes and records that the check **compiles into each technique skill** — the technique's own command is the one-step entry (P-O3 is the typed act itself), and `/ba.run` is a thin alias plus the custom-technique path; §11's Technique-run binding row is re-bound in step. No behavioral change — the same single check, at the same moment, by the same BA act. No threshold, assertion, gate, or session-boundary (§10.2) text touched.
@@ -21,7 +22,7 @@
 **Three runtime rules of this document's own** (the gate's two, extended to a conductor):
 
 1. **The orchestrator never authors.** It schedules, routes, and records. Content is authored by techniques and the BA (docs 1, 3); checks are run by the gate (doc 4). The orchestrator's writes are confined to its own two ledgers (§2.4); every content write in its vicinity is a technique's contracted output landing, or a doc-3 routed edit under BA approval.
-2. **The orchestrator never decides alone.** Every state transition it executes — open, clear, waive, reopen, re-clear, band entry, closure — is a BA act. The framework proposes and assembles evidence; the BA rules; the orchestrator executes and records. This is the contract's "the gate never self-certifies," inherited at the aspect layer: an aspect gate never self-clears.
+2. **The orchestrator never decides alone.** Every state transition it executes — open, clear, waive, reopen, re-clear, band entry, closure — is a BA act. The framework proposes and assembles evidence; the BA rules; the orchestrator executes and records. This is the contract's "the gate never self-certifies," inherited at the aspect layer: an aspect gate never self-clears. **A transition under a recorded, revocable autonomy grant is not a self-clear (D-O41, locked):** the initiative is the BA's, stated in AG-\<n\>; the framework still never clears on its own account, and every AUTO transition stands for ratification at `off`.
 3. **Every record names its element and its action** — the named-gap grammar family (contract §7), extended to state records: a transition without a basis, a waiver without its named unmet criteria, a reopen without the contradicted line — each is invalid orchestrator output, corrected before the ledger accepts it.
 
 And the standing idiom, restated once for the whole document: **no daemons.** Nothing here watches files, schedules timers, or fires on its own. Every detection is lazy, at a defined touchpoint — post-run updates (§7.4), signal moments (§9), band-transition acts (§8), ledger reads at prompt points (§10.1). Every scope is the smallest sufficient one, stated before acting.
@@ -108,6 +109,7 @@ The gate's runtime-ledger rule (D-G1/D-G8), applied without exception: **orchest
 ## Current state                        (head — rewritten in place)
 Band: 1 (open) | 1 (closed <date>) — Bands 2/3 capable
 Profile: <Discovery | Presale> — picked <date> (P-O0); switches append to Events with a reason
+Auto: off | on — AG-<n> · scope <full workflow | until <event>> · since <date>
 | Aspect | State | Since | Basis |
 |---|---|---|---|
 | Stakeholders | first-pass-cleared | 2026-07-08 | evidence table, this file |
@@ -120,8 +122,11 @@ Deferred consequences:    none | RO-<n>: <item> — trigger: <event>
 ## Events                               (append-only; event grammar §2.3)
 2026-07-08 · T2 · Stakeholders · open → first-pass-cleared · Y.K. — AT-ST-1..3
   evidence table (below)
-…evidence tables, AW records, RO records, band events, threshold-gap
-candidates (§8.5) append here in full…
+2026-08-13 · auto on  · AG-<n> · scope <…> · Y.K. — profile <…> (stated | inferred: <basis>)
+2026-08-13 · auto off · AG-<n> · Y.K. — <n> AUTO acts, awaiting ratification
+2026-08-13 · ratification · AG-<n> · Y.K. — accepted all | exceptions: <list>
+…evidence tables, AW records, RO records, AG records, band events,
+threshold-gap candidates (§8.5) append here in full…
 ```
 
 **`.specify/aspect-plans.md`** — the planning record: per aspect, the suggestion snapshot, the composed plan with pinned output contracts, and the run log (§6.4, §7.3).
@@ -236,7 +241,7 @@ Aspect gate review — Stakeholders — 2026-07-08
 → CLEARED · Y.K. · 2026-07-08
 ```
 
-The framework may *propose* confirmation when a refresh shows all criteria met ("threshold evidence complete — confirm?"); it never confirms. An aspect gate never self-clears.
+The framework may *propose* confirmation when a refresh shows all criteria met ("threshold evidence complete — confirm?"); it never confirms. An aspect gate never self-clears (AG transitions: §10.7 — BA-granted, ratifiable).
 
 ---
 
@@ -282,6 +287,12 @@ Home: the aspect-state ledger — the full record appends as an event; standing 
 | Ruled at | P-O5 (this doc) | P2 (gate) | P1 / P8 (gate) |
 
 An AW never lifts a Stage-0 admission block; an HA never unlocks an aspect; a W never touches either layer. Post-closure, debt on spec-anchored artifacts is HA territory (§3.3 handover rule); the AW remains the instrument only for aspect-layer acts (T3/T7), which exist as long as aspects do.
+
+### 4.4 The autonomy grant — AG, the fourth instrument
+
+**AG-\<n\> · scope: \<full workflow | until \<event\>\> · granted-by: \<initials\> · \<date\> · revoke: /ba-auto off, or \<condition\>.** Written by `/ba-auto on` (§10.7), closed at `off` by the ratification act. Home: the aspect-state ledger — the `Auto:` head line plus Events entries at on, off, and ratification. Distinctness: an AG waives nothing and rules nothing — it moves the *moment* of consent, never the *content* of a ruling. An AG never grants what the safety floor reserves (§10.7): ⚑ sign-offs, effective PASS, and handoff stay BA-only.
+
+**D-O35 (locked) — the AG instrument:** the record above, its ledger home, and the distinctness clause. The three waiver instruments of §4.3 are unchanged and the AG never joins their table: they move *what is required*, an AG moves *when the BA states it* (§19).
 
 ---
 
@@ -363,7 +374,7 @@ Every **recommended** line is **evidence-grounded**: it names the hole (AT-ID + 
 
 ### 6.2 Composition (BA — the real plan)
 
-**Select · drop · reorder · add custom** (Q2, verbatim). **P-O2 is a full checkpoint under §10.1's discipline (D-O13):** the framework renders the snapshot (§6.1 shape), then the four acts as an explicit choice line, then **stops and waits**. **Silence is never consent; a rendered suggestion is never a plan.** The framework never composes, records, or begins executing a plan the BA did not state; the composed plan exists only once the BA has stated it, recorded verbatim (§6.4). *Compiled into the planning skill's never-list: "never composes or records a plan the BA did not compose."* The composed plan is the BA's document; the suggestion snapshot stays beside it as audit trail and tuning input. Re-composition is legal at any time while the aspect is `open` or `reopened` — appended, dated; the plan never rewrites its own history.
+**Select · drop · reorder · add custom** (Q2, verbatim). **P-O2 is a full checkpoint under §10.1's discipline (D-O13):** the framework renders the snapshot (§6.1 shape), then the four acts as an explicit choice line, then **stops and waits**. **Silence is never consent; a rendered suggestion is never a plan.** The framework never composes, records, or begins executing a plan the BA did not state; the composed plan exists only once the BA has stated it, recorded verbatim (§6.4). *Compiled into the planning skill's never-list: "never composes or records a plan the BA did not compose."* The composed plan is the BA's document; the suggestion snapshot stays beside it as audit trail and tuning input. Re-composition is legal at any time while the aspect is `open` or `reopened` — appended, dated; the plan never rewrites its own history. **A standing autonomy grant (AG, §4.4) is explicit consent recorded in advance — not silence (D-O40, locked).** Under `auto on`, the grant is the BA's stated act for every act inside its scope, each stamped AUTO and standing for ratification at `off`.
 
 ### 6.3 Output contracts pinned before any run (Q2+)
 
@@ -449,7 +460,9 @@ band transition — or on a contract miss, which stops it with the single
 unblocking act named. The invariant holds: no state change without a BA act —
 the `go` is that act, its extent named in the route render (§10.6). Only the
 granularity of the act changes; ownership of decisions never does. Silence is
-never consent: a route executes only on a stated `go` (D-O13 unchanged).
+never consent: a route executes only on a stated `go` (D-O13 unchanged). Under a
+standing AG (§4.4), the route runner proceeds through §10.1 stops per the §10.7
+policy table; execution mechanics are unchanged.
 
 ---
 
@@ -549,6 +562,9 @@ clearing, waiver, override, reopen ruling, defer batch, overflow ruling,
 profile switch, band transition. A stop that only collects an acknowledgement
 is a banned class — where no decision exists, the framework proceeds and
 reports. The table below lists decision moments, not step boundaries.
+Under a standing autonomy grant (AG, §4.4) the stops below survive as *acts*
+and move as *moments*: §10.7's policy table says which are taken AUTO and which
+the safety floor keeps BA-only.
 
 | # | Moment | Trigger | The BA's act |
 |---|---|---|---|
@@ -603,9 +619,9 @@ executes its own mechanics.
 5. **Code + name, always.** Every technique, stage, or assertion rendered to the BA carries its code *and* its name: "T-05 — Context & landscape mapping," "P-O4 — clearing confirmation." First mention in a sitting adds a one-line purpose. A bare code is a render defect.
 6. **State first, then the act.** Open every render with where the work stands and what the BA does next. Background only on ask.
 7. **Only what the next decision needs.** No methodology explanation mid-flow — name the owning document and section instead. Outside pinned formats, a render past ~10 lines is a cut candidate. An acknowledgement-only stop is a banned render: if no BA decision exists, do not stop.
-8. **Pinned formats stay pinned.** Recurring renders (suggestion snapshot §6.1, ledger head §2.4, profile picker §8.1, project dashboard §10.4, WBS export §10.5, route render §10.6, P-O prompts) keep their shapes; never re-narrate what a format already shows. On conflict between this register and a pinned shape, the shape governs.
+8. **Pinned formats stay pinned.** Recurring renders (suggestion snapshot §6.1, ledger head §2.4, profile picker §8.1, project dashboard §10.4, WBS export §10.5, route render §10.6, resumption report §10.7, P-O prompts) keep their shapes; never re-narrate what a format already shows. On conflict between this register and a pinned shape, the shape governs.
 
-### 10.4 The project dashboard — `/ba.status`'s pinned render (D-O17 · D-O26–D-O29)
+### 10.4 The project dashboard — `/ba.status`'s pinned render (D-O17 · D-O26–D-O29 · D-O38)
 
 **Read-only, two source classes (D-O28).** Activity reads the ledgers — the aspect-state head and events (§2.4), the plans file's composed plans and run logs (§6.4, §7.3), `gate-health.md`, W/O/HA records. Coverage reads the estate on disk, the §10.5 read precedent: `specs/NNN-*/` folders and their `spec.md`, the latest `gate-report.md` entry per feature, `.specify/memory/scope/` briefs and kits, `.specify/memory/roadmap.md`, and the briefs' open-question statuses (doc 3 D4). All read-only; the command never writes, never transitions, never proposes content — rendering is its whole act (§10.2's discipline, read side). Every number is a count with a named source; the one sanctioned composite is the workflow line, formula §10.4-F below (D-O27 — amending D-O17's no-composite clause by new ruling; every other composite stays banned).
 
@@ -624,9 +640,13 @@ Workflow ▕██████░░░░▏ <p>% — §10.4-F
        Rule: low = all zero · elevated = any one non-zero · high = an Override, or ≥ 3 combined
     Presale  → Exit readiness: roadmap <current?> · drafted <d>/<n> · open markers <m> · `/ba.wbs` <ready | blocked: <why>>
 9 · Next: <the one act the state points to — code + name>
+Auto: <on — AG-<n> · scope <…> · since <date> | off — last AG-<n> ratified <date>>
+      trail <n> AUTO acts · unratified <u>     (renders only once an AG exists)
 ```
 
 **Count definitions, each with its source.** *settled* = `cleared | waived` (head). *briefs* / *kits* = files in `.specify/memory/scope/` against the roadmap's epic rows `e`. *entered* = a `specs/NNN-*/` folder exists; *drafted* = its `spec.md` carries at least one User Story (standard §2); *gated* = at least one `gate-report.md` entry, latest verdict shown; *certified* = the latest entry carries a certification manifest (gate §11.1 — the §10.5 rule, never re-verified here); *handed off* renders `—`, its missing source named: `/ba-handoff` re-points `.specify/feature.json` (single-valued, one feature at a time) and cuts the branch — neither act is countable per feature, and no per-feature handoff record exists to count (build-log D87, ratified as built). A countable handoff record is a future ruling; until it is ruled, the count stays `—` and is never inferred from git state. Epic breadth *x* = distinct parent epics among entered features — the spec-§10 References hop §10.5 already uses. *Open markers m* = surviving `[NEEDS CLARIFICATION]` markers across drafted specs. `/ba.wbs` reads *ready* when the roadmap is current and at least one spec is drafted; *blocked* names the missing piece. Line 5's refresh state compares recorded `gate-health.md` runs against the gate's own cadence (one full run per scope-brief ingestion batch) — computed for display; the refresh act stays `/ba-gate-health`'s. Line 6 compares disk against log — Band-2 and Band-3 artifacts on disk vs their §7.3 run-log lines — and names the divergence: the instrument reports its own blind spots, never papers over them. Line 8 renders one variant by profile; out-of-profile facts render as law, never as failure.
+
+**The auto-trail section (D-O38).** Append-only to the v2 shape — the nine numbered lines are untouched, and the section renders **only once an AG record exists in the ledger** (no AG, no line: a project that has never run autonomously shows nothing). Four facts, each a ledger read (§2.4): *mode* from the `Auto:` head line · *the AG record* — id, scope, and the on-date or the ratification date · *trail* = AUTO-stamped acts in Events under that AG · *unratified* = those not yet covered by a ratification event. All four are counts and quotations with a named source, under §10.4's read discipline: rendering the trail is not ratifying it, and this command never writes an AG, an AUTO stamp, or a ratification.
 
 **Formula §10.4-F (D-O27).** B1 = settled/6 · B2 = briefs/epics · B3 = drafted/entered under Presale, certified/entered under Discovery. Workflow % = the mean of the three; each band's bar is its own ratio at ten cells; the top bar is the mean. A zero denominator renders `—`, never 0%. The formula is this text — tunable by version bump, never silently (the line-8 risk rule's pattern).
 
@@ -673,6 +693,44 @@ Stops en route: <the §10.1 decision points, or none>
 Next: step 1 — go?
 ```
 
+### 10.7 Autonomous mode — `/ba.auto on|off` (D-O36 · D-O37 · D-O39)
+
+**Entry.** `on <profile?>` does three things and nothing else: it writes **AG-\<n\>** (§4.4), flips the ledger head's `Auto:` line, and appends the `auto on` event. The profile comes from the argument; absent, it is **inferred and logged** — `canvas.md` present → Presale, absent → Discovery. **The profile never switches mid-auto:** a profile switch is a §10.1 decision moment, and a grant that could re-aim the flow it is running would be a blank cheque, not a grant. Switching means `off`, ratify, switch, `on` again.
+
+**The policy table — one row per surviving stop.** Every P-O in §10.1 still *happens*; what an AG moves is when the BA states it.
+
+| Stop | Under a standing AG |
+|---|---|
+| **P-O2 — plan composition** + route `go` | The plan is composed **as-recommended from the snapshot**, AUTO; the AG **is** the `go` (§7.5). The snapshot still records verbatim (§6.4) — it is the ratification's evidence. |
+| **Defer batches** + the consolidated defer-confirm (§8.4) | Accepted AUTO. **The ambiguity law is unchanged: unclear → Open Question, never an invention.** An AG buys speed on decisions the BA would have made; it never buys a guess. |
+| **P-O4 — clearing confirmation** | All criteria met → clear AUTO. Any miss → **auto-AW** (§4.1, every field filled, misses named), revisit trigger `BA ratification sweep (auto off)`. Debt is never silent: it lands as a record the sweep reads. |
+| **P-O5 — aspect-waiver acts** | Grants and re-affirmations AUTO. |
+| **P-O6 — reopen ruling** | Default **Real**. The blast radius is **stated** (§5.3 step 2); **no cascades are executed** — flags, not state changes, exactly as in manual mode. |
+| **P-O7 — Band-1 closure** · **P-O8 — Band-3 entry** | AUTO stamp. |
+| **P-O9 — overflow ruling** | The **supplement lane** (D-O39): the Tier-1-supplement mini-loop fills the named gaps only, assumption posture held. Not cap-adjust — raising a cap under a grant would let a run enlarge its own budget. Not defer — deferring is debt the BA should take knowingly. |
+| **Gate P2 — verdict review** | **Waivers AUTO on real gaps**, stamped in the report entry (gate §7.1). **Overrides NEVER** — an override says a verdict was wrong, which is a judgement about the checker, not an acceptance of debt. The **non-waivable set is untouchable under any mode:** on CC-G-01/CC-G-02, CC-FR-01, CC-TR-01 the auto path **fixes** — names the gap in the text, or reclassifies — and **re-gates**. It never bypasses. |
+
+**The safety floor (D-O37) — outside every AG, in every profile, without exception:** the **⚑ sign-offs** (CC-XA-01 authorization, CC-XA-06 the scope boundary — gate P3), the **effective PASS** (gate P3 + P4), and **`/ba-handoff`**. These are the acts where a false pass is a security incident, a scope escape, or code built on unread text — the three the BA answers for personally. Per feature, auto therefore terminates at **"done, awaiting ratification"**: the draft is complete, the gate has run, and the last two acts wait for a human.
+
+**AUTO stamp grammar** (runtime rule 3 — every record names its element and its action):
+
+```
+<date> · AUTO (AG-<n>) · <act> · <basis>
+```
+
+**Off mechanics.** `Esc` or `/ba.auto off` ends the grant and renders **the resumption report — a pinned shape** (§10.3 rule 8):
+
+```
+Auto off — <date>
+Stopped at: <point> · mid-flight: <none | run aborted, artifact stays draft>
+Auto-trail: <n> acts — one line each: <date> · AUTO (AG-<n>) · <act> · <basis>
+Assumptions: <n> · Open questions: <n>
+Ratify: accept all / list exceptions
+Next manual act: <one line>
+```
+
+A run interrupted mid-flight leaves its artifact a **draft** — the framework never half-lands an output and calls it done. **Ratification is one batch act;** exceptions reopen their items manually, each by its own ordinary P-O. The ratification appends its event (§2.4) and closes the AG.
+
 ---
 
 ## 11. Phase-2 binding & Phase-1 manual mode
@@ -693,6 +751,7 @@ Names indicative — Phase 2 fixes them (the gate §13 convention). The **Orches
 | Reopen | Signals surface at their native checkpoints (batch approval · Tier-2 session · gate verdict review); `/ba.reopen <aspect>` executes a Real ruling (P-O6) |
 | Band-1 closure | `/ba.close-band1` — precondition check → AW re-affirmations → closure record → invokes the gate's `/ba.gate-health full` as the arming run (P-O7) |
 | Band-3 entry | `/ba.enter-feature <epic>/<feature>` — renders the slicing row for confirmation; doc-3 mechanics perform the write (P-O8) |
+| Autonomous mode | `/ba.auto on [<profile>]` · `/ba.auto off` — writes and closes the AG (§4.4), flips the ledger head's `Auto:` line, runs the §10.7 policy table, and renders the pinned resumption report at `off`; the safety floor (⚑ sign-offs · effective PASS · handoff) sits outside it |
 | Ledger hygiene | Append-only events + in-place head rewrite — the same file discipline as the gate's ledgers |
 
 **Phase-1 manual mode:** the BA maintains both ledgers by hand from this document's templates — §2.4's file shapes, §3.4's evidence table, §4.1's AW fields, §5.3's RO grammar, §8.2's closure checklist, §9's intake table. **Phase-1 exit criterion, met at corpus level with this document:** a BA can run Band 1, clear or waive its six aspect gates, execute every signal the corpus emits, close the band into an armed Scope H, and enter Bands 2–3 — from the documents alone. (Breadth of the Band-1 technique *catalogue* is Wave-2 authoring; until it lands, the custom-contract path (§6.3) carries Band 1 — the machinery is complete without the catalogue.)
@@ -854,6 +913,31 @@ Five decisions ruled by the BA Lead, 13 August 2026 — WS-2, manual-mode UX (R1
 
 ---
 
-*v0.13 · manual-mode UX — the checkpoint law · plan-as-route · the route render · auto-repair · Presale defaults and the ≤ 8 budget · batch Band-3 entry — applied 13 Aug 2026 (D-O30–D-O34, §18) · §10.4 dashboard v2 — band coverage · §10.4-F workflow line · HTML render — applied 12 Aug 2026 (D-O26–D-O29, §17) · §10.5 wording precision applied 10 Aug 2026 (build-log D69–D71 ratified, package 0.1.6) · §10.5 the WBS export applied 10 Aug 2026 (D-O20–D-O25, §16) · §6.5 advisory instrument precision applied 9 Aug 2026 (build-log D65) · Presale drafting — draft specs enter the Presale destination, Tier 2 the set, applied 9 Aug 2026 (D-O18–D-O19, §15) · §6.4 code-column fix applied 8 Aug 2026 (audit F-11 second half; build-log D56) · session boundary + P-O2 checkpoint + flow profiles + dashboard applied 7 Aug 2026 (D-O11–D-O17, §14) · catalogue mirrors applied 30 July 2026 (D-B1-4 · D-B4-4 · D-B5-3 · D-B6-3 · D-B6-5) · review incorporated 25 July 2026 · closes Wave 1 · conducts plan §5's bands over the Q1a/Q1b aspect model · owns the Band-1 aspect gates per the contract's division of labor (its header; §3 cadence) · executes the three doc-3 signals (§1) and the gate's lane-3 reopens (§6.3) · requests the arming full Scope-H run at Band-1 closure (contract §3 · gate §10.1) · thresholds: 18 AT criteria across six aspects · records: AW (aspect waiver) · RO (reopen) · runtime ledgers outside `memory/` per D-G1/D-G8: `.specify/aspect-state.md` · `.specify/aspect-plans.md` · decisions D-O1–D-O34 locked · review records: v0.1→v0.2 in §13 · v0.4→v0.5 in §14 · v0.6→v0.7 in §15 · v0.8→v0.9 in §16 · v0.11→v0.12 in §17 · v0.12→v0.13 in §18*
+## 19. Review record (v0.13 → v0.14)
+
+Five decisions ruled by the BA Lead, 13 August 2026 — WS-3, autonomous mode (R1–R5, all accepted as tabled) — **plus two locked amendments to standing rulings, ruled in the same sitting.** Origin: the manual-mode UX build (WS-2) closed the question of *where* the framework may stop; it left open the question a BA asks next — *may it run a stretch of the flow while I am not at the keyboard?* WS-2's answer was implicitly no, because D-O13 reads consent as an act in the moment and §1 principle 2 reads any unprompted transition as a self-clear. WS-3 answers yes, under one instrument and one floor.
+
+**What did not move.** No threshold, no assertion, no gate verdict rule, no session boundary (§10.2). The ambiguity law is untouched: unclear is still an Open Question, never an invention. The non-waivable set is untouchable in every mode. Ownership of every decision is where it was — an AG moves the *moment* the BA states it, never the *content* of the ruling.
+
+| # | Decision | Ruling (adopted as tabled) | Where |
+|---|---|---|---|
+| **D-O35** | The AG — the fourth instrument | `AG-<n> · scope · granted-by · date · revoke`, written at `on` and closed at `off` by the ratification act; home is the aspect-state ledger. An AG waives nothing and rules nothing, so it never joins §4.3's table: the three waiver instruments move *what is required*, an AG moves *when the BA states it* | §4.4 |
+| **D-O36** | `/ba.auto on\|off` and the policy table | Entry writes the AG, flips the head line, logs the event; the profile is taken from the argument or inferred and logged (`canvas.md` present → Presale), and never switches mid-auto. One policy row per surviving stop — plan-as-recommended + the AG as the `go` · defer batches AUTO with the ambiguity law unchanged · P-O4 clear-or-auto-AW · P-O5, P-O7, P-O8 AUTO · P-O6 default Real with blast radius stated and no cascade · gate P2 waivers AUTO, overrides never, the non-waivable set fixed-and-re-gated. `off` renders the pinned resumption report; ratification is one batch act, exceptions reopen manually | §10.7 · §10.3 |
+| **D-O37** | The safety floor, kept | ⚑ sign-offs (CC-XA-01, CC-XA-06), the effective PASS (gate P3 + P4) and `/ba-handoff` sit outside every AG, in every profile. Per feature, auto terminates at "done, awaiting ratification" | §10.7 |
+| **D-O38** | The mode lives in the ledger head | `Auto:` joins the §2.4 head after `Profile:`; the Events grammar gains the on / off / ratification lines. `/ba.status` grows an append-only auto-trail section — mode, AG record, trail count, unratified count — rendered only once an AG exists; the nine numbered lines are untouched | §2.4 · §10.4 |
+| **D-O39** | P-O9 under auto — the supplement lane | An overflow ruling under an AG takes the supplement lane: the Tier-1-supplement mini-loop fills the named gaps only, assumption posture held. Not cap-adjust (a run must not enlarge its own budget), not defer (deferring is debt the BA takes knowingly) | §10.7 |
+
+**The two locked amendments,** ruled in the same sitting because autonomous mode is incoherent without them — each amends a standing ruling by new ruling, in the D-O27 manner, and neither weakens what it amends:
+
+| # | Amends | Ruling (locked) | Where |
+|---|---|---|---|
+| **D-O40** | D-O13 — silence is never consent | A standing AG is **explicit consent recorded in advance — not silence.** Under `auto on` the grant is the BA's stated act for every act inside its scope, each stamped AUTO and standing for ratification at `off`. D-O13's own case is untouched: absent an AG, a rendered suggestion is still never a plan, and silence still consents to nothing | §6.2 |
+| **D-O41** | §1 principle 2 — an aspect gate never self-clears | A transition under a **recorded, revocable** autonomy grant **is not a self-clear:** the initiative is the BA's, stated in AG-\<n\>; the framework still never clears on its own account, and every AUTO transition stands for ratification at `off`. The three qualifiers are the whole of the amendment — recorded, revocable, ratifiable — and a transition missing any one of them is a self-clear again | §1 · §3.4 |
+
+**Conflict scan against contract v0.2 · gate v0.6 · elicitation v0.4 · standard v0.3 · catalogues b1–b6:** none found. §10.7 consumes gate law strictly by reference — the waiver act (gate §7.1), the non-waivable set (contract §8), the ⚑ procedure (gate §5.3), P3/P4 (gate §2.3), handoff (gate §11) — and modifies none of it; the gate's own §7.1 gains the AUTO-waiver paragraph and its floor sentence, and nothing else. The session boundary (§10.2) is untouched and unreachable by an AG: it lifts only by effective PASS + handoff, both of which the floor reserves. **No erratum issued.**
+
+---
+
+*v0.14 · autonomous mode — the autonomy grant (AG, §4.4) · `/ba.auto on|off` and the §10.7 policy table · the safety floor · the mode in the ledger head and the dashboard's auto-trail · P-O9's supplement lane · the two locked amendments (D-O13 → D-O40 · self-clear → D-O41) — applied 13 Aug 2026 (D-O35–D-O41, §19) · manual-mode UX — the checkpoint law · plan-as-route · the route render · auto-repair · Presale defaults and the ≤ 8 budget · batch Band-3 entry — applied 13 Aug 2026 (D-O30–D-O34, §18) · §10.4 dashboard v2 — band coverage · §10.4-F workflow line · HTML render — applied 12 Aug 2026 (D-O26–D-O29, §17) · §10.5 wording precision applied 10 Aug 2026 (build-log D69–D71 ratified, package 0.1.6) · §10.5 the WBS export applied 10 Aug 2026 (D-O20–D-O25, §16) · §6.5 advisory instrument precision applied 9 Aug 2026 (build-log D65) · Presale drafting — draft specs enter the Presale destination, Tier 2 the set, applied 9 Aug 2026 (D-O18–D-O19, §15) · §6.4 code-column fix applied 8 Aug 2026 (audit F-11 second half; build-log D56) · session boundary + P-O2 checkpoint + flow profiles + dashboard applied 7 Aug 2026 (D-O11–D-O17, §14) · catalogue mirrors applied 30 July 2026 (D-B1-4 · D-B4-4 · D-B5-3 · D-B6-3 · D-B6-5) · review incorporated 25 July 2026 · closes Wave 1 · conducts plan §5's bands over the Q1a/Q1b aspect model · owns the Band-1 aspect gates per the contract's division of labor (its header; §3 cadence) · executes the three doc-3 signals (§1) and the gate's lane-3 reopens (§6.3) · requests the arming full Scope-H run at Band-1 closure (contract §3 · gate §10.1) · thresholds: 18 AT criteria across six aspects · records: AW (aspect waiver) · RO (reopen) · runtime ledgers outside `memory/` per D-G1/D-G8: `.specify/aspect-state.md` · `.specify/aspect-plans.md` · decisions D-O1–D-O41 locked · review records: v0.1→v0.2 in §13 · v0.4→v0.5 in §14 · v0.6→v0.7 in §15 · v0.8→v0.9 in §16 · v0.11→v0.12 in §17 · v0.12→v0.13 in §18 · v0.13→v0.14 in §19*
 
 

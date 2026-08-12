@@ -25,6 +25,10 @@ then plumb.
   working: it is the runtime enforcement of *the certified text is the read
   text* (plan Q5). Do not work around it, do not re-hash, do not "just check the
   diff and continue". Route the fix and re-gate.
+- **Never under an AG.** Handoff is the safety floor, with the two ⚑ sign-offs
+  and the effective PASS: an autonomy grant (`/ba-auto on`) never reaches this
+  act and never AUTO-stamps it. Under auto a feature stops at "done, awaiting
+  ratification" — this command is what the BA runs after.
 
 ## The act
 
@@ -141,6 +145,9 @@ never invokes any `/speckit-*` command (the operator does) · never commits,
 merges, or pushes · never continues past a divergence · never re-hashes to
 "update" a manifest — a manifest is written by the gate, at certification, and
 nowhere else.
+
+**Mode read (framework-wide):** before the first act of any session, read the
+aspect-state head — the Profile and Auto lines govern.
 
 **Register self-check (§10.3), before any BA-facing render:** short sentences ·
 code + name · state first, then the act · ≤ 10 lines outside pinned shapes ·

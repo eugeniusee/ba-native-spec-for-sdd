@@ -158,6 +158,9 @@ averages two incompatible meanings into one entry · never edits another artifac
 outside an approved batch · never confirms AT-RQ-3 or clears an aspect · never
 enriches past the criterion unasked · never runs a CC assertion.
 
+**Mode read (framework-wide):** before the first act of any session, read the
+aspect-state head — the Profile and Auto lines govern.
+
 **Register self-check (§10.3), before any BA-facing render:** short sentences ·
 code + name · state first, then the act · ≤ 10 lines outside pinned shapes ·
 no acknowledgement-only stop. A failing render is rewritten, not sent.

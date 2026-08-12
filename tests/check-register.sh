@@ -928,6 +928,76 @@ SC_DSUM="$(tail -1 "$TMP/sc-dirty.out")"
   && ok "…and the paraphrased unit is caught as altered" \
   || bad "a paraphrased self-check passed the sweep: the byte-match does not hold"
 
+# ── 8. the standing-instructions stack — one order, everywhere ───────────────
+#
+# Sections 5 and 7 hold two of the compiled blocks down individually, and
+# check-auto.sh holds down the third (the mode read, WS-3). What none of them
+# asserts is that the three arrive in **one order**, in every unit: mode read →
+# register self-check → session boundary. The order is not decoration. The mode
+# read says which Profile and Auto lines govern, the self-check governs the
+# render about to be composed, and the boundary governs the whole session — read
+# outermost-first, a unit that shuffles them has a render rule arriving before
+# the mode it renders under.
+#
+# Derived from the same globs as the corpus: a new skill joins by existing.
+
+if [ "$ONLY_SELFTEST" -eq 0 ]; then
+
+printf '\n▸ The standing-instructions stack — mode read → self-check → boundary, in every unit\n'
+
+stack_of() {
+  # <file> → the three markers in the order they appear, space-separated
+  grep -n -e '^\*\*Mode read (framework-wide):\*\*' \
+          -e '^\*\*Register self-check (§10\.3)' \
+          -e '^\*\*The session boundary (framework-wide)\.\*\*' \
+          -e '^\*\*Session mode — the analysis boundary' "$1" \
+    | sed 's/:.*Mode read.*/ mode/; s/:.*Register self-check.*/ self/; s/:.*session boundary.*/ bound/; s/:.*Session mode.*/ bound/' \
+    | awk '{print $NF}' | tr '\n' ' ' | sed 's/ $//'
+}
+
+ST_N=0; ST_OK=0
+: > "$TMP/stack-bad.txt"
+for f in "$PKG_ROOT"/payload/claude/skills/*/SKILL.md \
+         "$PKG_ROOT"/payload/claude/agents/*.md \
+         "$PKG_ROOT"/payload/mirror/*.md; do
+  [ -f "$f" ] || continue
+  ST_N=$((ST_N+1))
+  s="$(stack_of "$f")"
+  if [ "$s" = "mode self bound" ]; then ST_OK=$((ST_OK+1))
+  else printf '%s\t%s\n' "${f#"$PKG_ROOT"/}" "$s" >> "$TMP/stack-bad.txt"; fi
+done
+
+[ "$ST_N" -gt 0 ] \
+  && ok "the carrier glob derives a non-empty set — $ST_N units" \
+  || bad "the stack glob matched nothing: section 8 would pass vacuously"
+
+if [ "$ST_OK" -eq "$ST_N" ]; then
+  ok "all $ST_N units carry the three blocks in one order — mode → self-check → boundary"
+else
+  bad "$((ST_N-ST_OK)) of $ST_N units carry the stack out of order or incomplete:"
+  sed 's/^/      /' "$TMP/stack-bad.txt" | head -10
+fi
+
+# the control: swap two blocks in a private copy and the order check must fail
+STC="$TMP/stack-corpus"
+mkdir -p "$STC"
+( cd "$PKG_ROOT" && tar cf - payload/claude/skills/ba-frame ) | ( cd "$STC" && tar xf - )
+python3 - "$STC/payload/claude/skills/ba-frame/SKILL.md" <<'PYX'
+import pathlib, sys
+p = pathlib.Path(sys.argv[1])
+lines = p.read_text(encoding="utf-8").splitlines(keepends=True)
+i = next(n for n, l in enumerate(lines) if l.startswith("**Mode read (framework-wide):**"))
+j = next(n for n, l in enumerate(lines) if l.startswith("**Register self-check (§10.3)"))
+block = lines[i:j]                       # the mode read plus its blank line
+del lines[i:j]
+p.write_text("".join(lines) + "\n" + "".join(block), encoding="utf-8")
+PYX
+[ "$(stack_of "$STC/payload/claude/skills/ba-frame/SKILL.md")" = "self bound mode" ] \
+  && ok "the control fires — a unit with the mode read moved last reads out of order" \
+  || bad "moving the mode read to the end did not change the detected order: the probe is blind"
+
+fi  # end of section 8
+
 # ── roll-up ──────────────────────────────────────────────────────────────────
 
 printf '\n  passed: %s   failed: %s\n' "$PASSED" "$FAILED"
@@ -935,8 +1005,8 @@ if [ "$FAILED" -eq 0 ]; then
   if [ "$ONLY_SELFTEST" -eq 1 ]; then
     printf '✓ GREEN — the register self-test: 4 seeded defects, one per render class + the field defect\n'
   else
-    printf '✓ GREEN — the BA-facing register: rule 5 across %s files · %s names from source · §10.2 in %s units + 2 mirrors · §6.1 byte-identical in the planner · the §10.3 self-check in %s units · 11 seeded defects\n' \
-      "${F:-?}" "${NAMES_N:-?}" "${B_UNITS:-?}" "${SC_UNITS:-?}"
+    printf '✓ GREEN — the BA-facing register: rule 5 across %s files · %s names from source · §10.2 in %s units + 2 mirrors · §6.1 byte-identical in the planner · the §10.3 self-check in %s units · the standing stack in order across %s · 12 seeded defects\n' \
+      "${F:-?}" "${NAMES_N:-?}" "${B_UNITS:-?}" "${SC_UNITS:-?}" "${ST_N:-?}"
   fi
   exit 0
 fi

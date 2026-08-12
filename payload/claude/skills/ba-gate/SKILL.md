@@ -259,6 +259,15 @@ it. On a FAIL verdict both lines read `— (verdict FAIL)`.
 self-certifies. A FAIL needs no approval — it is final until fixed, overridden
 or waived.
 
+**The safety floor — never under an AG.** An autonomy grant (`/ba-auto on`)
+reaches P2 and stops there: waivers on real gaps may be taken AUTO, stamped
+`AUTO (AG-<n>)` in the report entry and standing for ratification at `off`;
+**overrides are never AUTO**, and the non-waivable set is untouchable under any
+mode — the auto path names the gap in the text or reclassifies, then re-gates,
+and never bypasses. **P3 — the ⚑ sign-offs — and P4 — approval — sit outside
+every grant**, in every profile. Under auto a feature ends at "done, awaiting
+ratification"; these two acts wait for the BA.
+
 ## Stage 5 — certification (effective PASS only)
 
 1. Commit the candidate `traceability.md` from the workspace to
@@ -318,6 +327,9 @@ or approves on the BA's behalf · never runs a Band-1 aspect gate (that is
 flow profile — it is read from the ledger head or not read at all · never lets
 the profile touch a verdict, a threshold or an assertion: the quality machinery
 is profile-blind, and the appended agenda line is a render.
+
+**Mode read (framework-wide):** before the first act of any session, read the
+aspect-state head — the Profile and Auto lines govern.
 
 **Register self-check (§10.3), before any BA-facing render:** short sentences ·
 code + name · state first, then the act · ≤ 10 lines outside pinned shapes ·

@@ -5129,3 +5129,272 @@ and it is the shape the ruling names (§11's two new binding rows). If the field
 finds the overload confusing, splitting the batch driver into its own command is
 a one-line re-ruling and a file move; nothing in §7.5 or §8.4 depends on the two
 living together.
+
+## Autonomous mode — the autonomy grant · the §10.7 policy table · the safety floor · package 0.1.11 · 13 August 2026 · GREEN
+
+WS-2 closed the question of **where** the framework may stop. WS-3 answers the
+one a BA asks immediately afterwards: **may it keep going while I am not at the
+keyboard?**
+
+The corpus's answer had been implicitly no, and for two good reasons that had
+to be amended rather than ignored. D-O13 reads consent as an act taken in the
+moment — *silence is never consent*. §1 principle 2 reads any unprompted
+transition as a self-clear — *an aspect gate never self-clears*. Both are load
+bearing, and a build that quietly loosened either would have traded the
+framework's whole guarantee for convenience. So WS-3 amends both **by new
+ruling, on the record**, and buys the amendment with an instrument and a floor:
+a grant that is written down, revocable, and ratified afterwards; and three acts
+the grant can never reach.
+
+**Nothing about ownership moved.** The BA decides everything the BA decided
+before. What an autonomy grant moves is the **moment** the BA states a decision.
+It never moves the **content** of one — which is why the ambiguity law survives
+verbatim (unclear is still an Open Question, never an invention) and the
+non-waivable set is untouchable in every mode.
+
+**Parameters, allocated from the live tree.** HEAD was exactly the orientation
+commit `b1767a9`, so the WS-2 §4 footprint scan found nothing to reconcile — but
+the parameter rule fired anyway, because the brief pinned no numbers: VERSION
+0.1.10 → **0.1.11** · orchestrator v0.13 → **v0.14** · gate v0.5 → **v0.6** ·
+the D-O high-water mark 34 → the contiguous block **D-O35–D-O41** · review
+record **§19** · test row **17** · divergences from **D96**.
+
+### S1 — the autonomy grant (D-O35)
+
+New §4.4. `AG-<n> · scope · granted-by · date · revoke` — written by
+`/ba-auto on`, closed at `off` by the ratification act, homed in the aspect-state
+ledger as the `Auto:` head line plus Events entries at on, off and ratification.
+
+**It is the fourth instrument, and it joins none of the three tables.** §4.3's
+AW / W / HA table is about waivers: instruments that move *what is required*. An
+AG waives nothing and rules nothing — it moves *when the BA states it*. The
+distinctness clause is in the instrument's own record, and it ends by naming the
+floor: an AG never grants ⚑ sign-offs, effective PASS, or handoff.
+
+### S2 — `/ba.auto on|off` and the policy table (D-O36 · D-O39)
+
+New §10.7. Entry does three things — writes the grant, flips the head line, logs
+the event — and the profile is taken from the argument or **inferred and
+logged** (`canvas.md` present → Presale). It **never switches mid-auto**: a
+grant that could re-aim the flow it is running is a blank cheque, not a grant.
+
+Then one policy row per surviving §10.1 stop. Plan composition goes
+as-recommended and the grant **is** the route `go`. Defer batches are accepted.
+Clearing clears when every criterion is met and otherwise takes an **auto-AW** —
+a full waiver record, misses named, revisit trigger `BA ratification sweep (auto
+off)`, so debt under auto is never silent. Reopens default to Real with the
+blast radius **stated** and **no cascade executed**. P-O9 — overflow ruling takes
+**the supplement lane and only that lane** (D-O39): not cap adjust, because a run
+must not enlarge its own budget; not defer, because that is debt the BA takes
+knowingly. At the gate: waivers AUTO on real gaps, **overrides never**, and on
+the non-waivable set the auto path **fixes and re-gates** — it never bypasses.
+
+`off` renders the **resumption report**, a pinned shape joining §10.3 rule 8's
+list. An interrupted run leaves its artifact a draft. Ratification is one batch
+act; exceptions reopen manually, each by its own ordinary checkpoint.
+
+### S3 — the safety floor, kept (D-O37)
+
+Three acts sit outside every grant, in every profile: the two ⚑ sign-offs
+(CC-XA-01 authorization, CC-XA-06 the scope boundary), the effective PASS, and
+`/ba-handoff`. They are the acts where a false pass is a security incident, a
+scope escape, or code built on unread text.
+
+The consequence is stated as a terminus rather than a prohibition: per feature,
+auto ends at **"done, awaiting ratification."** The draft is complete, the gate
+has run, and the last two acts wait for a human. Gate v0.6 carries the same floor
+in its own §7.1, beside the AUTO waiver lane it opens.
+
+### S4 — the mode in the ledger head (D-O38)
+
+`Auto:` joins the §2.4 head after `Profile:`, and the Events grammar gains the
+on / off / ratification lines. `/ba.status` gains an **append-only** auto-trail
+section — mode, grant record, trail count, unratified count — that renders only
+once a grant exists. The nine numbered dashboard lines are untouched, and the
+section is four ledger reads under §10.4's read discipline: rendering the trail
+is not ratifying it.
+
+The mode has to be *read*, not just recorded, so E11's one-line **mode read**
+compiles byte-identical into the whole standing-instructions carrier set —
+40 skills, personas and mirrors: *before the first act of any session, read the
+aspect-state head — the Profile and Auto lines govern.*
+
+### S5 — the two locked amendments (D-O40 · D-O41)
+
+Ruled by the BA Lead in the same sitting, because autonomous mode is incoherent
+without them, and each amends a standing ruling **by new ruling** in the D-O27
+manner:
+
+**D-O40 → D-O13.** A standing AG is *explicit consent recorded in advance — not
+silence.* D-O13's own case is untouched: absent a grant, a rendered suggestion is
+still never a plan, and silence still consents to nothing. Both sentences are
+asserted, in both places, precisely because a future edit would drop the second
+while keeping the first.
+
+**D-O41 → §1 principle 2.** A transition under a **recorded, revocable** grant is
+*not a self-clear* — the initiative is the BA's, stated in the grant, and every
+AUTO transition stands for ratification at `off`. The three qualifiers are the
+whole amendment; a transition missing any one of them is a self-clear again.
+
+### S6 — the harness
+
+`tests/check-auto.sh`, row 17, 88 checks, in seven sections: the AG record and
+the `Auto:` head line held down in the §2.4 exhibit and the shipped template ·
+the §10.7 policy table across all four surfaces that carry it, each miss named ·
+**the safety-floor sweep** · the resumption report extracted from §10.7 and
+byte-compared against the three files that render it · the mode read
+byte-identical across the 40 carriers · the ratification grammar · the two
+amendments, with D-O13's own case asserted beside its amendment.
+
+**The floor sweep is the section that matters.** It joins the render surface
+into the paragraphs a reader sees, cuts them into sentences, and flags any
+sentence carrying both an `AUTO` token and a floor act without a prohibition —
+because the only legitimate reason to say "AUTO" and "handoff" in one breath is
+to say that the one never touches the other. Three seeded breaches prove it
+fires, one per floor act; two negated forms prove it can read a prohibition
+rather than just pattern-match near one. The floor list, the AUTO tokens and the
+negation list all print on every run (`--list` prints them alone), so the sweep's
+edges stay visible the way `check-budget.sh`'s banned list does.
+
+`check-orchestrator.sh` gains the two new sections and §19 in its inventory, the
+amended rule-8 list, the v0.14 header assertion, and a **contiguity check on the
+whole D-O block** — 1…41, no gap, no reuse. `check-register.sh` gains section 8:
+the three standing blocks in one **order** across every carrier. `check-spine.sh`
+gains the supplement lane at Tier 2, with both refusals named.
+
+### Test run — 17 of 17
+
+| Check | Result |
+|---|---|
+| `check-m.sh` | 40 / 0 |
+| `check-gate.sh` | 59 / 0 |
+| `check-orchestrator.sh` | 148 / 0 |
+| `check-techniques.sh` | 101 / 0 |
+| `check-techniques2.sh` | 122 / 0 |
+| `check-techniques3.sh` | 158 / 0 |
+| `check-spine.sh` | 159 / 0 |
+| `check-register.sh` | 62 / 0 |
+| `check-wbs.sh` | 62 / 0 |
+| `check-status.sh` | 94 / 0 |
+| `check-ledger.py` | grammar-legal — 14 rules, no violations |
+| `check-cards.py` | every card byte-identical to its re-derivation; layering clean |
+| `check-layout.sh` | 111 / 0 / 0 |
+| `check-exit.sh --offline` | 99 / 0 |
+| `check-install.sh` | 64 / 0 |
+| `check-budget.sh` | 37 / 0 |
+| `check-auto.sh` | 88 / 0 |
+
+`ran: 17   red: 0   skipped: 0` · **✓ GREEN**, the three install-based runs
+included. Counts equal the 0.1.10 baseline except `check-orchestrator.sh`
+(135 → 148), `check-spine.sh` (155 → 159), `check-register.sh` (59 → 62),
+`check-layout.sh` (110 → 111 — the new skill's row), and the new
+`check-auto.sh`. **The runner is now seventeen checks, not sixteen** — its
+header, `--list` output, roll-up and the README's four count strings updated in
+step.
+
+### Divergences
+
+**D96 · The ruling block is seven numbers, not five.** The brief names R3, R4
+and R5 explicitly and refers to "locked amendments D-O13 + self-clear" without
+numbering them. *Resolution taken:* WS-2's shape, extended — R1–R5 →
+**D-O35–D-O39** (the AG instrument · `/ba.auto` and the policy table · the safety
+floor · the ledger head and the dashboard · P-O9's supplement lane) — and the two
+locked amendments take **D-O40** and **D-O41** of their own. An amendment by new
+ruling *is* a ruling: D-O27 already amended D-O17 that way and took its own
+number. The block stays contiguous from the live high-water mark, which is what
+the parameter rule requires, and `check-orchestrator.sh` now asserts that
+contiguity rather than trusting it.
+
+**D97 · The self-clear sweep cross-referenced five sites of twenty-one.** E3
+says to sweep every *"never self-clears"* echo and add the pointer *"where it
+reads naturally"*. The live tree carries twenty-one across docs and payload.
+*Cross-referenced:* orchestrator §1 principle 2 (the amendment itself) · §3.4's
+confirmation act · the orchestrator persona's rule 2 · `ba-clear/SKILL.md` ·
+the `aspect-state.md` template. *Left alone, deliberately:* the fourteen
+`ba-t<NN>` skills' line *"Proposing is not confirming; an aspect gate never
+self-clears"* — that sentence governs the **run-end proposal**, which is exactly
+as true under a grant as without one (the confirmation moves to `/ba-clear`,
+where the AUTO stamp lands), so a pointer there would aim away from the act the
+line governs; and `payload/specify-overlay/ba/cards/at-thresholds.md`, a compiled
+card fixed at *AT-ID + exact text — nothing else* (build plan §2.5) and
+regenerated by `check-cards.py --record` — a methodology cross-reference cannot
+travel into it without breaking the compile rule. The contract's own *"the gate
+never self-certifies"* is a contract line, not this document's to edit, and the
+floor keeps the gate's approval outside every grant regardless.
+
+**D98 · The gate skill took the whole §7.1 paragraph, not only the floor line.**
+E12 assigns *"one floor line"* to `ba-handoff` and the gate-executing surfaces;
+`ba-handoff` and `ba-gate.md` took exactly that. *Resolution taken:*
+`ba-gate/SKILL.md` took the floor line **plus the AUTO waiver lane**, because P2
+is where that lane is operative and this skill is the surface that runs P2. A
+floor line alone would have told the gate what it may not do under a grant
+without telling it what it may — and the compiled surface would then refuse a
+waiver the ruling grants. This compiles E9 in full rather than in half.
+
+**D99 · Row 17 joins row 16 in a whole-surface group of two.** WS-2's D95 fixed
+`check-budget.sh` at row 16 — file-only, but run after the install-based rows
+because it reads the render surface entire. `check-auto.sh` has the same shape:
+its floor sweep covers every skill, persona, mirror, template and card.
+*Resolution taken:* row 17 beside it rather than renumbering 13–16. The
+whole-surface group is now two, not one, and `--file-only` runs **fourteen**
+checks, not thirteen.
+
+**D100 · The mode read is asserted once — in `check-auto.sh`; `check-register.sh`
+got the order instead.** E11 places the mode-read line in "check-register's
+carrier set" while E14 gives `check-auto.sh` the assertion "mode-read line across
+the carrier set". Asserting the same bytes in both suites would be the same
+assertion twice. *Resolution taken:* `check-auto.sh` §5 owns the byte-identity
+sweep and its two controls; `check-register.sh` gained section 8 — the **order**
+of the three standing blocks (mode read → self-check → boundary), which no suite
+asserted before and which is squarely check-register's territory. Exactly-once
+holds, and the new section is a new fact rather than a second opinion.
+
+**D101 · Three payload edits beyond the brief's compile list, each forced by an
+E-item's own text.** (a) `ba-tier2/SKILL.md` gains the supplement-lane paragraph:
+D-O39 rules a **Tier-2** act, and the skill that raises the overflow signal is the
+only surface that executes it — `check-spine.sh` asserts it there. (b) The
+`aspect-state.md` template gains the `Auto:` head line, the AG record, the AUTO
+stamp and the three events: E5 rules the §2.4 head grammar, and the template *is*
+§2.4's shipped form — its own header says so. (c) `ba-clear/SKILL.md` gains the
+auto-AW branch: E4's P-O4 row has two outcomes, and `/ba-clear` is the skill that
+takes both.
+
+**D102 · The skill count moved 33 → 34, and five pinned strings with it.**
+`/ba-auto` is the thirty-fourth `/ba-*` skill. *Resolution taken:*
+`layout.expected`'s workflow header (13 → 14) plus its new row ·
+`check-layout.sh`'s registry bar, four sites · `check-install.sh`'s bootstrap
+assertion · the CLAUDE.md block's *"All 33"* and *"Workflow — 15"* · README's
+*"in all 33 skills and 4 personas"*. *Left alone:* the build plan's D-P2-2, which
+reads *"All 32 commands"* — a decision record of what was ruled at the time, not
+a live render (WS-2's D94 precedent, applied again).
+
+### Open
+
+**The floor sweep is a text sweep, and text is not behavior.** It proves no
+compiled sentence in the payload authorizes an AUTO-stamped ⚑ sign-off,
+effective PASS or handoff. It cannot prove a live agent under a standing grant
+will not do it anyway — the floor's real enforcement is that the three acts are
+the BA's own, and a stamp the framework never wrote is a stamp the BA never
+signed. The same limitation `check-budget.sh` records for the interaction budget,
+inherited knowingly, and for the same reason: the agent-run half is a field act.
+
+**The negation list is judgment, like the banned list before it.** Ten
+prohibition shapes catch how English says *never*. A model can phrase an
+eleventh. The list prints on every run so its edges stay visible; extending it is
+a one-line edit at the top of the suite.
+
+**The `Auto:` line is not retrofitted into the §12 fixture ledger.** The
+appointment-booking ledger records acts from July 2026 — before the profile field
+and long before autonomous mode. It carries neither line, and `check-ledger.py`
+accepts it, for the same reason it accepts the missing `Profile:` line: the head
+rule requires the four standing lines, not the optional ones. A fixture that
+claimed a mode nobody could have entered would be a worse record than one that
+does not mention it.
+
+**The auto-trail count has no writer yet in `sk_status.py`.** §10.4's section and
+the skill's compiled instructions define what renders; the vendored dashboard
+script renders the nine numbered lines. The trail section is agent-rendered off
+the ledger, which is where its four facts live — and it renders only when a grant
+exists, so a project that has never run autonomously sees no difference. Whether
+the script should learn to count AUTO stamps is a build item behind the first
+field grant, not a ruling.

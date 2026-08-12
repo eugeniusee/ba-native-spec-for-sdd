@@ -401,6 +401,18 @@ has "$TI2" "append under \`## Band 3\`" "Tier 2 books its own run under ## Band 
 has "$TI2" "the line names its feature" "…one line per feature, the element named"
 has "$TI2" "Append forward only" "…and never reconstructs a run it did not log"
 has "$TI2" "P-O9 — overflow ruling" "the Tier-2 run takes its own overflow ruling in the same sitting"
+
+# WS-3: under a standing autonomy grant the same ruling has exactly one legal
+# outcome. The two it must refuse are the two that would let a run rewrite its
+# own terms — enlarge its budget, or take on debt the BA never saw.
+has "$TI2" "takes **the supplement lane, and only that lane**" \
+    "…and under a grant it takes the supplement lane, and only that lane (D-O39)"
+has "$TI2" "Never cap adjust — a run must not enlarge its own budget." \
+    "…never cap adjust: a run may not enlarge its own budget"
+has "$TI2" "Never defer — deferring is debt the BA takes knowingly." \
+    "…never defer: that debt is the BA's to take"
+has "$TI2" '<date> · AUTO (AG-<n>) · <act> · <basis>' \
+    "…and the supplement act carries the AUTO stamp"
 for s in t17 t18 tier1 tier2; do
   has "$SKILLS/ba-$s/SKILL.md" "BA-invoked, never auto-fired" "ba-$s refuses to auto-fire"
   has "$SKILLS/ba-$s/SKILL.md" "is the one-step entry" "…and is entered in one step, by its own command"

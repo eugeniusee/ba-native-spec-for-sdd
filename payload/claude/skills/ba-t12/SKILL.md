@@ -193,6 +193,9 @@ exist yet · never maps a journey or authors a screen permission · never edits
 batch · never confirms an AT criterion or clears an aspect · never runs a CC
 assertion.
 
+**Mode read (framework-wide):** before the first act of any session, read the
+aspect-state head — the Profile and Auto lines govern.
+
 **Register self-check (§10.3), before any BA-facing render:** short sentences ·
 code + name · state first, then the act · ≤ 10 lines outside pinned shapes ·
 no acknowledgement-only stop. A failing render is rewritten, not sent.

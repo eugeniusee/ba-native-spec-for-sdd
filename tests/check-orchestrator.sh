@@ -490,18 +490,33 @@ else
   has "$AG" "The composed plan is a route." "plan-as-route compiles in too (§7.5, D-O31)"
   has "$AG" "Silence is never consent" "…with D-O13 restated inside it, not relaxed"
   has "$AG" "Auto-repair." "auto-repair compiles in (§10.2, D-O32)"
+  # WS-3: the grant, the floor, and the amendment the grant depends on
+  has "$AG" "## Autonomous mode — the autonomy grant" \
+      "the autonomy grant compiles into the persona (§4.4, D-O35)"
+  has "$AG" "The AG is the fourth instrument, and it belongs in none of the three tables" \
+      "…kept out of the three-instrument table it must not join"
+  has "$AG" "A transition under a recorded, revocable grant is not a self-clear." \
+      "…with the self-clear amendment in the persona's own voice (D-O41)"
+  has "$AG" "A standing grant is explicit consent recorded in advance — **not silence.**" \
+      "…and D-O13's amendment beside it (D-O40)"
+  has "$AG" "The safety floor — outside every grant, in every profile." \
+      "…and the safety floor it may never cross (D-O37)"
+  has "$AG" "You never grant yourself an AG." \
+      "…and the refusal that keeps the grant the BA's act"
 fi
 
 # ── 6b. the document's own section inventory ─────────────────────────────────
 #
-# WS-2 added two sections and one review record. A section that is referenced
-# but absent is the failure mode this guards: §10.3 rule 8 names §10.6, §7.5
-# names §10.6, and the runner names both.
+# WS-2 added two sections and one review record; WS-3 added two more and its
+# own. A section that is referenced but absent is the failure mode this guards:
+# §10.3 rule 8 names §10.6 and §10.7, §7.5 names both §10.6 and §10.7, §4.4 and
+# §6.2 point at §10.7, and the runner names them all.
 
 printf '\n▸ The section inventory — every section the corpus references exists\n'
 
 RULES_DOC="$PKG_ROOT/docs/methodology/ba-native-spec-orchestrator-rules.md"
-for sec in "### 7.5 Plan-as-route" "### 10.6 The route render" "## 18. Review record"; do
+for sec in "### 7.5 Plan-as-route" "### 10.6 The route render" "## 18. Review record" \
+           "### 4.4 The autonomy grant" "### 10.7 Autonomous mode" "## 19. Review record"; do
   grep -qF -- "$sec" "$RULES_DOC" \
     && ok "the document carries \`$sec\`" \
     || bad "the document is missing \`$sec\` — referenced but absent"
@@ -510,10 +525,23 @@ done
 # §10.3's two amended rules, in the document that owns them
 has "$RULES_DOC" "An acknowledgement-only stop is a banned render" \
     "§10.3 rule 7 carries the banned-render clause (D-O30)"
-has "$RULES_DOC" "WBS export §10.5, route render §10.6" \
-    "§10.3 rule 8's pinned-formats list names both renders"
-has "$RULES_DOC" "v0.13" "the header states the edition WS-2 produced"
-has "$RULES_DOC" "D-O30–D-O34" "…and the change record names its decisions"
+has "$RULES_DOC" "WBS export §10.5, route render §10.6, resumption report §10.7" \
+    "§10.3 rule 8's pinned-formats list names all three renders"
+has "$RULES_DOC" "v0.13" "the change-record stack keeps the edition WS-2 produced"
+has "$RULES_DOC" "D-O30–D-O34" "…and the decisions it ruled"
+head -2 "$RULES_DOC" | grep -q 'v0\.14' \
+  && ok "the header states the edition WS-3 produced — v0.14" \
+  || bad "the header does not name v0.14: the edition and the change record disagree"
+has "$RULES_DOC" "D-O35–D-O39" "…and the change record names the WS-3 ruling block"
+has "$RULES_DOC" "D-O40–D-O41" "…and the two locked amendments it carries"
+
+# the ruling block is contiguous from the live high-water mark: no gap, no reuse
+python3 - "$RULES_DOC" <<'PYX' && ok "the D-O block runs 1…41 with no gap and no skipped number" \
+  || bad "the D-O decision block is not contiguous — a number is missing or reused"
+import re, sys
+seen = {int(n) for n in re.findall(r"D-O(\d+)", open(sys.argv[1], encoding="utf-8").read())}
+sys.exit(0 if seen == set(range(1, 42)) else 1)
+PYX
 
 # ── 7. layering — no methodology leaks into the payload ──────────────────────
 

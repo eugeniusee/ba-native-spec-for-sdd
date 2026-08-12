@@ -1,5 +1,6 @@
 # Geniusee Gate Definition
-### BA-Native Spec · contract runtime · v0.5 — FAIL-as-agenda cross-reference for Presale drafts (§6.1, 9 Aug 2026)
+### BA-Native Spec · contract runtime · v0.6 — the AUTO waiver lane and the safety floor (§7.1, 13 Aug 2026)
+**v0.6 change record:** one additive paragraph, 13 Aug 2026 (WS-3 — autonomous mode; orchestrator D-O36 · D-O37, its §19, v0.14): §7.1 records that under a standing autonomy grant (orchestrator §4.4, §10.7) a **P2 waiver on a real gap may be taken AUTO**, stamped `AUTO (AG-<n>)` in the report entry and standing for ratification at `off` — while **overrides are never AUTO**, the **non-waivable set is untouchable under any mode** (the auto path fixes and re-gates, never bypasses), and **P3 ⚑, P4 approval and handoff (§11) sit outside every AG** — the safety floor. No verdict rule, no waiver field, no assertion and no stage changes; the gate stays profile-blind and now mode-blind by the same logic — a waiver's six §8 fields, its anchor and its lifecycle are identical whoever states it. No other changes.
 **v0.5 change record:** one additive bullet + one dependency refresh, 9 Aug 2026 (Presale drafting follow-up; orchestrator D-O18, build-log D65 context): §6.1 gains the **FAIL-as-agenda** cross-reference — on a draft spec under the Presale profile, the FAIL report's named-gap lines double as the client Q&A agenda (orchestrator §6.5); no verdict machinery changes, the gate stays profile-blind (orchestrator D-O14). Footer dependency line: elicitation v0.3 → v0.4. No other changes.
 **v0.4 change record:** one additive sentence — §11.3's boundary sentence gains the cross-reference to orchestrator §10.2's framework-wide session-mode rule (D-O11, ruled 7 Aug 2026). No other changes.
 **v0.3 change record:** one catalogue-b6 mirror — D-B6-1 → §11.1: the manifest example's rendered word "backlog (E-03 rows)" → "roadmap (E-03 rows)" (a rendered example, not a rule). No other changes.
@@ -208,6 +209,8 @@ Every FAIL line already names its fix action; the action falls into exactly one 
 5. The gap's status flips to WAIVED; the verdict recomputes within the same review.
 
 **The CC-G-02 two-step, enforced:** a request to waive a stub is refused with the instruction — name the gap in the text as `[NEEDS CLARIFICATION: …]` (a spec edit → re-gate), then waive the resulting CC-G-03 gap. Every accepted gap is thereby a named gap, by construction.
+
+**Under a standing autonomy grant** (orchestrator §4.4, §10.7), P2 waivers on real gaps may be taken AUTO — stamped `AUTO (AG-<n>)` in the report entry, standing for ratification at `off`. Overrides are never AUTO. The non-waivable set is untouchable under any mode: the auto path fixes and re-gates. P3 ⚑, P4 approval, and handoff (§11) sit outside every AG — the safety floor.
 
 ### 7.2 Waiver lifecycle events
 
@@ -498,4 +501,4 @@ Nine decisions ruled, 24 July 2026 — D-G1…D-G3 by the BA Lead directly; D-G4
 
 ---
 
-*v0.5 · FAIL-as-agenda cross-reference applied 9 Aug 2026 (orchestrator D-O18 follow-up) · session-boundary cross-reference applied 7 Aug 2026 (D-O11) · D-B6-1 mirror applied 30 July 2026 · review incorporated 24 July 2026 · runtime of completeness contract v0.2 — 61 assertions: 24 M · 37 A (2 ⚑) · consumes writing standard v0.3 (its §15 = the writer's half) · receives specs from elicitation techniques v0.4 (Tier 2) and returns named gaps as its legality anchors · emits reopen signals to orchestrator rules (document 5) · hands to the Mode-A adapter at the certification manifest · runtime ledgers: `.specify/gate-health.md` · `.specify/gate-tuning.md` · v0.1→v0.2 review record in §15*
+*v0.6 · the AUTO waiver lane and the safety floor applied 13 Aug 2026 (§7.1; orchestrator D-O36 · D-O37, WS-3) · FAIL-as-agenda cross-reference applied 9 Aug 2026 (orchestrator D-O18 follow-up) · session-boundary cross-reference applied 7 Aug 2026 (D-O11) · D-B6-1 mirror applied 30 July 2026 · review incorporated 24 July 2026 · runtime of completeness contract v0.2 — 61 assertions: 24 M · 37 A (2 ⚑) · consumes writing standard v0.3 (its §15 = the writer's half) · receives specs from elicitation techniques v0.4 (Tier 2) and returns named gaps as its legality anchors · emits reopen signals to orchestrator rules (document 5) · hands to the Mode-A adapter at the certification manifest · runtime ledgers: `.specify/gate-health.md` · `.specify/gate-tuning.md` · v0.1→v0.2 review record in §15*

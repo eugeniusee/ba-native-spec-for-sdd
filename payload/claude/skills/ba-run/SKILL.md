@@ -26,7 +26,8 @@ Stop only at: a clearing proposal (P-O4 — clearing confirmation) · a waiver a
 batch · an overflow ruling (P-O9 — overflow ruling) · a band transition · a
 contract miss (name the single unblocking act). Which plan: the open aspect's
 composed plan; no aspect open and Band 2 reachable → the `## Band 2` section's
-route.
+route. Under a standing AG (`/ba-auto on`), proceed through those stops per the
+`/ba-auto` policy table; execution mechanics are unchanged.
 
 **Batch spec driver — §8.4.** `specs all` (or `specs <epic-list>`): one
 P-O8 — Band-3 entry confirmation table for every selected feature (rows
@@ -55,6 +56,9 @@ completes.
 technique · never re-runs a compiled P-O3 (technique invocation) check · never
 pins or confirms a contract (P-O2 — plan composition, its own act) · never
 confirms a threshold or clears an aspect.
+
+**Mode read (framework-wide):** before the first act of any session, read the
+aspect-state head — the Profile and Auto lines govern.
 
 **Register self-check (§10.3), before any BA-facing render:** short sentences ·
 code + name · state first, then the act · ≤ 10 lines outside pinned shapes ·

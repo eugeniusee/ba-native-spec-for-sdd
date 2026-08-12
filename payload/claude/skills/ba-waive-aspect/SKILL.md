@@ -135,6 +135,9 @@ waives an aspect nobody has assessed · never lifts a gate admission block, neve
 satisfies a CC assertion, never touches a W- or HA-record · never degrades a
 dependent on a lapse · never edits content to close the debt it just recorded.
 
+**Mode read (framework-wide):** before the first act of any session, read the
+aspect-state head — the Profile and Auto lines govern.
+
 **Register self-check (§10.3), before any BA-facing render:** short sentences ·
 code + name · state first, then the act · ≤ 10 lines outside pinned shapes ·
 no acknowledgement-only stop. A failing render is rewritten, not sent.

@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 #
-# BA-Native Spec — the regression runner. One command, sixteen checks.
+# BA-Native Spec — the regression runner. One command, seventeen checks.
 #
 # Every BUILD-LOG entry since S2 has closed with the same roll-up table, and
 # every one of them was assembled by hand from separate invocations —
 # two of which need a real install first. That is D54. This script is the table.
 #
-# The sixteen, in the order the entries print them:
+# The seventeen, in the order the entries print them:
 #
 #   twelve file-only checks — read the payload, the docs and the fixtures
 #     1  check-m.sh              the ten vendored M checkers
@@ -27,11 +27,14 @@
 #    14  check-exit.sh --offline the Phase-2 §5 exit test, all ten steps
 #    15  check-install.sh        the install UX — bootstrap · self-guard · uv-free
 #
-#   one whole-surface check — file-only, but last: it reads the render surface
-#   entire, so it runs after everything that could have changed it
+#   two whole-surface checks — file-only, but last: each reads the render
+#   surface entire, so they run after everything that could have changed it
 #    16  check-budget.sh         manual-mode UX — the ≤ 8 interaction budget ·
 #                                the route render §10.6 · the checkpoint law ·
 #                                zero acknowledgement-only stops
+#    17  check-auto.sh           autonomous mode — the AG record · the §10.7
+#                                policy table · the safety floor sweep ·
+#                                the resumption report · the mode read
 #
 # `check-cards.py` and `check-ledger.py` also run inside `check-gate.sh` and
 # `check-orchestrator.sh`. They keep their own rows because the entries give
@@ -42,13 +45,14 @@
 # code; every count is parsed from the check's own roll-up line. A check that
 # prints no count reports its summary sentence instead — never an invented one.
 #
-#   run-all.sh                run all sixteen
-#   run-all.sh --file-only    the thirteen checks that need no install and no
-#                             network — the twelve, plus check-budget.sh
+#   run-all.sh                run all seventeen
+#   run-all.sh --file-only    the fourteen checks that need no install and no
+#                             network — the twelve, plus the two whole-surface
+#                             checks
 #   run-all.sh --online       let the install-based runs fetch Spec Kit
 #                             (default: --offline, from vendor/)
 #   run-all.sh --keep         keep the installed projects and print their paths
-#   run-all.sh --list         print the sixteen rows and exit
+#   run-all.sh --list         print the seventeen rows and exit
 #   run-all.sh -v             stream each check's full output as it runs
 
 set -uo pipefail
@@ -136,7 +140,7 @@ skip_check() {
 }
 
 if [ "$LIST" -eq 1 ]; then
-  sed -n '/^#   twelve file-only checks/,/^#                                zero acknowledgement-only stops/p' "$0" | sed 's/^# \{0,1\}//'
+  sed -n '/^#   twelve file-only checks/,/^#                                the resumption report · the mode read/p' "$0" | sed 's/^# \{0,1\}//'
   exit 0
 fi
 
@@ -201,12 +205,16 @@ fi
 #
 # File-only, and last on purpose: check-budget.sh sweeps the entire skill,
 # persona and mirror surface for acknowledgement-only stops and holds the
-# pinned route render down in every file that renders one. Running it after
-# everything else means it reads the surface as the rest of the suite left it.
+# pinned route render down in every file that renders one; check-auto.sh sweeps
+# the same surface for the safety floor — no compiled sentence may AUTO-stamp a
+# ⚑ sign-off, an effective PASS or a handoff — and holds down the mode read in
+# every carrier. Running them after everything else means they read the surface
+# as the rest of the suite left it.
 
-printf '\n▸ The whole-surface check — the render surface as the suite leaves it\n'
+printf '\n▸ The whole-surface checks — the render surface as the suite leaves it\n'
 
 run_check "check-budget.sh"       suite "$HERE/check-budget.sh"
+run_check "check-auto.sh"         suite "$HERE/check-auto.sh"
 
 # ── the table ────────────────────────────────────────────────────────────────
 

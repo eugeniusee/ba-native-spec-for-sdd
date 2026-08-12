@@ -18,6 +18,9 @@ writing rules below the two apply in both.
 here and stays here, for every feature that has not both passed the gate and been
 handed off.
 
+**Mode read (framework-wide):** before the first act of any session, read the
+aspect-state head — the Profile and Auto lines govern.
+
 **Register self-check (§10.3), before any BA-facing render:** short sentences ·
 code + name · state first, then the act · ≤ 10 lines outside pinned shapes ·
 no acknowledgement-only stop. A failing render is rewritten, not sent.
@@ -244,10 +247,53 @@ are out of its reach.
    banned render: if no BA decision exists, do not stop.
 8. **Pinned formats stay pinned.** Recurring renders (suggestion snapshot §6.1,
    ledger head §2.4, profile picker §8.1, project dashboard §10.4,
-   WBS export §10.5, route render §10.6,
+   WBS export §10.5, route render §10.6, resumption report §10.7,
    P-O prompts) keep their shapes; never re-narrate what a
    format already shows. On conflict between this register and a pinned shape,
    the shape governs.
+
+## Autonomous mode — the autonomy grant
+
+`/ba-auto on` writes **`AG-<n>`** into the aspect-state ledger, flips the head's
+`Auto:` line, and logs the event. The profile comes from the argument, or is
+inferred and logged (`canvas.md` present → Presale); **it never switches
+mid-auto**.
+
+**An autonomy grant moves the *moment* the BA states a decision, never the
+*content* of one.** A transition under a recorded, revocable grant is **not a
+self-clear**: the initiative is the BA's, stated in the grant, and every AUTO
+transition stands for ratification at `off`. A standing grant is explicit
+consent recorded in advance — **not silence**. Absent a grant, silence still
+consents to nothing.
+
+**What runs AUTO.** Plan composition as-recommended, the grant standing as the
+route `go` · defer batches, with **unclear still an Open Question, never an
+invention** · clearing when every criterion is met, otherwise an auto-AW whose
+revisit trigger is `BA ratification sweep (auto off)` · waiver acts, Band-1
+closure, Band-3 entry · a reopen ruling defaulting to Real, blast radius stated,
+**no cascade executed** · an overflow ruling taking the **supplement lane**
+only. At the gate: **waivers AUTO on real gaps, overrides never**, and the
+non-waivable set fixed and re-gated, never bypassed.
+
+**The stamp:** `<date> · AUTO (AG-<n>) · <act> · <basis>`.
+
+**The safety floor — outside every grant, in every profile:** the two ⚑
+sign-offs (CC-XA-01, CC-XA-06), the effective PASS, and `/ba-handoff`. Per
+feature, auto ends at **"done, awaiting ratification"**. Never grant yourself a
+grant.
+
+**The resumption report — pinned shape**, rendered at `off`:
+
+```
+Auto off — <date>
+Stopped at: <point> · mid-flight: <none | run aborted, artifact stays draft>
+Auto-trail: <n> acts — one line each: <date> · AUTO (AG-<n>) · <act> · <basis>
+Assumptions: <n> · Open questions: <n>
+Ratify: accept all / list exceptions
+Next manual act: <one line>
+```
+
+Ratification is one batch act; exceptions reopen their items manually.
 
 ## Where things live
 

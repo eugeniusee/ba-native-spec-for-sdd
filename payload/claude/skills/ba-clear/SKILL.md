@@ -103,6 +103,13 @@ You may **propose** confirmation when a refresh shows all criteria met
 ("threshold evidence complete — confirm?"). You never confirm. **An aspect gate
 never self-clears.**
 
+**Under a standing autonomy grant** (`/ba-auto on`), this act is stated in
+advance and taken AUTO — a recorded, revocable grant is not a self-clear, and
+the transition stands for ratification at `off`. All criteria met → clear,
+stamped `<date> · AUTO (AG-<n>) · <act> · <basis>`. Any miss → an **auto-AW**
+instead: a full waiver record with every miss named, revisit trigger
+`BA ratification sweep (auto off)`. Debt is never silent under auto.
+
 ## Step 4 — record
 
 The table appends to `## Events` in `.specify/aspect-state.md` **as the
@@ -140,6 +147,9 @@ health run · never edits the artifact it is reading to make a criterion pass �
 that is authoring, and the fix routes as content under BA approval · never
 re-confirms untouched criteria in a delta review without recording that they
 carried · never grants the waiver itself.
+
+**Mode read (framework-wide):** before the first act of any session, read the
+aspect-state head — the Profile and Auto lines govern.
 
 **Register self-check (§10.3), before any BA-facing render:** short sentences ·
 code + name · state first, then the act · ≤ 10 lines outside pinned shapes ·

@@ -12,7 +12,8 @@
   File discipline: the head is REWRITTEN IN PLACE; events are APPEND-ONLY.
 
   States (D-O2): untouched · open · first-pass-cleared · waived · reopened.
-  Transitions T1–T8 are all BA acts; an aspect gate never self-clears.
+  Transitions T1–T8 are all BA acts; an aspect gate never self-clears
+  (AG transitions: /ba-auto — BA-granted, ratifiable).
   Event grammar: <date> · T<n> · <aspect> · <from → to> · <BA initials> — <basis ref>
 
   Flow profile (D-O14): a recommendation default, never a restriction. It filters
@@ -20,11 +21,21 @@
   threshold, no assertion, no gate. Out-of-profile techniques stay electable by
   code at any P-O2 — plan composition. A switch is a ledger event with a reason:
   Profile switch grammar: <date> · profile · <from → to> · <BA initials> — <reason>
+
+  Autonomous mode (D-O36 · D-O38): `/ba-auto on` writes the autonomy grant AG-<n>,
+  flips the Auto head line and logs the event; `/ba-auto off` closes it with the
+  resumption report and one batch ratification. An AG moves the moment of consent,
+  never the content of a ruling; the safety floor (the two flagged sign-offs, the
+  effective PASS, the handoff) sits outside every grant.
+  AG record:   AG-<n> · scope: <full workflow | until <event>> · granted-by: <initials> ·
+               <date> · revoke: /ba-auto off, or <condition>
+  AUTO stamp:  <date> · AUTO (AG-<n>) · <act> · <basis>
 -->
 
 ## Current state
 Band: 1 (open)
 Profile: <Discovery | Presale> — picked <date> (P-O0); switches append to Events with a reason
+Auto: off
 
 | Aspect | State | Since | Basis |
 |---|---|---|---|
@@ -42,6 +53,7 @@ Deferred consequences:    none
 
 <!-- Head line shapes once populated:
   Band: 1 (closed <date>) — Bands 2/3 capable
+  Auto: on — AG-<n> · scope <full workflow | until <event>> · since <date>
   Standing aspect waivers:  AW-<n> · <aspect> · <AT-ID(s) unmet> — revisit: <event>
   Open reopens:             RO-<n> · <aspect> — <conflict, one line>
   Upstream flags:           <aspect> flagged: prerequisite <aspect> reopened
@@ -75,6 +87,10 @@ Deferred consequences:    none
 
   Threshold-gap candidate — <date> · should have been caught by <AT-ID | none — new class>
     <what escaped, and why the threshold missed it>
+
+  <date> · auto on  · AG-<n> · scope <…> · <initials> — profile <…> (stated | inferred: <basis>)
+  <date> · auto off · AG-<n> · <initials> — <n> AUTO acts, awaiting ratification
+  <date> · ratification · AG-<n> · <initials> — accepted all | exceptions: <list>
 -->
 
 <!-- Band-1 closure checklist (§8.2), recorded as the closure event:

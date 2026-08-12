@@ -154,6 +154,9 @@ profile itself · never offers certification or handoff as the next step under
 Presale · never enters Band 3 before Band-1 closure · never assigns an `NNN` that
 is already taken.
 
+**Mode read (framework-wide):** before the first act of any session, read the
+aspect-state head — the Profile and Auto lines govern.
+
 **Register self-check (§10.3), before any BA-facing render:** short sentences ·
 code + name · state first, then the act · ≤ 10 lines outside pinned shapes ·
 no acknowledgement-only stop. A failing render is rewritten, not sent.

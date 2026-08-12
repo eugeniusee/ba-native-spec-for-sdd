@@ -72,10 +72,10 @@ only fails.
 
 ### Commands — the `/ba-*` namespace
 
-All 33 are **BA-invoked, never auto-fired** (`disable-model-invocation: true`).
+All 34 are **BA-invoked, never auto-fired** (`disable-model-invocation: true`).
 Do not invoke them on your own initiative and do not simulate their effects.
 
-**Workflow — 15**
+**Workflow — 16**
 
 | Command | Act |
 |---|---|
@@ -94,6 +94,7 @@ Do not invoke them on your own initiative and do not simulate their effects.
 | `/ba-gate-health [artifact \| full]` | Scope-H project health run |
 | `/ba-handoff <feature>` | Mode-A adapter: hash guard, branch, ready report |
 | `/ba-wbs [--include NNN …]` | The WBS export — `exports/wbs.xlsx` + `exports/wbs.csv`, read-only |
+| `/ba-auto on [<profile>]` · `/ba-auto off` | Autonomous mode: write or close the autonomy grant `AG-<n>`; `off` renders the pinned resumption report for one batch ratification |
 
 **Techniques — 20** (one-step via `/ba-<id>`; the P-O3 (technique invocation) check compiled into each; `/ba-run <id>` aliases)
 
@@ -152,6 +153,49 @@ reach, propose the repair as one act: the mismatch in one line, the repair route
 in the shape above, then `go?`. Handing the BA a list of commands to type is a
 banned render — after the `go`, execute the mechanics yourself.
 
+### Autonomous mode — the autonomy grant
+
+`/ba-auto on` writes **`AG-<n>`** into the aspect-state ledger, flips the head's
+`Auto:` line, and logs the event. The profile comes from the argument, or is
+inferred and logged (`canvas.md` present → Presale); **it never switches
+mid-auto**.
+
+**An autonomy grant moves the *moment* the BA states a decision, never the
+*content* of one.** A transition under a recorded, revocable grant is **not a
+self-clear**: the initiative is the BA's, stated in the grant, and every AUTO
+transition stands for ratification at `off`. A standing grant is explicit
+consent recorded in advance — **not silence**. Absent a grant, silence still
+consents to nothing.
+
+**What runs AUTO.** Plan composition as-recommended, the grant standing as the
+route `go` · defer batches, with **unclear still an Open Question, never an
+invention** · clearing when every criterion is met, otherwise an auto-AW whose
+revisit trigger is `BA ratification sweep (auto off)` · waiver acts, Band-1
+closure, Band-3 entry · a reopen ruling defaulting to Real, blast radius stated,
+**no cascade executed** · an overflow ruling taking the **supplement lane**
+only. At the gate: **waivers AUTO on real gaps, overrides never**, and the
+non-waivable set fixed and re-gated, never bypassed.
+
+**The stamp:** `<date> · AUTO (AG-<n>) · <act> · <basis>`.
+
+**The safety floor — outside every grant, in every profile:** the two ⚑
+sign-offs (CC-XA-01, CC-XA-06), the effective PASS, and `/ba-handoff`. Per
+feature, auto ends at **"done, awaiting ratification"**. Never grant yourself a
+grant.
+
+**The resumption report — pinned shape**, rendered at `off`:
+
+```
+Auto off — <date>
+Stopped at: <point> · mid-flight: <none | run aborted, artifact stays draft>
+Auto-trail: <n> acts — one line each: <date> · AUTO (AG-<n>) · <act> · <basis>
+Assumptions: <n> · Open questions: <n>
+Ratify: accept all / list exceptions
+Next manual act: <one line>
+```
+
+Ratification is one batch act; exceptions reopen their items manually.
+
 ### BA-facing communication register
 
 The framework speaks in three registers, one owner each: **artifact text** — the
@@ -183,7 +227,7 @@ are out of its reach.
    banned render: if no BA decision exists, do not stop.
 8. **Pinned formats stay pinned.** Recurring renders (suggestion snapshot §6.1,
    ledger head §2.4, profile picker §8.1, project dashboard §10.4,
-   WBS export §10.5, route render §10.6,
+   WBS export §10.5, route render §10.6, resumption report §10.7,
    P-O prompts) keep their shapes; never re-narrate what a
    format already shows. On conflict between this register and a pinned shape,
    the shape governs.
@@ -193,6 +237,9 @@ are out of its reach.
 **Reader: you, in this conversation.** Every conversation in this project starts
 here and stays here, for every feature that has not both passed the gate and been
 handed off. The rules below are yours.
+
+**Mode read (framework-wide):** before the first act of any session, read the
+aspect-state head — the Profile and Auto lines govern.
 
 **Register self-check (§10.3), before any BA-facing render:** short sentences ·
 code + name · state first, then the act · ≤ 10 lines outside pinned shapes ·

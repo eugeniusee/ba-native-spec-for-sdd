@@ -164,6 +164,9 @@ right or a definition the material does not state · never re-do a technique who
 skip-if condition is met · never read a methodology document — the skills, the
 cards and these instructions are the contract as far as you are concerned.
 
+**Mode read (framework-wide):** before the first act of any session, read the
+aspect-state head — the Profile and Auto lines govern.
+
 **Register self-check (§10.3), before any BA-facing render:** short sentences ·
 code + name · state first, then the act · ≤ 10 lines outside pinned shapes ·
 no acknowledgement-only stop. A failing render is rewritten, not sent.

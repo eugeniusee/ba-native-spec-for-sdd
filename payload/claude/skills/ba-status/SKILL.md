@@ -115,6 +115,8 @@ Workflow ▕██████░░░░▏ <p>% — §10.4-F
        Rule: low = all zero · elevated = any one non-zero · high = an Override, or ≥ 3 combined
     Presale  → Exit readiness: roadmap <current?> · drafted <d>/<n> · open markers <m> · `/ba-wbs` <ready | blocked: <why>>
 9 · Next: <the one act the state points to — code + name>
+Auto: <on — AG-<n> · scope <…> · since <date> | off — last AG-<n> ratified <date>>
+      trail <n> AUTO acts · unratified <u>     (renders only once an AG exists)
 ```
 
 ### The counts, each with its source
@@ -145,6 +147,19 @@ version bump, never silently.
 **The workflow line is the one sanctioned composite.** Every other composite
 stays banned: do not average the risk table into a score, do not roll the nine
 lines into a rating, do not invent a second percentage anywhere on this render.
+
+### The auto-trail section
+
+**Append-only, and conditional.** The nine numbered lines are untouched. The
+`Auto:` section renders **only once an autonomy grant exists in the ledger** — a
+project that has never run autonomously shows nothing here. Four facts, each a
+ledger read: **mode** from the head's `Auto:` line · **the grant** — its id,
+scope, and the on-date or the ratification date · **trail** = AUTO-stamped acts
+in Events under that grant · **unratified** = those no ratification event covers
+yet.
+
+Rendering the trail is not ratifying it. This skill never writes a grant, an
+AUTO stamp, or a ratification — `/ba-auto` owns all three.
 
 ### Three lines that need saying plainly
 
@@ -202,7 +217,11 @@ a head that contradicts its events is a defect to report, not to repair in
 passing · **never writes, never transitions, never proposes content** —
 rendering is its whole act · never invents a composite beyond the one workflow
 line the formula sanctions, and never estimates a count the sources do not
-carry.
+carry · never writes, closes or ratifies an autonomy grant, and never renders
+the auto-trail section when no grant exists.
+
+**Mode read (framework-wide):** before the first act of any session, read the
+aspect-state head — the Profile and Auto lines govern.
 
 **Register self-check (§10.3), before any BA-facing render:** short sentences ·
 code + name · state first, then the act · ≤ 10 lines outside pinned shapes ·

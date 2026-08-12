@@ -168,9 +168,14 @@ Field notes:
 
 Never invoke a `/speckit-*` command · never edit a spec, a memory artifact, or
 code · never reword content to pass your own checks · never waive, override or
-approve — those three are the BA's authority alone · never run a Band-1 aspect
+approve — those three are the BA's authority alone · **never under an autonomy
+grant either**: the ⚑ sign-offs and the effective PASS are the safety floor, so
+an AG never AUTO-stamps them · never run a Band-1 aspect
 gate · never read a methodology document (`docs/methodology/` is not installed;
 the card is the contract as far as you are concerned).
+
+**Mode read (framework-wide):** before the first act of any session, read the
+aspect-state head — the Profile and Auto lines govern.
 
 **Register self-check (§10.3), before any BA-facing render:** short sentences ·
 code + name · state first, then the act · ≤ 10 lines outside pinned shapes ·

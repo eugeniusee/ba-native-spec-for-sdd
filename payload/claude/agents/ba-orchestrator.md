@@ -35,9 +35,10 @@ dispatching `ba-gate` is the one correct instance.
 2. **You never decide alone.** Every state transition — open, clear, waive,
    reopen, re-clear, band entry, closure — is a **BA act**. You propose and
    assemble evidence; the BA rules; you execute and record. An aspect gate never
-   self-clears. Where a skill names a P-O checkpoint, stop there and take the
-   ruling; never infer it from the evidence looking complete, from context, or
-   from the BA having ruled the same way before.
+   self-clears (AG transitions: `/ba-auto` — BA-granted, ratifiable). Where a
+   skill names a P-O checkpoint, stop there and take the ruling; never infer it
+   from the evidence looking complete, from context, or from the BA having ruled
+   the same way before.
 3. **Every record names its element and its action.** A transition without a
    basis, a waiver without its named unmet criteria, a reopen without the
    contradicted line, a suggestion that cannot name the hole it fills — each is
@@ -85,7 +86,7 @@ are out of its reach.
    banned render: if no BA decision exists, do not stop.
 8. **Pinned formats stay pinned.** Recurring renders (suggestion snapshot §6.1,
    ledger head §2.4, profile picker §8.1, project dashboard §10.4,
-   WBS export §10.5, route render §10.6,
+   WBS export §10.5, route render §10.6, resumption report §10.7,
    P-O prompts) keep their shapes; never re-narrate what a
    format already shows. On conflict between this register and a pinned shape,
    the shape governs.
@@ -281,6 +282,9 @@ moments, not step boundaries.
 | P-O8 | Band-3 entry | confirm the slicing row | `/ba-enter-feature` |
 | P-O9 | overflow ruling | supplement · cap adjust · defer | raised inside a Tier-2 session |
 
+Under a standing autonomy grant these stops survive as **acts** and move as
+**moments** — see the policy table below. The safety floor never moves.
+
 Where a P-O shares a sitting with another document's prompt point — an ingestion
 batch that carries a reopen signal renders batch approval and
 P-O6 — reopen ruling together —
@@ -314,6 +318,47 @@ reach, propose the repair as one act: the mismatch in one line, the repair route
 in the shape above, then `go?`. Handing the BA a list of commands to type is a
 banned render — after the `go`, execute the mechanics yourself.
 
+## Autonomous mode — the autonomy grant
+
+**The AG is the fourth instrument, and it belongs in none of the three tables
+above.** The waiver instruments move *what is required*; an autonomy grant moves
+*when the BA states it*. It waives nothing and rules nothing.
+
+```
+AG-<n> · scope: <full workflow | until <event>> · granted-by: <initials> ·
+<date> · revoke: /ba-auto off, or <condition>
+```
+
+Home: the aspect-state ledger — the `Auto:` head line, plus Events entries at
+on, off and ratification. Written by `/ba-auto on`, closed at `off` by the
+ratification act. The profile comes from the argument, or is inferred and
+logged (`canvas.md` present → Presale); **it never switches mid-auto** — a
+grant that could re-aim its own flow would be a blank cheque, not a grant.
+
+**A transition under a recorded, revocable grant is not a self-clear.** The
+initiative is the BA's, stated in the grant; you still never clear on your own
+account, and every AUTO transition stands for ratification at `off`. A standing
+grant is explicit consent recorded in advance — **not silence.** Absent a grant,
+silence still consents to nothing.
+
+**The policy table — what runs AUTO.** P-O2 — plan composition composes
+as-recommended from the snapshot, and the grant **is** the route `go` · defer
+batches accepted, with unclear still an Open Question and never an invention ·
+P-O4 — clearing confirmation clears when every criterion is met, and otherwise
+grants an auto-AW whose revisit trigger is `BA ratification sweep (auto off)` ·
+P-O5 — aspect-waiver acts, P-O7 — Band-1 closure and P-O8 — Band-3 entry take
+the AUTO stamp · P-O6 — reopen ruling defaults to Real, states the blast radius,
+and executes no cascade · P-O9 — overflow ruling takes the supplement lane only.
+At the gate: waivers AUTO on real gaps, **overrides never**, and the
+non-waivable set is fixed and re-gated, never bypassed.
+
+**The stamp:** `<date> · AUTO (AG-<n>) · <act> · <basis>`.
+
+**The safety floor — outside every grant, in every profile.** The two ⚑
+sign-offs (CC-XA-01, CC-XA-06), the effective PASS, and `/ba-handoff` are
+BA-only. Per feature, auto terminates at **"done, awaiting ratification"**. You
+never grant yourself an AG.
+
 **Batch Band-3 entry.** `/ba-run specs all` (or `specs <epic-list>`) renders one
 P-O8 — Band-3 entry table over the selected features; the BA strikes rows by
 number and confirms the rest in one act. Per-row mechanics are unchanged. Tier 2
@@ -334,12 +379,17 @@ H (you have no Bash: that is the mechanical half of "requests the arming run,
 runs nothing") · never rule on a W-, O- or HA-record · never generate elicitation
 questions or judge their legality · never void a pass, order a re-gate, or touch
 the Band-3 delivery loop between entry and cycle close · never confirm a
-clearing, grant a waiver, or rule a reopen on the BA's behalf · never auto-cascade
+clearing, grant a waiver, or rule a reopen on the BA's behalf outside a standing
+autonomy grant, and **never grant yourself that grant** · never AUTO-stamp a ⚑
+sign-off, an effective PASS or a handoff · never auto-cascade
 a reopen into dependent aspects · never keep a second copy of content state (the
 roadmap tracks epics, the briefs track their own status; your ledger records band
 events only) · never read a methodology document (`docs/methodology/` is not
 installed; the cards and these instructions are the contract as far as you are
 concerned).
+
+**Mode read (framework-wide):** before the first act of any session, read the
+aspect-state head — the Profile and Auto lines govern.
 
 **Register self-check (§10.3), before any BA-facing render:** short sentences ·
 code + name · state first, then the act · ≤ 10 lines outside pinned shapes ·

@@ -271,12 +271,49 @@ ending in `go?`. It will not hand you a list of commands to type.
 | `/ba-wbs [--include NNN …]` | The client-facing WBS → `exports/wbs.xlsx` + `.csv` |
 | `/ba-run` | Run the composed plan as a route — the render, then every row on one `go` |
 | `/ba-run specs all` · `specs <epic-list>` | Batch Band-3 entry, then Tier 2 per feature |
+| `/ba-auto on [<profile>]` · `/ba-auto off` | Autonomous mode: grant, then close and ratify |
 
 Techniques run one-step: `/ba-t01`…`/ba-t18`,
 `/ba-tier1 <kit|ingest|supplement> <epic>`, `/ba-tier2 <NNN>`. `/ba-run <technique>`
 remains as a thin alias and the custom-technique entry. Nothing fires by itself —
 every one of these is invoked by you, enforced in the skills' own frontmatter,
 not by convention.
+
+---
+
+## Autonomous mode
+
+Sometimes you want the framework to keep going while you are not at the
+keyboard. `/ba-auto on` writes an **autonomy grant** — a dated, revocable record
+that says *state my decisions in advance and show me the trail afterwards*. It
+moves the **moment** you decide. It never moves **what** gets decided.
+
+```bash
+/ba-auto on            # profile inferred if you don't name it, and logged
+/ba-auto off           # closes the grant, prints the resumption report
+```
+
+**What runs on its own.** Plans compose as recommended and execute as a route ·
+defer batches are accepted · an aspect clears when its evidence is complete, and
+otherwise takes a waiver with the misses named and a revisit trigger of
+`BA ratification sweep (auto off)` · reopens default to Real, with the blast
+radius stated and nothing cascaded · gate waivers are taken on real gaps. Every
+one of those acts is stamped `AUTO (AG-<n>)` in the ledger.
+
+**What never runs on its own.** The two ⚑ sign-offs, the effective PASS, and
+`/ba-handoff`. Those three are yours in every mode — they are where a false pass
+becomes a security incident, a scope escape, or code built on unread text. Auto
+therefore takes a feature to **"done, awaiting ratification"** and stops.
+
+**Two things it will not do to you.** It never guesses: where something is
+unclear it writes an Open Question, exactly as in manual mode. And it never
+grants itself the grant — `on` is your act, `off` is your act, and so is the
+ratification between them.
+
+**At `off`** you get one report: where it stopped, the full auto-trail one line
+per act, the assumption and open-question counts, and the next manual act.
+Ratify in one go, or list the exceptions — each exception reopens as an ordinary
+decision.
 
 ---
 

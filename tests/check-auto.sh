@@ -1,0 +1,611 @@
+#!/usr/bin/env bash
+#
+# BA-Native Spec — autonomous mode: the autonomy grant and the safety floor
+# (orchestrator rules §1 · §2.4 · §4.4 · §6.2 · §10.7; D-O35–D-O41 · gate §7.1).
+#
+# An autonomy grant moves the *moment* the BA states a decision. The whole of
+# its safety is that it never moves the *content* of one — so the assertions
+# here are almost all boundary assertions: what an AG is, where it is recorded,
+# which stops it may take, and the three acts it may never reach.
+#
+#   1.  the grant — the AG record and the `Auto:` head line in the §2.4
+#       exhibits, the document and the shipped ledger template
+#   2.  the policy table — §10.7's operative strings compiled into the skill,
+#       the personas and the mirrors, each one named
+#   3.  the safety floor — a proximity sweep across the whole render surface:
+#       no compiled sentence AUTO-stamps a ⚑ sign-off, an effective PASS or a
+#       handoff, with a seeded control proving the sweep fires
+#   4.  the resumption report — §10.7's pinned shape, extracted from the
+#       document and byte-compared against every file that renders it
+#   5.  the mode-read line — byte-identical across check-register.sh's carrier
+#       set, with a stripped unit and a paraphrased one as controls
+#   6.  the ratification grammar — the events, the batch act, the exceptions
+#   7.  the two locked amendments — D-O40 (consent in advance, not silence) and
+#       D-O41 (a recorded, revocable grant is not a self-clear)
+#
+# The floor list and the negation list are both printed on every run: a sweep
+# whose edges are invisible is a sweep nobody can extend. `--list` prints them
+# alone.
+#
+#   check-auto.sh                run the suite
+#   check-auto.sh -v             print every check, not just the failures
+#   check-auto.sh --list         print the floor and negation lists and exit
+
+set -uo pipefail
+
+HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PKG_ROOT="$(cd "$HERE/.." && pwd)"
+DOC="$PKG_ROOT/docs/methodology/ba-native-spec-orchestrator-rules.md"
+GATE="$PKG_ROOT/docs/methodology/ba-native-spec-gate-definition.md"
+AUTO="$PKG_ROOT/payload/claude/skills/ba-auto/SKILL.md"
+ORC="$PKG_ROOT/payload/claude/agents/ba-orchestrator.md"
+BLOCK="$PKG_ROOT/payload/mirror/claude-block.md"
+AGENTS="$PKG_ROOT/payload/mirror/AGENTS.md"
+TPL="$PKG_ROOT/payload/specify-overlay/ba/templates/aspect-state.md"
+
+# ── the safety floor — the three acts no grant reaches ───────────────────────
+#
+# Seeded from D-O37, which names them exactly: the two ⚑ sign-offs, the
+# effective PASS, and the handoff. A sentence that carries one of these AND an
+# AUTO token is a candidate; it is a defect unless it also carries a negation.
+FLOOR='⚑
+sign-off
+effective PASS
+/ba-handoff
+handoff'
+
+# The AUTO tokens are deliberately case-sensitive. `AUTO` is the stamp keyword
+# (§10.7's grammar), and lowercase "auto" is the mode's ordinary English name —
+# "under auto a feature ends at done, awaiting ratification" is a floor
+# statement, not a floor breach.
+AUTOTOK='AUTO
+AUTO-stamp
+auto-stamp'
+
+# What makes a candidate sentence legitimate. Every one of these says the same
+# thing in a different grammar: this is the boundary, not a licence.
+NEGATION='never|outside|safety floor|BA-only|reserved|refuse|banned|not AUTO|awaiting ratification|stays? with the BA'
+
+VERBOSE=0; LIST=0
+for a in "$@"; do
+  case "$a" in
+    -v|--verbose) VERBOSE=1 ;;
+    --list) LIST=1 ;;
+    -h|--help) sed -n '2,29p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
+    *) printf 'unknown option: %s\n' "$a" >&2; exit 2 ;;
+  esac
+done
+
+if [ "$LIST" -eq 1 ]; then
+  printf 'the safety floor — acts no autonomy grant reaches:\n'
+  printf '%s\n' "$FLOOR" | sed 's/^/  · /'
+  printf '\nthe AUTO tokens (case-sensitive):\n'
+  printf '%s\n' "$AUTOTOK" | sed 's/^/  · /'
+  printf '\nthe negations that make a candidate legitimate:\n'
+  printf '  · %s\n' "$NEGATION"
+  exit 0
+fi
+
+TMP="$(mktemp -d)"
+trap 'rm -rf "$TMP"' EXIT
+
+PASSED=0; FAILED=0
+ok()  { PASSED=$((PASSED+1)); [ "$VERBOSE" -eq 1 ] && printf '  ✓ %s\n' "$1"; return 0; }
+bad() { FAILED=$((FAILED+1)); printf '  ✗ %s\n' "$1"; }
+
+sha_of() { if command -v shasum >/dev/null 2>&1; then shasum -a 256; else sha256sum; fi | cut -d' ' -f1; }
+
+# `has <file> <needle> <what>` — the fixed-string probe the other suites use
+has() {
+  grep -qF -- "$2" "$1" && ok "$3" || bad "$3 — not found: $2"
+}
+# `has_joined <file> <needle> <what>` — the same probe over the paragraphs the
+# BA actually reads: a soft wrap is invisible in the render (check-register.sh's
+# rule), so a sentence that wraps in the source is one string on screen.
+has_joined() {
+  python3 - "$1" "$2" <<'PY' && ok "$3" || bad "$3 — not found (joined): $2"
+import re, sys
+text = open(sys.argv[1], encoding="utf-8").read()
+sys.exit(0 if sys.argv[2] in re.sub(r"\n(?=\S)", " ", text) else 1)
+PY
+}
+
+for f in "$DOC" "$GATE" "$AUTO" "$ORC" "$BLOCK" "$AGENTS" "$TPL"; do
+  [ -f "$f" ] || { printf '✗ missing source: %s\n' "$f" >&2; exit 2; }
+done
+
+# ── 1. the grant — AG and the Auto head line ─────────────────────────────────
+
+printf '\n▸ The autonomy grant — the record and its ledger home (§4.4 · §2.4; D-O35 · D-O38)\n'
+
+has_joined "$DOC" "**AG-\<n\> · scope: \<full workflow | until \<event\>\> · granted-by: \<initials\> · \<date\> · revoke: /ba-auto off, or \<condition\>.**" \
+    "§4.4 states the AG record, field for field"
+has_joined "$DOC" "an AG waives nothing and rules nothing — it moves the *moment* of consent, never the *content* of a ruling" \
+    "…and the distinctness clause that keeps it out of §4.3's table"
+has_joined "$DOC" "An AG never grants what the safety floor reserves (§10.7): ⚑ sign-offs, effective PASS, and handoff stay BA-only." \
+    "…and names the floor inside the instrument itself"
+
+# the head line, in the §2.4 exhibit and in the shipped template — one grammar
+HEADLINE='Auto: off | on — AG-<n> · scope <full workflow | until <event>> · since <date>'
+has "$DOC" "$HEADLINE" "the §2.4 head exhibit carries the Auto line"
+has "$TPL" 'Auto: off' "the shipped ledger template is born with Auto off"
+has "$TPL" 'Auto: on — AG-<n> · scope <full workflow | until <event>> · since <date>' \
+    "…and carries the populated shape"
+has "$TPL" 'AG-<n> · scope: <full workflow | until <event>> · granted-by: <initials> ·' \
+    "…and the AG record grammar"
+has "$TPL" '<date> · AUTO (AG-<n>) · <act> · <basis>' "…and the AUTO stamp grammar"
+
+# the Auto line sits after Profile, where §10.7's mode read expects to find it
+python3 - "$DOC" <<'PY' && ok "the Auto line follows the Profile line in the §2.4 head" \
+  || bad "the §2.4 head does not carry Auto immediately after Profile"
+import sys
+lines = open(sys.argv[1], encoding="utf-8").read().splitlines()
+for i, l in enumerate(lines):
+    if l.startswith("Profile: <Discovery | Presale>") and i + 1 < len(lines):
+        if lines[i + 1].startswith("Auto: off | on"):
+            sys.exit(0)
+sys.exit(1)
+PY
+
+# the three ledger events — the grant's whole lifecycle, on the record
+for pair in \
+  "· auto on  · AG-<n> · scope <…> ·|the on event" \
+  "· auto off · AG-<n> ·|the off event" \
+  "· ratification · AG-<n> ·|the ratification event"
+do
+  needle="${pair%%|*}"; label="${pair##*|}"
+  n=0
+  for f in "$DOC" "$TPL"; do grep -qF -- "$needle" "$f" && n=$((n+1)); done
+  [ "$n" -eq 2 ] \
+    && ok "$label is in both the §2.4 exhibit and the template" \
+    || bad "$label is in $n/2 of the document exhibit and the template: $needle"
+done
+
+has "$DOC" "AUTO stamp grammar" "§10.7 pins the AUTO stamp grammar"
+has "$DOC" '<date> · AUTO (AG-<n>) · <act> · <basis>' "…in the shape every act carries"
+
+# ── 2. the policy table ──────────────────────────────────────────────────────
+#
+# One probe per ruled row. The strings are the ruling's own load-bearing
+# clauses — the ones a future edit would soften rather than delete.
+
+printf '\n▸ The policy table — §10.7 compiled into the skill, the persona and the mirrors (D-O36 · D-O39)\n'
+
+has "$DOC" "### 10.7 Autonomous mode" "the document carries §10.7"
+has_joined "$DOC" "The profile never switches mid-auto:" "§10.7 forbids the mid-auto profile switch"
+has_joined "$DOC" "\`canvas.md\` present → Presale, absent → Discovery" "…and states the inference rule"
+has_joined "$DOC" "The ambiguity law is unchanged: unclear → Open Question, never an invention." \
+    "…and holds the ambiguity law unchanged"
+has_joined "$DOC" "revisit trigger \`BA ratification sweep (auto off)\`" "…and names the auto-AW's revisit trigger"
+has_joined "$DOC" "**no cascades are executed**" "…and executes no reopen cascade"
+has_joined "$DOC" "**Overrides NEVER**" "…and refuses the AUTO override"
+has_joined "$DOC" "The **supplement lane** (D-O39)" "…and takes P-O9's supplement lane"
+
+# the four surfaces that must carry the policy, each named in the failure
+while IFS='|' read -r label phrase; do
+  [ -z "$label" ] && continue
+  n=0; miss=""
+  for f in "$AUTO" "$ORC" "$BLOCK" "$AGENTS"; do
+    if python3 - "$f" "$phrase" <<'PY'
+import re, sys
+sys.exit(0 if sys.argv[2].lower() in re.sub(r"\s+", " ", open(sys.argv[1], encoding="utf-8").read()).lower() else 1)
+PY
+    then n=$((n+1)); else miss="$miss $(basename "$f")"; fi
+  done
+  [ "$n" -eq 4 ] \
+    && ok "$label — compiled into the skill, the persona and both mirrors" \
+    || bad "$label — missing from$miss"
+done <<'POLICY'
+the grant is the route go|the grant
+unclear stays an Open Question|Open Question
+the auto-AW revisit trigger|BA ratification sweep (auto off)
+overrides are never AUTO|override
+the non-waivable set is fixed and re-gated|non-waivable
+the supplement lane|supplement lane
+the profile never switches mid-auto|mid-auto
+POLICY
+
+# the gate's own half of the ruling
+has_joined "$GATE" "P2 waivers on real gaps may be taken AUTO — stamped \`AUTO (AG-<n>)\` in the report entry" \
+    "gate §7.1 opens the AUTO waiver lane"
+has_joined "$GATE" "Overrides are never AUTO." "…and closes the override lane"
+has_joined "$GATE" "The non-waivable set is untouchable under any mode: the auto path fixes and re-gates." \
+    "…and keeps the non-waivable set untouchable"
+has_joined "$GATE" "P3 ⚑, P4 approval, and handoff (§11) sit outside every AG — the safety floor." \
+    "…and states the floor in the gate's own words"
+
+# ── 3. the safety floor — the sweep ──────────────────────────────────────────
+
+printf '\n▸ The safety floor — no compiled sentence AUTO-stamps a ⚑ sign-off, an effective PASS or a handoff (D-O37)\n'
+printf '%s\n' "$FLOOR" | sed 's/^/    floor: /'
+printf '    negations: %s\n' "$NEGATION"
+
+SWEEP="$TMP/floor_sweep.py"
+cat > "$SWEEP" <<'PY'
+#!/usr/bin/env python3
+"""The floor sweep — an AUTO token and a floor act in one sentence, unnegated.
+
+The render surface is joined into the paragraphs the BA actually sees, then cut
+into sentences. A sentence carrying both an AUTO token and a floor act is a
+candidate. It is a defect unless it also carries a negation — because the only
+legitimate reason to say "AUTO" and "handoff" in one breath is to say that the
+one never touches the other.
+
+Prints one line per offender, then `files=<n> hits=<m>`: the scanner's contract.
+"""
+import re
+import sys
+from pathlib import Path
+
+root = Path(sys.argv[1])
+FLOOR = [f for f in sys.argv[2].splitlines() if f.strip()]
+AUTOTOK = [a for a in sys.argv[3].splitlines() if a.strip()]
+NEG = re.compile(sys.argv[4], re.I)
+
+targets = sorted(
+    list(root.glob("payload/claude/skills/*/SKILL.md"))
+    + list(root.glob("payload/claude/skills/*/references/*.md"))
+    + list(root.glob("payload/claude/agents/*.md"))
+    + list(root.glob("payload/mirror/*.md"))
+    + list(root.glob("payload/specify-overlay/ba/templates/*.md"))
+    + list(root.glob("payload/specify-overlay/ba/cards/*.md"))
+)
+
+total = 0
+for p in targets:
+    text = p.read_text(encoding="utf-8")
+    joined = re.sub(r"\n(?=\S)", " ", text)
+    for n, para in enumerate(joined.splitlines(), 1):
+        # sentence granularity: the unit a reader takes as one claim
+        for sent in re.split(r"(?<=[.!?])\s+", para):
+            if not any(a in sent for a in AUTOTOK):
+                continue
+            if not any(f in sent for f in FLOOR):
+                continue
+            if NEG.search(sent):
+                continue
+            total += 1
+            print("%s:%d\t%s" % (p.relative_to(root), n, sent.strip()[:160]))
+print("files=%d hits=%d" % (len(targets), total))
+PY
+
+sweep() { python3 "$SWEEP" "$1" "$FLOOR" "$AUTOTOK" "$NEGATION"; }
+
+sweep "$PKG_ROOT" > "$TMP/floor.out" 2>&1
+F_FILES="$(sed -n 's/^files=\([0-9]*\) hits=[0-9]*$/\1/p' "$TMP/floor.out")"
+F_HITS="$(sed -n 's/^files=[0-9]* hits=\([0-9]*\)$/\1/p' "$TMP/floor.out")"
+
+[ "${F_FILES:-0}" -gt 0 ] 2>/dev/null \
+  && ok "the render surface derives — $F_FILES files swept" \
+  || bad "the sweep globs matched nothing: section 3 would pass vacuously"
+
+if [ "${F_HITS:-x}" = "0" ]; then
+  ok "zero unnegated AUTO-stamps of a floor act across $F_FILES files"
+else
+  bad "${F_HITS:-?} sentence(s) AUTO-stamp a safety-floor act:"
+  grep -v '^files=' "$TMP/floor.out" | sed 's/^/      /' | head -12
+fi
+
+# the control: three seeds, one per floor act — the sweep is worth nothing
+# until each of the three is shown to trip it
+CTL="$TMP/ctl"
+mkdir -p "$CTL"
+( cd "$PKG_ROOT" && tar cf - payload ) | ( cd "$CTL" && tar xf - )
+
+sweep "$CTL" > "$TMP/ctl-clean.out" 2>&1
+[ "$(sed -n 's/^files=[0-9]* hits=\([0-9]*\)$/\1/p' "$TMP/ctl-clean.out")" = "0" ] \
+  && ok "the private copy sweeps clean before injection — the control starts at 0" \
+  || bad "the copied surface is not clean at 0; the control cannot be read"
+
+SEED="$CTL/payload/claude/skills/ba-auto/SKILL.md"
+{
+  printf '\nUnder a standing grant the ⚑ sign-offs are taken AUTO (AG-1).\n'
+  printf '\nThe effective PASS is stamped AUTO (AG-1) once the run is clean.\n'
+  printf '\nA handoff may be AUTO-stamped when the grant covers the feature.\n'
+} >> "$SEED"
+
+sweep "$CTL" > "$TMP/ctl-dirty.out" 2>&1
+C_HITS="$(sed -n 's/^files=[0-9]* hits=\([0-9]*\)$/\1/p' "$TMP/ctl-dirty.out")"
+[ "${C_HITS:-0}" = "3" ] \
+  && ok "the control fires on all three floor acts — ⚑ sign-off, effective PASS, handoff" \
+  || bad "the three seeded floor breaches produced ${C_HITS:-?} hits, expected 3"
+
+# and the negation must still work: the same three sentences, negated, are legal
+cp "$PKG_ROOT/payload/claude/skills/ba-auto/SKILL.md" "$SEED"
+{
+  printf '\nUnder a standing grant the ⚑ sign-offs are never taken AUTO (AG-1).\n'
+  printf '\nThe effective PASS is never stamped AUTO (AG-1), in any mode.\n'
+} >> "$SEED"
+sweep "$CTL" > "$TMP/ctl-neg.out" 2>&1
+[ "$(sed -n 's/^files=[0-9]* hits=\([0-9]*\)$/\1/p' "$TMP/ctl-neg.out")" = "0" ] \
+  && ok "…and the negated forms stay legal — the sweep reads the prohibition" \
+  || bad "a negated floor sentence was flagged: the sweep cannot read a prohibition"
+
+# the floor said in full, in the document and on the surfaces that execute it
+has_joined "$DOC" "the **⚑ sign-offs** (CC-XA-01 authorization, CC-XA-06 the scope boundary — gate P3), the **effective PASS** (gate P3 + P4), and **\`/ba-handoff\`**" \
+    "§10.7 names the three floor acts"
+has_joined "$DOC" "auto therefore terminates at **\"done, awaiting ratification\"**" \
+    "…and where auto terminates per feature"
+for pair in "$AUTO|the skill" "$PKG_ROOT/payload/claude/skills/ba-handoff/SKILL.md|ba-handoff" \
+            "$PKG_ROOT/payload/claude/skills/ba-gate/SKILL.md|the gate skill" \
+            "$PKG_ROOT/payload/claude/agents/ba-gate.md|the gate persona"; do
+  f="${pair%%|*}"; label="${pair##*|}"
+  python3 - "$f" <<'PY' && ok "$label carries the floor" || bad "$label carries no safety-floor line"
+import re, sys
+t = re.sub(r"\s+", " ", open(sys.argv[1], encoding="utf-8").read()).lower()
+sys.exit(0 if ("safety floor" in t or "never under an" in t or "outside every" in t
+               or "outside every grant" in t) else 1)
+PY
+done
+
+has_joined "$AUTO" "**never grants itself an AG**" "the skill refuses to grant itself a grant"
+
+# ── 4. the resumption report — the pinned shape ──────────────────────────────
+
+printf '\n▸ The resumption report — §10.7'"'"'s pinned shape, byte for byte (D-O36)\n'
+
+SHAPE="$TMP/shape.py"
+cat > "$SHAPE" <<'PY'
+#!/usr/bin/env python3
+"""The resumption-report block: from the document, and from a compiled unit.
+
+Neither side is pinned in the suite — the document's block is extracted and the
+unit's is found by its own first line, then the two are compared. A reworded
+document breaks the check instead of drifting past it (check-register.sh §6's
+discipline, one shape over).
+"""
+import re
+import sys
+from pathlib import Path
+
+HEAD = "Auto off — "
+
+
+def blocks(text):
+    out, buf, fenced = [], None, False
+    for line in text.splitlines():
+        if line.lstrip().startswith("```"):
+            if fenced:
+                out.append("\n".join(buf))
+                buf = None
+            else:
+                buf = []
+            fenced = not fenced
+            continue
+        if fenced:
+            buf.append(line)
+    return out
+
+
+path = Path(sys.argv[2])
+text = path.read_text(encoding="utf-8")
+if sys.argv[1] == "doc":
+    sec = re.search(r"^### 10\.7\b.*?(?=^---\s*$)", text, re.M | re.S)
+    if not sec:
+        sys.exit("orchestrator §10.7 not found — the shape has no source")
+    text = sec.group(0)
+found = [b for b in blocks(text) if b.startswith(HEAD)]
+if not found:
+    sys.exit("no resumption-report block in %s" % path.name)
+print(found[0])
+PY
+
+python3 "$SHAPE" doc "$DOC" > "$TMP/shape-doc.txt" 2>"$TMP/shape-doc.err"
+if [ -s "$TMP/shape-doc.txt" ]; then
+  ok "§10.7 yields the resumption report — $(wc -l < "$TMP/shape-doc.txt" | tr -d ' ') lines"
+else
+  bad "§10.7's fenced block does not extract: the shape cannot be checked from source"
+  sed 's/^/      /' "$TMP/shape-doc.err"
+fi
+
+# vacuity: an emptied or reshaped block that still extracts would let a
+# byte-match pass while asserting nothing
+while IFS='|' read -r label phrase; do
+  [ -z "$label" ] && continue
+  grep -qF -- "$phrase" "$TMP/shape-doc.txt" \
+    && ok "the source block still carries $label" \
+    || bad "§10.7's block no longer carries $label — re-read the document first"
+done <<'LINES'
+the stop point and the mid-flight state|Stopped at: <point> · mid-flight:
+the draft rule for an aborted run|run aborted, artifact stays draft
+the trail, one line per act|Auto-trail: <n> acts — one line each:
+the assumption and question counts|Assumptions: <n> · Open questions: <n>
+the ratification line|Ratify: accept all / list exceptions
+the next manual act|Next manual act: <one line>
+LINES
+
+for pair in "$AUTO|the ba-auto skill" "$BLOCK|the CLAUDE.md block" "$AGENTS|AGENTS.md"; do
+  f="${pair%%|*}"; label="${pair##*|}"
+  python3 "$SHAPE" unit "$f" > "$TMP/shape-unit.txt" 2>"$TMP/shape-unit.err"
+  if [ ! -s "$TMP/shape-unit.txt" ]; then
+    bad "$label carries no resumption-report block"
+    sed 's/^/      /' "$TMP/shape-unit.err"
+  elif diff -u "$TMP/shape-doc.txt" "$TMP/shape-unit.txt" > "$TMP/shape.diff" 2>&1; then
+    ok "$label is byte-identical to §10.7 — the shape is compiled, not rewritten"
+  else
+    bad "$label diverges from §10.7's pinned shape:"
+    sed 's/^/      /' "$TMP/shape.diff" | head -14
+  fi
+done
+
+# the control: one dropped line in a private copy must go red
+SHC="$TMP/shape-corpus"
+mkdir -p "$SHC"
+cp "$AUTO" "$SHC/SKILL.md"
+python3 - "$SHC/SKILL.md" <<'PY'
+import pathlib, sys
+p = pathlib.Path(sys.argv[1])
+t = p.read_text(encoding="utf-8")
+p.write_text(t.replace("Ratify: accept all / list exceptions\n", ""), encoding="utf-8")
+PY
+python3 "$SHAPE" unit "$SHC/SKILL.md" > "$TMP/shape-dirty.txt" 2>&1
+diff -q "$TMP/shape-doc.txt" "$TMP/shape-dirty.txt" >/dev/null 2>&1 \
+  && bad "a dropped Ratify line slips through — the byte-match does not hold" \
+  || ok "the control fires — a dropped report line goes red"
+
+# the shape is a pinned format, so it joins register rule 8's list
+has "$DOC" "resumption report §10.7" "§10.3 rule 8's list carries the resumption report"
+for f in "$ORC" "$BLOCK" "$AGENTS"; do
+  has "$f" "resumption report §10.7" "…compiled into $(basename "$f")"
+done
+
+# ── 5. the mode-read line, across the carrier set ────────────────────────────
+#
+# check-register.sh's carrier set, to the byte: every skill, every persona, both
+# mirrors. A new skill joins by existing — the glob is the list.
+
+printf '\n▸ The mode read — byte-identical across the carrier set (§2.4 · §10.7)\n'
+
+cat > "$TMP/moderead.txt" <<'MR'
+**Mode read (framework-wide):** before the first act of any session, read the
+aspect-state head — the Profile and Auto lines govern.
+MR
+MR_SHA="$(sha_of < "$TMP/moderead.txt")"
+MR_N="$(wc -l < "$TMP/moderead.txt" | tr -d ' ')"
+
+moderead_sweep() {
+  local root="$1" n=0 okc=0 miss=0 alt=0 ln
+  for f in "$root"/payload/claude/skills/*/SKILL.md \
+           "$root"/payload/claude/agents/*.md \
+           "$root"/payload/mirror/*.md; do
+    [ -f "$f" ] || continue
+    n=$((n+1))
+    ln="$(grep -n '^\*\*Mode read (framework-wide):\*\*' "$f" | head -1 | cut -d: -f1)"
+    if [ -z "$ln" ]; then
+      miss=$((miss+1)); printf '  missing: %s\n' "${f#"$root"/}"; continue
+    fi
+    if [ "$(sed -n "${ln},$((ln+MR_N-1))p" "$f" | sha_of)" = "$MR_SHA" ]; then
+      okc=$((okc+1))
+    else
+      alt=$((alt+1)); printf '  altered: %s\n' "${f#"$root"/}"
+    fi
+  done
+  printf 'units=%s ok=%s missing=%s altered=%s\n' "$n" "$okc" "$miss" "$alt"
+}
+
+moderead_sweep "$PKG_ROOT" > "$TMP/mr-clean.out"
+MR_SUM="$(tail -1 "$TMP/mr-clean.out")"
+MR_UNITS="$(printf '%s' "$MR_SUM" | sed -n 's/^units=\([0-9]*\).*/\1/p')"
+MR_MISS="$(printf '%s' "$MR_SUM"  | sed -n 's/.*missing=\([0-9]*\).*/\1/p')"
+MR_ALT="$(printf '%s' "$MR_SUM"   | sed -n 's/.*altered=\([0-9]*\)$/\1/p')"
+
+[ "${MR_UNITS:-0}" -gt 0 ] \
+  && ok "the carrier glob derives a non-empty set — $MR_UNITS units" \
+  || bad "the carrier glob matched nothing: section 5 would pass vacuously"
+
+if [ "$MR_MISS" = "0" ] && [ "$MR_ALT" = "0" ]; then
+  ok "the mode read is byte-identical in all $MR_UNITS skills, personas and mirrors"
+else
+  bad "the mode read is missing from $MR_MISS and altered in $MR_ALT of $MR_UNITS units:"
+  grep -E '^  (missing|altered):' "$TMP/mr-clean.out" | sed 's/^/    /' | head -10
+fi
+
+# ba-auto is in the carrier set by existing, and it is the command the line
+# points at — a set that lost it would be reporting on a mode nobody can enter
+grep -q '^  missing: payload/claude/skills/ba-auto/SKILL.md$' "$TMP/mr-clean.out" \
+  && bad "the ba-auto skill itself carries no mode read" \
+  || ok "…the ba-auto skill included — the glob is the list, not a hand-kept set"
+
+# the control: one stripped, one paraphrased
+MRC="$TMP/mr-corpus"
+mkdir -p "$MRC"
+( cd "$PKG_ROOT" && tar cf - payload/claude/skills payload/claude/agents payload/mirror ) \
+  | ( cd "$MRC" && tar xf - )
+
+python3 - "$MRC/payload/claude/skills/ba-status/SKILL.md" <<'PY'
+import pathlib, sys
+p = pathlib.Path(sys.argv[1]); lines = p.read_text(encoding="utf-8").splitlines(keepends=True)
+i = next(i for i, l in enumerate(lines) if l.startswith("**Mode read (framework-wide):**"))
+del lines[i:i + 3]
+p.write_text("".join(lines), encoding="utf-8")
+PY
+python3 - "$MRC/payload/claude/agents/ba-discovery.md" <<'PY'
+import pathlib, sys
+p = pathlib.Path(sys.argv[1]); t = p.read_text(encoding="utf-8")
+p.write_text(t.replace("the Profile and Auto lines govern.", "the profile and auto lines apply."), encoding="utf-8")
+PY
+
+moderead_sweep "$MRC" > "$TMP/mr-dirty.out"
+MR_DSUM="$(tail -1 "$TMP/mr-dirty.out")"
+[ "$(printf '%s' "$MR_DSUM" | sed -n 's/.*missing=\([0-9]*\).*/\1/p')" = "1" ] \
+  && ok "the control fires — the stripped unit is caught as missing" \
+  || bad "a unit with no mode read passed the sweep: it is blind"
+[ "$(printf '%s' "$MR_DSUM" | sed -n 's/.*altered=\([0-9]*\)$/\1/p')" = "1" ] \
+  && ok "…and the paraphrased unit is caught as altered" \
+  || bad "a paraphrased mode read passed the sweep: the byte-match does not hold"
+
+# ── 6. the ratification grammar ──────────────────────────────────────────────
+
+printf '\n▸ Ratification — one batch act, exceptions reopen manually (D-O36)\n'
+
+has_joined "$DOC" "**Ratification is one batch act;** exceptions reopen their items manually" \
+    "§10.7 makes ratification one batch act"
+has_joined "$DOC" "The ratification appends its event (§2.4) and closes the AG." \
+    "…and closes the grant with an event"
+has_joined "$DOC" "A run interrupted mid-flight leaves its artifact a **draft**" \
+    "…and leaves an interrupted run's artifact a draft"
+
+for pair in "$AUTO|the skill" "$BLOCK|the CLAUDE.md block" "$AGENTS|AGENTS.md"; do
+  f="${pair%%|*}"; label="${pair##*|}"
+  has_joined "$f" "Ratification is one batch act" "$label carries the batch-ratification rule"
+done
+has "$AUTO" '<date> · ratification · AG-<n> · <initials> — accepted all | exceptions: <list>' \
+    "the skill carries the ratification event grammar"
+
+# the auto-trail section on the dashboard — the trail the ratification reads
+has "$DOC" 'trail <n> AUTO acts · unratified <u>' "§10.4's auto-trail section renders the counts"
+has "$PKG_ROOT/payload/claude/skills/ba-status/SKILL.md" 'trail <n> AUTO acts · unratified <u>' \
+    "…compiled into the dashboard skill"
+has_joined "$DOC" "renders **only once an AG record exists in the ledger**" \
+    "…and renders only once a grant exists"
+has_joined "$PKG_ROOT/payload/claude/skills/ba-status/SKILL.md" \
+    "Rendering the trail is not ratifying it." "…and rendering is not ratifying"
+
+# ── 7. the two locked amendments ─────────────────────────────────────────────
+
+printf '\n▸ The locked amendments — D-O40 (consent in advance) · D-O41 (not a self-clear)\n'
+
+has_joined "$DOC" "**A standing autonomy grant (AG, §4.4) is explicit consent recorded in advance — not silence (D-O40, locked).**" \
+    "§6.2 amends D-O13: a grant is consent in advance, not silence"
+has_joined "$DOC" "the grant is the BA's stated act for every act inside its scope, each stamped AUTO and standing for ratification at \`off\`" \
+    "…and says what the grant stands for"
+has_joined "$DOC" "**A transition under a recorded, revocable autonomy grant is not a self-clear (D-O41, locked):**" \
+    "§1 principle 2 amends the self-clear rule"
+has_joined "$DOC" "the framework still never clears on its own account, and every AUTO transition stands for ratification at \`off\`" \
+    "…without weakening what it amends"
+
+# D-O13's own case survives its amendment — the sentence a future edit would drop
+has_joined "$DOC" "**Silence is never consent; a rendered suggestion is never a plan.**" \
+    "D-O13's own case stands unchanged in §6.2"
+has_joined "$DOC" "Silence is never consent: a route executes only on a stated \`go\` (D-O13 unchanged)." \
+    "…and in §7.5, where the route takes its go"
+
+# the self-clear echoes carry the cross-reference where the act is the clearing
+has "$DOC" "An aspect gate never self-clears (AG transitions: §10.7 — BA-granted, ratifiable)." \
+    "§3.4's echo carries the cross-reference"
+has "$ORC" "(AG transitions: \`/ba-auto\` — BA-granted, ratifiable)" \
+    "the orchestrator persona's rule 2 carries it"
+has "$TPL" "(AG transitions: /ba-auto — BA-granted, ratifiable)" \
+    "the ledger template carries it"
+has_joined "$PKG_ROOT/payload/claude/skills/ba-clear/SKILL.md" \
+    "a recorded, revocable grant is not a self-clear" \
+    "the clearing skill carries the amendment where the act happens"
+
+# the review record, and the block it allocates
+has "$DOC" "## 19. Review record (v0.13 → v0.14)" "§19 records the ruling set"
+for d in 35 36 37 38 39 40 41; do
+  grep -qF -- "**D-O$d**" "$DOC" || bad "D-O$d is not ruled in the document"
+done
+n=0; for d in 35 36 37 38 39 40 41; do grep -qF -- "**D-O$d**" "$DOC" && n=$((n+1)); done
+[ "$n" -eq 7 ] && ok "the D-O35–D-O41 block is contiguous and complete — 7 rulings"
+
+# ── roll-up ──────────────────────────────────────────────────────────────────
+
+printf '\n  passed: %s   failed: %s\n' "$PASSED" "$FAILED"
+if [ "$FAILED" -eq 0 ]; then
+  printf '✓ GREEN — autonomous mode: the AG record and the Auto head line · the §10.7 policy table on four surfaces · the safety floor swept across %s files with 3 seeded breaches · the resumption report byte-identical in 3 units · the mode read in %s carriers · the two locked amendments\n' \
+    "${F_FILES:-?}" "${MR_UNITS:-?}"
+  exit 0
+fi
+printf '✗ RED — %s check(s) failed\n' "$FAILED"
+exit 1

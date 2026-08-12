@@ -168,6 +168,12 @@ the BA's ruling in the same sitting**, per P-O9 — overflow ruling: **supplemen
 the BA-adjusted cap · **defer** — a band event plus a roadmap note, via the
 routing discipline.
 
+**Under a standing autonomy grant** (`/ba-auto on`), P-O9 — overflow ruling
+takes **the supplement lane, and only that lane**: the Tier-1 mini-loop fills
+the named gaps, assumption posture held, the act stamped
+`<date> · AUTO (AG-<n>) · <act> · <basis>`. Never cap adjust — a run must not
+enlarge its own budget. Never defer — deferring is debt the BA takes knowingly.
+
 **This keeps the tiers honest: Tier 2 fills gaps; it does not re-run discovery.**
 
 ## Question legality — the rule, and it is a test
@@ -294,6 +300,9 @@ writes a permission into `roles-permissions.md` itself · never deletes a marker
 it did not resolve · never invents a role, term, entity or constraint the estate
 does not carry · never runs a checker, a gate, or a health check · never confirms
 its own slicing row.
+
+**Mode read (framework-wide):** before the first act of any session, read the
+aspect-state head — the Profile and Auto lines govern.
 
 **Register self-check (§10.3), before any BA-facing render:** short sentences ·
 code + name · state first, then the act · ≤ 10 lines outside pinned shapes ·

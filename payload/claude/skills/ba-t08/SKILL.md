@@ -178,6 +178,9 @@ basis · never accepts an objective too vague to cite · never emits a question
 without a destination · never touches a canvas section it does not own · never
 confirms an AT criterion or clears an aspect · never runs a CC assertion.
 
+**Mode read (framework-wide):** before the first act of any session, read the
+aspect-state head — the Profile and Auto lines govern.
+
 **Register self-check (§10.3), before any BA-facing render:** short sentences ·
 code + name · state first, then the act · ≤ 10 lines outside pinned shapes ·
 no acknowledgement-only stop. A failing render is rewritten, not sent.
