@@ -176,6 +176,10 @@ artifact · never drops a signal silently — every received RO ends `resolved`,
 `declined` or `open` · never converts a deferred consequence into a schedule ·
 never re-clears the aspect itself.
 
+**Register self-check (§10.3), before any BA-facing render:** short sentences ·
+code + name · state first, then the act · ≤ 10 lines outside pinned shapes ·
+no acknowledgement-only stop. A failing render is rewritten, not sent.
+
 **The session boundary (framework-wide).** This is an **analysis session**. It
 produces analysis artifacts only. It never produces an implementation plan, a
 task list, a prototype, or code — not as a proposal, not as a "next step," not as

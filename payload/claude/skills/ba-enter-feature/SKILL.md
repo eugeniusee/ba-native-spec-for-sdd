@@ -13,6 +13,12 @@ Band-3 entry for a feature **is** the slicing-row confirmation act. The status
 flip is the elicitation layer's mechanics; this skill renders the row, assigns
 the number, creates the destination, and records the band event — nothing else.
 
+**Entering several features at once:** `/ba-run specs all` (or
+`specs <epic-list>`) is the batch path — one P-O8 — Band-3 entry table over
+every selected feature, then Tier 2 per feature (orchestrator §8.4). This
+skill's per-feature act is unchanged; the batch driver performs it once per
+confirmed row.
+
 ## Invocation contract — check before you run
 
 - **BA act.** The confirmation is the BA's; you render and record.
@@ -147,6 +153,10 @@ entry on the Presale profile — drafting is in profile · never switches the
 profile itself · never offers certification or handoff as the next step under
 Presale · never enters Band 3 before Band-1 closure · never assigns an `NNN` that
 is already taken.
+
+**Register self-check (§10.3), before any BA-facing render:** short sentences ·
+code + name · state first, then the act · ≤ 10 lines outside pinned shapes ·
+no acknowledgement-only stop. A failing render is rewritten, not sent.
 
 **The session boundary (framework-wide).** This is an **analysis session**. It
 produces analysis artifacts only. It never produces an implementation plan, a

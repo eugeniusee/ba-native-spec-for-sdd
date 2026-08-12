@@ -4916,3 +4916,216 @@ machine installs `uv` before `install.sh` declines to write anything. This is th
 same shape as the `git init` note in the previous entry — bootstrap's own two
 steps are not dry-run-aware — and it is behavior the ruling did not ask to be
 made conditional.
+
+---
+
+## Manual-mode UX — the checkpoint law · plan-as-route · batch specs · package 0.1.10 · 13 August 2026 · GREEN
+
+A manual-mode field read of the Presale path (12 Aug) found the framework
+stopping in the wrong places. Not too often in the aggregate — in the wrong
+*class* of place. It stopped at **step boundaries**: after a technique ran, to be
+told to run the next one the BA had already put on the plan. And when a stated
+destination was out of reach, it answered with a **list of commands to type**,
+which is the framework asking the BA to do the framework's job. Both are stops
+that buy no decision, and both are budget the BA spends on nothing.
+
+WS-2 ruled the interaction model (D-O30–D-O34, orchestrator §18, v0.13). This
+build compiles it. Nothing about ownership moved: the BA decides everything the
+BA decided before. What changed is the **size of the act** that carries a
+decision, and where the framework is permitted to stop.
+
+**Re-parameterized before the first edit.** The session was briefed against
+`3f7858d` at VERSION 0.1.7 → 0.1.8, orchestrator v0.11 → v0.12, decisions
+D-O26–D-O30. HEAD was five commits ahead: 0.1.8 and 0.1.9 had shipped with other
+payloads, v0.12 was dashboard v2, and **D-O26–D-O29 were already allocated**
+(§10.4's own heading names them). The brief's own escape clause — *"keep them
+unless the log shows collisions"* — fired. Ruled by the BA Lead, 13 Aug: a clean
++4 shift, D-O30–D-O34, VERSION 0.1.10, orchestrator v0.13, and a standing law for
+the rest of the build — **locate every anchor by content in the live text, never
+the brief-era snapshot; where the live form differs, edit the live form and log
+it**. Five of the nine divergences below are that law firing.
+
+### S1 — the checkpoint law (D-O30)
+
+§10.1 gains the rule its table always implied but never said: **a stop is
+legitimate only where the BA decides between materially different outcomes or
+accepts debt.** Plan composition, clearing, waiver, override, reopen ruling,
+defer batch, overflow ruling, profile switch, band transition — that is the list,
+and it is a list of *decision moments, not step boundaries*. Anything else is the
+banned class: where no decision exists, the framework proceeds and reports.
+
+§10.3 rule 7 carries the render half — *"An acknowledgement-only stop is a banned
+render: if no BA decision exists, do not stop"* — so the law reaches the surface
+where renders are actually composed, and compiles into the four personas and the
+two mirrors with the rest of the register.
+
+### S2 — plan-as-route and the route render (D-O31)
+
+New §7.5. **The composed plan is a route.** One BA act — `go` on the rendered
+route, or `/ba-run` with no argument — runs its rows in order, each under its own
+compiled P-O3 (technique invocation) check and its own run-end bookkeeping. It
+stops only at a §10.1 decision point, or on a contract miss, which stops it with
+the single unblocking act named.
+
+**The invariant is not weakened, and the entry says why.** No state change
+without a BA act — the `go` *is* that act, and its extent is named in the render
+before it is taken. D-O13 is restated unchanged: silence is never consent, a
+route runs only on a stated `go`. That sentence is asserted in three places by
+`check-budget.sh`, because it is the sentence a future edit would quietly drop.
+
+New §10.6 pins the render, and it joins §10.3 rule 8's list of pinned formats.
+The shape is compiled into `ba-run`, `ba-orchestrator` and the CLAUDE.md block —
+every file that renders a route renders the same one.
+
+### S3 — auto-repair (D-O32)
+
+§10.2. An unreachable destination is answered as **one act**: the mismatch in one
+line, the repair route in the §10.6 shape, then `go?`. Handing the BA a list of
+commands to type is a banned render — and it is also how a budget gets blown,
+since every command in that list is an interaction the framework asked the BA to
+spend. After the `go`, the framework executes its own mechanics.
+
+### S4 — Presale defaults and the ≤ 8 budget (D-O33)
+
+§6.5 gains four things. The **Band-2 pair reruns** (T-17 — epics decomposition,
+T-18 — scope allocation) are on the default route, so the roadmap is never
+quietly MVP-only and the BA does not discover it post-hoc. Canvas confirmation
+under Presale is **one artifact-level batch** — one confirm per artifact, never
+per section (a profile default under D-O14; the catalogue sheet is untouched).
+Plan-as-route is the profile's default interaction mode, with Discovery keeping
+its density **by BA choice, not inheritance**.
+
+And the number: **Presale end-to-end — Frame to a rendered WBS — fits in ≤ 8 BA
+interactions.** Exceeding it is a defect, not a style preference. A budget nobody
+counts is a wish, so `tests/presale-path.md` is the script and `check-budget.sh`
+counts it — headings numbered 1…N, asserted contiguous, asserted ≤ 8. The eighth
+interaction is held deliberately unspent as slack.
+
+### S5 — batch Band-3 entry (D-O34)
+
+§8.4 and `/ba-run specs all | specs <epic-list>`. One P-O8 — Band-3 entry table
+over every selected feature; the BA strikes rows by number and confirms the rest
+in one act. Per-row mechanics are unchanged — status flip, band event, the §8.4
+advisory where one fires. Tier 2 then drafts every entered feature in assumption
+posture and stops **once**, at the consolidated defer-confirm, rather than once
+per feature.
+
+### S6 — the harness
+
+`tests/check-budget.sh`, row 16, 37 checks: the budget counted off the script ·
+the §10.6 shape held down in all four files that carry it · the checkpoint law
+and rule 7 in the document and in all six register carriers · **the
+acknowledgement-only sweep** across the whole skill/persona/mirror surface, with
+a seeded `confirm to continue` proving the sweep is not blind. The banned list is
+printed on every run (`--list` prints it alone) — ten phrasings, seeded from the
+ruling's three and extended by judgment, so a future reader sees the list rather
+than only its verdict.
+
+`check-register.sh` gains section 7: the register self-check compiled
+byte-identical into all 39 units, its clauses each grounded in the §10.3 rule
+they compile, with a stripped unit and a paraphrased one as controls.
+`check-orchestrator.sh` gains the section inventory — a section referenced but
+absent is the failure mode — plus the persona's compiled law. `check-spine.sh`
+gains the two new `/ba-run` forms at the dispatch interface.
+
+### Test run — 16 of 16
+
+| Check | Result |
+|---|---|
+| `check-m.sh` | 40 / 0 |
+| `check-gate.sh` | 59 / 0 |
+| `check-orchestrator.sh` | 135 / 0 |
+| `check-techniques.sh` | 101 / 0 |
+| `check-techniques2.sh` | 122 / 0 |
+| `check-techniques3.sh` | 158 / 0 |
+| `check-spine.sh` | 155 / 0 |
+| `check-register.sh` | 59 / 0 |
+| `check-wbs.sh` | 62 / 0 |
+| `check-status.sh` | 94 / 0 |
+| `check-ledger.py` | grammar-legal — 14 rules, no violations |
+| `check-cards.py` | every card byte-identical to its re-derivation; layering clean |
+| `check-layout.sh` | 110 / 0 / 0 |
+| `check-exit.sh --offline` | 99 / 0 |
+| `check-install.sh` | 64 / 0 |
+| `check-budget.sh` | 37 / 0 |
+
+`ran: 16   red: 0   skipped: 0` · **✓ GREEN**, the three install-based runs
+included. Counts equal the 0.1.9 baseline except `check-orchestrator.sh`
+(122 → 135), `check-spine.sh` (149 → 155), `check-register.sh` (51 → 59), and
+the new `check-budget.sh`. **The runner is now sixteen checks, not fifteen** —
+its header, `--list` output, roll-up and the README's four count strings updated
+in step.
+
+### Divergences
+
+**D91 · `docs/quickstart.md` has no Presale walkthrough to rewrite.** E14 reads
+*"Presale walkthrough rewritten to the ≤ 8 path"*. The live quickstart is
+band-structured — Band 1 / Band 2 / Band 3 — and the word *presale* appears twice,
+both times incidentally. *Resolution taken:* **authored** a new section,
+`## Presale — the whole path in eight interactions`, between Band 3 and the
+command index, carrying the eight-step path and one §10.6 route render. The three
+band walkthroughs are untouched: Discovery is still the density the quickstart
+teaches first, which is the §6.5 ruling's own position.
+
+**D92 · the batch path was specified against a two-record world; D86 made it
+three.** E6 and E9 enumerate what each confirmed row keeps — *"its status flip,
+its band event"* — the pair that was true at `3f7858d`. Commit `b8e66fa` (D86)
+gave every Tier-2 run its own `## Band 3` run-log line, so a batch that drafts
+eight features owes eight run-log lines. Written as briefed, the batch driver
+would have silently dropped the bookkeeping §7.3 mandates. *Resolution taken:*
+both texts extended to name the run-log line — §8.4 as *"each run owing its own
+`## Band 3` run-log line (§7.3, build-log D86)"*, `ba-run` as *"each run writing
+its own `## Band 3` run-log line"*. This is a faithful reading of *"keeps its own
+mechanics unchanged"*, not a new ruling; `check-spine.sh` pins both.
+
+**D93 · register rule 8's pinned-formats list drifted at v0.9 and was never
+propagated.** The document's list gained `WBS export §10.5` when the export was
+ruled; the six files the register compiles into — two mirrors, four personas —
+still carried the pre-v0.9 list, with a compile artifact (`P-O prompts)` flush
+left at column 0) marking where the insertion had been made and not re-wrapped.
+Appending §10.6 to a list already missing §10.5 would have shipped the drift one
+version further. *Resolution taken:* all six synced to the document's live list —
+both entries added in one pass, the indentation repaired.
+
+**D94 · the CLAUDE.md block's command index was one command and two counts
+behind.** `/ba-wbs` (shipped 0.1.6) was absent from the workflow table, so the
+block advertised *"All 32"* against a payload of 33 skills and *"Workflow — 12"*
+against a set of 13. *Resolution taken:* the row added, both counts corrected to
+33 and 15 (the two new `/ba-run` forms included). Left alone: the build plan's
+D-P2-2 also reads *"All 32 commands"*, and that is a decision record of what was
+ruled at the time, not a live render — it is not this build's to rewrite.
+
+**D95 · row 16 is file-only, and it runs after the install-based rows.** The
+ruling fixes `check-budget.sh` at row 16, and rows 13–15 are the install-based
+runs — so the new check is a file-only check sitting below them. *Resolution
+taken:* it runs outside the `--file-only` branch, in a group of its own labelled
+for what it is: a **whole-surface** check that sweeps every skill, persona and
+mirror, run last so it reads the surface as the rest of the suite leaves it. Row
+16 as ruled, and `--file-only` runs thirteen checks, not twelve.
+
+**Two more, resolved as ruled and recorded for completeness.** §10.3 rule 8's
+list was extended in its **live v0.12 form** — the one carrying the dashboard's
+own extension — never the brief-era snapshot (ruling point 3). And WS-2's review
+record became **§18**: §16 is the WBS ruling set, §17 dashboard v2.
+
+### Open
+
+**The budget is asserted against a script, not against a live agent.**
+`check-budget.sh` proves the package *can* hold ≤ 8 — the pinned shapes are
+compiled, no acknowledgement-only stop is authored into any skill, and the
+scripted path stays inside eight. Whether a live agent holds it on a real estate
+is what the agent-run half of `presale-path.md` is for, and that run is a field
+act, not a harness act. The two-ways-to-run split is `exit-test.md`'s precedent
+and its limitation, inherited knowingly.
+
+**The banned list is judgment, and says so.** Ten phrasings catch the shapes an
+acknowledgement-only stop takes in English. A model can invent an eleventh. The
+list is printed on every run precisely so its edges stay visible; extending it is
+a one-line edit at the top of the suite.
+
+**`/ba-run` now carries four behaviors** — route runner, batch spec driver, thin
+alias, custom runner — selected by argument shape. That is a lot for one command,
+and it is the shape the ruling names (§11's two new binding rows). If the field
+finds the overload confusing, splitting the batch driver into its own command is
+a one-line re-ruling and a file move; nothing in §7.5 or §8.4 depends on the two
+living together.

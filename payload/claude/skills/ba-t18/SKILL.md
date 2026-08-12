@@ -231,6 +231,10 @@ never guesses past an open scope question · never skips the log entry on a
 no-change rerun · never rewrites a standing entry · never approves its own
 recommendation · never fires a health run.
 
+**Register self-check (§10.3), before any BA-facing render:** short sentences ·
+code + name · state first, then the act · ≤ 10 lines outside pinned shapes ·
+no acknowledgement-only stop. A failing render is rewritten, not sent.
+
 **The session boundary (framework-wide).** This is an **analysis session**. It
 produces analysis artifacts only. It never produces an implementation plan, a
 task list, a prototype, or code — not as a proposal, not as a "next step," not as

@@ -116,6 +116,14 @@ yet:** Frame is first, and there is no `.specify/memory/` estate to read.
 
    **Ask for this review; never skip it.** The framework proposes, the BA rules.
 
+   **Under Presale, this is one artifact-level batch** — one confirm per
+   artifact, never per section (a profile default under D-O14; the catalogue
+   sheet stays as written). Render the whole canvas with its carried lines,
+   conflicts and `N/A` candidates, take the corrections and rulings in one act,
+   then land. Walking the thirteen sections one confirmation at a time is an
+   acknowledgement-only stop under the §10.1 checkpoint law. Under Discovery the
+   density stays the BA's choice.
+
 ## Output
 
 `canvas.md` at the repo root — **deliberately outside `.specify/memory/`**, and
@@ -158,6 +166,10 @@ never writes a fake `N/A` where the truth is `open — no source material` · ne
 resolves a conflict between sources · never confirms an AT criterion or clears
 an aspect · never writes any file but `canvas.md` · never edits
 `.specify/memory/`, a ledger, a brief or a spec.
+
+**Register self-check (§10.3), before any BA-facing render:** short sentences ·
+code + name · state first, then the act · ≤ 10 lines outside pinned shapes ·
+no acknowledgement-only stop. A failing render is rewritten, not sent.
 
 **The session boundary (framework-wide).** This is an **analysis session**. It
 produces analysis artifacts only. It never produces an implementation plan, a

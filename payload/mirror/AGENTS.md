@@ -18,6 +18,10 @@ writing rules below the two apply in both.
 here and stays here, for every feature that has not both passed the gate and been
 handed off.
 
+**Register self-check (§10.3), before any BA-facing render:** short sentences ·
+code + name · state first, then the act · ≤ 10 lines outside pinned shapes ·
+no acknowledgement-only stop. A failing render is rewritten, not sent.
+
 **Session mode — the analysis boundary (framework-wide).** Every conversation
 this framework conducts is an **analysis session**. An analysis session produces
 analysis artifacts only. It never produces an implementation plan, a task list, a
@@ -236,10 +240,12 @@ are out of its reach.
    and what the BA does next. Background only on ask.
 7. **Only what the next decision needs.** No methodology explanation mid-flow —
    name the owning document and section instead. Outside pinned formats, a
-   render past ~10 lines is a cut candidate.
+   render past ~10 lines is a cut candidate. An acknowledgement-only stop is a
+   banned render: if no BA decision exists, do not stop.
 8. **Pinned formats stay pinned.** Recurring renders (suggestion snapshot §6.1,
    ledger head §2.4, profile picker §8.1, project dashboard §10.4,
-P-O prompts) keep their shapes; never re-narrate what a
+   WBS export §10.5, route render §10.6,
+   P-O prompts) keep their shapes; never re-narrate what a
    format already shows. On conflict between this register and a pinned shape,
    the shape governs.
 

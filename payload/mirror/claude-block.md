@@ -72,17 +72,19 @@ only fails.
 
 ### Commands — the `/ba-*` namespace
 
-All 32 are **BA-invoked, never auto-fired** (`disable-model-invocation: true`).
+All 33 are **BA-invoked, never auto-fired** (`disable-model-invocation: true`).
 Do not invoke them on your own initiative and do not simulate their effects.
 
-**Workflow — 12**
+**Workflow — 15**
 
 | Command | Act |
 |---|---|
 | `/ba-frame` | Band-1 entry: initialize the two aspect ledgers, pick the flow profile (P-O0 — flow-profile selection), confirm the canvas |
 | `/ba-status [--html]` | Render the aspect-ledger head and the nine-line project dashboard; `--html` also writes the derived offline render |
 | `/ba-aspect <aspect>` | Open an aspect; suggestion snapshot → plan composition |
-| `/ba-t<NN>` · `/ba-tier1` · `/ba-tier2` | One-step technique run — the P-O3 (technique invocation) check compiled in; `/ba-run` = alias + custom runner |
+| `/ba-t<NN>` · `/ba-tier1` · `/ba-tier2` | One-step technique run — the P-O3 (technique invocation) check compiled in; `/ba-run <id>` = alias + custom runner |
+| `/ba-run` | Run the composed plan as a route: the pinned route render, then every row on one `go` — no per-row acknowledgement |
+| `/ba-run specs all` · `/ba-run specs <epic-list>` | Batch Band-3 entry: one P-O8 (Band-3 entry) table, then Tier 2 per feature, one consolidated defer-confirm |
 | `/ba-clear <aspect>` | Evidence table → clearing confirmation |
 | `/ba-waive-aspect <aspect>` | Grant · re-affirm · lapse an aspect waiver |
 | `/ba-reopen <aspect>` | Rule and execute a reopen signal |
@@ -91,6 +93,7 @@ Do not invoke them on your own initiative and do not simulate their effects.
 | `/ba-gate <feature>` | Scope-F gate run, stages 0–5 |
 | `/ba-gate-health [artifact \| full]` | Scope-H project health run |
 | `/ba-handoff <feature>` | Mode-A adapter: hash guard, branch, ready report |
+| `/ba-wbs [--include NNN …]` | The WBS export — `exports/wbs.xlsx` + `exports/wbs.csv`, read-only |
 
 **Techniques — 20** (one-step via `/ba-<id>`; the P-O3 (technique invocation) check compiled into each; `/ba-run <id>` aliases)
 
@@ -116,6 +119,38 @@ Do not invoke them on your own initiative and do not simulate their effects.
 | `t18` | Scope allocation (repeatable) | `memory/roadmap.md` — Phase + log |
 | `tier1 <kit\|ingest\|supplement> <epic>` | Epic scoping interview | `memory/scope/<epic>.md` |
 | `tier2` | Spec-depth gap-filling | `specs/NNN-<feature>/spec.md` |
+
+### Stops and routes — the checkpoint law
+
+A stop is legitimate only where the BA decides between materially different
+outcomes or accepts debt: plan composition, clearing, waiver, override, reopen
+ruling, defer batch, overflow ruling, profile switch, band transition. A stop
+that only collects an acknowledgement is a banned class — where no decision
+exists, proceed and report.
+
+**Plan-as-route.** The composed plan is a route. One BA act — `go` on the
+rendered route, or `/ba-run` with no argument — runs its rows in order, each
+under its own P-O3 (technique invocation) discipline, without per-row
+acknowledgement. The route stops only at the decision points above, or on a
+contract miss, which stops it with the single unblocking act named. No state
+change without a BA act: the `go` **is** that act, its extent named in the
+render. Silence is never consent — a route runs only on a stated `go`.
+
+**The route render — pinned shape:**
+
+```
+Route — <destination, one line> · profile: <profile>
+| # | Code — technique | Yields |
+|---|---|---|
+| 1 | T-08 — Value definition | canvas Problems + Objectives |
+Stops en route: <the decision points, or none>
+Next: step 1 — go?
+```
+
+**Auto-repair.** When the BA states a destination the current state cannot
+reach, propose the repair as one act: the mismatch in one line, the repair route
+in the shape above, then `go?`. Handing the BA a list of commands to type is a
+banned render — after the `go`, execute the mechanics yourself.
 
 ### BA-facing communication register
 
@@ -144,10 +179,12 @@ are out of its reach.
    and what the BA does next. Background only on ask.
 7. **Only what the next decision needs.** No methodology explanation mid-flow —
    name the owning document and section instead. Outside pinned formats, a
-   render past ~10 lines is a cut candidate.
+   render past ~10 lines is a cut candidate. An acknowledgement-only stop is a
+   banned render: if no BA decision exists, do not stop.
 8. **Pinned formats stay pinned.** Recurring renders (suggestion snapshot §6.1,
    ledger head §2.4, profile picker §8.1, project dashboard §10.4,
-P-O prompts) keep their shapes; never re-narrate what a
+   WBS export §10.5, route render §10.6,
+   P-O prompts) keep their shapes; never re-narrate what a
    format already shows. On conflict between this register and a pinned shape,
    the shape governs.
 
@@ -156,6 +193,10 @@ P-O prompts) keep their shapes; never re-narrate what a
 **Reader: you, in this conversation.** Every conversation in this project starts
 here and stays here, for every feature that has not both passed the gate and been
 handed off. The rules below are yours.
+
+**Register self-check (§10.3), before any BA-facing render:** short sentences ·
+code + name · state first, then the act · ≤ 10 lines outside pinned shapes ·
+no acknowledgement-only stop. A failing render is rewritten, not sent.
 
 **Session mode — the analysis boundary (framework-wide).** Every conversation
 this framework conducts is an **analysis session**. An analysis session produces

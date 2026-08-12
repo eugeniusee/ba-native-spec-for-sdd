@@ -19,6 +19,12 @@ minutes of a BA's attention, not an interrogation.
 
 **This skill delivers a spec to the gate and stops. It never runs a check.**
 
+**Drafting several features at once:** `/ba-run specs all` (or
+`specs <epic-list>`) is the batch path — it runs this skill once per entered
+feature in assumption posture and stops once, at the consolidated defer-confirm
+(orchestrator §8.4). This skill's per-feature run is unchanged, run-log line
+included.
+
 ## Invocation contract — P-O3 (technique invocation), compiled in
 
 **BA-invoked, never auto-fired.** `/ba-tier2 <feature>` is the one-step entry:
@@ -288,6 +294,10 @@ writes a permission into `roles-permissions.md` itself · never deletes a marker
 it did not resolve · never invents a role, term, entity or constraint the estate
 does not carry · never runs a checker, a gate, or a health check · never confirms
 its own slicing row.
+
+**Register self-check (§10.3), before any BA-facing render:** short sentences ·
+code + name · state first, then the act · ≤ 10 lines outside pinned shapes ·
+no acknowledgement-only stop. A failing render is rewritten, not sent.
 
 **The session boundary (framework-wide).** This is an **analysis session**. It
 produces analysis artifacts only. It never produces an implementation plan, a

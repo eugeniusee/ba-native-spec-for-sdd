@@ -184,6 +184,10 @@ unnamed field · never resolves a scan hit on the BA's behalf · never reads
 never touches a canvas section it does not own · never confirms an AT criterion
 or clears an aspect · never runs a CC assertion.
 
+**Register self-check (§10.3), before any BA-facing render:** short sentences ·
+code + name · state first, then the act · ≤ 10 lines outside pinned shapes ·
+no acknowledgement-only stop. A failing render is rewritten, not sent.
+
 **The session boundary (framework-wide).** This is an **analysis session**. It
 produces analysis artifacts only. It never produces an implementation plan, a
 task list, a prototype, or code — not as a proposal, not as a "next step," not as

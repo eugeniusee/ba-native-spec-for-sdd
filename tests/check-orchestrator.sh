@@ -401,6 +401,8 @@ has "$SKILLS/ba-aspect/SKILL.md" "there is no \`first-pass-cleared → open\` tr
 has "$SKILLS/ba-run/SKILL.md" "thin alias for" "ba-run aliases the technique's own one-step command (§7.1)"
 has "$SKILLS/ba-run/SKILL.md" "check P-O3 (technique invocation) here" \
     "ba-run keeps the contract check on the custom-technique path (§7.1)"
+has "$SKILLS/ba-run/SKILL.md" "each row under its own compiled P-O3" \
+    "…and a route's rows each keep that same check (§7.5)"
 has "$SKILLS/ba-t03/SKILL.md" "BA-invoked, never auto-fired" \
     "the invocation discipline is compiled into each technique skill (§7.1)"
 has "$AGENTS/ba-orchestrator.md" "No mid-run drip" \
@@ -480,7 +482,38 @@ else
   has "$AG" "never auto-cascade" "D-O6 is in the persona, not only in the skill"
   has "$AG" '**"The gate", unqualified, means the contract runtime**' \
       "the vocabulary rule — 'aspect gate' is never abbreviated"
+  # WS-2 (D-O30 · D-O31 · D-O32): the persona is a compile source, so the
+  # checkpoint law and plan-as-route have to be *in* it, not only in §10.1.
+  has "$AG" "The checkpoint law." "the checkpoint law compiles into the persona (§10.1, D-O30)"
+  has "$AG" "This table lists decision moments, not step boundaries." \
+      "…and says what its own checkpoint table is"
+  has "$AG" "The composed plan is a route." "plan-as-route compiles in too (§7.5, D-O31)"
+  has "$AG" "Silence is never consent" "…with D-O13 restated inside it, not relaxed"
+  has "$AG" "Auto-repair." "auto-repair compiles in (§10.2, D-O32)"
 fi
+
+# ── 6b. the document's own section inventory ─────────────────────────────────
+#
+# WS-2 added two sections and one review record. A section that is referenced
+# but absent is the failure mode this guards: §10.3 rule 8 names §10.6, §7.5
+# names §10.6, and the runner names both.
+
+printf '\n▸ The section inventory — every section the corpus references exists\n'
+
+RULES_DOC="$PKG_ROOT/docs/methodology/ba-native-spec-orchestrator-rules.md"
+for sec in "### 7.5 Plan-as-route" "### 10.6 The route render" "## 18. Review record"; do
+  grep -qF -- "$sec" "$RULES_DOC" \
+    && ok "the document carries \`$sec\`" \
+    || bad "the document is missing \`$sec\` — referenced but absent"
+done
+
+# §10.3's two amended rules, in the document that owns them
+has "$RULES_DOC" "An acknowledgement-only stop is a banned render" \
+    "§10.3 rule 7 carries the banned-render clause (D-O30)"
+has "$RULES_DOC" "WBS export §10.5, route render §10.6" \
+    "§10.3 rule 8's pinned-formats list names both renders"
+has "$RULES_DOC" "v0.13" "the header states the edition WS-2 produced"
+has "$RULES_DOC" "D-O30–D-O34" "…and the change record names its decisions"
 
 # ── 7. layering — no methodology leaks into the payload ──────────────────────
 

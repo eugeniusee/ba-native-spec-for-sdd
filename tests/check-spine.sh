@@ -373,6 +373,18 @@ printf '\n▸ /ba-run dispatch: the interface the four skills implement (P-O3)\n
 
 has "$RUN" "thin alias for" "ba-run forwards a catalogue technique to its own one-step command"
 has "$RUN" "execute it as the procedure" "…by reading the technique's skill file, re-checking nothing"
+
+# WS-2 (D-O31 · D-O34): the same file gained two forms above the alias — the
+# route runner and the batch spec driver. Both run *these* skills, so the
+# interface this section holds down is now what they dispatch into.
+has "$RUN" "Route runner (no argument)" "ba-run runs the composed plan as a route (§7.5)"
+has "$RUN" "Never stop between rows for acknowledgement" \
+    "…without an acknowledgement between rows (§10.1 checkpoint law)"
+has "$RUN" "Batch spec driver" "ba-run drives batch Band-3 entry (§8.4)"
+has "$RUN" "each run writing its own \`## Band 3\` run-log line" \
+    "…and the batch keeps Tier 2's per-feature run-log line intact"
+has "$TI2" "\`/ba-run specs all\`" "Tier 2 names the batch path that drives it"
+has "$TI2" "run-log line included" "…and says its own per-feature run is unchanged there"
 has "$T17" "append under \`## Band 2\`" "T-17 books its own run under the ## Band 2 section"
 has "$T18" "append under \`## Band 2\`" "T-18 books its own run there too, each rerun naming its trigger"
 has "$TI1" "append under \`## Band 2\`" "Tier 1 books its own run under ## Band 2"

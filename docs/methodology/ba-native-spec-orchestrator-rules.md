@@ -1,5 +1,6 @@
 # Geniusee Orchestrator Rules
-### BA-Native Spec · aspect & band machinery · v0.12 — §10.4 dashboard v2: band coverage · workflow line · HTML render (12 Aug 2026)
+### BA-Native Spec · aspect & band machinery · v0.13 — manual-mode UX: the checkpoint law · plan-as-route · the route render (13 Aug 2026)
+**v0.13 change record:** one interaction-model ruling set, ruled 13 Aug 2026 (WS-2 — manual-mode UX; R1–R5 → **D-O30–D-O34**, §18; origin: the manual-mode field read of the Presale path, 12 Aug 2026): **the checkpoint law** (§10.1) — a stop is legitimate only where the BA decides between materially different outcomes or accepts debt; the acknowledgement-only stop becomes a banned class, and §10.3 rule 7 carries the render half (D-O30) · **plan-as-route** (new §7.5) with **the route render** (new §10.6, §10.3 rule-8 list extended in step) — the composed plan executes on one `go`, each row under its own compiled P-O3, stopping only at §10.1 decision points or a contract miss (D-O31) · **auto-repair** (§10.2) — an unreachable destination is answered with one repair route, never a list of commands to type (D-O32) · **Presale defaults** (§6.5) — the Band-2 pair reruns on the default route, artifact-level canvas confirmation, plan-as-route as the profile's interaction mode, and an **≤ 8 BA-interaction budget** the harness counts (D-O33) · **batch Band-3 entry** (§8.4) — `/ba.run specs all | specs <epic-list>`, one P-O8 table then Tier 2 per feature with one consolidated defer-confirm (D-O34). §11 gains the route-runner and batch-driver rows. No threshold, assertion, gate, or session-boundary (§10.2 session mode) text touched: the invariant stands — no state change without a BA act; only the granularity of the act changes.
 **v0.12 change record:** one section rebuilt plus two ratifications, ruled 12 Aug 2026 ("apply as recommended", R1–R7 → D-O26–D-O29, §17; origin: the first live Presale field render of `/ba.status`, 11 Aug 2026): **§10.4 dashboard v2** — per-band coverage bars with named denominators from a disk-extended read set (the §10.5 precedent) · the §10.4-F workflow line, the one sanctioned composite, amending D-O17's no-composite clause by new ruling · profile-switched line 8 with Presale exit readiness · the ledger-coverage self-report line · the `--html` derived render. Companion build items (run-log bookkeeping per §7.3's mandate; health-refresh-overdue display) ride the propagation build. **Provenance, on the record:** dashboard v2 was ruled 12 Aug 2026 against a stale **v0.10** base, while the one-step invocation sync (§7.1, §11) had already been committed as v0.11 — the two collided on one version number. This edition **rebases the dashboard section onto v0.11 by ruling**: v0.11's §7.1 and §11 text stands untouched and keeps its own change record below; the dashboard section takes v0.12. **Ratified as built** (the v0.8 pattern — the package already behaves as ruled, no behavioral change; package 0.1.9, no payload byte changes): §6.4's section list names `## Band 3` as the home of Tier-2 run lines, the placement §7.3's mandate already requires and the package already ships (build-log D86) · §10.4's *handed off* count renders `—` with its missing source named — `/ba-handoff` re-points `.specify/feature.json` and cuts a branch, neither countable per feature; a countable handoff record is a future ruling (build-log D87). No threshold, assertion, gate, or session-boundary (§10.2) text touched.
 **v0.11 change record:** one mechanics sync, 11 Aug 2026 (package build 0.1.7, WS-1 — one-step technique invocation): §7.1's invocation check names both plan homes and records that the check **compiles into each technique skill** — the technique's own command is the one-step entry (P-O3 is the typed act itself), and `/ba.run` is a thin alias plus the custom-technique path; §11's Technique-run binding row is re-bound in step. No behavioral change — the same single check, at the same moment, by the same BA act. No threshold, assertion, gate, or session-boundary (§10.2) text touched.
 **v0.10 change record:** three wording-precision fixes, 10 Aug 2026 (build-log D69–D71 ratified as built, package 0.1.6 — the v0.8 pattern: the package already behaves as ruled, no behavioral change): the §10.5 Role row sources the actor from the US grammar itself (the standard's §3 law) and takes the other-role scan's vocabulary from the spec's own §10 References "roles used" line — `roles-permissions.md` stays outside the read set (D69) · the read set gains the ledger head's profile field (§2.4) as the selection-default source, `--profile` a headless override only (D70) · Deferred rows render after their epic's story rows (D71). No other changes.
@@ -399,6 +400,12 @@ A profile is a **recommendation default, never a restriction (D-O14):** it filte
 
 **Presale** — the minimum path to a scoped roadmap under limited client access. Destination: **Band-2 exit, extendable to draft specs (D-O18)** — a current roadmap (epics + phases), the open-question roll-up, every assumption on record via markers and aspect waivers, and, where the presale needs them, **draft feature specs**. A **draft spec** is not a new class or format: it is an ordinary `spec.md` that stops before its effective PASS, carrying its unknowns as `[NEEDS CLARIFICATION]` markers (standard rule 7). Aspect waivers are the expected instrument here, debt named — not an anomaly. Band-3 drafting is in profile: feature entry (P-O8 — Band-3 entry) and **Tier 2 — spec-depth gap-filling** run in **assumption posture** — the draft-and-mark discipline of doc 3 §5.3, with gap questions that cannot reach the client deferred as a BA-confirmed batch, standing as their markers (doc 3 §5.4, the defer disposition). Certification and handoff are not the presale destination; they stay behind existing gate law — no effective PASS, no certification, no handoff (gate §6.1, §11) — and are expected after the recorded switch to Discovery. The gate stays BA-invocable at any time; on a draft spec its FAIL report is an informative named-gap list — the client Q&A agenda. One advisory, on the record, when it applies: waiving marker failures into a certified draft is certifying guesses — the framework says so once at the gate's waiver act — the contract waiver (W, gate §7.1), never the aspect waiver (AW, §4.3); the BA's call stands. In profile (D-O15, set amended by D-O19): **T-01 — Discovery canvas framing · T-02 — Glossary discipline · T-03 — Stakeholder register · T-05 — Context & landscape mapping · T-06 — Constraints elicitation · T-08 — Value definition · T-09 — Vision & differentiation · T-10 — Solution surface review · T-16 — Global out-of-scope · T-17 — Epics decomposition · T-18 — Scope allocation · Tier 2 — spec-depth gap-filling (assumption posture)**, plus **Tier 1 — epic scoping interview** as electable where a client call exists; where none exists, its §3.5 ingestion runs on captured client material (RFP, client documents) as the notes input. Out of profile: T-04 · T-07 · T-11 · T-12 · T-13 · T-14 · T-15. Set edits are one-line re-rulings.
 
+The Band-2 pair reruns are on the default Presale route: after out-of-scope and spec work, T-17 — Epics decomposition reruns as the graduation sweep and T-18 — Scope allocation reallocates. The BA never discovers post-hoc that the roadmap is MVP-only.
+
+Under Presale, T-01 — Discovery canvas framing confirms the drafted canvas as one artifact-level batch — one confirm per artifact, never per section (a profile default under D-O14; the catalogue sheet stays as written).
+
+Presale runs under the checkpoint law (§10.1) with plan-as-route (§7.5) as its default interaction mode; Discovery keeps its density by BA choice, not inheritance. **Interaction budget (D-O33):** Presale end-to-end — Frame to rendered WBS — fits in ≤ 8 BA interactions on the default route. Exceeding it is a defect, not a style preference; the harness counts it.
+
 ---
 
 ## 7. Technique-run orchestration
@@ -430,6 +437,19 @@ The orchestrator's added duties are pure bookkeeping:
 ### 7.4 Post-run aspect-state update — the defined touchpoint
 
 After each run (or each approved ingestion batch), the framework refreshes the aspect's threshold-evidence table (§3.4). All criteria met → it proposes confirmation (P-O4). Some unmet → the misses are the aspect's named to-do, visible at the next prompt. **This is lazy detection's home in Band 1:** evidence is assembled at this touchpoint and on BA demand — never watched.
+
+### 7.5 Plan-as-route (D-O31)
+
+The composed plan is a route. One BA act — `go` on the rendered route, or
+`/ba.run` with no argument — executes the plan's rows in order, each row under
+its own compiled P-O3 (technique invocation) discipline, without per-row
+acknowledgement. The route stops only at §10.1 decision points — a clearing
+proposal, a waiver act, a reopen ruling, a defer batch, an overflow ruling, a
+band transition — or on a contract miss, which stops it with the single
+unblocking act named. The invariant holds: no state change without a BA act —
+the `go` is that act, its extent named in the route render (§10.6). Only the
+granularity of the act changes; ownership of decisions never does. Silence is
+never consent: a route executes only on a stated `go` (D-O13 unchanged).
 
 ---
 
@@ -481,6 +501,16 @@ Doc 3's D5 owns the confirmation act: **brief §8 slicing row Status → `Confir
 
 **Roadmap status vocabulary (D-B6-3, catalogue-b6, locked):** four values, band-event-derived — `Defined` (row born, at decomposition) · `In delivery` (the epic's first feature enters Band 3 — this P-O8 band event prompts the flip, §8.5's mechanism one event earlier) · `Delivered` (the epic's last feature's cycle closes — §8.5's prompt) · `Retired — <reason>` (the row leaves scope by graduation-reversed routing or merge). Status writes are routed content edits at the band events, owned by the routing discipline — never a technique run's inline fix. Deliberately no `Scoped` value: the brief tracks `Draft`/`Scoped`, and the §8.3 tracking split forbids the mirror copy — CC-H-03 reads the brief ⇄ roadmap join directly.
 
+**Batch entry — `/ba.run specs all | specs <epic-list>` (D-O34).** One command
+renders every selected feature's brief-§8 slicing row as one P-O8 — Band-3
+entry confirmation table; the BA strikes rows by number and confirms the rest
+in one act. Each confirmed row keeps its own mechanics unchanged — its status
+flip, its band event, its §8.4 advisory where one fires. Then Tier 2 —
+spec-depth gap-filling drafts every entered feature in assumption posture,
+markers as usual, each run owing its own `## Band 3` run-log line (§7.3,
+build-log D86), and stops once: the consolidated defer-confirm at the end
+(doc 3 §5.4's act, batched).
+
 ### 8.5 Band-3 close — reference — and the threshold-tuning loop
 
 The delivery cycle closes at **BA post-implementation verification close — gate D-G7, referenced, never redefined**; waiver expiry and new-cycle mechanics are the gate's consequences. The orchestrator's part: record the cycle-close band event · prompt the roadmap status update — a content edit under BA act via routing discipline, landing in CC-H-02's ground · surface the next roadmap selection.
@@ -513,6 +543,13 @@ Boundary notes, so the table stays exhaustive:
 
 The gate §2.3 pattern: nothing outside this table interrupts the BA on this document's account. **No mid-run drip** (§7.2): technique runs complete before anything below renders; signal decisions ride the sittings where the signals are born (§5.1).
 
+**The checkpoint law (D-O30).** A stop is legitimate only where the BA decides
+between materially different outcomes or accepts debt: plan composition,
+clearing, waiver, override, reopen ruling, defer batch, overflow ruling,
+profile switch, band transition. A stop that only collects an acknowledgement
+is a banned class — where no decision exists, the framework proceeds and
+reports. The table below lists decision moments, not step boundaries.
+
 | # | Moment | Trigger | The BA's act |
 |---|---|---|---|
 | P-O0 | Flow-profile selection | Band-1 entry — Frame, before any aspect opens (§8.1) | Pick the profile: Discovery · Presale (§6.5); later switches are logged with a reason |
@@ -533,6 +570,12 @@ Doc 3's routing-batch approval and the gate's P1–P8 are those documents' promp
 **Session mode — the analysis boundary (framework-wide; D-O11).** Every conversation this framework conducts is an **analysis session**. An analysis session produces analysis artifacts only. It never produces an implementation plan, a task list, a prototype, or code — not as a proposal, not as a "next step," not as initiative. The boundary lifts **per feature**, and only by the pair: effective PASS at the gate **and** completed handoff (gate §11). Downstream of that pair, implementation belongs to the coding agent and the operator; the analysis session continues unchanged for every other feature. Standing project instructions (the compiled CLAUDE.md block, AGENTS.md) carry two addressed modes — analysis-session rules and coding-agent rules — and every instruction names its reader; an instruction addressed to the coding agent is inert in an analysis session. Wanting to implement is never evidence of readiness: the only exit is the gate. *Compiled verbatim into both mirrors and into every skill's and persona's never-list.*
 
 **The orchestrator schedules, routes, and records. It never authors content, never runs a contract check, never rules on a contract waiver.** Its hands touch two ledger files and nothing else.
+
+**Auto-repair (D-O32).** When the BA states a destination the current state
+cannot reach, the framework proposes the repair as one act: the mismatch in
+one line, the repair route in the §10.6 shape, then `go?`. Handing the BA a
+list of commands to type is a banned render — after the `go`, the framework
+executes its own mechanics.
 
 | Concern | Doc 2 · contract | Doc 3 · elicitation | Doc 4 · gate | **Doc 5 · this document** |
 |---|---|---|---|---|
@@ -559,8 +602,8 @@ Doc 3's routing-batch approval and the gate's P1–P8 are those documents' promp
 4. **One term per concept.** Framework vocabulary verbatim — aspect, threshold, waiver, reopen. Never rotate synonyms for one thing.
 5. **Code + name, always.** Every technique, stage, or assertion rendered to the BA carries its code *and* its name: "T-05 — Context & landscape mapping," "P-O4 — clearing confirmation." First mention in a sitting adds a one-line purpose. A bare code is a render defect.
 6. **State first, then the act.** Open every render with where the work stands and what the BA does next. Background only on ask.
-7. **Only what the next decision needs.** No methodology explanation mid-flow — name the owning document and section instead. Outside pinned formats, a render past ~10 lines is a cut candidate.
-8. **Pinned formats stay pinned.** Recurring renders (suggestion snapshot §6.1, ledger head §2.4, profile picker §8.1, project dashboard §10.4, WBS export §10.5, P-O prompts) keep their shapes; never re-narrate what a format already shows. On conflict between this register and a pinned shape, the shape governs.
+7. **Only what the next decision needs.** No methodology explanation mid-flow — name the owning document and section instead. Outside pinned formats, a render past ~10 lines is a cut candidate. An acknowledgement-only stop is a banned render: if no BA decision exists, do not stop.
+8. **Pinned formats stay pinned.** Recurring renders (suggestion snapshot §6.1, ledger head §2.4, profile picker §8.1, project dashboard §10.4, WBS export §10.5, route render §10.6, P-O prompts) keep their shapes; never re-narrate what a format already shows. On conflict between this register and a pinned shape, the shape governs.
 
 ### 10.4 The project dashboard — `/ba.status`'s pinned render (D-O17 · D-O26–D-O29)
 
@@ -619,6 +662,17 @@ Workflow ▕██████░░░░▏ <p>% — §10.4-F
 
 **Regeneration & boundaries.** Derived, regenerated on demand, never hand-edited — a hand edit dies at the next run; manual estimate cells always re-emit empty (numbers live in the client's copy of the file). **Never invents:** transformation only — Topic condensation and acceptance restatement reword text present in the spec; an absent source renders an empty cell, never a guess. **Never writes its sources.** Stage-neutral, invocable at any time like `/ba.status`; no gate interaction, no `/speckit.*` call, no implementation content — §10.2 stands untouched. Under Presale, Comments/Questions is where the assumption record surfaces: every deferred question stands as its marker beside its marked recommended value (doc 3 §5.4, §5.3) — the column renders that standing record to the client.
 
+### 10.6 The route render — pinned shape (D-O31)
+
+```
+Route — <destination, one line> · profile: <profile>
+| # | Code — technique | Yields |
+|---|---|---|
+| 1 | T-08 — Value definition | canvas Problems + Objectives |
+Stops en route: <the §10.1 decision points, or none>
+Next: step 1 — go?
+```
+
 ---
 
 ## 11. Phase-2 binding & Phase-1 manual mode
@@ -632,6 +686,8 @@ Names indicative — Phase 2 fixes them (the gate §13 convention). The **Orches
 | Frame + profile selection | `/ba.frame` — ledger init → the §8.1 pinned profile picker (P-O0) → canvas confirmation |
 | Aspect opening + planning loop | `/ba.aspect <aspect>` → suggestion snapshot → composition checkpoint (P-O1, P-O2) |
 | Technique run | `/ba.t<NN>` · `/ba.tier1` · `/ba.tier2` — one-step entry, the P-O3 contract check compiled into each technique skill (skills authored from scratch to build briefs, doc 3 §7 ruling); `/ba.run <technique>` — thin alias + the custom-technique path |
+| Route running | `/ba.run` with no argument — the §10.6 route render, then the composed plan's rows in order on one `go` (§7.5); stops only at a §10.1 decision point or a contract miss, never for acknowledgement |
+| Batch Band-3 entry | `/ba.run specs all` · `/ba.run specs <epic-list>` — one P-O8 — Band-3 entry confirmation table over the selected features, then Tier 2 — spec-depth gap-filling per feature in assumption posture, one consolidated defer-confirm (§8.4) |
 | Clearing | `/ba.clear <aspect>` — evidence table → confirmation checkpoint (P-O4) |
 | Aspect waiver | `/ba.waive-aspect <aspect>` (P-O5) |
 | Reopen | Signals surface at their native checkpoints (batch approval · Tier-2 session · gate verdict review); `/ba.reopen <aspect>` executes a Real ruling (P-O6) |
@@ -784,6 +840,20 @@ Four decisions ruled by the BA Lead, 12 August 2026 — **all recommendations ac
 
 ---
 
-*v0.12 · §10.4 dashboard v2 — band coverage · §10.4-F workflow line · HTML render — applied 12 Aug 2026 (D-O26–D-O29, §17) · §10.5 wording precision applied 10 Aug 2026 (build-log D69–D71 ratified, package 0.1.6) · §10.5 the WBS export applied 10 Aug 2026 (D-O20–D-O25, §16) · §6.5 advisory instrument precision applied 9 Aug 2026 (build-log D65) · Presale drafting — draft specs enter the Presale destination, Tier 2 the set, applied 9 Aug 2026 (D-O18–D-O19, §15) · §6.4 code-column fix applied 8 Aug 2026 (audit F-11 second half; build-log D56) · session boundary + P-O2 checkpoint + flow profiles + dashboard applied 7 Aug 2026 (D-O11–D-O17, §14) · catalogue mirrors applied 30 July 2026 (D-B1-4 · D-B4-4 · D-B5-3 · D-B6-3 · D-B6-5) · review incorporated 25 July 2026 · closes Wave 1 · conducts plan §5's bands over the Q1a/Q1b aspect model · owns the Band-1 aspect gates per the contract's division of labor (its header; §3 cadence) · executes the three doc-3 signals (§1) and the gate's lane-3 reopens (§6.3) · requests the arming full Scope-H run at Band-1 closure (contract §3 · gate §10.1) · thresholds: 18 AT criteria across six aspects · records: AW (aspect waiver) · RO (reopen) · runtime ledgers outside `memory/` per D-G1/D-G8: `.specify/aspect-state.md` · `.specify/aspect-plans.md` · decisions D-O1–D-O29 locked · review records: v0.1→v0.2 in §13 · v0.4→v0.5 in §14 · v0.6→v0.7 in §15 · v0.8→v0.9 in §16 · v0.11→v0.12 in §17*
+## 18. Review record (v0.12 → v0.13)
+
+Five decisions ruled by the BA Lead, 13 August 2026 — WS-2, manual-mode UX (R1–R5, all accepted as tabled). Origin: the manual-mode field read of the Presale path (12 Aug 2026) — the framework stopped at step boundaries rather than at decisions, so a route the BA had already chosen was re-confirmed row by row, and a destination the state could not reach came back as a list of commands to type. Nothing here re-legislates ownership: the BA still decides everything the BA decided before. What changes is the size of the act that carries a decision, and where the framework is permitted to stop.
+
+| # | Decision | Ruling (adopted as tabled) | Where |
+|---|---|---|---|
+| **D-O30** | The checkpoint law | A stop is legitimate only at a decision between materially different outcomes, or an acceptance of debt — plan composition, clearing, waiver, override, reopen ruling, defer batch, overflow ruling, profile switch, band transition. The acknowledgement-only stop is a banned class: where no decision exists the framework proceeds and reports. §10.1's table lists decision moments, not step boundaries; §10.3 rule 7 carries the render half | §10.1 · §10.3 |
+| **D-O31** | Plan-as-route + the route render | The composed plan is a route: one `go` (or `/ba.run` with no argument) executes its rows in order, each under its own compiled P-O3, stopping only at a §10.1 decision point or a contract miss with the single unblocking act named. The extent of the `go` is named in a pinned render (§10.6), which joins §10.3 rule 8's list. D-O13 unchanged — silence is never consent | §7.5 · §10.6 |
+| **D-O32** | Auto-repair | An unreachable destination is answered as one act: the mismatch in one line, the repair route in the §10.6 shape, then `go?`. Handing the BA a list of commands to type is a banned render — after the `go` the framework executes its own mechanics | §10.2 |
+| **D-O33** | Presale defaults + the interaction budget | On the default Presale route the Band-2 pair reruns (T-17, T-18) are in, so the roadmap is never silently MVP-only; canvas confirmation is one artifact-level batch (a profile default under D-O14, catalogue sheet unchanged); plan-as-route is the profile's interaction mode, Discovery keeping its density by BA choice. **Presale end-to-end — Frame to rendered WBS — fits in ≤ 8 BA interactions.** Exceeding it is a defect, not a style preference; the harness counts it | §6.5 |
+| **D-O34** | Batch Band-3 entry | `/ba.run specs all \| specs <epic-list>` renders every selected feature's brief-§8 slicing row as one P-O8 table — strike by number, confirm the rest in one act. Per-row mechanics unchanged (status flip · band event · §8.4 advisory); Tier 2 then drafts every entered feature in assumption posture, each run owing its own `## Band 3` run-log line (D86), and stops once at the consolidated defer-confirm | §8.4 |
+
+---
+
+*v0.13 · manual-mode UX — the checkpoint law · plan-as-route · the route render · auto-repair · Presale defaults and the ≤ 8 budget · batch Band-3 entry — applied 13 Aug 2026 (D-O30–D-O34, §18) · §10.4 dashboard v2 — band coverage · §10.4-F workflow line · HTML render — applied 12 Aug 2026 (D-O26–D-O29, §17) · §10.5 wording precision applied 10 Aug 2026 (build-log D69–D71 ratified, package 0.1.6) · §10.5 the WBS export applied 10 Aug 2026 (D-O20–D-O25, §16) · §6.5 advisory instrument precision applied 9 Aug 2026 (build-log D65) · Presale drafting — draft specs enter the Presale destination, Tier 2 the set, applied 9 Aug 2026 (D-O18–D-O19, §15) · §6.4 code-column fix applied 8 Aug 2026 (audit F-11 second half; build-log D56) · session boundary + P-O2 checkpoint + flow profiles + dashboard applied 7 Aug 2026 (D-O11–D-O17, §14) · catalogue mirrors applied 30 July 2026 (D-B1-4 · D-B4-4 · D-B5-3 · D-B6-3 · D-B6-5) · review incorporated 25 July 2026 · closes Wave 1 · conducts plan §5's bands over the Q1a/Q1b aspect model · owns the Band-1 aspect gates per the contract's division of labor (its header; §3 cadence) · executes the three doc-3 signals (§1) and the gate's lane-3 reopens (§6.3) · requests the arming full Scope-H run at Band-1 closure (contract §3 · gate §10.1) · thresholds: 18 AT criteria across six aspects · records: AW (aspect waiver) · RO (reopen) · runtime ledgers outside `memory/` per D-G1/D-G8: `.specify/aspect-state.md` · `.specify/aspect-plans.md` · decisions D-O1–D-O34 locked · review records: v0.1→v0.2 in §13 · v0.4→v0.5 in §14 · v0.6→v0.7 in §15 · v0.8→v0.9 in §16 · v0.11→v0.12 in §17 · v0.12→v0.13 in §18*
 
 

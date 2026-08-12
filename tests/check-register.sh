@@ -24,6 +24,9 @@
 #       skill, persona and mirror, byte-identical, with its own seeded control
 #   6.  the pinned suggestion snapshot — orchestrator §6.1's block byte-identical
 #       in the planning skill, with three seeded shape defects of its own
+#   7.  the register self-check — §10.3's pre-render check compiled byte-identical
+#       into the same corpus, its clauses grounded in the rules they compile,
+#       with a stripped unit and a paraphrased one as controls
 #
 # The scan joins soft-wrapped source lines into the paragraphs the BA actually
 # sees (a soft wrap is invisible in the render, so adjacency is tested on the
@@ -826,6 +829,105 @@ diff -q "$TMP/snap-doc.txt" "$TMP/snap-restored.txt" >/dev/null 2>&1 \
 
 fi  # end of section 6
 
+# ── 7. the register self-check — §10.3 (WS-2), compiled into the full set ────
+#
+# Same discipline as section 5, one register up. Section 5 holds the *boundary*
+# down in every unit; this one holds down the register's own pre-render check —
+# the line that makes rules 1, 5, 6, 7 and the checkpoint law operative at the
+# moment a render is about to be sent. It compiles into every file in this
+# suite's own corpus glob, so a new skill joins by existing.
+
+printf '\n▸ The register self-check — §10.3 in every skill, persona and mirror\n'
+
+cat > "$TMP/selfcheck.txt" <<'SC'
+**Register self-check (§10.3), before any BA-facing render:** short sentences ·
+code + name · state first, then the act · ≤ 10 lines outside pinned shapes ·
+no acknowledgement-only stop. A failing render is rewritten, not sent.
+SC
+SC_SHA="$(sha_of < "$TMP/selfcheck.txt")"
+SC_N="$(wc -l < "$TMP/selfcheck.txt" | tr -d ' ')"
+
+# the pin is grounded in the register it compiles: each clause must be a rule
+# this document actually states, not this file's invention
+while IFS='|' read -r label phrase; do
+  [ -z "$label" ] && continue
+  grep -qF -- "$phrase" "$RULES" \
+    && ok "$label — the register's own rule, behind the self-check clause" \
+    || bad "§10.3 no longer states $label — re-pin the self-check"
+done <<'CLAUSES'
+rule 1, short sentences|**Short sentences.**
+rule 5, code + name|**Code + name, always.**
+rule 6, state first|**State first, then the act.**
+rule 7, the banned render|An acknowledgement-only stop is a banned render
+CLAUSES
+
+selfcheck_sweep() {
+  # <root> → one line per offender, then the summary the caller parses
+  local root="$1" n=0 okc=0 miss=0 alt=0
+  for f in "$root"/payload/claude/skills/*/SKILL.md \
+           "$root"/payload/claude/agents/*.md \
+           "$root"/payload/mirror/*.md; do
+    [ -f "$f" ] || continue
+    n=$((n+1))
+    ln="$(grep -n '^\*\*Register self-check (§10\.3)' "$f" | head -1 | cut -d: -f1)"
+    if [ -z "$ln" ]; then
+      miss=$((miss+1)); printf '  missing: %s\n' "${f#"$root"/}"
+      continue
+    fi
+    if [ "$(sed -n "${ln},$((ln+SC_N-1))p" "$f" | sha_of)" = "$SC_SHA" ]; then
+      okc=$((okc+1))
+    else
+      alt=$((alt+1)); printf '  altered: %s\n' "${f#"$root"/}"
+    fi
+  done
+  printf 'units=%s ok=%s missing=%s altered=%s\n' "$n" "$okc" "$miss" "$alt"
+}
+
+selfcheck_sweep "$PKG_ROOT" > "$TMP/sc-clean.out"
+SC_SUM="$(tail -1 "$TMP/sc-clean.out")"
+SC_UNITS="$(printf '%s' "$SC_SUM" | sed -n 's/^units=\([0-9]*\).*/\1/p')"
+SC_MISS="$(printf '%s' "$SC_SUM" | sed -n 's/.*missing=\([0-9]*\).*/\1/p')"
+SC_ALT="$(printf '%s' "$SC_SUM" | sed -n 's/.*altered=\([0-9]*\)$/\1/p')"
+
+[ "${SC_UNITS:-0}" -gt 0 ] \
+  && ok "the corpus glob derives a non-empty set — $SC_UNITS units" \
+  || bad "the self-check glob matched nothing: section 7 would pass vacuously"
+
+if [ "$SC_MISS" = "0" ] && [ "$SC_ALT" = "0" ]; then
+  ok "the self-check is byte-identical in all $SC_UNITS skills, personas and mirrors"
+else
+  bad "the self-check is missing from $SC_MISS and altered in $SC_ALT of $SC_UNITS units:"
+  grep -E '^  (missing|altered):' "$TMP/sc-clean.out" | sed 's/^/    /' | head -10
+fi
+
+# the control: one unit stripped, one paraphrased — the sweep must catch both
+SCC="$TMP/sc-corpus"
+mkdir -p "$SCC"
+( cd "$PKG_ROOT" && tar cf - payload/claude/skills payload/claude/agents payload/mirror ) \
+  | ( cd "$SCC" && tar xf - )
+
+python3 - "$SCC/payload/claude/skills/ba-clear/SKILL.md" <<'PY'
+import pathlib, sys
+p = pathlib.Path(sys.argv[1]); lines = p.read_text(encoding="utf-8").splitlines(keepends=True)
+i = next(i for i, l in enumerate(lines) if l.startswith("**Register self-check (§10.3)"))
+del lines[i:i + 3]
+p.write_text("".join(lines), encoding="utf-8")
+PY
+python3 - "$SCC/payload/claude/agents/ba-analyst.md" <<'PY'
+import pathlib, sys
+p = pathlib.Path(sys.argv[1]); t = p.read_text(encoding="utf-8")
+p.write_text(t.replace("no acknowledgement-only stop.", "no ack-only stop, roughly."), encoding="utf-8")
+PY
+
+selfcheck_sweep "$SCC" > "$TMP/sc-dirty.out"
+SC_DSUM="$(tail -1 "$TMP/sc-dirty.out")"
+[ "$(printf '%s' "$SC_DSUM" | sed -n 's/.*missing=\([0-9]*\).*/\1/p')" = "1" ] \
+  && ok "the control fires — the stripped unit is caught as missing" \
+  || bad "a unit with no self-check passed the sweep: it is blind"
+[ "$(printf '%s' "$SC_DSUM" | sed -n 's/.*altered=\([0-9]*\)$/\1/p')" = "1" ] \
+  && ok "…and the paraphrased unit is caught as altered" \
+  || bad "a paraphrased self-check passed the sweep: the byte-match does not hold"
+
 # ── roll-up ──────────────────────────────────────────────────────────────────
 
 printf '\n  passed: %s   failed: %s\n' "$PASSED" "$FAILED"
@@ -833,8 +935,8 @@ if [ "$FAILED" -eq 0 ]; then
   if [ "$ONLY_SELFTEST" -eq 1 ]; then
     printf '✓ GREEN — the register self-test: 4 seeded defects, one per render class + the field defect\n'
   else
-    printf '✓ GREEN — the BA-facing register: rule 5 across %s files · %s names from source · §10.2 in %s units + 2 mirrors · §6.1 byte-identical in the planner · 9 seeded defects\n' \
-      "${F:-?}" "${NAMES_N:-?}" "${B_UNITS:-?}"
+    printf '✓ GREEN — the BA-facing register: rule 5 across %s files · %s names from source · §10.2 in %s units + 2 mirrors · §6.1 byte-identical in the planner · the §10.3 self-check in %s units · 11 seeded defects\n' \
+      "${F:-?}" "${NAMES_N:-?}" "${B_UNITS:-?}" "${SC_UNITS:-?}"
   fi
   exit 0
 fi

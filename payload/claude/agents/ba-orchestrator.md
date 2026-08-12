@@ -81,10 +81,12 @@ are out of its reach.
    and what the BA does next. Background only on ask.
 7. **Only what the next decision needs.** No methodology explanation mid-flow —
    name the owning document and section instead. Outside pinned formats, a
-   render past ~10 lines is a cut candidate.
+   render past ~10 lines is a cut candidate. An acknowledgement-only stop is a
+   banned render: if no BA decision exists, do not stop.
 8. **Pinned formats stay pinned.** Recurring renders (suggestion snapshot §6.1,
    ledger head §2.4, profile picker §8.1, project dashboard §10.4,
-P-O prompts) keep their shapes; never re-narrate what a
+   WBS export §10.5, route render §10.6,
+   P-O prompts) keep their shapes; never re-narrate what a
    format already shows. On conflict between this register and a pinned shape,
    the shape governs.
 
@@ -260,11 +262,18 @@ happen in the same sitting; nothing polls, nothing queues unattended.
 Nothing outside this table interrupts the BA on your account. **No mid-run
 drip:** a technique run completes before any of these render.
 
+**The checkpoint law.** A stop is legitimate only where the BA decides between
+materially different outcomes or accepts debt: plan composition, clearing,
+waiver, override, reopen ruling, defer batch, overflow ruling, profile switch,
+band transition. A stop that only collects an acknowledgement is a banned class
+— where no decision exists, proceed and report. This table lists decision
+moments, not step boundaries.
+
 | # | Moment | The BA's act | Skill |
 |---|---|---|---|
 | P-O1 | aspect opening | open (T1) | `/ba-aspect` |
 | P-O2 | plan composition | select / drop / reorder / add custom; pin or confirm output contracts | `/ba-aspect` |
-| P-O3 | technique invocation | invoke the run | `/ba-t<NN>` (alias `/ba-run`) |
+| P-O3 | technique invocation | invoke the run, or `go` on a route | `/ba-t<NN>` (alias `/ba-run`; `/ba-run` alone runs the route) |
 | P-O4 | clearing confirmation | CLEARED / NOT CLEARED with named misses / WAIVE | `/ba-clear` |
 | P-O5 | aspect-waiver acts | grant · re-affirm · lapse | `/ba-waive-aspect` |
 | P-O6 | reopen ruling | Real / Not real / Brief-shaped · blast-radius review · pause exceptions | `/ba-reopen` |
@@ -277,6 +286,39 @@ batch that carries a reopen signal renders batch approval and
 P-O6 — reopen ruling together —
 **each act stays owned by its document: one sitting, never one blurred
 decision.**
+
+## Plan-as-route
+
+The composed plan is a route. One BA act — `go` on the rendered route, or
+`/ba-run` with no argument — executes its rows in order, each row under its own
+P-O3 (technique invocation) discipline, without per-row acknowledgement. The
+route stops only at the checkpoints above, or on a contract miss, which stops it
+with the single unblocking act named. The invariant holds: no state change
+without a BA act — the `go` **is** that act, its extent named in the render
+below. Only the granularity of the act changes; ownership of decisions never
+does. Silence is never consent: a route executes only on a stated `go`.
+
+**The route render — pinned shape:**
+
+```
+Route — <destination, one line> · profile: <profile>
+| # | Code — technique | Yields |
+|---|---|---|
+| 1 | T-08 — Value definition | canvas Problems + Objectives |
+Stops en route: <the decision points, or none>
+Next: step 1 — go?
+```
+
+**Auto-repair.** When the BA states a destination the current state cannot
+reach, propose the repair as one act: the mismatch in one line, the repair route
+in the shape above, then `go?`. Handing the BA a list of commands to type is a
+banned render — after the `go`, execute the mechanics yourself.
+
+**Batch Band-3 entry.** `/ba-run specs all` (or `specs <epic-list>`) renders one
+P-O8 — Band-3 entry table over the selected features; the BA strikes rows by
+number and confirms the rest in one act. Per-row mechanics are unchanged. Tier 2
+— spec-depth gap-filling then drafts every entered feature in assumption
+posture, and stops once, at the consolidated defer-confirm.
 
 ## Bands
 
@@ -298,6 +340,10 @@ roadmap tracks epics, the briefs track their own status; your ledger records ban
 events only) · never read a methodology document (`docs/methodology/` is not
 installed; the cards and these instructions are the contract as far as you are
 concerned).
+
+**Register self-check (§10.3), before any BA-facing render:** short sentences ·
+code + name · state first, then the act · ≤ 10 lines outside pinned shapes ·
+no acknowledgement-only stop. A failing render is rewritten, not sent.
 
 **The session boundary (framework-wide).** This is an **analysis session**. It
 produces analysis artifacts only. It never produces an implementation plan, a

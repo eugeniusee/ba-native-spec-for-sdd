@@ -173,6 +173,85 @@ and you re-enter to verify the built feature against its acceptance tier.
 
 ---
 
+## Presale — the whole path in eight interactions
+
+The walkthrough above is Discovery: you open each aspect, compose each plan, and
+rule at every step. Presale is the other profile — the minimum path to a scoped
+roadmap and draft specs when client access is thin. It runs the same machinery
+at a different granularity, and it is budgeted: **Frame to a rendered WBS fits
+in eight of your interactions.** More than eight is a defect in the framework,
+not a busy project.
+
+The difference is that a composed plan is a **route**, not a queue of prompts.
+You approve the route once; the framework runs its rows and comes back only
+where you actually decide something.
+
+**1 — Frame.**
+
+```
+/ba-frame Presale
+```
+
+The ledgers initialize, the profile is set, the canvas is confirmed or drafted.
+Then the route renders:
+
+```
+Route — Presale: scoped roadmap + draft specs · profile: Presale
+| # | Code — technique | Yields |
+|---|---|---|
+| 1 | T-08 — Value definition | canvas Problems + Objectives |
+| 2 | T-09 — Vision & differentiation | canvas §§3–5, 11 |
+| 3 | T-16 — Global out-of-scope | memory/out-of-scope.md |
+| 4 | T-17 — Epics decomposition | memory/roadmap.md |
+| 5 | T-18 — Scope allocation | roadmap Phase + log |
+Stops en route: the defer batch · Band-2 transition
+Next: step 1 — go?
+```
+
+**2 — `go`.** One word. Every row runs in order under its own invocation
+discipline. Nothing asks you to acknowledge a step that carries no decision.
+
+**3 — the defer batch.** The route stops where a decision exists: the questions
+that cannot reach the client. You confirm the batch; each stands as its marker.
+
+**4 — the Band-2 transition.** The route stops again at the band act. Note that
+T-17 and T-18 rerun on the default route — the roadmap is never quietly
+MVP-only.
+
+**5 — batch entry and drafting.**
+
+```
+/ba-run specs all
+```
+
+One table with every feature's slicing row. Strike what you do not want by
+number, confirm the rest in one act. Every confirmed feature enters Band 3, and
+Tier 2 drafts each one in assumption posture — derivable content written,
+inferred values marked.
+
+**6 — the consolidated defer-confirm.** All the drafting's unreachable questions
+arrive once, at the end, as one batch. Not once per feature.
+
+**7 — the export.**
+
+```
+/ba-wbs
+```
+
+**8 — spare.** The budget has one interaction of slack in it by design, for the
+correction the route did not anticipate.
+
+Certification and handoff are not the presale destination — they sit behind gate
+law and are expected after a recorded switch to Discovery. What you hand the
+client is the roadmap, the draft specs with their assumptions on the record, and
+the WBS.
+
+**If the destination is out of reach,** say so plainly — "I need a WBS by
+Friday" — and the framework answers with one repair route in the shape above,
+ending in `go?`. It will not hand you a list of commands to type.
+
+---
+
 ## The command index
 
 | Command | What it does |
@@ -190,6 +269,8 @@ and you re-enter to verify the built feature against its acceptance tier.
 | `/ba-gate-health [artifact\|full]` | Project health across the shared artifacts |
 | `/ba-handoff <feature>` | Hash guard → branch → ready for `/speckit-plan` |
 | `/ba-wbs [--include NNN …]` | The client-facing WBS → `exports/wbs.xlsx` + `.csv` |
+| `/ba-run` | Run the composed plan as a route — the render, then every row on one `go` |
+| `/ba-run specs all` · `specs <epic-list>` | Batch Band-3 entry, then Tier 2 per feature |
 
 Techniques run one-step: `/ba-t01`…`/ba-t18`,
 `/ba-tier1 <kit|ingest|supplement> <epic>`, `/ba-tier2 <NNN>`. `/ba-run <technique>`

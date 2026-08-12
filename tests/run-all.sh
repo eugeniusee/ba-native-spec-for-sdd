@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 #
-# BA-Native Spec — the regression runner. One command, fifteen checks.
+# BA-Native Spec — the regression runner. One command, sixteen checks.
 #
 # Every BUILD-LOG entry since S2 has closed with the same roll-up table, and
 # every one of them was assembled by hand from separate invocations —
 # two of which need a real install first. That is D54. This script is the table.
 #
-# The fifteen, in the order the entries print them:
+# The sixteen, in the order the entries print them:
 #
 #   twelve file-only checks — read the payload, the docs and the fixtures
 #     1  check-m.sh              the ten vendored M checkers
@@ -27,6 +27,12 @@
 #    14  check-exit.sh --offline the Phase-2 §5 exit test, all ten steps
 #    15  check-install.sh        the install UX — bootstrap · self-guard · uv-free
 #
+#   one whole-surface check — file-only, but last: it reads the render surface
+#   entire, so it runs after everything that could have changed it
+#    16  check-budget.sh         manual-mode UX — the ≤ 8 interaction budget ·
+#                                the route render §10.6 · the checkpoint law ·
+#                                zero acknowledgement-only stops
+#
 # `check-cards.py` and `check-ledger.py` also run inside `check-gate.sh` and
 # `check-orchestrator.sh`. They keep their own rows because the entries give
 # them their own rows: a card divergence should name itself, not arrive as a
@@ -36,12 +42,13 @@
 # code; every count is parsed from the check's own roll-up line. A check that
 # prints no count reports its summary sentence instead — never an invented one.
 #
-#   run-all.sh                run all fifteen
-#   run-all.sh --file-only    the twelve file-only checks; no install, no network
+#   run-all.sh                run all sixteen
+#   run-all.sh --file-only    the thirteen checks that need no install and no
+#                             network — the twelve, plus check-budget.sh
 #   run-all.sh --online       let the install-based runs fetch Spec Kit
 #                             (default: --offline, from vendor/)
 #   run-all.sh --keep         keep the installed projects and print their paths
-#   run-all.sh --list         print the fifteen rows and exit
+#   run-all.sh --list         print the sixteen rows and exit
 #   run-all.sh -v             stream each check's full output as it runs
 
 set -uo pipefail
@@ -129,7 +136,7 @@ skip_check() {
 }
 
 if [ "$LIST" -eq 1 ]; then
-  sed -n '/^#   twelve file-only checks/,/^#    15 /p' "$0" | sed 's/^# \{0,1\}//'
+  sed -n '/^#   twelve file-only checks/,/^#                                zero acknowledgement-only stops/p' "$0" | sed 's/^# \{0,1\}//'
   exit 0
 fi
 
@@ -189,6 +196,17 @@ else
   # directory that is not yet a repository, which no runner-made repo can be.
   run_check "check-install.sh" suite "$HERE/check-install.sh" $OFFLINE
 fi
+
+# ── the whole-surface check ──────────────────────────────────────────────────
+#
+# File-only, and last on purpose: check-budget.sh sweeps the entire skill,
+# persona and mirror surface for acknowledgement-only stops and holds the
+# pinned route render down in every file that renders one. Running it after
+# everything else means it reads the surface as the rest of the suite left it.
+
+printf '\n▸ The whole-surface check — the render surface as the suite leaves it\n'
+
+run_check "check-budget.sh"       suite "$HERE/check-budget.sh"
 
 # ── the table ────────────────────────────────────────────────────────────────
 

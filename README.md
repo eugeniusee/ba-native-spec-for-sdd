@@ -93,8 +93,8 @@ the bootstrap closes by installing `uv` itself.
 ## Test
 
 ```sh
-tests/run-all.sh                                               # the regression — all fifteen checks, one table
-tests/run-all.sh --file-only                                   # the twelve file-only checks; no install, no network
+tests/run-all.sh                                               # the regression — all sixteen checks, one table
+tests/run-all.sh --file-only                                   # the thirteen checks that need no install; no network
 tests/check-exit.sh                                            # the Phase-2 exit test — all ten steps
 tests/check-install.sh                                         # the install UX — bootstrap · self-guard · uv-free
 tests/check-layout.sh --target /path/to/project                # full Phase-2 bar
@@ -112,10 +112,10 @@ tests/check-register.sh                                        # the BA-facing c
 `run-all.sh` runs the whole regression and prints the roll-up table this
 package's BUILD-LOG entries carry: the twelve file-only checks, then the three
 that install first — the full layout bar on a fresh offline install, the Phase-2
-exit test, and the install-UX suite. It asserts nothing of its own. Every verdict is the check's own exit
+exit test, and the install-UX suite — then the whole-surface budget check. It asserts nothing of its own. Every verdict is the check's own exit
 code and every count is parsed from the check's own roll-up line, so a suite
 that stops printing counts reports that, not a passing row. `--file-only` runs
-the twelve that need no install and no network; `--keep` keeps the installed
+the thirteen that need no install and no network; `--keep` keeps the installed
 projects; `-v` streams each check's output as it runs.
 
 `check-exit.sh` is the integration suite: it installs into a fresh git repo and
@@ -175,7 +175,7 @@ ba-native-spec/
 │  ├─ quickstart.md        BA quickstart — the loop, and manual mode (S9)
 │  └─ mode-b-fallback.md   the documented handoff fallback, and its cost (S9)
 └─ tests/
-   ├─ run-all.sh           the regression runner — all fifteen checks, one table
+   ├─ run-all.sh           the regression runner — all sixteen checks, one table
    │                       (Lane D; closes the hand-assembled roll-up)
    ├─ check-layout.sh · layout.expected
    ├─ check-m.sh           the M-checker suite (S2)
@@ -203,13 +203,19 @@ ba-native-spec/
    ├─ check-register.sh    the BA-facing communication register — §10.3 rule 5
    │                       across the skill/agent/mirror layer, names read from
    │                       the catalogue index and §10.1 (Lane A)
+   ├─ check-budget.sh      manual-mode UX — the ≤ 8 Presale interaction budget
+   │                       counted off presale-path.md · the route render §10.6 ·
+   │                       the checkpoint law · the acknowledgement-only sweep
+   │                       across the whole render surface (WS-2)
    ├─ fixtures/            the toy world (S2) · band1/ the §12 ledgers (S4) ·
    │                       presale-brief.md + band1/first-pass/ (S5) ·
    │                       band1/elected/ the BA-elected charter (S6) ·
    │                       band1/gate-health.md the arming Scope-H entry (S7) ·
    │                       tier2-answer-sheet.md the scripted Tier-2 session (S8) ·
    │                       speckit-plan/ the recorded /speckit-plan outputs (S9)
-   └─ exit-test.md         the Phase-2 exit script, agent-runnable (S9)
+   ├─ exit-test.md         the Phase-2 exit script, agent-runnable (S9)
+   └─ presale-path.md      the Presale interaction-budget script, agent-runnable;
+                           check-budget.sh counts it (WS-2)
 ```
 
 **The layering rule.** Nothing under `docs/methodology/` is ever installed and no
