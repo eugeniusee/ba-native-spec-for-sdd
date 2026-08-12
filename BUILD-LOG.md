@@ -4751,3 +4751,168 @@ public network and a `main` that already carries `bootstrap.sh` — a chicken-an
 egg the suite cannot hold. `BNS_SOURCE` covers everything from the handover on;
 what remains uncovered is `curl` + `tar` + "find the unpacked directory", and
 that is what the manual run above exercised.
+
+---
+
+## Install UX — the bootstrap ensures `uv` · D88 resolved, Option B · 12 August 2026 · GREEN
+
+D88 held that the `--offline` path is not uv-free, so **L2 — an install that
+survives a machine with no `uv`** — was not reachable by reusing it. The ruling
+on that divergence is **Option B: neither of D88's two candidate machineries is
+taken, and the gap is closed one layer up.** `install.sh` stays byte-identical to
+0.1.9 for the second build running. `bootstrap.sh` gains one step: it installs
+`uv` when the machine has none.
+
+The reading that makes Option B honest is about where each layer stands. On the
+bootstrap path the network is not an assumption about the machine — the package
+tarball was downloaded over it seconds earlier. So "install `uv`" is a step
+bootstrap can always take, while `install.sh`, which must also serve a clone on a
+machine that is offline by design, cannot.
+
+**What was explicitly not taken.** D88 named two candidates and this build takes
+neither: **(i)** vendoring the Spec Kit CLI's wheels and running the pinned Spec
+Kit from a `python3 -m venv` + `--no-index --find-links` install; **(ii)**
+building that venv with a plain `pip install <vendored source>` on
+networked-but-uv-less machines. Both add a second install mechanism inside the
+package. Option B adds none — it makes `uv` present and lets the one install
+mechanism that exists run exactly as it does today. `vendor/` is untouched, the
+offline story is unchanged, and `install.sh` is not opened.
+
+**D90 is mooted for the bootstrap path, and only there.** D90 recorded that the
+tarball carries no `vendor/` archive, so L1 and L2 cannot compose — a one-liner
+user had no vendored Spec Kit to fall back to. Under Option B that fallback is
+not the route a uv-less one-liner user takes: they get `uv`, then the pinned Spec
+Kit over the network they have already demonstrated. The *fact* D90 records is
+unchanged and so is the behavior — `bootstrap.sh --offline` over the download
+branch still dies with *"offline install needs …/vendor/spec-kit-v0.12.5.zip"*.
+What is gone is the need for it.
+
+### S1 — the ensure step in `bootstrap.sh`
+
+Placed **after** the `git init` step and **before** the handover: the target is a
+repository before anything else happens, and `install.sh` is reached only with
+`uv` in hand.
+
+- `command -v uv` → present: `already installed ✓`, and nothing else happens.
+- Missing: a notice — *"uv not found — installing via astral.sh, one-time"* —
+  then astral.sh's own installer, `curl -LsSf https://astral.sh/uv/install.sh | sh`.
+- Then `export PATH="$HOME/.local/bin:$PATH"`, because the installer edits shell
+  rc files and this process will never re-source them, and one re-check.
+- Still missing → `die`, naming the installer that ran, its exit code, and the
+  manual command. **No retry loop:** a second identical run is not new
+  information.
+
+**The step is unconditional.** `uv` is a documented prerequisite of the package;
+reading the pass-through flags here to guess whether this particular run will
+reach `uvx` would be a second, drifting copy of the installer's preflight.
+
+`BNS_UV_INSTALLER` substitutes a script for the astral.sh installer, on the
+`BNS_SOURCE` precedent and with the same contract: leave a working `uv` where
+bootstrap will find it. It is what lets the suite exercise this without curling
+astral.sh and without writing into the developer's real `~/.local/bin`.
+
+Everything else in `bootstrap.sh` — source resolution, the self-guard, the git
+init, the child-process handover — is unchanged. The file's own header lost the
+line *"This script installs nothing of its own"*, which is no longer true: it
+installs one thing, on one condition, and now says which and why.
+
+### S2 — `tests/check-install.sh` — 43 → 64
+
+A new **section 4**, driven on section 3's shadowed PATH:
+
+| Case | Holds down |
+|---|---|
+| (d) the hook leaves a `uv` | the gap detected and announced · the hook ran · bootstrap found *that* `uv`, at that path — the `PATH` export reaches this process · the target is already a repository — the step sits after `git init` · the handover happened · the payload laid down: a uv-less machine now installs |
+| (e) the hook leaves none | non-zero exit · the refusal names what failed, which installer it ran, and the manual command · no handover · `git init` and nothing else in the target |
+
+Both runs pass `--skip-speckit`. What section 4 owns is bootstrap's own step —
+including that it runs whatever the flags say — and (d)'s install then completes
+on the uv-free route section 3 established, rather than on a stub `uv` that could
+not have run Spec Kit anyway. The `uvx` half is the live run's, below.
+
+Section 1 gains two assertions: the step runs on the bootstrap path, and it took
+whichever branch this machine's `PATH` puts it on — the suite states which one it
+exercised instead of assuming a developer machine.
+
+**Section 3 is unchanged, and still accurate.** D88 was resolved above
+`install.sh`, not inside it: the installer still refuses without `uv`, at
+preflight, before any write, and the pin on the *cause* — `uvx --from
+"$SPECKIT_FROM" specify init` on both paths — still goes red the day that
+changes. Only the section's framing moved, from "today's behavior, not the
+workstream's target" to what it now is: the installer's behavior, which the
+resolution did not touch.
+
+### S3 — the two repo docs
+
+`README.md` and `docs/quickstart.md` move `uv` off the bootstrap path's
+prerequisite list: there it is installed for you if missing. The manual clone +
+`install.sh` path keeps it as a stated prerequisite and now says why in the same
+breath — that path installs nothing on your behalf. README's Requirements section
+separates the two paths rather than listing one set of four tools for both, and
+its `vendor/` note stops reading as *"uv is required on both paths, full stop"*
+when the bootstrap now supplies it. The external front-door guide stays out of
+scope.
+
+### Verification evidence
+
+**The full regression — `tests/run-all.sh`, all fifteen, before and after.** The
+"before" is not the recorded baseline read back: 270d213 was cloned to a scratch
+directory, its `vendor/` archive populated, and the suite run there this session.
+
+| Check | Before (270d213) | After |
+|---|---|---|
+| `check-m.sh` | 40 / 0 | 40 / 0 |
+| `check-gate.sh` | 59 / 0 | 59 / 0 |
+| `check-orchestrator.sh` | 122 / 0 | 122 / 0 |
+| `check-techniques.sh` | 101 / 0 | 101 / 0 |
+| `check-techniques2.sh` | 122 / 0 | 122 / 0 |
+| `check-techniques3.sh` | 158 / 0 | 158 / 0 |
+| `check-spine.sh` | 149 / 0 | 149 / 0 |
+| `check-register.sh` | 51 / 0 | 51 / 0 |
+| `check-wbs.sh` | 62 / 0 | 62 / 0 |
+| `check-status.sh` | 94 / 0 | 94 / 0 |
+| `check-ledger.py` | grammar-legal — 14 rules, no violations | unchanged |
+| `check-cards.py` | every card byte-identical to its re-derivation | unchanged |
+| `check-layout.sh` | 110 / 0 / 0 | 110 / 0 / 0 |
+| `check-exit.sh --offline` | 99 / 0 | 99 / 0 |
+| `check-install.sh` | 43 / 0 | **64 / 0** |
+
+`ran: 15   red: 0   skipped: 0` on both · **✓ GREEN** on both. Diffed, the two
+roll-ups differ in exactly one row. **1210 → 1231 assertions**, all 21 of them
+new and all in the install-UX suite; the payload was not touched and the numbers
+say so.
+
+**The astral.sh branch, by hand.** No assertion may curl astral.sh, so the real
+branch was run once before this commit: `uv` shadowed off `PATH`, `HOME` pointed
+at a scratch directory so the developer's own `uv` could not be the one found —
+the machine is genuinely uv-less from bootstrap's side. `curl -LsSf
+https://astral.sh/uv/install.sh | sh` ran, `uv` landed in the scratch `HOME`,
+bootstrap found it and handed over, and `install.sh` ran the pinned Spec Kit
+through the `uv` that had not existed a minute earlier. **rc 0.**
+
+### Divergences
+
+**None.** The workstream spec was implementable as written — placement, the
+notice, the `PATH` export, the single re-check, the no-retry refusal, the
+unconditional step, and the `BNS_UV_INSTALLER` hook all landed as specified, and
+the D-sequence therefore does not continue past D90.
+
+### Open
+
+**`VERSION` is untouched at `0.1.9`.** Version stamping is the BA Lead's act; a
+bump is proposed in this workstream's report, not taken here. The manifest that
+carries the version is generated at install time, so a bump costs one file.
+
+**The live one-liner is verified after the push, not before it.** Same
+chicken-and-egg the previous entry named: the documented command reads
+`bootstrap.sh` from raw `main` and the tarball from `main`'s archive, so a
+`main` that already carries this commit is the precondition for testing it. The
+run is reported in the workstream report; the astral.sh branch it exercises is
+the one verified by hand above, from a local source.
+
+**`--dry-run` through bootstrap now also installs `uv`.** The ensure step is
+unconditional and `--dry-run` is a pass-through flag, so a dry run on a uv-less
+machine installs `uv` before `install.sh` declines to write anything. This is the
+same shape as the `git init` note in the previous entry — bootstrap's own two
+steps are not dry-run-aware — and it is behavior the ruling did not ask to be
+made conditional.

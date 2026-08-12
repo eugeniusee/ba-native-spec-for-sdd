@@ -53,9 +53,10 @@ curl -fsSL https://raw.githubusercontent.com/eugeniusee/ba-native-spec-for-sdd/m
 ```
 
 No clone, no GitHub account. `bootstrap.sh` downloads the package, runs
-`git init` if the directory is not a repository yet, and hands over to
-`install.sh --target "$PWD"` — whose output you see verbatim and whose exit code
-you get. Installer options pass straight through:
+`git init` if the directory is not a repository yet, installs `uv` through
+[astral.sh](https://astral.sh/uv/install.sh) if the machine has none, and hands
+over to `install.sh --target "$PWD"` — whose output you see verbatim and whose
+exit code you get. Installer options pass straight through:
 
 ```sh
 curl -fsSL https://raw.githubusercontent.com/eugeniusee/ba-native-spec-for-sdd/main/bootstrap.sh | bash -s -- --offline
@@ -85,7 +86,9 @@ install.sh [--offline] [--dry-run] [--force-speckit] [--skip-speckit] [--target 
 Offline use needs `vendor/spec-kit-v0.12.5.zip` — see [`vendor/README.md`](vendor/README.md).
 The archive is upstream's artifact and is not committed, so it is a
 clone-and-populate step: a bootstrap install has no vendored Spec Kit to fall
-back to, and `uv` is required on both paths (D88).
+back to. `uv` is needed on both paths — `--offline` selects the Spec Kit
+*source*, not the runner, which is `uvx` either way (D88) — and that is the gap
+the bootstrap closes by installing `uv` itself.
 
 ## Test
 
@@ -217,4 +220,13 @@ anchor.
 ## Requirements
 
 `git` · `python3` ≥ 3.11 · `uv` (for the pinned Spec Kit install) · `bash`.
+
+`uv` is the one of those you may not have to bring. On the **bootstrap path** it
+is installed for you when the machine has none — bootstrap has already
+downloaded the package over the network by the time it looks, so it runs
+astral.sh's own installer, puts `~/.local/bin` on this run's `PATH`, and stops
+with a named error if that still leaves no `uv`. On the **manual clone +
+`install.sh` path** it is a prerequisite like the rest: `install.sh` requires it
+and does not install it.
+
 No runtime dependency on anything upstream: checker content is vendored.

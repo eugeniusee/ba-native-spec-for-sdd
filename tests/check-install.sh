@@ -9,17 +9,25 @@
 #   2  (c) bootstrap's self-guard — the package repo builds the payload and is
 #          not a place to install it into
 #   3  (b) install.sh with uv shadowed off PATH — the uv-free case
+#   4  (d)(e) bootstrap with uv shadowed off PATH — the gap closed, and the
+#          refusal when closing it fails
 #
-# **Section 3 is pinned at today's behavior, not at the workstream's target
-# (D88).** The install-UX ruling asked for "uv missing + vendor zip present →
-# take the existing --offline path". Read against the installer, that path is not
-# uv-free: `--offline` changes only where the Spec Kit *source* comes from, and
-# both paths then run `uvx --from <source> specify init`. The vendored archive is
-# upstream's source tree, its CLI needs nine third-party packages, and none of
-# them are vendored — so no uv-free route to a pinned Spec Kit exists yet. Taking
-# the offline path on a uv-less machine would only move the death later and give
-# it a wrong reason. Section 3 therefore pins the current, accurate refusal *and
-# its cause*, so the day the cause is fixed this suite says so.
+# **Section 3 is pinned at install.sh's behavior, which the D88 resolution did
+# not change.** The install-UX ruling asked for "uv missing + vendor zip present
+# → take the existing --offline path". Read against the installer, that path is
+# not uv-free: `--offline` changes only where the Spec Kit *source* comes from,
+# and both paths then run `uvx --from <source> specify init`. The vendored
+# archive is upstream's source tree, its CLI needs nine third-party packages, and
+# none of them are vendored — so no uv-free route to a pinned Spec Kit exists.
+# Taking the offline path on a uv-less machine would only move the death later
+# and give it a wrong reason. Section 3 therefore pins the current, accurate
+# refusal *and its cause*, so the day the cause is fixed this suite says so.
+#
+# **Section 4 is where D88 was resolved — one layer up, not in the installer.**
+# Bootstrap's network is not an assumption: it has just downloaded the package
+# over it. So bootstrap installs uv itself when the machine has none, and the
+# uv-less machine arriving at install.sh through the one-liner stops being a case
+# that can happen. install.sh is untouched, and section 3 still holds it down.
 #
 #   check-install.sh              run it
 #   check-install.sh --online     let the installs fetch Spec Kit (default: --offline)
@@ -42,7 +50,7 @@ while [ $# -gt 0 ]; do
     --offline)    OFFLINE="--offline"; shift ;;
     --keep)       KEEP=1; shift ;;
     -v|--verbose) VERBOSE=1; shift ;;
-    -h|--help)    sed -n '2,30p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
+    -h|--help)    sed -n '2,35p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
     *) printf 'unknown option: %s\n' "$1" >&2; exit 2 ;;
   esac
 done
@@ -100,6 +108,17 @@ fi
                      || bad "(a) no .git/ — bootstrap did not initialize the repository"
 has "$BOOT_OUT" "not a git repository yet — running: git init" \
     "(a) and it said so out loud, before doing it"
+
+# The uv ensure step is unconditional, so it runs here too — on whichever branch
+# this machine is on. Section 4 drives both branches deliberately.
+has "$BOOT_OUT" "▸ uv" "(a) the uv ensure step runs on the bootstrap path"
+if command -v uv >/dev/null 2>&1; then
+  has "$BOOT_OUT" "already installed ✓" \
+      "(a) …uv was already on this machine, so it passed straight through"
+else
+  has "$BOOT_OUT" "uv not found — installing" \
+      "(a) …uv was missing on this machine, so it was installed"
+fi
 
 isfile "$FRESH/.claude/skills/ba-frame/SKILL.md" \
        "(a) /ba-frame is laid down — the Band-1 entry command exists"
@@ -200,7 +219,8 @@ step "3 · (b) uv shadowed off PATH — the uv-free case (pinned; see D88)"
 isfile "$VENDOR_ZIP" "(b) the vendored Spec Kit $SPECKIT_PIN archive is in place — this is the L2 case"
 
 # A PATH with every directory that holds uv/uvx removed, and a shim carrying the
-# tools the installer needs in case one of them shared a directory with uv.
+# tools the installer and bootstrap need, in case one of them shared a directory
+# with uv. Section 4 reuses this PATH — the same shadowing, one layer up.
 UV_DIRS=""
 for c in uv uvx; do
   p="$(command -v "$c" 2>/dev/null)" && UV_DIRS="$UV_DIRS $(dirname "$p")"
@@ -214,7 +234,7 @@ for d in "${_pdirs[@]}"; do
   UVLESS_PATH="${UVLESS_PATH:+$UVLESS_PATH:}$d"
 done
 SHIM="$TMP/shim"; mkdir -p "$SHIM"
-for t in python3 git unzip; do
+for t in python3 git unzip bash; do
   real="$(command -v "$t" 2>/dev/null)" || continue
   PATH="$UVLESS_PATH" command -v "$t" >/dev/null 2>&1 || ln -sf "$real" "$SHIM/$t"
 done
@@ -278,13 +298,115 @@ SK_COUNT=$(find "$SKIPPED_PROJ/.claude/skills" -maxdepth 1 -mindepth 1 -type d -
 [ "$SK_COUNT" -eq 0 ] && ok "(b) …with no Spec Kit under it — what the uv-free route costs, named" \
                       || bad "(b) --skip-speckit produced $SK_COUNT speckit-* skills — it should produce none"
 
+# ── 4 · (d)(e) bootstrap on a uv-less machine — D88, resolved one layer up ───
+#
+# Section 3's PATH, and bootstrap on top of it. The uv installer is substituted
+# through BNS_UV_INSTALLER — the hook exists so this suite never curls astral.sh
+# and never writes to the developer's real ~/.local/bin. Its contract is the real
+# installer's: leave a working `uv` somewhere bootstrap will find it.
+#
+#   (d) the hook leaves a uv  → bootstrap finds it and hands over: exit 0
+#   (e) the hook leaves none  → bootstrap dies, saying so: no handover, no writes
+#
+# Both runs pass --skip-speckit, so what they prove is bootstrap's own step: the
+# ensure runs regardless of the flags (it is unconditional by design), and (d)'s
+# install then completes on the uv-free route section 3 established, rather than
+# on a fake uv that could not run Spec Kit anyway.
+
+step "4 · (d)(e) uv missing — bootstrap installs it (D88 → Option B)"
+
+env PATH="$UVLESS_PATH" command -v uv >/dev/null 2>&1 \
+  && bad "(d) uv is still reachable on the shadowed PATH — the case is not set up" \
+  || ok "(d) uv is unreachable on the shadowed PATH — the machine has none"
+
+# The stub that behaves: uv lands in $HOME/.local/bin, where astral.sh's own
+# installer puts it and where bootstrap adds to PATH by hand.
+STUB_OK="$TMP/uv-installer-ok.sh"
+cat > "$STUB_OK" <<'STUB'
+#!/usr/bin/env bash
+set -eu
+mkdir -p "$HOME/.local/bin"
+cat > "$HOME/.local/bin/uv" <<'FAKEUV'
+#!/usr/bin/env bash
+printf 'uv 0.0.0-fake\n'
+FAKEUV
+chmod +x "$HOME/.local/bin/uv"
+printf 'stub installer: wrote %s\n' "$HOME/.local/bin/uv"
+STUB
+chmod +x "$STUB_OK"
+
+# The stub that does not: it runs, it exits 0, it installs nothing.
+STUB_NOOP="$TMP/uv-installer-noop.sh"
+cat > "$STUB_NOOP" <<'STUB'
+#!/usr/bin/env bash
+printf 'stub installer: installing nothing\n'
+STUB
+chmod +x "$STUB_NOOP"
+
+# ── (d) the gap is closed and the install proceeds ──
+UVGAP="$TMP/uvgap-project"
+FAKE_HOME="$TMP/uvgap-home"
+mkdir -p "$UVGAP" "$FAKE_HOME"
+absent "$UVGAP/.git" "(d) the target starts as a plain, empty, non-git directory"
+absent "$FAKE_HOME/.local/bin/uv" "(d) …and the fake HOME starts with no uv in it"
+
+UVGAP_OUT="$TMP/uvgap.out"
+( cd "$UVGAP" && env HOME="$FAKE_HOME" PATH="$UVLESS_PATH" \
+      BNS_SOURCE="$PKG_ROOT" BNS_UV_INSTALLER="$STUB_OK" \
+      bash "$PKG_ROOT/bootstrap.sh" --skip-speckit ) > "$UVGAP_OUT" 2>&1
+UVGAP_RC=$?
+
+if [ "$UVGAP_RC" -eq 0 ]; then
+  ok "(d) bootstrap exits 0 on a machine with no uv"
+else
+  bad "(d) bootstrap exited $UVGAP_RC on a machine with no uv, expected 0"
+  sed 's/^/      /' "$UVGAP_OUT" | tail -25
+fi
+
+has "$UVGAP_OUT" "uv not found — installing" \
+    "(d) the gap was detected and announced before anything was installed"
+isfile "$FAKE_HOME/.local/bin/uv" "(d) the installer hook ran — a uv exists where it puts one"
+has "$UVGAP_OUT" "installed: $FAKE_HOME/.local/bin/uv" \
+    "(d) …and bootstrap found that uv — the PATH export reaches this process"
+[ -d "$UVGAP/.git" ] && ok "(d) the target is a git repository — the ensure step sits after git init" \
+                     || bad "(d) no .git/ — the ensure step ran before git init, or git init did not"
+has "$UVGAP_OUT" "▸ Preflight" "(d) …and install.sh ran after it — the handover happened"
+isfile "$UVGAP/.claude/skills/ba-frame/SKILL.md" \
+       "(d) …laying the payload down: a uv-less machine now installs"
+
+# ── (e) the gap is not closed, and bootstrap says so ──
+UVDEAD="$TMP/uvdead-project"
+DEAD_HOME="$TMP/uvdead-home"
+mkdir -p "$UVDEAD" "$DEAD_HOME"
+absent "$UVDEAD/.git" "(e) the target starts as a plain, empty, non-git directory"
+
+UVDEAD_OUT="$TMP/uvdead.out"
+( cd "$UVDEAD" && env HOME="$DEAD_HOME" PATH="$UVLESS_PATH" \
+      BNS_SOURCE="$PKG_ROOT" BNS_UV_INSTALLER="$STUB_NOOP" \
+      bash "$PKG_ROOT/bootstrap.sh" --skip-speckit ) > "$UVDEAD_OUT" 2>&1
+UVDEAD_RC=$?
+
+[ "$UVDEAD_RC" -ne 0 ] && ok "(e) bootstrap refuses when the installer leaves no uv — exit $UVDEAD_RC" \
+                       || bad "(e) bootstrap exited 0 with no uv installed — the re-check did not fire"
+has "$UVDEAD_OUT" "uv is still not on PATH after the installer ran" \
+    "(e) the refusal names what failed"
+has "$UVDEAD_OUT" "$STUB_NOOP" "(e) …and which installer it ran"
+has "$UVDEAD_OUT" "curl -LsSf https://astral.sh/uv/install.sh | sh" \
+    "(e) …and prints the manual install command"
+hasnt "$UVDEAD_OUT" "▸ Preflight" "(e) the handover never happened — install.sh was not run"
+[ -d "$UVDEAD/.git" ] && ok "(e) git init had already run — that is the whole of what the target got" \
+                      || bad "(e) no .git/ — the git init step did not run before the refusal"
+absent "$UVDEAD/.specify" "(e) …nothing beyond it: no .specify/"
+absent "$UVDEAD/.claude"  "(e) …and no .claude/"
+
 # ── roll-up ──────────────────────────────────────────────────────────────────
 
 printf '\n  passed: %s   failed: %s\n' "$PASSED" "$FAILED"
-[ "$KEEP" -eq 1 ] && printf '  kept:\n    %s\n    %s\n    %s\n' "$FRESH" "$UVLESS" "$SKIPPED_PROJ"
+[ "$KEEP" -eq 1 ] && printf '  kept:\n    %s\n    %s\n    %s\n    %s\n    %s\n' \
+  "$FRESH" "$UVLESS" "$SKIPPED_PROJ" "$UVGAP" "$UVDEAD"
 
 if [ "$FAILED" -eq 0 ]; then
-  printf '✓ GREEN — the install UX: bootstrap into a fresh directory · the self-guard · the uv-free case pinned at D88\n'
+  printf '✓ GREEN — the install UX: bootstrap into a fresh directory · the self-guard · install.sh without uv · bootstrap installing uv\n'
   exit 0
 fi
 printf '✗ RED — %s check(s) failed\n' "$FAILED"

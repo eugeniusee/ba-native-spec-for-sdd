@@ -32,11 +32,14 @@ curl -fsSL https://raw.githubusercontent.com/eugeniusee/ba-native-spec-for-sdd/m
 
 No clone, no GitHub account, nothing to check out first. It fetches the package,
 runs `git init` for you if the folder is not a repository yet, and installs into
-it. You need `git`, `python3` 3.11 or newer, and `uv` on the machine.
+it. You need `git`, `python3` 3.11 or newer, and `bash` on the machine. `uv` is
+needed too, but you do not have to install it first: if the machine has none,
+the bootstrap installs it for you through astral.sh and says so as it goes.
 
 If the package is already checked out somewhere — or you want to install from a
 copy pinned to a known version rather than from `main` — run the installer
-directly:
+directly. This path installs nothing on your behalf, so `uv` has to be there
+already:
 
 ```sh
 cd /path/to/your/project        # must be a git repo
