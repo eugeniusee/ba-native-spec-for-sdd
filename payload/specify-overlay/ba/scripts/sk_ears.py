@@ -50,8 +50,15 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from sk_structure import (  # noqa: E402
     Finding, base_parser, emit, fail, load_spec, ok, parse_spec, runtime_defect,
     unparsed_report,
-    blocked_on_unreadable,
+    blocked_on_unparsed, blocked_on_unreadable,
 )
+
+# CC-FR-02 and CC-FR-05 count nothing but §3's parsed FRs, so on a table-form
+# §3 their `0/0` is the reader's zero, not the spec's — SKIPPED, not PASS
+# (gate §5.1, section grain; build-log D139). CC-FR-01 is untouched: it is the
+# FAIL that names the shape, and it is the blocker these two cite.
+FR_SCOPE = {"CC-FR-02": ("Functional Requirements",),
+            "CC-FR-05": ("Functional Requirements",)}
 
 CORE = r"THE SYSTEM SHALL\s+(?P<response>\S.*)$"
 EARS_RE = re.compile(
@@ -275,6 +282,7 @@ def main(argv=None) -> int:
     retired = [r.strip() for r in args.retired.split(",") if r.strip()]
     verdicts = [check_fr01(spec), check_fr02(spec),
                 check_fr05(spec, args.hist, retired)]
+    verdicts = blocked_on_unparsed(spec, verdicts, FR_SCOPE)
     return emit("sk_ears", blocked_on_unreadable(spec, verdicts), args.format)
 
 

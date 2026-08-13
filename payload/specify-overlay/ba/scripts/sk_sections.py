@@ -50,8 +50,16 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from sk_structure import (  # noqa: E402
     BR_REF_RE, Finding, base_parser, emit, fail, load_spec, ok, table_rows,
-    blocked_on_unreadable,
+    blocked_on_unparsed, blocked_on_unreadable,
 )
+
+# CC-BR-02 is the only one of these four that counts *parsed objects*: its
+# `%d unique BR-IDs` is §6's rules, and on a §6 that is present but carries its
+# rules in a shape the reader does not parse, `0 unique BR-IDs; 0 reference(s)
+# all resolve` is the reader's zero wearing green — SKIPPED (gate §5.1, section
+# grain; build-log D139). CC-FL-02, CC-NF-02 and CC-OS-01 read their sections'
+# raw lines and FAIL on a zero, so their zeros are measurements and stand.
+BR_SCOPE = {"CC-BR-02": ("Business Rules",)}
 
 # ── CC-NF-02: the six categories (contract C6 · standard §7) ──────────────────
 
@@ -272,6 +280,7 @@ def main(argv=None) -> int:
     _, spec = load_spec(args)
     verdicts = [check_fl02(spec), check_nf02(spec), check_br02(spec),
                 check_os01(spec)]
+    verdicts = blocked_on_unparsed(spec, verdicts, BR_SCOPE)
     return emit("sk_sections", blocked_on_unreadable(spec, verdicts), args.format)
 
 

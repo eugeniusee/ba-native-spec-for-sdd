@@ -123,6 +123,8 @@ spec_case neg-idgraph    "$FX/negatives/neg-idgraph.md"
 #   neg-shapes — the two tolerated habits (numbered headings, bolded US IDs)
 #     read THROUGH, so the content is found; CC-G-01 still FAILs the form,
 #     and the table-form FRs report loudly instead of as a silent zero.
+#     It is also the D139 case: the spec is READABLE and only its §3 is not,
+#     so CC-FR-02/05 render SKIPPED rather than a vacuous 0/0 PASS.
 #   neg-alien  — headings no tolerance reaches: every assertion either FAILs
 #     with found-vs-expected or is SKIPPED. Nothing PASSes vacuously.
 spec_case neg-shapes     "$FX/negatives/neg-shapes.md"
@@ -382,6 +384,55 @@ python3 "$SK/sk_scan.py" --spec "$FX/negatives/neg-alien.md" \
 grep -q '0 banned words in 0 scanned lines' "$TMP/scan.txt" \
   && bad "CC-G-04 still passes having scanned nothing — the silent zero in green" \
   || ok "CC-G-04 does not pass on zero scanned lines"
+
+# ── 7 · the same law one grain down: the section (D139 · gate §5.1) ──────────
+#
+# neg-shapes is READABLE — only its §3 is not. `blocked_on_unreadable` cannot
+# fire, and the assertions that merely count parsed FRs used to render two
+# greens beside CC-FR-01's red about the same section.
+
+grep -q '^CC-FR-02 SKIPPED' "$TMP/ears.txt" && grep -q '^CC-FR-05 SKIPPED' "$TMP/ears.txt" \
+  && ok "CC-FR-02/05 SKIP on a readable spec whose §3 did not parse — no vacuous 0/0 PASS" \
+  || bad "a 0/0 PASS survives on a table-form §3: $(grep -c PASS "$TMP/ears.txt") PASS line(s)"
+grep -q 'CC-FR-02 SKIPPED — blocked by CC-FR-01 — §3 Functional Requirements: section present, no parseable FR lines' "$TMP/ears.txt" \
+  && ok "…and the skip names its blocker: CC-FR-01 + the found-vs-expected shape line" \
+  || bad "a section-grain skip must name the parse gap that blocks it (gate §5.1)"
+grep -qE '^CC-FR-0[25] PASS' "$TMP/ears.txt" \
+  && bad "CC-FR-02/05 must never PASS counting FRs the reader could not read" \
+  || ok "…and neither renders a count it did not measure"
+
+# the generated artifact carries the same verdict, so it takes the same law
+python3 "$SK/sk_idgraph.py" --root "$FX/project" --feature 004-appointment-booking \
+  --spec "$FX/negatives/neg-alien.md" --print-candidate > "$TMP/cand.txt" 2>&1
+grep -q 'Orphan check: none (CC-TR-01 PASS' "$TMP/cand.txt" \
+  && bad "traceability.md writes 'CC-TR-01 PASS' out of a zero the reader produced" \
+  || ok "the generated traceability.md never records a PASS the verdict set skipped"
+
+# the two boundaries of the rule, at the parse layer where the signal lives
+python3 - "$SK" "$TMP" <<'PYX' > "$TMP/grain.txt"
+import sys
+from pathlib import Path
+sys.path.insert(0, sys.argv[1])
+tmp = Path(sys.argv[2])
+from sk_structure import parse_spec, unparsed_blocker
+
+empty = tmp / "empty-br.md"
+empty.write_text("## Business Rules\n\nNone for this feature.\n", encoding="utf-8")
+print("empty=[%s]" % unparsed_blocker(parse_spec(empty), "Business Rules"))
+
+rows = tmp / "rows-br.md"
+rows.write_text("## Business Rules\n\n| ID | Rule |\n|---|---|\n"
+                "| BR-001 | A Client may hold at most 3 Appointments. |\n",
+                encoding="utf-8")
+print("rows=[%s]" % unparsed_blocker(parse_spec(rows), "Business Rules"))
+PYX
+
+grep -q '^empty=\[\]$' "$TMP/grain.txt" \
+  && ok "a present, read and genuinely empty section keeps its zero — that one is a measurement" \
+  || bad "an empty section must not be downgraded: $(grep '^empty=' "$TMP/grain.txt")"
+grep -q '^rows=\[§6 Business Rules: section present, no parseable BR lines' "$TMP/grain.txt" \
+  && ok "…and where the M set carries no assertion that fails on the shape, the gap line is the blocker" \
+  || bad "the §6 blocker must be the gap line itself: $(grep '^rows=' "$TMP/grain.txt")"
 
 printf '\n▸ Coverage — every M assertion, ≥ 1 seeded FAIL and ≥ 1 PASS\n'
 

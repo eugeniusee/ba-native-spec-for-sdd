@@ -41,8 +41,16 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from sk_structure import (  # noqa: E402
     Finding, base_parser, emit, fail, load_spec, memory, ok, parse_spec,
     runtime_defect, table_rows,
-    blocked_on_unreadable,
+    blocked_on_unparsed, blocked_on_unreadable,
 )
+
+# CC-US-02/03/04 count nothing but §2's parsed stories: on a §2 that is present
+# and carries US IDs in a shape the reader does not parse, their zero is the
+# reader's, not the spec's — SKIPPED, not PASS (gate §5.1, section grain;
+# build-log D139). CC-US-01 is untouched: it is the FAIL these three cite.
+US_SCOPE = {"CC-US-02": ("User Stories",),
+            "CC-US-03": ("User Stories",),
+            "CC-US-04": ("User Stories",)}
 
 EMPHASIS_RE = re.compile(r"[*_`]")
 
@@ -271,6 +279,7 @@ def main(argv=None) -> int:
         check_us03(spec),
         check_us04(spec, args.hist, retired),
     ]
+    verdicts = blocked_on_unparsed(spec, verdicts, US_SCOPE)
     return emit("sk_stories", blocked_on_unreadable(spec, verdicts), args.format)
 
 

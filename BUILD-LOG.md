@@ -7104,3 +7104,186 @@ instruction in `ba-tier2/SKILL.md`, held down by the register suite as text, not
 by a checker that runs it. A `sk_preflight` reading the four shapes off the
 standard would close that, and would also give the Tier-2 skill a mechanical exit
 condition it currently lacks. Not ruled, not built.
+
+## Silent-Zero Parser II — the vacuous PASS at section grain, one cycle, Lane B · gate v0.7 · 14 August 2026 · GREEN
+
+The second cycle of the same field defect, and the shortest kind of entry: one
+open divergence, one ruling, one paragraph of law, one helper, six assertions.
+
+The previous entry closed carrying **D139** — the vacuous PASS survives on a
+*readable* spec whose section is unparseable. `neg-shapes` still rendered
+`CC-FR-02 PASS — 0/0 FRs carry exactly one SHALL` and `CC-FR-05 PASS — 0 FRs`
+in green, beside `CC-FR-01 FAIL — §3 …: section present, no parseable FR lines`
+in red, about the same section. `blocked_on_unreadable` could not fire: the spec
+*is* readable — only its §3 is not.
+
+**Ruling taken by the BA Lead, applied as stated: R3 = (a)** — D139 closes by
+extending D137's law to section grain. On a readable spec where a section is
+present but unparseable, every assertion scoped to that section's parsed objects
+that would PASS vacuously (0/0) renders **SKIPPED** instead. FAILs are never
+touched. Same instrument as D137 — the gate's §5.1 SKIPPED; nothing new invented.
+
+**Parameters.** HEAD is `761ab4d` (package 0.1.14 · gate v0.6 · standard v0.4 ·
+orchestrator v0.18 · elicitation v0.6), pushed to origin at the head of this pass
+— the previous cycle's commit had never left the machine. The divergence
+high-water mark is **D139** → the contiguous block **D140–D143**. `VERSION` is
+untouched by instruction: the stamp is the BA Lead's exclusive act and remains
+**pending** for 0.1.15, which now carries both cycles.
+
+### The document pass (before any code)
+
+**Gate definition v0.6 → v0.7, §5.1.** One additive paragraph — *a zero the
+reader produced is not a count* — stating the rule **once**, at both grains:
+
+> **A zero the reader produced is not a count — SKIPPED, at either grain.** A
+> PASS's terse evidence is the whole of its support, so `0/0 FRs carry exactly
+> one SHALL` supports nothing: an M assertion whose count is zero **because its
+> source did not parse** renders `SKIPPED`, never PASS. Two grains, one rule.
+> **Spec grain:** no `##` heading resolved to one of the ten standard names, so
+> nothing in the document could be read → every PASS in the run becomes
+> `SKIPPED — blocked by CC-G-01`. **Section grain:** the document reads, but a
+> section is *present and carries lines of its class that did not parse* (a §3
+> written as table rows is the field case) → every assertion counting that
+> section's parsed objects at zero becomes SKIPPED, blocked by that section's
+> parse gap stated in found-vs-expected grammar — led by the `CC-<ID>` that
+> fails on the shape where the M set carries one (CC-FR-01 for §3, CC-US-01 for
+> §2), and by the gap line alone where it does not (§6 Business Rules). **FAIL
+> is never touched:** a FAIL is normally the very line naming the parse gap, and
+> suppressing it would hide the diagnosis. A section that is present, read and
+> **genuinely empty** is not this case — that zero is a measurement and it
+> stands. Skips carry their §4.1 consequence unchanged: the run cannot PASS,
+> §6.1 forcing FAIL on any skip whether or not a sibling assertion also failed.
+
+**D140 — the spec-grain half is ratified as built, and says so.** D137 shipped
+the behavior in the previous cycle; its law is written here, one cycle later, in
+the same paragraph as the new half. Recording the pattern rather than hiding it:
+the document states the rule at both grains as one rule, and the change record
+names which half is new and which is ratification. The alternative — writing
+only the section half and leaving D137's behavior standing on a build-log entry
+— would leave the runtime carrying an unlegislated downgrade at the grain the
+gate is most often run at. The footer's dependency line was refreshed in the same
+bump (writing standard v0.3 → v0.4, elicitation v0.4 → v0.6; both went stale in
+the previous cycle, which did not touch this document).
+
+**D141 — the section-grain blocker is a parse gap, not always an assertion ID.**
+§4.1's grammar is `SKIPPED — blocked by CC-<ID>`, and at spec grain D137 could
+satisfy it exactly: CC-G-01 is right there, failing. At section grain the M set
+carries an assertion that fails on the shape for §3 (CC-FR-01) and §2 (CC-US-01)
+— and **none for §6 Business Rules**: CC-BR-02 is the only M assertion over §6,
+and it is the one skipping. Under-determined by the ruling, taken minimally: the
+blocker is the section's own parse gap in found-vs-expected grammar, led by the
+`CC-<ID>` where one exists. Two consequences registered rather than left to be
+discovered: §4.1's *the blocker is among the failures* gains a five-word
+exception pointer, and §6.1's *any SKIPPED element forces FAIL regardless* is
+sharpened to say that *regardless* is the operative word — that rule, not the
+presence of a sibling FAIL, is what keeps such a run off PASS. The two
+alternatives were both worse: naming CC-G-01 at section grain is a false
+attribution (CC-G-01 PASSes there), and authoring a new assertion to fail on an
+unparseable §6 is exactly the *invent nothing new* the ruling forbids.
+
+### The code pass
+
+**One helper, beside D137's, in `sk_structure` and nowhere else.**
+`blocked_on_unparsed(spec, verdicts, scopes)` downgrades a PASS whose count is
+zero because its section did not parse; `unparsed_blocker()` builds the blocker
+line; `SECTION_CLASS` maps the four ID-bearing sections to their kind, the `Spec`
+field the checkers count, and the assertion that fails on the shape.
+
+**The signal was already there.** The ruling allowed adding a present-but-
+unparseable signal in `sk_structure` where one was missing. None was: D137's
+`unparsed_report()` is already keyed by ID class over `FR` · `BR` · `NFR` · `US`,
+and it is *exactly* the predicate this rule needs — it returns `""` for a section
+that is absent, that parsed something, **or that is genuinely empty**. So the
+downgrade reuses it verbatim and the single-signal-site rule stands untouched.
+That last case is the rule's own boundary and it fell out for free: a section the
+reader read and found empty keeps its zero, because that zero is a measurement.
+
+**D142 — the sweep's criterion: counts over *parsed objects*, not counts over
+raw lines.** All 21 Scope-F M assertions were read against the 0/0 shape. In
+scope, seven — **CC-US-02 · CC-US-03 · CC-US-04** (§2) · **CC-FR-02 · CC-FR-05**
+(§3) · **CC-BR-02** (§6) · **CC-TR-01** (§2 + §3, the only two-section scope).
+Out of scope, and why, so the next sweep does not re-derive it:
+
+| Assertion | Reads | Its zero |
+|---|---|---|
+| CC-US-01 · CC-AC-01 · CC-FR-01 | parsed objects | already a **FAIL** — nothing to downgrade |
+| CC-FL-02 · CC-NF-02 · CC-OS-01 | the section's **raw lines** | a FAIL; CC-NF-02 even reads table rows as a legal form |
+| CC-G-01 · CC-G-03 · CC-G-04 · CC-XA-02 | headings and raw lines, document-wide | a measurement — a table-form §3's lines *are* scanned |
+| CC-TR-02 · CC-TR-03 | §10's raw lines | CC-TR-02 FAILs; CC-TR-03's `0 declared = 0 used` is a real spec property |
+| CC-TR-04 | the generated graph | already a FAIL on an empty graph |
+| CC-XA-05 | the brief + its slicing row | not section-scoped at all |
+
+No M assertion counts `spec.nfrs` at all, so the **CC-NF-\*** row of the sweep is
+empty by construction rather than by judgement — worth stating, since the ruling
+named it explicitly.
+
+**D143 — CC-TR-01 takes the downgrade where it is computed, not only where it is
+emitted.** Its verdict is read twice: once into the verdict set, and once into
+the generated `traceability.md` as `Orphan check: none (CC-TR-01 PASS, run n)`.
+Applying the downgrade only at the emit boundary would have skipped the verdict
+and still written the PASS sentence into a second file — the same true-sounding
+sentence the whole defect is made of. Both downgrades now run at the point of
+computation, and the render gained a third branch: `not evaluated — CC-TR-01
+blocked by <blocker>`. **This closed a spec-grain leak D137 left standing** — on
+an unreadable spec the candidate previously read `Orphan check: none (CC-TR-01
+PASS, run 1)` while the verdict set said SKIPPED. Found by extending the rule,
+not by looking for it.
+
+### Tests
+
+**The D139 fixture renders as the ruling specified.** `neg-shapes` — readable,
+table-form §3 — now gives `CC-FR-01 FAIL` + `CC-FR-02 SKIPPED` + `CC-FR-05
+SKIPPED`, each skip naming CC-FR-01 and the five table rows it counted.
+
+**One verdict table moved, and only where the class legitimately changed.**
+`neg-shapes.expect`: `CC-FR-02|PASS → SKIPPED`, `CC-FR-05|PASS → SKIPPED`. Two
+lines of twenty; the other eighteen are byte-identical, and no other case's table
+moved at all — `neg-alien`'s four SKIPPEDs were already there under D137. The
+table was edited line-by-line rather than re-recorded wholesale, so the diff is
+the assertion.
+
+**Six new assertions in `check-m.sh`**, continuing the previous cycle's rule that
+the suite pins the *sentences*, not only the verdicts: CC-FR-02/05 SKIP on a
+readable spec whose §3 did not parse · the skip names its blocker (`CC-FR-01` +
+the found-vs-expected line) · neither ever renders a count it did not measure ·
+the generated `traceability.md` never records a PASS the verdict set skipped
+(D143) · a present, read and genuinely empty section keeps its zero (the
+measurement boundary) · and the §6 case renders the gap line as its own blocker
+(D141). The last two build their two-line specs in `$TMP` and read
+`unparsed_blocker` directly — the boundary is a property of the predicate, and
+pinning it at the predicate is cheaper than a fixture pair.
+
+**Coverage held at 24 of 24** M assertions exercised both ways: CC-FR-02 and
+CC-FR-05 lost their `neg-shapes` PASS and keep it in eight and seven other cases
+respectively.
+
+**Result: 17/17 GREEN**, the three install-based runs included. `check-m` 59/0
+(was 53/0 — the six new assertions, no other movement) · `check-gate` 59/0 ·
+`check-orchestrator` 199/0 · `check-status` 103/0 · `check-layout` 112/0/0 ·
+`check-exit` 99/0 · `check-install` 64/0 · `check-budget` 37/0 · `check-auto`
+93/0. The four the previous entry recorded — orchestrator, status, layout, exit
+— stand on their previous counts exactly.
+
+### Version — 0.1.15 proposed for both cycles, **not stamped**
+
+Unchanged from the previous entry's proposal: no installed file added, no new
+machinery, no new BA step. One methodology document bumped (gate v0.6 → v0.7),
+one parse-surface downgrade (two functions and a section map), four checker call
+sites, one fixture verdict table.
+**`VERSION` is untouched by instruction.** Both cycles now sit on origin.
+
+### Open
+
+**Nothing from D139 remains.** The vacuous PASS is closed at both grains.
+
+**The A pass is not swept.** This rule is an M-checker output rule and lives in
+§5.1; `ba-gate.md`'s SKIPPED bullet governs the A pass at element granularity and
+carries no text this ruling contradicts, so it was checked and left alone — the
+D138 propagation test does not fire where the mirrors carry different text. But
+an A checker judging CC-FR-03 over a §3 that parsed nothing has the same shape,
+and nothing yet stops it returning a PASS. **Not ruled, not built** — it needs
+the agent's own instruction to change, which is a ruling.
+
+**The carried items of the previous cycle stand unchanged:** the estate's own
+remediation is out of scope by instruction, and the Tier-2 pre-flight is still
+prose that nothing executes.

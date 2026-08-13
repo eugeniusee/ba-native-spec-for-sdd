@@ -45,8 +45,16 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from sk_structure import (  # noqa: E402
     BR_REF_RE, Finding, base_parser, emit, fail, load_spec, memory, ok,
     runtime_defect, table_rows,
-    blocked_on_unreadable,
+    blocked_on_unparsed, blocked_on_unreadable,
 )
+
+# CC-TR-01's evidence — "%d stories, %d FRs — zero orphans in either direction"
+# — counts both sections' parsed objects, so it cites both (gate §5.1, section
+# grain; build-log D139). It only ever reaches PASS with both counts at zero:
+# one side parsed and the other not is an orphan on one side or the other, and
+# that is a FAIL, which is never touched. CC-TR-02/03 read §10's raw lines and
+# CC-TR-04 FAILs on an empty graph, so none of the three has this shape.
+TR_SCOPE = {"CC-TR-01": ("User Stories", "Functional Requirements")}
 
 REQUIRED_REFS = [
     ("roles-permissions.md", "roles-permissions.md"),
@@ -356,10 +364,18 @@ def main(argv=None) -> int:
 
     rows, reverse = build_graph(spec, link)
 
-    v_tr01 = check_tr01(spec)
-    orphan = ("none (CC-TR-01 PASS, run %s)" % args.run
-              if v_tr01.verdict == "PASS"
-              else " · ".join(f.gap_line("CC-TR-01") for f in v_tr01.findings))
+    # Both downgrades are taken *here*, not only at the emit boundary: this
+    # verdict is also rendered into the generated traceability.md, and an
+    # "Orphan check: none (CC-TR-01 PASS)" written out of a zero the reader
+    # produced is the same true-sounding sentence in a second file.
+    v_tr01 = blocked_on_unreadable(
+        spec, blocked_on_unparsed(spec, [check_tr01(spec)], TR_SCOPE))[0]
+    if v_tr01.verdict == "PASS":
+        orphan = "none (CC-TR-01 PASS, run %s)" % args.run
+    elif v_tr01.verdict == "SKIPPED":
+        orphan = "not evaluated — CC-TR-01 blocked by %s" % v_tr01.blocked_by
+    else:
+        orphan = " · ".join(f.gap_line("CC-TR-01") for f in v_tr01.findings)
 
     date = args.date or "—"
     cycle = args.cycle or (date[:7] if re.match(r"\d{4}-\d{2}", date) else "—")
@@ -380,6 +396,7 @@ def main(argv=None) -> int:
         check_tr03(spec, roles_path),
         check_tr04(rows, feature, args.out),
     ]
+    verdicts = blocked_on_unparsed(spec, verdicts, TR_SCOPE)
     return emit("sk_idgraph", blocked_on_unreadable(spec, verdicts), args.format)
 
 

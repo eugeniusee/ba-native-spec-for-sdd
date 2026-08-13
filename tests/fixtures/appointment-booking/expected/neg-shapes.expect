@@ -1,7 +1,7 @@
 sk_acceptance|CC-AC-01|PASS
 sk_ears|CC-FR-01|FAIL
-sk_ears|CC-FR-02|PASS
-sk_ears|CC-FR-05|PASS
+sk_ears|CC-FR-02|SKIPPED
+sk_ears|CC-FR-05|SKIPPED
 sk_idgraph|CC-TR-01|FAIL
 sk_idgraph|CC-TR-02|PASS
 sk_idgraph|CC-TR-03|PASS

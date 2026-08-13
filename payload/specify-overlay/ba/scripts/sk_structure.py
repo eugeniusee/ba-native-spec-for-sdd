@@ -643,6 +643,64 @@ def blocked_on_unreadable(spec, verdicts):
             for v in verdicts]
 
 
+# ── the same law, one grain down: the section (D139 · gate §5.1) ──────────────
+#
+# A *readable* spec can still hand a checker a zero it never measured: §3 is
+# present, and every requirement in it is a table row. `blocked_on_unreadable`
+# does not fire — the spec is readable — so the assertions that merely count
+# parsed FRs rendered `0/0 FRs carry exactly one SHALL` in green, beside
+# CC-FR-01's red about the same section. Same instrument, one grain down.
+#
+# The predicate is `unparsed_report()` itself, unchanged: it is already the
+# *present · carries IDs of its class · parsed nothing* test, and it returns ""
+# for a section that is absent, that parsed something, or that is **genuinely
+# empty**. A genuinely empty section's zero is a measurement and it stands
+# (gate §5.1) — this downgrade is only ever about a zero the reader produced.
+#
+# The blocker is led by the assertion that FAILs on the shape where the M set
+# carries one, and is the gap line alone where it does not: §6 Business Rules
+# has no M assertion that fails on an unparseable §6, and gate §6.1's
+# any-skip-forces-FAIL rule is what holds the floor there.
+
+SECTION_CLASS = {
+    # section name                  ID kind · the Spec field the checkers count
+    #                               · the assertion that FAILs on the shape
+    "User Stories":                ("US",  "stories",      "CC-US-01"),
+    "Functional Requirements":     ("FR",  "requirements", "CC-FR-01"),
+    "Business Rules":              ("BR",  "rules",        ""),
+    "Non-Functional Requirements": ("NFR", "nfrs",         ""),
+}
+
+
+def unparsed_blocker(spec, section_name: str) -> str:
+    """The blocker line for a section present but parsed nothing — '' when the
+    section parsed, is absent, or is genuinely empty."""
+    kind, field_name, assertion = SECTION_CLASS[section_name]
+    report = unparsed_report(spec, section_name, kind, getattr(spec, field_name))
+    if not report:
+        return ""
+    return "%s§%d %s: %s" % ("%s — " % assertion if assertion else "",
+                             SECTION_NUMBER[section_name], section_name, report)
+
+
+def blocked_on_unparsed(spec, verdicts, scopes):
+    """Downgrade a PASS whose count is zero because its section did not parse.
+
+    `scopes` maps an assertion ID to the section names its evidence counts
+    objects out of. A FAIL is never touched (gate §5.1) — it is normally the
+    found-vs-expected line naming the parse gap itself, and suppressing it
+    would hide the diagnosis.
+    """
+    out = []
+    for v in verdicts:
+        blockers = [b for b in (unparsed_blocker(spec, s)
+                                for s in scopes.get(v.assertion, ()))
+                    if b]
+        out.append(skipped(v.assertion, v.checks, " · ".join(blockers))
+                   if v.verdict == "PASS" and blockers else v)
+    return out
+
+
 def runtime_defect(message: str):
     """A checker that cannot run is a runtime defect, not a verdict (gate §5.1)."""
     print("sk: runtime defect — %s" % message, file=sys.stderr)
