@@ -50,6 +50,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from sk_structure import (  # noqa: E402
     BR_REF_RE, Finding, base_parser, emit, fail, load_spec, ok, table_rows,
+    blocked_on_unreadable,
 )
 
 # ── CC-NF-02: the six categories (contract C6 · standard §7) ──────────────────
@@ -75,12 +76,14 @@ def _label_matches(label: str, aliases) -> bool:
 
 def check_nf02(spec):
     a = "CC-NF-02"
-    sec = spec.section("Non-Functional Requirements")
+    name = "Non-Functional Requirements"
+    sec = spec.section(name)
     if sec is None:
         return fail(a, ["spec"], [Finding(
             element="§5 Non-Functional Requirements",
-            problem="section absent",
-            fix="add the section and cover all six categories")])
+            problem=spec.section_miss(name),
+            fix=spec.section_miss_fix(
+                name, "add the section and cover all six categories"))])
 
     covered = {}
     for lineno, text in sec.lines:
@@ -140,12 +143,14 @@ ALT_HEAD_RE = re.compile(r"^\s*#{2,6}\s*.*(alternate|error|exception|unhappy)",
 
 def check_fl02(spec):
     a = "CC-FL-02"
-    sec = spec.section("Flows, States & Errors")
+    name = "Flows, States & Errors"
+    sec = spec.section(name)
     if sec is None:
         return fail(a, ["spec"], [Finding(
             element="§4 Flows, States & Errors",
-            problem="section absent",
-            fix="add the section with the main flow and its error paths")])
+            problem=spec.section_miss(name),
+            fix=spec.section_miss_fix(
+                name, "add the section with the main flow and its error paths"))])
 
     rows = list(table_rows(sec.body))
     documented = [r for r in rows if any(c.strip() for c in r)]
@@ -231,12 +236,14 @@ EXCLUSION_RE = re.compile(r"^\s*[-*+]\s+(?P<text>\S.*)$")
 
 def check_os01(spec):
     a = "CC-OS-01"
-    sec = spec.section("Out of Scope")
+    name = "Out of Scope"
+    sec = spec.section(name)
     if sec is None:
         return fail(a, ["spec"], [Finding(
             element="§9 Out of Scope",
-            problem="section absent",
-            fix="add the section with at least one exclusion")])
+            problem=spec.section_miss(name),
+            fix=spec.section_miss_fix(
+                name, "add the section with at least one exclusion"))])
 
     exclusions = []
     for lineno, text in sec.lines:
@@ -265,7 +272,7 @@ def main(argv=None) -> int:
     _, spec = load_spec(args)
     verdicts = [check_fl02(spec), check_nf02(spec), check_br02(spec),
                 check_os01(spec)]
-    return emit("sk_sections", verdicts, args.format)
+    return emit("sk_sections", blocked_on_unreadable(spec, verdicts), args.format)
 
 
 if __name__ == "__main__":

@@ -49,6 +49,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from sk_structure import (  # noqa: E402
     Finding, base_parser, emit, fail, load_spec, ok, parse_spec, runtime_defect,
+    unparsed_report,
+    blocked_on_unreadable,
 )
 
 CORE = r"THE SYSTEM SHALL\s+(?P<response>\S.*)$"
@@ -90,10 +92,26 @@ def _mask(text: str) -> str:
 def check_fr01(spec):
     a = "CC-FR-01"
     if not spec.requirements:
+        # *Zero* is only honest when the section was read and held nothing.
+        # A §3 that is present but written in a shape this reader does not
+        # parse — table rows, the field case — says so instead: a count the
+        # source does not support is the thing §10.4 forbids.
+        name = "Functional Requirements"
+        if spec.section(name) is None:
+            problem = spec.section_miss(name)
+            fix = spec.section_miss_fix(
+                name, "author the FRs in EARS form, each linked to its story")
+        else:
+            problem = (unparsed_report(spec, name, "FR", spec.requirements)
+                       or "zero functional requirements")
+            fix = ("rewrite each requirement as a line — "
+                   "`FR-0NN (US<n>) — <EARS text>` (standard §4)"
+                   if unparsed_report(spec, name, "FR", spec.requirements)
+                   else "author the FRs in EARS form, each linked to its story")
         return fail(a, ["spec"], [Finding(
             element="§3 Functional Requirements",
-            problem="zero functional requirements",
-            fix="author the FRs in EARS form, each linked to its story",
+            problem=problem,
+            fix=fix,
         )])
 
     findings = []
@@ -257,7 +275,7 @@ def main(argv=None) -> int:
     retired = [r.strip() for r in args.retired.split(",") if r.strip()]
     verdicts = [check_fr01(spec), check_fr02(spec),
                 check_fr05(spec, args.hist, retired)]
-    return emit("sk_ears", verdicts, args.format)
+    return emit("sk_ears", blocked_on_unreadable(spec, verdicts), args.format)
 
 
 if __name__ == "__main__":

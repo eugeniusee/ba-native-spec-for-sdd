@@ -6858,3 +6858,249 @@ four states, and the `source` **event** did not until D132 was ruled and fixed
 in this pass. Both now validate — against synthetic ledgers built in the suite,
 not against a fixture that records a real engagement's sources. That exhibit is
 still owed.
+
+## Silent-Zero Parser — field defect, one cycle, Lane B · standard v0.4 · orchestrator v0.18 · elicitation v0.6 · 14 August 2026 · GREEN
+
+The first entry driven by a **field defect report** rather than a ruling package.
+A live Presale estate — six drafted specs, `/ba-status` — rendered `drafted 0/6`,
+`open markers 0` and `/ba-wbs blocked: no spec carries a User Story yet` against
+six specs carrying stories, EARS requirements, NFRs, flows and out-of-scope
+sections. `sk_structure.parse_spec` could not read their headings, and **every
+consumer inherited the zero and stated it as a fact about the project.**
+
+The sharpest line in the report is a `sk_sections` remedy: `CC-FL-02 FAIL — §4
+Flows, States & Errors: section absent → add the section with the main flow and
+its error paths` — printed against a spec whose §4 was present. The fix the
+checker proposed would have had the BA author a second copy of a section that
+already existed.
+
+**Rulings taken by the BA Lead in the planning conversation, applied as stated:**
+**R1 = (c)** — reader tolerance *and* writer discipline, tolerance living in
+`sk_structure` only · **R2 = (a)** — the line is the only canonical FR form,
+`FR_RE` unwidened · and the bug half, which is conformance rather than new
+ruling: `parse_spec` must distinguish *absent* from *unrecognised*, and every
+consumer must render the distinction.
+
+**Parameters, allocated from the live tree.** HEAD is `3f715d2` (package 0.1.14 ·
+orchestrator v0.17 · standard v0.3 · elicitation v0.5). The divergence high-water
+mark is **D132** → the contiguous block **D133–D139**. `VERSION` is untouched by
+instruction: the stamp is the BA Lead's exclusive act and is **pending**.
+
+**Method.** Documents before code, per the standing order — the three methodology
+documents were edited and version-bumped before a line of Python moved. Every
+edit ran as an assertion-checked replacement (anchor found exactly once or the
+run aborts before writing). The full suite is **17/17 GREEN**, the three
+install-based runs included.
+
+### Verification of the report against the live tree
+
+Every cited line and quoted passage was checked before anything was changed. The
+report cites the *installed* surface (`.specify/ba/scripts/…`); the line numbers
+match this repo's **payload source** exactly, which is itself a useful fact — the
+payload compiles byte-for-byte to the install surface.
+
+| Report claim | Live tree | Verdict |
+|---|---|---|
+| `sk_structure.py:236-247` — splitter stores the heading verbatim | `current = Section(name=m.group(1).strip(), …)` at 242 | ✓ |
+| `H2_RE` = `^##\s+(.+?)\s*$` | line 201 | ✓ |
+| `STORY_ID_RE` at :207 · `FR_RE` at :210 | exact | ✓ |
+| `sk_structure.py:282` returns `None`, `[]` at :284 | exact | ✓ |
+| `sk_status.py:350` `"drafted": bool(spec.stories)` | exact | ✓ |
+| `sk_status.py:462` markers gated on `if f["drafted"]` | exact | ✓ |
+| `sk_status.py:69-74` — the second-copy-is-a-second-drift note | exact | ✓ |
+| `.claude/skills/ba-tier2/SKILL.md:107,253` — prose restatement | exact | ✓ |
+| spec-template writes the headings unnumbered | `## User Stories` at :26 | ✓ |
+| §10.4 *"never estimates a count the sources do not carry"* | **no such string** | ✗ — D133 |
+
+**D133 — the report's §6 quotation is a paraphrase, not a quotation.** §10.4
+carries three sentences that do the same work — *every number is a count with a
+named source* (¶1) · *a zero denominator renders `—`, never 0%* (§10.4-F) · line
+6's *the instrument reports its own blind spots, never papers over them* — and
+the apply prompt's own restatement of the law is verbatim-correct. The finding
+stands on the real text; **the paraphrase is registered rather than propagated**,
+and the §22 review record cites the founding sentence instead.
+
+### Reproduction — the three blockers, stacked
+
+`tests/fixtures/appointment-booking/negatives/neg-shapes.md`: spec r6's content,
+unchanged, carrying all three shapes. The report's §2 experiment reproduces its
+table row for row:
+
+| Spec text | stories | FRs | NFRs | rules | epic |
+|---|---|---|---|---|---|
+| as authored | 0 | 0 | 0 | 0 | `''` |
+| `## 2. User Stories` → `## User Stories` | 0 | 0 | 2 | 2 | `E-03` |
+| … + `**US1 (P1)**` → `US1 (P1)` | **3** | 0 | 2 | 2 | `E-03` |
+
+and `sk_sections` printed the false remedy verbatim.
+
+**A fourth symptom the report did not name: the vacuous PASS.** The same run
+produced `CC-BR-02 PASS — 0 unique BR-IDs; 0 reference(s) all resolve` and
+`CC-G-04 PASS — 0 banned words in 0 scanned lines (§§2–6)`. That is the identical
+silent zero wearing a green verdict instead of a count, and it is arguably worse:
+a `drafted 0` invites a question, a PASS closes one. **D137** below.
+
+### The documents pass (before any code)
+
+**Writing standard v0.3 → v0.4.** §2 states outright that the skeleton list's
+ordinals are its own numbering and never part of the headings, naming §14's
+micro-example as the authority on the literal bytes. The **reader-tolerance
+record** is written down as law before being coded — the two normalisations, and
+the explicit clause that they make nothing legal. Golden rule 4 gains the R2
+boundary: its own enumeration (permissions, fields, states, integrations) is
+*sets of values*, and one SHALL is not a set. §4's rule list gains the line-form
+rule; §15's self-check gains a shapes-first line.
+
+**Orchestrator v0.17 → v0.18, D-O50, §22.** §10.4 gains the count *u*, excluded
+from the drafted numerator **and from its denominator**, which becomes *r* =
+readable entered specs; line 3 gains one conditional continuation naming path,
+heading found and heading expected, on the auto-trail's *renders only when*
+pattern. `/ba.wbs`'s blocked reason must be the true one. The nine numbered lines
+keep their numbering; §10.4-F is untouched, because the zero-denominator rule it
+already carries is exactly what governs the all-unreadable case.
+
+**Elicitation v0.5 → v0.6, D11, §13.** §5.3 step 2 — the skeleton is emitted from
+the template **file**, never from a restatement. New §5.3 step 4 — the shape
+pre-flight, four checks, failing loudly at authoring time in found-vs-expected
+grammar. §7.2 gains both as build requirements.
+
+**D134 — the reader is deliberately more permissive than the writer.** A numbered
+heading is read by `sk_structure` and rejected by the Tier-2 pre-flight. Stated
+as intended asymmetry in both documents: tolerance is for specs the framework did
+not write, discipline is for the ones it did.
+
+### The code pass
+
+**D135 — CC-G-01 judges the heading as authored, not as normalised.** The ruling
+fixes tolerance at the parse and states that the canonical form does not move; it
+does not say which side of that line the *assertion* falls on. Taken minimally:
+`heading_order` keeps raw headings, `Section` carries both `name` (canonical) and
+`raw_name` (as authored), and `check_g01` keys on `raw_name`. Had normalisation
+fed CC-G-01, a numbered heading would have passed the gate and the tolerance
+would have become the second legal form the ruling forbids. **Verified both
+ways:** `neg-shapes` FAILs CC-G-01 with ten form findings; the conforming fixture
+still PASSes `10/10 headings, exact names, exact order`.
+
+**D136 — a normalised heading is reported once, as a form error, never also as
+absent.** The first cut reported each heading twice — *required heading absent*
+**and** *carries the ordinal* — twenty findings for ten headings, and the
+"absent" half was the field's own bug reproduced inside the fix. `missing` is now
+computed over resolved sections (`spec.section(h) is None`), not over raw names.
+
+**Tolerance, one site.** `HEADING_ORDINAL_RE` and `EMPH_ID_RE` with
+`canonical_heading()` and `normalise_line()`, in `sk_structure` and nowhere else,
+under a comment naming the file's own no-second-site rule. `FR_RE` is untouched.
+
+**The recognition status.** `Spec.readable` · `Spec.unrecognised` ·
+`section_miss()` / `section_miss_fix()` returning the found-vs-expected halves of
+a §7 named-gap line · `unparsed_report()` for present-but-unparseable inside a
+recognised section.
+
+**D137 — no assertion PASSes on an unreadable spec.** `blocked_on_unreadable()`
+downgrades PASS to **SKIPPED**, leaving FAIL alone — a FAIL is usually the
+found-vs-expected line naming the real problem, and suppressing it would hide the
+diagnosis. This uses the gate's own §5.1 *not evaluated* instrument and invents
+nothing. Applied at six emit boundaries.
+
+**The eleven importers, swept.** Five `section absent` sites (`sk_sections` ×3,
+`sk_idgraph` ×2) now render found-vs-expected · `sk_ears` CC-FR-01 renders the
+shape failure instead of *zero functional requirements* · `sk_acceptance` no
+longer claims *no stories* about a spec it could not read · `sk_status` carries
+`readable`/`parse_failure` per feature, the *r* denominator in all three render
+sites including the HTML one (D-O29's *same counts*), and the true `/ba-wbs`
+blocker · `sk_wbs` gives an unreadable spec its own disposition so §10.5's
+nothing-silently-dropped rule holds. `sk_brief`, `sk_health`, `sk_scan`,
+`sk_snapshot`, `sk_stories` read the estate or route through the swept surface.
+
+### The writer half — and the root cause the report did not reach
+
+The report found that `ba-tier2/SKILL.md` couples writer and reader *by
+description*. The live file was worse than that. Its **Output** section rendered
+the skeleton as:
+
+```
+1. Overview & Value   2. User Stories   3. Functional Requirements
+```
+
+under the label *"the ten sections, exact headings, exact order"*. **The skill
+was not merely failing to hand over the template — it was displaying the numbered
+form as the exact headings.** That is the drift's origin, and it explains why six
+specs in one estate all acquired the same habit.
+
+Step 2 now opens by copying `.specify/templates/spec-template.md` and filling it
+in place, with *where template and restatement disagree, the template governs*.
+The Output block renders the ten headings as `## ` lines, unnumbered, with the
+ordinals explicitly disclaimed. New step 4 is the pre-flight, as a four-row
+required/never table.
+
+**D138 — the ruling propagates to the mirrors.** `mirror/AGENTS.md` carried the
+same numbered skeleton list under *ten sections, exact names, exact order*, and
+`mirror/claude-block.md` and `claude/agents/ba-analyst.md` carried golden rule 4
+unqualified. All three take the ruling; the prompt named the Tier-2 source, and
+leaving the identical list uncorrected in the file every agent reads would have
+left the defect's origin in place under a different filename.
+
+### Tests
+
+**Two fixtures.** `neg-shapes.md` — the two tolerated habits plus table FRs.
+`neg-alien.md` — headings no tolerance reaches, the *unrecognised* case. Both
+join `check-m.sh`'s `spec_case` sweep with recorded verdict tables (20 verdicts
+each), and the tables are themselves the assertion:
+
+- **neg-shapes** — content found (`CC-US-*`, `CC-AC-01`, `CC-FL-02`, `CC-NF-02`,
+  `CC-OS-01`, `CC-BR-02` all PASS), `CC-G-01` FAIL on the form, `CC-FR-01` FAIL
+  on the table rows.
+- **neg-alien** — **not one PASS**: every assertion FAILs with found-vs-expected
+  or is SKIPPED behind CC-G-01.
+
+**Eleven message-level assertions** in `check-m.sh` — the verdict tables pin
+*which* verdicts fire, but the defect was never a wrong verdict; it was a
+true-sounding sentence. So the suite pins the sentences: the tolerances read
+through · `FR_RE` unwidened · the zero is loud · CC-G-01 still fails a numbered
+heading · **and never also reports it absent** · found-vs-expected printed ·
+`section absent` never printed when headings went unrecognised · no vacuous PASS
+· `CC-G-04` never passes having scanned nothing.
+
+**Nine assertions** in `check-status.sh`: the unreadable spec named by path with
+found-vs-expected · `drafted 1/1` not `1/2` · with every spec unreadable
+`drafted —`, never `0/0` and never 0% · both failures named · `/ba-wbs` naming
+the parse failure · **and never** *no spec carries a User Story yet*.
+
+**Suite pins moved with the ruling:** `check-orchestrator.sh` pinned the live
+edition at v0.17 and the D-O block at 1…49; both now read v0.18 and 1…50.
+
+**Result: 17/17 GREEN**, the three install-based runs included. `check-m` 53/0
+(was 40/0) · `check-status` 103/0 (was 94/0) · `check-orchestrator` 199/0 ·
+`check-layout` 112/0/0 · `check-exit` 99/0. Coverage held: 24 of 24 M assertions
+still exercised both ways.
+
+### Version — proposed 0.1.15, **not stamped**
+
+A compiled-surface pass plus a parser change and two new fixtures; no installed
+file added, no new machinery, no new BA step. **`VERSION` is untouched by
+instruction** — the stamp is the BA Lead's exclusive act and is pending. The
+suite was run to green *before* the stamp, so the stamp costs one command.
+
+### Open
+
+**D139 — the vacuous PASS survives on a *readable* spec whose section is
+unparseable.** `neg-shapes` still yields `CC-FR-02 PASS — 0/0 FRs carry exactly
+one SHALL` and `CC-FR-05 PASS — 0 FRs`. `blocked_on_unreadable` does not fire,
+because the spec *is* readable — only its §3 is not. The gate verdict is
+nonetheless correct (CC-FR-01 is non-waivable and FAILs), so nothing certifies on
+a vacuous pass; but the render still shows two greens next to a red about the
+same section. **Carried, not fixed** — the general rule (an assertion whose
+denominator is zero because its source did not parse renders SKIPPED, not PASS)
+is a ruling, not a conformance fix, and it touches assertions the field report
+did not reach.
+
+**The estate's own remediation is out of scope by instruction** (step 8) and
+untouched from here: its table FRs still need converting to line form, and its
+sixth story's `STORY_RE` failure — 5 of 6 well-formed after both prefixes are
+stripped — is very likely a real spec defect rather than a parser one.
+
+**The pre-flight is prose, and nothing executes it.** It is a compiled
+instruction in `ba-tier2/SKILL.md`, held down by the register suite as text, not
+by a checker that runs it. A `sk_preflight` reading the four shapes off the
+standard would close that, and would also give the Tier-2 skill a mechanical exit
+condition it currently lacks. Not ruled, not built.

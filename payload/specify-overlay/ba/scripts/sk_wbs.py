@@ -662,6 +662,12 @@ def collect(root: Path, profile: str, include):
         f.epic_id = spec_epic_id(spec)
         report = read_gate_report(folder / "gate-report.md")
         f.disposition = report["disposition"]
+        # A spec this reader cannot read produces no rows — and the summary
+        # must say *that*, never let the folder pass as one that legitimately
+        # carried nothing (§10.5's nothing-silently-dropped rule, and §10.4's
+        # D-O50 for the reason it is named rather than counted).
+        if not spec.readable:
+            f.disposition = "unreadable — headings do not match standard §2"
         f.certified = report["certified"]
         f.run_date = report["run_date"]
         f.waivers = report["waivers"]

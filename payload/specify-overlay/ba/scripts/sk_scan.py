@@ -46,6 +46,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from sk_structure import (  # noqa: E402
     Finding, base_parser, emit, fail, load_spec, memory, ok,
+    blocked_on_unreadable,
 )
 
 # ── the vendored banned-word list (writing standard §4) ───────────────────────
@@ -250,7 +251,7 @@ def main(argv=None) -> int:
                                                                 "personas.md")
 
     verdicts = [check_g03(spec), check_g04(spec), check_xa02(spec, personas)]
-    return emit("sk_scan", verdicts, args.format)
+    return emit("sk_scan", blocked_on_unreadable(spec, verdicts), args.format)
 
 
 if __name__ == "__main__":

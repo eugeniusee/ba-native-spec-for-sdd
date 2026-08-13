@@ -45,6 +45,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from sk_structure import (  # noqa: E402
     BR_REF_RE, Finding, base_parser, emit, fail, load_spec, memory, ok,
     runtime_defect, table_rows,
+    blocked_on_unreadable,
 )
 
 REQUIRED_REFS = [
@@ -179,8 +180,10 @@ def check_tr02(spec, root):
     if sec is None:
         return fail(a, ["spec", "mem"], [Finding(
             element="§10 References",
-            problem="section absent",
-            fix="add References listing the four upstream artifacts")])
+            problem=spec.section_miss("References"),
+            fix=spec.section_miss_fix(
+                "References",
+                "add References listing the four upstream artifacts"))])
 
     findings = []
     for label, needle in REQUIRED_REFS:
@@ -213,8 +216,11 @@ def check_tr03(spec, roles_path):
     sec = spec.section("References")
     if sec is None:
         return fail(a, ["spec"], [Finding(
-            element="§10 References", problem="section absent",
-            fix="add References declaring the roles this spec uses")])
+            element="§10 References",
+            problem=spec.section_miss("References"),
+            fix=spec.section_miss_fix(
+                "References",
+                "add References declaring the roles this spec uses"))])
 
     declared = []
     for _, text in sec.lines:
@@ -374,7 +380,7 @@ def main(argv=None) -> int:
         check_tr03(spec, roles_path),
         check_tr04(rows, feature, args.out),
     ]
-    return emit("sk_idgraph", verdicts, args.format)
+    return emit("sk_idgraph", blocked_on_unreadable(spec, verdicts), args.format)
 
 
 if __name__ == "__main__":

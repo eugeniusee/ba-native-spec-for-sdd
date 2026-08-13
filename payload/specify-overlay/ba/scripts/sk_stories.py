@@ -41,6 +41,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from sk_structure import (  # noqa: E402
     Finding, base_parser, emit, fail, load_spec, memory, ok, parse_spec,
     runtime_defect, table_rows,
+    blocked_on_unreadable,
 )
 
 EMPHASIS_RE = re.compile(r"[*_`]")
@@ -270,7 +271,7 @@ def main(argv=None) -> int:
         check_us03(spec),
         check_us04(spec, args.hist, retired),
     ]
-    return emit("sk_stories", verdicts, args.format)
+    return emit("sk_stories", blocked_on_unreadable(spec, verdicts), args.format)
 
 
 if __name__ == "__main__":

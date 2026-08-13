@@ -1,5 +1,7 @@
 # Geniusee Spec Writing Standard
-### BA-Native Spec · house rulebook · v0.3
+### BA-Native Spec · house rulebook · v0.4 — the shape record (14 Aug 2026)
+**v0.4 change record:** one ruling package, ruled 14 Aug 2026 (**the silent-zero parser**; R1–R2 → build-log D133–D134; origin: a live Presale field report, 14 Aug 2026 — six drafted specs read as carrying nothing, rendered as `drafted 0/6`, because their `##` headings carried the §2 ordinals and their story IDs were bolded): **the ordinals are not part of the headings** (§2) — stated outright, with §14's micro-example named as the authority on the literal bytes, because the skeleton list's numbering was the thing being copied into the document · **the reader-tolerance record** (§2) — the two normalisations the checkers now perform (a leading `<n>. ` on an `##` heading · `**` around a leading ID) recorded as a *courtesy and not a second legal form*: the canonical form stays unnumbered and unbold and CC-G-01 still fails a numbered heading, on the documents-first rule that a relaxation is law too and is written down before it is coded (R1) · **requirement statements are never table rows** (golden rule 4, restated at §4's first rule) — the rule's own enumeration is the boundary, permissions/fields/states/integrations being *sets of values* where one SHALL is not; the line form `FR-0NN (US<n>) — <EARS text>` is the only canonical FR form and the parser is **not** widened to read rows (R2). No heading, no ID grammar, no EARS pattern, no banned word and no acceptance tier moved: the ten headings, their names and their order stand exactly as v0.3 fixed them.
+
 **v0.3 change record:** erratum only — §5 US2 cancellation AC aligned with authoritative BR-002 (was "rejected inside 24h" → now "allowed, slot retained"); §9 states-table trigger note clarified (BR-002 governs slot release, not transition permission). Sweep: §4 EARS example already BR-002-consistent; §§6, 10, 14 contain no cancellation-rule statements.
 
 **Who this is for:** every BA writing specifications that an AI coding agent will build from.
@@ -12,7 +14,7 @@
 1. **Write the WHAT, never the HOW.** No frameworks, no databases, no endpoints, no UI layouts. The technical solution belongs to `/plan`, not the spec. If you catch yourself naming a technology, stop.
 2. **One requirement, one statement, one ID.** Never chain behaviors with "and/or". If a sentence contains two SHALLs' worth of behavior, split it.
 3. **Every domain term comes from the glossary.** If the term isn't in `glossary.md`, add it there first — then use it. Never introduce a synonym ("booking" vs "appointment" — pick one, glossary decides).
-4. **Structured data goes in tables, never prose.** Permissions, fields, states, integrations — tables. Prose invites the agent to guess; tables don't.
+4. **Structured data goes in tables, never prose.** Permissions, fields, states, integrations — tables. Prose invites the agent to guess; tables don't. **A requirement statement is not structured data.** This rule's own enumeration is the boundary: permissions, fields, states, integrations are *sets of values*, and a table is how a set of values stops being ambiguous. A User Story and a Functional Requirement are single statements carrying one SHALL, and their form is fixed by §3 and §4 — the line, never a row. A `| FR-001 | US1 | WHEN … |` table is not a stricter spec; it is an unreadable one (§4).
 5. **Reference, never restate.** Roles, permissions, domain entities, global standards are defined once in governance/context files. A spec that redefines a role fails the gate.
 6. **If it can't be tested, it isn't a requirement.** Every statement must be verifiable by a person or a machine looking at the built system.
 7. **Mark gaps, don't hide them.** Unknowns get an explicit `[NEEDS CLARIFICATION: question]` marker. A visible gap is workable; an invisible one becomes wrong code.
@@ -34,6 +36,10 @@ Every `spec.md` contains these sections, in this order, with these exact heading
 8. **Integration Touchpoints** — table.
 9. **Out of Scope** — what this feature deliberately does NOT do, and where each exclusion lives instead.
 10. **References** — links to `roles-permissions.md`, `glossary.md`, `domain-model.md`, parent epic scope brief.
+
+**The ordinals above are this list's numbering, not part of the headings.** They name each section's § number for citation — §4 is *Flows, States & Errors* everywhere in this corpus — and they fix the order. They are never typed into the document. The heading is `## User Stories`, never `## 2. User Stories`. §14's micro-example is the authority on the literal bytes; where this list and §14 could be read differently, §14 governs.
+
+**Reader tolerance — a courtesy, not a second legal form.** The checkers normalise two authoring habits before matching: a leading `<n>. ` on an `##` heading, and `**` wrapped around an ID at the start of a statement line (`**US1 (P1)** — …`). This exists so that a spec written with either habit is *read* rather than silently reported as empty — the reader's blind spot is the reader's bug (orchestrator §10.4). It does not make either habit legal: the canonical form stays unnumbered and unbold, CC-G-01 still fails a numbered heading, and nothing else is normalised. In particular a table-form FR is **not** tolerated — see golden rule 4 and §4.
 
 A running example is used throughout this standard: **appointment booking** — a Client books an appointment with a Specialist.
 
@@ -86,6 +92,7 @@ the confirmation to the Client.
 ```
 
 **Rules:**
+- **The line above is the only form.** `FR-0NN (US<n>) — <EARS text>`, starting at the line's first character, wrapping freely across lines. Never a table row, never a bullet, never a bolded ID. Golden rule 4 sends *sets of values* to tables; one SHALL is not a set of values. A `| FR-001 | US1 | WHEN … |` row is unreadable to every checker that reads this section, and an unreadable FR is not a stricter one — it is an absent one.
 - Every FR links to at least one story: `FR-00N (US<n>)`. An FR with no story is scope creep; a story with no FRs is unbuilt.
 - Numbering is stable and never reused after deletion.
 - Name the real actor and object — "THE SYSTEM SHALL update the record" fails (*which* record, visible how?).
@@ -325,6 +332,7 @@ availability for that Specialist.
 
 Before submitting a spec, verify:
 
+- [ ] **Shapes, first — the checkers read bytes, not intent (§2):** the ten `##` headings unnumbered and in order · story lines starting with a bare `US<N> (P<1|2|3>) — `, no `**` around the ID · every FR a line, `FR-0NN (US<n>) — …`, never a table row · BR and NFR IDs bare at the line start. A spec that fails this reads as *empty*, not as *wrong* — and an empty read is the one failure the gate cannot phrase for you
 - [ ] Zero technology names, endpoints, or UI layout decisions
 - [ ] Every FR: one SHALL, EARS pattern, linked story, observable response
 - [ ] Zero banned words (or each replaced / marked `[NEEDS CLARIFICATION]`)

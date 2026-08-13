@@ -280,6 +280,48 @@ line_has "$P" "Presale note: certification & handoff out of profile" \
   "out-of-profile facts render as law — the destination is named"
 no_line   "$P" "certification & handoff missing" "…never as a failure or a gap"
 
+# ── 6b. the unreadable spec (D-O50) ──────────────────────────────────────────
+
+printf '\n▸ The unreadable spec — excluded from the counts, named, never `drafted 0`\n'
+
+# One entered spec whose headings match none of the ten. Before D-O50 this
+# rendered as `drafted 1/2` with the miss invisible; the field saw `drafted 0/6`.
+U="$TMP/unreadable"
+cp -R "$PROJ" "$U"
+cp "$PKG_ROOT/tests/fixtures/appointment-booking/negatives/neg-alien.md" \
+   "$U/specs/005-specialist-availability-publishing/spec.md"
+status --root "$U" --date 2026-08-12 > "$TMP/u.txt" 2>&1
+UD="$TMP/u.txt"
+
+line_has "$UD" "unreadable 1: 005-specialist-availability-publishing/spec.md" \
+  "the unreadable spec is named by path"
+line_has "$UD" 'heading found "Background", expected one of the ten standard §2 headings' \
+  "…with the heading it found and the heading expected (found vs expected)"
+line_has "$UD" "drafted 1/1" \
+  "…and it leaves the drafted denominator — r, the readable entered specs"
+no_line   "$UD" "drafted 1/2" \
+  "an unreadable spec never sits in the drafted denominator"
+
+# Every entered spec unreadable: r falls to zero, and §10.4-F's rule governs.
+UZ="$TMP/unreadable-all"
+cp -R "$U" "$UZ"
+cp "$PKG_ROOT/tests/fixtures/appointment-booking/negatives/neg-alien.md" \
+   "$UZ/specs/004-appointment-booking/spec.md"
+status --root "$UZ" --date 2026-08-12 > "$TMP/uz.txt" 2>&1
+status --root "$UZ" --date 2026-08-12 --profile presale > "$TMP/uzp.txt" 2>&1
+
+line_has "$TMP/uz.txt" "drafted —" \
+  "with every spec unreadable, drafted renders — (a zero denominator, §10.4-F)"
+no_line   "$TMP/uz.txt" "drafted 0/" \
+  "…never 0/0, and never 0%"
+line_has "$TMP/uz.txt" "unreadable 2:" "…and both failures are named"
+
+# The blocked reason must be the TRUE one — the field's sharpest wrong sentence.
+line_has "$TMP/uzp.txt" 'blocked: 2 spec(s) unreadable' \
+  "/ba-wbs names the parse failure as the blocker"
+no_line   "$TMP/uzp.txt" "no spec carries a User Story yet" \
+  "…never 'no spec carries a User Story yet', which was never established"
+
 # ── 7. the HTML render ───────────────────────────────────────────────────────
 
 printf '\n▸ The HTML render — self-contained, same counts, derived per invocation\n'

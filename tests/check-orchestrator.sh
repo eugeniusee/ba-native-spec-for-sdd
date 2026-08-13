@@ -688,17 +688,18 @@ has "$RULES_DOC" "D-O40–D-O41" "…and the two locked amendments it carries"
 has "$RULES_DOC" "v0.15" "…and the edition the scope frame produced"
 has "$RULES_DOC" "D-O42–D-O44" "…and the scope-frame ruling block"
 has "$RULES_DOC" "v0.16" "…and the edition the four-act floor row produced"
-head -2 "$RULES_DOC" | grep -q 'v0\.17' \
-  && ok "the header states the live edition — v0.17, the source inventory" \
-  || bad "the header does not name v0.17: the edition and the change record disagree"
-has "$RULES_DOC" "D-O45–D-O49" "…and the change record names the source-inventory ruling block"
+head -2 "$RULES_DOC" | grep -q 'v0\.18' \
+  && ok "the header states the live edition — v0.18, the unreadable spec" \
+  || bad "the header does not name v0.18: the edition and the change record disagree"
+has "$RULES_DOC" "D-O45–D-O49" "…and the source-inventory ruling block"
+has "$RULES_DOC" "D-O50" "…and the change record names the unreadable-spec ruling"
 
 # the ruling block is contiguous from the live high-water mark: no gap, no reuse
-python3 - "$RULES_DOC" <<'PYX' && ok "the D-O block runs 1…49 with no gap and no skipped number" \
+python3 - "$RULES_DOC" <<'PYX' && ok "the D-O block runs 1…50 with no gap and no skipped number" \
   || bad "the D-O decision block is not contiguous — a number is missing or reused"
 import re, sys
 seen = {int(n) for n in re.findall(r"D-O(\d+)", open(sys.argv[1], encoding="utf-8").read())}
-sys.exit(0 if seen == set(range(1, 50)) else 1)
+sys.exit(0 if seen == set(range(1, 51)) else 1)
 PYX
 
 # ── 7. layering — no methodology leaks into the payload ──────────────────────

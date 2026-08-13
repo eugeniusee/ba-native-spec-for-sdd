@@ -64,7 +64,7 @@ sys.dont_write_bytecode = True
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from sk_structure import parse_spec, table_rows  # noqa: E402
+from sk_structure import SPEC_HEADINGS, parse_spec, table_rows  # noqa: E402
 
 # The estate is read with the WBS export's own readers, imported rather than
 # restated. §10.5 already fixed what "certified" means on disk and how a spec
@@ -343,19 +343,40 @@ def read_features(root: Path):
     for nnn, folder in feature_folders(root):
         spec = parse_spec(folder / "spec.md")
         report = read_gate_report(folder / "gate-report.md")
+        # An unreadable spec is a fact about this reader, not about the
+        # project (orchestrator §10.4, D-O50). It is excluded from `drafted`
+        # AND from its denominator, and named — never rendered as `drafted 0`,
+        # which asserts something about the spec that was never established.
+        readable = spec.readable
         out.append({
             "folder": folder.name,
             "nnn": nnn,
             "epic": spec_epic_id(spec),
-            "drafted": bool(spec.stories),
+            "readable": readable,
+            "parse_failure": "" if readable else parse_failure(folder, spec),
+            "drafted": bool(spec.stories) and readable,
             "gated": report["disposition"] != "no gate run",
             "verdict": report["disposition"],
             "certified": report["certified"],
             "run_date": report["run_date"],
             "waivers": report["waivers"],
-            "markers": len(MARKER_RE.findall(spec.text)),
+            "markers": len(MARKER_RE.findall(spec.text)) if readable else 0,
         })
     return out
+
+
+def parse_failure(folder, spec) -> str:
+    """`<spec path> — heading found "<as authored>", expected "<standard §2>"`.
+
+    §10.4's named failure: the found-vs-expected pair, because *section absent*
+    sends the BA to write a section that already exists.
+    """
+    path = "%s/spec.md" % folder.name
+    if not spec.sections:
+        return "%s — no `##` heading found; expected the ten of standard §2" % path
+    first = spec.sections[0]
+    return ('%s — heading found "%s", expected one of the ten standard §2 '
+            "headings (e.g. \"%s\")" % (path, first.raw_name, SPEC_HEADINGS[0]))
 
 
 def read_roadmap_date(root: Path) -> str:
@@ -406,11 +427,17 @@ def assemble(root: Path, profile: str, today: str):
     d["entered"] = len(features)
     d["breadth"] = len({f["epic"] for f in features if f["epic"]})
     d["drafted"] = sum(1 for f in features if f["drafted"])
+    # r = readable entered specs — the drafted denominator (§10.4, D-O50).
+    # Where every entered spec is unreadable r is 0, and `count_over` renders
+    # `—`, never `0/0` and never 0% (§10.4-F).
+    d["readable"] = sum(1 for f in features if f["readable"])
+    d["unreadable"] = [f["parse_failure"] for f in features if not f["readable"]]
     d["gated"] = sum(1 for f in features if f["gated"])
     d["certified"] = sum(1 for f in features if f["certified"])
     d["verdicts"] = [(f["folder"], f["verdict"]) for f in features if f["gated"]]
     d["b3_ratio"] = ratio_of(
-        d["drafted"] if profile == "presale" else d["certified"], d["entered"])
+        d["drafted"] if profile == "presale" else d["certified"],
+        d["readable"] if profile == "presale" else d["entered"])
 
     # the workflow line — §10.4-F, over the ratios that exist
     present = [r for r in (d["b1_ratio"], d["b2_ratio"], d["b3_ratio"])
@@ -460,7 +487,14 @@ def assemble(root: Path, profile: str, today: str):
 
     # 8 · the profile-switched line
     d["markers"] = sum(f["markers"] for f in features if f["drafted"])
-    if not d["drafted"]:
+    if not d["drafted"] and d["unreadable"]:
+        # Never "no spec carries a User Story yet" when the real blocker is a
+        # parse miss: that reason is false and misdirects the fix from the
+        # heading to the author (§10.4, D-O50).
+        d["wbs"] = ("blocked: %d spec(s) unreadable — heading shapes do not "
+                    "match standard §2; nothing was read from them"
+                    % len(d["unreadable"]))
+    elif not d["drafted"]:
         d["wbs"] = "blocked: no spec carries a User Story yet"
     elif not roadmap_date:
         d["wbs"] = "blocked: no roadmap on record"
@@ -535,8 +569,11 @@ def render(d) -> str:
                "drafted %s · gated %d (latest: %s) · certified %d · handed off —"
                % (bar(d["b3_ratio"]), d["entered"],
                   count_over(d["breadth"], d["epics"], ""),
-                  count_over(d["drafted"], d["entered"], ""),
+                  count_over(d["drafted"], d["readable"], ""),
                   d["gated"], verdicts, d["certified"]))
+    for i, failure in enumerate(d["unreadable"]):
+        lead = ("unreadable %d: " % len(d["unreadable"])) if i == 0 else " " * 14
+        out.append("      %s%s" % (lead, failure))
     if presale:
         out.append("      Presale note: certification & handoff out of profile — "
                    "destination: draft specs + the Q&A agenda (§6.5)")
@@ -561,7 +598,7 @@ def render(d) -> str:
                    "open markers %d · `/ba-wbs` %s"
                    % (("current %s" % d["roadmap_date"]) if d["roadmap_date"]
                       else "missing",
-                      count_over(d["drafted"], d["entered"], ""),
+                      count_over(d["drafted"], d["readable"], ""),
                       d["markers"], d["wbs"]))
     else:
         out.append("8 · Discovery → Handoff risk per certified feature:")
@@ -716,7 +753,7 @@ def html_facts(d):
         ("Features entered", "%d across %s epics"
          % (d["entered"], count_over(d["breadth"], d["epics"], ""))),
         ("Drafted / certified", "%s · %d"
-         % (count_over(d["drafted"], d["entered"], ""), d["certified"])),
+         % (count_over(d["drafted"], d["readable"], ""), d["certified"])),
         ("Questions", "%d open · %d answered · %d overtaken"
          % (d["q_open"], d["q_answered"], d["q_overtaken"])),
         ("Health", "%s · refresh %s" % (health_state(d), refresh_state(d))),

@@ -74,9 +74,14 @@ NON_WAIVABLE = {"CC-G-01", "CC-G-02", "CC-FR-01", "CC-TR-01", "CC-XA-01", "CC-XA
 
 @dataclass
 class Section:
-    name: str
+    name: str                  # the canonical §2 name once normalised
     heading_line: int          # 1-based line number of the "## " line
     lines: list = field(default_factory=list)   # [(lineno, text)]
+    raw_name: str = ""         # the heading exactly as authored
+
+    def __post_init__(self):
+        if not self.raw_name:
+            self.raw_name = self.name
 
     @property
     def body(self) -> str:
@@ -85,6 +90,15 @@ class Section:
     @property
     def number(self):
         return SECTION_NUMBER.get(self.name)
+
+    @property
+    def recognised(self) -> bool:
+        return self.name in SECTION_NUMBER
+
+    @property
+    def normalised(self) -> bool:
+        """True when the reader had to normalise the authored heading to read it."""
+        return self.raw_name != self.name
 
 
 @dataclass
@@ -145,12 +159,73 @@ class Spec:
     rules: list
     nfrs: list
     heading_order: list
+    unrecognised: list = field(default_factory=list)   # Sections matching no §2 name
 
     def section(self, name: str):
         for s in self.sections:
             if s.name == name:
                 return s
         return None
+
+    def section_by_raw(self, raw_name: str):
+        """Lookup by the heading as authored — CC-G-01's key, since it judges
+        what the BA wrote rather than what the reader resolved."""
+        for s in self.sections:
+            if s.raw_name == raw_name:
+                return s
+        return None
+
+    # ── recognition status (build-log S10 · orchestrator §10.4 D-O50) ─────────
+    #
+    # A section-keyed lookup that misses must never be read as "the spec has
+    # none of that". Two different facts wear the same `None`, and the reader
+    # is the only party that can tell them apart:
+    #
+    #   *absent*        — nothing in the document claims to be this section
+    #   *unrecognised*  — the document carries headings the reader could not
+    #                     match, and one of them may well be this section
+    #
+    # Consumers ask `section_miss()` and render what it returns; nobody prints
+    # "section absent" unconditionally any more.
+
+    @property
+    def readable(self) -> bool:
+        """False when no `##` heading resolved to one of the ten §2 names.
+
+        The whole-document verdict: a spec that trips this is not a spec with
+        no content — it is a spec this reader cannot read, and every count
+        taken from it is a blind spot, not a measurement.
+        """
+        return any(s.recognised for s in self.sections)
+
+    def section_miss(self, name: str) -> str:
+        """Why `name` did not resolve — '' when it did.
+
+        Returns the *problem* half of a §7 named-gap line, in found-vs-expected
+        grammar when there is something to name.
+        """
+        if self.section(name) is not None:
+            return ""
+        if not self.unrecognised:
+            return "section absent"
+        shown = self.unrecognised[:3]
+        found = " · ".join('"%s" (line %d)' % (s.raw_name, s.heading_line)
+                           for s in shown)
+        more = len(self.unrecognised) - len(shown)
+        return ('section not found under its standard heading — the document '
+                'carries %d unrecognised heading(s): %s%s; expected "## %s" '
+                '(CC-G-01 lists them all)'
+                % (len(self.unrecognised), found,
+                   (" · …and %d more" % more) if more else "", name))
+
+    def section_miss_fix(self, name: str, absent_fix: str) -> str:
+        """The *fix* half: rename what is there, or author what is not."""
+        if not self.unrecognised:
+            return absent_fix
+        return ('rename the heading that carries this content to exactly '
+                '"## %s" (standard §2 — the skeleton\'s ordinals are the '
+                'list\'s numbering, never part of the heading), or add the '
+                'section if it is genuinely missing' % name)
 
     def story(self, sid: str):
         for s in self.stories:
@@ -214,6 +289,42 @@ NFR_RE = re.compile(r"^\s*(NFR-\d+)\s*(?:\([^)]*\))?\s*[—–-]\s*(.*)$")
 US_REF_RE = re.compile(r"\bUS\d+\b")
 BR_REF_RE = re.compile(r"\bBR-\d+\b")
 
+# ── reader tolerance — ONE site, and this is it (standard §2) ─────────────────
+#
+# Two authoring habits are normalised before matching, and nothing else:
+#
+#   1.  "## 2. User Stories"      → "User Stories"    (the skeleton list's
+#       ordinals typed into the heading — standard §2 states outright that they
+#       are the list's numbering, not part of the heading)
+#   2.  "**US1 (P1)** — As a …"   → "US1 (P1) — As a …"   (the ID emphasised)
+#
+# This is a **courtesy, not a second legal form** (standard §2, the
+# reader-tolerance record). The canonical form stays unnumbered and unbold, and
+# CC-G-01 still fails a numbered heading — `check_g01` judges `raw_name`, the
+# heading as authored, precisely so that tolerance here cannot quietly legalise
+# it. A table-form FR is NOT tolerated: `FR_RE` is unwidened by ruling (standard
+# golden rule 4 · §4 — one SHALL is not a set of values), and a §3 that carries
+# only rows reports *present, no parseable FR lines* rather than a silent zero.
+#
+# A second normalisation site is a second thing to drift — the rule this file
+# already states about the WBS readers (sk_status §10 note). Do not add one.
+HEADING_ORDINAL_RE = re.compile(r"^\d+\.\s+")
+EMPH_ID_RE = re.compile(r"^(\s*)\*\*\s*((?:US\d+|FR-\d+|BR-\d+|NFR-\d+)[^*]*?)\s*\*\*")
+
+
+def canonical_heading(raw: str) -> str:
+    """The §2 heading a raw `## ` text denotes — the ordinal stripped if that
+    is what makes it one of the ten. A heading that is not standard either way
+    is returned unchanged, so it still reports as the BA wrote it."""
+    stripped = HEADING_ORDINAL_RE.sub("", raw).strip()
+    return stripped if stripped in SECTION_NUMBER else raw
+
+
+def normalise_line(text: str) -> str:
+    """Strip `**` wrapping an ID anchor at a line's start. Emphasis anywhere
+    else in the line is untouched — only the anchor blocks recognition."""
+    return EMPH_ID_RE.sub(r"\1\2", text)
+
 
 def _fence_flags(lines):
     """True for every line that sits inside (or on) a fenced code block."""
@@ -239,9 +350,11 @@ def parse_spec(path: Path) -> Spec:
     for i, ln in enumerate(lines, start=1):
         m = H2_RE.match(ln) if not fenced[i - 1] else None
         if m:
-            current = Section(name=m.group(1).strip(), heading_line=i)
+            raw = m.group(1).strip()
+            current = Section(name=canonical_heading(raw), heading_line=i,
+                              raw_name=raw)
             sections.append(current)
-            order.append(current.name)
+            order.append(current.raw_name)      # CC-G-01 judges what was authored
             continue
         if current is not None:
             current.lines.append((i, ln))
@@ -255,6 +368,7 @@ def parse_spec(path: Path) -> Spec:
         path=path, text=text, lines=lines, fenced=fenced, sections=sections,
         stories=stories, requirements=requirements, rules=rules, nfrs=nfrs,
         heading_order=order,
+        unrecognised=[s for s in sections if not s.recognised],
     )
 
 
@@ -275,7 +389,8 @@ def _joined_head(sec, start, end):
         if not t.strip():
             break
         parts.append(t.strip())
-    return re.sub(r"\s+", " ", " ".join(parts)).strip()
+    joined = re.sub(r"\s+", " ", " ".join(parts)).strip()
+    return normalise_line(joined)
 
 
 def _parse_stories(sections, fenced):
@@ -285,7 +400,8 @@ def _parse_stories(sections, fenced):
 
     starts = [
         n for n, t in sec.lines
-        if not fenced[n - 1] and STORY_ID_RE.match(t) and not CHECKLIST_RE.match(t)
+        if not fenced[n - 1] and STORY_ID_RE.match(normalise_line(t))
+        and not CHECKLIST_RE.match(t)
     ]
 
     stories = []
@@ -294,7 +410,7 @@ def _parse_stories(sections, fenced):
         block = [(n, t) for n, t in sec.lines if start <= n < end]
         raw = _joined_head(sec, start, end)
 
-        sid = STORY_ID_RE.match(block[0][1]).group(1)
+        sid = STORY_ID_RE.match(normalise_line(block[0][1])).group(1)
         m = STORY_RE.match(raw)
         prios = [p.upper() for p in re.findall(r"\(\s*(P[123])\s*\)", raw)]
         if m:
@@ -336,7 +452,8 @@ def _parse_requirements(sections, fenced):
     if sec is None:
         return []
     reqs = []
-    starts = [n for n, t in sec.lines if not fenced[n - 1] and FR_RE.match(t)]
+    starts = [n for n, t in sec.lines
+              if not fenced[n - 1] and FR_RE.match(normalise_line(t))]
     for idx, _ in enumerate(starts):
         start, end = _block_bounds(sec, starts, idx)
         raw = _joined_head(sec, start, end)
@@ -351,12 +468,61 @@ def _parse_requirements(sections, fenced):
     return reqs
 
 
+# ── present-but-unparseable, inside a recognised section ─────────────────────
+#
+# The second half of the same law. A recognised section whose anchored lines
+# all failed to parse is *not* an empty section, and a consumer that prints
+# "0 FRs" there is making the same claim the section-lookup miss made: that the
+# document says nothing, when in fact the reader read nothing.
+#
+# Table-form FRs are the case the field found (standard golden rule 4 forbids
+# them and `FR_RE` stays unwidened by ruling), but the shape is general: any
+# line carrying an ID of the section's class that produced no record.
+
+ID_MENTION = {
+    "FR": re.compile(r"\bFR-\d+\b"),
+    "BR": re.compile(r"\bBR-\d+\b"),
+    "NFR": re.compile(r"\bNFR-\d+\b"),
+    "US": re.compile(r"\bUS\d+\b"),
+}
+
+
+def unparsed_report(spec, section_name: str, kind: str, parsed) -> str:
+    """A phrase naming what a recognised section carries but the reader could
+    not parse — '' when the section is absent, or when anything did parse.
+
+    The point is to make a zero *loud*: "present, no parseable FR lines,
+    5 table row(s) carrying FR IDs" is a fact about the shape; "0" is a false
+    fact about the project.
+    """
+    sec = spec.section(section_name)
+    if sec is None or parsed:
+        return ""
+    mention = ID_MENTION[kind]
+    rows = [r for r in table_rows(sec.body) if any(mention.search(c) for c in r)]
+    loose = [n for n, t in sec.lines
+             if not spec.fenced[n - 1] and mention.search(t)
+             and not t.strip().startswith("|")]
+    if not rows and not loose:
+        return ""
+    carried = []
+    if rows:
+        carried.append("%d table row(s) carrying %s IDs" % (len(rows), kind))
+    if loose:
+        carried.append("%d line(s) mentioning an %s ID in a shape the standard "
+                       "does not define" % (len(loose), kind))
+    return ("section present, no parseable %s lines — %s. %s statements are "
+            "lines, never table rows (standard §4 · golden rule 4)"
+            % (kind, "; ".join(carried), kind))
+
+
 def _parse_ids(sections, fenced, section_name, pattern, ctor):
     sec = next((s for s in sections if s.name == section_name), None)
     if sec is None:
         return []
     out = []
-    starts = [n for n, t in sec.lines if not fenced[n - 1] and pattern.match(t)]
+    starts = [n for n, t in sec.lines
+              if not fenced[n - 1] and pattern.match(normalise_line(t))]
     for idx, _ in enumerate(starts):
         start, end = _block_bounds(sec, starts, idx)
         raw = _joined_head(sec, start, end)
@@ -451,6 +617,30 @@ def emit(script, verdicts, fmt, stream=sys.stdout) -> int:
                 for f in v.findings:
                     print(f.gap_line(v.assertion), file=stream)
     return 1 if any(v.verdict != "PASS" for v in verdicts) else 0
+
+
+PARSE_BLOCKER = ("CC-G-01 — no `##` heading matched standard §2, so nothing "
+                 "in the spec could be read")
+
+
+def blocked_on_unreadable(spec, verdicts):
+    """Downgrade PASS to SKIPPED when the spec could not be read at all.
+
+    A PASS is a claim about the spec. On a spec whose headings resolved to
+    none of the ten, no checker is entitled to one: `0 banned words in 0
+    scanned lines` and `0 unique BR-IDs` are the same silent zero the field
+    report found on the dashboard, wearing a green verdict instead of a count.
+
+    A FAIL stands — it is usually the found-vs-expected line naming the real
+    problem, and suppressing it would hide the diagnosis. SKIPPED is the gate's
+    own instrument for *not evaluated* (§5.1), so this reports the blind spot
+    in the grammar the gate already has, and invents nothing.
+    """
+    if spec is None or spec.readable:
+        return verdicts
+    return [v if v.verdict == "FAIL"
+            else skipped(v.assertion, v.checks, PARSE_BLOCKER)
+            for v in verdicts]
 
 
 def runtime_defect(message: str):
@@ -554,10 +744,14 @@ def check_g01(spec_path: Path, spec) -> Verdict:
             fix="author the spec at its path, or correct the feature argument",
         )])
 
-    found = spec.heading_order
+    found = spec.heading_order          # headings as authored
     findings = []
 
-    missing = [h for h in SPEC_HEADINGS if h not in found]
+    # *Absent* means nothing in the document resolved to it — a heading the
+    # reader normalised is present, and is reported below as the form error it
+    # is, never as a missing section. Reporting it twice would send the BA to
+    # author a section that already exists (the field report's sharpest line).
+    missing = [h for h in SPEC_HEADINGS if spec.section(h) is None]
     for h in missing:
         findings.append(Finding(
             element="§%d %s" % (SECTION_NUMBER[h], h),
@@ -568,15 +762,29 @@ def check_g01(spec_path: Path, spec) -> Verdict:
 
     extra = [h for h in found if h not in SPEC_HEADINGS]
     for h in extra:
+        sec = spec.section_by_raw(h)
+        # A heading the reader normalised is still a heading the standard does
+        # not allow: tolerance is a courtesy, not a second legal form
+        # (standard §2). Say both things — the content was read, the form is
+        # still wrong — so the BA is not left thinking the section vanished.
+        if sec is not None and sec.normalised:
+            problem = ('heading carries the §2 skeleton\'s ordinal — the '
+                       'ordinals are that list\'s numbering, never part of the '
+                       'heading; its content was read as "%s"' % sec.name)
+            fix = 'rename it to exactly "## %s"' % sec.name
+        else:
+            problem = "heading is not one of the ten standard §2 headings"
+            fix = "rename it to its standard heading or remove the section"
         findings.append(Finding(
             element=h,
-            problem="heading is not one of the ten standard §2 headings",
-            fix="rename it to its standard heading or remove the section",
-            location="%s:%d" % (spec_path.name, spec.section(h).heading_line),
+            problem=problem,
+            fix=fix,
+            location="%s:%d" % (spec_path.name,
+                                sec.heading_line if sec else 0),
         ))
 
     if not missing and not extra:
-        present = [h for h in found if h in SPEC_HEADINGS]
+        present = [s.name for s in spec.sections if s.recognised]
         if present != SPEC_HEADINGS:
             findings.append(Finding(
                 element="heading order",

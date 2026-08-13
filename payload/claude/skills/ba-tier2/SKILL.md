@@ -104,11 +104,23 @@ specific and freshest layer, loaded on top of everything else.
    does not inherit — is `references/story-drafting.md`. **Read it before
    drafting stories.**
 
-2. **Skeleton around them.** The complete ten-section skeleton, in the standard's
-   exact headings and exact order: requirements in EARS linked to stories · flows
-   **with their error paths** · feature NFRs prompted per category · business
-   rules · data tables · integration touchpoints seeded from brief §4 · Out of
-   Scope seeded from brief §3 and the sibling slices · References.
+2. **Skeleton around them — copied from the template file, never retyped.**
+
+   > **Start by copying `.specify/templates/spec-template.md` to
+   > `specs/NNN-<feature>/spec.md`, then fill it in place.**
+
+   The template file *is* the skeleton. Do not reproduce the headings from this
+   skill, from the standard's §2 list, or from memory — copy the file and edit
+   between its headings. A restatement of a skeleton is a *description* of it,
+   and descriptions drift: you would be working from a sentence while the
+   checkers work from bytes, with nothing holding the two together. Where the
+   template and any restatement disagree, **the template governs**.
+
+   Fill it with: requirements in EARS linked to stories · flows **with their
+   error paths** · feature NFRs prompted per category · business rules · data
+   tables · integration touchpoints seeded from brief §4 · Out of Scope seeded
+   from brief §3 and the sibling slices · References. Delete the template's
+   guidance comments as you fill each section.
 
 3. **Cite or mark, every line.** Every drafted value carries either a citation —
    a context artifact or a brief line — or a marker.
@@ -124,6 +136,30 @@ specific and freshest layer, loaded on top of everything else.
    exactly what makes the next step's legality rule cover validation questions at
    all. Marking is not a confession of weakness; unmarked inference is the one
    failure mode no rule downstream can catch.
+
+4. **Shape pre-flight — run it before you write the draft out.** Check the draft
+   against the shapes the framework's readers actually parse. A miss **stops the
+   write**: fix the shape, then continue. Four checks:
+
+   | Check | Required shape | Never |
+   |---|---|---|
+   | Headings | the ten of the template, **unnumbered**, in order | `## 2. User Stories` — the ordinals are the standard's list numbering |
+   | Stories | `US<N> (P<1\|2\|3>) — As a …` at the line start | `**US1 (P1)** — …` — no `**` around the ID |
+   | Requirements | `FR-0NN (US<n>) — <EARS text>`, one per line | `\| FR-001 \| US1 \| WHEN … \|` — a requirement is never a table row |
+   | Rules & NFRs | `BR-0NN — …` · `NFR-0NN (<category>) — …` at the line start | bolded or bulleted IDs |
+
+   Report a miss the way the checkers do — **what you found and what was
+   expected** — and fix it here, at authoring time, which is the one moment the
+   intent is present and the fix is free.
+
+   **Why this step exists.** A live estate shipped six specs the shared parser
+   read as carrying *nothing* — every section present, every story written, and
+   the dashboard reporting `drafted 0/6`. The cause was shape, not content, and
+   nothing in the loop compared what was written against what is read. The
+   readers now tolerate the two habits above; that tolerance is a courtesy to
+   specs this framework did not write, and **never a reason to relax this
+   check** — a numbered heading passes the reader and still fails here, which is
+   the intended asymmetry.
 
 ## Step 3 — the gap questions
 
@@ -250,14 +286,27 @@ pre-judge its verdict.**
 
 ## Output
 
-`specs/NNN-<feature>/spec.md` — the ten sections, exact headings, exact order:
+`specs/NNN-<feature>/spec.md` — copied from `.specify/templates/spec-template.md`
+and filled in place. The ten headings, exactly as the template carries them:
 
 ```
-1. Overview & Value   2. User Stories   3. Functional Requirements
-4. Flows, States & Errors   5. Non-Functional Requirements   6. Business Rules
-7. Data Requirements   8. Integration Touchpoints   9. Out of Scope
-10. References
+## Overview & Value
+## User Stories
+## Functional Requirements
+## Flows, States & Errors
+## Non-Functional Requirements
+## Business Rules
+## Data Requirements
+## Integration Touchpoints
+## Out of Scope
+## References
 ```
+
+**Unnumbered.** The § numbers used to cite these sections in conversation — "§4
+Flows" — are the standard's list numbering, **never part of the heading**.
+`## 2. User Stories` is not a stricter heading; it is one the checkers do not
+match, and a spec written that way reads as *empty* rather than as *wrong*
+(standard §2, and the reason step 2 hands you the file instead of a list).
 
 Plus the brief §6 write-back, and the routed batch where cross-cutting content
 surfaced.

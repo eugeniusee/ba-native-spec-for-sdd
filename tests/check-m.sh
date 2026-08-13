@@ -119,6 +119,14 @@ spec_case neg-acceptance "$FX/negatives/neg-acceptance.md"
 spec_case neg-ears       "$FX/negatives/neg-ears.md"
 spec_case neg-sections   "$FX/negatives/neg-sections.md"
 spec_case neg-idgraph    "$FX/negatives/neg-idgraph.md"
+# the shape cases (S10 — the silent-zero parser, field report 14 Aug 2026):
+#   neg-shapes — the two tolerated habits (numbered headings, bolded US IDs)
+#     read THROUGH, so the content is found; CC-G-01 still FAILs the form,
+#     and the table-form FRs report loudly instead of as a silent zero.
+#   neg-alien  — headings no tolerance reaches: every assertion either FAILs
+#     with found-vs-expected or is SKIPPED. Nothing PASSes vacuously.
+spec_case neg-shapes     "$FX/negatives/neg-shapes.md"
+spec_case neg-alien      "$FX/negatives/neg-alien.md"
 
 printf '\n▸ CC-XA-05 — brief + slicing row (contract C12)\n'
 
@@ -298,6 +306,82 @@ grep -q 'specs/004-appointment-booking/spec.md — content changed' "$TMP/verify
   || bad "the refusal must print the diverged path"
 
 # ── 5. the coverage matrix — the S2 exit bar ─────────────────────────────────
+
+
+# ── the silent-zero parser (S10 · field report 14 Aug 2026) ──────────────────
+#
+# The verdict tables above pin *which* verdicts fire. This section pins what the
+# renders SAY, because the defect was never a wrong verdict — it was a true-
+# sounding sentence about the project ("drafted 0/6", "section absent") standing
+# in for a fact about the reader.
+
+printf '\n▸ The silent-zero parser — tolerance, and the blind spot named (S10)\n'
+
+# 1 · the two tolerated habits are read THROUGH
+python3 - "$SK" "$FX/negatives/neg-shapes.md" <<'PYX' > "$TMP/shapes.txt"
+import sys
+sys.path.insert(0, sys.argv[1])
+from pathlib import Path
+from sk_structure import parse_spec, unparsed_report
+s = parse_spec(Path(sys.argv[2]))
+print("stories=%d wf=%d nfrs=%d rules=%d readable=%s"
+      % (len(s.stories), sum(1 for x in s.stories if x.well_formed),
+         len(s.nfrs), len(s.rules), s.readable))
+print("frs=%d" % len(s.requirements))
+print("report=%s" % unparsed_report(s, "Functional Requirements", "FR", s.requirements))
+PYX
+
+grep -q 'stories=3 wf=3 nfrs=2 rules=2 readable=True' "$TMP/shapes.txt" \
+  && ok "numbered headings + bolded US IDs read through — content found, not zeroed" \
+  || bad "the two standard-§2 tolerances do not read through: $(head -1 "$TMP/shapes.txt")"
+
+# 2 · FR_RE is NOT widened — table FRs stay unparsed, by ruling
+grep -q '^frs=0$' "$TMP/shapes.txt" \
+  && ok "table-form FRs stay unparsed — FR_RE unwidened (standard §4 · golden rule 4)" \
+  || bad "FR_RE appears widened: table rows must not parse as FRs"
+
+# 3 · …but the zero is LOUD, never silent
+grep -q 'report=section present, no parseable FR lines — 5 table row(s)' "$TMP/shapes.txt" \
+  && ok "…and the zero is loud: 'present, no parseable FR lines, N table rows'" \
+  || bad "a table-form §3 must report present-but-unparseable, never a bare 0"
+
+python3 "$SK/sk_ears.py" --spec "$FX/negatives/neg-shapes.md" > "$TMP/ears.txt" 2>&1
+grep -q 'no parseable FR lines' "$TMP/ears.txt" \
+  && ok "CC-FR-01 renders the shape failure, not 'zero functional requirements'" \
+  || bad "CC-FR-01 still renders a bare zero on a table-form §3"
+
+# 4 · CC-G-01 still FAILs a numbered heading — tolerance is not a second form
+python3 "$SK/sk_structure.py" --spec "$FX/negatives/neg-shapes.md" > "$TMP/g01.txt" 2>&1
+grep -q "heading carries the §2 skeleton's ordinal" "$TMP/g01.txt" \
+  && ok "CC-G-01 still fails a numbered heading — tolerance is a courtesy, not a legal form" \
+  || bad "a numbered heading must still fail CC-G-01 (standard §2 reader-tolerance record)"
+grep -q 'required heading absent' "$TMP/g01.txt" \
+  && bad "a normalised heading must never also report as absent — that is the field's own bug" \
+  || ok "…and never reports the same heading as absent as well"
+
+# 5 · alien headings — found vs expected, never 'section absent'
+python3 "$SK/sk_sections.py" --spec "$FX/negatives/neg-alien.md" > "$TMP/alien.txt" 2>&1
+grep -q 'section not found under its standard heading' "$TMP/alien.txt" \
+  && ok "sk_sections prints found-vs-expected for an unrecognised heading" \
+  || bad "sk_sections must not treat an unrecognised heading as an absent section"
+grep -q 'section absent' "$TMP/alien.txt" \
+  && bad "'section absent' printed for a spec that plainly carries the section" \
+  || ok "…and never prints 'section absent' when headings went unrecognised"
+grep -q '"Background" (line 14)' "$TMP/alien.txt" \
+  && ok "…naming the heading it actually found" \
+  || bad "the found-vs-expected line must quote the heading as authored"
+
+# 6 · no vacuous PASS anywhere on an unreadable spec
+if grep -q 'PASS' "$TMP/alien.txt"; then
+  bad "a PASS on an unreadable spec is a claim the reader cannot support"
+else
+  ok "no assertion PASSes on an unreadable spec — SKIPPED, blocked by CC-G-01"
+fi
+python3 "$SK/sk_scan.py" --spec "$FX/negatives/neg-alien.md" \
+  --personas "$FX/negatives/personas.md" --root "$FX/project" > "$TMP/scan.txt" 2>&1
+grep -q '0 banned words in 0 scanned lines' "$TMP/scan.txt" \
+  && bad "CC-G-04 still passes having scanned nothing — the silent zero in green" \
+  || ok "CC-G-04 does not pass on zero scanned lines"
 
 printf '\n▸ Coverage — every M assertion, ≥ 1 seeded FAIL and ≥ 1 PASS\n'
 

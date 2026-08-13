@@ -79,6 +79,9 @@ section above governs.
    introduce a synonym.
 4. **Structured data goes in tables, never prose.** Permissions, fields, states,
    integrations — tables. Prose invites the agent to guess; tables don't.
+   **A requirement statement is not structured data:** that enumeration is
+   *sets of values*, and one SHALL is not a set. User Stories and Functional
+   Requirements are lines — `FR-0NN (US<n>) — <EARS text>` — never table rows.
 5. **Reference, never restate.** Roles, permissions, domain entities, and global
    standards are defined once in the governance/context files. A spec that
    redefines a role fails the gate.
@@ -105,6 +108,14 @@ Agents parse structure. Do not rename, reorder, add, or drop a section.
    exclusion lives instead.
 10. **References** — links to `roles-permissions.md`, `glossary.md`,
     `domain-model.md`, and the parent epic scope brief.
+
+**The numbers above are this list's numbering, not part of the headings.** They
+name each section's § number for citation — §4 is *Flows, States & Errors* — and
+they fix the order. Write `## User Stories`, never `## 2. User Stories`. A
+numbered heading is not a stricter one: it matches no checker, so the spec reads
+as *empty* rather than as *wrong*, and the dashboard reports it as unreadable.
+Copy `.specify/templates/spec-template.md` and fill it in place rather than
+typing the headings from this list.
 
 ## User stories
 

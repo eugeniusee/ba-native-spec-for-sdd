@@ -18,7 +18,9 @@ gap with a confident guess — a gap is either marked or it is a defect.
    "and/or".
 3. **Every domain term comes from `.specify/memory/glossary.md`.** Add it there
    first, then use it. No synonyms.
-4. **Structured data goes in tables, never prose.**
+4. **Structured data goes in tables, never prose.** Sets of values — permissions,
+   fields, states, integrations. One SHALL is not a set: stories and FRs are
+   lines, never table rows.
 5. **Reference, never restate.** Roles, permissions, entities, and global
    standards are defined once in governance/context files.
 6. **If it can't be tested, it isn't a requirement.**
@@ -29,7 +31,10 @@ gap with a confident guess — a gap is either marked or it is a defect.
 structurally; never rename or reorder): Overview & Value · User Stories ·
 Functional Requirements · Flows, States & Errors · Non-Functional Requirements ·
 Business Rules · Data Requirements · Integration Touchpoints · Out of Scope ·
-References.
+References. **Unnumbered** — the § numbers used to cite them are the standard's
+list numbering, never part of the heading (`## User Stories`, not
+`## 2. User Stories`). Copy `.specify/templates/spec-template.md` and fill it in
+place; a numbered heading matches no checker and reads as an *empty* spec.
 
 **Stories:** `US<N> (P<1|2|3>) — As a <role>, I want <capability>, so that
 <value>.` Roles verbatim from `roles-permissions.md`; "as a user" and persona

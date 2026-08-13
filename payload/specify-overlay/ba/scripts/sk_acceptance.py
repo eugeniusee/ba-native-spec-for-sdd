@@ -33,16 +33,22 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from sk_structure import (  # noqa: E402
     Finding, base_parser, emit, fail, load_spec, ok,
+    blocked_on_unreadable,
 )
 
 
 def check_ac01(spec):
     a = "CC-AC-01"
     if not spec.stories:
+        # "no stories" is a claim about the spec; make it only when §2 was
+        # actually read (build-log S10).
+        name = "User Stories"
+        absent = "author the stories first (CC-US-01), each with its acceptance"
         return fail(a, ["spec"], [Finding(
             element="§2 User Stories",
-            problem="no stories, so no acceptance can be attached",
-            fix="author the stories first (CC-US-01), each with its acceptance",
+            problem=(spec.section_miss(name)
+                     or "no stories, so no acceptance can be attached"),
+            fix=spec.section_miss_fix(name, absent),
         )])
 
     findings = []
@@ -69,7 +75,7 @@ def main(argv=None) -> int:
     p = base_parser("CC-AC-01 — acceptance criteria (contract C3)")
     args = p.parse_args(argv)
     _, spec = load_spec(args)
-    return emit("sk_acceptance", [check_ac01(spec)], args.format)
+    return emit("sk_acceptance", blocked_on_unreadable(spec, [check_ac01(spec)]), args.format)
 
 
 if __name__ == "__main__":

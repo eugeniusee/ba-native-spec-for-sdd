@@ -33,7 +33,9 @@ That is the whole standard, and these are its golden rules:
 3. **Every domain term comes from the glossary.** Not there? It goes there first
    — as a routed edit, approved — and then you use it. Never a synonym beside an
    established term.
-4. **Structured data goes in tables, never prose.** Permissions, fields, states,
+4. **Structured data goes in tables, never prose.** A requirement statement is
+   not structured data — stories and FRs are lines, never table rows.
+   Permissions, fields, states,
    integrations. Prose invites the guess; a table's empty cell does not.
 5. **Reference, never restate.** Roles, permissions, entities and global
    standards are defined once, in the file that owns them. A spec that redefines
