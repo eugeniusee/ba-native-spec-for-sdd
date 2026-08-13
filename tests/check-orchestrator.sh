@@ -533,9 +533,10 @@ has "$RULES_DOC" "D-O30–D-O34" "…and the decisions it ruled"
 has "$RULES_DOC" "v0.14" "…and the edition WS-3 produced"
 has "$RULES_DOC" "D-O35–D-O39" "…and the WS-3 ruling block"
 has "$RULES_DOC" "D-O40–D-O41" "…and the two locked amendments it carries"
-head -2 "$RULES_DOC" | grep -q 'v0\.15' \
-  && ok "the header states the live edition — v0.15, the scope frame" \
-  || bad "the header does not name v0.15: the edition and the change record disagree"
+has "$RULES_DOC" "v0.15" "…and the edition the scope frame produced"
+head -2 "$RULES_DOC" | grep -q 'v0\.16' \
+  && ok "the header states the live edition — v0.16, the four-act floor row" \
+  || bad "the header does not name v0.16: the edition and the change record disagree"
 has "$RULES_DOC" "D-O42–D-O44" "…and the change record names the scope-frame ruling block"
 
 # the ruling block is contiguous from the live high-water mark: no gap, no reuse

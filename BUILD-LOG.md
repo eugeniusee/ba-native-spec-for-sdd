@@ -5849,3 +5849,244 @@ guard.** The compiled skill says scan, pre-fill, cite-or-mark, then wait. What
 it cannot say is how well the scan reads a Slack extract. D-O42's one-render
 ruling makes that stop cheap — one interaction for both blocks — which is the
 argument for why the guard survives contact with a budget-conscious BA.
+
+---
+
+## Lean Scope Posture — documents-first pass, Lane B · elicitation v0.5 · catalogue-b6 v0.4 · 13 August 2026 · GREEN
+
+Run-1 field feedback, 12 August 2026, second half: the generation posture
+**thought in breadth** — a twenty-epic full-coverage roadmap where the
+engagement needed a lean POC composition. The scope frame (the two passes above)
+built the **post-hoc** half: envelope, delivery boundary, and T-18's advisory
+with its two legitimacy tests. This pass builds the **generation-time** half —
+the posture at the moments scope is *composed*, not only when it is allocated.
+
+**Documents only, by the apply package's own scope.** Four source documents plus
+one suite parameter are edited; the payload, the skills, the templates, the cards
+and the compiled mirrors are a follow-up conversation. Nothing was written that a
+ruling does not state.
+
+**Code registration note** (the F-01 precedent, applied unchanged). The apply
+package's own task code collides with the 7 August 2026 diagnostic audit's
+finding codes F-01…F-14
+(`diagnostics/audit-stage-escape-and-planning.md`), so **no F-code appears in
+this block or in the documents**. The ruling is named by its content — *lean
+scope posture* — and its decisions register as **D9–D10 · D-B6-10–D-B6-11**. The
+same rule caught one leak at review: the package names the forward
+assumptions-vs-facts item by an F-code, and D-B6-11's ruling text names it by its
+content instead — *a separate item of the same Run-1 field feedback, unruled at
+this sitting*.
+
+**Parameters, allocated from the live tree.** HEAD is `2ba3140`, the F-01 rebuild
+commit, so nothing needed reconciling. The doc-3 decision high-water mark 8 →
+the contiguous block **D9–D10** · D-B6 9 → **D-B6-10–D-B6-11** · **no D-O number
+is allocated** — the orchestrator's only edit applies D-O42, which already ruled
+the fourth act, so the block stands at D-O44 · divergences from **D117**.
+
+**Proposed, then stamped in the same sitting** — the F-01 pattern, applied
+unchanged. The pass ran to its deliverable with the four editions written in as
+proposals, no open conflict, and two shape decisions surfaced for ruling rather
+than settled by the pass. The BA Lead ruled all of it on the spot: **the
+ground-class roll-up stands as ruled into D-B6-11** — class per citation, the row
+rolling up to `stated` on any one `[stated]` citation, with the all-`stated`
+alternative standing on record as rejected · **tracker F-codes never enter the
+corpus** — the forward item is named by its content, and the registration rule is
+now a standing rule rather than the F-01 precedent it was read from ·
+**writing the editions pre-stamp is accepted, the commit being the stamp act.**
+The stamp followed: elicitation **v0.5** · catalogue-b6 **v0.4** · orchestrator
+**v0.16** · index **v0.4**. `VERSION` stands at 0.1.12, untouched — the package
+rebuild is still the follow-up conversation.
+
+### S1 — the anchor, and where it lives (D9)
+
+The anchor is one law, and the whole ruling turned on finding it a home that
+costs nothing. **Doc 3's preamble list is that home.** Its "Operating principles"
+are already what the corpus cites — `principle 2` and `principle 3` are read from
+every catalogue batch and from the orchestrator — so the list is the corpus's
+principle surface in fact as well as in name, and a fourth entry **appends**:
+principles 1–3 keep their numbers and their wording, and every existing citation
+resolves exactly as before. One other word moves — the lead-in's *three lines* →
+*four lines*. The fallback the package named — a short clause in the orchestrator
+— was therefore **not needed and not taken**, and the orchestrator says so in its
+own change record.
+
+Principle 4 carries the pinned text with the register's grammar: compose the
+minimal scope that achieves the stated business goal, depth along the core
+journey and never breadth of coverage; **discovery stays coverage-complete,
+composition stays lean**; recorded breadth is welcome, composed breadth is debt.
+The coverage-complete pair is written as **part of the law**, not a gloss — it is
+what reconciles the anchor with T-17's coverage-complete requirement and with the
+frame's boundary model, and the principle says so in its last line: consumers
+cite it, none restates it.
+
+### S2 — T-17: the probe posture and the Source ground-class (D-B6-10 · D-B6-11)
+
+The probe guard already existed — *fires only where estate evidence grounds it*.
+What it lacked was its reason, and the anchor supplies it: **a probe is a recall
+check against estate evidence, never a generator**, stated once at §4 step 2 and
+carried into §2's Must-NOT list in prohibition form. The rationale is on the
+record in D-B6-10 rather than in the sheet: on a thin Presale estate the
+checklist's own areas — administration · settings · data & content · reporting —
+are the composition's primary breadth-inflation vector, because each names a
+plausible capability no estate line has to support.
+
+The **ground-class** extends D-B6-2's Source grammar by exactly one token per
+citation: `[stated]` where an estate line states the capability directly,
+`[inferred]` where the row exists by dependency reasoning or by a probe firing on
+indirect evidence. **Both classes are legal rows** — the sheet says so twice, and
+coverage-complete is untouched by construction. Two shapes needed deciding and
+both are ruled in D-B6-11: the class is **per citation**, because rows are
+commonly born from a stated line *plus* an inferred dependency; and it **rolls
+up** — a row is `inferred` only when every citation is — because T-18 reads rows,
+not citations. A seventh column was rejected: CC-H-02's row image and D-B6-2's
+six columns are the checked surface, and a token fits inside a cell the grammar
+already mandates.
+
+The three micro-example rows re-render under the new grammar and **no world state
+is authored** — the 13 August scope-frame scan's own constraint, honored. E-01
+turns out to be the worked case free of charge: both its citations are inferred
+(*own* ⇒ accounts; the role model), so the reference design's mandatory first
+epic arrives the framework's way — by a probe that found evidence rather than by
+a rule — and is visibly derived at birth.
+
+### S3 — T-18: the advisory reads the class (D-B6-11, consumer half)
+
+One line at §4 step 3, no new mechanic: a `[stated]` row carrying a hard-request
+citation satisfies legitimacy test (ii) on its face, and `[inferred]` rows inside
+the delivery boundary are the advisory's **first-named candidates**. The sheet
+states the boundary of that reading in the same breath — *first-named, never
+disqualified*: an inferred row the product cannot meet its goal without passes
+test (i) exactly as a stated one does. The two tests are cited as principle 4's
+composition half and their D-B6-8 wording is not touched.
+
+### S4 — Tier 2: the drafting posture (D10)
+
+One clause at §5.3 step 1, where the story set is composed: **against the brief's
+essential scope and nothing beyond it**, with an adjacent capability discovered
+while drafting routing to the brief's Deferred section — its existing home — and
+never becoming a story. Under the Presale assumption posture the same clause is
+the anti-"end-to-end completion" guard: assumptions fill unknowns *inside* the
+essential scope, they never widen it. Cite-or-mark, the confidence rule and the
+step's summary line stand as written.
+
+### S5 — the ride-along: D113 closed
+
+**D113 is closed by this pass.** §11's Phase-2 binding table named a three-act
+safety floor in its Autonomous-mode row while §10.7 and §4.4 had both named four
+since D-O42; the row now names the scope frame (P-O0b) beside the ⚑ sign-offs,
+the effective PASS and the handoff, in §10.7's own order. The carry ruling
+(R-F01-14a — *one clause at the next orchestrator bump*) is discharged exactly as
+written: one clause, no new decision number, nothing else in the document moved.
+
+**Two surfaces deliberately left as found**, and both are locked historical text
+rather than stale rules: **D-O37's review-record row** and the **v0.14 change
+record** each name three acts, which is what D-O37 ruled. D-O42 amended the floor
+by new ruling, and §10.7 already carries the amendment in its own sentence — *the
+fourth act added by D-O42*. Rewriting a locked ruling to match its amendment is
+the one thing this corpus never does, and the D-O41 precedent (§1 principle 2,
+amended by new ruling and left standing) is the pattern.
+
+A full sweep of every floor statement in the corpus ran before the edit: the
+orchestrator carries five, of which one was stale (§11), two are locked history,
+and two are already correct (§4.4, §10.7); §10.2's pointer enumerates no acts, so
+nothing there could drift. The **gate's** three statements are correct by design
+and untouched — `ba-gate` and `/ba-handoff` name the floor members inside their
+own scope, and the frame is not a gate act.
+
+### S6 — the index, and the one suite parameter
+
+The catalogue index regenerates at the b6 bump: **T-17's row only** — its Depth
+and Expected-output cells re-derived for the probe posture and the ground-class.
+T-18's index cells are genuinely unchanged, because D-B6-10–D-B6-11 move its §4
+procedure and its §8 build hook, not its §2 metadata or §3 contract, and the
+index is a condensation of exactly those two. Seventeen of eighteen rows
+untouched.
+
+One suite parameter moves with the document, the F-01 precedent applied
+unchanged: `check-orchestrator.sh` pins the live edition in the header, so v0.15
+→ **v0.16**, and the edition it displaces joins the change-record stack as its
+own assertion — the same shape the pin has taken at every prior bump. The suite
+is **17/17 green** with the pin moved and red without it, which is the pin doing
+its job.
+
+### Divergences flagged
+
+**D117 · The compiled principle mirrors name three, and the corpus now has
+four.** `payload/claude/agents/ba-discovery.md:19` heads its list "The three
+operating principles — the whole engine" and `ba-analyst.md:90` "The three
+operating principles, at spec depth"; both compile doc 3's preamble, which now
+carries four. *Resolution taken:* none — the documents are the only surface in
+this pass's scope, and the drift is the rebuild's first work item, not a defect
+with a live consequence: the three compiled principles are each still correct and
+still complete as far as they go. The count word is the tell, and it is what the
+rebuild must not compile past.
+
+**D118 · The payload carries none of this package's content.** Enumerated so the
+follow-up conversation starts from a list rather than a sweep:
+`ba-t17/SKILL.md` — the Source grammar at its §5 template, its §4 draft step and
+its column-ownership table (four sites), plus the probe checklist's recall-check
+sentence · `ba-t18/SKILL.md` — the advisory's ground-class reading · the two
+persona mirrors above (D117) · `ba-tier2/SKILL.md` and `ba-enter-feature`'s
+assumption-posture paragraph — the §5.3 composition clause. *Resolution taken:*
+nothing compiled. The pass touched no payload file, so no skill states a rule its
+source document does not.
+
+**D119 · The Wave-2 sequencing plan's authoring template names three
+principles.** `ba-native-spec-wave2-sequencing-plan.md` at its §4 procedure
+template ("doc 3's three operating principles verbatim: draft-first · no question
+without a destination · cited, marked, or asked") and in the grounding list a
+sheet author loads ("the three operating principles (§ preamble)"). *Resolution
+taken:* left as found. The plan is outside the ruled touched set, and Wave 2 is
+closed at 18/18 sheets — the template has no pending consumer, so this is a
+source-document tidy for that document's own next pass, exactly D113's class. It
+is recorded here because a nineteenth sheet authored from the template would
+inherit three principles instead of four.
+
+**D120 · "§1 principle 2" names a list that is neither in §1 nor called
+principles.** The orchestrator's own list is headed **"Three runtime rules of
+this document's own"** and sits in the preamble, *above* `## 1. Position`; the
+corpus cites it as "§1 principle 2" — in D-O41's locked ruling row, in §19's
+origin paragraph, and in the §3.4 echo. *Resolution taken:* left as found, and
+flagged now rather than later because this pass makes an unqualified `principle
+4` meaningful. There is no ambiguity today — the orchestrator's list has three
+items and no fourth, so an unqualified `principle 4` can only be doc 3's — but
+the drift is on two axes at once (the noun and the section) and the citation
+lives partly in locked review-record text, so it is a ruling's business, not a
+pass's.
+
+**Ruled the same sitting: carried.** The cite-string rename — `§1 principle` →
+`runtime rule` — lands at the next convenient bump, and **this entry is the
+recorded state** until then; no document pass runs for it now. D113's disposition
+exactly, one carry item closing as another opens, and the same reason it costs
+nothing while it stands: every reader of "§1 principle 2" lands on the only
+three-item list the document has.
+
+### Open
+
+**The anchor's enforcement is prose, and deliberately so.** No assertion was
+added — the package forbids one, and the enforcement is what D-B6-8 already
+settled for the scope frame: the advisory plus a visible class. What the
+ground-class buys over the frame's position is that the advisory's first-named
+candidates are now **derived mechanically from the row** rather than judged from
+the description, which is the difference between a reader's opinion and a
+checkable read. Whether that read is *good* is a Run-2 question.
+
+**"Both classes are legal" is the load-bearing sentence, and the one most likely
+to erode in use.** The failure mode is not a framework that refuses inferred
+rows; it is a BA — or a compiled skill — reading `[inferred]` as *suspect* and
+quietly dropping rows the estate genuinely implies. The sheet states the
+non-inference twice (the ruling and the advisory line) and the D-B6-11 row states
+it a third time as the boundary on the forward assumptions-vs-facts work. Three
+sentences are not a compiler; the candidate check at the rebuild is a fixture
+whose roadmap carries an inferred row inside the boundary that survives an
+allocation run.
+
+**The lean posture has no test at the composition moment.** T-18's advisory fires
+after allocation, and the ground-class is visible at birth — but nothing checks
+that a decomposition run *composed* leanly, because the estate is the input and
+coverage-complete is still the requirement. That is the design: the anchor bounds
+what enters a phase, an essential-scope set, or a story set, and those are all
+downstream of T-17. The Run-1 failure was a twenty-epic **roadmap**, and what
+this package changes about that roadmap is the probe posture that inflated it and
+the class that makes each row's derivation visible — not a cap on the row count,
+which no ruling states and none should.
