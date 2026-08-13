@@ -1,6 +1,6 @@
 ---
 name: ba-frame
-description: Band-1 entry. Initializes the two aspect ledgers at six untouched aspects, takes the flow-profile pick at P-O0 - flow-profile selection and the scope frame at P-O0b - scope-frame selection in one render before any aspect opens, confirms the presale canvas is present and carried into the repo, and runs T-01 - Discovery canvas framing to produce one when it is absent. The birth act for .specify/aspect-state.md and .specify/aspect-plans.md; after it, the Stakeholders aspect is openable.
+description: Band-1 entry. Initializes the two aspect ledgers at six untouched aspects, takes the source inventory and the flow-profile pick at P-O0 - flow-profile selection and the scope frame at P-O0b - scope-frame selection in one render before any aspect opens, confirms the presale canvas is present and carried into the repo, and runs T-01 - Discovery canvas framing to produce one when it is absent. The birth act for .specify/aspect-state.md and .specify/aspect-plans.md; after it, the Stakeholders aspect is openable.
 disable-model-invocation: true
 ---
 
@@ -23,8 +23,11 @@ Stakeholders — the DAG's root — becomes openable.
   erase the event history, and bands never regress — nothing ever "returns to
   Band 1". A reopen degrades one aspect's state in place; it does not re-enter
   the band.
-- **The orchestrator never authors.** This skill writes exactly two files, both
-  ledgers. The canvas, if one has to be produced, is the output of
+- **The orchestrator never authors.** This skill writes the two ledgers and,
+  where the inventory captures a reachable source, one verbatim artifact per
+  capture under `sources/` (Step 2). **Extraction is capture, never
+  interpretation** — a capture is captured material, not authored content. The
+  canvas, if one has to be produced, is the output of
 **T-01 — Discovery canvas framing** under its
   own contract — dispatched, not written here.
 
@@ -34,7 +37,7 @@ Create both from their templates, at `.specify/` top level:
 
 | File | From | Initial content |
 |---|---|---|
-| `.specify/aspect-state.md` | `.specify/ba/templates/aspect-state.md` | head: `Band: 1 (open)`; `Profile:` and the five scope-frame lines left for Step 2; the six-row table at `untouched`, `Since` and `Basis` empty; all four head lines `none` |
+| `.specify/aspect-state.md` | `.specify/ba/templates/aspect-state.md` | head: `Band: 1 (open)`; `Profile:`, `Sources:` and the five scope-frame lines left for Step 2; the six-row table at `untouched`, `Since` and `Basis` empty; all four head lines `none` |
 | `.specify/aspect-plans.md` | `.specify/ba/templates/aspect-plans.md` | the eight empty sections: `## Frame`, the six aspects, `## Band 2` |
 
 Both files sit **outside `.specify/memory/`** and stay there. Orchestration state
@@ -49,13 +52,16 @@ The six rows are always these six, in DAG order:
 Stakeholders · Context · Value · Vision · Solution · Requirements
 ```
 
-## Step 2 — P-O0 (flow-profile selection) + P-O0b (scope-frame selection)
+## Step 2 — the source inventory + P-O0 (flow-profile selection) + P-O0b (scope-frame selection)
 
-**One render, one reply.** The profile picker and the scope-frame block are the
-Frame act's **single stop**. They render together and the BA answers both in one
-reply: the profile pick, then the frame confirmed or corrected. Frame costs
-**one** BA interaction, not two, and the Presale path's ≤ 8 budget stands
-unchanged.
+**One render, one reply.** The source inventory, the profile picker and the
+scope-frame block are the Frame act's **single stop**. They render together and
+the BA answers all three in one reply: sources named, pasted, attached or
+declined, then the profile pick, then the frame confirmed or corrected. Frame
+costs **one** BA interaction, not three, and the Presale path's ≤ 8 budget with
+its one interaction of slack stands unchanged. The reply itself may **carry**
+sources: pasted content and attachments are captured exactly like a read
+channel.
 
 **Before you render — auto-pickup.** Scan the sources on hand — client
 documents, a Slack extract, the canvas — for budget and scope constraints, and
@@ -64,8 +70,28 @@ every value carries a citation or an explicit `open — no source material`.
 Never guess a value. **`none stated` is a legal, recorded answer** for the
 envelope — it becomes a named client question, never silence.
 
-**A full checkpoint: render both blocks, then stop.** The profile and the frame
-are set here, **before any aspect opens**. Render the picker, exactly:
+Auto-pickup runs against the **material on hand at render time** — the
+inventory's first line is exactly that list. Sources the BA names, pastes or
+attaches in the reply are captured *after* it, which is what the correction stop
+below is for.
+
+**A full checkpoint: render all three blocks, then stop.** The inventory is
+taken and the profile and the frame are set here, **before any aspect opens**.
+Render the source inventory **first**, ahead of the picker and the frame,
+exactly:
+
+```
+Sources on hand: <list of supplied material>.
+Anything else? Slack channel(s) · email threads · drive folders · call recordings —
+name them, paste them, or attach them; or "none".
+```
+
+It exists because nothing else asks. **T-01 — Discovery canvas framing** works
+from the material *on hand*, and no act in the framework asked what stood beyond
+it. The inventory is **Frame-act ground, never a technique's**:
+**T-01 — Discovery canvas framing** asks nothing.
+
+Then the profile picker, in the same render, exactly:
 
 ```
 Flow profile — pick one before any aspect opens (P-O0 — flow-profile selection):
@@ -89,8 +115,54 @@ Waiting for your confirmation. Switchable later; the switch is logged.
 ```
 
 Then **stop and wait.** Do not pick. Do not default to Discovery. Do not confirm
-the frame on the BA's behalf. No aspect opens until the profile and the frame
-are on record.
+the frame on the BA's behalf. **Do not rule a source disposition on the BA's
+behalf, and never read silence as one.** No aspect opens until the profile and
+the frame are on record.
+
+### Capture mechanics and reachability
+
+**A source the framework can reach** — a Slack channel behind a connected
+integration, a drive folder it can open — is read **bounded by what the BA
+named** (the channel, an optional date range) and **captured verbatim into a
+source artifact**. The artifact is then mined like any transcript under
+cite-or-mark. **Extraction is capture, never interpretation:** the artifact is
+the citation ground, and a mined line cites the artifact, never the live channel.
+
+**A source the framework cannot reach** is said so plainly, with three
+dispositions offered — **the BA rules; silence never resolves it**:
+
+- **supply** — the BA pastes the relevant content or attaches an export;
+  captured the same way;
+- **skip** — recorded `skipped — <reason>`: a BA ruling,
+  **T-01 — Discovery canvas framing**'s `N/A — <reason>` pattern at source grain;
+- **pending** — recorded `named — pending`: a visible hole, Frame proceeds, and
+  the source can arrive later.
+
+Every named source lands on the ledger head's `Sources:` line with its state —
+one of the four, never absence.
+
+**Where a capture lands — `sources/` at repo root**, deliberately outside
+`.specify/memory/` (the `canvas.md` placement), **one artifact per capture,
+named for its origin**: `sources/slack-<channel>-<date>.md` ·
+`sources/drive-<folder>-<date>.md`. **Placement only:** a capture is **captured
+material, not certified content**. It joins **T-01 — Discovery canvas framing**'s
+material on hand and reads like a supplied transcript; no assertion reads
+`sources/`, and it enters no estate glob.
+
+### The correction stop — P-O0b re-taken, never a new prompt point
+
+A capture may **contradict or fill** a scope-frame value the BA has just
+confirmed: the documents say `none stated`, the Slack channel's first message
+says ≤ $50K. Where it does, render a **correction proposal** — the field · the
+confirmed value · the captured value with its citation · the frame re-confirmed
+or held.
+
+This is **P-O0b — scope-frame selection, re-taken**: the frame's own switch act,
+legal at any time and logged as the `scope-frame` event. It is **not a new
+prompt point** — the P-O table is complete as it stands. It is a justified stop
+under the checkpoint law: a materially different outcome hangs on it, and it
+rides the ≤ 8 budget's one interaction of slack (7 + 1). **Captures consistent
+with the frame produce no stop** — report and proceed.
 
 **P-O0b (scope-frame selection) is a safety-floor act.** No autonomy grant
 reaches it, in any
@@ -168,6 +240,7 @@ Write the pick and the frame into the ledger head:
 
 ```
 Profile: <Discovery | Presale> — picked <date> (P-O0); switches append to Events with a reason
+Sources: <kind — state, per named source>  (captured <date> | named — pending | skipped — <reason> | none)
 Boundary: <ladder value(s) — MVP | MVP + Phase 2 | …> — set <date> (P-O0b); switches append to Events with a reason
 Budget: <amount + currency> | none stated  (<citation | BA-supplied | open — no source material>)
 Client label: <free text — PoC · prototype · pilot…>  (<citation | BA-supplied | open — no source material>)
@@ -183,9 +256,23 @@ silent head rewrite:
 <date> · scope-frame · <from → to> · <BA initials> — <reason>
 ```
 
+**Every named source records an event too** — the switch grammar at source
+grain, appended for the life of the project:
+
+```
+<date> · source · <name> · <state> · <BA initials> — <basis>
+```
+
 **A constraint that arrives after Frame is a routed scope-frame-change
 proposal** — a new client document, a client message — never a silent edit. It
 fires T-18 — Scope allocation's scope-frame trigger.
+
+**A late source brings zero new machinery.** A channel, thread or folder that
+appears mid-band routes its content through the existing ingestion, and a
+budget- or scope-shaped finding fires that same proposal and the same
+**T-18 — Scope allocation** trigger. The capture itself follows the mechanics above unchanged: the
+`Sources:` line appends the source with its state, and the Events entry records
+it.
 
 ## Step 3 — the substrate
 
@@ -251,7 +338,10 @@ and no aspect opens until the pick is on record · never treats a profile as a
 restriction: out-of-profile techniques stay electable by code ·
 **never sets or confirms the scope frame on the BA's behalf, and never takes
 P-O0b (scope-frame selection) under an autonomy grant** — the frame is a
-safety-floor act · never writes a capacity figure into the canvas, the roadmap,
+safety-floor act · **never rules a source disposition on the BA's behalf, and
+never reads silence as one** · never interprets a capture into the artifact it
+writes, and never lands one under `.specify/memory/` — a capture is verbatim,
+and `sources/` is its home · never writes a capacity figure into the canvas, the roadmap,
 a WBS or any other artifact: capacity is a head line and advisory prose, nothing
 else.
 

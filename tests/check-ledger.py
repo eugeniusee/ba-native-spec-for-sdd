@@ -82,7 +82,7 @@ DATE_WISH = re.compile(
 RULES = {
     "L1":  "head shape — band line · six rows in DAG order · the four head lines (§2.4)",
     "L2":  "state vocabulary — the five states, and nothing else (§2.2)",
-    "L3":  "event grammar — every event line is one of the known forms (§2.3)",
+    "L3":  "event grammar — every event line is one of the known forms (§2.3 · §2.4)",
     "L4":  "transition legality — T<n> matches its from → to pair; no other exists (§2.3)",
     "L5":  "DAG — T1 only when every prerequisite is cleared-or-waived (§3.1)",
     "L6":  "basis — every transition names the basis its row demands (§2.3, rule 3)",
@@ -111,6 +111,29 @@ RE_RO = re.compile(r"^RO-(\d+) · (\w+) — (.+)$")
 RE_AW = re.compile(r"^AW-(\d+) · (\w+) · unmet: (.+)$")
 RE_GAP = re.compile(
     rf"^Threshold-gap candidate — ({DATE}) · should have been caught by (.+)$")
+
+# The five head-line events §2.4 pins, verbatim (D-O14 · D-O36–D-O38 · D-O43 ·
+# D-O48). Each rewrites a head line rather than an aspect state, so none feeds
+# L7's replay; all five carry a date and take part in L13's chronology.
+#
+# `auto` is one form in two shapes — `on` carries the grant's scope, `off` does
+# not — exactly as §2.4 renders the pair. The alignment padding after `auto on`
+# is cosmetic (the exhibit column-aligns `on` under `off`) and is tolerated;
+# everything else is the pinned grammar and nothing else.
+RE_PROFILE = re.compile(rf"^({DATE}) · profile · (.+?) → (.+?) · (.+?) — (.+)$")
+RE_SCOPE_FRAME = re.compile(
+    rf"^({DATE}) · scope-frame · (.+?) → (.+?) · (.+?) — (.+)$")
+RE_SOURCE = re.compile(rf"^({DATE}) · source · (.+?) · (.+?) · (.+?) — (.+)$")
+RE_AUTO_ON = re.compile(
+    rf"^({DATE}) · auto on +· AG-(\d+) · scope (.+?) · (.+?) — (.+)$")
+RE_AUTO_OFF = re.compile(rf"^({DATE}) · auto off · AG-(\d+) · (.+?) — (.+)$")
+RE_RATIFICATION = re.compile(
+    rf"^({DATE}) · ratification · AG-(\d+) · (.+?) — (.+)$")
+
+# The `Sources:` state vocabulary, closed at four (D-O48). In an event the date
+# rides the event itself, so bare `captured` is the common render.
+RE_SOURCE_STATE = re.compile(
+    r"^(captured(\s+\S.*)?|named — pending|skipped — \S.*|none)$")
 
 HEAD_LINES = ["Standing aspect waivers:", "Open reopens:",
               "Upstream flags:", "Deferred consequences:"]
@@ -460,6 +483,30 @@ def check(path: pathlib.Path, allow_open_band: bool) -> Report:
             continue
 
         if RE_GAP.match(header):
+            continue
+
+        # ── the five §2.4 head-line events ──────────────────────────────────
+        m = RE_SOURCE.match(header)
+        if m:
+            date, name, src_state = m.group(1), m.group(2), m.group(3)
+            if not RE_SOURCE_STATE.match(src_state):
+                rep.bad("L3", lineno,
+                        f"source {name!r} carries state {src_state!r} — the vocabulary is "
+                        "closed at four: `captured <date>` · `named — pending` · "
+                        "`skipped — <reason>` · `none` (§2.4, D-O48)")
+            if date < last_date:
+                rep.bad("L13", lineno, f"source event dated {date} follows {last_date}")
+            last_date = max(last_date, date)
+            continue
+
+        m = (RE_PROFILE.match(header) or RE_SCOPE_FRAME.match(header)
+             or RE_AUTO_ON.match(header) or RE_AUTO_OFF.match(header)
+             or RE_RATIFICATION.match(header))
+        if m:
+            date = m.group(1)
+            if date < last_date:
+                rep.bad("L13", lineno, f"event dated {date} follows {last_date}")
+            last_date = max(last_date, date)
             continue
 
         # anything else in Events is not a known form

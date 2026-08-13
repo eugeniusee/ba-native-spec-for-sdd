@@ -67,11 +67,17 @@ born by the act that produces it.
 /ba-frame
 ```
 
-Initializes the two ledgers, then asks once for the two things Band 1 is run
-against: the **flow profile** and the **scope frame** — delivery boundary, budget
-envelope, client label, and the rate and team mix behind the capacity line. Both
-blocks render together and you answer both in one reply; the framework pre-fills
-the frame from whatever material is on hand, with citations. Then, if there is no
+Initializes the two ledgers, then asks once for the three things Band 1 is run
+against: the **source inventory** — what material exists beyond what you handed
+over, Slack channels, email threads, drive folders, call recordings, named,
+pasted, attached or declined — the **flow profile**, and the **scope frame** —
+delivery boundary, budget envelope, client label, and the rate and team mix
+behind the capacity line. All three blocks render together and you answer them
+in one reply; the framework pre-fills the frame from whatever material is on
+hand, with citations. Sources it can reach are captured verbatim under
+`sources/`; ones it cannot take your ruling — supply, skip, or leave pending —
+and every named source stands on the ledger head's `Sources:` line with its
+state. Then, if there is no
 `canvas.md` yet, it runs the discovery-canvas technique to make one from your
 presale material.
 Six aspects open in dependency order: **Stakeholders → Context · Value → Vision

@@ -19,6 +19,7 @@
 
 # ── repo root ────────────────────────────────────────────────────────────────
 RT|absent|canvas.md|◇ T-01 (Frame)
+RT|absent|sources|◇ /ba-frame source inventory (orchestrator §8.1)
 S1|file|AGENTS.md|portability mirror (standard essentials)
 S1|file|CLAUDE.md|framework block appended (file created if absent)
 

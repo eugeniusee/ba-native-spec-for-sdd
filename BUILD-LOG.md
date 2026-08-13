@@ -6587,3 +6587,274 @@ resolution that invents no prompt point and satisfies §10.1's *nothing outside
 this table* clause, and the BA Lead should see it named as a choice: the
 alternative was a `P-O0c` row, which would have been a new prompt point the
 package did not rule.
+
+
+---
+
+## Source Inventory at Frame — package rebuild pass · `/ba-frame` · templates · mirrors · suite · 13 August 2026 · GREEN
+
+The follow-up to `b11ead2`, run against the live tree. The F-04 documents pass
+enumerated its own rebuild surface — **D126** (`sources/` owes a
+`layout.expected` row) · **D127** (three carriers still say the Frame render is
+two blocks; three head-shape carriers owe a `Sources:` line) · **D128** (the
+fixture ledger keeps no `Sources:` line, a kept state) — and that enumeration was
+the work list. Compilation only: orchestrator §8.1 · §2.4 · §10.3 rule 8 · §11
+and catalogue-b1 T-01 §4.1/§8 govern; nothing was written that a ruling does not
+state.
+
+**Parameters, allocated from the live tree.** HEAD is `b11ead2` (orchestrator
+v0.17 · catalogue-b1 v0.5 · index v0.5, package 0.1.13). The divergence
+high-water mark is D128 → the contiguous block **D129–D131**. `VERSION` is
+untouched: the bump is **proposed, not stamped** (§4 below).
+
+**Method, as the package required.** Every edit ran as an assertion-checked
+Python replacement — the anchor found exactly once or the run aborts before
+writing; 32 anchors across 15 files, zero residual markers by grep. Twelve source
+documents were read and none edited. The full suite is **17/17 GREEN**, the three
+install-based runs included, and **red at every new assertion class** on a seeded
+payload — the non-vacuity control below.
+
+### S1 — `/ba-frame`: the render's first block (D-O45–D-O49)
+
+The source inventory compiles as the render's **first block**, ahead of the
+picker and the frame, **byte-identical to §8.1's pinned text** (a fenced-block
+comparison against the document is one of the new assertions, not an eyeball).
+Step 2's heading names it first; *one render, one reply* extends from two blocks
+to three, with the reply's own carried sources — pasted content and attachments
+captured like a read channel.
+
+**Capture mechanics** land as their own subsection: the bounded read, the
+verbatim capture, *extraction is capture, never interpretation* with the artifact
+as citation ground, and the three dispositions the BA rules — `supply` ·
+`skipped — <reason>` · `named — pending` — under *silence never resolves it*.
+`sources/` at repo root is pinned with its **placement-only** clause carried
+intact: no assertion reads it, no estate glob takes it.
+
+**Auto-pickup ordering** compiles §8.1's own sentence: the scan runs against the
+material on hand **at render time** — the inventory's first line is exactly that
+list — and sources named, pasted or attached in the reply are captured *after*
+it. That is what the correction stop exists for (D130 below).
+
+**The correction stop** compiles as **P-O0b re-taken** — the frame's own switch
+act, logged as the `scope-frame` event, explicitly *not a new prompt point*,
+riding the budget's slack (7 + 1), silent on consistent captures. **No fifth
+floor act, no new P-O row, and the never-AUTO derivation stays in D-O49's record**
+— it is not behavior text, by the package's own instruction. `check-auto` is
+93/0 unchanged and `ba-auto/SKILL.md` is byte-for-byte untouched.
+
+The head write gains its `Sources:` line, the Events grammar gains the `source`
+line at source grain, late sources get D-O49's zero-new-machinery paragraph, and
+the never-list gains two clauses: never rule a disposition on the BA's behalf,
+and never interpret a capture or land one under `.specify/memory/`.
+
+### S2 — the ledger head, in all three carriers (D-O48 · D127)
+
+`Sources:` lands **between `Profile:` and `Boundary:`** in the shipped template,
+the `/ba-status` render and the `/ba-frame` head write — one grammar, three
+copies, now asserted in all three plus the §2.4 exhibit, with a position probe
+per carrier. **D-O38's `Auto:`-after-`Profile:` ordering still holds**:
+`check-auto`'s probe was run green before the edit and green after it. The
+template's comment block gains the source-inventory note and the `source` event
+grammar.
+
+### S3 — D127's carriers, and the ones the enumeration did not reach
+
+The two-block phrasing is gone from all three named sites —
+`ba-frame/SKILL.md` · `docs/quickstart.md` · `tests/exit-test.md` — and a sweep
+for a fourth found **none**: zero hits across the payload, docs, tests and README
+for *both in one reply* · *two pinned blocks* · *render both blocks* · *not two*.
+The head-shape carriers were exactly the three D127 named. What the enumeration
+did **not** cover is D131 below.
+
+### S4 — D126: `sources/` in `layout.expected`
+
+`RT|absent|sources|◇ /ba-frame source inventory (orchestrator §8.1)` — the row
+D126 itself drafted, resolved **inside the suite's own semantics** with no new
+class invented. `RT` is already *runtime-born (◇) — asserted ABSENT on a fresh
+install*, and `check-layout.sh` tests RT rows with `[ -e ]`, which covers a
+directory as readily as `canvas.md`'s file. So the placement-only ruling is
+honoured exactly: nothing installs `sources/`, it exists only once a capture
+lands, and no assertion treats it as estate. `check-layout` moves 111 → 112, and
+the `/ba-*` skill count reads `^S[0-9]|file|` rows only, so it is untouched at 34.
+
+### S5 — D128: the fixture, left alone
+
+`tests/fixtures/appointment-booking/band1/aspect-state.md` carries **no**
+`Sources:` line and was not edited. `check-ledger.py`'s L1 requires the four
+*standing* head lines — `Standing aspect waivers:` · `Open reopens:` ·
+`Upstream flags:` · `Deferred consequences:` — never the optional Frame-time
+ones, so the July-2026 engagement stays green as a record of a project that
+inventoried no source. No suite assertion was added that would force the line
+onto a pre-frame ledger; the `/ba-aspect` frame-refusal precedent was not needed,
+because nothing conflicted.
+
+### S6 — the sweep: register rule 8, and the command row
+
+§10.3 rule 8's pinned-formats list gained `source inventory §8.1` in the
+documents pass, and **six compiled carriers** owed it — the four personas
+(`ba-orchestrator` · `ba-analyst` · `ba-gate` · `ba-discovery`) and both mirrors
+(`AGENTS.md` · `claude-block.md`). `claude-block.md`'s `/ba-frame` command row
+gained the inventory with its capture home and head line, mirroring §11's Frame
+binding row. **`ba-auto`'s four-act floor text did not change** and no §10.7
+policy row was added — the documents rule that the stop is BA-only *by
+composition*, which is a derivation and not a reservation.
+
+### Suite conformance — 42 assertions added, none relaxed
+
+A new **section 5b** in `check-orchestrator.sh` for the compiled surface, and a
+new **section 4b** for D132's five event forms. Every probe reads a fact the
+documents state and the package now carries. Nothing existing was retargeted,
+loosened or deleted; the count moves **156 → 198**, `check-layout` 111 → 112, and
+every other check is byte-for-byte the number it was.
+
+- the pinned block **byte-identical to §8.1's**, compared as a fenced block
+  rather than by needle, so a paraphrase fails;
+- first-block placement · three blocks one reply · Frame-act-ground · extraction
+  is capture · the artifact as citation ground · the three dispositions ·
+  *silence never resolves it* · `sources/` one-per-capture · placement-only ·
+  not-a-new-prompt-point · P-O0b re-taken · no stop on a consistent capture ·
+  late sources;
+- the `Sources:` head line in the §2.4 exhibit **and all three carriers**, plus a
+  position probe (`Profile:` < `Sources:` < `Boundary:`) per carrier;
+- the `source` Events grammar in the document, the skill and the template;
+- `sources/` classed runtime-born in `layout.expected`, **with its negative**: a
+  row installing it under any build session is a failure, which is the
+  placement-only ruling made mechanical.
+
+**The non-vacuity control.** Five breakages were seeded into private copies — a
+one-word edit inside the pinned block, the correction stop inverted, the head
+line deleted from `ba-status`, the head line pulled out of position in the
+template, and `sources/` re-classed as installer-laid. **Eight assertions fired
+across all five probe classes**, and restoring returned the suite to 184/0. An
+assertion that has not been shown to fail is a comment.
+
+### Divergences
+
+**D129 · `/ba-frame` said it writes exactly two files, and the ruling makes that
+false.** The skill's invocation contract read *"This skill writes exactly two
+files, both ledgers"* — a sentence whose point is that **the orchestrator never
+authors content**, and whose count the capture mechanics break: a reachable
+source is captured at Frame, into `sources/`. *Resolution taken:* the sentence
+was amended, not deleted — the skill writes the two ledgers **and one verbatim
+artifact per capture**, with D-O46's *extraction is capture, never
+interpretation* carried in the same breath so the never-authors principle stands
+where the count used to. Recorded because a load-bearing sentence changed shape,
+and because the alternative — leaving a false count in an invocation contract —
+is the kind of stale guard that reads as law for a year.
+
+**D130 · The apply package's work-list glosses the auto-pickup ordering against
+§8.1's own sentence.** §1.1 reads *"Auto-pickup ordering: inventory answered →
+captures read → pre-fill → confirmation."* §8.1 states the opposite sequence:
+*"**Before** rendering the block the framework scans the sources on hand… and
+pre-fills the values"* and *"Auto-pickup runs against the material on hand **at
+render time**… Sources the BA names, pastes, or attaches in the reply are
+captured **after** it."* *Resolution taken:* **the document governs**, per the
+package's own one-way-compilation rule, and §8.1's sentence compiled verbatim in
+sense. The gloss is reconcilable as a description of the *correction* cycle —
+inventory answered, captures read, the pre-fill revisited, the frame
+re-confirmed — which is precisely what the correction stop is; read as the
+ordering of auto-pickup itself it contradicts the ruling. Recorded rather than
+silently resolved, because the two readings produce different skills.
+
+**D131 · Register rule 8's list was a sixfold carrier the D127 enumeration did
+not name.** D127 enumerated the two-block carriers and the head-shape carriers
+and was complete for both. It did not reach §10.3 rule 8's pinned-formats list,
+which the documents pass extended with `source inventory §8.1` and which compiles
+into four personas and two mirrors — six files, none of them a Frame-render
+description or a head shape. *Resolution taken:* swept and fixed under work-list
+item 6, which asked for exactly this class. Recorded so the next pass reads
+D127-style enumerations as *complete for the classes they name*, not as the whole
+rebuild surface: a ruling that touches §10.3 always touches six compiled copies.
+
+**D132 · `check-ledger.py` rejects five pinned head-event forms, `source`
+now among them.** Probed rather than assumed, because the template this pass
+edited teaches the BA to write one. L3 — *every event line is one of the known
+forms* — recognizes transitions, band events, review tables, RO and AW records
+and gap candidates. It recognizes **none** of the five head-line events §2.4
+pins: `profile` · `scope-frame` · `auto on|off` · `ratification` · `source`. A
+live ledger carrying any of them fails validation, and the shipped template
+carries all five grammars in its comment block. **This pass did not introduce
+it** — `profile` predates the scope frame, `scope-frame` landed with package
+0.1.12 and the `auto` pair with 0.1.11; each rebuild compiled the grammar into
+the template and left the validator un-extended, and the board stayed green
+because no fixture in the tree carries one. The `Sources:` **head line** itself
+validates clean in all four states — head lines are not events, and L1 checks
+only the four standing ones.
+
+*Resolution taken — **EK-ruled and fixed in this pass**.* **L3 accepts exactly
+the five §2.4-pinned event forms, verbatim grammar, nothing else.** The basis is
+that each form is already ruled and pinned: the validator is **not legislating,
+it is conforming to standing law**, so one ruling covers all five and reopens
+none of them. **Why it could not wait:** the F-04 correction-stop path is the
+Run-1 scenario itself, and it logs a `source` event *and* a `scope-frame` event
+on a live ledger — the validator would have failed a legal run of the very
+mechanism this pass compiled. Shipping the inventory with a validator that
+rejects its own event was not an option the record could carry.
+
+The extension is **six rows probing five forms** (`auto` is one form in two
+shapes) and every row runs **both ways** — the pinned grammar must validate, and
+a malformed variant of the same form must trip L3: `Presale to Discovery` with
+no arrow · a scope-frame with no `<from → to>` · a source state outside the
+closed four · `pending` where `named — pending` is the vocabulary · `AG-one`
+where the grant is numbered · a bare `ratification` with no AG. Two further
+probes hold the boundary: `skipped — <reason>` validates with its reason riding
+the state, and a sixth form nobody ruled is still rejected. `check-orchestrator`
+moves 184 → **198**; the fixture, which carries none of the five, is unchanged
+and still validates.
+
+**Nothing else diverged.** The four-act safety floor, the P-O table, CC-H-01's
+glob, the ≤ 8 Presale budget, T-01's depth rule, the 13-section canvas and the
+34-skill registry are each untouched. No new rule, threshold or behavior was
+invented, and no assertion anywhere was relaxed.
+
+### Test run — 17 of 17
+
+`check-m` 40/0 · `check-gate` 59/0 · `check-orchestrator` **198/0** (156 before
+this pass; +42) · `check-techniques` 104/0 · `check-techniques2` 122/0 ·
+`check-techniques3` 158/0 · `check-spine` 174/0 · `check-register` 62/0 ·
+`check-wbs` 62/0 · `check-status` 94/0 · `check-ledger` grammar-legal, 14 rules,
+no violations — L3 extended by the five §2.4 forms (D132), the fixture unchanged · `check-cards` every card byte-identical to its re-derivation ·
+`check-layout` **112/0/0** (111 before; the `sources/` row) · `check-exit
+--offline` 99/0 · `check-install` 64/0 · `check-budget` 37/0 — the Presale path
+still **8 ≤ 8** · `check-auto` 93/0, the floor and the ordering probe both
+unchanged. **Zero red, nothing skipped.**
+
+Two rule-5 defects were caught by the suite in this pass's *own* new prose — a
+bare `T-01` and a bare `T-18` — and fixed to code + name before the board went
+green. The register scan reads compiled text it did not exist to police; that it
+caught the compiler is the point of running it last.
+
+### Version — proposed 0.1.14, **stamped 0.1.14**
+
+Proposed as a compiled-surface pass with no new machinery and no installed file
+added — the same class as 0.1.12 (the scope frame's rebuild) and 0.1.13 — and
+**stamped by the BA Lead in the same sitting**, together with the D132 ruling.
+`VERSION` reads **0.1.14**. The full suite was re-run at the stamp, not before
+it: **17/17 GREEN**, `check-orchestrator` 198/0, `check-layout` 112/0/0.
+
+This commit and `b11ead2` go to `origin/main` together — Run 2 installs v0.1.14
+from GitHub, so the documents pass and its compilation land as one installable
+state rather than a half-compiled one.
+
+### Open
+
+*(D132 was this pass's one open question. It was ruled at the stamp and fixed
+here; what follows is what remains genuinely open.)*
+
+**`sources/` is still enforced by prose, and now by exactly one absence.**
+`layout.expected` asserts the directory absent on a fresh install and refuses to
+let a build session claim it — that is a real assertion, and it is the only one.
+Nothing reads a capture, nothing checks that a captured artifact is verbatim, and
+a capture written to the wrong path still fails no check. The docs pass's own
+Open entry stands; the rebuild narrowed it by one row rather than closing it.
+
+**The head line is asserted in three carriers and populated by none.** Every
+`Sources:` assertion in this pass reads a *template* or a *render shape*. No
+fixture carries a populated line, by D128's own ruling, so the four-state
+vocabulary has no worked exhibit in the suite — the same gap the scope frame's
+lines had until a fixture earns one. The round-trip was **measured rather than
+assumed**: a populated `Sources:` line validates against `check-ledger.py` in all
+four states, and the `source` **event** did not until D132 was ruled and fixed
+in this pass. Both now validate — against synthetic ledgers built in the suite,
+not against a fixture that records a real engagement's sources. That exhibit is
+still owed.

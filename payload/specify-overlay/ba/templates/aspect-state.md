@@ -23,8 +23,17 @@
   code at any P-O2 — plan composition. A switch is a ledger event with a reason:
   Profile switch grammar: <date> · profile · <from → to> · <BA initials> — <reason>
 
+  Source inventory (D-O45 · D-O46 · D-O47 · D-O48): taken at Frame, the render's
+  first block, ahead of the profile pick. Every named source stands on the
+  `Sources:` line with its state — the vocabulary is closed at four:
+  captured <date> · named — pending · skipped — <reason> · none. A named source
+  never silently disappears; silence resolves nothing. Reachable sources are
+  captured verbatim under `sources/` at repo root, one artifact per capture —
+  placement only, and no assertion reads it. Late sources append to the line.
+  Source event grammar: <date> · source · <name> · <state> · <BA initials> — <basis>
+
   Scope frame (D-O42 · D-O43 · D-O44): set at P-O0b — scope-frame selection, in
-  the same render as the profile pick. The head holds the machine-readable
+  the same render as the profile pick and the source inventory. The head holds the machine-readable
   summary; the cited detail lives on the canvas, §13 Context/Constraints (T-01).
   Boundary takes ladder values only — MVP · MVP + Phase 2 · … ; PoC and prototype
   are never boundary or phase values, they live in Client label, which the
@@ -48,6 +57,7 @@
 ## Current state
 Band: 1 (open)
 Profile: <Discovery | Presale> — picked <date> (P-O0); switches append to Events with a reason
+Sources: <kind — state, per named source>  (captured <date> | named — pending | skipped — <reason> | none)
 Boundary: <ladder value(s) — MVP | MVP + Phase 2 | …> — set <date> (P-O0b); switches append to Events with a reason
 Budget: <amount + currency> | none stated  (<citation | BA-supplied | open — no source material>)
 Client label: <free text — PoC · prototype · pilot…>  (<citation | BA-supplied | open — no source material>)
@@ -107,6 +117,7 @@ Deferred consequences:    none
     <what escaped, and why the threshold missed it>
 
   <date> · scope-frame · <from → to> · <initials> — <reason>
+  <date> · source · <name> · <state> · <initials> — <basis>
   <date> · auto on  · AG-<n> · scope <…> · <initials> — profile <…> (stated | inferred: <basis>)
   <date> · auto off · AG-<n> · <initials> — <n> AUTO acts, awaiting ratification
   <date> · ratification · AG-<n> · <initials> — accepted all | exceptions: <list>

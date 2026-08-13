@@ -79,7 +79,7 @@ Do not invoke them on your own initiative and do not simulate their effects.
 
 | Command | Act |
 |---|---|
-| `/ba-frame` | Band-1 entry: initialize the two aspect ledgers, then one render and one reply — pick the flow profile (P-O0 — flow-profile selection) and set the scope frame (P-O0b — scope-frame selection, auto-pickup pre-filled) — confirm the canvas |
+| `/ba-frame` | Band-1 entry: initialize the two aspect ledgers, then one render and one reply — take the source inventory (captures land under `sources/`, states on the head's `Sources:` line), pick the flow profile (P-O0 — flow-profile selection) and set the scope frame (P-O0b — scope-frame selection, auto-pickup pre-filled) — confirm the canvas |
 | `/ba-status [--html]` | Render the aspect-ledger head and the nine-line project dashboard; `--html` also writes the derived offline render |
 | `/ba-aspect <aspect>` | Open an aspect; suggestion snapshot → plan composition |
 | `/ba-t<NN>` · `/ba-tier1` · `/ba-tier2` | One-step technique run — the P-O3 (technique invocation) check compiled in; `/ba-run <id>` = alias + custom runner |
@@ -228,7 +228,8 @@ are out of its reach.
    render past ~10 lines is a cut candidate. An acknowledgement-only stop is a
    banned render: if no BA decision exists, do not stop.
 8. **Pinned formats stay pinned.** Recurring renders (suggestion snapshot §6.1,
-   ledger head §2.4, profile picker §8.1, scope frame §8.1,
+   ledger head §2.4, source inventory §8.1, profile picker §8.1,
+   scope frame §8.1,
    project dashboard §10.4, WBS export §10.5, route render §10.6,
    resumption report §10.7,
    P-O prompts) keep their shapes; never re-narrate what a

@@ -356,6 +356,60 @@ RO-7 · Stakeholders — stakeholders.md:12: the register contradicts the canvas
   status: open"
 neg "L14 RO lifecycle — T5 on a signal that was never logged received" "$M/l14.md" L14
 
+# ── 4b. L3 — the five §2.4 head-line event forms (D132, ruled) ───────────────
+#
+# Each form is already ruled and pinned — profile (D-O14), scope-frame (D-O43),
+# auto on|off and ratification (D-O36–D-O38), source (D-O48) — and until this
+# pass the validator recognized none of them: a legal ledger carrying one failed
+# L3. The ruling conforms the validator to standing law. `auto` is one form in
+# two shapes, so six rows probe five forms. Every row runs BOTH ways: the pinned
+# grammar must validate, and a malformed variant of the same form must trip L3.
+
+printf '\n▸ L3 — the five §2.4 head-line event forms, each proven both ways (D-O48 · D132)\n'
+
+EV_ANCHOR="2026-07-09 · T1 · Value · untouched → open · Y.K. — prerequisites: Stakeholders first-pass-cleared"
+
+while IFS='|' read -r label legal broken; do
+  [ -z "$label" ] && continue
+  mutate "$B" "$M/ev-ok.md"  "$EV_ANCHOR" "$EV_ANCHOR
+
+$legal"
+  if python3 "$HERE/check-ledger.py" "$M/ev-ok.md" > "$TMP/ev.out" 2>&1; then
+    ok "L3  $label — the §2.4 form validates on a live ledger"
+  else
+    bad "L3  $label — the pinned form does not validate:"
+    sed 's/^/      /' "$TMP/ev.out"
+  fi
+  mutate "$B" "$M/ev-bad.md" "$EV_ANCHOR" "$EV_ANCHOR
+
+$broken"
+  neg "L3  $label — a malformed variant" "$M/ev-bad.md" L3
+done <<'FORMS'
+profile|2026-07-09 · profile · Presale → Discovery · Y.K. — client signed the discovery SOW|2026-07-09 · profile · Presale to Discovery · Y.K. — client signed the discovery SOW
+scope-frame|2026-07-09 · scope-frame · MVP → MVP + Phase 2 · Y.K. — client added reporting|2026-07-09 · scope-frame · MVP + Phase 2 · Y.K. — client added reporting
+source|2026-07-09 · source · Slack #proj-cardio · captured · Y.K. — named at Frame, integration read|2026-07-09 · source · Slack #proj-cardio · read it · Y.K. — named at Frame, integration read
+source (pending)|2026-07-09 · source · drive/Handover · named — pending · Y.K. — BA has not supplied an export|2026-07-09 · source · drive/Handover · pending · Y.K. — BA has not supplied an export
+auto on|2026-07-09 · auto on  · AG-1 · scope full workflow · Y.K. — profile Presale (stated)|2026-07-09 · auto on  · AG-one · scope full workflow · Y.K. — profile Presale (stated)
+auto off · ratification|2026-07-09 · auto off · AG-1 · Y.K. — 4 AUTO acts, awaiting ratification|2026-07-09 · ratification · Y.K. — accepted all
+FORMS
+
+# the closed vocabulary is the source form's own grammar, not a separate rule
+mutate "$B" "$M/ev-skip.md" "$EV_ANCHOR" "$EV_ANCHOR
+
+2026-07-09 · source · email/RFP thread · skipped — client declined to share · Y.K. — BA ruling at Frame"
+if python3 "$HERE/check-ledger.py" "$M/ev-skip.md" > "$TMP/ev.out" 2>&1; then
+  ok "L3  source — \`skipped — <reason>\` validates: the reason rides the state (D-O48)"
+else
+  bad "L3  source — the skipped disposition does not validate:"
+  sed 's/^/      /' "$TMP/ev.out"
+fi
+
+# and nothing beyond the five was let in: the free-text control still trips
+mutate "$B" "$M/ev-free.md" "$EV_ANCHOR" "$EV_ANCHOR
+
+2026-07-09 · sources · Slack · captured · Y.K. — a form no ruling pins"
+neg "L3  a sixth form nobody ruled is still rejected" "$M/ev-free.md" L3
+
 # ── 5. the P-O checkpoints render ────────────────────────────────────────────
 
 printf '\n▸ The nine P-O checkpoints, in the skills that own them (§10.1)\n'
@@ -459,6 +513,102 @@ has "$SKILLS/ba-enter-feature/SKILL.md" "In delivery" \
     "the locked roadmap status vocabulary (D-B6-3)"
 has "$SKILLS/ba-enter-feature/SKILL.md" "visibility, never a block" \
     "the reopened/deferred advisories never block an entry (§8.4)"
+
+# ── 5b. the source inventory — the Frame render's first block ────────────────
+#
+# D-O45–D-O49 compiled. The document pins a shape, a disposition set, a capture
+# home and a stop that re-takes an existing prompt point rather than inventing
+# one; each of those is a sentence a future edit would soften rather than
+# delete. The head line (D-O48) is asserted in all three carriers plus its
+# position — between `Profile:` and `Boundary:`, where D-O38's `Auto:`-after-
+# `Profile:` ordering still holds.
+
+printf '\n▸ The source inventory — the Frame render'"'"'s first block (§8.1 · §2.4; D-O45–D-O49)\n'
+
+FRAME="$SKILLS/ba-frame/SKILL.md"
+TPL="$PKG_ROOT/payload/specify-overlay/ba/templates/aspect-state.md"
+RULES_SRC="$PKG_ROOT/docs/methodology/ba-native-spec-orchestrator-rules.md"
+
+# the pinned block, byte for byte against §8.1 — the shape, not a paraphrase
+python3 - "$RULES_SRC" "$FRAME" <<'PY' && ok "the pinned inventory block is byte-identical to §8.1's" \
+  || bad "ba-frame's inventory block is not §8.1's, byte for byte"
+import pathlib, re, sys
+def block(p):
+    t = pathlib.Path(p).read_text(encoding="utf-8")
+    b = [f for f in re.findall(r"^```\n(.*?)^```\n", t, re.S | re.M)
+         if f.startswith("Sources on hand:")]
+    return b[0] if len(b) == 1 else None
+a, b = block(sys.argv[1]), block(sys.argv[2])
+sys.exit(0 if a is not None and a == b else 1)
+PY
+
+has "$FRAME" "ahead of the picker and the frame" \
+    "the inventory renders first — ahead of P-O0 and P-O0b (D-O45)"
+has "$FRAME" "the BA answers all three in one reply" \
+    "one render, one reply extends from two blocks to three (D-O42, extended by D-O45)"
+has "$FRAME" "Frame-act ground, never a technique's" \
+    "the inventory is the Frame act's, never a technique's (D-B1-6)"
+has "$FRAME" "Extraction is capture, never interpretation" \
+    "a reachable source is captured verbatim, not read for meaning (D-O46)"
+has "$FRAME" "the artifact is the citation ground, and a mined line cites the artifact, never the live channel" \
+    "…and the artifact, not the channel, is what a mined line cites (D-O46)"
+for d in "skipped — <reason>" "named — pending"; do
+  has "$FRAME" "$d" "the disposition \`$d\` is offered (D-O46)"
+done
+has "$FRAME" "the BA rules; silence never resolves it" \
+    "the dispositions are BA rulings and silence resolves none of them (D-O46)"
+has "$FRAME" "one artifact per capture, named for its origin" \
+    "\`sources/\` at repo root, one artifact per capture (D-O47)"
+has "$FRAME" "no assertion reads \`sources/\`, and it enters no estate glob" \
+    "…placement only: no assertion reads it, no estate glob takes it (D-O47)"
+has "$FRAME" "It is **not a new prompt point**" \
+    "the correction stop invents no prompt point (D-O49)"
+has "$FRAME" "P-O0b — scope-frame selection, re-taken" \
+    "…it is P-O0b re-taken, the frame's own switch act (D-O49)"
+has "$FRAME" "Captures consistent with the frame produce no stop" \
+    "…and a consistent capture stops nothing (D-O49)"
+has "$FRAME" "A late source brings zero new machinery." \
+    "late sources add no mechanism (D-O49)"
+
+# the head line, in the document exhibit and in all three compiled carriers
+HEADLINE='Sources: <kind — state, per named source>  (captured <date> | named — pending | skipped — <reason> | none)'
+has "$RULES_SRC" "$HEADLINE" "the §2.4 head exhibit carries the Sources line"
+for c in "$FRAME" "$SKILLS/ba-status/SKILL.md" "$TPL"; do
+  has "$c" "$HEADLINE" "…and so does $(basename "$(dirname "$c")")/$(basename "$c")"
+done
+
+# position: between Profile: and Boundary:, in every carrier that renders a head
+for c in "$RULES_SRC" "$FRAME" "$SKILLS/ba-status/SKILL.md" "$TPL"; do
+  lbl="$(basename "$(dirname "$c")")/$(basename "$c")"
+  python3 - "$c" <<'PY' && ok "Sources: sits between Profile: and Boundary: — $lbl" \
+    || bad "the Sources line is not between Profile: and Boundary: — $lbl"
+import sys
+prof = src = bnd = None
+for i, l in enumerate(open(sys.argv[1], encoding="utf-8").read().splitlines()):
+    if prof is None and l.startswith("Profile: <Discovery | Presale>"):
+        prof = i
+    elif prof is not None and src is None and l.startswith("Sources: <kind"):
+        src = i
+    elif src is not None and bnd is None and l.startswith("Boundary: <ladder"):
+        bnd = i
+sys.exit(0 if None not in (prof, src, bnd) and prof < src < bnd else 1)
+PY
+done
+
+# the Events grammar, at source grain (D-O48)
+SRC_EVENT='· source · <name> · <state> ·'
+has "$RULES_SRC" "$SRC_EVENT" "§2.4 pins the source event grammar"
+has "$FRAME" "$SRC_EVENT" "…ba-frame carries it"
+has "$TPL" "$SRC_EVENT" "…and the shipped template carries it"
+
+# `sources/` is runtime-born: the layout manifest asserts it absent on a fresh
+# install, exactly as `canvas.md` is (D-P2-6 · D-O47's placement-only clause)
+grep -q '^RT|absent|sources|' "$HERE/layout.expected" \
+  && ok "layout.expected classes sources/ runtime-born — absent on a fresh install" \
+  || bad "layout.expected has no runtime-born row for sources/"
+grep -qE '^(S[0-9]|SK)\|(file|dir)\|sources' "$HERE/layout.expected" \
+  && bad "sources/ is installed by a build session — it is runtime-born, placement only" \
+  || ok "…and no session installs it: a capture creates it, or nothing does"
 
 # ── 6. the agent's discipline ────────────────────────────────────────────────
 
