@@ -23,9 +23,9 @@ Band-1 closure stands from the previous day. Three of the eight rows:
 
 | ID | Epic | Description | Phase | Status | Source |
 |---|---|---|---|---|---|
-| E-01 | Accounts & Access | Clients and Specialists act under their own accounts. Covers registration, sign-in, and the role split the policy model defines. | Unallocated | Defined | canvas: Core Functions "Cancel own appointment" (*own* ⇒ accounts) · roles-permissions.md (Client · Specialist) |
-| E-03 | Appointment Booking | Clients book specialists' published slots online instead of calling. Covers slot browsing, booking, cancellation, and specialist notifications. | Unallocated | Defined | canvas: Core Functions — browse · book · cancel · publish · notify (`→ O-2`) · processes.md: booking journey |
-| E-07 | Online Payment | Clients pay for appointments in the product rather than at the clinic. Covers taking payment at booking; wider payment scope enters at this epic's scoping call. | Unallocated | Defined | out-of-scope.md: payments deferred row — graduated this run |
+| E-01 | Accounts & Access | Clients and Specialists act under their own accounts. Covers registration, sign-in, and the role split the policy model defines. | Unallocated | Defined | `[inferred]` canvas: Core Functions "Cancel own appointment" (*own* ⇒ accounts) · `[inferred]` roles-permissions.md (Client · Specialist) |
+| E-03 | Appointment Booking | Clients book specialists' published slots online instead of calling. Covers slot browsing, booking, cancellation, and specialist notifications. | Unallocated | Defined | `[stated]` canvas: Core Functions — browse · book · cancel · publish · notify (`→ O-2`) · `[stated]` processes.md: booking journey |
+| E-07 | Online Payment | Clients pay for appointments in the product rather than at the clinic. Covers taking payment at booking; wider payment scope enters at this epic's scoping call. | Unallocated | Defined | `[stated]` out-of-scope.md: payments deferred row — graduated this run |
 
 **Routed the same sitting** (batch approved): the `out-of-scope.md` payments row
 resolves — `deferred — roadmap candidate, Phase 2 hint` becomes
@@ -43,6 +43,11 @@ epic.
   model with two roles. Had neither existed, the honest output would have been
   the declared absence, not an Authentication row written because the checklist
   named one.
+- **E-01 is the ground-class's worked case.** Both its citations are
+  `[inferred]` — the *own*-scoped capability and the role model imply accounts;
+  no estate line states them — so the row is `inferred`. It is legal and
+  visibly derived at once, and the allocation run reads the class one run later:
+  first-named in the advisory, never disqualified by it.
 - **E-03's Source is a capability list, not a citation of convenience.** Five
   canvas function lines resolve into this row and only this row. That is what the
   coverage-and-exclusivity pass produces: a Source cell that doubles as the

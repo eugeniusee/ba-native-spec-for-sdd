@@ -76,7 +76,9 @@ accident:
    must never chain behaviors.
 6. **"(Optional) enhancement" stories.** Excluded outright: a story or a bullet
    the brief does not ground is scope drift. **A genuinely good idea becomes a
-   routed finding or an Open Question — never silent scope.**
+   routed finding or an Open Question — never silent scope.** An adjacent
+   capability the drafting turns up goes to the brief's **Deferred** section,
+   which is its existing home.
 7. **Freestanding output shape.** Replaced: the output is the spec's §2 section,
    in the standard's shape.
 

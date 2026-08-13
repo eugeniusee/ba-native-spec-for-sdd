@@ -451,6 +451,8 @@ has "$SKILLS/ba-enter-feature/SKILL.md" "Confirmed — <date>" \
     "ba-enter-feature renders the slicing row D5 confirms (§8.4)"
 has "$SKILLS/ba-enter-feature/SKILL.md" "next free \`NNN\`" \
     "ba-enter-feature assigns the feature number (build plan §1.1)"
+has "$SKILLS/ba-enter-feature/SKILL.md" "assumptions fill unknowns *inside* the essential scope and never widen it" \
+    "ba-enter-feature's assumption posture carries the anti-completion corollary"
 has "$SKILLS/ba-enter-feature/SKILL.md" "The directory only — zero content stubs." \
     "no content stubs at Band-3 entry (D-P2-6)"
 has "$SKILLS/ba-enter-feature/SKILL.md" "In delivery" \

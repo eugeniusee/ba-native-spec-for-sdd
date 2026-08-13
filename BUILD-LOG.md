@@ -6090,3 +6090,255 @@ downstream of T-17. The Run-1 failure was a twenty-epic **roadmap**, and what
 this package changes about that roadmap is the probe posture that inflated it and
 the class that makes each row's derivation visible — not a cap on the row count,
 which no ruling states and none should.
+
+
+## Lean Scope Posture — package rebuild pass · personas · T-17 · T-18 · Tier 2 · the classed fixture · package 0.1.13 · 13 August 2026 · GREEN
+
+The follow-up the documents pass named, and it started from that pass's own list
+rather than from a sweep. `c55f56f` landed the lean scope posture in four source
+documents and left the payload untouched by its own scope; **D117** enumerated
+the compiled principle mirrors and **D118** the payload's T-17/T-18/Tier-2
+surface. This pass compiles them — **one way: the documents govern, and nothing
+was written that a ruling does not state.**
+
+**Grounding.** Elicitation v0.5's preamble (principle 4, the anchor's pinned
+text) and §5.3 step 1 (the composition clause · Deferred routing · the Presale
+anti-completion corollary) · catalogue-b6 v0.4 T-17 §2 (the Must-NOT clause and
+the ground-classed row grammar), §3, §4 steps 2–3 and §5's re-rendered rows ·
+T-18 §4 step 3 (the advisory's mechanical read) · build-log D117–D118 for the
+site list, verified against each of the above before a line moved.
+
+**Parameters, allocated from the live tree.** HEAD was `c55f56f`, the documents
+pass's own commit, so nothing needed reconciling — the remote still stands at
+`f8c4459`, three commits behind (`46d51b2` · `2ba3140` · `c55f56f` unpushed),
+which changes nothing here: the working tree is the live source and it governs. Divergences from **D121**.
+**No decision number is allocated: this pass rules nothing** — D121's ruling
+is the BA Lead's, taken mid-pass and recorded below. Every sentence it
+compiled is a sentence D9–D10 or D-B6-10–D-B6-11 already states.
+
+**Twenty payload edits, seven suite edits, every one assertion-checked** — the
+anchor found exactly once or the whole run aborts before writing. The full suite
+is **17/17 GREEN**, and red on a reverted payload at every one of the eighteen
+new assertions, which is the suite doing its job rather than agreeing with
+itself.
+
+### S1 — the two persona mirrors (D117 closed)
+
+`ba-discovery.md` and `ba-analyst.md` head their lists at **four** and carry the
+anchor. The count word was the tell D117 named, and it moved with the content it
+counts, never ahead of it. Principle 4 arrives as the **pinned text** — *the
+minimal scope that achieves the stated business goal · depth along the core
+journey, never breadth of coverage · discovery coverage-complete, composition
+lean · the two legitimacy tests · recorded breadth welcome, composed breadth
+debt* — with only the closing clause compiled per persona, exactly as principles
+1–3 were compiled before it: the discovery BA sweeps the estate exhaustively and
+composes from it leanly; the analyst's grain is the story set, composed against
+the brief's essential scope and nothing beyond it. The corpus-authoring register
+line (*consumers cite this line; none restates it*) is the one sentence that did
+**not** compile — it governs document authors, not a runtime persona, and the
+mirrors are the preamble rather than a consumer of it.
+
+**The sweep found no third mirror.** Every compiled surface that could count or
+quote the principles was read: `claude-block.md`, `AGENTS.md`, the eleven other
+personas and thirty-four skills, `quickstart.md`, `exit-test.md`, the templates,
+the cards and the status renders. The only other `principle`-numbered citation in
+the payload is `ba-t18`'s `principle 3 at phase grain`, which is untouched and
+still resolves. D117 named two; two is all there was.
+
+### S2 — T-17: the probe posture and the Source ground-class (D118, first half)
+
+The probe posture lands at **two sites and no more**, mirroring the sheet: the
+operative sentence at the candidate sweep — *a probe is a recall check against
+estate evidence, never a generator* — leading the existing *fires only where
+estate evidence grounds it* guard it strengthens, and the prohibition form as a
+new depth-boundary bullet. The never-list's standing clause (*never invents a row
+a probe suggested but no evidence grounds*) was left exactly as found: it is the
+same prohibition, already compiled, and a third statement site is how a
+prohibition starts drifting from itself.
+
+The **ground-class** compiles at four sites — the depth boundary's row grammar,
+the column-ownership table plus its phase-hint paragraph, the draft step, and the
+output grammar — carrying the notation per citation, *both classes are legal
+rows*, and the roll-up: a row is `inferred` only when every one of its citations
+is. The worked example re-renders: E-01 doubly `[inferred]`, E-03 doubly
+`[stated]`, E-07 `[stated]`, and a new bullet reading E-01 as the class's worked
+case, which is the sheet's own reading and no new world state.
+
+**The pinned output contract was checked and deliberately not moved.** §3's
+Expected-output cell gained *every citation ground-classed* inside its
+`Source (D-B6-2 grammar…)` parenthetical — and the compiled contract string has
+never carried that parenthetical: it read `· Source;` before the ruling, when the
+cell read `Source (D-B6-2 grammar)`. The pin names the **column**, not the cell's
+grammar, so the ruling passes through it by construction. Nothing followed:
+`check-spine.sh`'s character-for-character assertion stands, and the fixture's
+July-2026 composed plan was not touched.
+
+### S3 — T-18: the advisory reads the class (D118, second half)
+
+One bullet inside the scope-frame advisory, no new mechanic: a `[stated]` row
+with a hard-request citation satisfies the second legitimacy test on its face;
+`[inferred]` rows inside the boundary are the advisory's **first-named
+candidates — first-named, never disqualified**, and an inferred row the product
+cannot meet its goal without passes the first test exactly as a stated one does.
+The two tests are cited as **principle 4's** composition half and their wording
+is not touched. One clause joins the writer split — the ground-class is written
+by T-17 and only read here — which is D-B6-11's own column-ownership finding and
+the thing that keeps the class from acquiring a second author.
+
+### S4 — Tier 2: the drafting posture (D118, the drafting surface)
+
+The composition clause lands at the moment the story set is composed —
+`ba-tier2`'s *stories first* step, before the drafting module is loaded: composed
+against the brief and nothing beyond it, an adjacent capability routing to the
+brief's **Deferred** section and never becoming a story, and the Presale
+corollary in the same breath. `story-drafting.md`'s excluded behavior 6 already
+sent a good idea to a routed finding or an Open Question; it now names the ruled
+destination for the adjacency case beside them — the module is where a drafter
+stands when adjacency appears, and the skill carries the framing. Two halves of
+one clause, not one clause twice. `ba-enter-feature`'s assumption-posture
+paragraph gains the corollary's own sentence: assumptions fill unknowns *inside*
+the essential scope and never widen it.
+
+### S5 — the suite, and the one defect it caught
+
+**Eighteen assertions added, none moved and none relaxed** — every one against a
+fact that became true in this pass: the count word and principle 4 on both
+personas, T-17's probe posture in both forms plus the notation, both-classes-legal
+and the roll-up, T-18's first-named-never-disqualified line and its anchor
+citation, Tier 2's three clauses, the module's destination, and
+`ba-enter-feature`'s corollary. Proven live twice over: the pass counts rose by
+exactly eighteen, and a stashed payload turned all eighteen red.
+
+`check-register.sh` caught a real defect in this pass's own prose — the new
+writer-split sentence rendered **`T-18` bare**, without its name, against §10.3
+rule 5. Fixed at the source (`T-18 — Scope allocation`) rather than by exempting
+the line, and the matching assertion moved with it. The register check earned its
+row: nothing else in seventeen checks would have seen it.
+
+### Divergences flagged
+
+**D121 · The fixture roadmap carries no ground-class, and this pass did not add
+one.** `tests/fixtures/appointment-booking/project/.specify/memory/roadmap.md`
+records the canonical 2026-07-11 decomposition — the same world the sheet's
+micro-example renders — and its eight Source cells stand in the pre-ruling
+grammar. *Resolution taken:* the **D116 precedent**, applied unchanged: a fixture
+recording a world state that predates a ruling stands as found. The sheet classes
+exactly three rows (E-01, E-03, E-07); classing the other five would mean ruling
+five derivations no document states — E-08's *canvas: Objectives O-2 —
+measurement ground* is an objective rather than a capability line, and which
+class that is, is a judgment, not a compilation. Classing only the sheet's three
+would leave the fixture internally inconsistent, which is worse than either
+whole option. **Raised as open question 1**, because the documents pass's own
+Open section names this fixture as the rebuild's *candidate check* — a roadmap
+carrying an inferred row inside the boundary that survives an allocation run.
+The fixture already **is** that case in substance: E-01 is inferred by the
+sheet's own reading, sits in MVP, and survives Allocation 1. Only the tokens are
+missing, and the five rulings are what they cost.
+
+**D121 · closed the same sitting, EK-ruled: re-render now, all eight rows.** The
+three sheet-classed rows carry their classes; the five derived ones follow the
+class definition itself — a capability line in the estate is `[stated]`,
+dependency- or probe-derived ground is `[inferred]` — with **objective-ground
+ruled `[inferred]` by definition**: an objective states a goal, not a capability,
+and the epic is derived from it. The derivations, each read off the citation it
+classes:
+
+| Row | Citation | Class | Why |
+|---|---|---|---|
+| E-01 | canvas Core Functions "Cancel own appointment" (*own* ⇒ accounts) · roles-permissions.md | `[inferred]` ×2 | sheet-classed — the *own* scoping and the role model imply accounts; no line states them |
+| E-02 | canvas: Core Functions — browse line | `[stated]` | a canvas Core Functions capability line |
+| E-02 | domain-model.md (Specialist) | `[inferred]` | an entity, not a capability; profile content and the service durations Slot length derives from are dependency ground |
+| E-03 | the five-function canvas line · processes.md booking journey | `[stated]` ×2 | sheet-classed — a capability list and a journey |
+| E-04 | canvas: Third-Party Connections | `[stated]` | a connection row, which the class definition names by name; canvas §8 states outbound mirroring directly |
+| E-04 | constraints.md §1 | `[inferred]` | a constraint — *the calendars Specialists already keep stay in place* — from which the sync need derives |
+| E-05 | canvas: Core Functions — notify line | `[stated]` | a capability line |
+| E-06 | call 2026-07-14 — clinic administrators (RO-1 deferral) | `[stated]` | the client stated the capability in the room (*"at two of the clinics an administrator maintains the calendars"*), and the canvas absorbed it into Core Functions line 7 citing that same call — an estate line stating the capability directly |
+| E-07 | out-of-scope.md payments deferred row — graduated | `[stated]` | sheet-classed |
+| E-08 | canvas: Objectives O-2 — measurement ground | `[inferred]` | **EK-ruled** — objective-ground by definition |
+
+**Row roll-ups: E-01 and E-08 `inferred`; the other six `stated`.** Two of the
+eight rows are inferred and both are legal, which is the *both classes are legal*
+sentence carrying its own worked corpus rather than a single showcase row. E-08
+also gives the class its second reading: an inferred row that sits in `Later` —
+outside any delivery boundary — is not an advisory candidate at all, which is the
+difference between the class and a verdict.
+
+**`ba-t17/references/example.md` was checked and needed nothing.** Its bullet
+reads E-01 as the class's worked case, inferred and surviving allocation
+first-named; the classed fixture confirms that reading rather than changing it.
+E-08's arrival adds no second candidate inside a boundary, and the fixture ledger
+carries no scope frame at all (D116), so the example's mechanism sentence stands
+as written.
+
+**D122 · carried, EK-ruled** — it joins D119 as the corpus's last two *three
+principles* strings, both source-document tidies for one sweep at a future
+convenient bump. No document pass runs for either now.
+
+**D123 · The ground-class token satisfies the validator's citation regex.**
+`check-band2-artifacts.py`'s `CITATION_RE` matches any bracketed run, so once
+every Source cell carries `[stated]` or `[inferred]`, a cell of **class tokens
+alone** would have passed **B75** — *every row cites its discovery ground*.
+Found while re-pointing B75's mutation anchor at the re-rendered cell.
+*Resolution taken:* the class tokens are stripped before the citation test. This
+is not a new rule and not a relaxed one — it is B75 continuing to assert exactly
+what it asserted before the grammar extended underneath it, which is the same
+discipline every suite parameter has moved under. A **34th seeded defect** was
+added to prove it: a Source cell reduced to `` `[inferred]` `` and nothing else
+now fails B75, where before this pass it would have passed. The three count
+strings moved with it, 33 → 34.
+
+**D124 · The certification manifest caught the fixture edit, as designed.**
+`expected/gate-run3.entry` pins a sha256 per estate file, and `roadmap.md`'s
+changed with the re-render — `6088…` → `0021…`. *Resolution taken:* the recorded
+hash was updated to the value the live snapshot computes, and nothing else in the
+entry moved: the diff was exactly one line, which is the manifest reporting a
+content change rather than a defect. Recorded because a golden-file edit should
+never be silent, and because it is the standing cost of touching the fixture —
+any future fixture re-render pays it again.
+
+**D122 · The Phase-2 build plan's persona row still names three principles.**
+`ba-native-spec-phase2-build-plan.md` §7's `ba-discovery` row reads *"carries the
+three doc-3 operating principles + writing-standard discipline"*. *Resolution
+taken:* left as found — source documents are read-only in this pass, and this is
+**D119's class exactly**: a source-document tidy for that document's own next
+pass, with no live consumer, since the persona it describes now carries four and
+the suite asserts it. Recorded so the two carries travel together — the Wave-2
+sequencing plan's authoring template (D119) and this row are the corpus's last
+two *three principles* strings.
+
+**Nothing else diverged.** The four D117/D118 sites were each verified against
+the source before editing and each closed. `sk_health.py` never reads the Source
+column, so **CC-H-02 compiles unchanged** exactly as the conflict scan predicted;
+the repo-side validator's `B75` (*every row cites its discovery ground*) and
+`B78` (*coverage by stem match*) both read past a leading token, so the extended
+grammar is legal to them without a parameter move. No assertion was added to the
+contract, no threshold moved, and no new phase or status value exists.
+
+### Open
+
+**The anchor's enforcement is still prose, and now it is compiled prose.** What
+this pass changes is the reach: the posture is stated where generation happens —
+the sweep, the draft step, the story set — rather than only in the preamble a
+runtime never loads. Whether a compiled sentence at the composition moment
+actually bounds a composition is a Run-2 question, and the same one the documents
+pass left open.
+
+**The erosion risk moved into the payload with the class.** `[inferred]` read as
+*suspect* is the failure mode, and the compiled surface now states the
+non-inference twice — *both classes are legal rows* in T-17, *first-named, never
+disqualified* in T-18 — with an assertion behind each. That is two sentences and
+two checks where the sheet had three sentences and none. It is better than the
+document's position and still not a compiler.
+
+**The candidate check is built.** D121 was ruled in the sitting, and the fixture
+now carries the case the documents pass named: `[inferred]` E-01 inside MVP,
+surviving Allocation 1, with a second inferred row parked in `Later` to show the
+class is not a verdict. What is checked is the grammar and the corpus; what is
+still not checked is a *run* — no test drives a decomposition and reads the class
+it wrote. That remains a Run-2 question, and a smaller one than it was.
+
+**The class now has two authors and one of them is a regex.** D123's fix means
+the validator knows the difference between a citation and a class token; nothing
+enforces that distinction inside a compiled skill, which states it in prose. If a
+third token ever joins the grammar, `GROUND_CLASS_RE` is the second place it has
+to land, and only the suite will say so.

@@ -159,6 +159,7 @@ STATUS_OK = ("Defined", "In delivery", "Delivered")
 RETIRED_RE = re.compile(r"^Retired\s+—\s+\S")
 DATE_RE = re.compile(r"\b\d{4}-\d{2}-\d{2}\b")
 CITATION_RE = re.compile(r"[\[\(][^\]\)\n]+[\]\)]|\b\w[\w-]*\.md\b|canvas\s*[:§]|→\s*[PO]-\d+")
+GROUND_CLASS_RE = re.compile(r"`?\[(?:stated|inferred)\]`?")
 MARKER_RE = re.compile(r"\[NEEDS CLARIFICATION:([^\]]*)\]")
 ALLOC_HEAD_RE = re.compile(
     r"^###\s+Allocation\s+(?P<n>\d+)\s+—\s+(?P<date>\d{4}-\d{2}-\d{2})\s+·\s+"
@@ -258,7 +259,10 @@ def sentence_count(cell: str) -> int:
 
 
 def cited(cell: str) -> bool:
-    return bool(CITATION_RE.search(cell))
+    # The Source ground-class (`[stated]` / `[inferred]`) is a class token, not
+    # a citation: a cell carrying only tokens cites nothing. Strip them before
+    # the test so B75 keeps asserting what it has always asserted.
+    return bool(CITATION_RE.search(GROUND_CLASS_RE.sub("", cell)))
 
 
 # ────────────────────────────────────────────────────────────────── roadmap ─

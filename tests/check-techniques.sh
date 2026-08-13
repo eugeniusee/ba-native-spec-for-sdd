@@ -423,6 +423,11 @@ else
   has "$AG" "Draft first, ask second." "operating principle 1"
   has "$AG" "No question without a destination." "operating principle 2"
   has "$AG" "Cited, marked, or asked — never guessed." "operating principle 3"
+  has "$AG" "Compose lean." "operating principle 4 — the lean-composition anchor"
+  has "$AG" "The four operating principles — the whole engine" \
+      "…and the list heads at four, which is what the preamble now carries"
+  has "$AG" "Recorded breadth is welcome; composed breadth is debt." \
+      "principle 4 arrives as the anchor's pinned text, not a paraphrase"
   has "$AG" "The holes in the draft *are* the questions." "principle 1's mechanism, not just its name"
   has "$AG" "You never author a \`spec.md\`" "the boundary against the analyst persona"
   has "$AG" "never write to \`.specify/aspect-state.md\`" "the boundary against the orchestrator's ledgers"

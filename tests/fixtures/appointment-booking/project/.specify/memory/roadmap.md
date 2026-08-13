@@ -4,14 +4,14 @@
 
 | ID | Epic | Description | Phase | Status | Source |
 |---|---|---|---|---|---|
-| E-01 | Accounts & Access | Clients and Specialists act under their own accounts. Covers registration, sign-in, and the role split the policy model defines. | MVP | Defined | canvas: Core Functions "Cancel own appointment" (*own* ⇒ accounts) · roles-permissions.md (Client · Specialist) |
-| E-02 | Specialist Profiles | Specialists present themselves to Clients. Covers profile content, service list, and the service durations Slot length derives from. | MVP | Defined | canvas: Core Functions — browse line · domain-model.md (Specialist) |
-| E-03 | Appointment Booking | Clients book specialists' published slots online instead of calling. Covers slot browsing, booking, cancellation, and specialist notifications. | MVP | In delivery | canvas: Core Functions — browse · book · cancel · publish · notify (`→ O-2`) · processes.md: booking journey |
-| E-04 | Calendar Sync | Appointment events reach the calendars Specialists already keep. Covers outbound event mirroring and the failure posture when a provider is unreachable. | Phase 2 | Defined | canvas: Third-Party Connections · constraints.md §1 |
-| E-05 | Notification Delivery | Clients and Specialists learn about bookings and changes without checking the product. Covers channel selection and per-event delivery. | Phase 2 | Defined | canvas: Core Functions — notify line |
-| E-06 | Clinic Administration | Clinic staff act on behalf of the Specialists they support. Covers the administrator role and the calendars it manages. | Later | Defined | call 2026-07-14 — clinic administrators (RO-1 deferral) |
-| E-07 | Online Payment | Clients pay for appointments in the product rather than at the clinic. Covers taking payment at booking; wider payment scope enters at this epic's scoping call. | Phase 2 | Defined | out-of-scope.md: payments deferred row — graduated this run |
-| E-08 | Performance Reporting | The network sees how booking is performing. Covers lost-booking, no-show, and utilisation views. | Later | Defined | canvas: Objectives O-2 — measurement ground |
+| E-01 | Accounts & Access | Clients and Specialists act under their own accounts. Covers registration, sign-in, and the role split the policy model defines. | MVP | Defined | `[inferred]` canvas: Core Functions "Cancel own appointment" (*own* ⇒ accounts) · `[inferred]` roles-permissions.md (Client · Specialist) |
+| E-02 | Specialist Profiles | Specialists present themselves to Clients. Covers profile content, service list, and the service durations Slot length derives from. | MVP | Defined | `[stated]` canvas: Core Functions — browse line · `[inferred]` domain-model.md (Specialist) |
+| E-03 | Appointment Booking | Clients book specialists' published slots online instead of calling. Covers slot browsing, booking, cancellation, and specialist notifications. | MVP | In delivery | `[stated]` canvas: Core Functions — browse · book · cancel · publish · notify (`→ O-2`) · `[stated]` processes.md: booking journey |
+| E-04 | Calendar Sync | Appointment events reach the calendars Specialists already keep. Covers outbound event mirroring and the failure posture when a provider is unreachable. | Phase 2 | Defined | `[stated]` canvas: Third-Party Connections · `[inferred]` constraints.md §1 |
+| E-05 | Notification Delivery | Clients and Specialists learn about bookings and changes without checking the product. Covers channel selection and per-event delivery. | Phase 2 | Defined | `[stated]` canvas: Core Functions — notify line |
+| E-06 | Clinic Administration | Clinic staff act on behalf of the Specialists they support. Covers the administrator role and the calendars it manages. | Later | Defined | `[stated]` call 2026-07-14 — clinic administrators (RO-1 deferral) |
+| E-07 | Online Payment | Clients pay for appointments in the product rather than at the clinic. Covers taking payment at booking; wider payment scope enters at this epic's scoping call. | Phase 2 | Defined | `[stated]` out-of-scope.md: payments deferred row — graduated this run |
+| E-08 | Performance Reporting | The network sees how booking is performing. Covers lost-booking, no-show, and utilisation views. | Later | Defined | `[inferred]` canvas: Objectives O-2 — measurement ground |
 
 ## Allocation log
 (append-only — allocation ground; D-B6-4)

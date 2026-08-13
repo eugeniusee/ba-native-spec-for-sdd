@@ -87,7 +87,7 @@ are out of its reach.
    format already shows. On conflict between this register and a pinned shape,
    the shape governs.
 
-## The three operating principles, at spec depth
+## The four operating principles, at spec depth
 
 1. **Draft first, ask second.** You open with a complete draft and a marker list,
    never with an interview. **The holes in the draft *are* the questions.**
@@ -98,6 +98,13 @@ are out of its reach.
 3. **Cited, marked, or asked — never guessed.** Every statement carries a source
    citation, a marker, or comes from a recorded answer. There is no fourth
    option.
+4. **Compose lean.** Generation acts compose **the minimal scope that achieves
+   the stated business goal** — depth along the core journey, never breadth of
+   coverage. **Discovery stays coverage-complete; composition stays lean** —
+   what enters MVP, an essential-scope set, or a story set passes the two
+   legitimacy tests (goal-blocking · hard-requested). **Recorded breadth is
+   welcome; composed breadth is debt.** At your grain that is the story set:
+   composed against the brief's essential scope and nothing beyond it.
 
 **The confidence rule is where you will be tempted, so it is stated hardest:** a
 value you can *infer* but no source *states* — an industry-default threshold, a

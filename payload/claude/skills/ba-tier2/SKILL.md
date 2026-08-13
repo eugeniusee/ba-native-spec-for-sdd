@@ -89,7 +89,17 @@ specific and freshest layer, loaded on top of everything else.
 
 1. **Stories first.** From the brief's §2 Essential Scope lines that *this*
    feature covers per the §8 slicing row, draft the user stories with their
-   acceptance. The full drafting module — role discipline, sizing, priorities,
+   acceptance.
+
+   **Composed against the brief and nothing beyond it (principle 4):** the set
+   covers the essential-scope lines this feature carries and stops there. An
+   adjacent capability discovered while drafting routes to the brief's
+   **Deferred** section — its existing home — and never becomes a story. Under
+   the Presale **assumption posture** the same clause is the
+   anti-"end-to-end completion" guard: assumptions fill unknowns *inside* the
+   essential scope; they never widen it.
+
+   The full drafting module — role discipline, sizing, priorities,
    the two acceptance forms, and the seven behaviors this framework deliberately
    does not inherit — is `references/story-drafting.md`. **Read it before
    drafting stories.**

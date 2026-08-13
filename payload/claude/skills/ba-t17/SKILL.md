@@ -79,8 +79,8 @@ else is explained.
 
 Per row: **a name (2–4 words, action-noun) · a description at the locked shape
 (the goal, then the key capabilities it covers — 2–3 sentences) · Source
-citations.** The set exclusively partitioned and coverage-complete against the
-estate's capability ground.
+citations, each carrying its ground-class.** The set exclusively partitioned and
+coverage-complete against the estate's capability ground.
 
 **Must NOT expand into:**
 
@@ -93,6 +93,9 @@ estate's capability ground.
   one epic or two, where does X live — is BA-ruled at review, or carried as
   honest description adjacency the kit generator converts into sibling-boundary
   checks.
+- **letting a probe generate a row.** The area checklist is a **recall check
+  against estate evidence, never a generator**; a row it produces on no estate
+  line is invented scope.
 - **allocating phases.** The Phase column belongs to T-18 — Scope allocation,
   and the birth value is the only value this run writes into it.
 - **restating estate content** beyond the description's 2–3 sentences. The
@@ -105,13 +108,15 @@ existence and `ID · Epic · Description · Source`, plus both birth values.**
 
 | Writer | Owns |
 |---|---|
-| **T-17 — Epics decomposition · this run** | row existence · ID · Epic · Description · Source · the birth values `Unallocated` and `Defined` |
+| **T-17 — Epics decomposition · this run** | row existence · ID · Epic · Description · Source, each citation ground-classed · the birth values `Unallocated` and `Defined` |
 | T-18 — Scope allocation | the Phase column · the `## Allocation log` |
 | the routing discipline | Status flips at band events · graduation retires |
 
 **A run needing another writer's ground proposes that run or a routed edit —
 never an inline fix.** You never pre-fill a phase: a phase hint travels in the
 Source cell, where the evidence assembly of T-18 — Scope allocation reads it.
+The ground-class travels there too: you write it, and T-18 — Scope allocation
+only reads it.
 
 ## Inputs loaded
 
@@ -141,7 +146,8 @@ The complete estate, in this order:
    core user actions · real-time · data & content · reporting · administration ·
    integrations · onboarding · settings · payments.
 
-   **A probe fires only where estate evidence grounds it.** An access epic is
+   **A probe is a recall check against estate evidence, never a generator** —
+   it fires only where estate evidence grounds it. An access epic is
    born from an *own*-scoped capability, a role model, or a sign-in function —
    never from the probe list itself. Where a probe finds nothing, **declare the
    absence**; do not fill it. An ungrounded row is invented scope.
@@ -156,6 +162,18 @@ The complete estate, in this order:
    A candidate a single user story would cover is **too small** — fold it. One
    whose essential scope exceeds a call, or would slice past ~3 features, is
    **split**.
+
+   **Every Source citation carries its ground-class.** `[stated]` where an
+   estate line states the capability directly — a canvas Core Functions line, a
+   journey, a connection row, a hard client request. `[inferred]` where the row
+   exists by dependency reasoning, or by a probe firing on indirect evidence — a
+   role model implying access, a flow that presumes accounts.
+
+   **Both classes are legal rows.** Coverage-complete stands exactly as the
+   depth boundary states it, and the class rules nothing out: it makes
+   derivation visible at birth, for the readers one run and one band
+   downstream. **A row is `inferred` only when every one of its citations is; a
+   single `[stated]` citation makes the row `stated`.**
 
 4. **Framework act — coverage & exclusivity.** The pass that makes the set a
    partition rather than a list:
@@ -205,8 +223,10 @@ The complete estate, in this order:
 **IDs are `E-<nn>`, project-numbered, stable, never reused** — briefs address
 epics by ID, and a retired row's ID retires with it.
 
-**Every row is sourced.** An epic that cites no discovery ground is invented
-scope, and the Source cell is where that claim is made checkable.
+**Every row is sourced, and every citation carries its class** — `[stated]` or
+`[inferred]`, the row rolling up to `stated` on any one `[stated]` citation. An
+epic that cites no discovery ground is invented scope, and the Source cell is
+where that claim is made checkable.
 
 **You create the `## Allocation log` heading and leave it empty** — the section
 is the ground of T-18 — Scope allocation, and its absence would leave the next

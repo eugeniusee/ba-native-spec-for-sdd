@@ -132,6 +132,7 @@ context stack, drafts first, and runs the guided-question loop under the cap.
 **Under Discovery** it submits to `/ba-gate <NNN>`.
 
 **Under Presale** it runs in **assumption posture**: draft-and-mark is unchanged,
+**assumptions fill unknowns *inside* the essential scope and never widen it**,
 and the gap questions that cannot reach the client are offered as **one
 BA-confirmed deferral batch** — the framework proposes the client-unreachable
 subset, the BA confirms, edits, or dissolves it in a single act, never

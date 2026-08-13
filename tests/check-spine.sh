@@ -12,7 +12,7 @@
 #   2.  T-17 + T-18 land roadmap.md in the shape the sheets pin
 #   3.  Tier 1: the kit's caps and tags, and the brief the ingestion produced
 #   4.  Tier 2: spec r5 against the answer sheet — cap, anchors, cite-or-mark
-#   5.  33 seeded defects, one per rule — the suite is not vacuous
+#   5.  34 seeded defects, one per rule — the suite is not vacuous
 #   6.  /ba-run dispatch: the interface the four skills implement, both ends
 #   7.  the compiled sheets' locked content — depth boundaries, refusals, splits
 #   8.  the analyst agent, and the three personas' boundaries against each other
@@ -255,7 +255,7 @@ has "$R5" "Cancellation inside 24h of start_time keeps the Slot unavailable for 
 
 # ── 5. the seeded defects — one per rule ─────────────────────────────────────
 
-printf '\n▸ 33 seeded defects — the suite is not vacuous\n'
+printf '\n▸ 34 seeded defects — the suite is not vacuous\n'
 
 # roadmap · T-17 side
 mutate "$RM" "$M/b71.md" "## Allocation log" "## Log"
@@ -268,11 +268,13 @@ mutate "$RM" "$M/b73.md" "| E-08 | Performance Reporting |" "| E-8 | Performance
 neg "roadmap: an ID off the E-<nn> grammar"       B73 --roadmap "$M/b73.md"
 mutate "$RM" "$M/b74.md" "| E-05 | Notification Delivery |" "| E-05 | Notifications |"
 neg "roadmap: a one-word epic name"               B74 --roadmap "$M/b74.md"
-mutate "$RM" "$M/b75.md" "canvas: Objectives O-2 — measurement ground" "—"
+mutate "$RM" "$M/b75.md" "\`[inferred]\` canvas: Objectives O-2 — measurement ground" "—"
 neg "roadmap: a row that cites no ground"         B75 --roadmap "$M/b75.md"
+mutate "$RM" "$M/b75b.md" "\`[inferred]\` canvas: Objectives O-2 — measurement ground" "\`[inferred]\`"
+neg "roadmap: a Source cell of class tokens only" B75 --roadmap "$M/b75b.md"
 mutate "$RM" "$M/b76.md" "| MVP | In delivery |" "| MVP → Phase 2 | In delivery |"
 neg "roadmap: span notation in a Phase cell"      B76 --roadmap "$M/b76.md"
-mutate "$RM" "$M/b77.md" "| Later | Defined | canvas: Objectives O-2" "| Later | Planned | canvas: Objectives O-2"
+mutate "$RM" "$M/b77.md" "| Later | Defined | \`[inferred]\` canvas: Objectives O-2" "| Later | Planned | \`[inferred]\` canvas: Objectives O-2"
 neg "roadmap: a status outside the vocabulary"    B77 --roadmap "$M/b77.md"
 mutate "$CV" "$M/b78-canvas.md" "Notify the Specialist of bookings and cancellations" \
                                  "Export monthly ledgers to the finance office"
@@ -434,6 +436,16 @@ printf '\n▸ The compiled sheets: depth boundaries, refusals, the writer split\
 # T-17: question-free, no phases, no slicing
 has "$T17" "This run is question-free." "T-17 is question-free — the estate is the input"
 has "$T17" "one epic = one scoping call and 1..N features" "…and carries the sizing test verbatim"
+has "$T17" "A probe is a recall check against estate evidence, never a generator" \
+    "…and states the probe posture in its operative step"
+has "$T17" "letting a probe generate a row." \
+    "…and again in prohibition form, on the depth boundary"
+has "$T17" "Every Source citation carries its ground-class." \
+    "T-17 writes the Source ground-class it owns"
+has "$T17" "Both classes are legal rows." \
+    "…with both classes legal — coverage-complete untouched by the class"
+has "$T17" "A row is \`inferred\` only when every one of its citations is; a single \`[stated]\` citation makes the row \`stated\`." \
+    "…and the row-level roll-up that makes the class mechanically readable"
 has "$T17" "never writes the Phase column beyond the birth value" "…never writes T-18's column"
 has "$T17" "Capability *placement* is epic grain here; capability *slicing* is the brief's." \
     "…and states the placement-vs-slicing line"
@@ -446,11 +458,17 @@ has "$T18" "Every approved run logs, including no-change" "…and logs a no-chan
 has "$T18" "\`Later\` is a phase, not an exit" "…and refuses to phase an epic out of existence"
 has "$T18" "Never numeric estimation" "…and keeps effort comparative"
 has "$T18" "recommends the call — never the answer" "…and refers an open scope question to Tier 1"
+has "$T18" "\`[inferred]\` rows inside the boundary are the advisory's first-named candidates — first-named, never disqualified:" \
+    "T-18's advisory reads the class — first-named, and never disqualified by it"
+has "$T18" "the composition half of **principle 4**" \
+    "…citing the anchor rather than restating it"
 
 # the writer split, stated on both sides
 has "$T17" "one file, three writers" "T-17 states the shared-file write discipline"
 has "$T18" "one file, three writers" "…and so does T-18, from its own side"
 has "$T18" "proposes that run or a routed edit — never an inline fix" "…with the no-inline-fix rule"
+has "$T17" "The ground-class travels there too: you write it, and T-18 — Scope allocation only reads it." \
+    "…and the class falls on T-17's side of the split, read-only on T-18's"
 
 # Tier 1: the two guards, verbatim, and the caps
 has "$TI1" "If you can cite a source line, the question is illegal — cite the line in the
@@ -472,6 +490,14 @@ has "$TI2" "7 per feature by default, BA-adjustable per feature" "…and D7's ca
 has "$TI2" "is drafted **and marked**" "…and the confidence rule"
 has "$TI2" "It is a thin brief." "…and diagnoses overflow as a thin brief, not a long interrogation"
 has "$TI2" "governance wins always" "…and holds the definitions precedence"
+has "$TI2" "Composed against the brief and nothing beyond it (principle 4)" \
+    "…and composes the story set against the brief's essential scope, and stops"
+has "$TI2" "routes to the brief's **Deferred** section" \
+    "…routing an adjacent capability to Deferred, never into a story"
+has "$TI2" "assumptions fill unknowns *inside* the essential scope; they never widen it" \
+    "…and carries the Presale anti-completion corollary"
+has "$SKILLS/ba-tier2/references/story-drafting.md" "goes to the brief's **Deferred** section" \
+    "the story module names the same destination at the moment adjacency appears"
 has "$SKILLS/ba-tier2/references/story-drafting.md" "the role is verbatim from the governance file" \
     "the story module hardens the role rule"
 has "$SKILLS/ba-tier2/references/story-drafting.md" "never silent scope" \
@@ -493,6 +519,10 @@ has "$ANALYST" "never author a discovery artifact" "the analyst never authors di
 has "$ANALYST" "You never evaluate your own spec" "…and never judges its own output"
 has "$ANALYST" "Unmarked inference is the one failure no rule downstream catches" \
     "…and names the residual risk it owns"
+has "$ANALYST" "The four operating principles, at spec depth" \
+    "…heads its principle list at four, as the preamble now does"
+has "$ANALYST" "Recorded breadth is welcome; composed breadth is debt." \
+    "…and carries the anchor's pinned text at spec grain"
 has "$ANALYST" "the §6 status write-back is your one permitted brief edit" \
     "…and its single permitted edit outside the spec"
 has "$AGENTS/ba-discovery.md" "You never author a
@@ -529,7 +559,7 @@ done
 
 printf '\n  passed: %s   failed: %s\n' "$PASSED" "$FAILED"
 if [ "$FAILED" -eq 0 ]; then
-  printf '✓ GREEN — S8 Band 2 + spine: T-17 · T-18 · Tier 1 · Tier 2 · ba-analyst · 33 seeded defects\n'
+  printf '✓ GREEN — S8 Band 2 + spine: T-17 · T-18 · Tier 1 · Tier 2 · ba-analyst · 34 seeded defects\n'
   exit 0
 fi
 printf '✗ RED — %s check(s) failed\n' "$FAILED"

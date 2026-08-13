@@ -117,7 +117,8 @@ side.
 ## The write discipline — one file, three writers
 
 **Yours are the Phase column and the `## Allocation log`.** Row existence, ID,
-Epic, Description and Source belong to T-17 — Epics decomposition; Status flips
+Epic, Description and Source — the citations' ground-class included — belong to
+T-17 — Epics decomposition; Status flips
 are the routing
 discipline's. A run needing another writer's ground **proposes that run or a
 routed edit — never an inline fix.**
@@ -172,6 +173,13 @@ line in the roadmap.
      delivery boundary** without a trace to either legitimacy test — the product
      cannot meet its business goal without it, or the client hard-requested it
      in the docs — and say what is missing.
+   - *The class reads mechanically.* A `[stated]` row carrying a hard-request
+     citation satisfies the second test on its face. **`[inferred]` rows inside
+     the boundary are the advisory's first-named candidates — first-named,
+     never disqualified:** an `[inferred]` row the product cannot meet its goal
+     without passes the first test exactly as a stated one does. The two tests
+     are the composition half of **principle 4**; the class makes them
+     checkable at the row, and settles nothing on its own.
    - *With `Capacity check: on`,* add the rough comparison, explicitly
      assumption-grade: `MVP phase ≈ <n> eng-h against capacity ≈ <m> — rough,
      assumption-grade. Slide-down candidates: <epics>.` With the check `off` the
