@@ -6342,3 +6342,248 @@ the validator knows the difference between a citation and a class token; nothing
 enforces that distinction inside a compiled skill, which states it in prose. If a
 third token ever joins the grammar, `GROUND_CLASS_RE` is the second place it has
 to land, and only the suite will say so.
+
+
+---
+
+## Source Inventory at Frame — documents-first pass, Lane B · orchestrator v0.17 · catalogue-b1 v0.5 · index v0.5 · 13 August 2026 · GREEN
+
+Run-1 field feedback, 12 August 2026, second finding: the client's ≤ $50K POC
+constraint sat in the **first message of a connected Slack channel** and was
+never read. T-01's intake works from the material *on hand* (catalogue-b1 §4
+step 1) and **nothing in the framework asked what existed beyond it**. The scope
+frame gave the constraint a home; it did not give the framework a reason to go
+looking. The ruling is the **source inventory** — a first block on the Frame
+render, capture mechanics with a pinned destination, honest dispositions for
+unreachable sources, and a ledger-head line that makes *was Slack checked?* a
+one-glance question.
+
+**Documents only, by the apply package's own scope.** Three files are edited —
+the orchestrator, catalogue-b1, and `tests/presale-path.md` (named explicitly by
+the package's §2.7 budget-conformance clause). The payload, the skills, the
+templates, `docs/quickstart.md`, `tests/exit-test.md` and `tests/layout.expected`
+are the follow-up conversation; every site they owe is enumerated in D126–D127
+below. Nothing was written that a ruling did not cover.
+
+**Code registration note** (the D-O42–D-O44 precedent, applied unchanged): the
+apply package's own task code **F-04** collides with the 7 August 2026 diagnostic
+audit's finding codes F-01…F-14 (`diagnostics/audit-stage-escape-and-planning.md`),
+so no F-code appears in this block or in the documents. The ruling is named by
+its content — *the source inventory* — and its decisions register as
+**D-O45–D-O49 · D-B1-6**, each block contiguous from the live high-water mark
+read in the file. No code is reused.
+
+**Parameters, allocated from the live tree.** HEAD is `75f3630` (package 0.1.13).
+The D-O high-water mark 44 → the contiguous block **D-O45–D-O49** · D-B1 5 →
+**D-B1-6** · divergences from **D125**. Versions were proposed, not stamped, so
+the pass ran to its deliverable with no edition number and no review-record
+section written, and one suite parameter deliberately red (D125) rather than
+quietly relaxed.
+
+**Proposed, then stamped in the same sitting** (the scope-frame precedent). The
+BA Lead confirmed both surfaced judgement calls on the spot — **the correction
+stop is P-O0b re-taken, no new prompt point** · **`sources/` is placement only,
+captures never join the CC-H-01 estate, the carve-out stands as written** — and
+added one line to the D-O49 record: since P-O0b sits on the never-AUTO safety
+floor, **the correction stop is BA-only under autonomy by composition**, so the
+contradiction case can never be AUTO-accepted and no §10.7 policy row is needed.
+The stamp followed: orchestrator **v0.17** (§21 review record, five rows) ·
+catalogue-b1 **v0.5** (D-B1-6) · index **v0.5**, regenerated with all 18 rows
+unchanged. `VERSION` and the payload are untouched; the package rebuild is still
+the follow-up conversation.
+
+### S1 — the orchestrator §8.1 (D-O45 · D-O46 · D-O47 · D-O49)
+
+§8.1 gains the **source inventory** as the Frame render's pinned first block,
+ahead of the picker and the frame, with the act sentence moved from two pinned
+blocks to three. **One render, one reply** extends from D-O42's two blocks to
+three: the BA answers sources, profile and frame in one reply, Frame still costs
+**one** interaction, and D-O33's ≤ 8 budget with its slack is untouched. The
+reply itself may carry sources — pasted content and attachments capture like a
+read channel.
+
+**Capture mechanics (D-O46).** Reachable → read bounded by what the BA named,
+**captured verbatim into a source artifact**, then mined under cite-or-mark;
+extraction is capture, never interpretation, and the artifact — not the live
+channel — is the citation ground. Unreachable → said plainly, with three
+dispositions the **BA** rules: `supply` · `skipped — <reason>` (the `N/A`
+pattern at source grain) · `named — pending` (a visible hole, Frame proceeds).
+Silence resolves nothing.
+
+**Capture destination (D-O47).** The corpus was searched first, as the package
+required: **no home existed.** D-O19's clause names captured client material as
+Tier-1's notes input, and every catalogue sheet reads *presale material and
+transcripts on hand* as supplied — never from a path. So one is pinned on the
+canvas precedent: **`sources/` at repo root**, deliberately outside
+`.specify/memory/`, one artifact per capture named for its origin. **Placement
+only** — the block says so explicitly, because the canvas precedent carries
+estate membership the capture must not inherit: no assertion reads `sources/`,
+and CC-H-01's glob (`.specify/memory/*`, `canvas.md`, `constitution.md`) is
+untouched.
+
+**The correction stop (D-O49).** Auto-pickup runs on the material on hand *at
+render time*; sources named in the reply are captured *after* it. Where a capture
+contradicts or fills a frame value the BA just confirmed — the Run-1 case exactly
+— the framework renders a correction proposal and **re-takes P-O0b**. That
+resolution is deliberate and is the pass's one judgement call: §10.1 says
+*nothing outside this table interrupts the BA*, so a new stop needed either a new
+prompt point or an existing one. The frame is switchable at any time and its
+switch is already a P-O0b act with a logged `scope-frame` event — so the
+correction **is** P-O0b, taken a second time. No P-O row was invented, and the
+stop rides the budget's slack (7 + 1). Consistent captures produce no stop.
+
+**Late sources (D-O49).** Zero new machinery, as ruled: content routes through
+doc 3 §3.5's existing ingestion; a budget- or scope-shaped finding fires the
+scope-frame-change proposal (D-O43) and its T-18 trigger (D-B6-7). Both cited,
+neither re-legislated.
+
+### S2 — the orchestrator §2.4 (D-O48)
+
+The head gains a sixth Frame-time line, `Sources:`, placed **between `Profile:`
+and `Boundary:`** — D-O43's scope-frame group stays contiguous and D-O38's
+`Auto:`-after-`Profile:` ordering still holds (`check-auto`'s ordering probe is
+green). The state vocabulary is closed at four: `captured <date>` ·
+`named — pending` · `skipped — <reason>` · `none`. The ruling required an Events
+entry *per the existing grammar* without naming a shape, so the scope-frame
+switch line was mirrored at source grain —
+`<date> · source · <name> · <state> · <BA initials> — <basis>` — and the exhibit
+carries a populated example. §10.3 rule 8's pinned-formats list and §11's Frame
+binding row extend in step, the way every prior pinned shape has.
+
+### S3 — T-01, catalogue-b1 (D-B1-6)
+
+Inputs only, as ruled. §4 step 1 states that captured source artifacts join the
+material on hand, read like a supplied transcript and **cited by artifact, never
+by the live channel**; §8's build hook names `sources/` in its inputs list. The
+boundary is stated once and only once: the inventory is **Frame-act ground and
+never this run's** — T-01 neither names a source nor rules a disposition, and the
+no-question-loop rule of its §2 Depth cell is untouched. No procedure step, no
+section, no line-ID scheme, no AT hook and no micro-example moved.
+
+### S4 — budget-document conformance (`tests/presale-path.md`)
+
+The package's §2.7 asked for the correction stop **without a numbered
+interaction**, or a numbered question. It went in cleanly: interaction 1's text
+gains the inventory block and the disposition set, and the correction stop lands
+as an italic note inside that section. `check-budget.sh` counts
+`^## Interaction <n>` headings and still reads **8 ≤ 8**. Interaction 8's slack
+now names its third consumer, and the Green-when line asks for the `Sources:`
+line. No question was needed.
+
+### Test run — 16 of 17
+
+`check-m` 40/0 · `check-gate` 59/0 · `check-techniques` 104/0 ·
+`check-techniques2` 122/0 · `check-techniques3` 158/0 · `check-spine` 174/0 ·
+`check-register` 62/0 · `check-wbs` 62/0 · `check-status` 94/0 · `check-auto`
+93/0 · `check-budget` 37/0 — **the Presale path still 8 ≤ 8** · `check-ledger`
+grammar-legal, 14 rules, no violations · `check-cards` every card byte-identical
+to its re-derivation · `check-orchestrator` **156/0** at the stamp (152/1 before
+it) · `check-install` 64/0 · `check-exit --offline` all ten steps · `check-layout`
+GREEN at the full §1.1 tree, run against a fresh `install.sh` into an empty git
+repo — the source tree is not an installed project, so a bare run of it reports
+86 unmet on any commit, this one included. **Zero red, nothing skipped**, the
+three install-based runs included.
+
+### The records, where they landed
+
+Written as drafted, so they are not restated here — reference-never-restate, the
+discipline the corpus applies to its own log. **Orchestrator §21 (v0.16 →
+v0.17)** carries D-O45–D-O49 with the *what did not move* paragraph and the
+conflict scan against contract v0.2 · gate v0.6 · elicitation v0.5 · standard
+v0.3 · catalogues b1 v0.5, b2–b5 v0.2, b6 v0.4. **Catalogue-b1's Review record
+(v0.4 → v0.5)** carries D-B1-6 with its own scan. Two notes on what the stamp
+added beyond the draft:
+
+**D-O49 gained the autonomy line, EK-ruled.** *Since P-O0b sits on the never-AUTO
+safety floor (§10.7 · §4.4, D-O42), the correction stop is BA-only under autonomy
+**by composition** — the contradiction case can never be AUTO-accepted.* It is a
+derivation, not a new reservation: no §10.7 policy row was added, no floor act
+was added, and `check-auto`'s four-act sweep across 76 files is green unchanged.
+The line was put in the record rather than in §8.1 because the ruling named the
+record, and because a rule that derives from the floor should be read where the
+floor's consequences are already argued.
+
+**The index changed no cell, and says so.** D-B1-6 moves T-01's §4 step 1 and its
+§8 build hook — procedure and build-brief ground — while the index carries §2
+metadata + §3 contract only. Its footer states the reasoning rather than leaving
+an unexplained version bump: the captured artifacts are an **input**, and T-01's
+Destination file is still `canvas.md`. All 18 rows unchanged, the v0.2 precedent.
+
+**Elicitation stayed untouched, and needed no cite.** D-O19's captured-material
+clause lives in orchestrator §6.5; the destination is stated once in §8.1 and
+cited from T-01's inputs, exactly as the package directed; §3.5's ingestion is
+consumed by reference for late sources. Nothing there was re-legislated.
+
+### Divergences
+
+**D125 · The D-O block runs 1…49 while the review record stops at D-O44.**
+`check-orchestrator.sh` asserts contiguity against a hard-coded
+`set(range(1, 45))`, and the header assertion pins the live edition at `v0.16`.
+The apply package rules *propose, do not stamp*, so the body cites `D-O45`–`D-O49`
+and no §21 review record exists to hold them. **This is D103's case, repeated
+exactly.** *Resolution taken:* held red through the deliverable rather than
+relaxed, then **closed at the stamp** — §21 landed with its five rows, the
+header, change record and footer took v0.17, and the bound moved
+`range(1, 45)` → `range(1, 50)`. The assertion was never relaxed to buy a green
+board; it went green because the thing it asserts became true. Three assertions
+were **added** in the same edit rather than merely retargeted: the §21 section
+inventory entry, `v0.16` joining the edition stack the header check vacates, and
+`D-O45–D-O49` as the named ruling block — so the suite now holds five editions
+and five ruling blocks, not four.
+
+**D126 · `sources/` is a new runtime-born path and `tests/layout.expected` has
+no row for it.** The file enumerates the installed tree and asserts runtime-born
+paths **absent** on a fresh install (D-P2-6) — `RT|absent|canvas.md|◇ T-01
+(Frame)` is the precedent this one follows exactly. *Resolution taken:* left as
+found — `layout.expected` is a test file and this pass is documents-only. The
+rebuild pass owes one row: `RT|absent|sources|◇ /ba-frame source inventory
+(orchestrator §8.1)`. Recorded because a pinned home with no layout row is a hole
+that only shows up as a green board.
+
+**D127 · Three carriers still say the Frame render is two blocks answered in one
+reply.** Enumerated so the rebuild pass has the list rather than a search:
+`payload/claude/skills/ba-frame/SKILL.md` (three lines — the one-render-one-reply
+paragraph at 54–55 and the checkpoint paragraph at 67, plus the pinned block
+itself and the head shape) · `docs/quickstart.md:73` (*"you answer both in one
+reply"*) · `tests/exit-test.md:87`. The head-shape carriers owing a `Sources:`
+line are three: `payload/claude/skills/ba-frame/SKILL.md` ·
+`payload/claude/skills/ba-status/SKILL.md` ·
+`payload/specify-overlay/ba/templates/aspect-state.md`. *Resolution taken:* left
+as found — payload, quickstart and the exit script are the follow-up
+conversation's ground by the package's own scope line. None is stale against a
+*ruled* document until the stamp lands.
+
+**D128 · The fixture ledger will carry no `Sources:` line, by the D116
+precedent.** `tests/fixtures/appointment-booking/band1/aspect-state.md` records a
+July-2026 engagement: there was no inventory to take, and `check-ledger.py`'s L1
+requires the four standing head lines, not the optional ones — it runs green
+against the fixture unchanged, and did in this pass. *Resolution taken:* the
+`Auto:` and scope-frame precedent, applied unchanged. A fixture claiming sources
+nobody inventoried would be a worse record than one that does not mention them.
+Recorded so the rebuild pass does not "fix" it.
+
+**Nothing else diverged.** The corpus was swept for an existing captured-material
+home before `sources/` was pinned, as the package required, and the negative
+result is what D-O47 rests on. `check-budget` absorbed the correction stop with
+no numbered interaction, so §2.7's escape hatch went unused. CC-H-01's glob, the
+P-O table, the four-act safety floor, the ≤ 8 budget, T-01's depth rule and the
+13-section canvas shape are each untouched, and no assertion was added anywhere.
+
+### Open
+
+**The inventory asks; nothing makes the framework able to answer.** Whether a
+named Slack channel is *reachable* is a runtime fact about the installed
+integrations, and the documents can only say what to do in each branch. The
+honest reading is that D-O46's unreachable branch will be the common one for a
+while, and its value is the recorded disposition, not the capture.
+
+**`sources/` is pinned by prose and nothing enforces it.** No assertion reads the
+directory — deliberately, since the package forbade new assertions — so a capture
+written somewhere else fails no check. The `Sources:` line is the only place a
+missing capture becomes visible, and only to a reader.
+
+**The correction stop's fit to P-O0b is a reading, not a ruling.** It is the
+resolution that invents no prompt point and satisfies §10.1's *nothing outside
+this table* clause, and the BA Lead should see it named as a choice: the
+alternative was a `P-O0c` row, which would have been a new prompt point the
+package did not rule.

@@ -56,10 +56,18 @@ inside eight. Whether a live agent holds it is what the agent run answers.
 The ledgers initialize, `Profile: Presale` lands in the head, the **scope frame**
 is set, and the canvas is confirmed or drafted.
 
-The profile picker and the scope-frame block render **together, as one stop**
-(D-O42). Auto-pickup pre-fills the frame's values with their citations from the
-material on hand — delivery boundary, budget envelope, client label, the
-parameters — and the BA answers both blocks in **one reply**. `Boundary:`,
+The render's **first block is the source inventory** (D-O45): what is on hand,
+then *anything else?* — Slack channels, email threads, drive folders, call
+recordings — named, pasted, attached, or `none`. Sources the framework can reach
+are captured verbatim under `sources/`; ones it cannot take a BA disposition —
+**supply · skip · pending** — and every named source lands on the head's
+`Sources:` line with its state.
+
+The source inventory, the profile picker and the scope-frame block render
+**together, as one stop** (D-O42, extended by D-O45). Auto-pickup pre-fills
+the frame's values with their citations from the material on hand — delivery
+boundary, budget envelope, client label, the parameters — and the BA answers all
+three blocks in **one reply**. `Boundary:`,
 `Budget:`, `Client label:`, `Parameters:` and the derived `Capacity:` line land
 in the head beside `Profile:`. The frame is a safety-floor act: no autonomy
 grant ever takes it (§10.7), so it is a BA interaction in every mode — this one.
@@ -68,11 +76,19 @@ Under Presale the canvas confirms as **one artifact-level batch** — one confir
 per artifact, never per section (D-O14 profile default), so the drafting does
 not spend the budget a section at a time.
 
+*Note — the conditional correction stop is not a ninth act.* Where a capture
+contradicts or fills a frame value the BA just confirmed — the documents say
+`none stated`, Slack says ≤ $50K — the framework renders the correction proposal
+and **re-takes P-O0b**, the frame's own switch act. That is one stop, drawn from
+interaction 8's slack (7 + 1), and it fires only on a contradiction: captures
+consistent with the frame produce no stop at all.
+
 The framework then renders the route. The render is not an interaction.
 
-**Green when:** the head reads `Profile: Presale` and carries the five
-scope-frame lines, `canvas.md` is present, one reply answered both blocks, and a
-route render in the §10.6 shape has been emitted.
+**Green when:** the head reads `Profile: Presale`, carries the five scope-frame
+lines and a `Sources:` line with a state per named source, `canvas.md` is
+present, one reply answered all three blocks, and a route render in the §10.6
+shape has been emitted.
 
 ---
 
@@ -157,8 +173,9 @@ render after their epic's story rows, and the estimate columns are empty.
 
 Held deliberately unspent. The budget carries one interaction of slack for the
 correction the route did not anticipate — a struck row that should have stayed,
-a defer that should have been asked. A path that needs a ninth act has spent the
-slack and failed the budget.
+a defer that should have been asked, the Frame correction stop where a capture
+contradicts the scope frame (D-O45 · D-O49). A path that needs a ninth act has
+spent the slack and failed the budget.
 
 ---
 

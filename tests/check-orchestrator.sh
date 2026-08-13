@@ -519,7 +519,7 @@ printf '\n▸ The section inventory — every section the corpus references exis
 RULES_DOC="$PKG_ROOT/docs/methodology/ba-native-spec-orchestrator-rules.md"
 for sec in "### 7.5 Plan-as-route" "### 10.6 The route render" "## 18. Review record" \
            "### 4.4 The autonomy grant" "### 10.7 Autonomous mode" "## 19. Review record" \
-           "## 20. Review record"; do
+           "## 20. Review record" "## 21. Review record"; do
   grep -qF -- "$sec" "$RULES_DOC" \
     && ok "the document carries \`$sec\`" \
     || bad "the document is missing \`$sec\` — referenced but absent"
@@ -536,17 +536,19 @@ has "$RULES_DOC" "v0.14" "…and the edition WS-3 produced"
 has "$RULES_DOC" "D-O35–D-O39" "…and the WS-3 ruling block"
 has "$RULES_DOC" "D-O40–D-O41" "…and the two locked amendments it carries"
 has "$RULES_DOC" "v0.15" "…and the edition the scope frame produced"
-head -2 "$RULES_DOC" | grep -q 'v0\.16' \
-  && ok "the header states the live edition — v0.16, the four-act floor row" \
-  || bad "the header does not name v0.16: the edition and the change record disagree"
-has "$RULES_DOC" "D-O42–D-O44" "…and the change record names the scope-frame ruling block"
+has "$RULES_DOC" "D-O42–D-O44" "…and the scope-frame ruling block"
+has "$RULES_DOC" "v0.16" "…and the edition the four-act floor row produced"
+head -2 "$RULES_DOC" | grep -q 'v0\.17' \
+  && ok "the header states the live edition — v0.17, the source inventory" \
+  || bad "the header does not name v0.17: the edition and the change record disagree"
+has "$RULES_DOC" "D-O45–D-O49" "…and the change record names the source-inventory ruling block"
 
 # the ruling block is contiguous from the live high-water mark: no gap, no reuse
-python3 - "$RULES_DOC" <<'PYX' && ok "the D-O block runs 1…44 with no gap and no skipped number" \
+python3 - "$RULES_DOC" <<'PYX' && ok "the D-O block runs 1…49 with no gap and no skipped number" \
   || bad "the D-O decision block is not contiguous — a number is missing or reused"
 import re, sys
 seen = {int(n) for n in re.findall(r"D-O(\d+)", open(sys.argv[1], encoding="utf-8").read())}
-sys.exit(0 if seen == set(range(1, 45)) else 1)
+sys.exit(0 if seen == set(range(1, 50)) else 1)
 PYX
 
 # ── 7. layering — no methodology leaks into the payload ──────────────────────
