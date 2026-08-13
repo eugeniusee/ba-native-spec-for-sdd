@@ -26,6 +26,10 @@ the composition appends.
   **P-O0 — flow-profile selection** was never taken; stop and name `/ba-frame`.
   The snapshot filters by profile and cannot render without one. Never pick a
   profile here, and never assume Discovery.
+- **The scope frame must be on record.** No `Boundary:` line in the ledger head →
+  **P-O0b — scope-frame selection** was never taken; stop and name `/ba-frame`.
+  With the substrate, the profile and the scope frame in place, and not before,
+  the root is openable. Never set a frame here.
 - **The suggestion is advisory, never a restriction.** The decision is *BA
   planning, LLM assists*: you suggest a recommended technique set and sequence
   from the evidence; the BA composes the real plan.

@@ -1,6 +1,6 @@
 ---
 name: ba-frame
-description: Band-1 entry. Initializes the two aspect ledgers at six untouched aspects, takes the flow-profile pick at P-O0 - flow-profile selection before any aspect opens, confirms the presale canvas is present and carried into the repo, and runs T-01 - Discovery canvas framing to produce one when it is absent. The birth act for .specify/aspect-state.md and .specify/aspect-plans.md; after it, the Stakeholders aspect is openable.
+description: Band-1 entry. Initializes the two aspect ledgers at six untouched aspects, takes the flow-profile pick at P-O0 - flow-profile selection and the scope frame at P-O0b - scope-frame selection in one render before any aspect opens, confirms the presale canvas is present and carried into the repo, and runs T-01 - Discovery canvas framing to produce one when it is absent. The birth act for .specify/aspect-state.md and .specify/aspect-plans.md; after it, the Stakeholders aspect is openable.
 disable-model-invocation: true
 ---
 
@@ -11,8 +11,8 @@ from (`/ba-frame fixtures/presale-brief.md`).
 
 This is the first act of the framework in a project. It initializes the two
 aspect ledgers and establishes the **substrate**: the presale canvas that Band 1
-works over. With the substrate in place, Stakeholders — the DAG's root — becomes
-openable.
+works over. With the substrate, the profile and the scope frame in place,
+Stakeholders — the DAG's root — becomes openable.
 
 ## Invocation contract — check before you run
 
@@ -34,7 +34,7 @@ Create both from their templates, at `.specify/` top level:
 
 | File | From | Initial content |
 |---|---|---|
-| `.specify/aspect-state.md` | `.specify/ba/templates/aspect-state.md` | head: `Band: 1 (open)`; `Profile:` left for Step 2; the six-row table at `untouched`, `Since` and `Basis` empty; all four head lines `none` |
+| `.specify/aspect-state.md` | `.specify/ba/templates/aspect-state.md` | head: `Band: 1 (open)`; `Profile:` and the five scope-frame lines left for Step 2; the six-row table at `untouched`, `Since` and `Basis` empty; all four head lines `none` |
 | `.specify/aspect-plans.md` | `.specify/ba/templates/aspect-plans.md` | the eight empty sections: `## Frame`, the six aspects, `## Band 2` |
 
 Both files sit **outside `.specify/memory/`** and stay there. Orchestration state
@@ -49,10 +49,23 @@ The six rows are always these six, in DAG order:
 Stakeholders · Context · Value · Vision · Solution · Requirements
 ```
 
-## Step 2 — P-O0 (flow-profile selection): pick the profile
+## Step 2 — P-O0 (flow-profile selection) + P-O0b (scope-frame selection)
 
-**A full checkpoint: render, then stop.** The profile is picked here, **before any
-aspect opens**. Render the picker, exactly:
+**One render, one reply.** The profile picker and the scope-frame block are the
+Frame act's **single stop**. They render together and the BA answers both in one
+reply: the profile pick, then the frame confirmed or corrected. Frame costs
+**one** BA interaction, not two, and the Presale path's ≤ 8 budget stands
+unchanged.
+
+**Before you render — auto-pickup.** Scan the sources on hand — client
+documents, a Slack extract, the canvas — for budget and scope constraints, and
+**pre-fill the frame's values with their citations**. Cite-or-mark governs:
+every value carries a citation or an explicit `open — no source material`.
+Never guess a value. **`none stated` is a legal, recorded answer** for the
+envelope — it becomes a named client question, never silence.
+
+**A full checkpoint: render both blocks, then stop.** The profile and the frame
+are set here, **before any aspect opens**. Render the picker, exactly:
 
 ```
 Flow profile — pick one before any aspect opens (P-O0 — flow-profile selection):
@@ -63,8 +76,28 @@ Flow profile — pick one before any aspect opens (P-O0 — flow-profile selecti
 Waiting for your pick. Switchable later; the switch is logged.
 ```
 
-Then **stop and wait.** Do not pick. Do not default to Discovery. No aspect opens
-until the profile is on record.
+Then the scope frame, in the same render, immediately after it, exactly:
+
+```
+Scope frame — before any aspect opens (P-O0b — scope-frame selection):
+1. Delivery boundary: <phase(s) of the ladder this engagement pays for> — default MVP
+2. Budget envelope: <amount + currency> | none stated
+3. Client label: <free text — how the client names it: PoC, prototype, pilot…> [cite | BA-supplied | open — no source material]
+Parameters (defaults shown; edit or confirm):
+  Rate: $50/h · Team mix: 3 fullstack eng + 1 QA + 1 BA + 1 PM (eng-share ~60%) · Capacity check: on
+Waiting for your confirmation. Switchable later; the switch is logged.
+```
+
+Then **stop and wait.** Do not pick. Do not default to Discovery. Do not confirm
+the frame on the BA's behalf. No aspect opens until the profile and the frame
+are on record.
+
+**P-O0b (scope-frame selection) is a safety-floor act.** No autonomy grant
+reaches it, in any
+profile: the boundary and the envelope are what every later act is measured
+against, and a grant that could set them would be a run choosing its own budget.
+Under a standing grant the pre-fill still runs and the block still renders — and
+it still waits for the BA.
 
 **What a profile is (D-O14):** a **recommendation default, never a restriction**.
 It filters which techniques the suggestion snapshot surfaces as full rows, and it
@@ -103,10 +136,43 @@ profile: T-04 — Persona charters · T-07 — Competitive analysis · T-11 — 
 (conceptual) modeling · T-12 — Roles & permissions · T-13 — Core process mapping ·
 T-14 — Design & UX standards · T-15 — Constitution.
 
-Write the pick into the ledger head:
+### The frame's values — what each one is, and what reads it
+
+**The boundary accepts ladder values only** — `MVP` · `MVP + Phase 2` · … : the
+project's phase ladder, `MVP` first, numbered phases after it, `Later` as the
+open tail. **PoC and prototype are never boundary or phase values.** They live
+in Client label and nowhere else.
+
+**The machinery reads the boundary and the envelope. The label is
+communication, read by nothing.** Its landed home is the canvas —
+T-01 — Discovery canvas framing carries it into §13 Context/Constraints as a
+cited line.
+
+**Capacity — two operations, two risk classes.**
+
+- **Envelope → capacity conversion, always on.** Pure arithmetic, no judgment:
+  `envelope ÷ rate = team hours` → team mix → `× eng-share = parallel
+  engineering hours`. It restates a stated constraint in other units and lands
+  as the head's derived `Capacity:` line. **It is not estimation.** Recompute it
+  whenever the envelope or a parameter changes; render `—` where no envelope
+  stands.
+- **The capacity check — a separately removable module, default `on`.**
+  Assumption-grade rough sizing of the phase composition against capacity, with
+  exactly one consumer: T-18 — Scope allocation's advisory text. Two hard
+  limits. **Numbers appear only inside advisory prose** — never in the roadmap,
+  a WBS, a spec, or any other artifact. And **zero tentacles** — no other rule
+  depends on the module: with `Capacity check: off` the advisory degrades to its
+  number-free form and nothing else changes.
+
+Write the pick and the frame into the ledger head:
 
 ```
 Profile: <Discovery | Presale> — picked <date> (P-O0); switches append to Events with a reason
+Boundary: <ladder value(s) — MVP | MVP + Phase 2 | …> — set <date> (P-O0b); switches append to Events with a reason
+Budget: <amount + currency> | none stated  (<citation | BA-supplied | open — no source material>)
+Client label: <free text — PoC · prototype · pilot…>  (<citation | BA-supplied | open — no source material>)
+Parameters: rate <amount>/h · team mix <…> (eng-share <n>%) · capacity check <on | off>
+Capacity: ~<n> eng-h (envelope ÷ rate × eng-share) | — (no envelope)
 ```
 
 **Switching later is legal, and it is a ledger event with a reason** — never a
@@ -114,7 +180,12 @@ silent head rewrite:
 
 ```
 <date> · profile · <from → to> · <BA initials> — <reason>
+<date> · scope-frame · <from → to> · <BA initials> — <reason>
 ```
+
+**A constraint that arrives after Frame is a routed scope-frame-change
+proposal** — a new client document, a client message — never a silent edit. It
+fires T-18 — Scope allocation's scope-frame trigger.
 
 ## Step 3 — the substrate
 
@@ -150,12 +221,13 @@ Append to `## Events` in the state ledger:
 ```
 <date> · Band 1 entered · Frame · <BA initials> — canvas.md present (presale) | canvas.md produced by T-01 under {…}
   ledgers initialized: six aspects untouched · profile: <Discovery | Presale> (P-O0)
+  scope frame set (P-O0b): boundary <…> · budget <…> · label <…> · capacity <…>
 ```
 
 Then render the head (the same view `/ba-status` gives) and name the one act now
 available: **`/ba-aspect stakeholders`** — the root, whose prerequisites are
-satisfied by Band-1 entry itself. With the substrate **and the profile** in place,
-Stakeholders is openable.
+satisfied by Band-1 entry itself. With the substrate, **the profile and the
+scope frame** in place, Stakeholders is openable.
 
 ## What Frame is not
 
@@ -176,7 +248,12 @@ Frame-made stub would pollute the evidence · never runs a CC assertion · never
 re-initializes a ledger that exists · **never picks the flow profile on the BA's
 behalf, and never defaults to one** — P-O0 (flow-profile selection) is a BA act,
 and no aspect opens until the pick is on record · never treats a profile as a
-restriction: out-of-profile techniques stay electable by code.
+restriction: out-of-profile techniques stay electable by code ·
+**never sets or confirms the scope frame on the BA's behalf, and never takes
+P-O0b (scope-frame selection) under an autonomy grant** — the frame is a
+safety-floor act · never writes a capacity figure into the canvas, the roadmap,
+a WBS or any other artifact: capacity is a head line and advisory prose, nothing
+else.
 
 **Mode read (framework-wide):** before the first act of any session, read the
 aspect-state head — the Profile and Auto lines govern.

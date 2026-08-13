@@ -1,6 +1,6 @@
 ---
 name: ba-t18
-description: T-18 — Scope allocation, repeatable. Recommends a phase per epic in the four locked factors, renders the recommendation as a diff against the current allocation, and on BA approval writes the Phase cells and appends one Allocation-log entry — including on a no-change rerun. Owns the Phase column and the log, and nothing else in the roadmap.
+description: T-18 — Scope allocation, repeatable. Recommends a phase per epic in the four locked factors, renders the recommendation as a diff against the current allocation, and on BA approval writes the Phase cells and appends one Allocation-log entry — including on a no-change rerun. Reads the scope frame read-only and carries one scope-frame advisory per run; accepts BA directives, parsed into three named buckets. Owns the Phase column and the log, and nothing else in the roadmap.
 disable-model-invocation: true
 ---
 
@@ -49,6 +49,7 @@ The event set, each with its ground:
 | **post-call** | an ingestion closed: a brief newly `Scoped` or supplemented means scope knowledge changed |
 | **delivery learnings** | a cycle closed, or a gate finding named "a Band-2 allocation act" — the BA's decision to rerun, not a signal class |
 | **priority shift** | BA-declared: a sponsor or market change. The declaration itself is the trigger, and it is logged as the entry's trigger |
+| **scope-frame** | the scope frame is set or changed at P-O0b (scope-frame selection): a budget appears or changes, the delivery boundary moves, or the capacity check fails against the current composition. You **propose** the reallocation with its basis; every mechanic below is unchanged |
 
 **Never this run's ground:** feature sequencing inside a phase, and next-feature
 selection — both BA acts at the roadmap.
@@ -72,6 +73,11 @@ in the briefs, connection count, constraint load. **Never numeric estimation:**
 story points, day counts and velocity are delivery ground and deliberately not
 this technique's.
 
+**The capacity check is no exception.** Its rough sizing (P-O0b — scope-frame
+selection) lives **only in this run's advisory prose** and enters no artifact —
+not the roadmap, not a WBS, not a spec. The depth rule stands exactly as
+written.
+
 **Must NOT expand into:**
 
 - **editing rows, names, descriptions or sources.** Those columns belong to
@@ -86,6 +92,8 @@ this technique's.
 - **retiring or creating epics.** An epic leaving scope is proposed as a routed
   pair on the T-17 — Epics decomposition side — graduation reversed. **`Later`
   is a phase, not an exit.**
+- **writing a number into any artifact.** Capacity figures are advisory prose
+  and nothing else.
 
 ## The four factors — the whole rationale vocabulary
 
@@ -100,6 +108,11 @@ Every reason is tagged with the factor (or factors) that decided it:
 
 An untagged reason is not a reason. If none of the four decided it, the honest
 entry says which BA judgment did.
+
+**The budget envelope enters inside value vs. effort**, as its constraint
+ground — a reason may name it directly (`reason: envelope`). **No fifth factor
+is created:** the four above are locked, and effort already owns the constraint
+side.
 
 ## The write discipline — one file, three writers
 
@@ -125,11 +138,17 @@ line in the roadmap.
    connection rows · the journeys in `processes.md` the core value line crosses
 6. `.specify/memory/out-of-scope.md` — resolved rows carry phase hints on the
    epics they graduated into
-7. on rerun: delivery state — the roadmap statuses, and any closed cycles
+7. `.specify/aspect-state.md` — the ledger head's scope-frame fields:
+   `Boundary:` · `Budget:` · `Parameters:` · the derived `Capacity:`.
+   **Read-only.** This run never writes a ledger.
+8. on rerun: delivery state — the roadmap statuses, and any closed cycles
 
 ## Procedure
 
-1. **BA act.** Invoked on an event or by election; the trigger is named.
+1. **BA act.** Invoked on an event or by election; the trigger is named. The
+   invocation optionally carries **directives** — free text, or explicit
+   `<epic> → <phase>` moves, with reasons where the BA gives them. They are
+   parsed at step 3.
 
 2. **Framework act — evidence assembly.** The inputs above, read against the
    current allocation. State the baseline explicitly: which log entry this diff
@@ -145,6 +164,40 @@ line in the roadmap.
    Where an allocation is blocked on an open scope question, **name the question
    and the Tier-1 act that answers it.** Do not guess the answer: that is
    principle 3 at phase grain.
+
+   **The scope-frame advisory — one per run, on the record.** Visibility, never
+   a block; the BA's call stands.
+
+   - *Number-free form, always.* Name every epic sitting in a phase **inside the
+     delivery boundary** without a trace to either legitimacy test — the product
+     cannot meet its business goal without it, or the client hard-requested it
+     in the docs — and say what is missing.
+   - *With `Capacity check: on`,* add the rough comparison, explicitly
+     assumption-grade: `MVP phase ≈ <n> eng-h against capacity ≈ <m> — rough,
+     assumption-grade. Slide-down candidates: <epics>.` With the check `off` the
+     advisory stands in its number-free form and **nothing else changes.**
+
+   Its record is this run's output and the plans-file run log — **never the
+   roadmap.** That file carries outcomes and reasons only, and a capacity figure
+   written into it would breach the numbers-in-advisory-prose-only rule.
+
+   **Directed reallocation — the optional input, parsed into three buckets, each
+   named in the run output:**
+
+   | Bucket | What you do with it |
+   |---|---|
+   | **phase-shaped** — "Authentication to Phase 2", "keep all AI epics in MVP, slide the rest", "squeeze MVP to fit 40K" | Translate into a move list, **echo it back** (*"understood as: …"*), and apply it as **pinned rows tagged `BA-directed`** in the diff |
+   | **not phase-shaped** — a split, a merge, a new epic, "cut it entirely", a cost question | **Routed as proposals, never executed inline.** A set change proposes a T-17 (Epics decomposition) rerun · "cut it entirely" proposes `Later` or a retire act, the BA picking · a cost question is answered in capacity-check prose, not a diff |
+   | **impossible** — an unknown epic, an off-vocabulary phase, self-contradicting directives | **Named lines in the response**, never a silent skip |
+
+   **Never contest a directive.** Compute its consequences through the four
+   factors and render those as recommendations with reasons. A directive that
+   conflicts with a factor produces **a named advisory in the same diff — never
+   a block.** A partial directive ("X into MVP", nothing else) leaves you to
+   propose what slides down to fit.
+
+   **One run → one diff → one approval → one log entry**, whatever the input
+   shape.
 
 4. **BA act — edit and approve.** The BA edits and approves; **the approved diff
    is the ruling.** A BA edit against the recommendation is noted one line in the
@@ -171,11 +224,11 @@ line in the roadmap.
 Appended to `.specify/memory/roadmap.md` under `## Allocation log`:
 
 ```markdown
-### Allocation <n> — <date> · trigger: <post-decomposition | post-ingestion E-nn | cycle close NNN | priority shift> · BA: <name>
+### Allocation <n> — <date> · trigger: <post-decomposition | post-ingestion E-nn | cycle close NNN | priority shift | scope-frame | BA-directed> · BA: <name>
 
 | Epic | Phase | Reason |
 |---|---|---|
-| E-<nn> <name> | <from> → <to> | <factor(s)>: <reason> |
+| E-<nn> <name> | <from> → <to> | <factor(s) | BA-directed>: <reason> |
 
 Held: <unchanged rows, one line> · Basis: <one line across the four factors>
 ```
@@ -206,6 +259,8 @@ The template and a worked example are in `references/example.md`.
 - **Reopen signal** — a contradiction with gated Band-1 content. Emit and stop.
 - **Tier-1 referral** — an open scope question blocking a phase call: the
   question and the act that answers it, never a guessed answer.
+- **A directive that is not phase-shaped** — routed as a proposal, named in the
+  run output, never executed inline.
 
 ## At run end — compiled bookkeeping
 
@@ -229,7 +284,11 @@ never creates or retires an epic · never slices features · never sequences wor
 inside a phase · never estimates in numbers · never writes a span of phases ·
 never guesses past an open scope question · never skips the log entry on a
 no-change rerun · never rewrites a standing entry · never approves its own
-recommendation · never fires a health run.
+recommendation · never fires a health run · **never writes a capacity figure
+into the roadmap, a WBS, a spec or any other artifact** — the advisory's numbers
+live in its prose and nowhere else · never sets or edits the scope frame, and
+never writes a ledger · never contests a BA directive, and never executes a
+directive that is not phase-shaped inline.
 
 **Mode read (framework-wide):** before the first act of any session, read the
 aspect-state head — the Profile and Auto lines govern.

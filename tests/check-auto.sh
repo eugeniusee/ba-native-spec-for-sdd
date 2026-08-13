@@ -6,15 +6,16 @@
 # An autonomy grant moves the *moment* the BA states a decision. The whole of
 # its safety is that it never moves the *content* of one — so the assertions
 # here are almost all boundary assertions: what an AG is, where it is recorded,
-# which stops it may take, and the three acts it may never reach.
+# which stops it may take, and the four acts it may never reach.
 #
 #   1.  the grant — the AG record and the `Auto:` head line in the §2.4
 #       exhibits, the document and the shipped ledger template
 #   2.  the policy table — §10.7's operative strings compiled into the skill,
 #       the personas and the mirrors, each one named
 #   3.  the safety floor — a proximity sweep across the whole render surface:
-#       no compiled sentence AUTO-stamps a ⚑ sign-off, an effective PASS or a
-#       handoff, with a seeded control proving the sweep fires
+#       no compiled sentence AUTO-stamps a ⚑ sign-off, an effective PASS, a
+#       handoff or the scope frame, with a seeded control proving the sweep
+#       fires on each of the four
 #   4.  the resumption report — §10.7's pinned shape, extracted from the
 #       document and byte-compared against every file that renders it
 #   5.  the mode-read line — byte-identical across check-register.sh's carrier
@@ -43,16 +44,24 @@ BLOCK="$PKG_ROOT/payload/mirror/claude-block.md"
 AGENTS="$PKG_ROOT/payload/mirror/AGENTS.md"
 TPL="$PKG_ROOT/payload/specify-overlay/ba/templates/aspect-state.md"
 
-# ── the safety floor — the three acts no grant reaches ───────────────────────
+# ── the safety floor — the four acts no grant reaches ────────────────────────
 #
-# Seeded from D-O37, which names them exactly: the two ⚑ sign-offs, the
-# effective PASS, and the handoff. A sentence that carries one of these AND an
-# AUTO token is a candidate; it is a defect unless it also carries a negation.
+# Seeded from D-O37, which names the first three exactly — the two ⚑ sign-offs,
+# the effective PASS, and the handoff — and extended by D-O42, which adds the
+# scope frame (P-O0b) as the floor's fourth act. A sentence that carries one of
+# these AND an AUTO token is a candidate; it is a defect unless it also carries
+# a negation.
+#
+# The scope-frame tokens went in with the rebuild, not with the documents pass:
+# a token that can match nothing proves nothing, and until the payload carried
+# compiled scope-frame text there was nothing for them to sweep.
 FLOOR='⚑
 sign-off
 effective PASS
 /ba-handoff
-handoff'
+handoff
+scope frame
+P-O0b'
 
 # The AUTO tokens are deliberately case-sensitive. `AUTO` is the stamp keyword
 # (§10.7's grammar), and lowercase "auto" is the mode's ordinary English name —
@@ -220,7 +229,7 @@ has_joined "$GATE" "P3 ⚑, P4 approval, and handoff (§11) sit outside every AG
 
 # ── 3. the safety floor — the sweep ──────────────────────────────────────────
 
-printf '\n▸ The safety floor — no compiled sentence AUTO-stamps a ⚑ sign-off, an effective PASS or a handoff (D-O37)\n'
+printf '\n▸ The safety floor — no compiled sentence AUTO-stamps a ⚑ sign-off, an effective PASS, a handoff or the scope frame (D-O37 · D-O42)\n'
 printf '%s\n' "$FLOOR" | sed 's/^/    floor: /'
 printf '    negations: %s\n' "$NEGATION"
 
@@ -290,8 +299,8 @@ else
   grep -v '^files=' "$TMP/floor.out" | sed 's/^/      /' | head -12
 fi
 
-# the control: three seeds, one per floor act — the sweep is worth nothing
-# until each of the three is shown to trip it
+# the control: four seeds, one per floor act — the sweep is worth nothing
+# until each of the four is shown to trip it
 CTL="$TMP/ctl"
 mkdir -p "$CTL"
 ( cd "$PKG_ROOT" && tar cf - payload ) | ( cd "$CTL" && tar xf - )
@@ -306,13 +315,14 @@ SEED="$CTL/payload/claude/skills/ba-auto/SKILL.md"
   printf '\nUnder a standing grant the ⚑ sign-offs are taken AUTO (AG-1).\n'
   printf '\nThe effective PASS is stamped AUTO (AG-1) once the run is clean.\n'
   printf '\nA handoff may be AUTO-stamped when the grant covers the feature.\n'
+  printf '\nThe scope frame is set AUTO (AG-1) from the pre-filled block.\n'
 } >> "$SEED"
 
 sweep "$CTL" > "$TMP/ctl-dirty.out" 2>&1
 C_HITS="$(sed -n 's/^files=[0-9]* hits=\([0-9]*\)$/\1/p' "$TMP/ctl-dirty.out")"
-[ "${C_HITS:-0}" = "3" ] \
-  && ok "the control fires on all three floor acts — ⚑ sign-off, effective PASS, handoff" \
-  || bad "the three seeded floor breaches produced ${C_HITS:-?} hits, expected 3"
+[ "${C_HITS:-0}" = "4" ] \
+  && ok "the control fires on all four floor acts — ⚑ sign-off, effective PASS, handoff, scope frame" \
+  || bad "the four seeded floor breaches produced ${C_HITS:-?} hits, expected 4"
 
 # and the negation must still work: the same three sentences, negated, are legal
 cp "$PKG_ROOT/payload/claude/skills/ba-auto/SKILL.md" "$SEED"
@@ -330,6 +340,22 @@ has_joined "$DOC" "the **⚑ sign-offs** (CC-XA-01 authorization, CC-XA-06 the s
     "§10.7 names the four floor acts"
 has_joined "$DOC" "auto therefore terminates at **\"done, awaiting ratification\"**" \
     "…and where auto terminates per feature"
+
+# and the compiled surfaces that state the floor in full state four acts, not
+# three: a payload that named three would be describing a floor the document
+# stopped having at D-O42.
+for pair in "$AUTO|the skill" "$ORC|the orchestrator persona" \
+            "$BLOCK|the CLAUDE.md block" "$AGENTS|AGENTS.md"; do
+  f="${pair%%|*}"; label="${pair##*|}"
+  python3 - "$f" <<'PY' && ok "$label states the floor's fourth act — the scope frame" \
+    || bad "$label states the floor without the scope frame (P-O0b)"
+import re, sys
+t = re.sub(r"\s+", " ", open(sys.argv[1], encoding="utf-8").read())
+sys.exit(0 if "scope frame" in t and "P-O0b" in t else 1)
+PY
+done
+has_joined "$AUTO" "**P-O0b — scope-frame selection** | **Never AUTO — the safety floor.**" \
+    "…and the skill's policy table carries the never-AUTO row"
 for pair in "$AUTO|the skill" "$PKG_ROOT/payload/claude/skills/ba-handoff/SKILL.md|ba-handoff" \
             "$PKG_ROOT/payload/claude/skills/ba-gate/SKILL.md|the gate skill" \
             "$PKG_ROOT/payload/claude/agents/ba-gate.md|the gate persona"; do
@@ -607,7 +633,7 @@ n=0; for d in 35 36 37 38 39 40 41; do grep -qF -- "**D-O$d**" "$DOC" && n=$((n+
 
 printf '\n  passed: %s   failed: %s\n' "$PASSED" "$FAILED"
 if [ "$FAILED" -eq 0 ]; then
-  printf '✓ GREEN — autonomous mode: the AG record and the Auto head line · the §10.7 policy table on four surfaces · the safety floor swept across %s files with 3 seeded breaches · the resumption report byte-identical in 3 units · the mode read in %s carriers · the two locked amendments\n' \
+  printf '✓ GREEN — autonomous mode: the AG record and the Auto head line · the §10.7 policy table on four surfaces · the four-act safety floor swept across %s files with 4 seeded breaches · the resumption report byte-identical in 3 units · the mode read in %s carriers · the two locked amendments\n' \
     "${F_FILES:-?}" "${MR_UNITS:-?}"
   exit 0
 fi

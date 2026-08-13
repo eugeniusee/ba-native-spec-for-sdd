@@ -5629,3 +5629,223 @@ advisory text. A sweep that proves no other rule in the corpus or the payload
 reads `Capacity:` would turn the claim into a checked fact. Nothing in this pass
 proves it — the claim is a design commitment, held on the record until the
 rebuild can test it.
+
+---
+
+## The Scope Frame — package rebuild pass · payload · templates · mirrors · suite · package 0.1.12 · 13 August 2026 · GREEN
+
+The follow-up the documents pass named. `46d51b2` landed the scope frame in the
+three source documents and left the payload, the templates, the mirrors and the
+suites untouched by its own scope. This pass compiles them — **one way: the
+documents govern, and nothing was written that a ruling does not state.**
+
+**Grounding.** Orchestrator v0.15 §8.1 (the P-O0b pinned block · auto-pickup ·
+ladder-values-only · the two capacity operations), §2.4 (the head fields and the
+switch grammar), §10.1 (the P-O0b row), §10.3 rule 8, §10.7 (the never-AUTO row
+and the four-act floor), §4.4, §11 · catalogue-b6 v0.3 T-18 (D-B6-7…D-B6-9) ·
+catalogue-b1 v0.4 T-01 §4.2 (D-B1-5) · build-log D103–D110 for what was left
+here on purpose.
+
+**Parameters, allocated from the live tree.** HEAD was `46d51b2`, the documents
+pass's own commit, so nothing needed reconciling. VERSION 0.1.11 → **0.1.12** ·
+divergences from **D111**. No decision number is allocated: this pass rules
+nothing. Every sentence it compiled is a sentence D-O42–D-O44, D-B6-7–D-B6-9 or
+D-B1-5 already states.
+
+**Proposed, then stamped in the same sitting** — the documents pass's own
+pattern. The pass ran to its deliverable with the version unstamped and two
+questions open, and the BA Lead ruled both on the spot: **D113 is a carry item**,
+its BUILD-LOG flag the recorded state and no document pass now · **D115's bullet
+stands**, on a rationale the pass had not seen (below). `VERSION` took **0.1.12**
+after the rulings, not before.
+
+### S1 — `/ba-frame`: one render, one reply (D-O42 · D-O43 · D-O44)
+
+Step 2 becomes **P-O0 + P-O0b**, a single stop. The two pinned blocks are
+byte-identical to §8.1's, and they render together; the BA answers both in one
+reply. Auto-pickup goes in front of the render — scan the sources on hand,
+pre-fill with citations, cite-or-mark per value, `none stated` legal and
+recorded. Then the frame's own rules: the boundary takes **ladder values only**
+and PoC/prototype live in Client label, which the machinery reads for nothing;
+capacity is **two operations** — the always-on conversion that lands the head's
+derived line, and the separately removable, default-on check whose numbers never
+leave advisory prose. The six head lines are written from §2.4's exhibit
+verbatim, the switch grammar carries both `profile` and `scope-frame`, and the
+band event records the frame beside the profile.
+
+The never-list gains three clauses: never set or confirm the frame for the BA ·
+never take P-O0b under a grant · never write a capacity figure into an artifact.
+
+### S2 — the ledger template and the head's other renders (D-O43)
+
+`aspect-state.md` is born with the five lines beside `Profile:`, the
+`scope-frame` switch event joins the Events grammar, and the template's comment
+block carries the frame's law — ladder values, the label the machinery ignores,
+`Capacity:` as arithmetic and never estimation, the check as a removable module
+with one consumer. `/ba-status` renders the head as it now stands: the same six
+lines, byte-for-byte. The §10.4 dashboard is **untouched** — its pinned nine
+lines are a different shape and no ruling moved them.
+
+### S3 — T-18: the trigger, the advisory, the directives (D-B6-7 · D-B6-8 · D-B6-9)
+
+The C1 trigger table gains **scope-frame**. The frame joins the inputs
+**read-only**, and the envelope enters **inside value vs. effort** — the four
+factors stand, no fifth. §4 step 3 gains the **advisory in both forms**:
+number-free always, the assumption-grade capacity comparison only where the
+check is on, its record the run output and the plans-file run log and **never
+the roadmap**. Then **directed reallocation**, the three buckets in a table —
+phase-shaped moves echoed back and pinned as `BA-directed` rows, everything else
+routed as a proposal or named as impossible, and the framework never contesting
+a directive. The log grammar takes `scope-frame` and `BA-directed`, in the skill
+and in its reference example; the depth rule names the capacity check as no
+exception and the Must-NOT list gains the numbers clause.
+
+### S4 — T-01: the canvas mirror (D-B1-5)
+
+One additive clause at §4 step 2, and nothing restructured. Where a frame
+stands, its detail carries into **canvas §13** as cited lines — envelope,
+boundary, label — each with its source or an explicit `open — no source
+material`. The head holds the machine-readable summary; the canvas holds the
+cited detail. The canvas template's §13 row names the landing site, the inputs
+name the source read-only, and the never-list refuses to set or edit the frame.
+
+### S5 — the floor's fourth act, everywhere it is stated in full (D-O42)
+
+Four surfaces state the safety floor in full, and all four now name four acts:
+the `/ba-auto` skill (which also gains the **never-AUTO P-O0b policy row**), the
+orchestrator persona, the CLAUDE.md block and `AGENTS.md`. The gate-side
+surfaces are unchanged by design — `ba-gate` and `ba-handoff` name the floor
+members inside their own scope, and the frame is not a gate act. Register rule
+8's pinned-formats list gains **scope frame §8.1** in all five carriers, beside
+the profile picker it already carried. The CLAUDE.md block's `/ba-frame` row
+names both picks and the one render they share.
+
+**The mirrors' T-18 half needed nothing, and that is a finding rather than a
+skip.** The work list named the T-18 additions for the CLAUDE.md mirror, but the
+mirror carries T-18 as one namespace row — ID, name, destination — and none of
+D-B6-7…D-B6-9 moves any of the three: the technique is still `t18 · Scope
+allocation (repeatable) · memory/roadmap.md — Phase + log`. The trigger, the
+advisory and the directives are procedure, and the mirror carries no
+technique's procedure. Compiling them there would have put substance in a
+surface whose whole design is an index.
+
+### S6 — the suite, and the token that could match nothing
+
+`check-auto.sh`'s floor sweep goes from three acts to four: `scope frame` and
+`P-O0b` join the token list, the seeded control fires four breaches instead of
+three, and the negated-form control is unchanged. Five assertions are added, not
+relaxed — the four full-floor surfaces must name the scope frame, and the
+skill's policy table must carry the never-AUTO row. D110 deferred exactly this
+and said why; the compiled text it needed now exists.
+
+`docs/quickstart.md` and `tests/exit-test.md` follow the same act: Frame asks
+once for the profile and the frame together, and the exit script says which of
+its two run modes sees it.
+
+### Test run — 17 of 17
+
+`check-m` 40/0 · `check-gate` 59/0 · `check-orchestrator` 151/0 ·
+`check-techniques` 101/0 · `check-techniques2` 122/0 · `check-techniques3`
+158/0 · `check-spine` 159/0 · `check-register` 62/0 · `check-wbs` 62/0 ·
+`check-status` 94/0 · `check-ledger` grammar-legal — 14 rules, no violations ·
+`check-cards` every card byte-identical to its re-derivation · `check-layout`
+111/0/0 · `check-exit --offline` 99/0 · `check-install` 64/0 · `check-budget`
+37/0 — the Presale path still 8 ≤ 8 · `check-auto` **93/0**, up from 88 by the
+five new assertions. **Zero red, nothing skipped**, the three install-based runs
+included. The floor sweep runs at four acts across 76 files.
+
+### Divergences
+
+**D111 · The apply package names v0.1.7 as the current version; the tree reads
+0.1.11.** Three package bumps landed between the package's authoring and this
+pass — 0.1.8 (the WBS References defect), 0.1.9/0.1.10 (dashboard v2, manual-mode
+UX) and 0.1.11 (autonomous mode). *Resolution taken:* the package's own §0 rule
+governs — *live sources govern over any snapshot* — so the proposal is measured
+from the tree: **0.1.11 → 0.1.12**, unstamped, the BA Lead's to take.
+
+**D112 · The floor list is token-shaped, so "three to four" is four acts and
+seven tokens.** The instruction counts acts; `FLOOR` counts strings, and it
+already spent five on three acts (`⚑` · `sign-off` · `effective PASS` ·
+`/ba-handoff` · `handoff`). *Resolution taken:* the fourth act took two tokens —
+`scope frame`, the noun the ruling uses, and `P-O0b`, the code §10.1 gives it.
+Both were checked against the clean surface before the control was moved: the
+payload sweeps to zero with them in, so neither is matching prose it should not.
+The list prints in full on every run and under `--list`, so the count stays
+readable rather than asserted.
+
+**D113 · Orchestrator §11's Frame-binding table still names a three-act floor.**
+Its Autonomous-mode row reads "the safety floor (⚑ sign-offs · effective PASS ·
+handoff) sits outside it", while §10.7's floor paragraph and §4.4's instrument
+sentence both name four after D-O42. The documents are read-only in this pass.
+*Resolution taken:* nothing was compiled from the stale row — the payload's floor
+text comes from §10.7 and §4.4 — and the row was surfaced as **open question 1**.
+**Ruled the same sitting: a carry item.** One clause at the next orchestrator
+bump; **this entry is the recorded state** until then, and no document pass runs
+for it now. The payload is already correct against §10.7 and §4.4, so the drift
+costs nothing while it stands — it is a source-document tidy, not a defect with
+a live consequence.
+
+**D114 · The orchestrator persona's one-screen head sentence lists neither the
+frame nor `Profile:`.** "The head stays one screen: the band line, the six-row
+state table, standing aspect waivers, open reopens, upstream flags, deferred
+consequences" has never named `Profile:` or `Auto:` either. *Resolution taken:*
+left as found. Extending it for the frame alone would make an enumeration that
+is already partial read as complete. Recorded for that surface's own next pass;
+the head's authoritative shape is the template's and `/ba-status`'s, and both
+carry all six lines.
+
+**D115 · `/ba-aspect` gained a refusal the documents state as a precondition.**
+§8.1's operative sentence is "With the substrate, the profile, and the scope
+frame in place, Stakeholders — the root — is openable (T1)", and the skill
+already refuses on a missing `Profile:` line — the same sentence's other half.
+*Resolution taken:* compiled as the exact analogue — a missing `Boundary:` line
+stops and names `/ba-frame`. Flagged because the two halves looked asymmetric in
+force: the profile refusal has a mechanical reason (the suggestion snapshot
+filters by profile and cannot render without one) and the frame refusal appeared
+to have none — nothing at aspect opening reads the frame; T-18 does, one band
+later. The pass argued the stop was unreachable on a ledger `/ba-frame` made, and
+offered to delete the bullet.
+
+**Ruled the same sitting: the bullet stands, and "unreachable" was the wrong
+read.** It holds only for ledgers *this* `/ba-frame` made. **Every pre-v0.15
+ledger has no `Boundary:` line**, and on those the refusal is exactly the
+migration guard the frame needs: it forces the frame onto a legacy project
+*before* aspect work resumes, rather than letting Band-1 runs continue against a
+boundary and an envelope nobody ever set — the Run-1 failure mode that produced
+the ruling in the first place. The second reason is alignment: §8.1's openability
+sentence names three preconditions, and a payload that enforced two of them would
+be compiling the sentence by half. The asymmetry with the profile bullet is real
+and deliberate — the profile refusal protects a render, the frame refusal
+protects a migration.
+
+**D116 · The fixture ledger carries no scope frame, deliberately.**
+`tests/fixtures/appointment-booking/band1/aspect-state.md` records a July-2026
+engagement; there was no frame to record, and `check-ledger.py`'s L1 requires the
+four standing head lines, not the optional ones. *Resolution taken:* the `Auto:`
+precedent, applied unchanged — the fixture stands, and `tests/exit-test.md` Step
+3 now says which of its two run modes sees the Frame stop. A fixture claiming a
+frame nobody set would be a worse record than one that does not mention it.
+
+### Open
+
+**The zero-tentacles claim is now a checked fact on the payload side.** The
+documents pass left it as a design commitment: the capacity check is removable
+because exactly one consumer reads it. Swept across the compiled surface,
+`Capacity:` appears in five places and no others — the three that carry the head
+shape (`/ba-frame`, `/ba-status`, the ledger template), `/ba-frame`'s own
+arithmetic that produces it, and T-18's read list and advisory that consume it.
+Two writers, one reader, no third party. The corpus side of the claim is still
+prose, and a sweep asserting it in the suite is a build item, not a ruling.
+
+**The advisory's numbers are still governed by prose.** Unchanged from the
+documents pass, and now with one more surface to hold: T-18's skill states the
+boundary twice — in the depth rule and in the Must-NOT list — and `/ba-frame`
+states it a third time at the module that produces the figures. Three sentences
+are not a compiler. The candidate check is unchanged: grep an Allocation-log
+reason for digits.
+
+**Auto-pickup's parser is a live agent, and the confirmation stop is the whole
+guard.** The compiled skill says scan, pre-fill, cite-or-mark, then wait. What
+it cannot say is how well the scan reads a Slack extract. D-O42's one-render
+ruling makes that stop cheap — one interaction for both blocks — which is the
+argument for why the guard survives contact with a budget-conscious BA.

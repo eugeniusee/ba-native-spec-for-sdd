@@ -67,8 +67,13 @@ born by the act that produces it.
 /ba-frame
 ```
 
-Initializes the two ledgers and, if there is no `canvas.md` yet, runs the
-discovery-canvas technique to make one from whatever presale material you have.
+Initializes the two ledgers, then asks once for the two things Band 1 is run
+against: the **flow profile** and the **scope frame** — delivery boundary, budget
+envelope, client label, and the rate and team mix behind the capacity line. Both
+blocks render together and you answer both in one reply; the framework pre-fills
+the frame from whatever material is on hand, with citations. Then, if there is no
+`canvas.md` yet, it runs the discovery-canvas technique to make one from your
+presale material.
 Six aspects open in dependency order: **Stakeholders → Context · Value → Vision
 → Solution → Requirements**.
 
@@ -192,8 +197,8 @@ where you actually decide something.
 /ba-frame Presale
 ```
 
-The ledgers initialize, the profile is set, the canvas is confirmed or drafted.
-Then the route renders:
+The ledgers initialize, the profile and the scope frame are set — one render,
+one reply — and the canvas is confirmed or drafted. Then the route renders:
 
 ```
 Route — Presale: scoped roadmap + draft specs · profile: Presale
@@ -256,7 +261,7 @@ ending in `go?`. It will not hand you a list of commands to type.
 
 | Command | What it does |
 |---|---|
-| `/ba-frame` | Band-1 entry: ledgers initialized, canvas confirmed or created |
+| `/ba-frame` | Band-1 entry: ledgers initialized, profile and scope frame set, canvas confirmed or created |
 | `/ba-status` | Where everything stands |
 | `/ba-aspect <aspect>` | Open an aspect: suggestions → you compose the plan |
 | `/ba-t<NN>` · `/ba-tier1` · `/ba-tier2` [args] | Run a planned technique — one step |

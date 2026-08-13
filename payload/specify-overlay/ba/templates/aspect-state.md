@@ -8,7 +8,8 @@
   mirror toward the coding agent.
 
   Born by /ba-frame at Band-1 entry: head at six × `untouched`, `Band: 1 (open)`,
-  the flow profile picked at P-O0 — flow-profile selection.
+  the flow profile picked at P-O0 — flow-profile selection and the scope frame
+  set at P-O0b — scope-frame selection, both in one render, one reply.
   File discipline: the head is REWRITTEN IN PLACE; events are APPEND-ONLY.
 
   States (D-O2): untouched · open · first-pass-cleared · waived · reopened.
@@ -22,11 +23,23 @@
   code at any P-O2 — plan composition. A switch is a ledger event with a reason:
   Profile switch grammar: <date> · profile · <from → to> · <BA initials> — <reason>
 
+  Scope frame (D-O42 · D-O43 · D-O44): set at P-O0b — scope-frame selection, in
+  the same render as the profile pick. The head holds the machine-readable
+  summary; the cited detail lives on the canvas, §13 Context/Constraints (T-01).
+  Boundary takes ladder values only — MVP · MVP + Phase 2 · … ; PoC and prototype
+  are never boundary or phase values, they live in Client label, which the
+  machinery reads for nothing. `Capacity:` is arithmetic, never estimation —
+  envelope ÷ rate × eng-share, recomputed whenever the envelope or a parameter
+  changes, rendering `—` where no envelope stands. The capacity check is a
+  separately removable module, default on, with one consumer: T-18's advisory.
+  Frame switch grammar: <date> · scope-frame · <from → to> · <BA initials> — <reason>
+
   Autonomous mode (D-O36 · D-O38): `/ba-auto on` writes the autonomy grant AG-<n>,
   flips the Auto head line and logs the event; `/ba-auto off` closes it with the
   resumption report and one batch ratification. An AG moves the moment of consent,
   never the content of a ruling; the safety floor (the two flagged sign-offs, the
-  effective PASS, the handoff) sits outside every grant.
+  effective PASS, the handoff, and the scope frame — P-O0b) sits outside every
+  grant.
   AG record:   AG-<n> · scope: <full workflow | until <event>> · granted-by: <initials> ·
                <date> · revoke: /ba-auto off, or <condition>
   AUTO stamp:  <date> · AUTO (AG-<n>) · <act> · <basis>
@@ -35,6 +48,11 @@
 ## Current state
 Band: 1 (open)
 Profile: <Discovery | Presale> — picked <date> (P-O0); switches append to Events with a reason
+Boundary: <ladder value(s) — MVP | MVP + Phase 2 | …> — set <date> (P-O0b); switches append to Events with a reason
+Budget: <amount + currency> | none stated  (<citation | BA-supplied | open — no source material>)
+Client label: <free text — PoC · prototype · pilot…>  (<citation | BA-supplied | open — no source material>)
+Parameters: rate <amount>/h · team mix <…> (eng-share <n>%) · capacity check <on | off>
+Capacity: ~<n> eng-h (envelope ÷ rate × eng-share) | — (no envelope)
 Auto: off
 
 | Aspect | State | Since | Basis |
@@ -88,6 +106,7 @@ Deferred consequences:    none
   Threshold-gap candidate — <date> · should have been caught by <AT-ID | none — new class>
     <what escaped, and why the threshold missed it>
 
+  <date> · scope-frame · <from → to> · <initials> — <reason>
   <date> · auto on  · AG-<n> · scope <…> · <initials> — profile <…> (stated | inferred: <basis>)
   <date> · auto off · AG-<n> · <initials> — <n> AUTO acts, awaiting ratification
   <date> · ratification · AG-<n> · <initials> — accepted all | exceptions: <list>

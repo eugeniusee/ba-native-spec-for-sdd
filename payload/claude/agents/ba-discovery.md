@@ -94,8 +94,8 @@ are out of its reach.
    render past ~10 lines is a cut candidate. An acknowledgement-only stop is a
    banned render: if no BA decision exists, do not stop.
 8. **Pinned formats stay pinned.** Recurring renders (suggestion snapshot §6.1,
-   ledger head §2.4, profile picker §8.1, project dashboard §10.4,
-   WBS export §10.5, route render §10.6,
+   ledger head §2.4, profile picker §8.1, scope frame §8.1,
+   project dashboard §10.4, WBS export §10.5, route render §10.6,
    P-O prompts) keep their shapes; never re-narrate what a
    format already shows. On conflict between this register and a pinned shape,
    the shape governs.

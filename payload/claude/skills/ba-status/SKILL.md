@@ -32,6 +32,11 @@ summarize it into prose. Then add the derived lines below it.
 ```
 Band: 1 (open) | 1 (closed <date>) — Bands 2/3 capable
 Profile: <Discovery | Presale> — picked <date> (P-O0); switches append to Events with a reason
+Boundary: <ladder value(s) — MVP | MVP + Phase 2 | …> — set <date> (P-O0b); switches append to Events with a reason
+Budget: <amount + currency> | none stated  (<citation | BA-supplied | open — no source material>)
+Client label: <free text — PoC · prototype · pilot…>  (<citation | BA-supplied | open — no source material>)
+Parameters: rate <amount>/h · team mix <…> (eng-share <n>%) · capacity check <on | off>
+Capacity: ~<n> eng-h (envelope ÷ rate × eng-share) | — (no envelope)
 
 | Aspect | State | Since | Basis |
 |---|---|---|---|

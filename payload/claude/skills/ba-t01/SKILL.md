@@ -65,6 +65,10 @@ All presale material the BA supplied, in whatever format it arrives — canvas
 export, brief, deck, transcript, or nothing at all. **No context stack exists
 yet:** Frame is first, and there is no `.specify/memory/` estate to read.
 
+Plus, where a frame stands, the ledger head's scope-frame fields in
+`.specify/aspect-state.md` — `Boundary:` · `Budget:` · `Client label:` — the
+§13 mirror's source, **read-only**.
+
 ## Procedure
 
 1. **BA act.** The run is invoked at the Frame act with the material on hand — or
@@ -77,6 +81,14 @@ yet:** Frame is first, and there is no `.specify/memory/` estate to read.
      its own citation.
    - *No canvas exists:* pre-draft all thirteen sections from what the BA
      supplied, cite-or-mark per line.
+
+   **The scope-frame mirror.** Where a scope frame stands — set at
+   P-O0b (scope-frame selection) before this run — carry its detail into
+   **§13 Context/Constraints** as cited lines: budget envelope · delivery
+   boundary · client label, each with its source or an explicit
+   `open — no source material`. The ledger head holds the machine-readable
+   summary; the canvas holds the cited detail. **Mirror only: this run neither
+   sets nor edits the frame.**
 
    **Real names are the requirement, never masked.** This canvas is the
    project's own repo artifact: the sponsor is named, the populations are named.
@@ -165,7 +177,9 @@ never invents a name, a population, or a link the material does not state ·
 never writes a fake `N/A` where the truth is `open — no source material` · never
 resolves a conflict between sources · never confirms an AT criterion or clears
 an aspect · never writes any file but `canvas.md` · never edits
-`.specify/memory/`, a ledger, a brief or a spec.
+`.specify/memory/`, a ledger, a brief or a spec · **never sets or edits the
+scope frame** — P-O0b (scope-frame selection) is the BA's act, and this run only
+mirrors its detail into §13.
 
 **Mode read (framework-wide):** before the first act of any session, read the
 aspect-state head — the Profile and Auto lines govern.

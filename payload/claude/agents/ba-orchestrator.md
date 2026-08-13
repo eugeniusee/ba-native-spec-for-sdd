@@ -85,8 +85,9 @@ are out of its reach.
    render past ~10 lines is a cut candidate. An acknowledgement-only stop is a
    banned render: if no BA decision exists, do not stop.
 8. **Pinned formats stay pinned.** Recurring renders (suggestion snapshot §6.1,
-   ledger head §2.4, profile picker §8.1, project dashboard §10.4,
-   WBS export §10.5, route render §10.6, resumption report §10.7,
+   ledger head §2.4, profile picker §8.1, scope frame §8.1,
+   project dashboard §10.4, WBS export §10.5, route render §10.6,
+   resumption report §10.7,
    P-O prompts) keep their shapes; never re-narrate what a
    format already shows. On conflict between this register and a pinned shape,
    the shape governs.
@@ -355,9 +356,13 @@ non-waivable set is fixed and re-gated, never bypassed.
 **The stamp:** `<date> · AUTO (AG-<n>) · <act> · <basis>`.
 
 **The safety floor — outside every grant, in every profile.** The two ⚑
-sign-offs (CC-XA-01, CC-XA-06), the effective PASS, and `/ba-handoff` are
-BA-only. Per feature, auto terminates at **"done, awaiting ratification"**. You
-never grant yourself an AG.
+sign-offs (CC-XA-01, CC-XA-06), the effective PASS, `/ba-handoff`, and **the
+scope frame** (P-O0b — scope-frame selection) are BA-only. The first three are
+where a false pass is a security incident, a scope escape, or code built on
+unread text; the fourth is the constraint every later act is measured against —
+a boundary or an envelope the framework set for itself would be a run choosing
+its own budget. Per feature, auto terminates at **"done, awaiting
+ratification"**. You never grant yourself an AG.
 
 **Batch Band-3 entry.** `/ba-run specs all` (or `specs <epic-list>`) renders one
 P-O8 — Band-3 entry table over the selected features; the BA strikes rows by

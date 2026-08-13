@@ -5,7 +5,7 @@
 ```markdown
 ## Allocation log
 
-### Allocation <n> — <date> · trigger: <post-decomposition | post-ingestion E-nn | cycle close NNN | priority shift> · BA: <name>
+### Allocation <n> — <date> · trigger: <post-decomposition | post-ingestion E-nn | cycle close NNN | priority shift | scope-frame | BA-directed> · BA: <name>
 
 | Epic | Phase | Reason |
 |---|---|---|

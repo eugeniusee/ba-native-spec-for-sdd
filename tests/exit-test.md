@@ -83,7 +83,11 @@ of its entries were S9's units.
 ```
 with `tests/fixtures/appointment-booking/presale-brief.md` as the input material.
 
-T-01 births `canvas.md`; the two aspect ledgers initialize.
+T-01 births `canvas.md`; the two aspect ledgers initialize. In the agent run
+`/ba-frame` renders the profile picker and the scope-frame block together, as
+one stop, and takes both answers in one reply (P-O0 · P-O0b). The mechanical run
+stages the corpus's own Band-1 ledger, which records a July-2026 engagement with
+no frame on file — the same reason it carries no `Auto:` line.
 
 **Green when:** `canvas.md` carries the thirteen sections in order, `P-n`/`O-n`
 line-IDs on exactly the two sections that own them, every cell cited or marked ·

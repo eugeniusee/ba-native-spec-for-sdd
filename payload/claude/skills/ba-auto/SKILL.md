@@ -1,6 +1,6 @@
 ---
 name: ba-auto
-description: Autonomous mode - /ba-auto on writes the autonomy grant AG-<n>, flips the ledger head's Auto line and runs the surviving checkpoints under the policy table, each act stamped AUTO; /ba-auto off closes the grant and renders the pinned resumption report for one batch ratification. The safety floor sits outside every grant - the two flagged sign-offs, the effective PASS and the handoff stay BA-only. Never grants itself a grant.
+description: Autonomous mode - /ba-auto on writes the autonomy grant AG-<n>, flips the ledger head's Auto line and runs the surviving checkpoints under the policy table, each act stamped AUTO; /ba-auto off closes the grant and renders the pinned resumption report for one batch ratification. The safety floor sits outside every grant - the two flagged sign-offs, the effective PASS, the handoff and the scope frame at P-O0b - scope-frame selection stay BA-only. Never grants itself a grant.
 disable-model-invocation: true
 ---
 
@@ -41,6 +41,7 @@ Every checkpoint still happens. The table says who states it.
 
 | Stop | Under the grant |
 |---|---|
+| **P-O0b — scope-frame selection** | **Never AUTO — the safety floor.** Auto-pickup still pre-fills every value with its citation and the block still renders; it then waits for the BA, standing grant or not. The boundary and the envelope are what every later act is measured against, and a grant that could set them would be a run choosing its own budget |
 | P-O2 — plan composition, and the route `go` | Compose **as-recommended from the snapshot**, AUTO. The grant **is** the `go`. Record the snapshot verbatim — it is the ratification's evidence |
 | Defer batches · the consolidated defer-confirm | Accepted AUTO. **Unclear stays an Open Question, never an invention** |
 | P-O4 — clearing confirmation | All criteria met → clear AUTO. Any miss → **auto-AW**: a full waiver record, misses named, revisit trigger `BA ratification sweep (auto off)` |
@@ -58,17 +59,20 @@ Every checkpoint still happens. The table says who states it.
 
 ## The safety floor — outside every grant
 
-Three acts a grant never reaches, in every profile:
+Four acts a grant never reaches, in every profile:
 
 - **The two flagged sign-offs** — CC-XA-01 (authorization) and CC-XA-06 (the
   scope boundary), at the gate's ⚑ review.
 - **The effective PASS** — the gate's ⚑ sign-off and approval steps.
 - **`/ba-handoff <feature>`.**
+- **The scope frame** — P-O0b (scope-frame selection), at `/ba-frame`.
 
-These are the acts where a false pass is a security incident, a scope escape, or
-code built on unread text. Per feature, auto therefore ends at **"done,
-awaiting ratification"**: the draft is complete, the gate has run, the last two
-acts wait for a human.
+The first three are the acts where a false pass is a security incident, a scope
+escape, or code built on unread text. The fourth is the constraint every later
+act is measured against: a boundary or an envelope the framework set for itself
+would be a run choosing its own budget. Per feature, auto therefore ends at
+**"done, awaiting ratification"**: the draft is complete, the gate has run, the
+last two acts wait for a human.
 
 ## `off` — the resumption report
 
@@ -95,8 +99,8 @@ their items manually, each by its own ordinary checkpoint. Append the events:
 
 ## What this skill never does
 
-Never AUTO-stamps a ⚑ sign-off, an effective PASS, or a handoff · **never grants
-itself an AG** — the grant is the BA's act, and a framework that could write its
+Never AUTO-stamps a ⚑ sign-off, an effective PASS, a handoff, or a scope
+frame · **never grants itself an AG** — the grant is the BA's act, and a framework that could write its
 own would have no boundary at all · never invents where unclear — that is an
 Open Question · never switches the profile mid-auto · never executes a reopen
 cascade · never takes an override, a cap adjust or a defer at
