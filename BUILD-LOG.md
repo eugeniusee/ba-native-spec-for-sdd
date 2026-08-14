@@ -7558,16 +7558,49 @@ order to retire it: *"the corpus's dotted `/ba.*` names are illegal as skill
 names … adopt hyphenated `ba-*`"*. Substituting them yields *"the corpus's dotted
 `/ba-*` names are illegal … adopt hyphenated `ba-*`"* — a sentence that
 contradicts itself and destroys the provenance of the very ruling this sweep
-applies. The file is held whole, pending Eugene's ruling; the rest of the corpus
-is swept. **D-P2-1's mapping table was never in scope:** its pairs are written
-without a leading slash (`ba.gate → ba-gate`), so a `/ba\.` sweep cannot reach
-them — verified after the run, not assumed.
+applies. The file is held whole; the rest of the corpus is swept. **D-P2-1's
+mapping table was never in scope:** its pairs are written without a leading slash
+(`ba.gate → ba-gate`), so a `/ba\.` sweep cannot reach them — verified after the
+run, not assumed.
+
+**D151 · closed as HELD — ruled by Eugene K., 14 August 2026.** The two `/ba.*`
+namespace globs stay **as written**: they are the **provenance record of the
+rename itself**, and the principle is the one that excluded BUILD-LOG.md from
+this sweep — a record of how the corpus came to spell something is not a surface
+that spelling applies to. Closed, not deferred: no future cycle should re-open
+these two lines looking for a dot form to fix.
 
 **One consequence noted, not acted on.** §11's and the gate §13's binding tables
 carry the caption *"names indicative — Phase 2 fixes them"*, and their rows now
 show the fixed names. The caption is stale in the sense that the fixing has
 happened, but it is also the clause D-P2-1 cites as its own pre-authorization.
 Left as written — retiring it is a document act, not a spelling sweep.
+
+### The hygiene backlog — document acts, deliberately not this sweep's tail
+
+Ruled by Eugene K., 14 August 2026: the stale caption becomes **its own item,
+beside D82**, and not a clause appended to a spelling pass. The backlog gets a
+named home here because it had none — carry items had been living inside the
+entries that raised them, which is why D82 has been readable but not findable.
+
+**D152 · the "names indicative — Phase 2 fixes them" caption is stale.**
+Orchestrator §11's Phase-2 binding table and gate §13's equivalent both carry it,
+and both now show the **fixed** names — the caption describes a future that has
+already happened. Retiring it is not a deletion: D-P2-1 cites that exact clause as
+its own pre-authorization (*"Both binding tables pre-authorize this"*), so the
+caption has to be **re-worded to the past** rather than removed, in both tables,
+in one act, with D-P2-1's citation still landing. A document act for a future
+cycle. **Not urgent and not a defect:** every row under the caption is correct as
+it stands; only the caption's tense is wrong.
+
+**D82 · the t17 section-close placement** (raised at the technique-skill batch,
+still live). For t17 the pass/miss pair sits **after** the skip-if rather than
+before it. The alternative reading — *close the contract-check block, ahead of the
+skip-if* — is a four-file move. Unchanged by this cycle, restated here so the two
+items sit in one place.
+
+Both are **document acts**: no code, no test, no threshold, no decision content —
+only text that says something slightly other than what it now means.
 
 ### Tests
 
@@ -7576,6 +7609,9 @@ repair: the only test pinned to a dot string swept with the corpus.
 
 ### Open
 
-**D149 is closed for the command surface** — one spelling, `/ba-`, everywhere a
-BA can read one. **D151 stands open**: the two namespace globs in the Phase-2
-build plan await a ruling. **R4** still carries.
+**Nothing from this cycle stands open.** **D149 closed** — one spelling, `/ba-`,
+everywhere a BA can read one. **D151 closed as HELD** — the two namespace globs
+stay as written, ruled 14 Aug 2026. **D152 and D82** sit in the hygiene backlog
+above as document acts for a future cycle; neither is a defect. **R4** still
+carries — the gate's A-pass §5.1-by-reference rule, ruled 14 Aug 2026, still
+unbuilt.
