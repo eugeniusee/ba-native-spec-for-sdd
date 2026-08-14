@@ -610,6 +610,112 @@ grep -qE '^(S[0-9]|SK)\|(file|dir)\|sources' "$HERE/layout.expected" \
   && bad "sources/ is installed by a build session — it is runtime-born, placement only" \
   || ok "…and no session installs it: a capture creates it, or nothing does"
 
+# ── 5c. the Slack candidate scan — the framework proposes, the BA disposes ───
+#
+# D-O53. The scan rides *inside* D-O45's pinned block, so 5b's byte-identity
+# check already proves the two candidate lines are the document's own and that
+# doc and skill cannot drift apart on them. What is asserted here is the law the
+# two lines cannot carry themselves: one candidate and never two (R3-c), the key
+# set (R2-c), the no-opt-in trigger with its zero-delta case (R1-a), and the
+# ledger consequence of a decline (R4-b). Each is a sentence a future edit would
+# soften rather than delete — the 5b pattern.
+
+printf '\n▸ The Slack candidate scan — one candidate, the BA disposes (§8.1; D-O53)\n'
+
+# R3-c — exactly one candidate renders. Counting `#<channel>` inside the pinned
+# block is the mechanical form of "never lists 2+": a second channel token in
+# the block is the render defect itself, not a paraphrase of it.
+python3 - "$RULES_SRC" "$FRAME" <<'PY' && ok "the pinned block offers exactly one candidate channel — never a list (R3-c)" \
+  || bad "the pinned block does not carry exactly one candidate channel token (R3-c)"
+import pathlib, re, sys
+def block(p):
+    t = pathlib.Path(p).read_text(encoding="utf-8")
+    b = [f for f in re.findall(r"^```\n(.*?)^```\n", t, re.S | re.M)
+         if f.startswith("Sources on hand:")]
+    return b[0] if len(b) == 1 else None
+for p in sys.argv[1:]:
+    b = block(p)
+    if b is None or b.count("#<channel>") != 1:
+        sys.exit(1)
+    if b.count("and <N> more matched — name them to see") != 1:
+        sys.exit(1)
+sys.exit(0)
+PY
+
+for c in "$RULES_SRC" "$FRAME"; do
+  lbl="$(basename "$(dirname "$c")")/$(basename "$c")"
+  has "$c" "and <N> more matched — name them to see" \
+      "the count line is the ruled one, verbatim — $lbl (R3-c)"
+  has "$c" "never a list" "…and a list of channels is named a render defect — $lbl (R3-c)"
+  has "$c" "the BA is confirming a source, not running a search" \
+      "…on the reason: the BA confirms a source, never runs a search — $lbl (R3-c)"
+done
+
+# R1-a — reachability alone is the trigger: no opt-in, no precondition on a
+# Slack source having been named, and zero delta where Slack is unreachable
+has "$RULES_SRC" "No opt-in, and no precondition:" "reachability alone triggers the scan (R1-a)"
+has "$FRAME" "No opt-in, and no precondition." "…compiled into ba-frame (R1-a)"
+for c in "$RULES_SRC" "$FRAME"; do
+  lbl="$(basename "$(dirname "$c")")/$(basename "$c")"
+  has "$c" "whether or not the BA has already named a Slack source" \
+      "…and it does not wait on a named Slack source — $lbl (R1-a)"
+  has "$c" "Slack unreachable is zero delta" \
+      "…Slack unreachable renders the block as before, zero delta — $lbl (R1-a)"
+done
+
+# R2-c — the project name is the only key
+has "$RULES_SRC" "The keys are the project name, and nothing else" "the key set is the project name only (R2-c)"
+has "$FRAME" "The key is the project name, and nothing else" "…compiled into ba-frame (R2-c)"
+for c in "$RULES_SRC" "$FRAME"; do
+  lbl="$(basename "$(dirname "$c")")/$(basename "$c")"
+  has "$c" "no key and no scan" "…no project name on hand means no key and no scan — $lbl (R2-c)"
+  has "$c" "never content" "…the scan resolves channel names, never content — $lbl (R2-c)"
+done
+
+# R4-b — a declined candidate leaves no ledger entry, and the confirmed one
+# inherits the existing machinery rather than a parallel copy of it
+for c in "$RULES_SRC" "$FRAME"; do
+  lbl="$(basename "$(dirname "$c")")/$(basename "$c")"
+  has "$c" "BA-named and BA-confirmed sources only" \
+      "the \`Sources:\` ledger takes BA-named and BA-confirmed sources only — $lbl (R4-b)"
+  has "$c" "A candidate the reply does not answer is declined" \
+      "…an unanswered candidate is declined, not pending — $lbl (R4-b)"
+  has "$c" "sources/slack-<channel>-<date>.md" \
+      "…a confirmed candidate captures to the D-O47 path, unchanged — $lbl (R4-b)"
+  has "$c" "no second consumer of the slack" \
+      "…and it fires D-O49's correction stop only — no second consumer of the slack — $lbl" \
+
+done
+
+# the decline must not have grown a fifth state on the head line: D-O48's
+# vocabulary is closed, and a candidate that leaves no entry cannot need one
+for c in "$RULES_SRC" "$FRAME" "$SKILLS/ba-status/SKILL.md" "$TPL"; do
+  lbl="$(basename "$(dirname "$c")")/$(basename "$c")"
+  if grep -F -- "$HEADLINE" "$c" | grep -qiE 'candidate|declined|proposed'; then
+    bad "the Sources: head line grew a candidate state — $lbl (D-O53 · D-O48's vocabulary is closed)"
+  else
+    ok "the Sources: line keeps its closed four-state vocabulary — $lbl (R4-b)"
+  fi
+done
+
+# placement and budget: inside the existing block, no prompt point, no P-O
+for c in "$RULES_SRC" "$FRAME"; do
+  lbl="$(basename "$(dirname "$c")")/$(basename "$c")"
+  has "$c" "no new prompt point" "the scan invents no prompt point — $lbl (D-O53)"
+done
+has "$RULES_SRC" "D-O33's ≤ 8 Presale budget and its one interaction of slack (7 + 1) are **arithmetically untouched**" \
+    "…and the ≤ 8 Presale budget is arithmetically untouched (D-O33, D-O53)"
+
+# the P-O table gained no row — the whole placement ruling, mechanically
+python3 - "$RULES_SRC" <<'PY' && ok "§10.1's P-O table still holds its eleven rows — the scan added none" \
+  || bad "§10.1's P-O row count moved: the scan was placed as a prompt point"
+import re, sys
+t = open(sys.argv[1], encoding="utf-8").read()
+sec = t.split("### 10.1 P-O prompt points")[1].split("### 10.2 ")[0]
+rows = re.findall(r"^\| P-O\d[ab]? \|", sec, re.M)
+sys.exit(0 if len(rows) == 11 else 1)
+PY
+
 # ── 6. the agent's discipline ────────────────────────────────────────────────
 
 printf '\n▸ The orchestrator agent (§10.2, build plan §2.3)\n'
@@ -690,19 +796,21 @@ has "$RULES_DOC" "D-O40–D-O41" "…and the two locked amendments it carries"
 has "$RULES_DOC" "v0.15" "…and the edition the scope frame produced"
 has "$RULES_DOC" "D-O42–D-O44" "…and the scope-frame ruling block"
 has "$RULES_DOC" "v0.16" "…and the edition the four-act floor row produced"
-head -2 "$RULES_DOC" | grep -q 'v0\.19' \
-  && ok "the header states the live edition — v0.19, continuity under a grant" \
-  || bad "the header does not name v0.19: the edition and the change record disagree"
+head -2 "$RULES_DOC" | grep -q 'v0\.20' \
+  && ok "the header states the live edition — v0.20, the Slack candidate scan" \
+  || bad "the header does not name v0.20: the edition and the change record disagree"
 has "$RULES_DOC" "D-O45–D-O49" "…and the source-inventory ruling block"
 has "$RULES_DOC" "D-O50" "…and the change record names the unreadable-spec ruling"
 has "$RULES_DOC" "D-O51–D-O52" "…and the continuity-under-a-grant ruling block"
+has "$RULES_DOC" "v0.19" "…and the edition continuity under a grant produced"
+has "$RULES_DOC" "D-O53" "…and the candidate-scan ruling"
 
 # the ruling block is contiguous from the live high-water mark: no gap, no reuse
-python3 - "$RULES_DOC" <<'PYX' && ok "the D-O block runs 1…52 with no gap and no skipped number" \
+python3 - "$RULES_DOC" <<'PYX' && ok "the D-O block runs 1…53 with no gap and no skipped number" \
   || bad "the D-O decision block is not contiguous — a number is missing or reused"
 import re, sys
 seen = {int(n) for n in re.findall(r"D-O(\d+)", open(sys.argv[1], encoding="utf-8").read())}
-sys.exit(0 if seen == set(range(1, 53)) else 1)
+sys.exit(0 if seen == set(range(1, 54)) else 1)
 PYX
 
 # ── 7. layering — no methodology leaks into the payload ──────────────────────

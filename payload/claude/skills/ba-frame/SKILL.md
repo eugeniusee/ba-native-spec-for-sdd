@@ -1,6 +1,6 @@
 ---
 name: ba-frame
-description: Band-1 entry. Initializes the two aspect ledgers at six untouched aspects, takes the source inventory and the flow-profile pick at P-O0 - flow-profile selection and the scope frame at P-O0b - scope-frame selection in one render before any aspect opens, confirms the presale canvas is present and carried into the repo, and runs T-01 - Discovery canvas framing to produce one when it is absent. The birth act for .specify/aspect-state.md and .specify/aspect-plans.md; after it, the Stakeholders aspect is openable.
+description: Band-1 entry. Initializes the two aspect ledgers at six untouched aspects, takes the source inventory — scanning a reachable Slack workspace on the project name and offering one best-match candidate channel the BA confirms or declines — and the flow-profile pick at P-O0 - flow-profile selection and the scope frame at P-O0b - scope-frame selection in one render before any aspect opens, confirms the presale canvas is present and carried into the repo, and runs T-01 - Discovery canvas framing to produce one when it is absent. The birth act for .specify/aspect-state.md and .specify/aspect-plans.md; after it, the Stakeholders aspect is openable.
 disable-model-invocation: true
 ---
 
@@ -82,6 +82,8 @@ exactly:
 
 ```
 Sources on hand: <list of supplied material>.
+Slack — closest match on the project name: #<channel> — include it, or ignore it.   (renders only when Slack is reachable and the scan matched)
+and <N> more matched — name them to see                                             (renders only when N ≥ 1)
 Anything else? Slack channel(s) · email threads · drive folders · call recordings —
 name them, paste them, or attach them; or "none".
 ```
@@ -90,6 +92,51 @@ It exists because nothing else asks. **T-01 — Discovery canvas framing** works
 from the material *on hand*, and no act in the framework asked what stood beyond
 it. The inventory is **Frame-act ground, never a technique's**:
 **T-01 — Discovery canvas framing** asks nothing.
+
+**The Slack candidate scan — the framework proposes, you dispose.** Where the
+Slack integration is **reachable**, scan the workspace for a channel whose name
+matches the project's, and offer the **best match** on the inventory's own line.
+
+- **No opt-in, and no precondition.** Run the scan whenever Slack is reachable —
+  whether or not the BA has already named a Slack source. The hole it closes is
+  the source **nobody thought to name**.
+- **Slack unreachable is zero delta.** Render the block exactly as it stands
+  without the two candidate lines. Say nothing about a scan that did not run.
+- **The key is the project name, and nothing else** — the name as it stands in
+  the material on hand. **Never the client's name** (it returns every engagement
+  with that client) and **never domain terms** (they return the workspace). **No
+  project name on hand → no key and no scan:** a guessed key is a guess, and
+  cite-or-mark forbids one.
+- **Resolve names, never content.** Read what channels are *called*. Read **no
+  message** until the BA confirms the candidate — then read it under the capture
+  mechanics below, unchanged.
+- **One candidate, never a list.** Render exactly **one** channel — the best
+  match — plus one count line where others matched:
+  `and <N> more matched — name them to see`. **Two or more channels is a render
+  defect** — the BA is confirming a source, not running a search.
+
+**Disposition — the BA's, in the same one reply.**
+
+- **Confirmed** — the candidate stops being a candidate. It is an **ordinary
+  named reachable source** and inherits everything below unchanged: verbatim
+  capture to `sources/slack-<channel>-<date>.md`, cite-or-mark mining, the
+  `Sources:` head entry with its state, the three dispositions where a later read
+  fails, and the correction stop where the capture contradicts the frame the BA
+  has just confirmed. That stop is the one already budgeted — **the scan adds no
+  second consumer of the slack.**
+- **Declined** — **no ledger entry at all.** The `Sources:` line records
+  **BA-named and BA-confirmed sources only**, and its four states are closed: a
+  proposal the BA did not take was never a source. **Do not invent a fifth
+  state.**
+- **A candidate the reply does not answer is declined.** This does not weaken
+  *silence never resolves a source* below: that rule governs a source the **BA
+  named**. Your own proposal is not a hole in the BA's inventory, and ageing it
+  into `named — pending` would manufacture the state that rule exists to prevent.
+
+The candidate rides **inside** this block: one render, one reply, **no new
+prompt point** and no extra BA interaction. The single reply that names other
+sources, picks the profile and confirms the frame confirms or declines the
+candidate in step.
 
 Then the profile picker, in the same render, exactly:
 

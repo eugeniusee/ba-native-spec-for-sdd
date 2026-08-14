@@ -5,6 +5,24 @@ record is written when its exit test is green and is never rewritten. Divergence
 between the build plan and verified reality are flagged here, at the session that
 found them — never silently resolved.
 
+## Versioning discipline (ruled 14 Aug 2026, binding from F-05 on)
+
+**Patch bumps are automatic.** Every build pass increments `VERSION` itself as a
+patch increment — `0.1.15` → `0.1.16` — and records the new version in its own
+entry. A pass that changed nothing that ships still says so; a pass that shipped
+work and left `VERSION` behind is a defect, not a deferral.
+
+**Minor and major stamps are the BA Lead's act, and only his.** He takes them at
+his own initiative. **The framework never prompts for one** — not in a report,
+not in an entry's Open section, not as a question at the end of a pass. A pass
+that proposes a minor bump has asked for a ruling nobody requested.
+
+**Registered, not retrofitted.** Entries written before this ruling state the
+older convention — *"version stamping is the BA Lead's act,"* patch included —
+and they stand exactly as written: this log is append-only, and a record that was
+true when written is amended by a later ruling on the record, never by rewriting
+it. Read the older entries against this section, not around it.
+
 ---
 
 ## S1 — Foundation · 1 August 2026 · GREEN
@@ -7615,3 +7633,189 @@ stay as written, ruled 14 Aug 2026. **D152 and D82** sit in the hygiene backlog
 above as document acts for a future cycle; neither is a defect. **R4** still
 carries — the gate's A-pass §5.1-by-reference rule, ruled 14 Aug 2026, still
 unbuilt.
+
+
+## Slack Candidate Scan at Frame — the framework proposes, the BA disposes, Lane B · orchestrator v0.20 · package 0.1.16 · 15 August 2026 · GREEN
+
+F-05. The field test, 14 August 2026: the BA Lead observed that the Slack MCP
+**resolves the relevant project channel by name** — the framework could have
+found the Run-1 channel itself, and did not. §21 built an inventory that closed
+the hole where the framework never wondered what stood beyond the material on
+hand; it left open the one where **the BA does not think to name** a channel the
+framework could have named for them. The ruling package (BA Lead, 14 Aug 2026;
+R1-a · R2-c · R3-c · R4-b, all final) closes it: **the framework proposes
+candidates, the BA disposes.**
+
+Documents-first, then the rebuild, in the ordered form the package specified.
+
+### The divergence found before a byte was written — the decision number is taken
+
+**D153 — the package names `D-O50` and `§21`; both are occupied.** The package
+was written against **orchestrator v0.17**, and two bumps have landed since:
+**D-O50** is the unreadable spec (v0.18, §22, 14 Aug) and **D-O51–D-O52** are
+continuity under a grant (v0.19, §23, 14 Aug); **§21** is the v0.16→v0.17 record
+that ruled the source inventory itself. Reusing a locked number, or writing a
+second decision into a closed review record, would put two rulings on one
+citation — the collision v0.12's change record had to rebase around, and the
+reason the contiguity assertion exists at all. **Registered as D-O53 in a new
+§24 (v0.19 → v0.20).** No ruling content changed; every clause of R1-a/R2-c/
+R3-c/R4-b applies verbatim, and the package's stated origin line rides D-O53's
+change record unaltered.
+
+### The clause set — one decision, one section
+
+**D-O53, §8.1 + §11 + §24.** Four ruled parts, applied as stated:
+
+- **R1-a — reachability alone is the trigger.** The scan runs whenever the Slack
+  integration is reachable at Frame — the runtime fact D-O46 already reads — with
+  **no opt-in and no condition on whether the BA named a Slack source**. An
+  opt-in would ask the BA to know what the inventory exists to discover.
+  **Slack unreachable is zero delta:** the block renders exactly as before, and
+  nothing is said about a scan that did not run.
+- **R2-c — the project name is the only key**, as it stands in the material on
+  hand. No client name (it returns every engagement with that client), no domain
+  terms (they return the workspace).
+- **R3-c — one candidate, never a list.** Exactly one best-match channel, plus
+  `and <N> more matched — name them to see` where others matched.
+- **R4-b — a declined candidate enters no ledger entry.** The `Sources:` line
+  records **BA-named and BA-confirmed sources only**. A confirmed candidate stops
+  being a candidate and inherits **D-O45–D-O49 unchanged**: verbatim capture to
+  `sources/slack-<channel>-<date>.md`, cite-or-mark mining, the head entry with
+  its state, the dispositions, the conditional correction stop.
+
+**The placement law held without strain, and the budget is arithmetically
+untouched.** The two candidate lines ride **inside** D-O45's pinned first block,
+on §10.4's own `(renders only when …)` convention (D-O38 · D-O50) — one render,
+one BA reply, **no new prompt point, no new P-O, no new pinned format**. §10.3
+rule 8's list is untouched: the source inventory is already on it, and a shape
+that gains two conditional lines is the same pinned shape. **D-O33's ≤ 8 with its
+7 + 1 slack stands** — no stop is added, and the correction stop a confirmed
+capture may fire is D-O49's, already ruled and already budgeted. **No conflict to
+report, so none is reported:** the STOP condition the package set never fired.
+
+### Three consequences the package did not state, stated here rather than assumed
+
+**D154 — the scan resolves names, never content.** It reads what channels are
+*called*; it reads **no message** until the BA confirms, and then under D-O46
+unchanged. The alternative — reading a matched channel to rank it better — would
+capture client material the BA never named, which is the inventory's own
+discipline inverted.
+
+**D155 — a candidate the reply does not answer is declined, and D-O46 is not
+weakened.** R4-b rules that a decline records nothing; it does not say what an
+unanswered candidate is. It is a decline. D-O46's *silence never resolves a
+source* stands untouched because it governs a source **the BA named** — letting
+the framework's own proposal age into `named — pending` would have the framework
+manufacturing the very state that rule exists to prevent. Both halves are stated
+in §8.1 and in D-O53, because a boundary between two silence rules that is not
+written down is a boundary that drifts.
+
+**D156 — no project name on hand → no key and no scan.** R2-c fixes the key set
+and is silent on the empty case. A scan needs a key; a guessed key is a guess,
+and cite-or-mark forbids one (doc 3, principle 3). The block renders as before.
+
+### The versioning discipline — registered where versioning discipline lives
+
+**D157.** The package rules that **patch bumps are automatic** — every build pass
+increments `VERSION` itself and records it — while **minor and major stamps are
+the BA Lead's act, taken at his own initiative, never prompted for.**
+
+**Its home is the BUILD-LOG conventions header, not the orchestrator.** The
+package offered either. Versioning discipline already lives here — but only as
+recurring per-entry prose (*"version stamping is the BA Lead's act"*: entries at
+the 0.1.9 bootstrap pair, the two silent-zero cycles, the gate cycle, the hygiene
+sweep), never as a stated convention anyone could cite. The orchestrator's house
+rules are §1's three runtime rules over BA machinery; it carries no package
+version surface at all, and putting a package convention there would give a
+methodology document a Phase-2 concern it has never had.
+
+**Older entries stand exactly as written.** They state the earlier convention —
+patch included — and this log is append-only: a record true when written is
+amended by a later ruling **on the record**, never by rewriting it. The new
+section says so in its own text, so a reader meeting the old sentences knows to
+read them against it rather than around it. The D-O51–D-O52 pattern, applied to
+a convention instead of a decision.
+
+### Catalogue-b1 (T-01) — checked, and no companion line proposed
+
+**No.** D-B1-6 already fences exactly this ground, in the words the ruling would
+otherwise restate: *the inventory is Frame-act ground and never this run's — T-01
+neither names a source nor rules a disposition, and asks nothing.* A candidate is
+proposed by the Frame act and disposed by the BA, so both halves land inside the
+existing fence. And a confirmed candidate's capture is not a new artifact class:
+`sources/slack-<channel>-<date>.md` is the **very path shape** D-B1-6 names as
+T-01's material on hand. The intake boundary does not move, so nothing needs
+saying at T-01 — and restating a fence that already holds is how two copies of
+one rule begin to drift, which is the argument §5.1-by-reference (R4) was ruled
+on. **Catalogue-b1 stays v0.5; the index is not regenerated.**
+
+### Files touched — six
+
+| File | Change |
+|---|---|
+| `docs/methodology/…-orchestrator-rules.md` | v0.19 → **v0.20**: edition line · v0.20 change record · §8.1 pinned block (+2 conditional lines) · §8.1 candidate-scan clause · §11 Frame binding row · **§24** review record · footer v-change record (`D-O1–D-O53`, `v0.19→v0.20 in §24`) |
+| `payload/claude/skills/ba-frame/SKILL.md` | rebuilt from the document: the pinned block byte-identical to §8.1's · the operative clause · the frontmatter description |
+| `tests/presale-path.md` | interaction 1 gains the candidate render and the **confirm path**; interaction 8 records that the scan adds no second consumer of the slack |
+| `tests/check-orchestrator.sh` | §5c added; header edition check v0.19 → v0.20; contiguity `range(1,53)` → `range(1,54)` |
+| `BUILD-LOG.md` | the versioning-discipline conventions section (D157) + this entry |
+| `VERSION` | 0.1.15 → **0.1.16** |
+
+**Mirrors, personas and templates: zero delta, verified not assumed.** The four
+personas and both mirrors cite the source inventory **by name** in §10.3 rule 8's
+pinned-formats list and never carry the block, so a shape change inside the block
+reaches none of them. `grep -rl "Sources on hand"` returns three files before the
+pass and three after: the document, `ba-frame`, and the check that compares them.
+
+### Method
+
+Exactly-once (`str.count`) assertion before every substitution, abort on any
+miss, residual sweep after — **12 substitutions, all 1×**, and two aborts that
+did their job: a truncated needle and a line-wrapped one, both caught before a
+byte was written. One real drift surfaced and was fixed rather than tested
+around: the document said *the BA is being asked to confirm a source, not to run
+a search* and the skill said *the BA is confirming a source, not running a
+search*. Two wordings of one rule is the drift the byte-identity check exists to
+prevent, one layer up from the fence it guards; the document was brought to the
+skill's shorter form, so one needle now serves both carriers.
+
+### Tests
+
+**`check-orchestrator.sh` 201 → 238 (+37), 0 failed.** New §5c, in the 5b
+pattern — the assertions the two rendered lines cannot carry themselves:
+
+- **R3-c mechanically, not in prose:** the pinned block is parsed and
+  `#<channel>` counted — **exactly one**, in both carriers. A second channel
+  token *is* the render defect, so counting it is the rule rather than a
+  paraphrase of it. The count line is asserted verbatim.
+- **R1-a:** no opt-in · no wait on a named Slack source · unreachable = zero
+  delta, in document and skill.
+- **R2-c:** the project name as the only key · no name → no key and no scan ·
+  names never content.
+- **R4-b:** BA-named-and-BA-confirmed only · an unanswered candidate is declined
+  · the D-O47 capture path unchanged · no second consumer of the slack. Plus the
+  ledger half **at its own grain**: the `Sources:` head line is re-read in all
+  four carriers and must have grown **no fifth state** — a decline that records
+  nothing cannot need one, and D-O48's vocabulary is closed.
+- **Placement:** §10.1's P-O table is parsed and its **eleven rows** counted, so
+  *no new prompt point* is an assertion and not an intention.
+
+**`check-budget.sh` 37 / 0, unchanged, and that is the point.** The fixture
+gained prose inside interaction 1, not a heading: the count stays **8**.
+
+**Suite 17/17 GREEN**, the three install-based runs included — re-run **after**
+the `VERSION` write, so the manifest assertions checked 0.1.16, and the doc
+vector resolves the orchestrator at v0.20.
+
+### Version
+
+`VERSION` 0.1.15 → **0.1.16**, taken by this pass under D157 — the first
+automatic patch increment under the new discipline. No minor is proposed and none
+is hinted at: that stamp is the BA Lead's initiative alone.
+
+### Open
+
+**Nothing from this cycle stands open.** **D-O53 awaits ratification**, with
+**D153–D157** beneath it. Three items carry, none touched here: **R4** (the
+gate's A-pass §5.1-by-reference rule, ruled 14 Aug 2026, still unbuilt) and the
+hygiene backlog — **D152** (the stale *names indicative* caption) beside **D82**
+(the t17 section-close placement).

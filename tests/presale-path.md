@@ -63,6 +63,28 @@ are captured verbatim under `sources/`; ones it cannot take a BA disposition —
 **supply · skip · pending** — and every named source lands on the head's
 `Sources:` line with its state.
 
+**The candidate scan rides inside that block** (D-O53). Where the Slack
+integration is reachable, the framework scans the workspace on **the project
+name alone** and offers **one** best-match channel on the inventory's own line —
+
+```
+Slack — closest match on the project name: #acme-portal — include it, or ignore it.
+and 2 more matched — name them to see
+```
+
+— never a list of channels. No opt-in: the scan runs whenever Slack is
+reachable, whether or not a Slack source was already named. Slack unreachable →
+the block renders exactly as it did before D-O53, zero delta.
+
+**The confirm path.** The BA's **one reply** confirms the candidate alongside
+everything else — no second render, no second stop, no ninth act. A confirmed
+candidate stops being a candidate: it is an ordinary named reachable source,
+captured verbatim to `sources/slack-acme-portal-<date>.md` and mined under
+cite-or-mark, and it lands on the head's `Sources:` line with its state like any
+other. **A declined candidate lands nothing** — the ledger records BA-named and
+BA-confirmed sources only, and a candidate the reply does not answer is
+declined.
+
 The source inventory, the profile picker and the scope-frame block render
 **together, as one stop** (D-O42, extended by D-O45). Auto-pickup pre-fills
 the frame's values with their citations from the material on hand — delivery
@@ -88,7 +110,10 @@ The framework then renders the route. The render is not an interaction.
 **Green when:** the head reads `Profile: Presale`, carries the five scope-frame
 lines and a `Sources:` line with a state per named source, `canvas.md` is
 present, one reply answered all three blocks, and a route render in the §10.6
-shape has been emitted.
+shape has been emitted. Where Slack was reachable: **exactly one** candidate
+channel rendered — never two — the confirmed one carries a `Sources:` entry and
+a `sources/slack-<channel>-<date>.md` capture, and a declined one carries
+neither.
 
 ---
 
@@ -174,8 +199,10 @@ render after their epic's story rows, and the estimate columns are empty.
 Held deliberately unspent. The budget carries one interaction of slack for the
 correction the route did not anticipate — a struck row that should have stayed,
 a defer that should have been asked, the Frame correction stop where a capture
-contradicts the scope frame (D-O45 · D-O49). A path that needs a ninth act has
-spent the slack and failed the budget.
+contradicts the scope frame (D-O45 · D-O49). A capture from a **confirmed
+candidate channel** fires that same stop and no other: the scan adds **no second
+consumer** of the slack (D-O53). A path that needs a ninth act has spent the
+slack and failed the budget.
 
 ---
 
