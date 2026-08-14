@@ -120,6 +120,24 @@ are what get iterated, not tooling.
 One advisory, rendered once when it applies: closing over a **waived Solution**
 means Band 2 decomposes a guess. Say it; the BA's call stands.
 
+## Under a standing grant — the band-boundary report
+
+The P-O7 — Band-1 closure stamp is **AUTO** under a grant (`/ba-auto`), and
+closure is ratified in one batch at `off` — unchanged. **Band-1 closure is a band boundary**, so it is
+one of the four events that end the run's turn. After the stamp, render the
+pinned band-boundary report and **stop there**; the grant stands, and the BA's
+next message resumes the run:
+
+```
+Band boundary — <date> · AUTO (AG-<n>) · <P-O7 Band-1 closure | P-O8 Band-3 entry: <feature>>
+Auto-trail since <start | last boundary>: <n> acts
+Assumptions: <n> · Open questions: <n>
+Next act: <one line> — any reply continues · /ba-auto off renders the resumption report
+```
+
+The effects above go to the ledger, not the conversation: under a grant nothing
+between acts is narrated, and this report is the whole of what the BA sees.
+
 ## What this skill never does
 
 Never runs a Scope-H check itself — it *requests* the arming run (no Bash, and
@@ -136,6 +154,9 @@ aspect-state head — the Profile and Auto lines govern.
 **Register self-check (§10.3), before any BA-facing render:** short sentences ·
 code + name · state first, then the act · ≤ 10 lines outside pinned shapes ·
 no acknowledgement-only stop. A failing render is rewritten, not sent.
+**Under a standing autonomy grant, register renders address the ledger, not
+the conversation** — the band-boundary report and the resumption report are the
+only BA-facing renders of an auto cycle (`/ba-auto`).
 
 **The session boundary (framework-wide).** This is an **analysis session**. It
 produces analysis artifacts only. It never produces an implementation plan, a

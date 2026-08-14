@@ -143,6 +143,26 @@ on a draft spec its FAIL report is an informative named-gap list — the client 
 agenda. Do **not** name certification or handoff as the next step: both need an
 effective PASS, which is Discovery's destination, after a recorded switch.
 
+## Under a standing grant — the band-boundary report
+
+The P-O8 — Band-3 entry stamp is **AUTO** under a grant (`/ba-auto`), and entry
+is ratified in one batch at `off` — unchanged. **Band-3 entry is a band boundary**, so it is one
+of the four events that end the run's turn. After the stamp, render the pinned
+band-boundary report — naming the feature — and **stop there**; the grant
+stands, and the BA's next message resumes the run:
+
+```
+Band boundary — <date> · AUTO (AG-<n>) · <P-O7 Band-1 closure | P-O8 Band-3 entry: <feature>>
+Auto-trail since <start | last boundary>: <n> acts
+Assumptions: <n> · Open questions: <n>
+Next act: <one line> — any reply continues · /ba-auto off renders the resumption report
+```
+
+The steps above record to the ledger, not the conversation: under a grant
+nothing between acts is narrated. The standing-AW re-affirmation of step 4 is a
+BA act and is **not** waived by the grant — it rides the next BA turn, named on
+the report's `Next act:` line.
+
 ## What this skill never does
 
 Never writes the brief's slicing row itself (elicitation mechanics own the write)
@@ -161,6 +181,9 @@ aspect-state head — the Profile and Auto lines govern.
 **Register self-check (§10.3), before any BA-facing render:** short sentences ·
 code + name · state first, then the act · ≤ 10 lines outside pinned shapes ·
 no acknowledgement-only stop. A failing render is rewritten, not sent.
+**Under a standing autonomy grant, register renders address the ledger, not
+the conversation** — the band-boundary report and the resumption report are the
+only BA-facing renders of an auto cycle (`/ba-auto`).
 
 **The session boundary (framework-wide).** This is an **analysis session**. It
 produces analysis artifacts only. It never produces an implementation plan, a

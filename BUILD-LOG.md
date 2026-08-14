@@ -7352,3 +7352,158 @@ the diff is `VERSION` and `BUILD-LOG.md`, and a reader comparing this commit to
 
 **Suite 17/17 GREEN at the stamp**, the three install-based runs included —
 re-run after the write, so the version the manifest checks assert is 0.1.15.
+
+
+## Continuity Under a Grant — the AG's only stop is a band boundary, Lane B · orchestrator v0.19 · 14 August 2026 · GREEN
+
+The field defect, reported 13 August 2026: an auto run under a standing AG
+**halted after every aspect**. Nothing in the machinery had failed. §10.7's
+policy table was obeyed row by row, every act was taken AUTO, every stamp
+landed, and the grant was never violated. What the run then did was render a
+narrative summary of the aspect to the BA — and **a conversational render ends
+the agent's turn**. The summary was therefore a stop, and a grant whose entire
+purpose is to remove stops was delivering one per aspect. The BA had granted
+autonomy and was still pressing a key ten times a band.
+
+Ruled by Eugene K., 14 August 2026, option **(a)**: under a standing AG the only
+stop is a band boundary.
+
+### The gate, and the renumber it forced
+
+The ruling package was written against **VERSION 0.1.14 / orchestrator v0.17**
+and allocated **D-O50** and **D-O51**. The tree at `2b2cb8c` read **0.1.15 /
+v0.18**, and **D-O50 was already taken and EK-ratified** — the unreadable spec on
+the dashboard (§22), cited at nine sites including four payload scripts. §22 was
+taken in step. The gate the package specified was run first and **stopped the
+build before any write**.
+
+**D145 — the package's numbering was stale by one cycle, and the shift went to
+the incoming package, not the shipped one.** Re-ruled by Eugene K. the same day:
+continuity = **D-O51**, band-boundary report = **D-O52**, review record = **§23**,
+header = **v0.19**. Renumbering the incoming package moves **no existing
+citation**; renumbering the shipped D-O50 would have rewritten EK-ratified text
+plus `sk_structure.py`, `sk_status.py` (three sites) and `sk_wbs.py` to make room.
+The cheap direction was also the correct one. Recorded because a reader comparing
+the ruling package to the landed sections will find two different numbers for the
+same rule.
+
+**R4 carries again.** The stamp entry above scheduled the gate's A-pass item
+(§5.1's SKIPPED-on-unsupported-parse rule extended **by reference**) for "the next
+cycle". This cycle is orchestrator-side and does not touch it; per Eugene's
+ruling of 14 August 2026 it **carries to the next cycle**, still ruled and still
+unbuilt.
+
+### The documents (before any payload)
+
+**§10.7** gains two blocks after the policy table's apparatus — placed *after*
+the safety-floor paragraph and the AUTO stamp grammar rather than immediately
+after the table, because the continuity rule names the floor as stop event 2 and
+the boundary report uses the stamp grammar: both would forward-reference from the
+earlier slot.
+
+**Continuity under a grant (D-O51)** — no conversational render between acts, the
+turn never ended inside a band, every record to the ledger and the auto-trail,
+and the run continuous until exactly one of four events: a band boundary · a
+safety-floor stop · exhaustion of the grant's scope · `off`.
+
+**The band-boundary report (D-O52)** — the pinned four-line shape, rendered after
+the P-O7/P-O8 stamp, the turn ended, the AG left standing.
+
+**§10.3 rule 8** gains the list entry and one clause — the smallest legal
+placement, no rule renumbered. **§23** carries both rows and the conflict scan.
+Header → **v0.19** with its change record; the footer gains the v0.19 entry,
+`D-O1–D-O52`, and `v0.18→v0.19 in §23`.
+
+**Conflict scan — contract v0.2 · gate v0.7 · elicitation v0.6 · standard v0.4:
+none found, nothing changed in any of them.** The gate is the only sibling that
+legislates under a grant (§7.1's AUTO-waiver paragraph) and it **already
+addresses the report entry, not the conversation** — D-O51's rule reached
+independently, one document earlier. The contract names no render. The standard
+owns artifact text and elicitation owns stakeholder-facing questions; by §10.3's
+own division of the three registers neither reaches BA-facing conversation.
+
+### The payload — 40 files, 49 substitutions, exactly-once throughout
+
+Every substitution asserted `str.count(old) == 1` before writing, with a residual
+grep sweep after. Three scripted passes: the skills and personas, the two mirror
+compile targets, and the register-rule-5 repair below.
+
+**D146 — the sweep's file set was wider than the brief's.** The brief named
+`payload/claude/skills/*.md` and `ba-orchestrator.md`. Both **mirror compile
+targets** — `payload/mirror/claude-block.md` and `payload/mirror/AGENTS.md` —
+carry register rule 8, the register self-check *and* the resumption report's
+pinned shape, and a `payload/claude/**` glob does not reach them. Mirroring the
+clause everywhere except the two files that compile into `CLAUDE.md` and
+`AGENTS.md` would have left the rule absent from the surface every session reads
+first. Both extended.
+
+**D147 — the two band-boundary skills were entirely AG-blind, and that is where
+the defect actually lived.** `ba-close-band1` (P-O7) and `ba-enter-feature`
+(P-O8) contained **zero** occurrences of `AUTO`, `grant` or `AG-` before this
+cycle. Nothing at either boundary knew a grant could be standing, so nothing knew
+to render a boundary report — the run reached P-O7 with no instruction but its
+ordinary manual-mode renders. Both gained the pinned shape and the continuity
+clause. This is the difference between mirroring a rule and landing it: the
+`ba-auto` skill alone would have documented a report that no skill ever fired.
+
+**D148 — the register clause was applied uniformly to all 38 carriers of the
+shared self-check block, not selectively.** The block is byte-identical across
+all 38 (verified by hash before the write) — it is **one compile target already
+duplicated by design**, not 38 independent copies. Extending it uniformly is one
+string; extending it selectively creates two variants of a compiled block, which
+is the drift the R4 ruling of this same day named — *a second copy is a second
+thing to drift*. The clause itself is by-reference: it states where renders are
+addressed and points at `/ba-auto`, and does not restate the four stop events.
+
+**D149 — `/ba-auto` and `/ba.auto` are both live in the corpus, and the ruled
+pinned shape uses the hyphen.** §10.7's prose and heading use `/ba.auto`; §4.4's
+AG record, every payload skill and the ruled band-boundary shape use `/ba-auto`.
+The shape was landed **verbatim as ruled** — a pinned shape is not the place to
+silently normalise a command name, and the payload is hyphen-consistent already,
+so the shape matches the surface that renders it. Flagged, not fixed: the split
+predates this cycle and normalising it is a corpus-wide act needing its own
+ruling.
+
+### Tests
+
+`check-auto.sh` gains **section 4b** on its existing pattern — the §10.7 block is
+*extracted from the document*, never pinned in the suite, so a reworded document
+goes red instead of drifting past. Its shape extractor was parameterised by block
+head (`argv[3]`, defaulting to the resumption report) rather than duplicated.
+
+**49 new checks:** the continuity rule joined across four carriers · the
+four-event clause · the render-not-a-ratification-point clause · the never-does
+turn rule · the boundary shape extracted from §10.7 and byte-compared into **five**
+renderers · six vacuity probes on the source block · a control that reworks one
+line and must go red · rule 8's list on four surfaces · the register clause on
+seven. **93 → 142 checks in the file.**
+
+**D150 — three `check-orchestrator.sh` assertions were pinned to the pre-package
+state and had to move with it.** Rule 8's list was asserted as one contiguous
+string (`WBS export §10.5, route render §10.6, resumption report §10.7`) that the
+new entry splits; the header check pinned `v0.18`; the D-O contiguity check
+pinned `range(1, 51)`. All three updated, and the list assertion **split into
+two** — the WBS/route pair, then both §10.7 renders with the boundary report
+ahead of the resumption report — so the ordering the register now fixes is itself
+asserted rather than incidentally spanned. A new `D-O51–D-O52` block assertion
+joins the per-edition series. **196 → 201 checks.**
+
+**Register rule 5 caught eight defects in this cycle's own prose.** The first
+payload draft rendered `P-O7` and `P-O8` bare at five sites; `check-register.sh`
+failed them and its four seeded controls could not be read past the real hits.
+Repaired to `P-O7 — Band-1 closure` / `P-O8 — Band-3 entry` and re-run clean. The
+pinned shape's own `P-O7 Band-1 closure | P-O8 Band-3 entry` is inside a fence
+and correctly exempt.
+
+**Suite 17/17 GREEN**, the three install-based runs included.
+
+### Version — not stamped
+
+`VERSION` stays **0.1.15**. The stamp is Eugene's separate act, as instructed.
+
+### Open
+
+Nothing in this block stands open. **D-O51–D-O52 await ratification.** Two items
+carry: **R4** (the gate's A-pass §5.1-by-reference rule, ruled 14 Aug 2026, still
+unbuilt) and **D149** (the `/ba-auto` · `/ba.auto` split, flagged this cycle,
+needing a corpus-wide ruling of its own).

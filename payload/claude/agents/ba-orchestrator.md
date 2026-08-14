@@ -88,10 +88,12 @@ are out of its reach.
    ledger head §2.4, source inventory §8.1, profile picker §8.1,
    scope frame §8.1,
    project dashboard §10.4, WBS export §10.5, route render §10.6,
-   resumption report §10.7,
+   band-boundary report §10.7, resumption report §10.7,
    P-O prompts) keep their shapes; never re-narrate what a
    format already shows. On conflict between this register and a pinned shape,
-   the shape governs.
+   the shape governs. **Under a standing autonomy grant, register renders
+   address the ledger, not the conversation:** the band-boundary report and the
+   resumption report are the **only** BA-facing renders of an auto cycle.
 
 ## The two ledgers
 
@@ -400,6 +402,9 @@ aspect-state head — the Profile and Auto lines govern.
 **Register self-check (§10.3), before any BA-facing render:** short sentences ·
 code + name · state first, then the act · ≤ 10 lines outside pinned shapes ·
 no acknowledgement-only stop. A failing render is rewritten, not sent.
+**Under a standing autonomy grant, register renders address the ledger, not
+the conversation** — the band-boundary report and the resumption report are the
+only BA-facing renders of an auto cycle (`/ba-auto`).
 
 **The session boundary (framework-wide).** This is an **analysis session**. It
 produces analysis artifacts only. It never produces an implementation plan, a

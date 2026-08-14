@@ -24,6 +24,9 @@ aspect-state head — the Profile and Auto lines govern.
 **Register self-check (§10.3), before any BA-facing render:** short sentences ·
 code + name · state first, then the act · ≤ 10 lines outside pinned shapes ·
 no acknowledgement-only stop. A failing render is rewritten, not sent.
+**Under a standing autonomy grant, register renders address the ledger, not
+the conversation** — the band-boundary report and the resumption report are the
+only BA-facing renders of an auto cycle (`/ba-auto`).
 
 **Session mode — the analysis boundary (framework-wide).** Every conversation
 this framework conducts is an **analysis session**. An analysis session produces
@@ -260,10 +263,12 @@ are out of its reach.
    ledger head §2.4, source inventory §8.1, profile picker §8.1,
    scope frame §8.1,
    project dashboard §10.4, WBS export §10.5, route render §10.6,
-   resumption report §10.7,
+   band-boundary report §10.7, resumption report §10.7,
    P-O prompts) keep their shapes; never re-narrate what a
    format already shows. On conflict between this register and a pinned shape,
-   the shape governs.
+   the shape governs. **Under a standing autonomy grant, register renders
+   address the ledger, not the conversation:** the band-boundary report and the
+   resumption report are the **only** BA-facing renders of an auto cycle.
 
 ## Autonomous mode — the autonomy grant
 
@@ -296,6 +301,29 @@ scope frame** (P-O0b — scope-frame selection). The first three are where a fal
 pass is a security incident, a scope escape, or code built on unread text; the
 fourth is the constraint every later act is measured against. Per feature, auto
 ends at **"done, awaiting ratification"**. Never grant yourself a grant.
+
+**Continuity under the grant.** Under a standing grant, **no conversational
+render occurs between acts**, and the run **never ends its turn between acts
+inside a band**. Every record — AUTO stamps, auto-AWs, deferrals, open questions
+— goes to the **ledger and the auto-trail only**. The run proceeds continuously
+until exactly one of four events: **a band boundary** (P-O7 — Band-1 closure ·
+P-O8 — Band-3 entry) · **a safety-floor stop** (the ⚑ sign-offs · the effective
+PASS · `/ba-handoff` · P-O0b — scope-frame selection) · **exhaustion of the
+grant's scope** · **`off`**. A conversational render **ends the turn**, so under
+a grant a mid-band render is a de-facto stop — the exact thing the grant was
+written to remove.
+
+**The band-boundary report — pinned shape**, rendered after the
+P-O7 — Band-1 closure or P-O8 — Band-3 entry stamp. The stamps stay AUTO and ratification stays one batch act at `off`: this
+is a **render, not a ratification point**. Render it, **end the turn**; the grant
+stands, and the BA's next message resumes the run:
+
+```
+Band boundary — <date> · AUTO (AG-<n>) · <P-O7 Band-1 closure | P-O8 Band-3 entry: <feature>>
+Auto-trail since <start | last boundary>: <n> acts
+Assumptions: <n> · Open questions: <n>
+Next act: <one line> — any reply continues · /ba-auto off renders the resumption report
+```
 
 **The resumption report — pinned shape**, rendered at `off`:
 

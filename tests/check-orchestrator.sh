@@ -678,8 +678,10 @@ done
 # §10.3's two amended rules, in the document that owns them
 has "$RULES_DOC" "An acknowledgement-only stop is a banned render" \
     "§10.3 rule 7 carries the banned-render clause (D-O30)"
-has "$RULES_DOC" "WBS export §10.5, route render §10.6, resumption report §10.7" \
-    "§10.3 rule 8's pinned-formats list names all three renders"
+has "$RULES_DOC" "WBS export §10.5, route render §10.6," \
+    "§10.3 rule 8's pinned-formats list names the WBS export and the route render"
+has "$RULES_DOC" "band-boundary report §10.7, resumption report §10.7" \
+    "…and both §10.7 renders, the boundary report ahead of the resumption report (D-O52)"
 has "$RULES_DOC" "v0.13" "the change-record stack keeps the edition WS-2 produced"
 has "$RULES_DOC" "D-O30–D-O34" "…and the decisions it ruled"
 has "$RULES_DOC" "v0.14" "…and the edition WS-3 produced"
@@ -688,18 +690,19 @@ has "$RULES_DOC" "D-O40–D-O41" "…and the two locked amendments it carries"
 has "$RULES_DOC" "v0.15" "…and the edition the scope frame produced"
 has "$RULES_DOC" "D-O42–D-O44" "…and the scope-frame ruling block"
 has "$RULES_DOC" "v0.16" "…and the edition the four-act floor row produced"
-head -2 "$RULES_DOC" | grep -q 'v0\.18' \
-  && ok "the header states the live edition — v0.18, the unreadable spec" \
-  || bad "the header does not name v0.18: the edition and the change record disagree"
+head -2 "$RULES_DOC" | grep -q 'v0\.19' \
+  && ok "the header states the live edition — v0.19, continuity under a grant" \
+  || bad "the header does not name v0.19: the edition and the change record disagree"
 has "$RULES_DOC" "D-O45–D-O49" "…and the source-inventory ruling block"
 has "$RULES_DOC" "D-O50" "…and the change record names the unreadable-spec ruling"
+has "$RULES_DOC" "D-O51–D-O52" "…and the continuity-under-a-grant ruling block"
 
 # the ruling block is contiguous from the live high-water mark: no gap, no reuse
-python3 - "$RULES_DOC" <<'PYX' && ok "the D-O block runs 1…50 with no gap and no skipped number" \
+python3 - "$RULES_DOC" <<'PYX' && ok "the D-O block runs 1…52 with no gap and no skipped number" \
   || bad "the D-O decision block is not contiguous — a number is missing or reused"
 import re, sys
 seen = {int(n) for n in re.findall(r"D-O(\d+)", open(sys.argv[1], encoding="utf-8").read())}
-sys.exit(0 if seen == set(range(1, 51)) else 1)
+sys.exit(0 if seen == set(range(1, 53)) else 1)
 PYX
 
 # ── 7. layering — no methodology leaks into the payload ──────────────────────

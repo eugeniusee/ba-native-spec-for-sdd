@@ -74,6 +74,44 @@ would be a run choosing its own budget. Per feature, auto therefore ends at
 **"done, awaiting ratification"**: the draft is complete, the gate has run, the
 last two acts wait for a human.
 
+## Continuity under the grant
+
+Under a standing grant, **no conversational render occurs between acts**, and
+the run **never ends its turn between acts inside a band**. Every record — AUTO
+stamps, auto-AWs, deferrals, open questions — goes to the **ledger and the
+auto-trail only**. The run proceeds continuously until exactly one of four
+events:
+
+1. **A band boundary** — P-O7 — Band-1 closure, or P-O8 — Band-3 entry. Stamp,
+   render the band-boundary report below, end the turn.
+2. **A safety-floor stop** — the two ⚑ sign-offs, the effective PASS,
+   `/ba-handoff <feature>`, or P-O0b — scope-frame selection.
+3. **Exhaustion of the grant's scope** — the `scope:` field of `AG-<n>`.
+4. **`off`** — `/ba-auto off`, or the BA interrupting.
+
+**Why this is a rule and not a preference:** a conversational render **ends the
+turn**. Under a grant, a mid-band render is therefore a **de-facto stop** — the
+exact thing the grant was written to remove. A run that narrates each aspect has
+not run autonomously; it has spent the BA's attention at every act while holding
+a grant that says it need not.
+
+## The band-boundary report — a pinned shape
+
+The **only** BA-facing render inside an auto cycle, beside the resumption report
+at `off`. The stamps at P-O7 — Band-1 closure and P-O8 — Band-3 entry are
+**unchanged** — still AUTO, still ratified in one batch at `off`. This is a **render, not a ratification point**: it takes
+no BA ruling. After the stamp, render it and **end the turn**. **The grant
+stands** — the BA's next message, whatever it says, resumes the run:
+
+```
+Band boundary — <date> · AUTO (AG-<n>) · <P-O7 Band-1 closure | P-O8 Band-3 entry: <feature>>
+Auto-trail since <start | last boundary>: <n> acts
+Assumptions: <n> · Open questions: <n>
+Next act: <one line> — any reply continues · /ba-auto off renders the resumption report
+```
+
+The auto-trail count is **since the last boundary**, not since the grant.
+
 ## `off` — the resumption report
 
 `/ba-auto off` (or the BA interrupting) closes the grant and renders this
@@ -105,7 +143,10 @@ own would have no boundary at all · never invents where unclear — that is an
 Open Question · never switches the profile mid-auto · never executes a reopen
 cascade · never takes an override, a cap adjust or a defer at
 P-O9 — overflow ruling · never runs a CC assertion itself · never leaves an act
-unstamped, and never leaves an unratified trail unnamed at `off`.
+unstamped, never leaves an unratified trail unnamed at `off` · **never ends the
+turn or renders to the conversation between acts inside a band** — mid-run
+records go to the ledger only, and a cycle's only BA-facing renders are the
+band-boundary report and the resumption report.
 
 **Mode read (framework-wide):** before the first act of any session, read the
 aspect-state head — the Profile and Auto lines govern.
@@ -113,6 +154,9 @@ aspect-state head — the Profile and Auto lines govern.
 **Register self-check (§10.3), before any BA-facing render:** short sentences ·
 code + name · state first, then the act · ≤ 10 lines outside pinned shapes ·
 no acknowledgement-only stop. A failing render is rewritten, not sent.
+**Under a standing autonomy grant, register renders address the ledger, not
+the conversation** — the band-boundary report and the resumption report are the
+only BA-facing renders of an auto cycle (`/ba-auto`).
 
 **The session boundary (framework-wide).** This is an **analysis session**. It
 produces analysis artifacts only. It never produces an implementation plan, a

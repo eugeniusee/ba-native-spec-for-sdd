@@ -43,6 +43,8 @@ ORC="$PKG_ROOT/payload/claude/agents/ba-orchestrator.md"
 BLOCK="$PKG_ROOT/payload/mirror/claude-block.md"
 AGENTS="$PKG_ROOT/payload/mirror/AGENTS.md"
 TPL="$PKG_ROOT/payload/specify-overlay/ba/templates/aspect-state.md"
+CB1="$PKG_ROOT/payload/claude/skills/ba-close-band1/SKILL.md"
+ENTF="$PKG_ROOT/payload/claude/skills/ba-enter-feature/SKILL.md"
 
 # ── the safety floor — the four acts no grant reaches ────────────────────────
 #
@@ -377,7 +379,10 @@ printf '\n▸ The resumption report — §10.7'"'"'s pinned shape, byte for byte
 SHAPE="$TMP/shape.py"
 cat > "$SHAPE" <<'PY'
 #!/usr/bin/env python3
-"""The resumption-report block: from the document, and from a compiled unit.
+"""A pinned §10.7 block: from the document, and from a compiled unit.
+
+argv: <doc|unit> <path> [<block head>] — the head defaults to the resumption
+report; the band-boundary report (D-O52) passes its own.
 
 Neither side is pinned in the suite — the document's block is extracted and the
 unit's is found by its own first line, then the two are compared. A reworded
@@ -388,7 +393,7 @@ import re
 import sys
 from pathlib import Path
 
-HEAD = "Auto off — "
+HEAD = sys.argv[3] if len(sys.argv) > 3 else "Auto off — "
 
 
 def blocks(text):
@@ -416,7 +421,7 @@ if sys.argv[1] == "doc":
     text = sec.group(0)
 found = [b for b in blocks(text) if b.startswith(HEAD)]
 if not found:
-    sys.exit("no resumption-report block in %s" % path.name)
+    sys.exit("no %r block in %s" % (HEAD, path.name))
 print(found[0])
 PY
 
@@ -477,6 +482,115 @@ diff -q "$TMP/shape-doc.txt" "$TMP/shape-dirty.txt" >/dev/null 2>&1 \
 has "$DOC" "resumption report §10.7" "§10.3 rule 8's list carries the resumption report"
 for f in "$ORC" "$BLOCK" "$AGENTS"; do
   has "$f" "resumption report §10.7" "…compiled into $(basename "$f")"
+done
+
+# ── 4b. continuity under a grant, and the band-boundary report ───────────────
+#
+# D-O51 · D-O52. The field defect this closes: a run under a standing AG took
+# every act correctly and then narrated each aspect to the BA — and a
+# conversational render ends the turn, so the grant that was written to remove
+# stops was delivering one per aspect. Two assertions follow from that: the
+# continuity rule is compiled wherever a run could render mid-band, and the one
+# render that *is* legal at a band boundary is pinned like every other shape.
+
+printf '\n▸ Continuity under a grant · the band-boundary report (D-O51 · D-O52)\n'
+
+# the rule itself — joined, because every carrier soft-wraps it differently
+while IFS='|' read -r label phrase; do
+  [ -z "$label" ] && continue
+  for f in "$DOC" "$AUTO" "$BLOCK" "$AGENTS"; do
+    has_joined "$f" "$phrase" "$(basename "$f") — $label"
+  done
+done <<'LINES'
+the no-render rule|no conversational render occurs between acts
+the turn rule|never ends its turn between acts inside a band
+the ledger destination|ledger and the auto-trail only
+the boundary stop|band boundary
+the floor stop|safety-floor stop
+LINES
+
+# the four stop events, named in the owner and the document
+for f in "$DOC" "$AUTO"; do
+  has_joined "$f" "exactly one of four" "$(basename "$f") — the run ends on exactly four events"
+done
+
+# the grant survives the boundary: the report is a render, not a ratification
+has_joined "$AUTO" "render, not a ratification point" \
+  "ba-auto — the boundary report takes no BA ruling"
+has_joined "$DOC" "render, not a ratification point" \
+  "§10.7 — the boundary report takes no BA ruling"
+
+# the never-does list gains the turn rule
+has_joined "$AUTO" "never ends the" \
+  "ba-auto — 'what this skill never does' carries the turn rule"
+
+# the pinned shape, byte for byte, from §10.7 into all five renderers
+BHEAD='Band boundary — '
+python3 "$SHAPE" doc "$DOC" "$BHEAD" > "$TMP/bshape-doc.txt" 2>"$TMP/bshape-doc.err"
+if [ -s "$TMP/bshape-doc.txt" ]; then
+  ok "§10.7 yields the band-boundary report — $(wc -l < "$TMP/bshape-doc.txt" | tr -d ' ') lines"
+else
+  bad "§10.7's band-boundary block does not extract: the shape cannot be checked from source"
+  sed 's/^/      /' "$TMP/bshape-doc.err"
+fi
+
+# vacuity: a block that extracts but says nothing would pass a byte-match
+while IFS='|' read -r label phrase; do
+  [ -z "$label" ] && continue
+  grep -qF -- "$phrase" "$TMP/bshape-doc.txt" \
+    && ok "the source block still carries $label" \
+    || bad "§10.7's band-boundary block no longer carries $label"
+done <<'LINES'
+the AUTO stamp and which boundary|· AUTO (AG-<n>) ·
+both boundary acts|P-O7 Band-1 closure | P-O8 Band-3 entry
+the trail since the last boundary|Auto-trail since <start | last boundary>
+the assumption and question counts|Assumptions: <n> · Open questions: <n>
+the continuation — any reply resumes|any reply continues
+the off route to the resumption report|/ba-auto off renders the resumption report
+LINES
+
+for pair in "$AUTO|the ba-auto skill" "$CB1|ba-close-band1 (P-O7)" \
+            "$ENTF|ba-enter-feature (P-O8)" "$BLOCK|the CLAUDE.md block" "$AGENTS|AGENTS.md"; do
+  f="${pair%%|*}"; label="${pair##*|}"
+  python3 "$SHAPE" unit "$f" "$BHEAD" > "$TMP/bshape-unit.txt" 2>"$TMP/bshape-unit.err"
+  if [ ! -s "$TMP/bshape-unit.txt" ]; then
+    bad "$label carries no band-boundary block"
+    sed 's/^/      /' "$TMP/bshape-unit.err"
+  elif diff -u "$TMP/bshape-doc.txt" "$TMP/bshape-unit.txt" > "$TMP/bshape.diff" 2>&1; then
+    ok "$label is byte-identical to §10.7 — the shape is compiled, not rewritten"
+  else
+    bad "$label diverges from §10.7's pinned band-boundary shape:"
+    sed 's/^/      /' "$TMP/bshape.diff" | head -14
+  fi
+done
+
+# the control: a reworded line in a private copy must go red
+BSHC="$TMP/bshape-corpus"
+mkdir -p "$BSHC"
+cp "$AUTO" "$BSHC/SKILL.md"
+python3 - "$BSHC/SKILL.md" <<'PY'
+import pathlib, sys
+p = pathlib.Path(sys.argv[1])
+t = p.read_text(encoding="utf-8")
+p.write_text(t.replace("any reply continues", "press enter to continue"), encoding="utf-8")
+PY
+python3 "$SHAPE" unit "$BSHC/SKILL.md" "$BHEAD" > "$TMP/bshape-dirty.txt" 2>&1
+diff -q "$TMP/bshape-doc.txt" "$TMP/bshape-dirty.txt" >/dev/null 2>&1 \
+  && bad "a reworded continuation line slips through — the byte-match does not hold" \
+  || ok "the control fires — a reworded boundary line goes red"
+
+# the shape is a pinned format, so it joins register rule 8's list
+has "$DOC" "band-boundary report §10.7" "§10.3 rule 8's list carries the band-boundary report"
+for f in "$ORC" "$BLOCK" "$AGENTS"; do
+  has "$f" "band-boundary report §10.7" "…compiled into $(basename "$f")"
+done
+
+# the register clause: under a grant, renders address the ledger
+for pair in "$DOC|§10.3 rule 8" "$ORC|ba-orchestrator" "$AUTO|ba-auto" \
+            "$BLOCK|the CLAUDE.md block" "$AGENTS|AGENTS.md" \
+            "$CB1|ba-close-band1" "$ENTF|ba-enter-feature"; do
+  has_joined "${pair%%|*}" "address the ledger, not the conversation" \
+    "${pair##*|} — the under-AG register clause"
 done
 
 # ── 5. the mode-read line, across the carrier set ────────────────────────────
