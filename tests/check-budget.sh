@@ -276,7 +276,7 @@ has "$RUN" '`specs all`' "the batch spec driver is bound"
 has_joined "$RUN" "stop once at the consolidated defer-confirm." \
     "…and stops once, at the consolidated defer-confirm"
 
-has_joined "$DOC" "Batch entry — \`/ba.run specs all | specs <epic-list>\` (D-O34)" \
+has_joined "$DOC" "Batch entry — \`/ba-run specs all | specs <epic-list>\` (D-O34)" \
     "§8.4 binds the batch entry form"
 has_joined "$DOC" "each run owing its own \`## Band 3\` run-log line" \
     "…and keeps D86's per-run bookkeeping inside the batch"

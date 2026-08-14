@@ -87,7 +87,7 @@ Cross-layer consumers, on the record: **CC-H-05's entity side** reads this surfa
 No reference design — built to this sheet alone (elicitation §7.1 pattern).
 
 ### 8. Phase-2 build-brief hook
-Invocation: `/ba.run T-11`; contract check at P-O3. Inputs loaded: `canvas.md` (§§7–8 first — the EG-1 surface) · `glossary.md` · `.specify/memory/context.md` · current `domain-model.md` (routed arrivals) · presale material and kickoff notes. Interaction: EG-1 sweep → relation pass → destination-tagged questions → BA rulings incl. boundary-reference rulings → write + routed batches (glossary-first, context). Outputs written: `.specify/memory/domain-model.md`, plus routed batches where the rulings demand them. §§2–5 above fix the method; Phase 2 adds the EG-1 line-parse rendering, the glossary-first routing assist, and an optional diagram derivation from the tables (a derived view only — D-B4-1, locked).
+Invocation: `/ba-run T-11`; contract check at P-O3. Inputs loaded: `canvas.md` (§§7–8 first — the EG-1 surface) · `glossary.md` · `.specify/memory/context.md` · current `domain-model.md` (routed arrivals) · presale material and kickoff notes. Interaction: EG-1 sweep → relation pass → destination-tagged questions → BA rulings incl. boundary-reference rulings → write + routed batches (glossary-first, context). Outputs written: `.specify/memory/domain-model.md`, plus routed batches where the rulings demand them. §§2–5 above fix the method; Phase 2 adds the EG-1 line-parse rendering, the glossary-first routing assist, and an optional diagram derivation from the tables (a derived view only — D-B4-1, locked).
 
 ---
 
@@ -165,7 +165,7 @@ Cross-layer consumers, on the record: **CC-XA-02** (non-waivable) enforces role-
 No reference design — built to this sheet alone (elicitation §7.1 pattern).
 
 ### 8. Phase-2 build-brief hook
-Invocation: `/ba.run T-12`; contract check at P-O3. Inputs loaded: `.specify/memory/domain-model.md` first (the entity reference surface) · `canvas.md` (§7 actors) · `.specify/memory/stakeholders.md` · `.specify/memory/personas.md` where it exists (TC-1/TC-2 read) · `glossary.md` · current roles file. Interaction: role derivation → conditional transformation (TC branch) → policy pre-draft with per-row evidence → destination-tagged questions → BA rulings on every role and row → TC-3/CC-XA-02 namespace screen at write time → write. Outputs written: `.specify/memory/roles-permissions.md`, plus routed batches where rulings demand them. §§2–5 above fix the method and the transformation's consumption of TC-1…TC-3; Phase 2 adds the TC-2 activity-line parser, a tuple-coverage rendering toward the CC-XA-01 sign-off view, and the automated TC-3 screen.
+Invocation: `/ba-run T-12`; contract check at P-O3. Inputs loaded: `.specify/memory/domain-model.md` first (the entity reference surface) · `canvas.md` (§7 actors) · `.specify/memory/stakeholders.md` · `.specify/memory/personas.md` where it exists (TC-1/TC-2 read) · `glossary.md` · current roles file. Interaction: role derivation → conditional transformation (TC branch) → policy pre-draft with per-row evidence → destination-tagged questions → BA rulings on every role and row → TC-3/CC-XA-02 namespace screen at write time → write. Outputs written: `.specify/memory/roles-permissions.md`, plus routed batches where rulings demand them. §§2–5 above fix the method and the transformation's consumption of TC-1…TC-3; Phase 2 adds the TC-2 activity-line parser, a tuple-coverage rendering toward the CC-XA-01 sign-off view, and the automated TC-3 screen.
 
 ---
 
@@ -241,7 +241,7 @@ Cross-layer consumers, on the record: Tier-2 context stack row 5 — flow contex
 No reference design — built to this sheet alone (elicitation §7.1 pattern).
 
 ### 8. Phase-2 build-brief hook
-Invocation: `/ba.run T-13`; contract check at P-O3. Inputs loaded: `.specify/memory/roles-permissions.md` and `.specify/memory/domain-model.md` first (the citation surfaces) · `canvas.md` (§§2, 7, 12) · `.specify/memory/context.md` · `glossary.md` · current file. Interaction: significance pass → journey pre-draft → coherence pass → destination-tagged questions → BA rulings → write + routed batches. Outputs written: `.specify/memory/processes.md` (D-B4-3, locked), plus routed batches where the coherence pass found misses. §§2–5 above fix the method; Phase 2 adds the coherence-diff rendering (role/entity resolution), a consumption check that steps stay locatable for Tier 2, and an optional swimlane render as a derived view (D-B4-1's rule, applied by analogy).
+Invocation: `/ba-run T-13`; contract check at P-O3. Inputs loaded: `.specify/memory/roles-permissions.md` and `.specify/memory/domain-model.md` first (the citation surfaces) · `canvas.md` (§§2, 7, 12) · `.specify/memory/context.md` · `glossary.md` · current file. Interaction: significance pass → journey pre-draft → coherence pass → destination-tagged questions → BA rulings → write + routed batches. Outputs written: `.specify/memory/processes.md` (D-B4-3, locked), plus routed batches where the coherence pass found misses. §§2–5 above fix the method; Phase 2 adds the coherence-diff rendering (role/entity resolution), a consumption check that steps stay locatable for Tier 2, and an optional swimlane render as a derived view (D-B4-1's rule, applied by analogy).
 
 ---
 

@@ -82,7 +82,7 @@ Cross-layer consumers, on the record: **T-12 (B4)** — the persona→role trans
 No reference design — built to this sheet alone (elicitation §7.1 pattern).
 
 ### 8. Phase-2 build-brief hook
-Invocation: `/ba.run T-04`; contract check at P-O3. Inputs loaded: `stakeholders.md` first · `canvas.md` · presale material and transcripts · `glossary.md`. Interaction: population election → pre-draft → destination-tagged questions → BA faithfulness rulings → boundary sweep (governance and register findings extracted as proposed batches) → write. Outputs written: `.specify/memory/personas.md`, plus routed batches where the sweep found any. §§2–5 above fix the method and the transformation contract; Phase 2 adds transcript mining toward charter fields and a TC-3 namespace check at write time.
+Invocation: `/ba-run T-04`; contract check at P-O3. Inputs loaded: `stakeholders.md` first · `canvas.md` · presale material and transcripts · `glossary.md`. Interaction: population election → pre-draft → destination-tagged questions → BA faithfulness rulings → boundary sweep (governance and register findings extracted as proposed batches) → write. Outputs written: `.specify/memory/personas.md`, plus routed batches where the sweep found any. §§2–5 above fix the method and the transformation contract; Phase 2 adds transcript mining toward charter fields and a TC-3 namespace check at write time.
 
 ---
 
@@ -156,7 +156,7 @@ Cross-layer consumers, on the record: Tier-1 kit inputs and Tier-2 context stack
 No reference design — built to this sheet alone (elicitation §7.1 pattern).
 
 ### 8. Phase-2 build-brief hook
-Invocation: `/ba.run T-05`; contract check at P-O3. Inputs loaded: `canvas.md` (Third-Party Connections, Context/Constraints first) · presale material and kickoff notes · `stakeholders.md` · `glossary.md` · current `context.md`. Interaction: pre-draft → destination-tagged questions → greenfield/absence rulings → boundary routing to `constraints.md` → write. Outputs written: `.specify/memory/context.md`, plus routed batches where boundary routing found binds. §§2–5 above fix the method; Phase 2 adds multi-format landscape mining and the constraints-vs-landscape routing assist.
+Invocation: `/ba-run T-05`; contract check at P-O3. Inputs loaded: `canvas.md` (Third-Party Connections, Context/Constraints first) · presale material and kickoff notes · `stakeholders.md` · `glossary.md` · current `context.md`. Interaction: pre-draft → destination-tagged questions → greenfield/absence rulings → boundary routing to `constraints.md` → write. Outputs written: `.specify/memory/context.md`, plus routed batches where boundary routing found binds. §§2–5 above fix the method; Phase 2 adds multi-format landscape mining and the constraints-vs-landscape routing assist.
 
 ---
 
@@ -240,7 +240,7 @@ Cross-layer consumers, on the record: **AT-VI-3 (T-09, B3)** reads the Confirmed
 No reference design — built to this sheet alone (elicitation §7.1 pattern).
 
 ### 8. Phase-2 build-brief hook
-Invocation: `/ba.run T-06`; contract check at P-O3. Inputs loaded: `canvas.md` §13 · `context.md` · current `constraints.md` · presale material. Interaction: sweep → class probes into holes → BA rulings (Confirmed / Assumed / rejected / none-identified) → canvas-summary batch and routing → write. Outputs written: `.specify/memory/constraints.md`, plus the canvas batch where summaries change. §§2–5 above fix the method; Phase 2 adds a curated class-probe library, Status-flip handling when a later routing batch confirms an Assumed row (the elicitation §8.2 path), and the canvas-sync assist.
+Invocation: `/ba-run T-06`; contract check at P-O3. Inputs loaded: `canvas.md` §13 · `context.md` · current `constraints.md` · presale material. Interaction: sweep → class probes into holes → BA rulings (Confirmed / Assumed / rejected / none-identified) → canvas-summary batch and routing → write. Outputs written: `.specify/memory/constraints.md`, plus the canvas batch where summaries change. §§2–5 above fix the method; Phase 2 adds a curated class-probe library, Status-flip handling when a later routing batch confirms an Assumed row (the elicitation §8.2 path), and the canvas-sync assist.
 
 ---
 
@@ -304,7 +304,7 @@ Cross-layer consumers, on the record: **T-09 (B3)** authors Our Solution against
 No reference design — built to this sheet alone (elicitation §7.1 pattern).
 
 ### 8. Phase-2 build-brief hook
-Invocation: `/ba.run T-07`; contract check at P-O3. Inputs loaded: `canvas.md` (Unlike, Problems, Objectives first) · presale material and transcripts · `context.md`. Interaction: sweep including the status quo → pre-draft with keyed deltas → BA set ruling or `N/A` → canvas batch + cross-routing → write. Outputs written: `.specify/memory/competitive-analysis.md`, plus the canvas §10 batch. §§2–5 above fix the method; Phase 2 adds optional BA-directed web retrieval of public competitor material, URL capture, and the canvas-sync assist.
+Invocation: `/ba-run T-07`; contract check at P-O3. Inputs loaded: `canvas.md` (Unlike, Problems, Objectives first) · presale material and transcripts · `context.md`. Interaction: sweep including the status quo → pre-draft with keyed deltas → BA set ruling or `N/A` → canvas batch + cross-routing → write. Outputs written: `.specify/memory/competitive-analysis.md`, plus the canvas §10 batch. §§2–5 above fix the method; Phase 2 adds optional BA-directed web retrieval of public competitor material, URL capture, and the canvas-sync assist.
 
 ---
 

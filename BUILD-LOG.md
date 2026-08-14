@@ -7507,3 +7507,75 @@ Nothing in this block stands open. **D-O51–D-O52 await ratification.** Two ite
 carry: **R4** (the gate's A-pass §5.1-by-reference rule, ruled 14 Aug 2026, still
 unbuilt) and **D149** (the `/ba-auto` · `/ba.auto` split, flagged this cycle,
 needing a corpus-wide ruling of its own).
+
+
+## Command-surface hygiene — one spelling, `/ba-`, Lane B · 14 August 2026 · GREEN
+
+D149, raised in the entry above and ruled the same day by Eugene K.: **the
+canonical form is the hyphen — `/ba-auto`.** It is the executable surface; the
+dot notation is legacy doc spelling and never runs. A corpus that prints
+`/ba.status` to a BA prints a command that does nothing.
+
+No document ruling, no decision number, no version bump: this is a spelling
+sweep over text that was already wrong the moment Phase 2 renamed the namespace
+(D-P2-1). `VERSION` untouched at 0.1.15.
+
+### The hit set, before any substitution
+
+`grep -rn "/ba\."` over `docs/`, `payload/`, `tests/`, `README.md`, `install.sh`,
+`bootstrap.sh`, `diagnostics/` and `vendor/` — **BUILD-LOG.md excluded by ruling,
+history stays as written.**
+
+**66 matching lines, 76 occurrences.** By form: `/ba.run` 31 · `/ba.wbs` 11 ·
+`/ba.status` 9 · `/ba.auto` 9 · `/ba.gate-health` 2 · `/ba.*` 2 · and one each of
+`/ba.frame`, `/ba.aspect`, `/ba.clear`, `/ba.gate`, `/ba.handoff`, `/ba.reopen`,
+`/ba.waive-aspect`, `/ba.close-band1`, `/ba.enter-feature`, `/ba.t<NN>`,
+`/ba.tier1`, `/ba.tier2`.
+
+**The payload was already clean — zero hits.** Every skill, persona and mirror
+has spelled the command with a hyphen since Phase 2. The split lived entirely in
+the methodology documents, which is why it survived: no test reads a command name
+out of a document except one, and that one asserted the dot form on both sides.
+
+### The sweep — 74 substitutions, 10 files
+
+Regex `/ba\.([a-z][a-z0-9-]*)` → `/ba-\1`, per file, with three assertions each:
+a **glob guard** refusing any file containing `/ba.*`, a residual count of **0**
+dot forms after, and a hyphen count equal to *before + n*. Orchestrator rules 51 ·
+catalogue-b2 4 · catalogues b1/b3/b4/b5 and the gate 3 each · catalogue-b6 2 ·
+wave2 sequencing 1 · `check-budget.sh` 1. Residual sweep after: **zero dot forms
+outside BUILD-LOG.md and the one held file.**
+
+`tests/check-budget.sh:279` asserted a document string carrying `/ba.run specs
+all`. It sits in `tests/`, so it swept in the same pass and stayed in sync with
+the line it checks — the assertion never went red, which is the only reason the
+suite did not catch this split years earlier. Recorded as the reason, not as luck.
+
+**D151 — two `/ba.*` occurrences are namespace globs, not commands, and are held
+unswept.** Both are in `ba-native-spec-phase2-build-plan.md` — line 23 and
+D-P2-1's row at line 318 — and both *name the dotted namespace as a category* in
+order to retire it: *"the corpus's dotted `/ba.*` names are illegal as skill
+names … adopt hyphenated `ba-*`"*. Substituting them yields *"the corpus's dotted
+`/ba-*` names are illegal … adopt hyphenated `ba-*`"* — a sentence that
+contradicts itself and destroys the provenance of the very ruling this sweep
+applies. The file is held whole, pending Eugene's ruling; the rest of the corpus
+is swept. **D-P2-1's mapping table was never in scope:** its pairs are written
+without a leading slash (`ba.gate → ba-gate`), so a `/ba\.` sweep cannot reach
+them — verified after the run, not assumed.
+
+**One consequence noted, not acted on.** §11's and the gate §13's binding tables
+carry the caption *"names indicative — Phase 2 fixes them"*, and their rows now
+show the fixed names. The caption is stale in the sense that the fixing has
+happened, but it is also the clause D-P2-1 cites as its own pre-authorization.
+Left as written — retiring it is a document act, not a spelling sweep.
+
+### Tests
+
+**Suite 17/17 GREEN**, the three install-based runs included. No assertion needed
+repair: the only test pinned to a dot string swept with the corpus.
+
+### Open
+
+**D149 is closed for the command surface** — one spelling, `/ba-`, everywhere a
+BA can read one. **D151 stands open**: the two namespace globs in the Phase-2
+build plan await a ruling. **R4** still carries.

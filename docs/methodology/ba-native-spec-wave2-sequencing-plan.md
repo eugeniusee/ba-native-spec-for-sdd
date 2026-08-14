@@ -120,7 +120,7 @@ deliberately left behind listed explicitly. Non-★ sheets, one line:
 
 ### 8. Phase-2 build-brief hook
 The seed the Phase-2 skill is built to (doc 3 §7 format): invocation
-(`/ba.run T-<nn>`, contract check at P-O3 — orchestrator §11) · inputs
+(`/ba-run T-<nn>`, contract check at P-O3 — orchestrator §11) · inputs
 loaded (context stack, order) · interaction pattern · outputs written ·
 what §§2–6 above already fix vs. what Phase 2 must add. Short — the sheet
 is the spec; this section is the compilation note.

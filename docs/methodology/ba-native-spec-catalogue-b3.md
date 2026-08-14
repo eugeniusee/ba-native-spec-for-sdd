@@ -65,7 +65,7 @@ Cross-layer consumers, on the record: Tier-1 kit baselines cite these lines (eli
 No reference design — built to this sheet alone (elicitation §7.1 pattern).
 
 ### 8. Phase-2 build-brief hook
-Invocation: `/ba.run T-08`; contract check at P-O3. Inputs loaded: `canvas.md` (Problems · Objectives first) · `.specify/memory/stakeholders.md` (the resolution target) · presale material and kickoff notes · `glossary.md`. Interaction: pre-draft → resolution + linkage pass → destination-tagged questions → BA rulings → write + routed batches. Outputs written: `canvas.md` §§2, 12, plus register/Customers batches where resolution demands them. §§2–5 above fix the method; Phase 2 adds the who-hurts ⇄ register diff rendering, continuation-ID assignment (D-B3-1), and the evidence-table refresh wiring.
+Invocation: `/ba-run T-08`; contract check at P-O3. Inputs loaded: `canvas.md` (Problems · Objectives first) · `.specify/memory/stakeholders.md` (the resolution target) · presale material and kickoff notes · `glossary.md`. Interaction: pre-draft → resolution + linkage pass → destination-tagged questions → BA rulings → write + routed batches. Outputs written: `canvas.md` §§2, 12, plus register/Customers batches where resolution demands them. §§2–5 above fix the method; Phase 2 adds the who-hurts ⇄ register diff rendering, continuation-ID assignment (D-B3-1), and the evidence-table refresh wiring.
 
 ---
 
@@ -133,7 +133,7 @@ Cross-layer consumers, on the record: AT-VI-2's target side is T-07's supply (ca
 No reference design — built to this sheet alone (elicitation §7.1 pattern).
 
 ### 8. Phase-2 build-brief hook
-Invocation: `/ba.run T-09`; contract check at P-O3. Inputs loaded: `canvas.md` (Product slots, Our Solution, Problems/Objectives) · `.specify/memory/competitive-analysis.md` (entries + keyed deltas) · `.specify/memory/constraints.md` (Confirmed rows) · `glossary.md`. Interaction: statement pre-draft → AT-VI-3 scan with per-hit proposals → destination-tagged questions → BA rulings (revise · challenge → RO · name-and-carry) → write. Outputs written: `canvas.md` §§3–5, 11, plus reopen signals where a challenge stands. §§2–5 above fix the method; Phase 2 adds the scan-table rendering, D-B3-2 marker mechanics, and re-scan triggering when the statement or the Confirmed set changes pre-clearing.
+Invocation: `/ba-run T-09`; contract check at P-O3. Inputs loaded: `canvas.md` (Product slots, Our Solution, Problems/Objectives) · `.specify/memory/competitive-analysis.md` (entries + keyed deltas) · `.specify/memory/constraints.md` (Confirmed rows) · `glossary.md`. Interaction: statement pre-draft → AT-VI-3 scan with per-hit proposals → destination-tagged questions → BA rulings (revise · challenge → RO · name-and-carry) → write. Outputs written: `canvas.md` §§3–5, 11, plus reopen signals where a challenge stands. §§2–5 above fix the method; Phase 2 adds the scan-table rendering, D-B3-2 marker mechanics, and re-scan triggering when the statement or the Confirmed set changes pre-clearing.
 
 ---
 
@@ -207,7 +207,7 @@ Cross-layer consumers, on the record: **AT-RQ-4 (T-11, B4)** opens on the EG-1 s
 No reference design — built to this sheet alone (elicitation §7.1 pattern).
 
 ### 8. Phase-2 build-brief hook
-Invocation: `/ba.run T-10`; contract check at P-O3. Inputs loaded: `canvas.md` (§§6–9 + fresh Objectives and vision sections) · `.specify/memory/context.md` · `.specify/memory/constraints.md` · `glossary.md`. Interaction: pre-draft → linkage sweep → connection pass (stated-or-open) → destination-tagged questions → BA rulings incl. N/A and open-direction rulings → write + routed batches. Outputs written: `canvas.md` §§6–9, plus context/constraints batches where the passes find them. §§2–5 above fix the method; Phase 2 adds the linkage-sweep rendering, the EG-1 hand-off note toward T-11, and open-slot surfacing toward Tier-1 kit generation.
+Invocation: `/ba-run T-10`; contract check at P-O3. Inputs loaded: `canvas.md` (§§6–9 + fresh Objectives and vision sections) · `.specify/memory/context.md` · `.specify/memory/constraints.md` · `glossary.md`. Interaction: pre-draft → linkage sweep → connection pass (stated-or-open) → destination-tagged questions → BA rulings incl. N/A and open-direction rulings → write + routed batches. Outputs written: `canvas.md` §§6–9, plus context/constraints batches where the passes find them. §§2–5 above fix the method; Phase 2 adds the linkage-sweep rendering, the EG-1 hand-off note toward T-11, and open-slot surfacing toward Tier-1 kit generation.
 
 ---
 

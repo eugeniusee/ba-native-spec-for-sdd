@@ -414,12 +414,12 @@ The standing goal, restated from the contract: **the backstop's job is to shrink
 
 | Runtime element | Phase-2 primitive (names indicative — Phase 2 fixes them) |
 |---|---|
-| Scope-F run (stages 0–5) | `/ba.gate <feature>` slash command orchestrating scripts + agent + prompts |
+| Scope-F run (stages 0–5) | `/ba-gate <feature>` slash command orchestrating scripts + agent + prompts |
 | M checkers | Vendored scripts: heading/order parser · stub, marker & banned-word scanners · EARS lint (vendored) · ID-graph builder (doubles as the traceability generator) · snapshot differ |
 | A checkers | Gate subagent; compiled prompt cards = assertion text + CC-ID only (the contract's BABOK-layering rule — the runtime never loads document 2 itself) |
 | P2–P5 · P8 prompts | Plan-mode review checkpoints |
-| Scope H | `/ba.gate-health [artifact | full]`; scoped runs hooked to the framework's write actions |
-| Adapter | `/ba.handoff <feature>` per §11 |
+| Scope H | `/ba-gate-health [artifact | full]`; scoped runs hooked to the framework's write actions |
+| Adapter | `/ba-handoff <feature>` per §11 |
 
 **Phase-1 manual mode:** the BA runs the stages by hand — §4.2 is the checklist, §5's M procedures are mechanical instructions, A assertions are read against the snapshot with the §5.4 evidence discipline, and the §6.2 template is filled by hand. This document + the contract + the standard satisfy the Phase-1 exit criterion for the gate: a human BA can run it from the documents alone.
 
