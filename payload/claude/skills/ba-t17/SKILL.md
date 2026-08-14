@@ -50,6 +50,14 @@ the flexibility mechanism. If the head still reads `1 (open)`, stop and name
 is decomposing a guess.* Then proceed — the BA's call stands. It is visibility,
 never a block.
 
+**On a pass** — render one line:
+`T-17 — Epics decomposition → .specify/memory/roadmap.md`, and begin. No
+confirmation dialog: the command was the act.
+
+**On a miss** — stop in ≤ 2 lines: the failed check, and the single act that
+unblocks — `/ba-aspect` to compose the Band-2 plan. Nothing else runs; nothing
+else is explained.
+
 **Skip-if — refuse the run and say so:** the roadmap stands current — rows whole
 (every row carrying its status), **no candidate and no conflict standing**.
 Re-decomposition has its own named grounds, and "the set could be tidier" is not
@@ -66,14 +74,6 @@ one of them:
 boundaries and slicing belong to Tier 1 — epic scoping interview, in the brief.
 Phases belong to T-18 — Scope allocation.
 Re-partition of a stable set is enrichment — only on BA ask.
-
-**On a pass** — render one line:
-`T-17 — Epics decomposition → .specify/memory/roadmap.md`, and begin. No
-confirmation dialog: the command was the act.
-
-**On a miss** — stop in ≤ 2 lines: the failed check, and the single act that
-unblocks — `/ba-aspect` to compose the Band-2 plan. Nothing else runs; nothing
-else is explained.
 
 ## Depth boundary — epic grain, and it is a hard edge
 

@@ -7819,3 +7819,258 @@ is hinted at: that stamp is the BA Lead's initiative alone.
 gate's A-pass §5.1-by-reference rule, ruled 14 Aug 2026, still unbuilt) and the
 hygiene backlog — **D152** (the stale *names indicative* caption) beside **D82**
 (the t17 section-close placement).
+
+
+## The Backlog Cleared and R4 Built — one pass, two lanes, Lanes A + B · gate v0.8 · package 0.1.17 · 15 August 2026 · GREEN
+
+Two lanes in one pass. **Lane A** empties the hygiene backlog the command-surface
+sweep named and deliberately did not take — **D152**, the stale caption, and
+**D82**, the on-pass/on-miss placement. **Lane B** builds **R4**, the one item
+that had been ruled and unbuilt across three cycles.
+
+**State as found:** `main` at `5bf248b`, `VERSION` **0.1.16**, orchestrator
+**v0.20**, gate **v0.7**, standard v0.4, elicitation v0.6, tree clean, suite
+**17/17 GREEN** before a byte moved. The three carried items were exactly the
+three this pass takes.
+
+---
+
+### Lane A · D152 — the caption trued, four occurrences, residual zero
+
+D152's requirement, from the entry that raised it: *"Retiring it is not a
+deletion: D-P2-1 cites that exact clause as its own pre-authorization … so the
+caption has to be **re-worded to the past** rather than removed, in both tables,
+in one act, with D-P2-1's citation still landing."*
+
+The sweep found **four** occurrences of *"names indicative — Phase 2 fixes
+them"* across `docs/`, not two — two captions and two citations of a caption:
+
+| Site | What it is | Now reads |
+|---|---|---|
+| gate `§13`, the Runtime-element table header | the caption | `Phase-2 primitive (names as fixed by Phase 2 — D-P2-1)` |
+| orchestrator `§11`, the binding table's lead sentence | the caption | `Names as fixed by Phase 2 — D-P2-1, the hyphenated ba-* namespace (the gate §13 convention).` |
+| build plan `§0`, the environment-constraints row | a citation | `Both binding tables carried the caption that pre-authorized the fix; this plan fixes them, and their captions now name this decision (build-log D152)` |
+| build plan `§7`, **D-P2-1's own decision row** | a citation | `Both binding tables pre-authorized this in their captions, which now name this decision as the fixer (build-log D152)` |
+
+**No column was deleted and no row moved** — every row under both captions was
+already correct, which is what D152 said: only the caption's tense was wrong.
+Exactly-once (`str.count`) asserted before each of the four substitutions;
+**residual sweep across `docs/` returns 0**, both capitalizations.
+
+### Lane A · D82 — the pair moves into the replaced paragraph's own slot
+
+**Ruled by Eugene K., 15 August 2026:** align t17, t18, tier1, tier2 to the
+t01–t16 position — *the pass/miss pair sits in the replaced paragraph's own
+position, **before** the skip-if, not after it.*
+
+The item it closes, as raised at the technique-skill batch:
+
+> **D82 · "T-A3/T-A4 close the section" was read literally, and it moves t17's
+> on-miss.** For t17 · t18 · tier1 · tier2 the pass/miss pair stands as the last
+> paragraphs of `## Invocation contract`. In t17 that puts them **after** the
+> skip-if rather than before it, where the replaced paragraph sat; t01–t16 keep
+> the pair in the replaced paragraph's own position. The alternative reading —
+> "close the contract-check block, ahead of the skip-if" — is a four-file move
+> if EK meant that one.
+
+**The payload skill files are the authored source for this section, and were
+edited directly.** A sweep of `docs/` for `On a pass` · `On a miss` ·
+`Invocation contract` returns **zero hits**: no methodology document carries the
+invocation-contract paragraphs. The catalogues carry the technique *sheets*; the
+contract block is a payload-layer compile of orchestrator P-O3, authored in the
+twenty `SKILL.md` files. There is no source to fix and rebuild from.
+
+**The target slot was recovered from the record, not estimated.** `3f7858d` —
+the commit that compiled P-O3 into all twenty skills — shows the paragraph t17's
+pair replaced: *"On a contract miss, stop and name `/ba-run`, or `/ba-aspect` to
+compose the Band-2 plan."*, standing between the advisory paragraph and the
+Skip-if. That is exactly where the pair now stands.
+
+**Verification, all four files:** each carries the pair **exactly once**
+(`str.count` on both halves), and each of t17 · t18 now carries it **before** its
+skip-if. tier1 and tier2 carry no skip-if at all and close their contracts with
+the pair — see **D159**.
+
+---
+
+### Lane B · R4 — the ruling, quoted
+
+Registered 14 August 2026 and carried through three cycles unbuilt. From the
+stamp entry, verbatim:
+
+> ### R4 = (a) — ruled 14 August 2026, scheduled, not built
+>
+> **The A pass takes §5.1's rule by reference.** The previous entry's Open
+> section named the gap — an A checker judging CC-FR-03 over a §3 that parsed
+> nothing has the same shape as the M checkers did, and nothing stops it
+> returning a PASS. The BA Lead rules **(a)**: §5.1's SKIPPED-on-unsupported-parse
+> rule extends to the A pass **by reference to §5.1, never by restatement**. The
+> agent surface cites the rule; it does not carry a second copy of it, and a
+> second copy is a second thing to drift — the same principle the parse layer's
+> single-signal-site rule states.
+
+Four things are fixed by that text, and all four are what got built: **what**
+extends (§5.1's SKIPPED-on-unsupported-parse rule) · **where to** (the A pass) ·
+**in what form** (by reference to §5.1, never by restatement) · **on which
+surface** (the agent surface cites; it carries no second copy).
+
+### Lane B · the documents, then the payload
+
+**Documents first.** `gate-definition` **v0.7 → v0.8**: the edition line, a v0.8
+change record, the footer v-change record, and the one operative addition —
+**§5.2 gains a fifth bullet**, *Unsupported parse — §5.1's rule, taken by
+reference*. It states that the A pass stands inside §5.1's scope, points at that
+section for the rule's two grains, its blocker naming, its FAIL clause and its
+genuinely-empty carve-out, and says in terms that it **carries no second copy of
+it**.
+
+**§5.1 is untouched — not one word moves.** That is the point of the ruling: the
+rule keeps one home. `git diff` on the document shows the §5.1 paragraph
+unchanged and the §5.2 bullet added, and nothing between them.
+
+**Then the payload.** `payload/claude/agents/ba-gate.md` — the A-pass evaluator,
+the surface the ruling names — takes the citation inside its existing **SKIPPED**
+bullet: the unsupported-parse case is one of that bullet's named prerequisite
+failures, never a PASS, and it is *"the gate's §5.1 SKIPPED-on-unsupported-parse
+rule … reaching this pass by reference: it is stated once, at §5.1, and this
+surface cites it and carries no second copy of it."* The verdict grammar the
+agent renders (`SKIPPED — blocked by CC-<ID>`) is the bullet's own and did not
+have to be restated. **No compiled skill file was hand-edited in this lane**;
+nothing under `payload/claude/skills/` moves for R4.
+
+**The cards are untouched, correctly.** A card is `ID + exact operative text +
+Checks set + flag — nothing else` (build plan §2.5), and gate §13 fixes the A
+pass's card as *assertion text + CC-ID only*. A runtime rule has no business in
+one, and `check-cards.py` re-derives all three byte-identically after the bump.
+
+### Tests — the shape read mechanically, not the intent
+
+**`check-gate.sh` gains section 7 — seven assertions** (the mutation section
+renumbers 7 → 8, and a whitespace-flattening `fhas` helper joins the three
+the file already had, so a sentence that wraps in the source is one string to the
+assertion). The by-reference form is a *shape*, and the section reads it twice:
+
+1. **The citation is present in both layers** — four `fhas` assertions: §5.2's
+   bullet lead and its no-copy clause; the agent surface's citation of §5.1 by
+   name and by section, and its own no-copy sentence.
+2. **Neither layer carries §5.1's text.** A `nodup.py` step lifts §5.1's rule
+   paragraph **live from the document**, normalizes it to words, and asserts
+   that **no six-word run of it** appears in the agent surface — and then that
+   none appears in §5.2's own bullet either. Nothing is hand-listed, so the check
+   keeps holding if §5.1 is ever re-worded. Measured margins as shipped: the
+   agent surface's longest shared run with §5.1 is **4 words** (`source did not
+   parse`), §5.2's bullet's is **2**.
+3. **The mutation, per the house rule** — the no-copy read is worth nothing
+   unless a real paste makes it fire. §5.1's `**Spec grain:**` sentence is
+   appended to a private copy of the agent surface, and the check is asserted to
+   **fail** on it. It does.
+
+**`check-spine.sh` gains four assertions**, one per D82 file, inside the loop
+that already walks t17 · t18 · tier1 · tier2: the pair stands **exactly once**
+and, where the file carries a `**Skip-if`, **ahead of it**. Proved non-vacuous
+against two mutants of `ba-t17` — the pair pushed back below the skip-if (fires)
+and a second copy pasted in (fires).
+
+**Result: 17/17 GREEN**, the three install-based runs included, re-run after the
+`VERSION` write so the manifest checks assert 0.1.17. `check-gate` **66/0** (was
+59/0 — the seven new assertions) · `check-spine` **178/0** (was 174/0 — the four)
+· every other check on its previous count exactly: `check-m` 59/0 ·
+`check-orchestrator` 238/0 · `check-techniques` 104/0 · `check-techniques2`
+122/0 · `check-techniques3` 158/0 · `check-register` 62/0 · `check-wbs` 62/0 ·
+`check-status` 103/0 · `check-layout` 112/0/0 · `check-exit` 99/0 ·
+`check-install` 64/0 · `check-budget` 37/0 · `check-auto` 142/0 · `check-ledger`
+and `check-cards` clean.
+
+### Files touched — ten
+
+| File | Change |
+|---|---|
+| `docs/methodology/…-gate-definition.md` | v0.7 → **v0.8**: edition line · v0.8 change record · **§5.2's by-reference bullet** · footer v-change record — **and** §13's caption (D152) |
+| `docs/methodology/…-orchestrator-rules.md` | §11's binding-table caption (D152) |
+| `docs/methodology/…-phase2-build-plan.md` | the two citations of the caption — the §0 constraints row and D-P2-1's own row (§7) (D152 · D158) |
+| `payload/claude/agents/ba-gate.md` | the SKIPPED bullet takes the §5.1 citation (R4) |
+| `payload/claude/skills/ba-t17/SKILL.md` | the pass/miss pair moves before the skip-if (D82) |
+| `payload/claude/skills/ba-t18/SKILL.md` | the same move (D82) |
+| `tests/check-gate.sh` | the `fhas` helper · **§7**, seven assertions incl. the mutation · old §7 renumbered §8 · header note |
+| `tests/check-spine.sh` | the D82 placement assertion in the four-skill loop, four assertions |
+| `VERSION` | 0.1.16 → **0.1.17** |
+| `BUILD-LOG.md` | this entry |
+
+### Divergences — D158–D161
+
+**D158 — D152's sweep reached two *citations* of the caption, one of them inside
+a locked decision row.** The captions were two; the phrase was four. The Phase-2
+build plan quotes it twice — in its environment-constraints row, and in
+**D-P2-1's own decision row**, which cites the caption as its pre-authorization.
+Both were reworded so the claim survives without the retired phrase: D-P2-1's row
+now says the captions *"name this decision as the fixer"*, which is a stronger
+citation than the one it replaced, not a weaker one. **Registered because the
+house convention is that locked rows are amended on the record, never by
+rewriting** — the orchestrator v0.16 change record states it in terms — and this
+pass rewrote one. It was rewritten rather than left because D152's own text
+conditions the act on *"D-P2-1's citation still landing"*, and a row quoting a
+phrase that exists nowhere lands nothing; the instruction's residual sweep was
+also to return zero, and it does. **The reversal is one substitution** if the BA
+Lead prefers the locked row untouched at a residual of 1.
+
+**D159 — the D82 move is two files, not four.** t17 and t18 moved. tier1 and
+tier2 did not, because **neither carries a `**Skip-if` at all** — the ruling's
+criterion has no target in them, and both already stand at the t01–t16 shape with
+the pair closing the invocation contract. `3f7858d` settles it on the record:
+that commit inserted tier1's pair straight after the per-mode preconditions and
+tier2's after the last contract paragraph, and neither file has ever carried a
+skip-if. D82's *"four-file move"* was the blast-radius estimate for the four
+files carrying the pattern, not a count of paragraphs to relocate. **A second
+reading is named and was not taken:** *"close the contract-check block"* would
+also lift tier2's pair ahead of its two explanatory paragraphs (*Preconditions
+are not re-checked here* · *No persistent question log*), since t04 and t07 put
+their non-check paragraphs **after** the pair. The ruling's stated criterion is
+the skip-if, so that move was not made — it is one act away if the BA Lead means
+the wider reading.
+
+**D160 — the singular *name indicative* idiom survives at three orchestrator
+sites, and is not D152's phrase.** §10.4's HTML-render paragraph carries *"(name
+indicative, Phase 2 fixes it)"* — for the `--html` flag and again for the derived
+file's location — and the v0.9 change record and D-O29's review-record row carry
+*"(name indicative)"* for `/ba-wbs` and `--html`. All are stale in the same
+*sense*: `/ba-status --html` and `/ba-wbs` both ship. None of them is the
+binding-table caption D152 names; two of the three are locked historical text;
+the third is live prose about a **file name**, not a command table. **Left as
+written and registered as the backlog's next item** — it needs a ruling of its
+own, exactly as D152 did, and folding it into a caption act would repeat the
+mistake the hygiene backlog was created to stop.
+
+**D161 — R4 is silent on the doubt rule's boundary, and this pass took no reading
+of it.** §5.2's doubt rule fires *"if, after reading the evidence, the checker
+cannot affirm"*; §5.1's rule now reaches the same pass for the case where the
+source **did not parse**. A hostile reading has both triggers over one situation,
+with different grammar — `SKIPPED` with a named blocker, or `FAIL` with the doubt
+named. **The build does not need it settled and does not settle it:** each rule
+names its own trigger, both outcomes are non-PASS, and §6.1 forces FAIL on any
+skip regardless — so the gap R4 closed is closed under either reading, and the
+false PASS the ruling existed to stop cannot return through the ambiguity. Draft
+text that would have fixed the boundary in §5.2 was written and **removed before
+it shipped**; legislating it is a ruling, not a build. The two readings, for
+whoever rules it: **(a)** the parse-gap case is §5.1's alone, and the doubt rule
+governs only a checker that read parsable evidence · **(b)** the doubt rule stays
+available where an A checker judges over a partly-parsed source. One sentence in
+§5.2 settles it.
+
+### Version
+
+`VERSION` 0.1.16 → **0.1.17**, one automatic patch increment for the whole pass
+under D157. No minor is proposed and none is hinted at.
+
+### Open
+
+**Nothing from this pass stands open.** **D152 closed** — the caption states the
+settled fact at both tables, residual zero. **D82 closed** — the pair sits in the
+replaced paragraph's own slot in every file that has one, pinned by four
+assertions. **R4 built and closed** — §5.1's rule reaches the A pass by
+reference, the citation on both layers, the no-second-copy half read mechanically
+off §5.1's own text. **The carried-items list is empty for the first time since
+14 Aug 2026.**
+
+**D158–D161 await ratification**, with **D-O53 · D153–D157** still standing from
+the previous entry. The hygiene backlog is not empty: **D160** is its new
+occupant, and it is a document act, not a defect.

@@ -96,6 +96,12 @@ For each assertion:
 - **SKIPPED** only when a *named* prerequisite failure makes evaluation
   meaningless, at element granularity: `SKIPPED — blocked by CC-<ID>`. If US3
   is unparseable, skip for US3 and still evaluate US1–US2.
+  **The unsupported-parse case is one of these.** An assertion whose source did
+  not parse is blocked under this bullet — never a PASS. That is the gate's
+  **§5.1 SKIPPED-on-unsupported-parse rule**, the same one the M pass runs on,
+  reaching this pass **by reference**: it is stated once, at §5.1, and this
+  surface cites it and carries no second copy of it. A second copy is a second
+  thing to drift.
 
 **There is no MAYBE.** If, after reading the evidence, you cannot affirm the
 pass condition, the verdict is **FAIL with the doubt named** — "cannot verify X

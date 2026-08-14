@@ -849,7 +849,7 @@ A run interrupted mid-flight leaves its artifact a **draft** — the framework n
 
 ## 11. Phase-2 binding & Phase-1 manual mode
 
-Names indicative — Phase 2 fixes them (the gate §13 convention). The **Orchestrator persona** is plan §7's third persona. Its discipline (§10.2) and the register (§10.3) are **compile sources (D-O16):** their text compiles verbatim into the mirrors and into every skill that conducts a checkpoint — guards live where the conversation lives. Sub-agent **dispatch is reserved for batch-shaped work** that takes no BA ruling mid-flight (the gate's checks are the model). Every interactive P-O compiles to a checkpoint **in the main conversation** — a dispatched sub-agent cannot stop and take a ruling.
+Names as fixed by Phase 2 — D-P2-1, the hyphenated `ba-*` namespace (the gate §13 convention). The **Orchestrator persona** is plan §7's third persona. Its discipline (§10.2) and the register (§10.3) are **compile sources (D-O16):** their text compiles verbatim into the mirrors and into every skill that conducts a checkpoint — guards live where the conversation lives. Sub-agent **dispatch is reserved for batch-shaped work** that takes no BA ruling mid-flight (the gate's checks are the model). Every interactive P-O compiles to a checkpoint **in the main conversation** — a dispatched sub-agent cannot stop and take a ruling.
 
 | Element | Phase-2 primitive |
 |---|---|

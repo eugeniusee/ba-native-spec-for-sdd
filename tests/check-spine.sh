@@ -423,6 +423,17 @@ for s in t17 t18 tier1 tier2; do
     && ok "…and enforces it in frontmatter" \
     || bad "ba-$s lacks disable-model-invocation: true"
   has "$SKILLS/ba-$s/SKILL.md" "Self-check, and stop if" "ba-$s runs the P-O3 self-check before anything else"
+  # D82, ruled 15 Aug 2026: the pair sits in the replaced paragraph's own
+  # position — before the skip-if, as t01–t16 carry it — and exactly once.
+  python3 - "$SKILLS/ba-$s/SKILL.md" <<'PY' && ok "…and its pass/miss pair stands once, ahead of any skip-if (D82)" \
+    || bad "ba-$s's pass/miss pair is doubled or trails its skip-if (D82)"
+import pathlib, sys
+t = pathlib.Path(sys.argv[1]).read_text(encoding="utf-8")
+if t.count("**On a pass**") != 1 or t.count("**On a miss**") != 1:
+    sys.exit(1)
+sys.exit(0 if "**Skip-if" not in t
+         or t.index("**On a pass**") < t.index("**Skip-if") else 1)
+PY
 done
 has "$TI1" "/ba-tier1 <mode> <epic>" "ba-tier1 names its own invocation, modes included"
 has "$TI2" "/ba-tier2 <feature>" "ba-tier2 names its own invocation"

@@ -20,8 +20,10 @@
 #
 # Also exercised: the P1 admission block and its health-acceptance lift, the
 # hard refusal of a waiver against a non-waivable assertion (§7.1 step 3), the
-# gate's refusal to self-certify without P3/P4, and the three compiled cards
-# (tests/check-cards.py).
+# gate's refusal to self-certify without P3/P4, the three compiled cards
+# (tests/check-cards.py), and **R4** — §5.1's SKIPPED-on-unsupported-parse rule
+# reaching the A pass by reference, with the no-second-copy half read
+# mechanically off §5.1's own text (section 7).
 #
 #   check-gate.sh              run the suite
 #   check-gate.sh --record     rewrite the expected report entries from this run
@@ -57,6 +59,16 @@ bad() { FAILED=$((FAILED+1)); printf '  ✗ %s\n' "$1"; }
 has() { grep -Fq "$2" "$1" && ok "$3" || bad "$3 — not found: $2"; }
 hasx() { grep -Fqx "$2" "$1" && ok "$3" || bad "$3 — not found (whole line): $2"; }
 hasnt() { grep -Fq "$2" "$1" && bad "$3 — present but must not be: $2" || ok "$3"; }
+
+# fhas <file> <string> <label> — whitespace-flattened, so a sentence that wraps
+# in the source is one string to the assertion (the check-techniques house form)
+fhas() {
+  python3 - "$1" "$2" <<'PY' && ok "$3" || bad "$3 — not found (flat): $2"
+import pathlib, re, sys
+hay = re.sub(r"\s+", " ", pathlib.Path(sys.argv[1]).read_text(encoding="utf-8"))
+sys.exit(0 if re.sub(r"\s+", " ", sys.argv[2]) in hay else 1)
+PY
+}
 
 # ── the two worlds: r5 (run 2) and r6 (run 3) ────────────────────────────────
 
@@ -393,7 +405,88 @@ has "$TMP/ha.entry" "Pre-flight:           2 gap(s) lifted by HA-01" \
     "an HA lifts the admission block and the run cites it (gate §10.4)"
 has "$TMP/ha.entry" "Category summary" "the run proceeds past Stage 0 once admitted"
 
-# ── 7. the suite is not vacuous ──────────────────────────────────────────────
+# ── 7. R4 — the A pass takes §5.1 by reference, and carries no copy ──────────
+#
+# BA Lead ruling R4 = (a), 14 August 2026: §5.1's SKIPPED-on-unsupported-parse
+# rule extends to the A pass **by reference to §5.1, never by restatement**.
+# The agent surface cites the rule; it does not carry a second copy of it.
+#
+# Prose intent proves nothing, so this reads the shape twice:
+#   (a) the citation is present in both layers — the document's §5.2 and the
+#       compiled A-pass surface, payload/claude/agents/ba-gate.md;
+#   (b) neither carries §5.1's text — no six-word run of §5.1's own rule
+#       paragraph appears in either. That read is derived from §5.1 live, not
+#       from a hand-listed phrase set, so it still holds if §5.1 is re-worded.
+# Then the mutation, per the house rule: a pasted §5.1 sentence must make (b)
+# fire, or (b) is worth nothing.
+
+printf '\n▸ R4 — the A pass takes §5.1 by reference (gate §5.2 · ba-gate.md)\n'
+
+GATE_DOC="$PKG_ROOT/docs/methodology/ba-native-spec-gate-definition.md"
+GATE_AGENT="$PKG_ROOT/payload/claude/agents/ba-gate.md"
+
+fhas "$GATE_DOC" "**Unsupported parse — §5.1's rule, taken by reference.**" \
+     "gate §5.2 carries the by-reference bullet"
+fhas "$GATE_DOC" "this section cites it and **carries no second copy of it**" \
+     "…and the document layer states the no-copy discipline"
+fhas "$GATE_AGENT" "**§5.1 SKIPPED-on-unsupported-parse rule**, the same one the M pass runs on, reaching this pass **by reference**" \
+     "the A-pass surface cites §5.1 by name and by section"
+fhas "$GATE_AGENT" "it is stated once, at §5.1, and this surface cites it and carries no second copy of it" \
+     "…and the surface states the no-copy discipline in its own words"
+
+NODUP="$TMP/nodup.py"
+cat > "$NODUP" <<'PY'
+"""No second copy — no six-word run of gate §5.1's rule paragraph may appear in
+the surface handed in. Derived from §5.1's live text, never a phrase list."""
+import pathlib, re, sys
+
+N = 6
+
+def words(s):
+    return re.findall(r"[a-z0-9§.-]+", re.sub(r"[`*_]", "", s.lower()))
+
+def para(text, lead):
+    i = text.index(lead)
+    return text[i:text.index("\n\n", i)]
+
+gate = pathlib.Path(sys.argv[1]).read_text(encoding="utf-8")
+rule = words(para(gate, "**A zero the reader produced is not a count"))
+target = words(pathlib.Path(sys.argv[2]).read_text(encoding="utf-8"))
+
+shingles = {" ".join(target[i:i + N]) for i in range(len(target) - N + 1)}
+hits = sorted({" ".join(rule[i:i + N]) for i in range(len(rule) - N + 1)} & shingles)
+for h in hits:
+    print("copied run: %r" % h, file=sys.stderr)
+sys.exit(1 if hits else 0)
+PY
+
+python3 "$NODUP" "$GATE_DOC" "$GATE_AGENT" 2> "$TMP/nodup-agent.err" \
+  && ok "the A-pass surface carries no six-word run of §5.1 — a citation, not a copy" \
+  || bad "the A-pass surface restates §5.1 — $(tr '\n' ' ' < "$TMP/nodup-agent.err")"
+
+python3 - "$GATE_DOC" "$TMP/bullet.md" <<'PY'
+import pathlib, sys
+t = pathlib.Path(sys.argv[1]).read_text(encoding="utf-8")
+i = t.index("- **Unsupported parse — §5.1's rule")
+pathlib.Path(sys.argv[2]).write_text(t[i:t.index("\n\n", i)], encoding="utf-8")
+PY
+python3 "$NODUP" "$GATE_DOC" "$TMP/bullet.md" 2> "$TMP/nodup-bullet.err" \
+  && ok "…and §5.2's own bullet restates none of it either" \
+  || bad "§5.2's bullet restates §5.1 — $(tr '\n' ' ' < "$TMP/nodup-bullet.err")"
+
+python3 - "$GATE_DOC" "$GATE_AGENT" "$TMP/agent-pasted.md" <<'PY'
+import pathlib, sys
+gate = pathlib.Path(sys.argv[1]).read_text(encoding="utf-8")
+i = gate.index("**Spec grain:**")
+pasted = gate[i:gate.index("**Section grain:**", i)]
+agent = pathlib.Path(sys.argv[2]).read_text(encoding="utf-8")
+pathlib.Path(sys.argv[3]).write_text(agent + "\n" + pasted + "\n", encoding="utf-8")
+PY
+python3 "$NODUP" "$GATE_DOC" "$TMP/agent-pasted.md" 2> /dev/null \
+  && bad "a pasted §5.1 sentence slipped past the no-copy read — it is vacuous" \
+  || ok "…and a pasted §5.1 sentence is caught: the no-copy read is not vacuous"
+
+# ── 8. the suite is not vacuous ──────────────────────────────────────────────
 
 printf '\n▸ Mutation checks — the suite is not vacuous\n'
 

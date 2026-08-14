@@ -36,6 +36,14 @@ Self-check, and stop if either half fails:
 trigger stated, because the trigger is what the log entry carries and what the
 next run's skip-if is measured against.
 
+**On a pass** — render one line:
+`T-18 — Scope allocation → .specify/memory/roadmap.md`, and begin. No
+confirmation dialog: the command was the act.
+
+**On a miss** — stop in ≤ 2 lines: the failed check, and the single act that
+unblocks — `/ba-aspect` to compose the Band-2 plan, or `/ba-close-band1` where
+Band 1 does not yet stand closed. Nothing else runs; nothing else is explained.
+
 **Skip-if — refuse the run and say so:** the current allocation stands approved
 and **no event has occurred since the last log entry**. The suggestion engine
 proposes no run without a named event. A BA-elected run without one is entirely
@@ -54,14 +62,6 @@ The event set, each with its ground:
 **Never this run's ground:** feature sequencing inside a phase, and next-feature
 selection — both BA acts at the roadmap.
 Epic-set changes belong to T-17 — Epics decomposition.
-
-**On a pass** — render one line:
-`T-18 — Scope allocation → .specify/memory/roadmap.md`, and begin. No
-confirmation dialog: the command was the act.
-
-**On a miss** — stop in ≤ 2 lines: the failed check, and the single act that
-unblocks — `/ba-aspect` to compose the Band-2 plan, or `/ba-close-band1` where
-Band 1 does not yet stand closed. Nothing else runs; nothing else is explained.
 
 ## Depth boundary — phase grain, and it is a hard edge
 
