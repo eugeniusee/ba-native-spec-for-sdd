@@ -8742,3 +8742,137 @@ D-O53 · D153–D157** beneath those. The hygiene backlog holds **D160**; **D175
 cleared its 0.1.19 occupant**. The companion Nutrivity estate pass stands
 uncommitted in the tree, untouched, awaiting its own close (D180).
 
+
+## The Near-Miss Gets Its Class — supersession-keyed, live vs settled, Lane B ruled · gate v0.10 · package 0.1.21 · 17 August 2026 · GREEN
+
+One ruling, one section, documents first. **D176's stopped lane, closed.** The
+0.1.20 pass built D-O58's two dashboard readers and **stopped** its H-02 half: the
+acceptance instrument did not fit, and no mechanism was invented. The BA Lead ruled
+**option (c) — supersession-keyed classing**, neither a report-only class nor an
+`HA-<nn>` power. **Ruling → number map:** option (c) → **D181** (closing D176).
+Divergences **D182–D184**.
+
+**State as found:** HEAD `5777b74`, `VERSION` **0.1.20**, gate **v0.9**, suite green
+over this pass's own ground. The companion Nutrivity estate work stands
+**uncommitted and unchanged** from 0.1.20 — its owner has not committed, and
+**nothing of it was touched** (D184).
+
+### The law
+
+**Gate v0.9 → v0.10, §10.4.** A near-miss in the roadmap's `## Allocation log` — a
+`###` line that does not parse as an allocation heading — is classed on
+**supersession, in log order**:
+
+- **LIVE** while **no well-formed entry follows it**. A full CC-H-02 finding: it
+  counts in `n gaps`, it blocks under §10.4's own rule, and its fix is **the log's
+  own law** — *supersede with a correctly-shaped entry; never edit*. **No
+  well-formed entries at all is the live case**, which falls out of the walk rather
+  than being special-cased.
+- **SETTLED** once a well-formed entry follows it. **Still named** — path · the line
+  **as authored** · the shape expected · `superseded-by <Allocation n>` — and
+  rendered **outside the gap count**: blocking nothing, requiring no acceptance.
+
+**The rationale is on the record, because it is the whole reason (c) is not (a) or
+(b).** The repair here is **always legal** — a corrective append to an append-only
+log — so a live finding clears **by the log's own mechanism** and never needs an
+instrument to forgive it. That is exactly what separates this from the gaps
+`HA-<nn>` exists for, where the artifact must be *edited* to clear and the BA may
+rationally accept the debt instead. **`HA-<nn>` and D-G9 are untouched.** The
+blind-spots law holds at both ends: settled history is **named, never silenced**.
+
+### The mechanism the law needed — and why `evidence` could not be it
+
+`emit`'s text render prints **only findings on FAIL**; `evidence` renders on PASS
+alone. A settled note parked in `evidence` would therefore **vanish the moment the
+same assertion also carried a live gap** — the invisible-record defect this entire
+workstream exists to close, rebuilt inside the fix for it. No "named but not a gap"
+channel existed in the verdict grammar (`runtime_defect` is a hard exit; the
+unreadable-*u* precedent lives in the dashboard, not in `Verdict`).
+
+**`sk_structure.py` gains a `notes` channel** — a list on `Verdict`, in `as_dict`,
+in `fail()` and `ok()`, **rendered on PASS and FAIL alike** as
+`<assertion> NOTE — …`, and touching **neither the gap list nor the exit code**.
+Shared machinery, so the blast radius was checked before it was written: `check-m.sh`
+reads only `script` / `assertion` / `verdict` from the JSON and is tolerant of new
+keys; every other consumer reads the text render, where notes are additive lines.
+
+**`sk_health.py` takes the classing.** `allocation_near_misses()` walks the log's
+`###` lines in order and pairs each offender with the next well-formed entry after
+it — present → settled with its `superseded-by`, absent → live. Live near-misses
+become `Finding`s; settled ones become notes. One further correction rides the same
+predicate (D183): **`no allocation entries` no longer fires when unparsed `###`
+lines are present** — that sentence aims the fix at whoever would create the log
+when the real repair is one line away, which is D-O58's own error one layer down.
+
+### Tests
+
+`check-m.sh` 59 → **71** (+12) · `check-gate.sh` 67 → **77** (+10). **Behavioural,
+not textual, and staged as one story on one estate:** the fixture's last well-formed
+entry is rewritten into **the exact ledger grammar the field produced**, and the run
+must FAIL, name the line, prescribe *supersede*, forbid *edit*, **block** (rc ≠ 0),
+and **not** say `no allocation entries`. The corrective append the law prescribes is
+then made — and the same near-miss must flip to **PASS**, stop blocking (rc = 0),
+**keep its NOTE** with `superseded-by Allocation 3`, and leave the gap count. A
+third append adds a **trailing, unsuperseded** near-miss: the assertion goes FAIL on
+it while the settled note **survives that FAIL** — the assertion that proves the
+channel earns its existence. `check-gate.sh` pins the nine doc surfaces plus one
+negative: **the contract's CC-H-02 row is asserted unedited.**
+
+**Suite 17/17 GREEN**, verified in isolation from the companion pass (D184), after
+one red-to-green of this pass's own making — `GATE_DOC` used above its definition —
+and one repeat of 0.1.20's own slip: **backslash-escaped quotes inside single
+quotes**, which `grep -F` takes literally. Second occurrence in two passes (D182).
+
+### Files
+
+| File | Change |
+|---|---|
+| `docs/methodology/…-gate-definition.md` | v0.9 → **v0.10** — §10.4's classing block · header change record · footer |
+| `payload/specify-overlay/ba/scripts/sk_structure.py` | the `notes` channel — `Verdict` field · `as_dict` · `fail`/`ok` · `emit` on both verdicts |
+| `payload/specify-overlay/ba/scripts/sk_health.py` | `allocation_near_misses()` · the live/settled split in CC-H-02 · the conditional `no allocation entries` |
+| `tests/check-m.sh` · `tests/check-gate.sh` | +22 assertions |
+| `VERSION` | 0.1.20 → **0.1.21** |
+| `BUILD-LOG.md` | this entry |
+
+### Divergences — D182–D184
+
+**D182 — the same escaping slip, twice in two passes.** `has` is `grep -Fq`, so a
+pattern written `'…\"x\"…'` is searched for **with the backslashes**. It cost a
+red-to-green in 0.1.20's `check-spine.sh` block and again here. Recorded as a
+pattern, not an incident: single quotes already protect double quotes, and the
+backslash is always wrong inside them.
+
+**D183 — one correction beyond the ruling's own text, on the ruling's own logic.**
+`no allocation entries` fired whenever no entry *parsed* — including when unparsed
+`###` lines were sitting right there. Under (c) that sentence is exactly the
+absence-claim D-O58 forbids, one layer below the dashboard, and it would have
+rendered **beside** the live near-miss finding, sending the BA to T-17/T-18 while
+the true repair was a one-line append. Now conditional on there being no near-misses
+either. Named because the ruling did not ask for it and the predicate it uses is the
+ruling's own.
+
+**D184 — the companion pass is still in the tree, still untouched, still
+quarantined.** Unchanged from 0.1.20's D180: its owner has not committed. Nothing of
+it was edited, reverted, or staged; green was proven in a copy with its five
+untracked paths removed and its `tests/layout.expected` edit reverted **in the copy
+only**. This commit names its 7 paths explicitly. **No overlap** — this pass touched
+the gate doc, two overlay scripts and two checks; the companion's set is disjoint.
+
+### Version
+
+`VERSION` 0.1.20 → **0.1.21**, one automatic patch increment for the whole pass
+under D157. No minor is proposed and none is hinted at.
+
+### Open
+
+**D176 is closed; nothing from this pass stands open.** The near-miss has a class at
+both layers now — the dashboard names it (D-O58), and the health check classes it
+(D181), with the repair always legal and the acceptance instrument untouched.
+**D181–D184 await ratification**, with **D172–D180** ratified 17 Aug 2026 and
+**D164–D171 · D162–D163** committed beneath them. The hygiene backlog holds
+**D160**. The **resolvability sweep** stands named and unbuilt from 0.1.19. One
+observation, not a backlog item and not built: the gate document carries **no live
+edition pin** in `check-gate.sh` while the orchestrator does — which is why gate
+v0.9 → v0.10 moved no assertion. The companion Nutrivity estate pass stands
+uncommitted in the tree, untouched, awaiting its own close (D184).
+

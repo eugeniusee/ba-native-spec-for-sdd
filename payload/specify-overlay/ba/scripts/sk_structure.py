@@ -570,6 +570,7 @@ class Verdict:
     evidence: str = ""                 # terse counts on PASS (gate §5.1)
     findings: list = field(default_factory=list)
     blocked_by: str = ""
+    notes: list = field(default_factory=list)   # named, outside the gap count
 
     @property
     def non_waivable(self) -> bool:
@@ -583,16 +584,18 @@ class Verdict:
             "checks": self.checks,
             "evidence": self.evidence,
             "blocked_by": self.blocked_by,
+            "notes": self.notes,
             "findings": [f.as_dict(self.assertion) for f in self.findings],
         }
 
 
-def fail(assertion, checks, findings, evidence=""):
-    return Verdict(assertion, "FAIL", checks, evidence, findings)
+def fail(assertion, checks, findings, evidence="", notes=None):
+    return Verdict(assertion, "FAIL", checks, evidence, findings,
+                   notes=list(notes or []))
 
 
-def ok(assertion, checks, evidence):
-    return Verdict(assertion, "PASS", checks, evidence)
+def ok(assertion, checks, evidence, notes=None):
+    return Verdict(assertion, "PASS", checks, evidence, notes=list(notes or []))
 
 
 def skipped(assertion, checks, blocker):
@@ -616,6 +619,13 @@ def emit(script, verdicts, fmt, stream=sys.stdout) -> int:
             else:
                 for f in v.findings:
                     print(f.gap_line(v.assertion), file=stream)
+            # Notes render on PASS and FAIL alike. A note parked in `evidence`
+            # would vanish the moment the same assertion also had a gap — the
+            # invisible-record defect this channel exists to prevent (gate
+            # §10.4). Notes are named, never counted, and never blocking:
+            # they touch neither the gap list nor the exit code below.
+            for n in v.notes:
+                print("%s NOTE — %s" % (v.assertion, n), file=stream)
     return 1 if any(v.verdict != "PASS" for v in verdicts) else 0
 
 

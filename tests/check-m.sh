@@ -385,6 +385,99 @@ grep -q '0 banned words in 0 scanned lines' "$TMP/scan.txt" \
   && bad "CC-G-04 still passes having scanned nothing — the silent zero in green" \
   || ok "CC-G-04 does not pass on zero scanned lines"
 
+# ── the near-miss and its supersession key (gate §10.4 · build-log D181) ─────
+#
+# Field defect, 16 Aug 2026: a T-18 run under a standing AG wrote its allocation
+# heading in ledger stamp grammar. Orchestrator D-O58 made the dashboard's
+# readers name it; the H layer had no class for it at all. Option (c), ruled
+# 17 Aug 2026: the class is keyed on SUPERSESSION, in log order.
+
+printf '\n▸ The near-miss — live while unsuperseded, settled once an entry follows (gate §10.4)\n'
+
+NMR="$TMP/nm-roadmap"
+mkdir -p "$NMR/.specify/memory"
+cp -R "$FX/project/.specify/memory/." "$NMR/.specify/memory/"
+ROADMAP="$NMR/.specify/memory/roadmap.md"
+
+# The last well-formed entry, rewritten into the grammar the field produced.
+# Nothing well-formed follows it, so it is LIVE.
+python3 - "$ROADMAP" <<'PYX'
+import pathlib, sys
+p = pathlib.Path(sys.argv[1]); t = p.read_text(encoding="utf-8")
+old = "### Allocation 2 — 2026-07-15 · trigger: post-ingestion E-03 · BA: Y.K."
+assert t.count(old) == 1, t.count(old)
+p.write_text(t.replace(old, "### 2026-07-15 · AUTO (AG-1) · scope allocation · post-ingestion E-03"),
+             encoding="utf-8")
+PYX
+
+python3 "$SK/sk_health.py" --root "$NMR" > "$TMP/nm-live.txt" 2>&1
+NM_LIVE_RC=$?
+
+grep -q 'CC-H-02 FAIL .*does not parse as an allocation entry' "$TMP/nm-live.txt" \
+  && ok "a live near-miss is a full CC-H-02 finding — it counts in the gaps" \
+  || bad "a live near-miss did not render as a CC-H-02 gap: $(grep CC-H-02 "$TMP/nm-live.txt" | head -1)"
+grep -q 'supersede it with a correctly-shaped entry' "$TMP/nm-live.txt" \
+  && ok "…and its fix is the log's own law — supersede" \
+  || bad "the live finding does not prescribe supersession"
+grep -q 'the log is append-only and is never edited' "$TMP/nm-live.txt" \
+  && ok "…never edit: the append-only law is stated in the fix itself" \
+  || bad "the live finding does not forbid editing the entry"
+[ "$NM_LIVE_RC" -ne 0 ] \
+  && ok "…and it blocks — a live near-miss is an unresolved H gap" \
+  || bad "a live near-miss did not block: rc=$NM_LIVE_RC"
+grep -q 'no allocation entries' "$TMP/nm-live.txt" \
+  && bad "'no allocation entries' fired beside a near-miss — the fix aims at T-18, not at the line" \
+  || ok "…and 'no allocation entries' does NOT fire: the near-miss is the true report"
+
+# The corrective append the log's own law prescribes. The SAME near-miss now
+# has a well-formed entry after it, so it flips to SETTLED.
+cat >> "$ROADMAP" <<'EOF'
+
+### Allocation 3 — 2026-08-17 · trigger: BA-directed · BA: Y.K.
+
+| Epic | Phase | Reason |
+|---|---|---|
+| E-07 Online Payment | Phase 2 → Later | value vs. effort: the corrective append |
+
+Held: seven rows · Basis: the append the log's own law prescribes.
+EOF
+
+python3 "$SK/sk_health.py" --root "$NMR" > "$TMP/nm-settled.txt" 2>&1
+NM_SETTLED_RC=$?
+
+grep -q 'CC-H-02 PASS' "$TMP/nm-settled.txt" \
+  && ok "the appended entry clears the gap — the repair is always legal" \
+  || bad "the corrective append did not clear CC-H-02: $(grep CC-H-02 "$TMP/nm-settled.txt" | head -1)"
+[ "$NM_SETTLED_RC" -eq 0 ] \
+  && ok "…the settled near-miss blocks nothing — it left the gap count" \
+  || bad "a settled near-miss still blocks: rc=$NM_SETTLED_RC"
+grep -q 'CC-H-02 NOTE .*superseded-by Allocation 3' "$TMP/nm-settled.txt" \
+  && ok "…and it is still NAMED, with its superseded-by — settled history is never silenced" \
+  || bad "the settled near-miss was silenced: no note names it"
+grep -q 'CC-H-02 NOTE .*heading "### 2026-07-15 · AUTO (AG-1)' "$TMP/nm-settled.txt" \
+  && ok "…quoting the line as authored" \
+  || bad "the settled note does not quote the offending line as authored"
+grep -q 'CC-H-02 FAIL' "$TMP/nm-settled.txt" \
+  && bad "a settled near-miss is still counted as a gap" \
+  || ok "…and no gap remains: named is not counted"
+
+# The reason the note is a channel of its own and not an `evidence` string:
+# a second, unsuperseded near-miss makes the assertion FAIL, and the settled
+# one must survive that render. Evidence never prints on FAIL.
+cat >> "$ROADMAP" <<'EOF'
+
+### 2026-08-17 · AUTO (AG-2) · scope allocation · scope-frame
+no change — the frame is unchanged.
+EOF
+python3 "$SK/sk_health.py" --root "$NMR" > "$TMP/nm-both.txt" 2>&1
+
+grep -q 'CC-H-02 FAIL .*AUTO (AG-2)' "$TMP/nm-both.txt" \
+  && ok "a later unsuperseded near-miss is live — supersession is keyed in log order" \
+  || bad "the trailing near-miss did not render live"
+grep -q 'CC-H-02 NOTE .*superseded-by Allocation 3' "$TMP/nm-both.txt" \
+  && ok "…and the settled note survives the FAIL — the invisible-record defect, closed" \
+  || bad "the settled note vanished under a FAIL: notes must render on both verdicts"
+
 # ── 7 · the same law one grain down: the section (D139 · gate §5.1) ──────────
 #
 # neg-shapes is READABLE — only its §3 is not. `blocked_on_unreadable` cannot

@@ -93,6 +93,37 @@ def allocation_entries(roadmap_text: str):
     return entries
 
 
+ALLOC_SHAPE = "### Allocation <n> — <date> · trigger: <…> · BA: <name>"
+
+
+def allocation_near_misses(roadmap_text: str):
+    """`###` lines under the log that miss the heading grammar, classed.
+
+    A near-miss reaches the log's own ground and fails its shape (gate §10.4;
+    orchestrator D-O58). Its class is keyed on **supersession, in log order**:
+    LIVE while no well-formed entry follows it, SETTLED once one does. No
+    well-formed entry anywhere is the live case, which falls out of the walk
+    rather than being special-cased.
+    """
+    body = _section(roadmap_text, lambda h: h.lower().startswith("allocation log"))
+    if not body:
+        return []
+    seq = []
+    for line in body.splitlines():
+        head = line.strip()
+        if not head.startswith("###"):
+            continue
+        m = ALLOC_HEAD_RE.match(head)
+        seq.append(("ok", m.group("n")) if m else ("miss", head))
+    out = []
+    for i, (kind, value) in enumerate(seq):
+        if kind != "miss":
+            continue
+        following = next((v for k, v in seq[i + 1:] if k == "ok"), "")
+        out.append({"line": value, "superseded_by": following})
+    return out
+
+
 # ── CC-H-02 ───────────────────────────────────────────────────────────────────
 
 
@@ -130,7 +161,31 @@ def check_h02(roadmap_path: Path):
                 location=str(roadmap_path)))
 
     entries = allocation_entries(text)
-    if not entries:
+    near = allocation_near_misses(text)
+    notes = []
+    for nm in near:
+        if nm["superseded_by"]:
+            # Settled: named, never silenced — and never a gap. The malformed
+            # line stays on the record because the log is append-only, so a
+            # reader that met it and said nothing would be the original defect
+            # wearing a green verdict.
+            notes.append(
+                '%s — heading "%s" does not parse, expected `%s`; '
+                "superseded-by Allocation %s (settled — named, not a gap)"
+                % (roadmap_path, nm["line"], ALLOC_SHAPE, nm["superseded_by"]))
+        else:
+            findings.append(Finding(
+                element="## Allocation log",
+                problem='heading "%s" does not parse as an allocation entry'
+                        % nm["line"],
+                fix="supersede it with a correctly-shaped entry — `%s`; the "
+                    "log is append-only and is never edited" % ALLOC_SHAPE,
+                location=str(roadmap_path)))
+    if not entries and not near:
+        # Only a log with nothing in it at all sends the BA to T-18. Where
+        # `###` lines are present and unparsed, the near-miss findings above
+        # are the true report, and "no allocation entries" would aim the fix
+        # at whoever would create the log instead of at the line (D-O58).
         findings.append(Finding(
             element="## Allocation log",
             problem="no allocation entries",
@@ -170,10 +225,11 @@ def check_h02(roadmap_path: Path):
                     location=str(roadmap_path)))
 
     if findings:
-        return fail(a, ["roadmap"], findings)
+        return fail(a, ["roadmap"], findings, notes=notes)
     return ok(a, ["roadmap"],
               "%d epic row(s) all carry a status; %d allocation entr(y|ies) all "
-              "log a diff and a reason" % (len(rows), len(entries)))
+              "log a diff and a reason" % (len(rows), len(entries)),
+              notes=notes)
 
 
 # ── CC-H-03 ───────────────────────────────────────────────────────────────────

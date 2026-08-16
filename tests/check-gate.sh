@@ -405,6 +405,41 @@ has "$TMP/ha.entry" "Pre-flight:           2 gap(s) lifted by HA-01" \
     "an HA lifts the admission block and the run cites it (gate §10.4)"
 has "$TMP/ha.entry" "Category summary" "the run proceeds past Stage 0 once admitted"
 
+# ── 6b. the near-miss's supersession key (gate §10.4 · build-log D181) ───────
+#
+# The H layer's half of the shape-guard set. Option (c), ruled 17 Aug 2026:
+# neither a report-only class nor a new HA power — the class is keyed on
+# supersession, because a corrective append to an append-only log is always
+# legal and so a live finding can clear by the log's own mechanism.
+
+printf '\n▸ The near-miss — live vs settled, keyed on supersession (gate §10.4)\n'
+
+GATE_DOC="$PKG_ROOT/docs/methodology/ba-native-spec-gate-definition.md"
+has "$GATE_DOC" "The near-miss and its supersession key — live vs settled" \
+    "§10.4 states the classing rule"
+has "$GATE_DOC" "while **no well-formed entry follows it** in the log" \
+    "…LIVE is keyed on supersession, in log order"
+has "$GATE_DOC" 'supersede it with a correctly-shaped entry; never edit it' \
+    "…and a live near-miss's fix is the log's own law"
+has "$GATE_DOC" '**"No well-formed entries at all" is the live case.**' \
+    "…an empty log's near-misses are live, not settled by default"
+has "$GATE_DOC" "superseded-by <Allocation n>" \
+    "SETTLED is still named, with what superseded it"
+has "$GATE_DOC" "rendered **outside the gap count**: it blocks nothing and **requires no acceptance**" \
+    "…outside the gap count, blocking nothing, taking no acceptance"
+has "$GATE_DOC" "The repair here is **always legal**" \
+    "…the rationale is on the record: the repair is always legal"
+has "$GATE_DOC" "**\`HA-<nn>\` and D-G9 are untouched by this rule**" \
+    "…and the acceptance instrument is explicitly left untouched"
+has "$GATE_DOC" "named, never silenced" \
+    "…the blind-spots law holds: settled history is named"
+
+# The contract's own CC-H-02 row is NOT edited — the contract states the
+# assertion; how a finding under it is classed is this document's ground.
+CONTRACT_DOC="$PKG_ROOT/docs/methodology/ba-native-spec-completeness-contract.md"
+has "$CONTRACT_DOC" "| CC-H-02 | Roadmap discipline: every epic carries a status; every re-allocation entry logs a diff and a reason. | roadmap | 10.2" \
+    "the contract's CC-H-02 row stands unedited — the assertion did not move"
+
 # ── 7. R4 — the A pass takes §5.1 by reference, and carries no copy ──────────
 #
 # BA Lead ruling R4 = (a), 14 August 2026: §5.1's SKIPPED-on-unsupported-parse
