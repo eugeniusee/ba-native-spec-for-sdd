@@ -436,6 +436,12 @@ sys.exit(0 if "**Skip-if" not in t
 PY
 done
 has "$TI1" "/ba-tier1 <mode> <epic>" "ba-tier1 names its own invocation, modes included"
+has "$T17" "unblocks — \`/ba-aspect band2\` to compose the Band-2 plan" \
+    "ba-t17's on-miss act resolves — the seventh argument, not a bare command (D-O55)"
+has "$T18" "unblocks — \`/ba-aspect band2\` to compose the Band-2 plan, or \`/ba-close-band1\` where Band 1 does not yet stand closed" \
+    "ba-t18's on-miss act resolves, its closure tail kept (D-O55)"
+has "$TI1" "unblocks — \`/ba-aspect band2\` to compose the Band-2 plan" \
+    "ba-tier1's on-miss act resolves (D-O55)"
 has "$TI2" "/ba-tier2 <feature>" "ba-tier2 names its own invocation"
 has "$TI2" "name \`/ba-enter-feature <epic>/<feature>\`" "…and hands back to P-O8 when entry has not happened"
 has "$TI2" "name \`/ba-gate <feature>\`" "…and hands to the gate at the end, without running it"

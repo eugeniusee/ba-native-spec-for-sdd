@@ -41,8 +41,9 @@ next run's skip-if is measured against.
 confirmation dialog: the command was the act.
 
 **On a miss** — stop in ≤ 2 lines: the failed check, and the single act that
-unblocks — `/ba-aspect` to compose the Band-2 plan, or `/ba-close-band1` where
-Band 1 does not yet stand closed. Nothing else runs; nothing else is explained.
+unblocks — `/ba-aspect band2` to compose the Band-2 plan, or `/ba-close-band1`
+where Band 1 does not yet stand closed. Nothing else runs; nothing else is
+explained.
 
 **Skip-if — refuse the run and say so:** the current allocation stands approved
 and **no event has occurred since the last log entry**. The suggestion engine

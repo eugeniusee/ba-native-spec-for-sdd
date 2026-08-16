@@ -193,6 +193,9 @@ BARE="$TMP/bare"
 mkdir -p "$BARE/.specify"
 cp "$PKG_ROOT/payload/specify-overlay/ba/templates/aspect-state.md" \
    "$PKG_ROOT/payload/specify-overlay/ba/templates/aspect-plans.md" "$BARE/.specify/"
+has "$PKG_ROOT/payload/specify-overlay/ba/templates/aspect-plans.md" \
+    'composed at `/ba-aspect band2` (P-O2 — plan composition, §8.3)' \
+    "the template's Band-2 comment names the composition act (D-O55)"
 B="$TMP/bare.out"
 status --root "$BARE" --date 2026-08-12 > "$B" 2>&1
 

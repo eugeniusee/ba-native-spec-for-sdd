@@ -585,6 +585,12 @@ for m in payload/mirror/AGENTS.md payload/mirror/claude-block.md; do
   fi
 done
 
+if grep -qF -- '`/ba-aspect <aspect>` · `/ba-aspect band2`' "$PKG_ROOT/payload/mirror/claude-block.md"; then
+  ok "the mirror's command surface carries the seventh argument — /ba-aspect band2 (D-O55)"
+else
+  bad "the mirror's /ba-aspect row does not name band2 (D-O55)"
+fi
+
 # ── the control: a unit without the block, and a unit that paraphrased it ─────
 #
 # same discipline as section 4 — the assertion above is worth nothing unless it
@@ -696,12 +702,18 @@ def doc_block(path):
     found = [b for b in blocks(sec.group(0)) if b.startswith(HEAD)]
     if not found:
         sys.exit("§6.1 carries no suggestion-snapshot block")
+    if len(found) > 1:
+        sys.exit(f"§6.1 carries {len(found)} suggestion-snapshot blocks — "
+                 "the shape must be unique to be the shape")
     return found[0]
 
 
 def unit_block(path):
     txt = Path(path).read_text(encoding="utf-8")
     found = [b for b in blocks(txt) if b.startswith(HEAD)]
+    if len(found) > 1:
+        sys.exit(f"the unit embeds {len(found)} '{HEAD}…' blocks — selection is "
+                 "by the block's own header, and two headers is ambiguity, not order")
     if found:
         return found[0]
     ref = re.search(r"§\s*(6\.1)\b", txt)

@@ -1,19 +1,22 @@
 ---
 name: ba-aspect
-description: Open a Band-1 aspect and compose its technique plan - prerequisite check, T1 opening, the evidence-grounded suggestion snapshot, and the BA's composition with output contracts pinned before any run. Carries prompt points P-O1 - aspect opening and P-O2 - plan composition. Also re-plans an aspect that is already open or reopened.
+description: Open a Band-1 aspect and compose its technique plan - prerequisite check, T1 opening, the evidence-grounded suggestion snapshot, and the BA's composition with output contracts pinned before any run. Carries prompt points P-O1 - aspect opening and P-O2 - plan composition. Also re-plans an aspect that is already open or reopened. The seventh argument band2 composes the plans file's Band 2 section by the same discipline - nothing opens, roadmap-state holes ground the rows, and Band-1 closure is the one precondition.
 disable-model-invocation: true
 ---
 
 # `/ba-aspect <aspect>` — open + plan
 
 **Argument:** one of `stakeholders` · `context` · `value` · `vision` ·
-`solution` · `requirements`. Case-insensitive; resolve it to the ledger's
-spelling before writing anything.
+`solution` · `requirements` — or `band2`, the seventh, non-aspect value:
+compose the `## Band 2` section's plan (the fork below). Case-insensitive;
+resolve an aspect to the ledger's spelling before writing anything.
 
 Two prompt points in one act: **P-O1 — aspect opening** opens the aspect;
 **P-O2 — plan composition** composes its plan. On an aspect that is already
 `open` or `reopened`, this skill re-plans — P-O1 (aspect opening) is skipped and
-the composition appends.
+the composition appends. With `band2`, one prompt point only: nothing opens, and
+the fork below composes the `## Band 2` section's plan at P-O2 — plan
+composition.
 
 ## Invocation contract — check before you run
 
@@ -226,6 +229,42 @@ Composed plan — <date> · <initials>
 
 `Status` values: `planned` · `run <date>` · `dropped — <reason>`. Re-composition
 appends a new dated plan block; **the plan never rewrites its own history**.
+
+## The `band2` fork — the `## Band 2` section's plan
+
+`/ba-aspect band2` composes the plans file's non-aspect `## Band 2` section
+(§6.4) — the same planning loop, aimed at the band's own record home. **Nothing
+opens: P-O1 (aspect opening) does not run.** Band 2 is a band, not an aspect;
+its entry happened at Band-1 closure (§8.2), and this fork only composes.
+
+- **The one precondition is the band's own door.** Read the ledger head:
+  Band-1 closure must stand. Not closed → stop and name `/ba-close-band1`.
+  The aspect machinery is skipped — no prerequisite table, no profile gate, no
+  threshold criteria. Of the invocation contract above, **the ledgers must
+  exist** still holds; the head it brings is what this fork reads.
+- **The snapshot is §6.1's shape with two substitutions** — the `Band 2` header
+  in place of the aspect, and the **roadmap-state hole** in place of the AT-ID.
+  No separate Band-2 shape exists. Recommended rows are grounded on roadmap
+  state exactly as an aspect's are grounded on unmet criteria: **no roadmap on
+  disk** → the T-17 — Epics decomposition row, recommended — the section's
+  first act · **rows `Unallocated`** → the T-18 — Scope allocation row,
+  recommended, the unallocated count named · **per-epic kit gaps** ground
+  Tier-1 (the epic scoping interview) rows — enrichment, electable, `optional`,
+  never `recommended`. The `State:` line carries the roadmap state in place of
+  the criteria count — there is no threshold table to count against. Everything
+  else is Step 3's own rules, unchanged: the closed `Status` set, the standing
+  enrichment block, the out-of-profile line, the `Sequence rationale:` line,
+  and the verbatim write — into `## Band 2`.
+- **Composition is Step 4, unchanged.** The same choice line, the same stop.
+  The composed plan appends under `## Band 2`, dated, in the same row shape —
+  re-composition is legal at any point inside the band, and a rerun's row names
+  its trigger (T-18 — Scope allocation reruns and per-epic Tier-1 kits take
+  their rows exactly as an aspect's re-composition appends). Under a standing
+  autonomy grant, the P-O2 — plan composition policy row applies unchanged.
+
+Everything below — the close, the never-list, the register self-check, the
+session boundary — reaches the fork unchanged: you never compose. **The plan is
+the BA's act.**
 
 ## Close
 

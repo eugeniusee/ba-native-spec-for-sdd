@@ -109,7 +109,10 @@ are what get iterated, not tooling.
    here, debt on those artifacts is CC-H's and lifted by `HA-<nn>` records at
    `/ba-gate-health` — **never by an aspect waiver**. AT-RQ is never re-run on
    armed ground.
-2. **Band 2 unlocked.** Decomposition and allocation become available:
+2. **Band 2 unlocked.** The next act is `/ba-aspect band2` (P-O2 — plan
+   composition): the `## Band 2` section takes its composed plan before any
+   technique runs — this skill points at that checkpoint and never seeds the
+   plan. Under it, decomposition and allocation become available:
    **T-17 — Epics decomposition** (`/ba-t17`) → the roadmap; **T-18 — Scope
    allocation** (`/ba-t18`) → the MVP allocation, on-demand and
    repeatable, each rerun carrying rationale + a diff vs. current + BA approval,

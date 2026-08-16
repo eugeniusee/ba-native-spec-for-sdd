@@ -53,8 +53,8 @@ Self-check, and stop if it fails:
 dialog: the command was the act.
 
 **On a miss** — stop in ≤ 2 lines: the failed check, and the single act that
-unblocks — `/ba-aspect` to compose the Band-2 plan. Nothing else runs; nothing
-else is explained.
+unblocks — `/ba-aspect band2` to compose the Band-2 plan. Nothing else runs;
+nothing else is explained.
 
 ## The two guards — both are tests, and both are falsifiable
 

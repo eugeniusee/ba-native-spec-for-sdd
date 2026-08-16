@@ -8270,3 +8270,227 @@ initiative.
 
 ---
 
+## The Record Home Gets Its Producer — `/ba-aspect band2`, the seventh argument, Lane B ruled · orchestrator v0.22 · package 0.1.19 · 16 August 2026 · GREEN
+
+One ruling package, documents first, then the rebuild. Origin: the Blackthorn
+pilot's T-17 dead end, 12 August 2026 — `/ba-run T-17` stopped at its own
+precondition, a composed plan under `## Band 2`, and the corpus named no act
+that composes one, while the `ba-t17`/`ba-t18`/`ba-tier1` self-checks,
+`/ba-run`'s route resolution and §6.4's "§8.1 and §8.3 define the acts" all
+presupposed it. **D-O55** gives the record home its producer: the **seventh,
+non-aspect argument** of the existing command — §6.1's snapshot with **two
+substitutions** (the `Band 2` header for the aspect; the **roadmap-state hole**
+for the AT-ID), the stop at **P-O2 — plan composition**, the record under
+`## Band 2`. No new command, no separate shape, no seeding at `/ba-close-band1`.
+
+**State as found:** `main` at `30bd739`, `VERSION` on disk **0.1.18** — the
+tree carried the complete, uncommitted, GREEN scan-method package (orchestrator
+v0.21 · D-O54 · §25 · gate v0.9 · D162–D163), its entry closing *"Not
+committed: the BA Lead commits at his own initiative."* The brief's base pin
+read 0.1.17 at a clean 30bd739 — see **D164**. Suite **17/17 GREEN as found**
+before a byte moved. The brief's relative-targets header applied as written:
+**v0.22 · D-O55 · §26 · 0.1.19 · divergences from D164.** Step-0 battery:
+every quoted B–D anchor at exactly one (two wrap artifacts and one historical
+duplicate — D166 · D167); the K1 truth check confirmed `ba-frame`'s
+canvas-absent branch ("Record the plan line in `## Frame`", the file's one
+such line and the corpus's one such act, AUTO-under-AG excepted per D-O40);
+the `band2` corpus scan returned **zero command-surface hits** (15 grep hits,
+every one a test-infra filename or a status-script internal).
+
+### The documents pass — eleven assertion-checked replacements
+
+- **§8.3** — the new first bullet: plan composition, P-O2, the seventh
+  `/ba-aspect` argument (D-O55); the two substitutions; no prerequisite check
+  and no threshold table; Band-1 closure the one door; re-composition appended
+  and dated; §10.7's P-O2 row unchanged under an AG.
+- **§8.2** — the Effects line names the act at the door: **Band 2 unlocked** —
+  its plan composable at `/ba-aspect band2`.
+- **§6.2** — one appended sentence: P-O2 serves the plans file's non-aspect
+  `## Band 2` section by the same discipline; the section's plan is never the
+  framework's to write.
+- **§10.1** — the P-O2 Trigger cell widened in place: an aspect's snapshot, or
+  `## Band 2`'s. **No row added.**
+- **§8.1** — the exception clause, K1(a) wording: the canvas-absent Frame line
+  is **the one plan line the framework composes without a BA act** — a standing
+  AG's AUTO compositions are the BA's stated act recorded in advance (D-O40),
+  never the framework's own.
+- Header to **v0.22**, the change record in the corpus voice, review record
+  **§26** (the defect and its consumers, the eight rulings, the two scope
+  corrections, the K1(a) decision, the explicit not-edited record — §6.4 and
+  §7.1 stand untouched, each for its stated reason), footer: locked range to
+  **D-O55**, review-records list gains v0.21→v0.22 in §26, the v0.22 summary
+  block prepended. The change record's inventory was written clause-by-verified
+  clause; "no companion carrier" only after the corpus scan — catalogue-b6's
+  D-B6-5 and catalogue-b1's D-B1-4 both pin record homes, neither names a
+  composition act, both consumed by reference unchanged.
+
+### The rebuild pass — sixteen replacements, ten files
+
+`ba-aspect` (the description, the argument line, the routing sentence, the
+`band2` fork — door, two substitutions, roadmap-state grounding for T-17 —
+Epics decomposition and T-18 — Scope allocation rows, Tier-1 rows enrichment
+and `optional`, composition per Step 4 into `## Band 2`, the never-list's reach
+stated) · `ba-close-band1` (the unlock block names `/ba-aspect band2` ahead of
+the technique commands and states it never seeds) · `ba-run` (the miss guidance
+gains the band2 branch; the compiled P-O3 custom check trued to §7.1's own
+wording — D168; the route-resolution line verified and untouched, this batch's
+consumer) · `ba-t17` · `ba-t18` (closure tail kept) · `ba-tier1` (the on-miss
+acts now name `/ba-aspect band2`) · the mirror's command surface · quickstart's
+Band-2 block (the composition step ahead of `/ba-t17`) · the orchestrator
+agent (plans-file paragraph, P-O2 row, policy paragraph) · the overlay
+template's `## Band 2` comment (the act named beside D-B6-5). Residual sweeps:
+`` `/ba-aspect` to compose `` at **0** across payload and docs; pointers naming
+composition without the argument at **0**.
+
+### Tests, then the fixture
+
+Additive assertions, none weakened — baseline → after per script:
+`check-orchestrator.sh` 266 → **279** (the §8.3/§8.2/§6.2/§10.1/§8.1 doc
+surfaces, the ba-aspect fork, ba-close-band1's checkpoint pointer, the agent's
+P-O2 row) · `check-spine.sh` 178 → **181** (the three on-miss acts resolve) ·
+`check-techniques3.sh` 158 → **159** (the unlock block's next act) ·
+`check-register.sh` 62 → **63** (the mirror surface) · `check-status.sh`
+103 → **104** (the template comment). Two standing pins re-aimed to the new
+truth, the checks' own function: the edition pin (v0.21 → v0.22) and the D-O
+contiguity set ({1..54} → {1..55}) — exactly as the sibling pass re-aimed both
+for v0.21/D-O54. `docs/quickstart.md` has no owning check; its step is asserted
+nowhere, recorded here rather than inventing an owner. **`check-register.sh`
+hardened** — `doc_block`/`unit_block` now fail loudly on a second
+`Suggestion — ` block instead of silently taking the first: selection by the
+block's own header, not by position. Labeled as ruled: **intent over accident,
+not a blocker** — the suite stood green either way. **The fixture**
+(`appointment-booking/band1/aspect-plans.md`): the missing Band-2 suggestion
+snapshot inserted above `Composed plan — 2026-07-11 · Y.K.`, dated 2026-07-11
+inside the fixture's world, holes consistent with it (no roadmap on disk at
+snapshot time; no tier1 row — no epics exist yet). **Insert-only verified
+byte-identically**: removing the inserted block restores the original; git
+numstat 7 insertions, 0 deletions. Shape and row judgment calls: D169.
+
+**Full suite 17/17 GREEN, the three install-based runs included**, after one
+red-to-green of the batch's own making: the fork's first draft rendered
+"T-18's reruns" bare, and the register sweep (rule 5) went red on it — D171.
+
+### Findings
+
+**The Phase-3 finding (ruling 5 — logged here, no `diagnostics/` register: one
+finding does not earn one).** When `/ba-run` hit the Band-2 dead end in the
+Blackthorn pilot, it **offered to write the Band-2 plan line itself** on the
+BA's confirmation — against its own prohibition, *"never pins or confirms a
+contract itself (that is P-O2 — plan composition)"*. The contract text it
+rendered was **verbatim from `ba-t17/SKILL.md`**, so nothing was invented — the
+violation is procedural, not substantive; prescribed behaviour on an unpinned
+contract is to stop and send the BA to P-O2. Logged, not fixed as a run-time
+behaviour item here — the structural fix is this package: the dead end now has
+a legal exit, and the on-miss acts name it.
+
+### Closed, and named as follow-up
+
+**D80 closed** — `ba-tier1`'s on-miss act, given as *"`/ba-aspect` to compose
+the Band-2 plan"*, now resolves: `/ba-aspect band2` exists and composes it.
+**D81 closed** — `ba-t18`'s on-miss likewise, its closure tail standing
+unchanged. **The resolvability sweep is named as follow-up and NOT built**
+(ruling 8): every on-miss and next-act pointer in the payload names an act, and
+nothing checks those acts resolve — D80/D81's defect class, of which this batch
+fixes one instance. A corpus-wide sweep is its own batch with its own ruling.
+
+### Files
+
+| File | Change |
+|---|---|
+| `docs/methodology/ba-native-spec-orchestrator-rules.md` | v0.21 → **v0.22** — §8.3 · §8.2 · §6.2 · §10.1 · §8.1 · header/record · §26 · footer |
+| `payload/claude/skills/ba-aspect/SKILL.md` | the `band2` fork — the seventh argument |
+| `payload/claude/skills/ba-close-band1/SKILL.md` | the unlock block points at the checkpoint |
+| `payload/claude/skills/ba-run/SKILL.md` | the band2 miss branch; the P-O3 check trued to §7.1 |
+| `payload/claude/skills/ba-t17/SKILL.md` · `ba-t18` · `ba-tier1` | on-miss acts resolve |
+| `payload/mirror/claude-block.md` · `docs/quickstart.md` · `payload/claude/agents/ba-orchestrator.md` · `payload/specify-overlay/ba/templates/aspect-plans.md` | register consistency |
+| `tests/check-orchestrator.sh` · `check-spine.sh` · `check-techniques3.sh` · `check-register.sh` · `check-status.sh` | +19 assertions · two pins re-aimed · the register hardening |
+| `tests/fixtures/appointment-booking/band1/aspect-plans.md` | the Band-2 suggestion snapshot, insert-only |
+| `VERSION` | 0.1.18 → **0.1.19** |
+| `BUILD-LOG.md` | this entry |
+
+### Divergences — D164–D171
+
+**D164 — the base pin did not match the tree, in the direction opposite to
+D162.** The brief pinned `VERSION` 0.1.17 at a clean `30bd739`; found: HEAD
+`30bd739` carrying the complete, uncommitted, GREEN 0.1.18 scan-method package,
+its entry reserving its commit to the BA Lead. The brief's own relative-targets
+header ("the pins above are verification values, not literals to force")
+resolved every number: v0.22 · D-O55 · §26 · 0.1.19 · D164+. Proceeded on the
+sibling package as base after verifying every anchor against the tree as found
+and the suite green over it.
+
+**D165 — the commit is withheld at close; "Commit and push on GREEN" cannot
+execute as written.** Any commit of this pass necessarily carries the sibling
+package's files — the orchestrator doc, `BUILD-LOG.md` and `VERSION` hold both
+passes' changes — and that package's own record reads *"the BA Lead commits at
+his own initiative."* Committing it under this pass's message on this pass's
+initiative would override a sibling's explicit reservation on my own judgment.
+Both packages stand complete and GREEN; the prepared commit is in the close-out
+report; one word from the ruling venue executes it.
+
+**D166 — the §6.2 anchor is not unique in the document.** *"each stamped AUTO
+and standing for ratification at `off`."* occurs twice: §6.2's living sentence
+and the §19 review record's D-O40 row quoting it (comma variant: `auto on`,
+vs `auto on` bare). Step 0.4 reads STOP at ≥ 2; the edit's own prose names the
+site ("§6.2's paragraph"), so the anchor was extended by its unique leading
+clause and the append landed at the named site. The historical record is
+untouched.
+
+**D167 — two quoted anchors wrap across lines in their files.** `ba-run`'s
+route-resolution line (*"…the `## Band 2` section's / route"*) and `ba-t18`'s
+closure tail (*"…`/ba-close-band1` where / Band 1…"*) count 0 as flat strings
+at the 80-column fill. Verified whitespace-joined — both present verbatim —
+and treated as found; the replacement texts re-wrap their paragraphs whole.
+
+**D168 — one line beyond the brief's named edit in `ba-run`.** The compiled
+P-O3 custom check read *"on the composed plan of an `open`/`reopened` aspect"*
+— narrower than §7.1's own *"or its own plans-file section"* — which would have
+left the new band2 miss branch dead: a legal `## Band 2` custom line would
+have failed the check it precedes. Trued to the document's wording. Compile
+truing, no methodology change; §7.1 itself was not edited (its case was always
+legal — this is the not-edited record's other half, applied to the compile).
+
+**D169 — the fixture snapshot is written in the fixture world's own §6.1
+idiom,** not the live fenced block: the four-column `Technique (catalogue |
+custom sketch) | Addresses | Expected contribution` shape its three sibling
+snapshots carry, no profile suffix and no `State:` line — the fixture's July
+world predates both (its state head carries no `Profile:` line). Two row
+judgment calls, stated: `t18`'s Addresses names the hole as the born state
+(*"rows Unallocated — every epic is born unallocated"*), grounded in `t17`'s
+own pinned contract (*"Phase (Unallocated at birth)"*); and no `tier1` row
+renders — no epics exist at snapshot time, and the world's idiom carries no
+enrichment block.
+
+**D170 — the fork's `State:` line carries the roadmap state.** §6.1's `State:`
+line counts threshold criteria; Band 2 has no threshold table, so a count
+there would render machinery that does not exist. The ruling names two
+substitutions; this slot is where the replaced AT machinery surfaces a second
+time, and the fork renders the roadmap state in it — the substitution applied
+at the only slot whose literal reading has no referent.
+
+**D171 — the register sweep caught the pass's own first draft.** The fork's
+third bullet rendered *"T-18's reruns"* — a bare code in a BA-facing string —
+and `check-register.sh` went red on it (rule 5), with its self-test cascade
+behind it. Reworded to *"T-18 — Scope allocation reruns"*. The document's §8.3
+bullet keeps the ruled possessive: the methodology layer is not a BA-facing
+render, and the register's 63-file corpus does not reach it. Second
+red-to-green of a sweep against its own pass in two packages — the checks are
+earning their keep.
+
+### Version
+
+`VERSION` 0.1.18 → **0.1.19**, one automatic patch increment for the whole
+pass under D157. No minor is proposed and none is hinted at.
+
+### Open
+
+**Nothing from this pass stands open but the commit act itself (D165).** The
+record home has its producer: `/ba-aspect band2` composes, the door names the
+act, the on-miss acts resolve (D80 · D81 closed), the fixture carries the
+snapshot its world was missing, and the resolvability sweep stands **named and
+not built**, awaiting its own ruling. **D164–D171 await ratification**, with
+the sibling pass's **D162–D163** standing beneath them and **D158–D160 ·
+D-O53 · D153–D157** beneath those. The hygiene backlog still holds **D160**;
+this pass adds nothing to it. Both packages — 0.1.18 and 0.1.19 — stand
+complete, GREEN and uncommitted on one tree: the prepared commit is in the
+close-out report, and the BA Lead's word executes it.

@@ -108,7 +108,8 @@ verbatim as audit trail and tuning input), the composed plan with pinned output
 contracts, and the run log. Plus two non-aspect sections: `## Frame` (the plan
 line and run log of T-01 — Discovery canvas framing) and `## Band 2` (those of
 T-17 — Epics decomposition and T-18 — Scope allocation, every rerun with its
-trigger named).
+trigger named; the section takes its composed plan at `/ba-aspect band2` —
+P-O2 — plan composition — exactly as an aspect takes one).
 
 Both live at `.specify/` top level, **deliberately outside `.specify/memory/`**:
 orchestration state is a runtime record, not one of the three content classes —
@@ -277,7 +278,7 @@ moments, not step boundaries.
 | # | Moment | The BA's act | Skill |
 |---|---|---|---|
 | P-O1 | aspect opening | open (T1) | `/ba-aspect` |
-| P-O2 | plan composition | select / drop / reorder / add custom; pin or confirm output contracts | `/ba-aspect` |
+| P-O2 | plan composition | select / drop / reorder / add custom; pin or confirm output contracts — an aspect's plan, or `## Band 2`'s | `/ba-aspect` (`band2` for the section) |
 | P-O3 | technique invocation | invoke the run, or `go` on a route | `/ba-t<NN>` (alias `/ba-run`; `/ba-run` alone runs the route) |
 | P-O4 | clearing confirmation | CLEARED / NOT CLEARED with named misses / WAIVE | `/ba-clear` |
 | P-O5 | aspect-waiver acts | grant · re-affirm · lapse | `/ba-waive-aspect` |
@@ -346,7 +347,8 @@ grant is explicit consent recorded in advance — **not silence.** Absent a gran
 silence still consents to nothing.
 
 **The policy table — what runs AUTO.** P-O2 — plan composition composes
-as-recommended from the snapshot, and the grant **is** the route `go` · defer
+as-recommended from the snapshot — an aspect's or `## Band 2`'s alike — and the
+grant **is** the route `go` · defer
 batches accepted, with unclear still an Open Question and never an invention ·
 P-O4 — clearing confirmation clears when every criterion is met, and otherwise
 grants an auto-AW whose revisit trigger is `BA ratification sweep (auto off)` ·

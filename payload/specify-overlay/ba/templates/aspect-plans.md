@@ -56,7 +56,9 @@ Run log:
 
 ## Band 2
 
-<!-- T-17's and T-18's plan lines and run logs (D-B6-5), same row shape. Every
+<!-- T-17's and T-18's plan lines and run logs (D-B6-5), same row shape —
+     composed at `/ba-aspect band2` (P-O2 — plan composition, §8.3): the
+     section takes its plan exactly as an aspect takes one. Every
      rerun names its trigger; contract-fulfillment bookkeeping per §7.3.
      Allocation is on-demand and repeatable (C1): each rerun = recommended
      re-allocation with rationale + diff vs. current + BA approval; the living

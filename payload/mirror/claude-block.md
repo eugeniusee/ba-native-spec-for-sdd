@@ -86,7 +86,7 @@ Do not invoke them on your own initiative and do not simulate their effects.
 |---|---|
 | `/ba-frame` | Band-1 entry: initialize the two aspect ledgers, then one render and one reply — take the source inventory (captures land under `sources/`, states on the head's `Sources:` line), pick the flow profile (P-O0 — flow-profile selection) and set the scope frame (P-O0b — scope-frame selection, auto-pickup pre-filled) — confirm the canvas |
 | `/ba-status [--html]` | Render the aspect-ledger head and the nine-line project dashboard; `--html` also writes the derived offline render |
-| `/ba-aspect <aspect>` | Open an aspect; suggestion snapshot → plan composition |
+| `/ba-aspect <aspect>` · `/ba-aspect band2` | Open an aspect (suggestion snapshot → plan composition), or compose the `## Band 2` section's plan — nothing opens; Band-1 closure is the door |
 | `/ba-t<NN>` · `/ba-tier1` · `/ba-tier2` | One-step technique run — the P-O3 (technique invocation) check compiled in; `/ba-run <id>` = alias + custom runner |
 | `/ba-run` | Run the composed plan as a route: the pinned route render, then every row on one `go` — no per-row acknowledgement |
 | `/ba-run specs all` · `/ba-run specs <epic-list>` | Batch Band-3 entry: one P-O8 (Band-3 entry) table, then Tier 2 per feature, one consolidated defer-confirm |

@@ -44,11 +44,11 @@ check governs; do not re-check here, do not confirm, never ask the BA to retype
 anything. One typed command, one run.
 
 **Custom techniques** (a plan line naming no catalogue skill): check P-O3
-(technique invocation) here — the line is on the composed plan of an
-`open`/`reopened` aspect with a pinned, BA-confirmed contract — then run under
-that contract. On a miss, stop in ≤ 2 lines and name the single unblocking act
-(`/ba-aspect <aspect>`). At run end, apply the same compiled bookkeeping the
-catalogue skills carry: output lands · findings route as one batch · run-log
+(technique invocation) here — the line is on the composed plan, an
+`open`/`reopened` aspect's or the `## Band 2` section's, with a pinned,
+BA-confirmed contract — then run under that contract. On a miss, stop in ≤ 2 lines and name the single unblocking act
+(`/ba-aspect <aspect>`; for a `## Band 2` line, `/ba-aspect band2`). At run
+end, apply the same compiled bookkeeping the catalogue skills carry: output lands · findings route as one batch · run-log
 line · threshold refresh with a one-line `/ba-clear` proposal when the table
 completes.
 

@@ -175,6 +175,13 @@ Run log:
 
 ## Band 2
 
+Suggestion — Band 2 — 2026-07-11
+| # | Technique (catalogue \| custom sketch) | Addresses | Expected contribution |
+|---|---|---|---|
+| 1 | t17 epics decomposition | no roadmap on disk — the section's first act | the epic set as roadmap rows: exclusively partitioned, coverage-complete, every row cited |
+| 2 | t18 scope allocation (repeatable) | rows Unallocated — every epic is born unallocated; allocation follows decomposition | the initial allocation as a diff vs. current, factor-tagged reasons |
+Sequence rationale: decompose first — allocation has nothing to move until rows exist.
+
 Composed plan — 2026-07-11 · Y.K.
 | # | Technique | Source | Output contract {expected · class · destination} | Status |
 |---|---|---|---|---|

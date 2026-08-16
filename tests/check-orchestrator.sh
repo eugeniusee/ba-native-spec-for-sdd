@@ -877,9 +877,9 @@ has "$RULES_DOC" "D-O40–D-O41" "…and the two locked amendments it carries"
 has "$RULES_DOC" "v0.15" "…and the edition the scope frame produced"
 has "$RULES_DOC" "D-O42–D-O44" "…and the scope-frame ruling block"
 has "$RULES_DOC" "v0.16" "…and the edition the four-act floor row produced"
-head -2 "$RULES_DOC" | grep -q 'v0\.21' \
-  && ok "the header states the live edition — v0.21, the scan method" \
-  || bad "the header does not name v0.21: the edition and the change record disagree"
+head -2 "$RULES_DOC" | grep -q 'v0\.22' \
+  && ok "the header states the live edition — v0.22, Band-2 plan composition" \
+  || bad "the header does not name v0.22: the edition and the change record disagree"
 has "$RULES_DOC" "D-O45–D-O49" "…and the source-inventory ruling block"
 has "$RULES_DOC" "D-O50" "…and the change record names the unreadable-spec ruling"
 has "$RULES_DOC" "D-O51–D-O52" "…and the continuity-under-a-grant ruling block"
@@ -893,8 +893,46 @@ python3 - "$RULES_DOC" <<'PYX' && ok "the D-O block runs 1…54 with no gap and 
   || bad "the D-O decision block is not contiguous — a number is missing or reused"
 import re, sys
 seen = {int(n) for n in re.findall(r"D-O(\d+)", open(sys.argv[1], encoding="utf-8").read())}
-sys.exit(0 if seen == set(range(1, 55)) else 1)
+sys.exit(0 if seen == set(range(1, 56)) else 1)
 PYX
+
+# ── 6b. Band-2 plan composition — the record home has its producer (D-O55) ──
+#
+# The Blackthorn pilot's T-17 dead end: the ba-t17/ba-t18/ba-tier1 self-checks,
+# /ba-run's route resolution and §6.4's "§8.1 and §8.3 define the acts" all
+# presupposed a composed `## Band 2` plan while no act composed one. D-O55
+# makes `/ba-aspect band2` the seventh, non-aspect argument — §6.1's snapshot
+# with two substitutions, the stop at P-O2, the record under `## Band 2`.
+
+printf '\n▸ Band-2 plan composition — /ba-aspect band2 (§8.3; D-O55)\n'
+
+B2DOC="$PKG_ROOT/docs/methodology/ba-native-spec-orchestrator-rules.md"
+has "$B2DOC" "Plan composition — P-O2, the seventh \`/ba-aspect\` argument (D-O55)" \
+    "§8.3 opens on the composition bullet — the record home has its producer"
+has "$B2DOC" "the \`Band 2\` header in place of the aspect" \
+    "…§6.1's shape, substitution one — the header"
+has "$B2DOC" "roadmap-state hole** in place of the AT-ID" \
+    "…substitution two — the roadmap-state hole; no separate Band-2 shape"
+has "$B2DOC" "its plan composable at \`/ba-aspect band2\`" \
+    "§8.2's Effects line names the act at the door"
+has "$B2DOC" "the section's plan is never the framework's to write" \
+    "§6.2 reaches the non-aspect section"
+has "$B2DOC" "an aspect's, or \`## Band 2\`'s (§8.3) — or the BA re-plans" \
+    "§10.1's P-O2 trigger widened in its own cell, no row added"
+has "$B2DOC" "the one plan line the framework composes without a BA act" \
+    "§8.1 names the single exception — the canvas-absent Frame line, D-O40-qualified"
+has "$SKILLS/ba-aspect/SKILL.md" "or \`band2\`, the seventh, non-aspect value" \
+    "ba-aspect's argument line carries the seventh value"
+has "$SKILLS/ba-aspect/SKILL.md" "Not closed → stop and name \`/ba-close-band1\`" \
+    "…the fork's one precondition is the band's own door"
+has "$SKILLS/ba-aspect/SKILL.md" "reaches the fork unchanged: you never compose" \
+    "…and the never-list reaches the fork unchanged"
+has "$SKILLS/ba-close-band1/SKILL.md" "The next act is \`/ba-aspect band2\` (P-O2 — plan composition)" \
+    "ba-close-band1 points Band 2 unlocked at the checkpoint"
+has "$SKILLS/ba-close-band1/SKILL.md" "never seeds the" \
+    "…and never seeds the plan"
+has "$AG" "(\`band2\` for the section)" \
+    "the orchestrator agent's P-O2 row reaches the band2 case"
 
 # ── 7. layering — no methodology leaks into the payload ──────────────────────
 

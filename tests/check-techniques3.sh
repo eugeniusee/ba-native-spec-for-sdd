@@ -611,6 +611,8 @@ PY
 has "$STATE" "AWs carried: none" "precondition 2 held — no standing waiver to re-affirm"
 has "$CB" "carried past closure — debt visible to CC-H where it touches spec-anchored ground" \
     "…and the skill carries the re-affirmation's exact wording for when there is one"
+has "$CB" "The next act is \`/ba-aspect band2\` (P-O2 — plan composition)" \
+    "Band 2 unlocked names its composition act ahead of the technique commands (D-O55)"
 
 # the act
 has "$STATE" "2026-07-10 · Band 1 closed · Y.K." "the closure event is recorded (P-O7)"

@@ -116,6 +116,7 @@ when something breaks.
 ## Band 2 — decomposition and scoping
 
 ```
+/ba-aspect band2             # compose the Band-2 plan — snapshot, then your act
 /ba-t17                      # epics decomposition → the roadmap
 /ba-t18                      # MVP / Phase 2 / Later allocation, with a diff and a reason
 /ba-tier1 kit E-03           # a stakeholder-call kit for one epic
