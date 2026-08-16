@@ -229,7 +229,10 @@ question IDs and pre-draft are the parsing frame.
 
 6. **Assemble and finalize.** Open Questions consolidated — unanswered kit
    questions plus the new questions the call raised, each tagged with what it
-   touches. Brief status → `Scoped`. Kit archived beside it.
+   touches, each carrying an **`OQ-<n>` ID numbered per brief** (D12,
+   elicitation engine §4 — the sequence restarts in every brief; epic context
+   rides beside the ID, never inside it). Brief status → `Scoped`. Kit archived
+   beside it.
 
 ### Provenance discipline — deliberately light
 
@@ -329,7 +332,11 @@ batch is written only after the BA approves it.
 ## At run end — compiled bookkeeping
 
 1. **The primary output lands** at its contracted destination — this run's own
-   act under its pinned contract.
+   act under its pinned contract, **and in this skill's own pinned output
+   shape**: the heading literals and ID grammars pinned above. A shape
+   divergence is a **contract miss** (orchestrator §6.3) — stop and report the
+   shape expected against the line as written; never record `fulfilled`, and
+   never downgrade to `partial`.
 2. **Cross-cutting findings route** as one proposed batch: the framework
    assembles the edits · the BA approves the batch · the framework writes. In
    Band 1 proper Scope H is disarmed and nothing fires; post-closure runs get

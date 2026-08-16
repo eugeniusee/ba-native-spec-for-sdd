@@ -155,6 +155,7 @@ stands, and the BA's next message resumes the run:
 Band boundary — <date> · AUTO (AG-<n>) · <P-O7 Band-1 closure | P-O8 Band-3 entry: <feature>>
 Auto-trail since <start | last boundary>: <n> acts
 Assumptions: <n> · Open questions: <n>
+Health refresh: <current | overdue: <r> runs vs cadence>
 Next act: <one line> — any reply continues · /ba-auto off renders the resumption report
 ```
 

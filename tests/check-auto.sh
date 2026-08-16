@@ -545,6 +545,7 @@ the AUTO stamp and which boundary|· AUTO (AG-<n>) ·
 both boundary acts|P-O7 Band-1 closure | P-O8 Band-3 entry
 the trail since the last boundary|Auto-trail since <start | last boundary>
 the assumption and question counts|Assumptions: <n> · Open questions: <n>
+the health-refresh state (D-O59)|Health refresh: <current | overdue: <r> runs vs cadence>
 the continuation — any reply resumes|any reply continues
 the off route to the resumption report|/ba-auto off renders the resumption report
 LINES

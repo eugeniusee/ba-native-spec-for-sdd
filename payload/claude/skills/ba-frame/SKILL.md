@@ -363,7 +363,9 @@ than an aspect's.
    second command from the BA. That run authors `canvas.md`; this skill does
    not.
 4. Book contract fulfillment in the `## Frame` run log —
-   `fulfilled` · `partial — <what is missing>` · `failed — <why>`.
+   `fulfilled` · `partial — <what is missing>` · `failed — <why>`. `fulfilled`
+   requires the artifact in its **pinned output shape** as well as at its
+   destination; a shape divergence is a miss (orchestrator §6.3).
 
 Either way, the canvas's sections then serve as the aspects' shared substrate.
 

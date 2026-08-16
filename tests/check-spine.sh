@@ -219,6 +219,38 @@ has "$BRIEF" "reopen signal → Stakeholders aspect" \
 has "$BRIEF" "no concrete cutoff given" \
     "Captured Detail preserves the volunteered fact without inventing the number"
 
+# ── 3b. brief §6's ID grammar, pinned as law (D12) ───────────────────────────
+#
+# The grammar every §6 reader matches was carried by the skeleton, the template
+# and a worked example — in three places and as law in none. D-O58's line-4
+# reader needs a law to match against; D12 states it once, in the document that
+# owns the brief's section shapes, and the carriers cite it.
+
+printf '\n▸ Brief §6 — the OQ-<n> grammar, stated once and cited (elicitation D12)\n'
+
+ELIC="$PKG_ROOT/docs/methodology/ba-native-spec-elicitation-techniques.md"
+BTPL="$PKG_ROOT/payload/specify-overlay/ba/templates/scope-brief-template.md"
+
+has "$ELIC" "ID grammar (D12, locked): OQ-<n>" \
+    "the brief skeleton pins the ID grammar where §6's shape is pinned"
+has "$ELIC" "OQ-1, OQ-2, … numbered per brief." \
+    "…numbered per brief — the sequence restarts and is never globally unique"
+has "$ELIC" "Epic context rides BESIDE the ID in a render, never inside it" \
+    "…epic context beside the ID, never inside it"
+has "$BTPL" "ID grammar (D12, locked — elicitation engine §4)" \
+    "the payload template carries the grammar and cites its home"
+has "$BTPL" '(`E01-Q1` is not an ID)' \
+    "…and names the off-shape form the reader counts"
+has "$TI1" 'carrying an **`OQ-<n>` ID numbered per brief**' \
+    "ba-tier1's assemble step names the grammar it must write"
+has "$TI1" "elicitation engine §4 — the sequence restarts in every brief" \
+    "…by reference to its one home, not by restating the law"
+
+# The worked example was conformant before the rule existed — which is the
+# evidence the grammar was real, and why no example was rewritten to fit it.
+has "$SKILLS/ba-tier1/references/example.md" "| OQ-1 |" \
+    "the worked example was already conformant — no example rewritten to fit the rule"
+
 # ── 4. Tier 2 — the spec the answer sheet produces ───────────────────────────
 
 printf '\n▸ Tier 2: spec r5 from the scripted answer sheet (elicitation §5)\n'

@@ -325,6 +325,87 @@ line_has "$TMP/uzp.txt" 'blocked: 2 spec(s) unreadable' \
 no_line   "$TMP/uzp.txt" "no spec carries a User Story yet" \
   "…never 'no spec carries a User Story yet', which was never established"
 
+# ── 6c. the near-miss, named instead of rendered absent (D-O58) ──────────────
+
+printf '\n▸ The near-miss — the reader names path, line as authored, shape expected\n'
+
+# The field defect, 16 Aug 2026: a T-18 run under AG-1 wrote its allocation
+# heading in LEDGER stamp grammar. The entry landed and parsed as nothing, so
+# the roadmap read came back empty and the dashboard said `roadmap missing` —
+# a claim about the project, made from a fact about the reader's own grammar.
+NM="$TMP/near-miss"
+cp -R "$PROJ" "$NM"
+python3 - "$NM/.specify/memory/roadmap.md" <<'PYX'
+import pathlib, sys
+p = pathlib.Path(sys.argv[1])
+t = p.read_text(encoding="utf-8")
+for n, d, tr in (("1", "2026-07-11", "post-decomposition"),
+                 ("2", "2026-07-15", "post-ingestion E-03")):
+    old = "### Allocation %s — %s · trigger: %s · BA: Y.K." % (n, d, tr)
+    assert t.count(old) == 1, (old, t.count(old))
+    t = t.replace(old, "### %s · AUTO (AG-1) · scope allocation · %s" % (d, tr))
+p.write_text(t, encoding="utf-8")
+PYX
+status --root "$NM" --date 2026-08-12 > "$TMP/nm.txt" 2>&1
+status --root "$NM" --date 2026-08-12 --profile presale > "$TMP/nmp.txt" 2>&1
+
+line_has "$TMP/nm.txt" "roadmap log unreadable: 2" \
+  "the allocation log's near-miss renders as its own state on line 2"
+no_line   "$TMP/nm.txt" "roadmap missing" \
+  "…never 'roadmap missing' — the roadmap was written; its log cannot be read"
+line_has "$TMP/nm.txt" 'first "### 2026-07-11 · AUTO (AG-1) · scope allocation · post-decomposition"' \
+  "…the first offender is quoted as authored"
+line_has "$TMP/nm.txt" 'expected ### Allocation <n> — <date> · trigger: <…> · BA: <name>' \
+  "…against the heading shape expected (found vs expected)"
+line_has "$TMP/nmp.txt" "roadmap log unreadable: 2" \
+  "line 8's Presale variant reads the same state from the same computation"
+
+# A brief §6 row that reaches the section's shape and misses its ID grammar.
+# Before D-O58 the row was `continue`d: an open question the dashboard denied.
+python3 - "$NM/.specify/memory/scope/E-03.md" <<'PYX'
+import pathlib, sys
+p = pathlib.Path(sys.argv[1])
+t = p.read_text(encoding="utf-8")
+old = "| OQ-1 | Cap on simultaneous booked appointments per Client? |"
+assert t.count(old) == 1
+p.write_text(t.replace(old, "| E03-Q1 | Cap on simultaneous booked appointments per Client? |"),
+             encoding="utf-8")
+PYX
+status --root "$NM" --date 2026-08-12 > "$TMP/nmq.txt" 2>&1
+
+line_has "$TMP/nmq.txt" 'off-shape 1: first "E03-Q1" (E-03) — expected OQ-<n>' \
+  "an E01-Q1-style ID is counted off-shape and named with its epic (D12)"
+
+# R1's other half, asserted cheaply: the pinned heading with the AUTO tail
+# appended PARSES. `ALLOC_HEAD_RE`'s `rest` is free-form, so the tail costs the
+# entry nothing — which is exactly why the tail is the ruled form and the
+# rewrite is not.
+AGT="$TMP/auto-tail"
+cp -R "$PROJ" "$AGT"
+python3 - "$AGT/.specify/memory/roadmap.md" <<'PYX'
+import pathlib, sys
+p = pathlib.Path(sys.argv[1])
+t = p.read_text(encoding="utf-8")
+old = "### Allocation 2 — 2026-07-15 · trigger: post-ingestion E-03 · BA: Y.K."
+assert t.count(old) == 1
+p.write_text(t.replace(old, old + " · AUTO (AG-1)"), encoding="utf-8")
+PYX
+status --root "$AGT" --date 2026-08-12 > "$TMP/agt.txt" 2>&1
+
+line_has "$TMP/agt.txt" "roadmap current 2026-07-15" \
+  "an allocation heading with the · AUTO (AG-<n>) tail parses — the date still reads (D-O56)"
+no_line   "$TMP/agt.txt" "allocation log unreadable" \
+  "…and the tail is no near-miss: the pinned fields all survived it"
+
+# The control: a well-shaped estate renders neither line. A near-miss report
+# that fires at zero is noise, and the *renders only when* law forbids it.
+no_line "$D" "allocation log unreadable" \
+  "the clean estate renders no allocation near-miss line"
+no_line "$D" "off-shape" \
+  "…and no off-shape question line"
+line_has "$D" "roadmap current 2026-07-15" \
+  "…and its roadmap still reads current, from the log's own last entry"
+
 # ── 7. the HTML render ───────────────────────────────────────────────────────
 
 printf '\n▸ The HTML render — self-contained, same counts, derived per invocation\n'

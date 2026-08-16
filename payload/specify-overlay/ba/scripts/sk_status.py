@@ -80,7 +80,7 @@ from sk_wbs import (  # noqa: E402
     read_roadmap,
     spec_epic_id,
 )
-from sk_health import allocation_entries  # noqa: E402
+from sk_health import ALLOC_HEAD_RE, _section, allocation_entries  # noqa: E402
 
 # ── the pinned shape (§10.4) ─────────────────────────────────────────────────
 
@@ -310,6 +310,12 @@ def brief_questions(eid: str, text: str):
     The Status column is the elicitation vocabulary: `Open` · `Answered — …` ·
     `Overtaken — …`. Anything else is counted as none of the three and named
     in neither bucket; this render never re-classifies a BA's own wording.
+
+    A row that reaches the section's own shape — its full cell count — and
+    whose first cell is not an `OQ-<n>` ID (D12) is a **near-miss**, not a
+    non-row: it is carried out with `state` `off-shape` so line 4 can count and
+    name it (D-O58). Silently skipping it renders a question the dashboard
+    swore was not open.
     """
     block = re.search(r"^##\s*6\.\s*Open Questions\b(?P<body>.*?)(?=^##\s|\Z)",
                       text, re.M | re.S)
@@ -317,7 +323,16 @@ def brief_questions(eid: str, text: str):
         return []
     out = []
     for cells in table_rows(block.group("body")):
-        if len(cells) < 4 or not re.fullmatch(r"OQ-\d+", cells[0].strip()):
+        if len(cells) < 4:
+            continue
+        if not re.fullmatch(r"OQ-\d+", cells[0].strip()):
+            out.append({
+                "epic": eid,
+                "id": cells[0].strip(),
+                "question": cells[1].strip(),
+                "status": cells[3].strip(),
+                "state": "off-shape",
+            })
             continue
         status = cells[3].strip()
         out.append({
@@ -379,6 +394,44 @@ def parse_failure(folder, spec) -> str:
             "headings (e.g. \"%s\")" % (path, first.raw_name, SPEC_HEADINGS[0]))
 
 
+def roadmap_log_offenders(root: Path):
+    """Allocation-log lines that reach the log's own ground and miss its shape.
+
+    A near-miss, not an absence (D-O58): the file is there, `## Allocation log`
+    is there, `###` lines are there, and the heading grammar does not hold.
+    Returns (count, first offender as authored) so the render can name what it
+    met — never `roadmap missing`, which asserts nothing was ever written and
+    sends the fix to T-17 instead of to the line.
+    """
+    path = root / ".specify" / "memory" / "roadmap.md"
+    if not path.is_file():
+        return 0, ""
+    body = _section(path.read_text(encoding="utf-8"),
+                    lambda h: h.lower().startswith("allocation log"))
+    if not body:
+        return 0, ""
+    off = [ln.strip() for ln in body.splitlines()
+           if ln.strip().startswith("###") and not ALLOC_HEAD_RE.match(ln.strip())]
+    return len(off), (off[0] if off else "")
+
+
+ALLOC_SHAPE_EXPECTED = "### Allocation <n> — <date> · trigger: <…> · BA: <name>"
+
+
+def roadmap_state(d) -> str:
+    """Lines 2 and 8 render the roadmap from one computation, never two.
+
+    `log unreadable` outranks `missing`: where the log holds `###` lines and
+    none of them parsed, the roadmap was written and its log cannot be read —
+    a fact about this reader's grammar, not about the project (D-O58).
+    """
+    if d["roadmap_date"]:
+        return "current %s" % d["roadmap_date"]
+    if d["log_off"]:
+        return "log unreadable: %d" % d["log_off"]
+    return "missing"
+
+
 def read_roadmap_date(root: Path) -> str:
     """The roadmap's own currency marker — its latest allocation entry (C1)."""
     path = root / ".specify" / "memory" / "roadmap.md"
@@ -403,6 +456,7 @@ def assemble(root: Path, profile: str, today: str):
     features = read_features(root)
     order, names, phases = read_roadmap(root)
     roadmap_date = read_roadmap_date(root)
+    log_off_n, log_off_first = roadmap_log_offenders(root)
 
     d = {"project": head["project"] or root.name, "date": today,
          "profile": profile, "band": head["band"] or "—",
@@ -421,6 +475,8 @@ def assemble(root: Path, profile: str, today: str):
     d["briefs"] = len(briefs["briefs"])
     d["kits"] = len(briefs["kits"])
     d["roadmap_date"] = roadmap_date
+    d["log_off"] = log_off_n
+    d["log_off_first"] = log_off_first
     d["b2_ratio"] = ratio_of(d["briefs"], d["epics"])
 
     # 3 · Band 3 — Delivery
@@ -450,6 +506,8 @@ def assemble(root: Path, profile: str, today: str):
     d["q_answered"] = sum(1 for q in qs if q["state"] == "answered")
     d["q_overtaken"] = sum(1 for q in qs if q["state"] == "overtaken")
     d["q_oldest"] = next((q for q in qs if q["state"] == "open"), None)
+    d["q_off"] = sum(1 for q in qs if q["state"] == "off-shape")
+    d["q_off_first"] = next((q for q in qs if q["state"] == "off-shape"), None)
 
     # 5 · Health
     d["health"] = health
@@ -561,8 +619,12 @@ def render(d) -> str:
                % (bar(d["b2_ratio"]),
                   count_over(d["briefs"], d["epics"], "epics"),
                   count_over(d["kits"], d["epics"], ""),
-                  ("current %s" % d["roadmap_date"]) if d["roadmap_date"]
-                  else "missing"))
+                  roadmap_state(d)))
+    if d["log_off"]:
+        out.append('      allocation log unreadable: %d entr%s — first "%s", '
+                   'expected %s'
+                   % (d["log_off"], "y" if d["log_off"] == 1 else "ies",
+                      d["log_off_first"], ALLOC_SHAPE_EXPECTED))
 
     verdicts = " · ".join("%s %s" % (f, v) for f, v in d["verdicts"]) or "—"
     out.append("3 · Band 3 — Delivery    %s entered %d across %s epics · "
@@ -584,6 +646,10 @@ def render(d) -> str:
                   ("%s — %s (standing in %s §6)"
                    % (oldest["id"], oldest["question"], oldest["epic"]))
                   if oldest else "none open"))
+    if d["q_off"]:
+        first = d["q_off_first"]
+        out.append('      off-shape %d: first "%s" (%s) — expected OQ-<n>'
+                   % (d["q_off"], first["id"], first["epic"]))
 
     out.append("5 · Health: Scope H %s · refresh %s · acceptances: %d"
                % (health_state(d), refresh_state(d), d["health"]["acceptances"]))
@@ -596,8 +662,7 @@ def render(d) -> str:
     if presale:
         out.append("8 · Presale  → Exit readiness: roadmap %s · drafted %s · "
                    "open markers %d · `/ba-wbs` %s"
-                   % (("current %s" % d["roadmap_date"]) if d["roadmap_date"]
-                      else "missing",
+                   % (roadmap_state(d),
                       count_over(d["drafted"], d["readable"], ""),
                       d["markers"], d["wbs"]))
     else:
@@ -754,8 +819,10 @@ def html_facts(d):
          % (d["entered"], count_over(d["breadth"], d["epics"], ""))),
         ("Drafted / certified", "%s · %d"
          % (count_over(d["drafted"], d["readable"], ""), d["certified"])),
-        ("Questions", "%d open · %d answered · %d overtaken"
-         % (d["q_open"], d["q_answered"], d["q_overtaken"])),
+        ("Questions", "%d open · %d answered · %d overtaken%s"
+         % (d["q_open"], d["q_answered"], d["q_overtaken"],
+            (" · %d off-shape" % d["q_off"]) if d["q_off"] else "")),
+        ("Roadmap", roadmap_state(d)),
         ("Health", "%s · refresh %s" % (health_state(d), refresh_state(d))),
         ("Ledger coverage", coverage_line(d)),
         ("Techniques", "%d run / %d planned" % (d["runs"], d["planned"])),

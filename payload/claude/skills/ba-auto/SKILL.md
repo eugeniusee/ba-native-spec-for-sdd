@@ -107,10 +107,18 @@ stands** — the BA's next message, whatever it says, resumes the run:
 Band boundary — <date> · AUTO (AG-<n>) · <P-O7 Band-1 closure | P-O8 Band-3 entry: <feature>>
 Auto-trail since <start | last boundary>: <n> acts
 Assumptions: <n> · Open questions: <n>
+Health refresh: <current | overdue: <r> runs vs cadence>
 Next act: <one line> — any reply continues · /ba-auto off renders the resumption report
 ```
 
 The auto-trail count is **since the last boundary**, not since the grant.
+
+**The health line is display only.** It carries the refresh state computed
+exactly as the dashboard's line 5 computes it — recorded `gate-health.md` runs
+against the gate's cadence, one full run per scope-brief ingestion batch — so
+the two renders can never disagree. **The refresh act is not yours:**
+`/ba-gate-health` runs it and the BA invokes it. A grant does not extend to it,
+the report never fires it, and an `overdue` line is a fact rendered, not a stop.
 
 ## `off` — the resumption report
 

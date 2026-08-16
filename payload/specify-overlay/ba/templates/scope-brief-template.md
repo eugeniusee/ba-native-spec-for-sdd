@@ -54,7 +54,12 @@ CC-IN-01 compares this list against the spec's Integration table.>
 | ID | Question | Touches | Status | Answer / reason |
 |---|---|---|---|---|
 
-<!-- Status vocabulary (D4, locked): `Open` · `Answered — <date> → <where the
+<!-- ID grammar (D12, locked — elicitation engine §4): `OQ-<n>` — OQ-1, OQ-2,
+     … numbered PER BRIEF. The number is this brief's own sequence: it restarts
+     in every brief and is never globally unique. Epic context rides beside the
+     ID in a render, never inside it (`E01-Q1` is not an ID) — the epic is this
+     brief's own and every reader already carries it.
+     Status vocabulary (D4, locked): `Open` · `Answered — <date> → <where the
      answer now lives>` · `Overtaken — <reason>` (reason mandatory: an Overtaken
      line is an audit record, not a deletion).
      CC-XA-06 ⚑ reads the Open rows at spec time — each is resolved in the spec

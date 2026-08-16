@@ -14,6 +14,12 @@
 Held: <unchanged rows, one line> · Basis: <one line across the four factors>
 ```
 
+and, under a standing AG — the same heading with one appended tail:
+
+```markdown
+### Allocation <n> — <date> · trigger: <…> · BA: <name> · AUTO (AG-<k>)
+```
+
 ## Worked example — the initial run
 
 **Allocation 1 — 2026-07-11 · trigger: post-decomposition · BA: Y.K.**
@@ -36,6 +42,26 @@ made a plan.
 no change — the brief confirms the MVP composition: reschedule-in-place stays
 deferred inside E-03 (brief §3), not a phase move; R1 (calendar provider contract
 unsigned) held as in-epic risk with a named owner, not a re-phase.
+
+## Worked example — a rerun under a standing AG
+
+**Allocation 3 — 2026-08-16 · trigger: scope-frame · BA: Y.K. · AUTO (AG-1)**
+
+| Epic | Phase | Reason |
+|---|---|---|
+| E-07 Online Payment | Phase 2 → Later | scope frame: the ≤ $50K POC envelope excludes the payment surface; no launch dependency |
+
+Held: seven rows · Basis: the frame's envelope, applied to the one epic whose
+phase it contradicted.
+
+**What the tail is, and what it is not.** The heading keeps **every** pinned
+field — number, date, trigger, `BA:` — and appends `· AUTO (AG-1)` after them.
+The `BA:` field names **Y.K.**, the grantor, because the grant is Y.K.'s act
+recorded in advance; AUTO says who executed, never who is answerable. Written
+the other way — `### 2026-08-16 · AUTO (AG-1) · scope allocation · frame` —
+the entry is correct in substance, lands at the right destination, and is
+**invisible**: it parses as no allocation entry at all, so the dashboard's
+roadmap line and the health check's log read both step over it.
 
 ## What the examples are showing
 

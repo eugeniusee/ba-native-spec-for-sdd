@@ -48,7 +48,9 @@ anything. One typed command, one run.
 `open`/`reopened` aspect's or the `## Band 2` section's, with a pinned,
 BA-confirmed contract — then run under that contract. On a miss, stop in ≤ 2 lines and name the single unblocking act
 (`/ba-aspect <aspect>`; for a `## Band 2` line, `/ba-aspect band2`). At run
-end, apply the same compiled bookkeeping the catalogue skills carry: output lands · findings route as one batch · run-log
+end, apply the same compiled bookkeeping the catalogue skills carry — the
+pinned-output-shape condition on `fulfilled` included, read from the contract
+the BA confirmed (orchestrator §6.3): output lands · findings route as one batch · run-log
 line · threshold refresh with a one-line `/ba-clear` proposal when the table
 completes.
 

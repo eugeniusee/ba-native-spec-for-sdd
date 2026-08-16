@@ -877,9 +877,9 @@ has "$RULES_DOC" "D-O40–D-O41" "…and the two locked amendments it carries"
 has "$RULES_DOC" "v0.15" "…and the edition the scope frame produced"
 has "$RULES_DOC" "D-O42–D-O44" "…and the scope-frame ruling block"
 has "$RULES_DOC" "v0.16" "…and the edition the four-act floor row produced"
-head -2 "$RULES_DOC" | grep -q 'v0\.22' \
-  && ok "the header states the live edition — v0.22, Band-2 plan composition" \
-  || bad "the header does not name v0.22: the edition and the change record disagree"
+head -2 "$RULES_DOC" | grep -q 'v0\.23' \
+  && ok "the header states the live edition — v0.23, the shape-guard set" \
+  || bad "the header does not name v0.23: the edition and the change record disagree"
 has "$RULES_DOC" "D-O45–D-O49" "…and the source-inventory ruling block"
 has "$RULES_DOC" "D-O50" "…and the change record names the unreadable-spec ruling"
 has "$RULES_DOC" "D-O51–D-O52" "…and the continuity-under-a-grant ruling block"
@@ -889,11 +889,11 @@ has "$RULES_DOC" "v0.20" "…and the edition the candidate scan produced"
 has "$RULES_DOC" "D-O54" "…and the scan-method ruling"
 
 # the ruling block is contiguous from the live high-water mark: no gap, no reuse
-python3 - "$RULES_DOC" <<'PYX' && ok "the D-O block runs 1…54 with no gap and no skipped number" \
+python3 - "$RULES_DOC" <<'PYX' && ok "the D-O block runs 1…59 with no gap and no skipped number" \
   || bad "the D-O decision block is not contiguous — a number is missing or reused"
 import re, sys
 seen = {int(n) for n in re.findall(r"D-O(\d+)", open(sys.argv[1], encoding="utf-8").read())}
-sys.exit(0 if seen == set(range(1, 56)) else 1)
+sys.exit(0 if seen == set(range(1, 60)) else 1)
 PYX
 
 # ── 6b. Band-2 plan composition — the record home has its producer (D-O55) ──
@@ -933,6 +933,87 @@ has "$SKILLS/ba-close-band1/SKILL.md" "never seeds the" \
     "…and never seeds the plan"
 has "$AG" "(\`band2\` for the section)" \
     "the orchestrator agent's P-O2 row reaches the band2 case"
+
+# ── 6c. the shape-guard set (D-O56–D-O59) ────────────────────────────────────
+#
+# Field defect, 16 Aug 2026: a T-18 run under a standing AG wrote its allocation
+# heading in LEDGER stamp grammar instead of the artifact's own pinned shape.
+# The entry was right in substance, landed at its destination, and recorded
+# `fulfilled` — and was invisible to every reader of the log it joined. Nothing
+# stopped the writer; nothing made a reader say so. These four rulings put a
+# guard at each end of the pinned shape and one instrument at the boundary.
+
+printf '\n▸ The shape-guard set — writers keep the shape, readers name the near-miss (D-O56–D-O59)\n'
+
+SGDOC="$PKG_ROOT/docs/methodology/ba-native-spec-orchestrator-rules.md"
+
+# D-O56 — the stamp is a tail on an artifact, never a replacement
+has "$SGDOC" "the stamp is an additional tail — never a replacement (D-O56)" \
+    "§10.7 states the artifact-side rule beside the ledger's own stamp grammar"
+has "$SGDOC" "It replaces no pinned field, reorders none, and drops none" \
+    "…the tail replaces, reorders and drops nothing"
+has "$SGDOC" "**BA field carries the grantor**" \
+    "…and the BA field carries the grantor, not the executor"
+has "$SKILLS/ba-t18/SKILL.md" "trigger: <…> · BA: <name> · AUTO (AG-<k>)" \
+    "T-18's Output pins the AG variant of the heading"
+has "$SKILLS/ba-t18/SKILL.md" "Never the ledger's stamp grammar." \
+    "…and names the wrong form it replaces"
+has "$SKILLS/ba-t18/references/example.md" "· BA: Y.K. · AUTO (AG-1)" \
+    "…and the reference example shows a run under a grant"
+
+# D-O57 — fulfillment answers for the shape, stated once and reached by reference
+has "$SGDOC" "the pinned shape, not the content alone (D-O57)" \
+    "§6.3 states what fulfillment requires — the skill's own pinned output shape"
+has "$SGDOC" "A shape divergence is a contract miss:" \
+    "…a divergence is a miss: the run stops and reports"
+has "$SGDOC" "never records \`fulfilled\`**, nor downgrades to \`partial\`" \
+    "…never fulfilled, and never partial"
+has "$SGDOC" "**The rule is stated here, once.**" \
+    "…stated once, so the compiled checks can reach it by reference"
+has "$SGDOC" "in the skill's pinned output shape** (§6.3 — D-O57" \
+    "§7.3's fulfillment row cites the rule rather than restating it"
+has "$SGDOC" "it fires at run end — not here (D-O57)" \
+    "§7.1 carries the law by reference and keeps its invocation-only sentence"
+
+# The compiled carriers: the rule reaches every skill that books fulfillment,
+# and reaches it as a citation. A restatement would be a second law.
+sg_n=0; sg_bad=""
+for f in "$SKILLS"/*/SKILL.md; do
+  grep -qF "contract: fulfilled" "$f" || grep -qF "Book contract fulfillment" "$f" || continue
+  if grep -qF "orchestrator §6.3" "$f"; then sg_n=$((sg_n + 1)); else sg_bad="$sg_bad $(basename "$(dirname "$f")")"; fi
+done
+[ -z "$sg_bad" ] \
+  && ok "every skill that books fulfillment cites §6.3 — $sg_n carriers, all by reference" \
+  || bad "skills book fulfillment without reaching the shape rule:$sg_bad"
+
+# D-O58 — the reader names the near-miss
+has "$SGDOC" "A reader that meets a near-miss names it — it never renders absence (D-O58)" \
+    "§10.4 states the near-miss law as the general rule"
+has "$SGDOC" "the **path**, the **line as authored**, and the **shape expected**" \
+    "…naming path, the line as authored, and the shape expected"
+has "$SGDOC" "Never \`roadmap missing\`" \
+    "…application one: the allocation log, never rendered as an absent roadmap"
+has "$SGDOC" "counted off-shape and named" \
+    "…application two: brief §6 rows counted off-shape, never silently skipped"
+has "$SGDOC" "**The reader reports; it never repairs.**" \
+    "…and naming is a render — no reader edits the line it names"
+has "$SGDOC" "allocation log unreadable: <a> entr" \
+    "§10.4's pinned render carries the near-miss continuation on line 2"
+has "$SGDOC" "off-shape <f>: first" \
+    "…and on line 4"
+
+# D-O59 — the fifth line, and D-O52 amended on the record rather than rewritten
+has "$SGDOC" "Health refresh: <current | overdue: <r> runs vs cadence>" \
+    "§10.7's band-boundary report carries the health line"
+has "$SGDOC" "five lines, not four" \
+    "…and says so: the report is five lines"
+has "$SGDOC" "computed exactly as §10.4 line 5 computes it" \
+    "…computed from line 5's own computation, so the two cannot disagree"
+has "$SGDOC" "The refresh **act** stays \`/ba-gate-health\`'s" \
+    "…display only: the refresh act is not the grant's"
+grep -qF 'Four lines: the boundary with its AUTO stamp' "$SGDOC" \
+  && ok "D-O52's locked row is untouched — amended on the record, never rewritten" \
+  || bad "D-O52's row was edited: a locked row is amended by a later row, not in place"
 
 # ── 7. layering — no methodology leaks into the payload ──────────────────────
 

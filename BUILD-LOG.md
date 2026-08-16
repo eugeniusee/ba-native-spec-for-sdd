@@ -8494,3 +8494,251 @@ D-O53 · D153–D157** beneath those. The hygiene backlog still holds **D160**;
 this pass adds nothing to it. Both packages — 0.1.18 and 0.1.19 — stand
 complete, GREEN and uncommitted on one tree: the prepared commit is in the
 close-out report, and the BA Lead's word executes it.
+
+## The Shape-Guard Set — writers keep the pinned shape, readers name the near-miss, Lane B ruled · orchestrator v0.23 · elicitation v0.7 · package 0.1.20 · 17 August 2026 · GREEN
+
+Five rulings, one pass, documents first. One law seen from both ends: **the shape
+a skill pins is the contract between its writer and its readers.** Origin: the
+field defect of 16 Aug 2026 (Nutrivity) — a T-18 run under a standing AG wrote its
+allocation heading in **ledger stamp grammar** instead of the artifact's own pinned
+`### Allocation <n> — <date> · trigger: <…> · BA: <name>`. The entry was right in
+substance, landed at its contracted destination, and recorded `contract: fulfilled`.
+It was **invisible to every reader of the log it joined.** Nothing stopped the
+writer; nothing made a reader say so.
+
+**Ruling → number map.** R1 → **D-O56** · R2 → **D-O57** · R3 → **D-O58** (its H-02
+half **stopped**, D177) · R4 → **D12** (elicitation lane) · R5 → **D-O59**. Package
+divergences **D172–D180**.
+
+### State as found — the base pin did not match, and the ruling superseded it
+
+`VERSION` read **0.1.19**, not the briefed 0.1.17, at HEAD `30bd739`: the tree
+carried **two complete, GREEN, uncommitted packages** — 0.1.18 (the scan method,
+orchestrator v0.21, D-O54/§25) and 0.1.19 (`/ba-aspect band2`, v0.22, D-O55/§26) —
+each reserving its commit to the BA Lead (D165). Stopped and reported, per the
+prompt's own precondition. **Ruled the same sitting:** commit 0.1.18 and 0.1.19 in
+order, each under its own record, then build the shape-guard set on the clean
+0.1.19 base. D172 · D173 · D174 carry that lane.
+
+### The two reserved packages, committed in order
+
+`c4e977d` **package 0.1.18** · `b901adc` **package 0.1.19**. The split was real
+work: **four files carried both passes** — `BUILD-LOG.md` (a pure append, split at
+its entry boundary: 8076 HEAD + 196 + 224 = 8496, exact), `VERSION`,
+the orchestrator doc (9 hunks — 5 reverted whole, 3 mixed and hand-separated) and
+`check-orchestrator.sh` (edition pin, contiguity range, and section 6b).
+**Verified, not assumed:** the reconstructed 0.1.18 tree reported
+`check-orchestrator.sh` **266** — the exact count 0.1.18's own entry recorded — and
+every per-script baseline the 0.1.19 entry named (gate 67 · spine 178 · register 62
+· status 103 · techniques3 158) came back identical. The full 0.1.19 state was then
+restored and proven **byte-identical to the tree as found**: `git diff` against
+`30bd739` reproduced the pre-split patch at sha256 `163bf673…`. The split is
+lossless, and both packages were GREEN 17/17 at their own commits.
+
+### The documents, then the payload, then the code
+
+**Orchestrator v0.22 → v0.23** (§27, D-O56–D-O59). §10.7's AUTO stamp-grammar block
+gains the artifact-side rule — the stamp is an **additional tail**, replacing no
+pinned field, the **BA field carrying the grantor** (D-O56). §6.3 gains what
+fulfillment requires — the skill's **pinned output shape**, heading literals and ID
+grammars, in addition to content; a divergence is a **contract miss**, never
+`fulfilled` and never `partial`. **Stated once**; §7.3's row cites it and §7.1
+carries it **by reference** while keeping *checked at invocation, nothing else*
+intact — the law is write-side and says so (D-O57 · D178). §10.4 gains the
+near-miss law as the general rule D-O50 was the first case of, with two pinned
+applications and two new conditional render lines (D-O58). §10.7's band-boundary
+report gains its **fifth line** — health refresh, computed exactly as §10.4 line 5
+computes it, display only, no AG expansion; **D-O52's "four lines" amended on the
+record, its row untouched** (D-O59).
+
+**Elicitation v0.6 → v0.7** (§14, D12). Brief §6's `OQ-<n>` grammar pinned as law
+where §4's skeleton pins the section's shape — numbered **per brief**, the sequence
+restarting and never globally unique; **epic context beside the ID, never inside
+it**. The grammar D-O58's line-4 reader matches. **No example was rewritten to fit
+the rule** — the worked example already read `OQ-1`/`OQ-2`, which is the evidence
+the grammar was real before it was law.
+
+**Payload, from the documents.** `ba-t18` takes the AG heading variant and the
+sentence naming the wrong form it replaces; its `references/example.md` gains a
+third worked example — a rerun under AG-1, with the tail and the `BA:` grantor.
+**Twenty-three skills take D-O57 by reference through one shared string**: the
+run-end bookkeeping's item 1, identical in twenty carriers, extended once and
+applied twenty times, plus `ba-frame`'s fulfillment step and `ba-run`'s custom
+path. The template and `ba-tier1` take D12's grammar and cite its home. **Five
+carriers take the health line** — `ba-auto`, `ba-close-band1`, `ba-enter-feature`,
+`claude-block.md`, `AGENTS.md` — because `check-auto.sh` diffs all five
+**byte-identically** against §10.7 (D178).
+
+**Code — `sk_status.py` only.** `roadmap_log_offenders()` reads the `###` lines
+under `## Allocation log` that miss the heading grammar; `roadmap_state()` makes
+lines **2 and 8** render from **one computation** — `log unreadable: <a>`
+outranking `missing`, with its own continuation naming count, first offender **as
+authored**, and the shape expected. `brief_questions()` stops `continue`-ing the
+off-shape row and carries it out as `state: off-shape`, which every existing
+consumer already ignores by construction; line 4 counts and names it with its
+epic. `html_facts` mirrors both, the facts table being the same counts by its own
+docstring (D179).
+
+### Tests
+
+Additive, none weakened: `check-orchestrator.sh` 279 → **304** (+25 — the four
+rulings' doc surfaces, T-18's carriers, and a loop asserting **every** skill that
+books fulfillment cites §6.3 rather than restating it) · `check-status.sh` 104 →
+**115** (+11 — the two readers, live, over a mutated estate) · `check-spine.sh` 181
+→ **189** (+8 — D12 across its four carriers) · `check-auto.sh` 142 → **143** (+1 —
+the health line in the boundary block's vacuity list; the five-carrier byte-identity
+diff and its reworded-line control already stood and now guard the fifth line too).
+**Two standing pins re-aimed:** the edition pin (v0.22 → v0.23) and the D-O
+contiguity set ({1..55} → {1..59}).
+
+**The reader tests are behavioural, not textual.** `check-status.sh` 6c rewrites the
+fixture's two allocation headings into the **exact ledger grammar the field defect
+produced** and asserts the render reads `roadmap log unreadable: 2`, quotes the
+first offender as authored, names the shape expected, and **never** says
+`roadmap missing`; then rewrites one `OQ-1` to `E03-Q1` and asserts
+`off-shape 1: first "E03-Q1" (E-03)`. **Three controls** assert the clean estate
+renders neither line and still reads `roadmap current 2026-07-15` — a near-miss
+report that fires at zero is noise. **R1's other half asserted cheaply:** a heading
+carrying `· AUTO (AG-1)` still parses and still yields its date, which is exactly
+why the tail is the ruled form and the rewrite is not.
+
+**Suite 17/17 GREEN**, the three install-based runs included — **verified in
+isolation from a concurrent foreign pass** (D180), after two red-to-greens of this
+pass's own making: an assertion literal missing the emphasis markers the §6.3 text
+carries, and two in `check-spine.sh` (a casing difference against the doc, and
+backslash-escaped backticks inside single quotes, which grep took literally).
+
+### The lane that stopped — R3's H-02 half
+
+**D176 · the conflict, recorded and not worked around.** R3 made the H-02 finding
+conditional: *if the existing acceptance mechanism covers silencing a superseded
+historical near-miss — wire it; if it does not fit — stop and report.* **It does not
+fit,** on the gate's own words. The instrument is the project-level health
+acceptance `HA-<nn>` (gate §10.4, D-G9), and its first mechanic reads: *"**Admission
+only.** An HA lifts Stage-0 blocks and nothing else — no Scope-F assertion ever
+reads it; **it satisfies nothing**."* An HA never removes a finding from a report;
+it stops the finding from blocking admission. The mismatch is structural, not
+cosmetic: HA persistence is keyed on **the accepted gap's artifact being edited**,
+and the allocation log's own law is **append-only** — a superseded entry is *never*
+edited, so the offending bytes stay byte-identical forever. The HA would auto
+re-apply indefinitely over a defect that by law can never be repaired.
+
+**And building the finding without a silencing path would have been harmful, not
+merely noisy.** An unresolved H gap **blocks any Scope-F run whose `deps(F)`
+contains the failing artifact** (gate §10.4). The roadmap is a shared artifact.
+A permanently unrepairable H-02 finding on it would freeze delivery project-wide
+with no legal fix. The lane stopped whole; `sk_health.py` is **untouched**. The
+conflict returns to the planning venue: either the near-miss is a **report-only**
+finding class that does not block, or the acceptance instrument gains a silencing
+power it does not have — both are rulings, and neither is this pass's to invent.
+
+### Files
+
+| File | Change |
+|---|---|
+| `docs/methodology/…-orchestrator-rules.md` | v0.22 → **v0.23** — §10.7 ×2 · §6.3 · §7.3 · §7.1 · §10.4 · **§27/D-O56–D-O59** · header, footer, locked range, review-record list |
+| `docs/methodology/…-elicitation-techniques.md` | v0.6 → **v0.7** — §4's brief skeleton (§6's ID grammar) · **§14/D12** · header, footer, locked range |
+| `payload/claude/skills/ba-t18/SKILL.md` · `references/example.md` | the AG heading variant · a third worked example under a grant |
+| 20 × technique `SKILL.md` · `ba-frame` · `ba-run` | D-O57 by reference — one shared string, twenty carriers, plus two paths of their own |
+| `ba-auto` · `ba-close-band1` · `ba-enter-feature` · `payload/mirror/claude-block.md` · `AGENTS.md` | the health line — all five, byte-identical to §10.7 |
+| `ba-tier1/SKILL.md` · `templates/scope-brief-template.md` | D12's grammar, carried and cited |
+| `payload/specify-overlay/ba/scripts/sk_status.py` | the two near-miss readers · one shared roadmap-state computation · the HTML facts mirror |
+| `tests/check-orchestrator.sh` · `check-status.sh` · `check-spine.sh` · `check-auto.sh` | +45 assertions · two pins re-aimed · one stale caption trued |
+| `VERSION` | 0.1.19 → **0.1.20** |
+| `BUILD-LOG.md` | this entry |
+
+### Divergences — D172–D180
+
+**D172 — the base pin did not match the tree, and the ruling superseded the
+precondition.** The prompt pinned `VERSION` 0.1.17 at `30bd739` and said *stop and
+report* if it moved. It had: two GREEN uncommitted packages stood on that commit.
+Stopped and reported; the BA Lead ruled option 3 — commit both in order, then build
+on the clean 0.1.19 base, with numbers resolving forward (v0.23 · §27 · D-O56+ ·
+D172+ · 0.1.20) and R2 targeting the **post-D168** wording of the compiled P-O3
+check. Recorded because the precondition was overridden by ruling, not by judgment.
+
+**D173 — the "prepared records" were not on disk.** The ruling asked for each
+package committed *under its own prepared record verbatim*. Those prepared commit
+texts lived in the prior sessions' close-out reports; only `.git/COMMIT_EDITMSG`
+survived and it held **0.1.17's**. The records that exist verbatim are the two
+BUILD-LOG entries, and each commit message was composed **from its own entry** in
+house style. Both entries stand unedited in this file and are quoted verbatim in
+the close report.
+
+**D174 — the intermediate 0.1.18 tree was reconstructed, and two prose strings in
+it are this pass's words, not the original pass's.** Splitting required rebuilding
+the v0.21 state of the orchestrator doc and `check-orchestrator.sh`. Everything
+load-bearing was recovered exactly — the v0.21 **footer segment survived verbatim**
+inside the v0.22 footer, and both files' assertion counts hit their recorded
+targets. **Two strings could not be recovered and were composed:** the v0.21
+**edition line** (overwritten by v0.22's; nothing pins its prose — the test greps
+only the `v0.21` token) and the edition-pin **ok/bad message** in
+`check-orchestrator.sh`. Both follow the established pattern and the pass's own
+naming. Flagged rather than presented as recovered.
+
+**D175 — a stale caption inherited from 0.1.19, trued here.** `check-orchestrator.sh`
+read `set(range(1, 56))` while its ok-message still said *"the D-O block runs
+1…54"*: the 0.1.19 pass re-aimed the range and left the caption behind. Found
+during the split (at 0.1.18 the caption was **correct**, which is how it surfaced).
+Left untouched in the 0.1.19 commit — a sibling's reserved package is not edited to
+taste — and trued in this pass, with the range, in one move. D152's defect class,
+one instance.
+
+**D176 — R3's H-02 lane stopped; the conflict is recorded above and returns to the
+planning venue.** `sk_health.py` is untouched. Stated in full in its own section
+because the reasoning, not the verdict, is what the venue needs.
+
+**D177 — R2's placement judgment: the law is at §6.3, not §7.1.** The ruling named
+§7.1's compiled-check text and §6.3. §7.1's standing sentence reads *"Checked at
+invocation, nothing else"*, and a write-side shape test stated there would
+contradict it. Resolved without weakening either: the law is stated **once at
+§6.3**, §7.3's fulfillment row cites it, and §7.1 gains a paragraph that carries it
+**by reference** and says explicitly that it fires at run end and is not a second
+admission test. The ruling's substance — one home, compiled checks by reference —
+is delivered; only the home moved, and the §7.1 sentence stands unedited.
+
+**D178 — R5 reached five carriers, not the two named.** The ruling named §10.7 and
+`ba-auto`. `check-auto.sh` diffs the report block **byte-identically** against five
+carriers, so extending two would have gone red — and would have re-created, inside
+this very pass, the divergence the pass exists to prevent. All five extended
+identically; the byte-identity check is the assertion that keeps them so.
+
+**D179 — R3 reached `html_facts`.** The named set was the text dashboard's lines
+2/4/8. The HTML render embeds the chat render verbatim in its `<pre>`, so the
+near-miss lines reached it regardless; its **facts table** summarises the same
+counts by its own docstring (*"the same counts the chat render carries"*) and would
+have summarised them wrongly. One row extended, one added, both conditional.
+
+**D180 — a concurrent foreign pass entered the tree mid-build; this commit is
+scoped away from it.** At 02:21, twenty minutes after the 0.1.19 commit and one
+minute before the first full-suite run of this pass, the companion **Nutrivity
+estate** work (its own prompt, as the brief said) began writing into the same
+working tree: a new `ba-audit` skill, a source-audit definition doc, a card, a
+template, a fixture directory, and **seven lines in the tracked
+`tests/layout.expected`**. It is incomplete — the suite goes **red** on it, the
+manifest registering 35 skills against 34 installed. **Nothing of it is committed
+here**, and nothing of it was edited or reverted in the working tree: it is left
+exactly as found for its own pass to finish. This pass's green was therefore
+verified **in isolation** — the tree copied aside, the five foreign paths removed
+and `tests/layout.expected` reverted to HEAD in the copy only, suite **17/17
+GREEN**. The commit names its 38 paths explicitly rather than staging the tree.
+
+### Version
+
+`VERSION` 0.1.19 → **0.1.20**, one automatic patch increment for the whole pass
+under D157. No minor is proposed and none is hinted at.
+
+### Open
+
+**Four rulings built, one lane stopped.** D-O56 · D-O57 · D-O58 · D-O59 and D12
+stand, with the writer guarded, fulfillment answering for the shape, the two named
+readers speaking, and the boundary report carrying health. **R3's H-02 half is the
+one open item** — the acceptance mechanism does not fit and no mechanism was
+invented (D176); it needs a ruling on whether a near-miss finding is report-only or
+whether the HA gains a silencing power. **The resolvability sweep** stands named
+and unbuilt from 0.1.19, unchanged by this pass. **D172–D180 await ratification**,
+with **D164–D171** and **D162–D163** now committed beneath them and **D158–D161 ·
+D-O53 · D153–D157** beneath those. The hygiene backlog holds **D160**; **D175
+cleared its 0.1.19 occupant**. The companion Nutrivity estate pass stands
+uncommitted in the tree, untouched, awaiting its own close (D180).
+

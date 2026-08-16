@@ -249,6 +249,14 @@ or, for a rerun that moved nothing:
 no change — <reason>
 ```
 
+**Under a standing AG, the stamp is an additional tail — the heading keeps every pinned field:**
+
+```markdown
+### Allocation <n> — <date> · trigger: <…> · BA: <name> · AUTO (AG-<k>)
+```
+
+**Never the ledger's stamp grammar.** An AUTO run appends `· AUTO (AG-<k>)` **after** the pinned fields and changes nothing else — the number, the date, the trigger and the `BA:` field all stay, and the BA field carries **the grantor**, because the grant is that BA's act recorded in advance. A heading rewritten into `<date> · AUTO (AG-<k>) · <act> · <basis>` parses as **nothing**: the entry lands, and every reader of this log — the dashboard, the health check — goes blind to it.
+
 **Entries are numbered and append-only.** The log is never rewritten: an entry
 that later proved wrong is superseded by the next entry, never edited into
 agreement with it.
@@ -274,7 +282,11 @@ The template and a worked example are in `references/example.md`.
 ## At run end — compiled bookkeeping
 
 1. **The primary output lands** at its contracted destination — this run's own
-   act under its pinned contract.
+   act under its pinned contract, **and in this skill's own pinned output
+   shape**: the heading literals and ID grammars pinned above. A shape
+   divergence is a **contract miss** (orchestrator §6.3) — stop and report the
+   shape expected against the line as written; never record `fulfilled`, and
+   never downgrade to `partial`.
 2. **Cross-cutting findings route** as one proposed batch: the framework
    assembles the edits · the BA approves the batch · the framework writes. In
    Band 1 proper Scope H is disarmed and nothing fires; post-closure runs get
