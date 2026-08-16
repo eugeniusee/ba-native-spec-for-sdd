@@ -8074,3 +8074,199 @@ off §5.1's own text. **The carried-items list is empty for the first time since
 **D158–D161 await ratification**, with **D-O53 · D153–D157** still standing from
 the previous entry. The hygiene backlog is not empty: **D160** is its new
 occupant, and it is a document act, not a defect.
+
+---
+
+## The Scan Lists and Filters — F-06 rebuilt under ruling + the D161-(a) boundary sentence, Lane B · orchestrator v0.21 · gate v0.9 · package 0.1.18 · 16 August 2026 · GREEN
+
+One pass, two rulings, documents first. **F-06** rebuilds the Slack candidate
+scan's *method* — list-then-filter, the only one — under a four-ruling package,
+with the post-mortem that forced it written into the repo verbatim as the
+decision's origin. **D161-(a)** closes the doubt-rule boundary the 0.1.17 build
+registered and deliberately did not settle: one sentence in gate §5.2.
+
+**State as found:** `main` at `30bd739`, tree **clean**, `VERSION` **0.1.17**,
+orchestrator **v0.20**, gate **v0.8**, suite **17/17 GREEN** before a byte
+moved. The brief warned of uncommitted work at package 0.1.17; the tree carried
+none — see **D162**. Built on top of HEAD as instructed; nothing reset, nothing
+stashed.
+
+### The origin, on the record
+
+`docs/field-notes/2026-08-16-slack-scan-miss.md` — the 16 Aug 2026 field
+post-mortem, written from the attachment **verbatim** (byte-for-byte: `shasum`
+`43f310a9…` identical on both sides), directory created for it. The finding it
+records: the Frame scan for project Nutrivity issued **one** name-keyed query
+(`nutrivity`), got zero, and rendered "no candidate" while `#est_nutrivity`
+existed and was reachable — the workspace prefixes project channels
+(`est_<project>`), and `slack_search_channels` matches exact names and
+left-anchored prefixes reliably while infix matching is fuzzy and internally
+inconsistent (`vity` hits, `nutri` returns zero against the same channel). A
+single zero-result is not evidence of absence.
+
+### The ruling package (BA Lead, 16 Aug 2026, final), quoted
+
+> **R1-a** — list-then-filter is the ONLY scan method. The scan enumerates the
+> workspace's channels by paging the broad listing to completion and filters
+> LOCALLY for the project name. Name-keyed search against the Slack search
+> endpoint is removed from the scan entirely — not demoted to a fallback,
+> removed. "No match" may be rendered only after the local filter over the
+> COMPLETE listing comes back empty: a zero from a name-keyed search is
+> inconclusive by ruling and can never justify a "no candidate" render.
+>
+> **R2-a** — the local filter's match rule: tokenize channel names on `_` and
+> `-`, case-insensitive; a channel is a candidate iff every token of the
+> project name appears among the channel's tokens. (The KEY is unchanged from
+> D-O53 R2-c: the project name and nothing else. What changes is how the key
+> is applied.)
+>
+> **R3-a** — when the filter yields several candidates, ranking is
+> deterministic from names alone: exact name equality first, then fewest extra
+> tokens, alphabetical tie-break. The render stays D-O53 R3-c verbatim: one
+> best candidate + "and <N> more matched — name them to see". Note in the
+> clause: the complete listing is what makes <N> honest — a fuzzy search could
+> never certify the count.
+>
+> **R4-a** — prefix detection/surfacing (the post-mortem's fix 5) is REJECTED:
+> list-then-filter makes it redundant and surfacing a prefix would widen the
+> render against R3-c. Record the rejection in the decision so it is not
+> re-proposed.
+>
+> Fix 6 rides the clause as one line: the search tool's matching is reliable
+> for exact names and left-anchored prefixes only; infix is fuzzy — which is
+> why the scan lists and filters rather than searches.
+
+And the second ruling, riding the pass:
+
+> **D161-(a)** — ruled 16 Aug 2026: gate §5.2 gains ONE sentence fixing the
+> doubt-rule boundary per reading (a): the parse-gap case is §5.1's alone,
+> taken by reference per the v0.8 bullet; the doubt rule governs only a checker
+> that read parsable evidence.
+
+### The documents, then the payload
+
+**Orchestrator v0.20 → v0.21.** §8.1's candidate-scan clause gains its METHOD
+half — three paragraphs between the keys paragraph and names-never-content:
+*the method is list-then-filter, and there is no other* (enumeration to
+completion, local filter, name-keyed search removed entirely, the fix-6 tool
+fact, the zero-is-inconclusive law with its only-after-the-complete-listing
+render condition) · *the filter's match rule* (the `_`/`-` case-insensitive
+tokenization, the every-token-iff rule, the key D-O53's unchanged, the listing
+resolving names and metadata, never a message) · *the best match is
+deterministic, from names alone* (exact equality → fewest extra tokens →
+alphabetical, the render D-O53's verbatim, the complete listing what makes
+`<N>` honest). **D-O54** registered in the new **§25** review record —
+contiguity verified against the locked range as found (`D-O1–D-O53`; no D-O54
+anywhere in repo before this pass) — with the R4-a rejection recorded in the
+decision row so prefix surfacing is not re-proposed, and the origin line citing
+the field-notes path. Edition line, v0.21 change record, footer segment, locked
+range to D-O54, review-record list to §25. **Unchanged and binding, stated in
+the change record:** every D-O53 ruling (trigger · R2-c key · R3-c render ·
+R4-b ledger), D154 names-never-content, D155 unanswered-candidate-is-declined,
+D156 no-project-name → no key → no scan, the scan internal work — zero new BA
+interactions, D-O33's ≤ 8 with its 7 + 1 slack arithmetically untouched. The
+pinned inventory block's two candidate lines: **byte-untouched** (5b's
+byte-identity check holds as-is).
+
+**Gate v0.8 → v0.9.** §5.2's doubt-rule bullet gains the one ruled sentence —
+*"**The boundary is ruled (a):** the doubt rule governs **only a checker that
+read parsable evidence** — a Checks source that did not parse is §5.1's case
+alone, taken by reference per the Unsupported-parse bullet below, and never a
+doubt-line FAIL."* — plus edition line, v0.9 change record, footer segment.
+**§5.1 untouched — not one word** (`git diff` shows zero hits on its rule
+paragraph); the v0.8 by-reference bullet untouched; no assertion, verdict
+meaning, stage, evidence schema or waiver machinery moves.
+
+**Then the payload, from the documents — no compiled skill hand-edited against
+its source.** `ba-frame/SKILL.md` takes the method as four bullets between the
+key bullet and *Resolve names, never content* — list-then-filter with the
+removal and the tool fact, the zero-is-inconclusive law, the match rule, the
+deterministic ranking — wording aligned with §8.1 so every law is one shared
+assertion string across both carriers. **`ba-gate.md` takes the D161 sentence:
+it reaches the agent surface** because the surface carries both grammars the
+ambiguity confused — the doubt rule (*There is no MAYBE*) and the SKIPPED
+bullet's unsupported-parse citation — and the executor is exactly the actor
+that must pick between them; one sentence lands in the no-MAYBE paragraph
+(*"The doubt rule governs only evidence you could read: a source that did not
+parse is never a doubt line — it is the SKIPPED bullet's unsupported-parse
+case above, §5.1's alone, by reference."*), ahead of *When in doubt, fail*.
+The no-second-copy law holds mechanically: check-gate's live six-word-shingle
+read passes over the grown surface.
+
+### Tests
+
+**check-orchestrator.sh 238 → 266 (+28).** New §5d: the four laws asserted in
+**both carriers** (document §8.1 and ba-frame) — the list-then-filter method
+(paging to completion, local filter, removed-entirely, not-demoted), the
+zero-is-inconclusive law with its render condition, the tokenization rule, the
+deterministic ranking **as one string in ruled order** plus the honest-count
+note and the fix-6 tool fact — 12 assertions × 2 carriers. Then the **residual
+read** ×2: extract the scan clause (doc: D-O53 lead → profile picker; skill:
+scan lead → *Then the profile picker*), require each of six permitted
+search-wording sentences **exactly once**, strip them, and require the
+remainder search-free — a pasted "fall back to a quick search" sentence was
+probed against it and **caught**, so the read is not vacuous. Stack lines for
+v0.20/D-O54; the live-edition pin moves to v0.21; the D-O contiguity check
+extends to 1…54. The R3-c one-candidate mechanical check and the whole §5c set:
+**untouched, green**. **check-gate.sh 66 → 67 (+1):** one `fhas` on the D161
+boundary sentence, beside the §5.2 by-reference assertions; section 7's shingle
+reads and the pasted-§5.1 mutation stay green over the changed surfaces.
+**Battery: 17/17 GREEN** before and after; every substitution ran behind an
+exactly-once `str.count` assert (12 doc/payload + 6 test-file substitutions),
+residual sweeps after (no stale `D-O1–D-O53`, no live-edition claim off
+v0.21, no scan-method wording anywhere but the two carriers).
+
+### Files touched — nine
+
+| File | Change |
+|---|---|
+| `docs/methodology/…-orchestrator-rules.md` | v0.20 → **v0.21**: edition line · v0.21 change record · **§8.1's three METHOD paragraphs** · **§25/D-O54** with the R4-a rejection on the record · footer, locked range, review-record list |
+| `docs/methodology/…-gate-definition.md` | v0.8 → **v0.9**: edition line · v0.9 change record · **§5.2's one boundary sentence** · footer |
+| `docs/field-notes/2026-08-16-slack-scan-miss.md` | **new** — the post-mortem, verbatim (checksum-identical to the attachment); directory created |
+| `payload/claude/skills/ba-frame/SKILL.md` | the four method bullets, compiled from §8.1 |
+| `payload/claude/agents/ba-gate.md` | the D161 boundary sentence in the no-MAYBE paragraph |
+| `tests/check-orchestrator.sh` | §5d (+26) · stack lines (+2) · edition pin v0.21 · contiguity 1…54 |
+| `tests/check-gate.sh` | the D161 boundary assertion (+1) |
+| `VERSION` | 0.1.17 → **0.1.18** |
+| `BUILD-LOG.md` | this entry |
+
+### Divergences — D162–D163
+
+**D162 — the brief's state warning did not match the tree.** The pass brief
+warned the working tree carried UNCOMMITTED work at package 0.1.17 and forbade
+resetting it. As found: the tree was **clean** — the 0.1.17 work is HEAD itself
+(`30bd739`). No protective handling was needed or possible; the pass built on
+top of HEAD exactly as the warning's intent required. Recorded so the
+discrepancy is on the record, not silently absorbed.
+
+**D163 — the pass's own residual read caught the pass's own first draft.** The
+ba-frame method bullet's lead was drafted *"List, then filter — never search by
+name"* — and the new §5d residual read went red on it: the lead's own `search`
+token is not among the six permitted removal sentences shared by both carriers.
+Reworded to *"List, then filter — there is no other method"* (the document
+lead's own shape). Kept as ruled rather than widening the permitted set:
+the permitted list is the removal wording itself, identical in both carriers,
+and a lead that needs the token can say the law without it. First red-to-green
+of the read, before it ever guarded a future edit.
+
+### Version
+
+`VERSION` 0.1.17 → **0.1.18**, one automatic patch increment for the whole
+pass under D157. No minor is proposed and none is hinted at.
+
+### Open
+
+**Nothing from this pass stands open.** **F-06 built** — the scan lists and
+filters, the method pinned in both carriers under 26 assertions and a residual
+read with a proven bite. **D161 closed by ruling (a)** — the boundary sentence
+stands in gate §5.2 and on the A-pass surface, §5.1 and the v0.8 bullet
+untouched. The post-mortem is in the repo verbatim, cited as D-O54's origin.
+
+**D162–D163 await ratification**, with **D158–D160** still standing from the
+previous entry and **D-O53 · D153–D157** beneath them. The hygiene backlog
+still holds **D160** (the singular *name indicative* idiom, a document act) —
+this pass adds nothing to it. Not committed: the BA Lead commits at his own
+initiative.
+
+---
+

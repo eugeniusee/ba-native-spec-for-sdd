@@ -427,6 +427,8 @@ GATE_AGENT="$PKG_ROOT/payload/claude/agents/ba-gate.md"
 
 fhas "$GATE_DOC" "**Unsupported parse — §5.1's rule, taken by reference.**" \
      "gate §5.2 carries the by-reference bullet"
+fhas "$GATE_DOC" "only a checker that read parsable evidence" \
+     "…and the doubt rule's boundary is ruled — parse gaps are §5.1's case alone (D161 = (a))"
 fhas "$GATE_DOC" "this section cites it and **carries no second copy of it**" \
      "…and the document layer states the no-copy discipline"
 fhas "$GATE_AGENT" "**§5.1 SKIPPED-on-unsupported-parse rule**, the same one the M pass runs on, reaching this pass **by reference**" \

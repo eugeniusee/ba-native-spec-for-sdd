@@ -108,7 +108,10 @@ pass condition, the verdict is **FAIL with the doubt named** — "cannot verify 
 because Y" — and that line still carries an element and a fix action. The
 economics are deliberate: a false FAIL costs the BA one override line and tunes
 the checker; a false PASS is an escape, which is the thing this gate exists to
-prevent. **When in doubt, fail.**
+prevent. The doubt rule governs **only evidence you could read**: a source
+that did not parse is never a doubt line — it is the SKIPPED bullet's
+unsupported-parse case above, §5.1's alone, by reference. **When in doubt,
+fail.**
 
 ## The two ⚑ assertions
 

@@ -107,6 +107,25 @@ matches the project's, and offer the **best match** on the inventory's own line.
   with that client) and **never domain terms** (they return the workspace). **No
   project name on hand → no key and no scan:** a guessed key is a guess, and
   cite-or-mark forbids one.
+- **List, then filter — there is no other method.** Enumerate the workspace's
+  channels by **paging the broad listing to completion**, and filter
+  **locally** for the project name. Name-keyed search against the Slack search
+  endpoint is **removed from the scan entirely** — not demoted to a fallback,
+  removed: the search tool's matching is reliable for **exact names and
+  left-anchored prefixes only**; infix is fuzzy — which is why the scan lists
+  and filters rather than searches.
+- **A zero from a name-keyed search is inconclusive.** It says a query failed
+  an opaque matcher, not that the channel is absent. Render "no match" **only
+  after the local filter over the complete listing comes back empty** — never
+  from a zero-result.
+- **The match rule.** Tokenize channel names on `_` and `-`, case-insensitive;
+  a channel is a candidate **iff every token of the project name appears among
+  the channel's tokens**. The listing resolves names and metadata, never a
+  message.
+- **The best match is deterministic, from names alone:** exact name equality
+  first, then fewest extra tokens, alphabetical tie-break. The complete listing
+  is what makes `and <N> more matched` honest — a fuzzy search could never
+  certify the count.
 - **Resolve names, never content.** Read what channels are *called*. Read **no
   message** until the BA confirms the candidate — then read it under the capture
   mechanics below, unchanged.

@@ -716,6 +716,87 @@ rows = re.findall(r"^\| P-O\d[ab]? \|", sec, re.M)
 sys.exit(0 if len(rows) == 11 else 1)
 PY
 
+# ── 5d. the scan method — list-then-filter, and no other (D-O54) ─────────────
+#
+# The field post-mortem on the record at docs/field-notes/2026-08-16-slack-scan-miss.md:
+# the first live Frame scan issued one name-keyed query, got zero against a
+# reachable prefixed channel, and rendered "no candidate". D-O54 pins the
+# method — enumerate the broad listing to completion, filter locally, never
+# search by name — with the match rule, the deterministic ranking and the
+# zero-is-inconclusive law. Each law is asserted in both carriers; then a
+# residual read proves no search wording survives in the scan clause beyond
+# the sentences that remove it, so a future "fall back to search" edit turns
+# the suite red.
+
+printf '\n▸ The scan method — list-then-filter (§8.1; D-O54)\n'
+
+for c in "$RULES_SRC" "$FRAME"; do
+  lbl="$(basename "$(dirname "$c")")/$(basename "$c")"
+  has "$c" "paging the broad listing to completion" \
+      "the scan pages the broad listing to completion — $lbl (D-O54 · R1-a)"
+  has "$c" "locally** for the project name" \
+      "…and filters locally for the project name — $lbl (D-O54 · R1-a)"
+  has "$c" "removed from the scan entirely" \
+      "name-keyed search is removed from the scan entirely — $lbl (D-O54 · R1-a)"
+  has "$c" "not demoted to a fallback" \
+      "…not demoted to a fallback — $lbl (D-O54 · R1-a)"
+  has "$c" "A zero from a name-keyed search is inconclusive" \
+      "a zero from a name-keyed search is inconclusive — $lbl (D-O54 · R1-a)"
+  has "$c" "only after the local filter over the complete listing comes back empty" \
+      "…and no-match renders only after the complete listing's filter is empty — $lbl (D-O54 · R1-a)"
+  has "$c" 'Tokenize channel names on `_` and `-`, case-insensitive' \
+      "the match rule tokenizes on _ and -, case-insensitive — $lbl (D-O54 · R2-a)"
+  has "$c" "every token of the project name appears among the channel's tokens" \
+      "…and a candidate carries every project-name token — $lbl (D-O54 · R2-a)"
+  has "$c" "The best match is deterministic, from names alone" \
+      "ranking is deterministic from names alone — $lbl (D-O54 · R3-a)"
+  has "$c" "exact name equality first, then fewest extra tokens, alphabetical tie-break" \
+      "…in the ruled order: exact equality, fewest extra tokens, alphabetical — $lbl (D-O54 · R3-a)"
+  has "$c" "a fuzzy search could never certify the count" \
+      "…and the complete listing is what makes <N> honest — $lbl (D-O54 · R3-a)"
+  has "$c" "exact names and left-anchored prefixes only" \
+      "the tool fact rides the clause — exact + left-anchored prefixes reliable, infix fuzzy — $lbl (fix 6)"
+done
+
+# the residual read: inside the scan clause, the only search wording left is
+# the wording that removes it. Extract the clause, require each permitted
+# sentence exactly once, strip them, and require the remainder search-free.
+for spec in "doc|The Slack candidate scan (D-O53, locked).|The profile picker" \
+            "skill|The Slack candidate scan — the framework proposes, you dispose.|Then the profile picker"; do
+  kind="${spec%%|*}"; rest="${spec#*|}"; start="${rest%%|*}"; stop="${rest#*|}"
+  if [ "$kind" = doc ]; then c="$RULES_SRC"; else c="$FRAME"; fi
+  lbl="$(basename "$(dirname "$c")")/$(basename "$c")"
+  if python3 - "$c" "$start" "$stop" > "$TMP/residual.err" 2>&1 <<'PY'
+import pathlib, re, sys
+t = re.sub(r"\s+", " ", pathlib.Path(sys.argv[1]).read_text(encoding="utf-8"))
+i = t.index(sys.argv[2]); j = t.index(sys.argv[3], i)
+clause = t[i:j]
+PERMITTED = [
+    "Name-keyed search against the Slack search endpoint is",
+    "the search tool's matching is reliable",
+    "which is why the scan lists and filters rather than searches",
+    "A zero from a name-keyed search is inconclusive",
+    "a fuzzy search could never certify the count",
+    "not running a search",
+]
+for ph in PERMITTED:
+    if clause.count(ph) != 1:
+        print("permitted sentence not exactly once (%d): %r" % (clause.count(ph), ph))
+        sys.exit(1)
+    clause = clause.replace(ph, " ")
+m = re.search(r"\S*search\S*", clause, re.I)
+if m:
+    print("surviving search wording: %r" % m.group(0))
+    sys.exit(1)
+PY
+  then
+    ok "no name-keyed-search wording survives in the scan clause — $lbl (D-O54 residual)"
+  else
+    bad "search wording survives in the scan clause beyond the removal sentences — $lbl (D-O54 residual): $(cat "$TMP/residual.err")"
+  fi
+done
+
+
 # ── 6. the agent's discipline ────────────────────────────────────────────────
 
 printf '\n▸ The orchestrator agent (§10.2, build plan §2.3)\n'
@@ -796,21 +877,23 @@ has "$RULES_DOC" "D-O40–D-O41" "…and the two locked amendments it carries"
 has "$RULES_DOC" "v0.15" "…and the edition the scope frame produced"
 has "$RULES_DOC" "D-O42–D-O44" "…and the scope-frame ruling block"
 has "$RULES_DOC" "v0.16" "…and the edition the four-act floor row produced"
-head -2 "$RULES_DOC" | grep -q 'v0\.20' \
-  && ok "the header states the live edition — v0.20, the Slack candidate scan" \
-  || bad "the header does not name v0.20: the edition and the change record disagree"
+head -2 "$RULES_DOC" | grep -q 'v0\.21' \
+  && ok "the header states the live edition — v0.21, the scan method" \
+  || bad "the header does not name v0.21: the edition and the change record disagree"
 has "$RULES_DOC" "D-O45–D-O49" "…and the source-inventory ruling block"
 has "$RULES_DOC" "D-O50" "…and the change record names the unreadable-spec ruling"
 has "$RULES_DOC" "D-O51–D-O52" "…and the continuity-under-a-grant ruling block"
 has "$RULES_DOC" "v0.19" "…and the edition continuity under a grant produced"
 has "$RULES_DOC" "D-O53" "…and the candidate-scan ruling"
+has "$RULES_DOC" "v0.20" "…and the edition the candidate scan produced"
+has "$RULES_DOC" "D-O54" "…and the scan-method ruling"
 
 # the ruling block is contiguous from the live high-water mark: no gap, no reuse
-python3 - "$RULES_DOC" <<'PYX' && ok "the D-O block runs 1…53 with no gap and no skipped number" \
+python3 - "$RULES_DOC" <<'PYX' && ok "the D-O block runs 1…54 with no gap and no skipped number" \
   || bad "the D-O decision block is not contiguous — a number is missing or reused"
 import re, sys
 seen = {int(n) for n in re.findall(r"D-O(\d+)", open(sys.argv[1], encoding="utf-8").read())}
-sys.exit(0 if seen == set(range(1, 54)) else 1)
+sys.exit(0 if seen == set(range(1, 55)) else 1)
 PYX
 
 # ── 7. layering — no methodology leaks into the payload ──────────────────────
