@@ -69,9 +69,10 @@ from sk_idgraph import PATH_RE, ROLES_DECL_RE  # noqa: E402
 
 # ── the pinned column set (§10.5) ─────────────────────────────────────────────
 #
-# Eight generated columns, then the manual estimate pair. The estimate headers
-# are the placeholder pair §16 carries open until they finalize against the
-# company sample WBS; their cells are empty by law (T-18's never-numeric rule).
+# Eight columns, ending at Phase. There is no estimate column: estimating is
+# the client's act and stands outside the export (D-O60, closing §16's carry
+# item by removal). The never-numeric rule (T-18) is held here by structure
+# rather than by an always-empty cell — there is no cell to fill.
 
 COLUMNS = [
     "Epic",
@@ -82,10 +83,8 @@ COLUMNS = [
     "Comments / Questions",
     "Role",
     "Phase",
-    "Estimate — min",
-    "Estimate — max",
 ]
-WIDTHS = [22, 26, 46, 60, 26, 44, 20, 12, 14, 14]
+WIDTHS = [22, 26, 46, 60, 26, 44, 20, 12]
 
 # ── the register (§10.5 Register) ─────────────────────────────────────────────
 
@@ -202,7 +201,6 @@ class Row:
         return [
             self.epic, self.topic, self.user_story, self.acceptance,
             self.integrations, self.comments, self.role, self.phase,
-            "", "",          # the manual estimate pair — always empty
         ]
 
 
@@ -798,8 +796,8 @@ def summary(features, rows, epic_rowcount, profile, xlsx_path, csv_path):
     if empty:
         out.append("No rows: %s — selected, but §2 yielded no User Story"
                    % ", ".join(empty))
-    out.append("Next: open %s — the two estimate columns are the client's to fill"
-               % xlsx_path)
+    out.append("Next: open %s — the render ends at Phase; estimating is the "
+               "client's act on their own copy" % xlsx_path)
     return "\n".join(out)
 
 

@@ -147,3 +147,10 @@ RT|absent|.specify/elicitation-tuning.md|◇ first log entry (D-P2-11)
 # written by /speckit-specify; under Mode A the adapter writes it at handoff
 # (gate §11.2, "any copies Spec Kit's layout requires"). Never installer-laid.
 RT|absent|.specify/feature.json|◇ /ba-handoff (Spec Kit feature pointer)
+
+# ── source audit (Scope S) — added in package 0.1.x, after S9; source doc:
+# docs/methodology/ba-native-spec-source-audit-definition.md ─────────────────
+S9|file|.claude/skills/ba-audit/SKILL.md|Scope-S run, stages 0–5 (source-audit definition) — added in package 0.1.x, after S9
+S9|file|.specify/ba/cards/assertions-s.md|CC-S card — the A pass of /ba-audit — added in package 0.1.x, after S9
+S9|file|.specify/ba/templates/source-audit-report-entry.md|pinned Scope-S entry — added in package 0.1.x, after S9
+RT|absent|.specify/source-audit.md|◇ /ba-audit report ledger + standing SA records

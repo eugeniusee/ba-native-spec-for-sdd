@@ -8876,3 +8876,189 @@ edition pin** in `check-gate.sh` while the orchestrator does — which is why ga
 v0.9 → v0.10 moved no assertion. The companion Nutrivity estate pass stands
 uncommitted in the tree, untouched, awaiting its own close (D184).
 
+
+## The Band Gets Its Audit — Scope S lands corpus-first; the estimate removal collides with its twin and yields · package 0.1.22 · 17 August 2026 · GREEN
+
+**Session prompt:** owner-directed pass (BA Lead, in-conversation ruling, remote
+Cowork session): remove the WBS estimate columns, land the source audit
+(`/ba-audit`) as a corpus-first companion set, and register the command across
+the package surface.
+
+### The collision, recorded plainly
+
+While this pass prepared its estimate-column edits, a parallel session on the
+owner's machine ruled and landed the same removal in fuller discipline —
+**D-O60, orchestrator v0.24, §28 review record** ("the export ends at Phase").
+The mtime guard rejected this pass's writes to the three collided files —
+`ba-native-spec-orchestrator-rules.md` · `ba-wbs/SKILL.md` · `sk_wbs.py` — and
+the D-O60 versions stand adopted; this pass's parallel copies are discarded.
+Nothing was force-written. Files landed by this pass that serve the same
+ruling: `tests/check-wbs.sh` (WANT header at eight columns; the empty-cells
+assertion replaced by a no-estimate-header assertion; `N_ROWS` kept for the
+xlsx row-count check) and `VERSION` 0.1.21 → **0.1.22** — the reconciliation of
+this entry against the D-O60 session's own close, if it writes one, belongs to
+the ratification sweep.
+
+### The source audit (Scope S), corpus-first
+
+New companion document `docs/methodology/ba-native-spec-source-audit-definition.md`
+— the band-level source-fidelity audit: obligations register (OB rows, the
+union rule, comment-is-not-a-carrier, the critic pass) · forward and backward
+traces · eight CC-S assertion families · one prompt point **P-A1 —
+source-audit ruling** (that document's own, as the gate's P1–P8 are the
+gate's; §10.1's boundary sentence) · `SA-<nn>` source acceptances · the repair
+route by dispatch and routing · incremental re-audit · `audit escape` filings
+to gate-tuning. Compiled units landed: `payload/claude/skills/ba-audit/SKILL.md`
+(standing blocks byte-identical) · `payload/specify-overlay/ba/cards/assertions-s.md`
+· `payload/specify-overlay/ba/templates/source-audit-report-entry.md` ·
+`tests/fixtures/nutrivity-audit/expected-findings.md` (the golden case: 18
+must-fire rows, 4 negative controls) · `tests/layout.expected` rows (three
+files + one RT-absent ledger) · the mirror command row (`claude-block.md`;
+Workflow 16 → 17, "All 34" → 35). Origin on the record: the Nutrivity band
+evaluation of 14 August 2026 (77 obligations, findings S-01…S-23), delivered
+as the evaluation workbook and report.
+
+### Files touched by this pass — 10
+
+`docs/methodology/ba-native-spec-source-audit-definition.md` (new) ·
+`payload/claude/skills/ba-audit/SKILL.md` (new) ·
+`payload/specify-overlay/ba/cards/assertions-s.md` (new) ·
+`payload/specify-overlay/ba/templates/source-audit-report-entry.md` (new) ·
+`tests/fixtures/nutrivity-audit/expected-findings.md` (new) ·
+`tests/layout.expected` · `tests/check-wbs.sh` · `payload/mirror/claude-block.md`
+· `BUILD-LOG.md` · `VERSION`.
+
+### Open
+
+The §10.5 remainder (the label header · boundary/billable marking) stands
+deferred as D-O60 leaves it. The audit's own suite (`check-audit.sh`) and
+`sk_audit.py` for the M share stand named and unbuilt — until then the skill's
+pinned agent procedure governs the M share. This pass's owner rulings await
+the ratification sweep, alongside any close the D-O60 session writes. First
+calibration run of `/ba-audit` against the Nutrivity golden case stands next.
+Verification: `tests/run-all.sh --file-only`, with `check-wbs.sh`,
+`check-register.sh` and `check-layout.sh` the interested checks.
+
+## The Export Ends at Phase — the estimate columns removed, the carry item closed by removal, owner-ruled · orchestrator v0.24 · package 0.1.22 · 17 August 2026 · GREEN
+
+**Session prompt:** owner-directed pass (BA Lead, in-conversation ruling): remove
+the two estimate columns from the WBS export end to end — *we do not use them at
+all; estimates are the client's concern; the WBS ships without estimate columns*
+— under the one-way rule, source document first, then package, then tests. The
+standing carry item was named in the prompt as **resolved by the decision**, to
+be recorded as such rather than left dangling.
+
+### The ruling — D-O60, and why removal beats an empty column
+
+For eleven editions §10.5 rendered two headers the framework guaranteed never to
+fill. That guarantee — T-18's never-numeric depth rule, restated at D-O44(b) —
+was carried by **behaviour**: every run had to remember to emit the pair empty,
+and one defect in the row model would have put a number under a header with the
+framework's own name on it. **Removal moves the guarantee to structure.** There
+is no cell to fill, no always-empty assertion to keep passing, and no blank
+rendered to the client to read as something the framework meant to compute and
+could not. Estimating is the client's act and stands outside the export.
+
+**The §16 carry item is closed by removal, not by finalization.** It had asked
+*what the exact estimate header set should be* and waited since 10 August 2026 on
+the company sample WBS to answer it. The answer is that the question was the
+wrong one: there is no header set left to finalize. Closed at its own site with
+the date and a pointer to §28 — the sentence recording what it asked stands
+beside the ruling that closed it, since a carry item is a live obligation and not
+a historical claim.
+
+**Document first, then the package, then the tests.** Orchestrator v0.23 →
+**v0.24**: the change record at head · §10.5's pinned columns now eight, ending
+at Phase, with the removed row replaced by the absence law · §10.5's regeneration
+clause · §8.1's two estimate-dependent clauses trued (the deferral line, and the
+capacity check's *the Estimate columns stay empty by law*) · §16's carry item
+closed · **§28, the review record, carrying D-O60** · the footer chain. **D-O42's
+and D-O44's locked rows are not rewritten** — both name the empty columns, and
+both are amended on the record by D-O60's row, per the house convention the
+D-O52 → D-O59 pattern set.
+
+### The one bump, split — recorded so nothing dangles
+
+D-O42 deferred **three** items to a single §10.5 rework and ruled they travel as
+one bump: this removal, the **client-label header**, and **boundary/billable
+marking**. Only the first was ruled here. The other two are recorded as **still
+deferred**, at §8.1 where the deferral lives and again at §28 — spending a bump
+on one of its items does not close the rest, and a bump recorded as spent would
+have retired two rulings nobody ruled on.
+
+### Files
+
+| File | Change |
+|---|---|
+| `docs/methodology/…-orchestrator-rules.md` | v0.23 → **v0.24** — the change record · §10.5 pinned columns + regeneration clause · §8.1 ×2 · §16 carry item closed · **§28 (D-O60)** · footer |
+| `payload/claude/skills/ba-wbs/SKILL.md` | the pinned-columns table (row gone, absence law stated) · the derived-never-hand-edited bullet · the never-list — *never renders an estimate column* |
+| `payload/specify-overlay/ba/scripts/sk_wbs.py` | `COLUMNS` and `WIDTHS` at eight · the pair dropped from `cells()` · the header comment · the summary's closing line |
+| `payload/specify-overlay/ba/scripts/sk_xlsx.py` | one docstring sentence — the empty-cell styling no longer justified by columns that no longer exist; the behaviour is unchanged |
+| `tests/fixtures/appointment-booking/expected/` | both golden csvs regenerated — `wbs-discovery.csv` · `wbs-presale.csv`, verified equal to the old files minus exactly the two columns |
+| `tests/check-wbs.sh` | the generator-level absence guard, added **on top of** the collided pass's header guard (D187) · the exec bit restored (D186) |
+| `tests/check-orchestrator.sh` | the live edition pin v0.23 → **v0.24** · the D-O contiguity range 1…59 → **1…60** |
+| `tests/presale-path.md` | Interaction 7's *green when* — the column set ends at Phase |
+| `tests/fixtures/nutrivity-audit/expected-findings.md` | **NC-03** rewritten: no estimate column exists in the export; one appearing is a regression |
+| `BUILD-LOG.md` | this entry |
+
+**Suite GREEN**, verified in an isolated snapshot rather than in the live tree,
+because a parallel pass was writing to it during the run (D185): `check-wbs.sh`
+**64 / 0**, and `tests/run-all.sh --file-only` **14 checks, 0 red, 3 skipped**
+(the install-based three, as `--file-only` intends). No red-to-green of this
+pass's own making.
+
+### Divergences — D185–D188
+
+**D185 — two passes, one removal, in one tree.** A parallel Cowork session ruled
+and landed the same removal in the same sitting; its own entry above records the
+collision from its end and yields, adopting D-O60 · v0.24 · §28 as the version of
+record. From this end: **nothing of that pass was reverted, staged, or
+force-written.** Its two landed files stand — `tests/check-wbs.sh`'s header guard
+and `VERSION` 0.1.21 → 0.1.22 — and this pass built on top of both. Recorded as
+the pattern D184's quarantine anticipated, now with the sets **overlapping**
+rather than disjoint: the resolution was to build on the other pass's landed
+edits with relative targets, never to replace them.
+
+**D186 — the collided write cost `check-wbs.sh` its exec bit.** The file came
+back `100755 → 100644` (mode `-rw-------`). `run-all.sh` invokes each suite as
+`"$@"`, by path — so the WBS suite would have died on a permission error before
+reaching a single assertion, and the failure would have read as a broken check
+rather than a lost mode. Restored to 755. Named because a mode is invisible in a
+content diff and this is the second class of damage a collided write can do.
+
+**D187 — the header guard is not enough; the guard belongs one layer down.** The
+flipped assertion reads the rendered golden csv for an estimate header. But the
+goldens are **regenerated from the generator** — so a pass that re-added a column
+to `COLUMNS` and regenerated the goldens in the same sitting would satisfy a
+header-only guard with a file that carries the column. **A self-fulfilling
+assertion.** The guard added here reads `sk_wbs.COLUMNS` and `sk_wbs.WIDTHS`
+directly: eight columns, none named estimate, and the width vector cut in step —
+the last catching the `ValueError` the xlsx writer would otherwise raise at run
+time. The absence is now asserted where the column would be re-added, not only
+where it would land.
+
+**D188 — the doc bump moved two assertions no estimate grep predicts.**
+`check-orchestrator.sh` pins the live edition (`v0.23`) and asserts the D-O block
+runs contiguously (`set(range(1, 60))`). Neither contains the word *estimate*, so
+neither appears in the prompt's grep of `tests/`, and both go red the moment the
+document takes a new edition and a new decision number. Recorded as the standing
+cost of a D-O allocation: **an orchestrator ruling is never a one-file test
+change**, and the two pins are where it always surfaces.
+
+### Version
+
+`VERSION` stands at **0.1.22**, taken by the parallel pass under D157 for this
+sitting. **No second increment:** D157 rules one automatic patch bump per build
+pass, and both passes are one sitting against one package — a second bump would
+claim two releases for one change.
+
+### Open
+
+**The §10.5 remainder** — the client-label header and boundary/billable marking —
+**stands deferred**, carried at §8.1 and §28 as its own item now that the bump is
+split. **D-O60 awaits ratification**, with D-O56–D-O59 ratified 17 Aug 2026
+beneath it. **D185–D188 await ratification.** The hygiene backlog holds **D160**;
+the **resolvability sweep** stands named and unbuilt from 0.1.19. The commit is
+**withheld**: the tree carries the parallel pass's Scope-S estate — five
+untracked paths and its `tests/layout.expected` edit — and the two passes' records
+now reference each other, so the sitting closes as **one commit, the owner's**.

@@ -150,22 +150,40 @@ python3 - "$TMP/header.csv" > "$TMP/header.txt" <<'PY'
 import csv, sys
 print("|".join(next(csv.reader(open(sys.argv[1], encoding="utf-8")))))
 PY
-WANT='Epic|Topic|User Story|Acceptance Criteria|Integrations|Comments / Questions|Role|Phase|Estimate — min|Estimate — max'
+WANT='Epic|Topic|User Story|Acceptance Criteria|Integrations|Comments / Questions|Role|Phase'
 [ "$(cat "$TMP/header.txt")" = "$WANT" ] \
-  && ok "the pinned column set, in order — eight generated plus the estimate pair" \
+  && ok "the pinned column set, in order — the eight generated columns" \
   || bad "the header is [$(cat "$TMP/header.txt")], expected [$WANT]"
 
-# the estimate cells are empty by law on every row (the never-numeric rule)
+# no estimate column exists (§10.5 v0.24 — the never-numeric rule needs no carrier)
 python3 - "$TMP/presale/wbs.csv" > "$TMP/est.txt" <<'PY'
 import csv, sys
 rows = list(csv.reader(open(sys.argv[1], encoding="utf-8")))
-bad = [i for i, r in enumerate(rows[1:], 2) if r[-1].strip() or r[-2].strip()]
-print(len(rows) - 1, len(bad))
+est = [h for h in rows[0] if "estimate" in h.lower()]
+print(len(rows) - 1, len(est))
 PY
 read -r N_ROWS N_EST < "$TMP/est.txt"
 [ "$N_EST" = "0" ] \
-  && ok "all $N_ROWS rows carry empty estimate cells — headers rendered, never a number" \
-  || bad "$N_EST row(s) carry a value in an estimate column"
+  && ok "no estimate column renders across $N_ROWS rows — removed at §10.5 v0.24" \
+  || bad "$N_EST estimate header(s) survive in the export"
+
+# …and the same absence one layer down, in the row model itself. The header
+# check above reads a rendered file; this reads the generator, so a column
+# added back to COLUMNS is caught at its source and not only where it lands.
+python3 - "$SK" > "$TMP/cols.txt" 2>&1 <<'PY'
+import sys
+sys.path.insert(0, sys.argv[1])
+import sk_wbs
+est = [c for c in sk_wbs.COLUMNS if "estimate" in c.lower()]
+print("%d\t%d\t%d" % (len(sk_wbs.COLUMNS), len(sk_wbs.WIDTHS), len(est)))
+PY
+IFS='	' read -r N_COLS N_WIDTHS N_COLEST < "$TMP/cols.txt"
+{ [ "${N_COLEST:-1}" = "0" ] && [ "${N_COLS:-0}" = "8" ]; } \
+  && ok "the generator's pinned set is eight columns and names no estimate" \
+  || bad "sk_wbs.COLUMNS: $N_COLS column(s), ${N_COLEST:-?} of them estimate columns"
+[ "${N_WIDTHS:-x}" = "${N_COLS:-y}" ] \
+  && ok "…and the width vector was cut with it — $N_WIDTHS widths, $N_COLS columns" \
+  || bad "$N_WIDTHS widths against $N_COLS columns — the xlsx writer would refuse"
 
 # ── 2. the xlsx ──────────────────────────────────────────────────────────────
 

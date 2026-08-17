@@ -190,7 +190,8 @@ across the whole batch.
 ```
 
 **Green when:** `exports/wbs.xlsx` and `exports/wbs.csv` exist, deferred rows
-render after their epic's story rows, and the estimate columns are empty.
+render after their epic's story rows, and the column set ends at Phase — no
+estimate column exists, estimating being the client's act outside the export.
 
 ---
 

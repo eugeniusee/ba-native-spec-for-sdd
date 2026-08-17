@@ -151,8 +151,8 @@ def write(path, header, rows, widths=None, sheet_name="WBS") -> Path:
     """Write one sheet of text cells to `path`, overwriting whatever is there.
 
     `header` is the pinned column set; `rows` are equal-length cell lists;
-    `widths` are per-column character widths. Empty cells keep the body style
-    so the manual estimate columns wrap and align like the rest of the sheet.
+    `widths` are per-column character widths. Empty cells keep the body style,
+    so a blank cell wraps and aligns like the rest of the sheet.
     """
     path = Path(path)
     widths = widths or [24] * len(header)

@@ -77,10 +77,10 @@ only fails.
 
 ### Commands — the `/ba-*` namespace
 
-All 34 are **BA-invoked, never auto-fired** (`disable-model-invocation: true`).
+All 35 are **BA-invoked, never auto-fired** (`disable-model-invocation: true`).
 Do not invoke them on your own initiative and do not simulate their effects.
 
-**Workflow — 16**
+**Workflow — 17**
 
 | Command | Act |
 |---|---|
@@ -99,6 +99,7 @@ Do not invoke them on your own initiative and do not simulate their effects.
 | `/ba-gate-health [artifact \| full]` | Scope-H project health run |
 | `/ba-handoff <feature>` | Mode-A adapter: hash guard, branch, ready report |
 | `/ba-wbs [--include NNN …]` | The WBS export — `exports/wbs.xlsx` + `exports/wbs.csv`, read-only |
+| `/ba-audit [--full]` | The Scope-S source audit over the whole band: obligations register → two-way trace → one P-A1 (source-audit ruling) decision list, every row carrying its source quote, its band-wide search set and a default → ruled repairs → incremental re-audit |
 | `/ba-auto on [<profile>]` · `/ba-auto off` | Autonomous mode: write or close the autonomy grant `AG-<n>`; `off` renders the pinned resumption report for one batch ratification |
 
 **Techniques — 20** (one-step via `/ba-<id>`; the P-O3 (technique invocation) check compiled into each; `/ba-run <id>` aliases)

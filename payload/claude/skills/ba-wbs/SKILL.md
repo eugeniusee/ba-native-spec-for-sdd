@@ -29,8 +29,8 @@ estate, and carries no checkpoint: the BA's invocation is the whole act.
   `spec.md` before its effective PASS — same parser, same renderer. The
   profiles differ only in the selection defaults.
 - **Derived, never hand-edited.** A hand edit to `exports/wbs.xlsx` dies at the
-  next run. The manual estimate cells always re-emit empty; numbers live in the
-  client's copy of the file.
+  next run, and an estimate column added by hand dies with it: the render has
+  no such column to re-emit. Numbers live in the client's copy of the file.
 
 ## The read set — all read-only
 
@@ -71,7 +71,7 @@ for a headless run; `--summary-only` prints the summary and writes nothing.
 
 ## The pinned columns
 
-Eight generated, plus the manual estimate set:
+Eight, ending at Phase.
 
 | Column | Source | Rule |
 |---|---|---|
@@ -83,7 +83,11 @@ Eight generated, plus the manual estimate set:
 | **Comments / Questions** | `[NEEDS CLARIFICATION]` marker text, brackets stripped · the waiver reason with its `W-<NNN>-<nn>` tag and date | **nothing else** — the draft gate run's FAIL report stays out; it is the client Q&A agenda, a separate artifact |
 | **Role** | the story's actor first · then any role named in the story's linked requirements, its flows, or a Business Rule folded into that row's acceptance | comma-separated |
 | **Phase** | the roadmap epic's Phase, on every story row under the epic · a deferred row carries its item's target phase | — |
-| **Estimate — min · Estimate — max** | — | headers rendered, **cells always empty**: the framework never estimates numerically (the depth rule of T-18 — Scope allocation). Numbers belong in the client's copy. The exact header set finalizes against the company sample WBS — carry item |
+
+**No estimate column exists.** The set ends at Phase. Estimating is the
+client's act, outside the export: the framework never estimates numerically
+(the depth rule of T-18 — Scope allocation), and it renders no column
+inviting a number it refuses to produce.
 
 ## Deferred rows
 
@@ -131,9 +135,9 @@ separate artifact.
 ## What this skill never does
 
 Never writes a spec, a brief, a gate report or the roadmap · never runs or
-invokes the gate · never re-runs void detection · never estimates — the two
-estimate columns are emitted empty on every run · never invents a cell where
-the source is silent · never renders a CC-ID, an EARS keyword in caps, or a
+invokes the gate · never re-runs void detection · never renders an estimate
+column — estimating is the client's act, outside the export · never invents a
+cell where the source is silent · never renders a CC-ID, an EARS keyword in caps, or a
 marker bracket into a client-facing cell · never carries the FAIL report's
 named-gap lines into Comments / Questions · never changes a state, a profile or
 a stage — rendering is its whole act.
