@@ -84,7 +84,11 @@ OB-<nnn> · <source-file>#<section-or-anchor> · "<quote, ≤ 2 lines, verbatim>
   while the catalogue's eighth — histamine — fell, S-05.)
 - **Modality is read from the source, not assigned.** An unconditional
   statement ("German only") is `shall`. A recommendation is `should`.
-  Background is `context` and is registered but never a gap.
+  Background is `context` and is registered but never a gap. **No document
+  holds `context` standing as a whole, a priori** — modality is read per
+  statement, and a survey or analysis document can carry obligations (run-1:
+  `FORM:411` grounded the band's orthography convention after the evaluation
+  had filed the whole document as context).
 - **A comment is not a carrier.** Only a story, an acceptance item, a brief
   line, a roadmap row, an out-of-scope entry, a deferral row or an SA record
   carries an obligation. An open question, a `[NEEDS CLARIFICATION]` marker or
@@ -178,7 +182,10 @@ Rulings: apply all · apply all except <#…> · <#>: SA <reason> · <#>: amend 
 - **Every row carries a default** — `apply` or `SA` — so `apply all` is a
   complete, safe ruling. The audit proposes; **the BA rules; the audit never
   rules.** Rows needing a choice no default can make render `amend` and ask
-  exactly one question each.
+  exactly one question each — **and enumerate every item they cover by
+  name**: a ruling taken over unnamed members is an invalid render (run-1:
+  an amend naming three of five dropped categories cost a mandatory scenario
+  its carrier until the BA flipped it).
 - **A declined proposal becomes an SA record** — never silence:
 
 ```

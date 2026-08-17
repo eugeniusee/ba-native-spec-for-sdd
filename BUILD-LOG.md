@@ -9089,3 +9089,40 @@ dispatch is re-dispatched with Stage-1 outputs as the resume point.
 (orchestrator §8.1) so Tier-2 mining reads the same ground — stands named for
 the next orchestrator bump. `check-audit.sh` · `sk_audit.py` unchanged
 standing.
+
+## The Capture Is Readable and the Amend Names Its Members — run-1 lessons ruled in · orchestrator v0.25 · package 0.1.24 · 17 August 2026 · GREEN
+
+**Session prompt:** owner-directed close of the first Scope-S calibration
+(run 1, fresh Nutrivity band): rule the run's three lessons into the corpus so
+the next iteration starts clean.
+
+**Ruled (owner sitting, no new decision numbers):** the **§8.1 readability
+clause** — a binary capture (docx · xlsx · pdf) lands with a sibling
+mechanical rendering `sources/<name>.extracted.md`; readers read the
+rendering, the original stays the capture of record; D-O46/D-O47 locked
+wording untouched, clause additive (orchestrator v0.24 → **v0.25**; `ba-frame`
+skill compiled in step; the audit's 0.1.23 Stage-0 completion becomes the
+fallback instance) · the **amend-enumeration rule** — an `amend` row names
+every item it covers; ruling over unnamed members is invalid render
+(definition §5 · skill Stage 3; run-1 cost: a mandatory scenario's carrier,
+flipped by the BA) · the **no-a-priori-context rule** — no source document is
+`context` as a whole; modality reads per statement (definition §2; run-1:
+`FORM:411` grounded an orthography convention).
+
+**Recorded:** `tests/fixtures/nutrivity-audit/run-1-outcome.md` — the second
+calibration point beside the pinned August key: precision clean (4/4 NC, zero
+false positives), 4 same-class fires, 12 band-fixed, 2 challenged-and-cleared
+with evidence.
+
+**Files touched — 8:** orchestrator rules · `ba-frame/SKILL.md` ·
+`ba-audit/SKILL.md` · source-audit definition · run-1-outcome.md (new) ·
+`tests/check-orchestrator.sh` · `BUILD-LOG.md` · `VERSION` (0.1.23 →
+**0.1.24**). **The suite's live-edition pin moves with the edition:**
+`check-orchestrator.sh` pins the header at **v0.25** and demotes the
+superseded **v0.24** to a change-record `has` — the suite edit belongs to the
+sitting that moved the edition.
+
+**Open:** `check-audit.sh` · `sk_audit.py` stand named and unbuilt; the
+ratification sweep covers this sitting's owner rulings with the prior ones.
+Nothing else from run 1 stands open — the band closed at zero gaps, zero
+ungrounded, zero contradictions.

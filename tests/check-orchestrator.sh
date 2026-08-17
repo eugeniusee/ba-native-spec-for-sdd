@@ -877,9 +877,10 @@ has "$RULES_DOC" "D-O40–D-O41" "…and the two locked amendments it carries"
 has "$RULES_DOC" "v0.15" "…and the edition the scope frame produced"
 has "$RULES_DOC" "D-O42–D-O44" "…and the scope-frame ruling block"
 has "$RULES_DOC" "v0.16" "…and the edition the four-act floor row produced"
-head -2 "$RULES_DOC" | grep -q 'v0\.24' \
-  && ok "the header states the live edition — v0.24, the export ending at Phase" \
-  || bad "the header does not name v0.24: the edition and the change record disagree"
+has "$RULES_DOC" "v0.24" "…and the edition the export-ends-at-Phase ruling produced"
+head -2 "$RULES_DOC" | grep -q 'v0\.25' \
+  && ok "the header states the live edition — v0.25, the readable capture" \
+  || bad "the header does not name v0.25: the edition and the change record disagree"
 has "$RULES_DOC" "D-O45–D-O49" "…and the source-inventory ruling block"
 has "$RULES_DOC" "D-O50" "…and the change record names the unreadable-spec ruling"
 has "$RULES_DOC" "D-O51–D-O52" "…and the continuity-under-a-grant ruling block"

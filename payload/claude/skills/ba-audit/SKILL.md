@@ -128,7 +128,10 @@ Rulings: apply all · apply all except <#…> · <#>: SA <reason> · <#>: amend 
   out-of-scope, WBS — no carrier" · "partial at 003 US-4 — extend there") ·
   one concrete proposal with its target · a default of `apply` or `SA`, so
   **`apply all` is a complete, safe ruling**. A row no default fits renders
-  `amend` and asks exactly one question.
+  `amend`, asks exactly one question — **and enumerates every item it covers
+  by name**: a ruling taken over unnamed members is an invalid render,
+  corrected before P-A1 (run-1: an amend naming three of five dropped
+  categories cost a mandatory scenario its carrier).
 - Contradiction rows render both texts — the claim and the source quote —
   side by side. The BA rules which stands; the audit never does.
 - The profile is read from the head, never asked. Under Presale this list is

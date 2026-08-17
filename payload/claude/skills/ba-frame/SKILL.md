@@ -215,6 +215,14 @@ material, not certified content**. It joins **T-01 — Discovery canvas framing*
 material on hand and reads like a supplied transcript; no assertion reads
 `sources/`, and it enters no estate glob.
 
+**A binary capture lands readable (§8.1 readability clause).** A source
+arriving as docx · xlsx · pdf is captured **with a sibling mechanical
+plain-text rendering** — `sources/<name>.extracted.md`, verbatim, extraction
+never interpretation. Readers read the rendering; the original stays the
+capture of record and citations name the source, never the rendering.
+Without it a `Sources:` line can read `captured` while a later pass cannot
+parse the file at all (Scope-S run-1 escape, 17 Aug 2026).
+
 ### The correction stop — P-O0b re-taken, never a new prompt point
 
 A capture may **contradict or fill** a scope-frame value the BA has just
