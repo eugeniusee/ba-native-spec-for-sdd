@@ -9062,3 +9062,30 @@ the **resolvability sweep** stands named and unbuilt from 0.1.19. The commit is
 **withheld**: the tree carries the parallel pass's Scope-S estate — five
 untracked paths and its `tests/layout.expected` edit — and the two passes' records
 now reference each other, so the sitting closes as **one commit, the owner's**.
+
+## The Audit Meets Word — Stage-0 readability, renderings as capture completion, dispatch resilience · package 0.1.23 · 17 August 2026 · GREEN
+
+**Origin:** the first Scope-S calibration run (Nutrivity, 18 specs, 118-row
+register, both traces built, no unaudited ground). Two escapes, filed here and
+carried on the run entry: (1) the `ba-gate` subagent's toolset — Read/Grep/
+Glob — cannot parse a `.docx` capture, so a `Sources:` line can read
+`captured` while the A pass is structurally blind to the file; the executor
+recovered mid-run by extracting verbatim plain text for all five documents.
+(2) An API connection drop killed a dispatch; the retry correctly rebuilt
+nothing.
+
+**Ruled into the corpus and the skill (owner sitting):** the readability
+rule — a binary capture is audit ground only through a sibling mechanical
+rendering `sources/<name>.extracted.md`; Stage 0 produces a missing rendering
+as capture completion, the audit's one permitted pre-ruling write, each
+landing on the run entry · dispatches receive renderings only, and a dead
+dispatch is re-dispatched with Stage-1 outputs as the resume point.
+
+**Files touched — 4:** `docs/methodology/ba-native-spec-source-audit-definition.md`
+· `payload/claude/skills/ba-audit/SKILL.md` · `BUILD-LOG.md` · `VERSION`
+(0.1.22 → **0.1.23**, one patch increment under D157).
+
+**Open:** the upstream fix — capture-time renderings at `/ba-frame`
+(orchestrator §8.1) so Tier-2 mining reads the same ground — stands named for
+the next orchestrator bump. `check-audit.sh` · `sk_audit.py` unchanged
+standing.

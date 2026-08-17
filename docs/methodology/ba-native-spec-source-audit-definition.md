@@ -53,6 +53,14 @@ obligation extracted from the source estate:
   `captured` · `canvas.md`'s cited client statements. A source standing
   `named — pending` or `skipped` is listed in the report head as **unaudited
   ground** — the audit never reads what the inventory did not capture.
+- **The readability rule (run-1 escape, 17 Aug 2026).** A capture in a
+  binary container (docx · xlsx · pdf) is audit ground only through a sibling
+  mechanical plain-text rendering — `sources/<name>.extracted.md`, verbatim,
+  extraction never interpretation. Stage 0 produces a missing rendering as
+  **capture completion** — the audit's one permitted pre-ruling write; every
+  pass reads renderings, the original stays the capture of record. Without
+  this a `Sources:` line can read `captured` while the assertion pass is
+  structurally blind to the file.
 - **What extracts.** Every numbered section, list item, table row, worked
   example, demo scenario, acceptance-criteria table and stated constraint in a
   client document; every client-authored ask and every recorded scope decision
@@ -273,12 +281,16 @@ red:
 7. **Pending, maintainer acts:** `check-audit.sh` — the audit's own suite, on
    the `check-gate.sh` model · `sk_audit.py` for the M share (until then §4's
    fallback governs) · the ratification sweep over this sitting's owner
-   rulings · the first calibration run against §9's golden case.
+   rulings · **the upstream fix of the run-1 escape**: capture-time renderings
+   belong at `/ba-frame` (orchestrator §8.1 capture mechanics) so every
+   consumer — Tier-2 source mining included — reads the same ground; until
+   that lands, Stage 0's capture completion covers audit runs only.
 
 ## 11. What the audit never does
 
 Never changes a gate verdict, a waiver, an override or a certification · never
-edits anything before the P-A1 ruling · never authors repair content itself —
+edits anything before the P-A1 ruling — except a missing source rendering at
+Stage 0 (§2's readability rule) · never authors repair content itself —
 it dispatches the authoring persona and routes upstream edits · never treats a
 question, marker or comment as a carrier · never reports a gap without the
 band-wide search set named · never reads a source the inventory did not

@@ -57,6 +57,15 @@ operational state, never quoted into a spec.
    its `gate-report.md` · every `.specify/memory/scope/<E-nn>.md` ·
    `.specify/memory/roadmap.md` · out-of-scope · `canvas.md` · standing
    `SA-<nn>` records · `exports/wbs.csv` when present.
+4. **Readability.** Every captured source must be readable by the passes'
+   toolset — plain text. For a capture in a binary container (docx · xlsx ·
+   pdf), ensure a sibling mechanical rendering exists —
+   `sources/<name>.extracted.md`, verbatim, extraction never interpretation —
+   and point every pass at the rendering; the original stays the capture of
+   record. Producing a missing rendering is **capture completion, not a band
+   edit**: the one write Stage 0 may make, each landing on the run entry.
+   Without it a `Sources:` line can read `captured` while the assertion pass
+   is structurally blind to the file (run-1 escape, 17 Aug 2026).
 
 ## Stage 1 — the obligations register (collect-all)
 
@@ -91,6 +100,10 @@ workspace path, `.specify/ba/cards/assertions-s.md`, and the explicit CC-S
 list to evaluate — all eight families on a full run, the incremental set on a
 re-run. Write its JSON to `trace.json`'s `a_pass` block. Do not edit its
 verdicts; a missing or surplus assertion is a runtime defect — re-dispatch.
+Hand the subagent text renderings only — never a binary source path (its
+toolset is Read/Grep/Glob). A dispatch that dies — API failure, tool
+failure — is re-dispatched against the same inputs; Stage-1 outputs on disk
+are the resume point and are never rebuilt for a dead dispatch.
 
 **Incremental composition (run > 1, unless `--full`):** rows whose source or
 whose carrier files the diff touched · everything not clean last run ·
@@ -162,7 +175,7 @@ backstop shrinks to zero catches the same way the gate's does.
 ## What this skill never does
 
 Never changes a gate verdict, a waiver, an override or a certification ·
-never edits any file before the P-A1 ruling · never authors repair content —
+never edits any file before the P-A1 ruling — except producing a missing `sources/*.extracted.md` rendering at Stage 0, capture completion and never band content · never authors repair content —
 it dispatches `ba-analyst` and routes upstream edits · never treats a
 question, a marker or a comment as a carrier · never renders a finding
 without file + place + quote and the band-wide search set · never reads a
