@@ -150,9 +150,10 @@ python3 - "$TMP/header.csv" > "$TMP/header.txt" <<'PY'
 import csv, sys
 print("|".join(next(csv.reader(open(sys.argv[1], encoding="utf-8")))))
 PY
-WANT='Epic|Topic|User Story|Acceptance Criteria|Integrations|Comments / Questions|Role|Phase'
+WANT='Epic|Topic|User Story|Acceptance Criteria|Integrations|Comments / Questions|Role|Phase|Billable'
+WANT_CSV='Epic,Topic,User Story,Acceptance Criteria,Integrations,Comments / Questions,Role,Phase,Billable'
 [ "$(cat "$TMP/header.txt")" = "$WANT" ] \
-  && ok "the pinned column set, in order — the eight generated columns" \
+  && ok "the pinned column set, in order — the nine generated columns" \
   || bad "the header is [$(cat "$TMP/header.txt")], expected [$WANT]"
 
 # no estimate column exists (§10.5 v0.24 — the never-numeric rule needs no carrier)
@@ -175,12 +176,16 @@ import sys
 sys.path.insert(0, sys.argv[1])
 import sk_wbs
 est = [c for c in sk_wbs.COLUMNS if "estimate" in c.lower()]
-print("%d\t%d\t%d" % (len(sk_wbs.COLUMNS), len(sk_wbs.WIDTHS), len(est)))
+print("%d\t%d\t%d\t%s" % (len(sk_wbs.COLUMNS), len(sk_wbs.WIDTHS), len(est),
+                           sk_wbs.COLUMNS[-1]))
 PY
-IFS='	' read -r N_COLS N_WIDTHS N_COLEST < "$TMP/cols.txt"
-{ [ "${N_COLEST:-1}" = "0" ] && [ "${N_COLS:-0}" = "8" ]; } \
-  && ok "the generator's pinned set is eight columns and names no estimate" \
+IFS='	' read -r N_COLS N_WIDTHS N_COLEST N_TAIL < "$TMP/cols.txt"
+{ [ "${N_COLEST:-1}" = "0" ] && [ "${N_COLS:-0}" = "9" ]; } \
+  && ok "the generator's pinned set is nine columns and names no estimate" \
   || bad "sk_wbs.COLUMNS: $N_COLS column(s), ${N_COLEST:-?} of them estimate columns"
+[ "${N_TAIL:-x}" = "Billable" ] \
+  && ok "…and the set's tail is Billable — the §10.5 move off Phase (D-O67)" \
+  || bad "the column set ends at [${N_TAIL:-?}], expected Billable"
 [ "${N_WIDTHS:-x}" = "${N_COLS:-y}" ] \
   && ok "…and the width vector was cut with it — $N_WIDTHS widths, $N_COLS columns" \
   || bad "$N_WIDTHS widths against $N_COLS columns — the xlsx writer would refuse"
@@ -210,21 +215,32 @@ def cells(row):
     return out
 
 
+# The title block occupies the first two rows; the bold header row follows
+# it (D-O67). Everything below indexes off `body`, so the assertions read the
+# same whether or not a title block is present.
+TITLE = 2
+title = [cells(r) for r in rows[:TITLE]]
+body = rows[TITLE:]
+
 print("parts\t%d" % len(z.namelist()))
-print("rows\t%d" % len(rows))
-print("header\t%s" % "|".join(cells(rows[0])))
+print("rows\t%d" % len(body))
+print("titlerows\t%d" % len(title))
+print("title1\t%s" % (title[0][0] if title and title[0] else ""))
+print("title2\t%s" % (title[1][0] if len(title) > 1 and title[1] else ""))
+print("titlewidth\t%d" % max((len(t) for t in title), default=0))
+print("header\t%s" % "|".join(cells(body[0])))
 print("styles\t%s" % ("bold" if b"<b/>" in z.read("xl/styles.xml") else "none"))
 print("wrap\t%s" % ("yes" if b'wrapText="1"' in z.read("xl/styles.xml") else "no"))
 print("cols\t%s" % ("yes" if b"<cols>" in z.read("xl/worksheets/sheet1.xml")
                     else "no"))
 print("merges\t%s" % ("yes" if b"mergeCell" in z.read("xl/worksheets/sheet1.xml")
                       else "no"))
-multi = [r for r in rows[1:] if any("\n" in c for c in cells(r))]
+multi = [r for r in body[1:] if any("\n" in c for c in cells(r))]
 print("multiline\t%d" % len(multi))
 if multi:
     first = [c for c in cells(multi[0]) if "\n" in c][0]
     print("firstitem\t%s" % first.splitlines()[0])
-deferred = [cells(r) for r in rows[1:] if cells(r)[2] == "" and cells(r)[1]]
+deferred = [cells(r) for r in body[1:] if cells(r)[2] == "" and cells(r)[1]]
 print("deferred\t%s" % (deferred[0][1] if deferred else ""))
 print("deferredphase\t%s" % (deferred[0][7] if deferred else ""))
 PY
@@ -261,6 +277,196 @@ else
     && ok "…carrying its own target phase, not the epic's — Phase 2" \
     || bad "the Deferred row's Phase is '$(field deferredphase)', expected Phase 2"
 fi
+
+# ── 2b. the title block and Billable, against a seeded frame (D-O67) ─────────
+#
+# The shared fixture carries no ledger head, so the golden run above exercises
+# the absent-frame case: every Billable cell blank, the title block naming the
+# project alone — never a guess. This section seeds a frame into a copy and
+# exercises the derivation itself.
+
+printf '\n▸ The title block and Billable — a seeded frame (D-O67)\n'
+
+FRAMED="$TMP/framed-proj"
+cp -R "$PROJ" "$FRAMED"
+mkdir -p "$FRAMED/.specify"
+cat > "$FRAMED/.specify/aspect-state.md" <<'HEAD'
+# Aspect State — appointment booking
+## Current state
+Band: 1 (open)
+Profile: Presale — picked 2026-08-13 (P-O0)
+Boundary: MVP + Phase 2 — set 2026-08-13 (P-O0b); switches append to Events with a reason
+Budget: 50000 USD  (sources/brief.md §2)
+Client label: PoC  (sources/brief.md §1)
+Scope decisions: none found
+HEAD
+
+wbs --root "$FRAMED" --profile presale --out-dir "$TMP/framed" \
+    --date 2026-08-19 > "$TMP/framed.summary" 2>&1 \
+  && ok "the framed run exits clean" \
+  || { bad "the framed run failed"; sed 's/^/      /' "$TMP/framed.summary"; }
+
+# Billable, per row, read off the rendered csv — Yes inside the boundary,
+# No outside, blank where the Phase cell is blank.
+python3 - "$TMP/framed/wbs.csv" > "$TMP/billable.txt" <<'PYX'
+import csv, sys
+rows = list(csv.reader(open(sys.argv[1], encoding="utf-8")))
+head, body = rows[0], rows[1:]
+ph, bi = head.index("Phase"), head.index("Billable")
+pairs = sorted({(r[ph], r[bi]) for r in body})
+print("pairs\t%s" % "; ".join("%s=>%s" % (a or "<blank>", b or "<blank>")
+                              for a, b in pairs))
+print("numeric\t%d" % sum(1 for r in body if r[bi].strip()
+                          and r[bi].strip() not in ("Yes", "No")))
+PYX
+BPAIRS="$(awk -F'\t' '$1=="pairs" {print $2}' "$TMP/billable.txt")"
+BNUM="$(awk -F'\t' '$1=="numeric" {print $2}' "$TMP/billable.txt")"
+
+case "$BPAIRS" in
+  *"MVP=>Yes"*) ok "a Phase inside the boundary derives Billable Yes" ;;
+  *) bad "no MVP=>Yes pair in the render: [$BPAIRS]" ;;
+esac
+case "$BPAIRS" in
+  *"Phase 2=>Yes"*) ok "…and the second boundary phase too — Phase 2 => Yes" ;;
+  *) bad "no 'Phase 2=>Yes' pair in the render: [$BPAIRS]" ;;
+esac
+[ "${BNUM:-1}" = "0" ] \
+  && ok "…and no Billable cell carries anything but Yes/No — never a number" \
+  || bad "$BNUM Billable cell(s) hold a value that is neither Yes nor No"
+
+# a Phase outside the boundary derives No — the same fixture, a narrower frame
+NARROW="$TMP/narrow-proj"
+cp -R "$PROJ" "$NARROW"
+mkdir -p "$NARROW/.specify"
+cat > "$NARROW/.specify/aspect-state.md" <<'HEAD'
+Boundary: MVP — set 2026-08-13 (P-O0b); switches append to Events with a reason
+Client label: PoC  (sources/brief.md §1)
+Scope decisions: none found
+HEAD
+wbs --root "$NARROW" --profile presale --out-dir "$TMP/narrow" \
+    --date 2026-08-19 > /dev/null 2>&1
+python3 - "$TMP/narrow/wbs.csv" > "$TMP/narrow.txt" <<'PYX'
+import csv, sys
+rows = list(csv.reader(open(sys.argv[1], encoding="utf-8")))
+head, body = rows[0], rows[1:]
+ph, bi = head.index("Phase"), head.index("Billable")
+pairs = sorted({(r[ph], r[bi]) for r in body})
+print("; ".join("%s=>%s" % (a or "<blank>", b or "<blank>") for a, b in pairs))
+PYX
+NPAIRS="$(cat "$TMP/narrow.txt")"
+case "$NPAIRS" in
+  *"Phase 2=>No"*) ok "a Phase outside the boundary derives Billable No" ;;
+  *) bad "no 'Phase 2=>No' pair under a boundary of MVP alone: [$NPAIRS]" ;;
+esac
+case "$NPAIRS" in
+  *"MVP=>Yes"*) ok "…while the in-boundary phase still derives Yes" ;;
+  *) bad "MVP lost its Yes under the narrow boundary: [$NPAIRS]" ;;
+esac
+
+# the xlsx title block — two lines above the bold header row, label verbatim
+python3 - "$TMP/framed/wbs.xlsx" > "$TMP/title.txt" 2>&1 <<'PYX'
+import sys, zipfile
+import xml.etree.ElementTree as ET
+NS = "{http://schemas.openxmlformats.org/spreadsheetml/2006/main}"
+z = zipfile.ZipFile(sys.argv[1])
+sheet = ET.fromstring(z.read("xl/worksheets/sheet1.xml"))
+rows = sheet.find(NS + "sheetData").findall(NS + "row")
+def cells(row):
+    out = []
+    for c in row.findall(NS + "c"):
+        t = c.find(NS + "is/" + NS + "t")
+        out.append(t.text if t is not None else "")
+    return out
+print("line1\t%s" % cells(rows[0])[0])
+print("line2\t%s" % cells(rows[1])[0])
+print("header\t%s" % "|".join(cells(rows[2])))
+PYX
+T1="$(awk -F'\t' '$1=="line1" {print $2}' "$TMP/title.txt")"
+T2="$(awk -F'\t' '$1=="line2" {print $2}' "$TMP/title.txt")"
+T3="$(awk -F'\t' '$1=="header" {print $2}' "$TMP/title.txt")"
+
+case "$T1" in
+  "PoC — "*) ok "the xlsx title line 1 carries the client label verbatim: $T1" ;;
+  *) bad "the xlsx title line 1 is [$T1], expected the label verbatim" ;;
+esac
+case "$T2" in
+  "Delivery boundary: MVP + Phase 2 — billable phases: "*)
+     ok "…and line 2 is the delivery-boundary line: $T2" ;;
+  *) bad "the xlsx title line 2 is [$T2], expected the delivery-boundary line" ;;
+esac
+[ "$T3" = "$WANT" ] \
+  && ok "…with the pinned column set on the row below the block" \
+  || bad "the row below the title block is [$T3], expected the column set"
+case "$T1$T2" in
+  *50000*|*USD*|*[Bb]udget*)
+     bad "the budget reached the title block — it never enters the header" ;;
+  *) ok "the budget never appears in the title block" ;;
+esac
+
+# the csv carries no title block: line 1 is the column row itself
+CSV1="$(head -1 "$TMP/framed/wbs.csv" | tr -d '\r')"
+[ "$CSV1" = "$WANT_CSV" ] \
+  && ok "the csv opens on the column row — no title block (D-O67)" \
+  || bad "the csv's first line is [$CSV1], expected the bare column row"
+grep -q 'Delivery boundary:' "$TMP/framed/wbs.csv" \
+  && bad "the delivery-boundary line leaked into the csv" \
+  || ok "…and the delivery-boundary line is absent from it"
+
+# an open label renders the project name alone — the export never invents
+FRAMED2="$TMP/openlabel-proj"
+cp -R "$PROJ" "$FRAMED2"
+mkdir -p "$FRAMED2/.specify"
+cat > "$FRAMED2/.specify/aspect-state.md" <<'HEAD'
+Boundary: MVP — set 2026-08-13 (P-O0b); switches append to Events with a reason
+Client label: open — no source material  (open — no source material)
+Scope decisions: none found
+HEAD
+wbs --root "$FRAMED2" --profile presale --out-dir "$TMP/openlabel" \
+    --date 2026-08-19 > /dev/null 2>&1
+python3 - "$TMP/openlabel/wbs.xlsx" > "$TMP/openlabel.txt" 2>&1 <<'PYX'
+import sys, zipfile
+import xml.etree.ElementTree as ET
+NS = "{http://schemas.openxmlformats.org/spreadsheetml/2006/main}"
+z = zipfile.ZipFile(sys.argv[1])
+sheet = ET.fromstring(z.read("xl/worksheets/sheet1.xml"))
+rows = sheet.find(NS + "sheetData").findall(NS + "row")
+c = rows[0].find(NS + "c")
+t = c.find(NS + "is/" + NS + "t") if c is not None else None
+print(t.text if t is not None else "")
+PYX
+case "$(cat "$TMP/openlabel.txt")" in
+  *"open — no source material"*|*"—"*)
+     bad "an open label reached the title block: [$(cat "$TMP/openlabel.txt")]" ;;
+  *) ok "an open label renders the project name alone — never invented" ;;
+esac
+
+# ── 2c. seeded-defect controls for the pair (D-O67) ──────────────────────────
+#
+# An assertion never shown to fail is worth nothing. Two defects, one per half
+# of the ruling, seeded into copies of the clean renders.
+
+printf '\n  seeded-defect control — one per half of the pair:\n'
+
+# (a) the column set loses its tail — the render ends at Phase again
+python3 - "$TMP/framed/wbs.csv" "$TMP/seed-tail.csv" <<'PYX'
+import csv, sys
+rows = list(csv.reader(open(sys.argv[1], encoding="utf-8")))
+rows = [r[:-1] for r in rows]            # the Billable column, removed
+with open(sys.argv[2], "w", encoding="utf-8", newline="") as fh:
+    csv.writer(fh).writerows(rows)
+PYX
+SEED_HEAD="$(head -1 "$TMP/seed-tail.csv" | tr -d '\r')"
+[ "$SEED_HEAD" = "$WANT" ] \
+  && bad "the seeded tail-loss was not caught — the header still reads as pinned" \
+  || ok "seeded: the column set ending at Phase is caught — [$(echo "$SEED_HEAD" | rev | cut -d, -f1 | rev)] is not Billable"
+
+# (b) the csv grows a title block
+{ printf 'PoC — appointment booking\n'; cat "$TMP/framed/wbs.csv"; } \
+  > "$TMP/seed-title.csv"
+SEEDED_CSV1="$(head -1 "$TMP/seed-title.csv" | tr -d '\r')"
+[ "$SEEDED_CSV1" = "$WANT_CSV" ] \
+  && bad "the seeded csv title block was not caught" \
+  || ok "seeded: a title block in the csv is caught — line 1 reads [$SEEDED_CSV1]"
 
 # ── 3. selection (D-O20) ─────────────────────────────────────────────────────
 

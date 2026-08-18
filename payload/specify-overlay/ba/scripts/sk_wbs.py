@@ -69,10 +69,12 @@ from sk_idgraph import PATH_RE, ROLES_DECL_RE  # noqa: E402
 
 # ── the pinned column set (§10.5) ─────────────────────────────────────────────
 #
-# Eight columns, ending at Phase. There is no estimate column: estimating is
+# Nine columns, ending at Billable (D-O60 · D-O67; D-O60's *eight, ending at
+# Phase* amended on the record). There is no estimate column: estimating is
 # the client's act and stands outside the export (D-O60, closing §16's carry
 # item by removal). The never-numeric rule (T-18) is held here by structure
-# rather than by an always-empty cell — there is no cell to fill.
+# rather than by an always-empty cell — there is no cell to fill. Billable is
+# a derived Yes/No and never a number, so the guarantee is untouched.
 
 COLUMNS = [
     "Epic",
@@ -83,8 +85,9 @@ COLUMNS = [
     "Comments / Questions",
     "Role",
     "Phase",
+    "Billable",
 ]
-WIDTHS = [22, 26, 46, 60, 26, 44, 20, 12]
+WIDTHS = [22, 26, 46, 60, 26, 44, 20, 12, 10]
 
 # ── the register (§10.5 Register) ─────────────────────────────────────────────
 
@@ -192,6 +195,7 @@ class Row:
     comments: str = ""
     role: str = ""
     phase: str = ""
+    billable: str = ""
     # provenance, for the generation summary only — never rendered to a cell
     feature: str = ""
     label: str = ""
@@ -201,6 +205,7 @@ class Row:
         return [
             self.epic, self.topic, self.user_story, self.acceptance,
             self.integrations, self.comments, self.role, self.phase,
+            self.billable,
         ]
 
 
@@ -635,6 +640,59 @@ def read_profile(root: Path) -> str:
     return m.group("p").lower() if m else ""
 
 
+# ── the frame fields the export reads (§2.4 · D-O67) ─────────────────────────
+#
+# The read set gains the ledger head's `Client label:` and `Boundary:` fields
+# beside the profile — D-O25's *profile field only* clause amended on the
+# record. Read-only, like everything else here: this command never writes a
+# ledger. Absence is never an error and never a guess (§10.5, "never invents") —
+# a missing label renders the project name alone, a missing boundary leaves
+# every Billable cell empty.
+
+def read_frame(root: Path):
+    """The ledger head's `Client label:` and `Boundary:` (§2.4, D-O67).
+
+    Returns `(label, boundary)` — the label verbatim as the client wrote it or
+    "" where it stands open, and the boundary as the ladder values it names.
+    """
+    head = root / ".specify" / "aspect-state.md"
+    if not head.is_file():
+        return "", []
+    text = head.read_text(encoding="utf-8")
+
+    label = ""
+    m = re.search(r"^Client label:[ \t]*(?P<v>.*)$", text, re.M)
+    if m:
+        # `<free text>  (<citation | BA-supplied | open — no source material>)`
+        # — the value is what stands ahead of the citation parenthetical.
+        v = re.sub(r"\s{2,}\(.*\)\s*$", "", m.group("v")).strip()
+        if v and not v.startswith("<") and not v.startswith("open —"):
+            label = v
+
+    boundary = []
+    m = re.search(r"^Boundary:[ \t]*(?P<v>.*)$", text, re.M)
+    if m:
+        # `<ladder value(s)> — set <date> (P-O0b); …` — the values are what
+        # stands ahead of the ` — set ` tail; the ladder joins them with `+`.
+        v = m.group("v").split(" — ")[0].strip()
+        if v and not v.startswith("<"):
+            boundary = [part.strip() for part in v.split("+") if part.strip()]
+    return label, boundary
+
+
+def billable_cell(phase: str, boundary) -> str:
+    """`Yes` inside the boundary · `No` outside · blank on a blank Phase.
+
+    Derived, never a guess and never a number (D-O67): an absent Phase renders
+    an empty cell, and so does an absent boundary — there is no ground to test
+    against, and the export never invents one.
+    """
+    phase = (phase or "").strip()
+    if not phase or not boundary:
+        return ""
+    return "Yes" if phase in boundary else "No"
+
+
 def feature_folders(root: Path):
     specs = root / "specs"
     if not specs.is_dir():
@@ -731,11 +789,32 @@ def collect(root: Path, profile: str, include):
 # ── the writers (D-O23 — xlsx first, then csv) ───────────────────────────────
 
 
-def write_xlsx(path: Path, rows):
-    return sk_xlsx.write(path, COLUMNS, [r.cells() for r in rows], WIDTHS)
+def title_block(project: str, label: str, boundary, date: str):
+    """The two title-block lines — the xlsx render only (D-O67).
+
+    The label is verbatim, the client's own word; where it stands open the
+    first line renders the project name alone — the export never invents.
+    Budget never enters the header: the deferral named the label and the
+    marking, and this is exactly that.
+    """
+    first = "%s — %s" % (label, project) if label else project
+    second = "Delivery boundary: %s — billable phases: %s · generated %s" % (
+        " + ".join(boundary) if boundary else "not set",
+        ", ".join(boundary) if boundary else "none",
+        date,
+    )
+    return [first, second]
+
+
+def write_xlsx(path: Path, rows, title=()):
+    return sk_xlsx.write(path, COLUMNS, [r.cells() for r in rows], WIDTHS,
+                         title=title)
 
 
 def write_csv(path: Path, rows):
+    # No title block: the csv is the canonical, diff-friendly render, and lines
+    # above the column row break its shape (D-O67). The per-row fact both
+    # renders share is the Billable column.
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8", newline="") as fh:
         w = csv.writer(fh, quoting=csv.QUOTE_MINIMAL)
@@ -796,7 +875,7 @@ def summary(features, rows, epic_rowcount, profile, xlsx_path, csv_path):
     if empty:
         out.append("No rows: %s — selected, but §2 yielded no User Story"
                    % ", ".join(empty))
-    out.append("Next: open %s — the render ends at Phase; estimating is the "
+    out.append("Next: open %s — the render ends at Billable; estimating is the "
                "client's act on their own copy" % xlsx_path)
     return "\n".join(out)
 
@@ -816,12 +895,22 @@ def main(argv=None) -> int:
                    help="destination for wbs.xlsx and wbs.csv")
     p.add_argument("--summary-only", action="store_true",
                    help="print the generation summary; write no files")
+    p.add_argument("--date", default=None, metavar="YYYY-MM-DD",
+                   help="stamp the xlsx title block with this date "
+                        "(default: today)")
     args = p.parse_args(argv)
 
     root = Path(args.root).resolve()
     profile = args.profile or read_profile(root) or "discovery"
+    label, boundary = read_frame(root)
 
     features, rows, epic_rowcount = collect(root, profile, args.include)
+
+    # Billable is derived per row, after collection: the Phase cell is already
+    # on the row (a deferred row carries its item's target phase), and the
+    # boundary is the ledger head's (D-O67).
+    for r in rows:
+        r.billable = billable_cell(r.phase, boundary)
 
     out_dir = Path(args.out_dir)
     if not out_dir.is_absolute():
@@ -829,8 +918,10 @@ def main(argv=None) -> int:
     xlsx_path, csv_path = out_dir / "wbs.xlsx", out_dir / "wbs.csv"
 
     if not args.summary_only:
-        write_xlsx(xlsx_path, rows)      # primary, written first (D-O23)
-        write_csv(csv_path, rows)
+        stamp = args.date or __import__("datetime").date.today().isoformat()
+        title = title_block(root.name, label, boundary, stamp)
+        write_xlsx(xlsx_path, rows, title)   # primary, written first (D-O23)
+        write_csv(csv_path, rows)            # no title block (D-O67)
 
     def shown(path):
         try:

@@ -1,4 +1,4 @@
-Epic,Topic,User Story,Acceptance Criteria,Integrations,Comments / Questions,Role,Phase
+Epic,Topic,User Story,Acceptance Criteria,Integrations,Comments / Questions,Role,Phase,Billable
 Appointment Booking,Book an available Slot with a chosen Specialist,"As a Client, I want to book an available Slot with a chosen Specialist, so that I secure the Appointment without calling the clinic.","1. When a Client selects an available Slot and confirms, the system shall create an Appointment in status ""Booked"" and display the confirmation to the Client.
 2. If a Client attempts to book a Slot that is no longer available, then the system shall reject the booking and display the current published Availability for that Specialist.
 3. When a Client selects an available Slot, the system shall place a Hold on that Slot for five minutes.
@@ -9,16 +9,16 @@ Appointment Booking,Book an available Slot with a chosen Specialist,"As a Client
 8. A Slot whose start time has passed is never offered.
 9. Scenario: Two Clients race for the last Slot
 10. A Client may hold at most 3 Appointments in status ""Booked"" at the same time.",Specialist's external calendar,"what becomes of a confirmed Appointment while calendar sync is unavailable? — brief E-03 OQ-2 / R1, provider contract unsigned
-W-004-01 (2026-07-18) — provider contract unsigned","Client, Specialist",MVP
+W-004-01 (2026-07-18) — provider contract unsigned","Client, Specialist",MVP,
 Appointment Booking,Cancel my own Appointment,"As a Client, I want to cancel my own Appointment, so that the Slot returns to the Specialist when I give enough notice.","1. When a Client cancels an own Appointment more than 24 hours before its start_time (BR-002), the system shall set the Appointment status to ""Cancelled"" and return the Slot to the Specialist's published Availability.
 2. When a Client cancels an own Appointment 24 hours before its start_time (BR-002), the system shall set the Appointment status to ""Cancelled"" and keep the Slot unavailable for rebooking.
 3. A Client cannot cancel an Appointment that belongs to another Client.
 4. Cancellation inside 24h of start_time keeps the Slot unavailable for rebooking (BR-002).
 5. Cancellation more than 24h before start_time returns the Slot to the Specialist's published Availability (BR-002).
 6. Free cancellation window: strictly more than 24 hours before start_time. Inside 24h, cancellation is allowed but the Slot is NOT released for rebooking.",Specialist's external calendar,"what becomes of a confirmed Appointment while calendar sync is unavailable? — brief E-03 OQ-2 / R1, provider contract unsigned
-W-004-01 (2026-07-18) — provider contract unsigned","Client, Specialist",MVP
+W-004-01 (2026-07-18) — provider contract unsigned","Client, Specialist",MVP,
 Appointment Booking,Cancel an Appointment I cannot attend,"As a Specialist, I want to cancel an Appointment I cannot attend, so that the Client learns of it at the earliest moment.","1. When a Specialist cancels an Appointment on their own Availability, the system shall set the Appointment status to ""Cancelled"" and notify the Client of the cancellation.
 2. A Specialist can cancel only an Appointment on their own Availability.
 3. The Client receives a cancellation notice naming the Appointment's start_time.",Specialist's external calendar,"what becomes of a confirmed Appointment while calendar sync is unavailable? — brief E-03 OQ-2 / R1, provider contract unsigned
-W-004-01 (2026-07-18) — provider contract unsigned","Specialist, Client",MVP
-Appointment Booking,Reschedule-in-place,,,,"cancel + rebook is acceptable at launch (Olena, on call)",,Phase 2
+W-004-01 (2026-07-18) — provider contract unsigned","Specialist, Client",MVP,
+Appointment Booking,Reschedule-in-place,,,,"cancel + rebook is acceptable at launch (Olena, on call)",,Phase 2,

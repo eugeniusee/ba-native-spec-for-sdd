@@ -9,7 +9,7 @@
 
 | Epic | Phase | Reason |
 |---|---|---|
-| E-<nn> <name> | <from> → <to> | <factor(s)>: <reason> |
+| E-<nn> <name> | <from> → <to> | <factor(s) | BA-directed | BA-directed (SD-<n>)>: <reason> |
 
 Held: <unchanged rows, one line> · Basis: <one line across the four factors>
 ```

@@ -22,7 +22,7 @@ against it, and adds the worked framing-grade example.
 | 10 | Competition.Unlike | named competitors (+ URLs where known) |
 | 11 | Competition.Our Solution | differentiation against ≥ 1 Unlike entry |
 | 12 | Objectives | O-1, O-2… — measurable where possible; `→ P-n` links |
-| 13 | Context/Constraints | one-liners per class (technical · business · regulatory); detail owned by `constraints.md` from the Context aspect on |
+| 13 | Context/Constraints | one-liners per class (technical · business · regulatory); detail owned by `constraints.md` from the Context aspect on; scope-frame lines land here where a frame stands — budget envelope · delivery boundary · client label · scope decisions (`SD-<n>`), each cited |
 ```
 
 ## Worked example — after the framing run, before any aspect work

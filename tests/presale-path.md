@@ -90,8 +90,8 @@ The source inventory, the profile picker and the scope-frame block render
 the frame's values with their citations from the material on hand — delivery
 boundary, budget envelope, client label, the parameters — and the BA answers all
 three blocks in **one reply**. `Boundary:`,
-`Budget:`, `Client label:`, `Parameters:` and the derived `Capacity:` line land
-in the head beside `Profile:`. The frame is a safety-floor act: no autonomy
+`Budget:`, `Client label:`, `Scope decisions:`, `Parameters:` and the derived
+`Capacity:` line land in the head beside `Profile:`. The frame is a safety-floor act: no autonomy
 grant ever takes it (§10.7), so it is a BA interaction in every mode — this one.
 
 Under Presale the canvas confirms as **one artifact-level batch** — one confirm
@@ -190,8 +190,10 @@ across the whole batch.
 ```
 
 **Green when:** `exports/wbs.xlsx` and `exports/wbs.csv` exist, deferred rows
-render after their epic's story rows, and the column set ends at Phase — no
+render after their epic's story rows, and the column set ends at Billable — no
 estimate column exists, estimating being the client's act outside the export.
+The xlsx opens on its two-line title block (the client label verbatim, then the
+delivery boundary); the csv opens on the column row itself.
 
 ---
 

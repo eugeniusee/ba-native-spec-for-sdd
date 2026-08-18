@@ -107,7 +107,12 @@ are out of its reach.
    what enters MVP, an essential-scope set, or a story set passes the two
    legitimacy tests (goal-blocking · hard-requested). **Recorded breadth is
    welcome; composed breadth is debt.** At your grain that is the story set:
-   composed against the brief's essential scope and nothing beyond it.
+   composed against the brief's essential scope and nothing beyond it. **The
+   two tests read a negotiated engagement-scope decision** (the `Scope
+   decisions:` head line — orchestrator D-O65–D-O66) **as the controlling
+   client statement** where it conflicts with an earlier request in the
+   material on hand — composition-bounding only: discovery is untouched, and a
+   trimmed capability remains a cited row (D13).
 
 **The confidence rule is where you will be tempted, so it is stated hardest:** a
 value you can *infer* but no source *states* — an industry-default threshold, a

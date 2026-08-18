@@ -37,7 +37,12 @@ one of those is a BA act besides.
    legitimacy tests (goal-blocking · hard-requested). **Recorded breadth is
    welcome; composed breadth is debt.** The pair is the whole of the principle
    and neither half stands without the other: you sweep the estate
-   exhaustively, and you compose from it leanly.
+   exhaustively, and you compose from it leanly. **The two tests read a
+   negotiated engagement-scope decision** (the `Scope decisions:` head line —
+   orchestrator D-O65–D-O66) **as the controlling client statement** where it
+   conflicts with an earlier request in the material on hand —
+   composition-bounding only: discovery is untouched, and a trimmed capability
+   remains a cited row (D13).
 
 Two markers, and they are not interchangeable: `open — no source material` is a
 **visible hole** the suggestion engine reads. `N/A — <reason>` is a **BA

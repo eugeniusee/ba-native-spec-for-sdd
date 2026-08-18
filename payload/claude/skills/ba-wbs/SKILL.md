@@ -40,6 +40,7 @@ estate, and carries no checkpoint: the BA's invocation is the whole act.
 | `specs/NNN-*/gate-report.md` | the latest run entry: verdict · waivers in force · the certification line |
 | `.specify/memory/scope/<E-nn>.md` | the epic name from the header · §3 `Deferred — this epic, later` items |
 | `.specify/memory/roadmap.md` | Phase · epic row order |
+| `.specify/aspect-state.md` | the ledger head's **profile** — the selection-default source · **`Client label:`** and **`Boundary:`** — the title block's and the Billable column's ground (D-O67) |
 
 No new artifact, no new BA step, no new field anywhere.
 
@@ -71,7 +72,7 @@ for a headless run; `--summary-only` prints the summary and writes nothing.
 
 ## The pinned columns
 
-Eight, ending at Phase.
+Nine, ending at Billable.
 
 | Column | Source | Rule |
 |---|---|---|
@@ -83,18 +84,23 @@ Eight, ending at Phase.
 | **Comments / Questions** | `[NEEDS CLARIFICATION]` marker text, brackets stripped · the waiver reason with its `W-<NNN>-<nn>` tag and date | **nothing else** — the draft gate run's FAIL report stays out; it is the client Q&A agenda, a separate artifact |
 | **Role** | the story's actor first · then any role named in the story's linked requirements, its flows, or a Business Rule folded into that row's acceptance | comma-separated |
 | **Phase** | the roadmap epic's Phase, on every story row under the epic · a deferred row carries its item's target phase | — |
+| **Billable** | derived — the row's Phase (a deferred row: its target phase) tested against the ledger head's `Boundary:` set | `Yes` inside the boundary · `No` outside · **blank where the Phase cell is blank** — an absent source renders an empty cell, never a guess |
 
-**No estimate column exists.** The set ends at Phase. Estimating is the
+**No estimate column exists.** The set ends at Billable. Estimating is the
 client's act, outside the export: the framework never estimates numerically
 (the depth rule of T-18 — Scope allocation), and it renders no column
-inviting a number it refuses to produce.
+inviting a number it refuses to produce. **Billable is a derived `Yes`/`No`,
+never a number** — the never-numeric guarantee is untouched, held by structure.
 
 ## Deferred rows
 
 Each parent brief's §3 `Deferred — this epic, later` item renders as **its own
 row**: Epic filled, Topic = the item, Phase = the item's target phase,
 Comments / Questions = the launch-substitute note. User Story, Acceptance
-Criteria, Integrations and Role stay empty.
+Criteria, Integrations and Role stay empty. **Billable derives by the same rule
+as any row** — its target phase tested against the boundary; **where the target
+phase is absent the Billable cell renders blank**, the Comments cell already
+carrying the launch-substitute note that says why the row exists (D-O67).
 
 This is the read-only restoration of within-epic phase spread. Certified specs
 carry no deferred scope by contract, so these rows are the spread's sole
@@ -102,6 +108,7 @@ carrier.
 
 ## The register — cell text is stakeholder-facing
 
+Cell text — **and the xlsx title block (D-O67)** — is stakeholder-facing.
 Plain sentences. **No EARS keywords in caps, no CC-IDs, no marker brackets.**
 Two deliberate exceptions: the waiver tag as provenance in Comments /
 Questions, and quoted status values inside acceptance text.
@@ -117,12 +124,29 @@ The generation summary is BA-facing and follows the communication register.
 
 One build, both renders, one row model:
 
-- `exports/wbs.xlsx` — the primary, client-presentable render: bold header row,
-  wrapped text, column widths, **no cell merges** — the Epic value repeats per
-  row.
+- `exports/wbs.xlsx` — the primary, client-presentable render: the two-line
+  title block above the bold header row, wrapped text, column widths, **no cell
+  merges** — the Epic value repeats per row.
 - `exports/wbs.csv` — the canonical, diff-friendly render.
 
 Stable paths, overwritten per run.
+
+### The title block — the xlsx render only (D-O67)
+
+Two lines above the bold header row:
+
+```
+<Client label> — <project>
+Delivery boundary: <ladder value(s)> — billable phases: <list> · generated <date>
+```
+
+The label is **verbatim, the client's own word** (PoC · prototype · pilot…),
+read from the ledger head; where the label stands `open — no source material`
+the line renders **the project name alone — the export never invents**.
+
+**The csv carries no title block:** it is the canonical, diff-friendly render,
+and lines above the column row break its shape. The per-row fact both renders
+share is the Billable column. **Budget never enters the header.**
 
 ## Under Presale
 

@@ -65,7 +65,7 @@ def _cell(ref: str, text: str, style: int) -> str:
             "</t></is></c>" % (ref, style, esc(text)))
 
 
-def _sheet(header, rows, widths) -> str:
+def _sheet(header, rows, widths, title=()) -> str:
     cols = "".join(
         '<col min="%d" max="%d" width="%s" customWidth="1"/>' % (i, i, w)
         for i, w in enumerate(widths, start=1)
@@ -76,7 +76,10 @@ def _sheet(header, rows, widths) -> str:
         "<cols>%s</cols>" % cols if cols else "",
         "<sheetData>",
     ]
-    all_rows = [(header, S_HEADER)] + [(r, S_BODY) for r in rows]
+    # The title block sits above the bold header row, one single-cell row per
+    # line, body-styled — the header row keeps the bold to itself (D-O67).
+    all_rows = [([line], S_BODY) for line in title]
+    all_rows += [(header, S_HEADER)] + [(r, S_BODY) for r in rows]
     for n, (cells, style) in enumerate(all_rows, start=1):
         body = "".join(
             _cell("%s%d" % (col_letter(i), n), c, style)
@@ -147,12 +150,14 @@ def _workbook(sheet_name: str) -> str:
     )
 
 
-def write(path, header, rows, widths=None, sheet_name="WBS") -> Path:
+def write(path, header, rows, widths=None, sheet_name="WBS", title=()) -> Path:
     """Write one sheet of text cells to `path`, overwriting whatever is there.
 
     `header` is the pinned column set; `rows` are equal-length cell lists;
     `widths` are per-column character widths. Empty cells keep the body style,
-    so a blank cell wraps and aligns like the rest of the sheet.
+    so a blank cell wraps and aligns like the rest of the sheet. `title` is the
+    optional title block — one single-cell row per line, rendered above the
+    header row (D-O67); the csv render passes none.
     """
     path = Path(path)
     widths = widths or [24] * len(header)
@@ -174,7 +179,7 @@ def write(path, header, rows, widths=None, sheet_name="WBS") -> Path:
         ("xl/workbook.xml", _workbook(sheet_name)),
         ("xl/_rels/workbook.xml.rels", _WORKBOOK_RELS),
         ("xl/styles.xml", _STYLES),
-        ("xl/worksheets/sheet1.xml", _sheet(header, rows, widths)),
+        ("xl/worksheets/sheet1.xml", _sheet(header, rows, widths, title)),
     ]
     with zipfile.ZipFile(path, "w", zipfile.ZIP_DEFLATED) as z:
         for name, text in parts:

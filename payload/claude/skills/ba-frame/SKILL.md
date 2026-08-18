@@ -70,6 +70,27 @@ every value carries a citation or an explicit `open — no source material`.
 Never guess a value. **`none stated` is a legal, recorded answer** for the
 envelope — it becomes a named client question, never silence.
 
+**The scope-decision harvest (D-O65) — auto-pickup extends from values to
+decisions.** Scan the same sources for **negotiated engagement-scope decisions**
+and pre-fill line 4, one entry per decision:
+`SD-<n> — <the decision, one line> (<verbatim citation>)`. **The class is narrow
+by ruling:** a decision *agreed between client and provider about engagement
+composition* — an option selection among proposals, an explicit trim, an agreed
+scope/module list, an agreed staging — and nothing else. Requirements, wishes
+and priorities are discovery ground — they belong to
+**T-01 — Discovery canvas framing**; the budget has its own line; timeline is
+neither. **Every harvested decision carries its verbatim citation**,
+and the verbatim ground lives in the cited source artifact — no new artifact
+class. **`none found` is a legal, recorded state** — it lands on the head line,
+never as silence. **An ambiguous candidate is asked, never guessed:** render it
+on the same line as `SD-? — <candidate, one line> (<citation>) — keep or
+discard`, resolved in the same single Frame reply.
+
+**The stop count is untouched:** the SD line rides inside the P-O0b block — one
+render, one reply (D-O42, extended by D-O45 and by D-O65), no new prompt point.
+**Autonomy is untouched by composition:** P-O0b sits on the never-AUTO safety
+floor (D-O42), so SD confirmation is BA-only under any grant.
+
 Auto-pickup runs against the **material on hand at render time** — the
 inventory's first line is exactly that list. Sources the BA names, pastes or
 attaches in the reply are captured *after* it, which is what the correction stop
@@ -175,6 +196,7 @@ Scope frame — before any aspect opens (P-O0b — scope-frame selection):
 1. Delivery boundary: <phase(s) of the ladder this engagement pays for> — default MVP
 2. Budget envelope: <amount + currency> | none stated
 3. Client label: <free text — how the client names it: PoC, prototype, pilot…> [cite | BA-supplied | open — no source material]
+4. Scope decisions: <SD-<n> — <the decision, one line> (<citation>), per harvested decision> | none found
 Parameters (defaults shown; edit or confirm):
   Rate: $50/h · Team mix: 3 fullstack eng + 1 QA + 1 BA + 1 PM (eng-share ~60%) · Capacity check: on
 Waiting for your confirmation. Switchable later; the switch is logged.
@@ -318,6 +340,7 @@ Sources: <kind — state, per named source>  (captured <date> | named — pendin
 Boundary: <ladder value(s) — MVP | MVP + Phase 2 | …> — set <date> (P-O0b); switches append to Events with a reason
 Budget: <amount + currency> | none stated  (<citation | BA-supplied | open — no source material>)
 Client label: <free text — PoC · prototype · pilot…>  (<citation | BA-supplied | open — no source material>)
+Scope decisions: SD-<n> — <the decision, one line> (<citation>) · … | none found
 Parameters: rate <amount>/h · team mix <…> (eng-share <n>%) · capacity check <on | off>
 Capacity: ~<n> eng-h (envelope ÷ rate × eng-share) | — (no envelope)
 ```
@@ -340,6 +363,14 @@ grain, appended for the life of the project:
 **A constraint that arrives after Frame is a routed scope-frame-change
 proposal** — a new client document, a client message — never a silent edit. It
 fires T-18 — Scope allocation's scope-frame trigger.
+
+**A late scope decision brings zero new machinery either (D-O65).** An `SD-<n>`
+surfacing after Frame is a frame line arriving late: it rides that same routed
+scope-frame-change proposal with its **T-18 — Scope allocation** trigger, logs
+as the existing
+`scope-frame` event — **no new event kind exists** — and a capture contradicting
+a just-confirmed SD rides the correction stop above. All by reference; nothing
+is re-legislated here.
 
 **A late source brings zero new machinery.** A channel, thread or folder that
 appears mid-band routes its content through the existing ingestion, and a

@@ -512,6 +512,126 @@ has "$T18" "\`[inferred]\` rows inside the boundary are the advisory's first-nam
 has "$T18" "the composition half of **principle 4**" \
     "…citing the anchor rather than restating it"
 
+# T-18: the SD consumption (D-B6-12 · D-B6-13), and the ledger read it rides
+has "$T18" "\`Scope decisions:\`" "T-18 reads the scope-decision head line"
+has "$T18" "ground the four locked factors read, **never a fifth factor**" \
+    "…as ground the four locked factors read, never a fifth factor"
+has "$T18" "BA-directed (SD-<n>)" "…and the diff carries the SD-sourced tag"
+has "$T18" "They pin only on the step-4 approval" \
+    "…pinning only on the BA's approval — the framework proposes, the BA disposes"
+has "$T18" "not phase-shaped routes as bucket 2" \
+    "…a non-phase-shaped SD routes to bucket 2"
+has "$T18" "off-vocabulary phase is **bucket 3**" \
+    "…an unknown epic or off-vocabulary phase to bucket 3, named and never skipped"
+has "$T18" "no new trigger token exists" "…riding the existing scope-frame trigger"
+has "$T18" "no longer satisfies the second test" \
+    "T-18's advisory applies the SD reading rule — the earlier citation stops sufficing"
+has "$T18" "first-named advisory candidate" "…the trimmed epic first-named…"
+has "$T18" "never disqualified" "…and never disqualified by it"
+has "$T18" "elicitation principle 4" "…citing the controlling-statement law, never restating it"
+
+# the precedence principle is stated once, at the orchestrator — cited here
+has "$T18" "D-O66" "T-18 cites the precedence principle rather than restating it"
+hasnt "$T18" "governs **allocation**, never discovery" \
+    "…and does not restate it — one statement, at its own site"
+
+# ── T-18 · the SD run, seeded both ways ──────────────────────────────────────
+#
+# The sheet is prose, so the seeded fixtures are allocation logs: the shape a
+# compliant SD-driven run writes, and the `none found` run that must behave
+# exactly as it did before the ruling (the regression guard).
+
+printf '\n▸ T-18 · the SD run — seeded fixtures, both directions\n'
+
+seed_roadmap() {   # $1 destination · $2 epic id · $3 new phase · $4 log entry
+  mkdir -p "$(dirname "$1")"
+  python3 - "$RM" "$1" "$2" "$3" "$4" <<'PYSEED'
+import sys, pathlib
+src, dst, eid, phase, entry = sys.argv[1:6]
+lines = pathlib.Path(src).read_text(encoding="utf-8").splitlines()
+out = []
+for line in lines:
+    # the epic table's Phase column follows the log (B83); an unknown epic is
+    # left alone on purpose, so the invented-epic defect still reaches B82.
+    if line.startswith("| %s |" % eid):
+        cells = line.split("|")
+        cells[4] = " %s " % phase
+        line = "|".join(cells)
+    out.append(line)
+out.append("")
+out.append(entry)
+pathlib.Path(dst).write_text("\n".join(out) + "\n", encoding="utf-8")
+PYSEED
+}
+
+# (i) the clean SD run — a confirmed SD-sourced candidate, tagged in the diff
+seed_roadmap "$TMP/sd/roadmap.md" E-07 Later '### Allocation 3 — 2026-08-19 · trigger: scope-frame · BA: Y.K.
+
+| Epic | Phase | Reason |
+|---|---|---|
+| E-07 Online Payment | Phase 2 → Later | BA-directed (SD-1): the agreed scope list drops online payment from the paid engagement (sources/brief.md §4) |
+
+Held: the remaining rows stand · Basis: the SD bounds allocation, not discovery — E-07 stays a cited epic row.'
+if python3 "$VALIDATE" --roadmap "$TMP/sd/roadmap.md" --canvas "$CV" \
+     > "$TMP/sd.out" 2>&1; then
+  ok "seeded clean: a \`BA-directed (SD-1)\` diff row passes the log grammar"
+else
+  bad "the SD-tagged allocation row was rejected by the validator"
+  sed 's/^/      /' "$TMP/sd.out"
+fi
+
+# (ii) the regression guard — `Scope decisions: none found` changes nothing.
+#      The pre-ruling log entry must validate exactly as it did before.
+seed_roadmap "$TMP/none/roadmap.md" E-07 Later '### Allocation 3 — 2026-08-19 · trigger: priority shift · BA: Y.K.
+
+| Epic | Phase | Reason |
+|---|---|---|
+| E-07 Online Payment | Phase 2 → Later | value vs. effort: no payment surface is needed for O-2 at launch |
+
+Held: the remaining rows stand · Basis: the picture holds across the four factors.'
+if python3 "$VALIDATE" --roadmap "$TMP/none/roadmap.md" --canvas "$CV" \
+     > "$TMP/none.out" 2>&1; then
+  ok "seeded clean: the factor-tagged run is untouched by the ruling — the regression guard holds"
+else
+  bad "the pre-ruling allocation row stopped validating — the ruling was not additive"
+  sed 's/^/      /' "$TMP/none.out"
+fi
+
+# (iii) the seeded defect — an untagged reason, neither factor nor BA-directed
+printf '\n  seeded-defect control:\n'
+seed_roadmap "$TMP/bad/roadmap.md" E-07 Later '### Allocation 3 — 2026-08-19 · trigger: scope-frame · BA: Y.K.
+
+| Epic | Phase | Reason |
+|---|---|---|
+| E-07 Online Payment | Phase 2 → Later | the client asked for it |
+
+Held: the remaining rows stand · Basis: none stated.'
+if python3 "$VALIDATE" --roadmap "$TMP/bad/roadmap.md" --canvas "$CV" \
+     > "$TMP/bad.out" 2>&1; then
+  bad "an untagged allocation reason passed the validator — B80 does not bite"
+else
+  grep -q "B80" "$TMP/bad.out" \
+    && ok "seeded defect caught by name: B80 — an untagged allocation reason" \
+    || { bad "the untagged reason failed, but not as B80"; sed 's/^/      /' "$TMP/bad.out"; }
+fi
+
+# (iv) the seeded defect — an SD tag on a row whose epic is not on the roadmap
+seed_roadmap "$TMP/bad2/roadmap.md" E-99 MVP '### Allocation 3 — 2026-08-19 · trigger: scope-frame · BA: Y.K.
+
+| Epic | Phase | Reason |
+|---|---|---|
+| E-99 Loyalty Programme | Unallocated → MVP | BA-directed (SD-2): the agreed module list names it (sources/brief.md §4) |
+
+Held: the remaining rows stand · Basis: the SD bounds allocation, not discovery.'
+if python3 "$VALIDATE" --roadmap "$TMP/bad2/roadmap.md" --canvas "$CV" \
+     > "$TMP/bad2.out" 2>&1; then
+  bad "an SD-tagged row invented an epic and passed — allocation never creates an epic"
+else
+  grep -q "B82" "$TMP/bad2.out" \
+    && ok "seeded defect caught by name: B82 — an SD tag does not license a new epic" \
+    || { bad "the invented epic failed, but not as B82"; sed 's/^/      /' "$TMP/bad2.out"; }
+fi
+
 # the writer split, stated on both sides
 has "$T17" "one file, three writers" "T-17 states the shared-file write discipline"
 has "$T18" "one file, three writers" "…and so does T-18, from its own side"

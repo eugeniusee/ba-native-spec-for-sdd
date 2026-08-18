@@ -9211,3 +9211,101 @@ an open question flagged with their briefs still produced.
 **Open:** nothing from this ruling. `check-audit.sh` · `sk_audit.py` stand named
 and unbuilt from the prior sitting; the ratification sweep covers this sitting's
 rulings with the prior ones.
+
+## The Frame Hears the Negotiation — EC-10's scope-decision harvest + the §10.5 render pair · orchestrator v0.27 · package 0.1.26 · 19 August 2026 · GREEN
+
+**Session prompt:** the Lane B compile pass — propagate the four bumped
+documents into the runtime (orchestrator v0.27 · catalogue-b6 v0.5 ·
+elicitation v0.8 · catalogue-b1 v0.6). Compiled units only; the one-way rule in
+force.
+
+**The escape this pass opened with, and how it closed.** The pass halted at its
+own precondition before touching anything. The EC-10 / §10.5 doc sitting had
+branched from package 0.1.24 (orchestrator v0.25, D-O1–D-O60) and never saw
+package 0.1.25's orchestrator **v0.26 — the AUTO-mode fix set** (D-O61–D-O64).
+The working-tree document therefore **double-allocated v0.26 and D-O61–D-O63,
+dropped D-O64, and deleted the shipped edition outright** — 54 deleted lines
+against HEAD, `self-elect` · `cost boundary` · `Destination reached` all at zero
+occurrences, the footer's locked range regressed to D-O1–D-O63. Six compiled
+runtime surfaces were left carrying law their own corpus no longer contained —
+the one-way rule running backwards — and the tree stood **RED at 26 failures**
+before a single edit. Nothing was compiled; the collision was reported instead.
+**Resolved the same day by rebase** (BA Lead, 18 Aug 2026): the sitting's three
+rulings renumbered **D-O61–D-O63 → D-O65–D-O67**, its review record re-sited
+**§29 → §30**, the header taken to **v0.27**, the locked range to D-O1–D-O67,
+and a provenance note written into the change record. **The AUTO-mode fix set is
+untouched** — D-O61–D-O64 and §29 stand exactly as 0.1.25 shipped them. The
+three sibling documents were re-pointed to v0.27 / §30 / D-O65–D-O67 with zero
+D-O61–D-O63 residuals. This pass then compiled against the rebased editions.
+
+**What the ruling gives the runtime.** **The scope-decision harvest (D-O65)** —
+P-O0b auto-pickup extends from the budget line to negotiated engagement-scope
+decisions as a class, each captured `SD-<n> — <the decision, one line>
+(<verbatim citation>)` under cite-or-mark, `none found` a legal recorded state,
+an ambiguous candidate asked inside the block and never guessed. The home is
+**line 4 of the P-O0b pinned block** and the **`Scope decisions:` head line**.
+Late arrival is zero new machinery: the routed scope-frame-change proposal, the
+`scope-frame` event and the correction stop, all by reference · **the precedence
+principle (D-O66)** — an SD governs allocation, never discovery; stated once at
+the orchestrator and cited everywhere else, never restated · **the carried
+§10.5 pair (D-O67)** — the pinned set becomes **nine columns ending at
+Billable**, `Yes`/`No` derived from the row's Phase against the head's
+`Boundary:` set and **blank on a blank Phase**; the **xlsx title block** carries
+the client label verbatim with the delivery-boundary line, **the csv staying
+pure rows**; the read set gains the head's `Client label:` and `Boundary:`
+fields.
+
+**The never-numeric guarantee stands.** No estimate column returns. Billable is
+a derived `Yes`/`No` and never a number, so the guarantee is held by structure
+exactly as D-O60 left it — and the suite's tail assertion moves from *ends at
+Phase* to *ends at Billable* rather than being dropped.
+
+**Files touched — 24:** the four methodology documents (owner-supplied, rebased)
+· `ba-frame/SKILL.md` · `ba-status/SKILL.md` · `ba-t01/SKILL.md` +
+`references/example.md` · `ba-t18/SKILL.md` + `references/example.md` ·
+`ba-wbs/SKILL.md` · `ba-analyst.md` · `ba-discovery.md` ·
+`templates/aspect-state.md` · `scripts/sk_wbs.py` · `scripts/sk_xlsx.py` ·
+`tests/check-wbs.sh` · `tests/check-spine.sh` · `tests/check-orchestrator.sh` ·
+`tests/check-band2-artifacts.py` · `tests/presale-path.md` · the two golden
+`expected/wbs-*.csv` files · `BUILD-LOG.md` · `VERSION` (0.1.25 → **0.1.26**).
+
+**The suite: 1830 checks, 17 of 17 green.** `check-wbs.sh` 64 → **80** — the
+column-tail assertions flipped to nine-ending-at-Billable, a new section 2b
+running a **seeded frame** through the derivation (in-boundary `Yes`,
+out-of-boundary `No` under a narrowed boundary, blank on blank, nothing but
+Yes/No ever), the xlsx title block read back off the sheet with the label
+verbatim and the budget absent from it, the csv asserted to open on its column
+row, an open label rendering the project name alone, and **two seeded-defect
+controls** — a set that loses its tail, and a csv that grows a title block.
+`check-spine.sh` 189 → **206** — the T-18 SD consumption asserted on the sheet,
+plus **four seeded allocation-log fixtures**: a `BA-directed (SD-1)` row that
+must validate, a factor-tagged row that must behave exactly as before the ruling
+(the regression guard), and two defects caught by name — **B80** (an untagged
+reason) and **B82** (an SD tag does not license a new epic).
+`check-orchestrator.sh` pins the header at **v0.27**, demotes v0.26 to a
+change-record `has`, adds the D-O65–D-O67 block and moves the D-O contiguity
+range to 1…67.
+
+**Three incidental corrections, made in step and named here rather than made
+quietly — none of them this ruling's:**
+
+1. **`check-band2-artifacts.py`'s B80 accepted only the four factors.** The §5
+   Reason grammar has pinned `BA-directed` since D-B6-9, so a directed row has
+   been failing the validator ever since — the gap was invisible only because no
+   fixture carried one. B80 now accepts a factor, `BA-directed`, or
+   `BA-directed (SD-<n>)`, and its rule text says so.
+2. **`ba-t01/references/example.md`'s canvas row 13 never carried the
+   scope-frame mirror at all** — the D-B1-5 clause was ruled but never compiled.
+   Re-extracting the row for D-B1-7 brought both halves.
+3. **`ba-t18/references/example.md`'s Reason cell read `<factor(s)>` alone** —
+   pre-D-B6-9. It now carries the full pinned tag set.
+
+**One reading recorded, not invented.** §10.5 rules Billable blank on a blank
+Phase but does not name the absent-**boundary** case. It is taken as blank on
+the section's own *never invents* clause — *an absent source renders an empty
+cell, never a guess* — rather than defaulting to `Yes` or `No`. Flagged to the
+master conversation rather than settled here.
+
+**Open:** nothing from this ruling. `check-audit.sh` · `sk_audit.py` stand named
+and unbuilt from the earlier sittings; the ratification sweep covers this
+sitting's rulings with the prior ones.

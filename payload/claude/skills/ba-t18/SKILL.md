@@ -141,8 +141,10 @@ line in the roadmap.
 6. `.specify/memory/out-of-scope.md` — resolved rows carry phase hints on the
    epics they graduated into
 7. `.specify/aspect-state.md` — the ledger head's scope-frame fields:
-   `Boundary:` · `Budget:` · `Parameters:` · the derived `Capacity:`.
-   **Read-only.** This run never writes a ledger.
+   `Boundary:` · `Budget:` · `Scope decisions:` · `Parameters:` · the derived
+   `Capacity:`. **Read-only.** This run never writes a ledger. The
+   `Scope decisions:` line is ground the four locked factors read, **never a
+   fifth factor**.
 8. on rerun: delivery state — the roadmap statuses, and any closed cycles
 
 ## Procedure
@@ -181,6 +183,14 @@ line in the roadmap.
      without passes the first test exactly as a stated one does. The two tests
      are the composition half of **principle 4**; the class makes them
      checkable at the row, and settles nothing on its own.
+   - *The SD reading rule.* A standing SD trimming a capability is
+     **the later, negotiated client statement** — an earlier hard-request
+     citation **no longer satisfies the second test *on its face*** for that
+     capability, and an epic sitting inside the boundary on that citation alone
+     is a **first-named advisory candidate — first-named, never disqualified:**
+     the first test still passes it where the product cannot meet its goal
+     without it. The controlling-statement law is elicitation principle 4's
+     (D13), cited and never restated.
    - *With `Capacity check: on`,* add the rough comparison, explicitly
      assumption-grade: `MVP phase ≈ <n> eng-h against capacity ≈ <m> — rough,
      assumption-grade. Slide-down candidates: <epics>.` With the check `off` the
@@ -204,6 +214,21 @@ line in the roadmap.
    conflicts with a factor produces **a named advisory in the same diff — never
    a block.** A partial directive ("X into MVP", nothing else) leaves you to
    propose what slides down to fit.
+
+   **The SD origin — a fourth input beside the BA's directives,
+   standing on the ledger head, never carried in the invocation.** Standing
+   `SD-<n>` entries (the `Scope decisions:` head line, orchestrator D-O65)
+   render in the run output as **candidate** move lists with their verbatim
+   citations, echoed *"understood as: …"* exactly as phase-shaped directives
+   are, and enter the diff as rows tagged **`BA-directed (SD-<n>)`**.
+   **They pin only on the step-4 approval — the BA confirming before any pin:**
+   the framework proposes, the BA disposes, and a row the BA edits out of the
+   diff never pins. An SD that is **not phase-shaped routes as bucket 2**; an SD
+   naming an unknown epic or an off-vocabulary phase is **bucket 3** — named,
+   never skipped. An SD-driven run rides the existing **`scope-frame`** trigger;
+   **no new trigger token exists.** The precedence principle — an SD governs
+   allocation, never discovery — is orchestrator §8.1's (D-O66), consumed here
+   by reference and never restated.
 
    **One run → one diff → one approval → one log entry**, whatever the input
    shape.
@@ -237,7 +262,7 @@ Appended to `.specify/memory/roadmap.md` under `## Allocation log`:
 
 | Epic | Phase | Reason |
 |---|---|---|
-| E-<nn> <name> | <from> → <to> | <factor(s) | BA-directed>: <reason> |
+| E-<nn> <name> | <from> → <to> | <factor(s) | BA-directed | BA-directed (SD-<n>)>: <reason> |
 
 Held: <unchanged rows, one line> · Basis: <one line across the four factors>
 ```

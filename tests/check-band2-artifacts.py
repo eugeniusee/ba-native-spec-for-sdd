@@ -81,7 +81,7 @@ RULES = {
     "B78": "roadmap — coverage: every canvas Core Function line resolves to some row's Source (an unresolved line is a hole)",
     # ── roadmap, the T-18 side ────────────────────────────────────────────
     "B79": "allocation log — entries head `### Allocation <n> — <date> · trigger: … · BA: …`, numbered from 1, contiguous",
-    "B80": "allocation log — every diff row is `<from> → <to>` with a reason tagged by one of the four factors",
+    "B80": "allocation log — every diff row is `<from> → <to>` with a reason tagged by one of the four factors, by `BA-directed`, or by `BA-directed (SD-<n>)`",
     "B81": "allocation log — every entry carries Held and Basis, or is the `no change — <reason>` form",
     "B82": "allocation log — allocation never creates or retires an epic: every logged epic resolves to a row, no phase cell is a retirement",
     "B83": "allocation log — the log is the Phase column's ground: every row's Phase equals its latest logged outcome",
@@ -153,6 +153,11 @@ SPEC_DESTINATIONS = (
 )
 
 FACTORS = ("value vs. effort", "dependency order", "risk", "walking skeleton")
+# The §5 Reason grammar pins three tag forms, not one: a factor, `BA-directed`
+# (D-B6-9's directed rows), and `BA-directed (SD-<n>)` — the SD-sourced
+# candidate a BA confirmed at step 4 (D-B6-12). A directed row carries the BA's
+# ruling in place of a factor, so it satisfies the tag requirement on its own.
+DIRECTED_RE = re.compile(r"\bBA-directed\b(\s*\(SD-\d+\))?", re.I)
 PHASE_RE = re.compile(r"^(Unallocated|MVP|Phase \d+|Later)$")
 EPIC_ID_RE = re.compile(r"^E-\d{2,}$")
 STATUS_OK = ("Defined", "In delivery", "Delivered")
@@ -437,8 +442,9 @@ def check_allocation(text: str, phases: dict[str, str], skip_phase: set[str],
                 rep.fail("B82" if "retire" in to.lower() else "B80",
                          f"Allocation {n}: {eid} moves to {to!r}")
                 continue
-            if not any(f in reason.lower() for f in FACTORS):
-                rep.fail("B80", f"Allocation {n}: {eid} reason names no factor: {reason!r}")
+            if not (any(f in reason.lower() for f in FACTORS)
+                    or DIRECTED_RE.search(reason)):
+                rep.fail("B80", f"Allocation {n}: {eid} reason names neither a factor nor BA-directed: {reason!r}")
             latest[eid] = to
         low = "\n".join(lines).lower()
         if "held:" not in low or "basis:" not in low:

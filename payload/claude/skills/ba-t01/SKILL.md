@@ -66,8 +66,8 @@ export, brief, deck, transcript, or nothing at all. **No context stack exists
 yet:** Frame is first, and there is no `.specify/memory/` estate to read.
 
 Plus, where a frame stands, the ledger head's scope-frame fields in
-`.specify/aspect-state.md` — `Boundary:` · `Budget:` · `Client label:` — the
-§13 mirror's source, **read-only**.
+`.specify/aspect-state.md` — `Boundary:` · `Budget:` · `Client label:` ·
+`Scope decisions:` — the §13 mirror's source, **read-only**.
 
 ## Procedure
 
@@ -85,7 +85,8 @@ Plus, where a frame stands, the ledger head's scope-frame fields in
    **The scope-frame mirror.** Where a scope frame stands — set at
    P-O0b (scope-frame selection) before this run — carry its detail into
    **§13 Context/Constraints** as cited lines: budget envelope · delivery
-   boundary · client label, each with its source or an explicit
+   boundary · client label · scope decisions (`SD-<n>`, each with its verbatim
+   citation), each with its source or an explicit
    `open — no source material`. The ledger head holds the machine-readable
    summary; the canvas holds the cited detail. **Mirror only: this run neither
    sets nor edits the frame.**
