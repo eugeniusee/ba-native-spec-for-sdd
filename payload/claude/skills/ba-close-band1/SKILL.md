@@ -148,6 +148,19 @@ Health refresh: <current | overdue: <r> runs vs cadence>
 Next act: <one line> — any reply continues · /ba-auto off renders the resumption report
 ```
 
+**Where a standing scope advisory stands, the decision-list tail follows the
+report's last line** — the pinned shape above is untouched, and the tail is an
+addition, never a replacement. Where no entry stands, nothing renders:
+
+```
+Scope advisories — <n> standing · decide each (P-A1 row shape — source-audit definition §5)
+Rulings: apply all · apply all except <#…> · <#>: <letter> <argument>
+```
+
+The row shape, the three dispositions and the ruling's home are `/ba-auto`'s —
+cited here, never restated. **Assembling the list may be AUTO; ruling it never
+is: an AG never answers it.**
+
 The effects above go to the ledger, not the conversation: under a grant nothing
 between acts is narrated, and this report is the whole of what the BA sees.
 

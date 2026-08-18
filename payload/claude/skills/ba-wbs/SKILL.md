@@ -84,12 +84,16 @@ Nine, ending at Billable.
 | **Comments / Questions** | `[NEEDS CLARIFICATION]` marker text, brackets stripped · the waiver reason with its `W-<NNN>-<nn>` tag and date | **nothing else** — the draft gate run's FAIL report stays out; it is the client Q&A agenda, a separate artifact |
 | **Role** | the story's actor first · then any role named in the story's linked requirements, its flows, or a Business Rule folded into that row's acceptance | comma-separated |
 | **Phase** | the roadmap epic's Phase, on every story row under the epic · a deferred row carries its item's target phase | — |
-| **Billable** | derived — the row's Phase (a deferred row: its target phase) tested against the ledger head's `Boundary:` set | `Yes` inside the boundary · `No` outside · **blank where the Phase cell is blank** — an absent source renders an empty cell, never a guess |
+| **Billable** | derived — the row's Phase (a deferred row: its target phase) tested against the ledger head's `Boundary:` set | `Yes` inside the boundary · `No` outside · **blank where the Phase cell is blank**, and **blank where no boundary stands in the frame** — an absent source renders an empty cell, never a guess, and never a default `Yes` or `No` |
 
 **No estimate column exists.** The set ends at Billable. Estimating is the
 client's act, outside the export: the framework never estimates numerically
 (the depth rule of T-18 — Scope allocation), and it renders no column
-inviting a number it refuses to produce. **Billable is a derived `Yes`/`No`,
+inviting a number it refuses to produce. **Where no boundary stands in the frame
+the Billable cell renders blank** — the export's own never-invents clause,
+stated at the rule it governs: the test has no ground, so the column has no
+value, and a default `Yes` or `No` would be the export answering a question the
+frame has not. **Billable is a derived `Yes`/`No`,
 never a number** — the never-numeric guarantee is untouched, held by structure.
 
 ## Deferred rows

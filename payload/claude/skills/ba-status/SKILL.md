@@ -32,7 +32,7 @@ summarize it into prose. Then add the derived lines below it.
 ```
 Band: 1 (open) | 1 (closed <date>) — Bands 2/3 capable
 Profile: <Discovery | Presale> — picked <date> (P-O0); switches append to Events with a reason
-Sources: <kind — state, per named source>  (captured <date> | named — pending | skipped — <reason> | none)
+Sources: <kind — state, per named source>  (captured <date> | named — pending | skipped — <reason> | excluded — <reason> | none)
 Boundary: <ladder value(s) — MVP | MVP + Phase 2 | …> — set <date> (P-O0b); switches append to Events with a reason
 Budget: <amount + currency> | none stated  (<citation | BA-supplied | open — no source material>)
 Client label: <free text — PoC · prototype · pilot…>  (<citation | BA-supplied | open — no source material>)
@@ -53,6 +53,7 @@ Standing aspect waivers:  none | AW-<n> · <aspect> · <AT-IDs unmet> — revisi
 Open reopens:             none | RO-<n> · <aspect> — <conflict, one line>
 Upstream flags:           none | <aspect> flagged: prerequisite <aspect> reopened
 Deferred consequences:    none | RO-<n>: <item> — trigger: <event>
+Scope advisories:         none | ADV-<n> · <epic> — standing | accepted <date> — revisit: <event>
 ```
 
 ### Derived — what is available now

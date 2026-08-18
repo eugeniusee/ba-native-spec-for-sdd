@@ -200,6 +200,34 @@ line in the roadmap.
    roadmap.** That file carries outcomes and reasons only, and a capacity figure
    written into it would breach the numbers-in-advisory-prose-only rule.
 
+   **The advisory is a decision list, not prose.** Every finding the advisory
+   names takes an **`ADV-<n>`** id from the orchestrator's register — the
+   `Scope advisories:` head line — and the advisory renders as **one numbered
+   decision list** in the **P-A1 row shape** (source-audit definition §5 —
+   cited, never restated): each row the finding with its **verbatim citation**,
+   lettered dispositions, and a default.
+
+   **Three dispositions:**
+
+   - **(a) `hold as advisory — no move` — the default.** Visibility preserved,
+     nothing moves, the row returning at the next run for as long as the finding
+     stands.
+   - **(b) `direct a move → <phase>`.** Pinned in this run's diff as a
+     **`BA-directed (ADV-<n>)`** row — **never an inline phase edit**, the
+     column ownership above standing.
+   - **(c) `accept — <reason>`** with an event-shaped revisit trigger, on the
+     **SA record pattern** (source-audit definition §5): the entry moves to
+     `accepted <date>` on the head line and **returns to the list the moment a
+     new source or a new `SD-<n>` re-asserts the finding.**
+
+   **`apply all` is a complete, safe ruling**, every row's default holding, and
+   **no disposition ends a finding without a reason.** **Visibility, never a
+   block; the BA's call stands** — what changes is that the call is now **taken
+   and recorded**, where prose beside a diff could be approved without ever
+   being read. **Under a standing grant the same list rides the orchestrator's
+   band-boundary and resumption reports**; **assembling it may be AUTO, ruling
+   it never is.**
+
    **Directed reallocation — the optional input, parsed into three buckets, each
    named in the run output:**
 
@@ -237,6 +265,13 @@ line in the roadmap.
    is the ruling.** A BA edit against the recommendation is noted one line in the
    run log.
 
+   **The step-4 approval carries the scope-advisory decision list.** The run's
+   one BA act rules the list **row by row in the same breath as the diff**, and
+   the ruling — the disposition per `ADV-<n>`, with the reason where the BA gave
+   one — is logged in this run's entry. **No second stop exists** and the
+   orchestrator adds no prompt point: the advisory is born here, so it is ruled
+   here.
+
 5. **Framework act — write.** Phase cells updated; **one** log entry appended.
 
    **Every approved run logs, including no-change.** A rerun that moves nothing
@@ -262,7 +297,7 @@ Appended to `.specify/memory/roadmap.md` under `## Allocation log`:
 
 | Epic | Phase | Reason |
 |---|---|---|
-| E-<nn> <name> | <from> → <to> | <factor(s) | BA-directed | BA-directed (SD-<n>)>: <reason> |
+| E-<nn> <name> | <from> → <to> | <factor(s) | BA-directed | BA-directed (SD-<n>) | BA-directed (ADV-<n>)>: <reason> |
 
 Held: <unchanged rows, one line> · Basis: <one line across the four factors>
 ```
@@ -330,7 +365,8 @@ never creates or retires an epic · never slices features · never sequences wor
 inside a phase · never estimates in numbers · never writes a span of phases ·
 never guesses past an open scope question · never skips the log entry on a
 no-change rerun · never rewrites a standing entry · never approves its own
-recommendation · never fires a health run · **never writes a capacity figure
+recommendation · **never answers the scope-advisory decision list on the BA's
+behalf, and never lands an advisory-directed move as an inline phase edit** · never fires a health run · **never writes a capacity figure
 into the roadmap, a WBS, a spec or any other artifact** — the advisory's numbers
 live in its prose and nowhere else · never sets or edits the scope frame, and
 never writes a ledger · never contests a BA directive, and never executes a

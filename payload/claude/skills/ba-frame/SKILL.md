@@ -37,7 +37,7 @@ Create both from their templates, at `.specify/` top level:
 
 | File | From | Initial content |
 |---|---|---|
-| `.specify/aspect-state.md` | `.specify/ba/templates/aspect-state.md` | head: `Band: 1 (open)`; `Profile:`, `Sources:` and the five scope-frame lines left for Step 2; the six-row table at `untouched`, `Since` and `Basis` empty; all four head lines `none` |
+| `.specify/aspect-state.md` | `.specify/ba/templates/aspect-state.md` | head: `Band: 1 (open)`; `Profile:`, `Sources:` and the five scope-frame lines left for Step 2; the six-row table at `untouched`, `Since` and `Basis` empty; all five standing-instrument head lines `none` — `Standing aspect waivers:` · `Open reopens:` · `Upstream flags:` · `Deferred consequences:` · `Scope advisories:` (the advisory register, D-O68) |
 | `.specify/aspect-plans.md` | `.specify/ba/templates/aspect-plans.md` | the eight empty sections: `## Frame`, the six aspects, `## Band 2` |
 
 Both files sit **outside `.specify/memory/`** and stay there. Orchestration state
@@ -105,6 +105,7 @@ exactly:
 Sources on hand: <list of supplied material>.
 Slack — closest match on the project name: #<channel> — include it, or ignore it.   (renders only when Slack is reachable and the scan matched)
 and <N> more matched — name them to see                                             (renders only when N ≥ 1)
+<k> channel(s) excluded by BA ruling                                                 (renders only when k ≥ 1)
 Anything else? Slack channel(s) · email threads · drive folders · call recordings —
 name them, paste them, or attach them; or "none".
 ```
@@ -154,6 +155,14 @@ matches the project's, and offer the **best match** on the inventory's own line.
   match — plus one count line where others matched:
   `and <N> more matched — name them to see`. **Two or more channels is a render
   defect** — the BA is confirming a source, not running a search.
+- **Excluded channels leave the scan (D-O70).** A channel standing
+  `excluded — <reason>` on the `Sources:` line is **filtered out of the
+  candidate ranking and out of `<N>`**, and where the filter removed any, the
+  block renders one line: `<k> channel(s) excluded by BA ruling`. **Filtered
+  and named, never silently dropped** — the complete listing is what makes
+  `<N>` honest, so a count that quietly omitted an exclusion would break the
+  one guarantee paging the listing bought. And **never re-ask a ruling the BA
+  already made** — at the single Frame stop, of all places.
 
 **Disposition — the BA's, in the same one reply.**
 
@@ -165,9 +174,9 @@ matches the project's, and offer the **best match** on the inventory's own line.
   has just confirmed. That stop is the one already budgeted — **the scan adds no
   second consumer of the slack.**
 - **Declined** — **no ledger entry at all.** The `Sources:` line records
-  **BA-named and BA-confirmed sources only**, and its four states are closed: a
-  proposal the BA did not take was never a source. **Do not invent a fifth
-  state.**
+  **BA-named and BA-confirmed sources only**, and its state vocabulary is
+  closed at the five below and nothing else: a proposal the BA did not take was
+  never a source, and **never gets a state of its own.**
 - **A candidate the reply does not answer is declined.** This does not weaken
   *silence never resolves a source* below: that rule governs a source the **BA
   named**. Your own proposal is not a hole in the BA's inventory, and ageing it
@@ -227,7 +236,58 @@ dispositions offered — **the BA rules; silence never resolves it**:
   the source can arrive later.
 
 Every named source lands on the ledger head's `Sources:` line with its state —
-one of the four, never absence.
+**one of the five, never absence.** The fifth is `excluded — <reason>` (D-O70,
+below); D-O48's closed four-state vocabulary is extended on the record, never
+rewritten.
+
+### The excluded source — `excluded — <reason>` (D-O70)
+
+The BA may rule any **named artifact** out of the framework's reach — a file, a
+URL, a channel, a folder — **at the inventory or at any later moment**. Record
+the ruling `excluded — <reason>` on the `Sources:` line.
+
+**It is a state, not a triage outcome.** Reachability is irrelevant to it, so
+the three dispositions above — supply · skip · pending — **stand exactly as they
+are and gain nothing**: the artifact an exclusion most often has to reach is the
+**reachable** one, which a triage-only vocabulary could never name.
+
+**Grain is the named artifact, and a container is one.** Excluding a channel, a
+folder or a URL **covers everything inside it**; a narrower exclusion is named
+narrowly. Never make a BA enumerate the contents of a folder they have chosen
+not to read.
+
+**The law, in three clauses.**
+
+1. An excluded artifact is **never captured**.
+2. It is **never mined** — no capture of it exists to mine.
+3. A link or reference encountered inside **any** capture that resolves to an
+   excluded artifact is **never followed**.
+
+**The encounter is recorded, never silently skipped.** Append one Events line
+per **distinct excluded artifact per capture, deduplicated**, on the existing
+source grammar — **no new event kind exists**:
+
+```
+<date> · source · <artifact> · encounter — not followed · <BA initials> — excluded <date>
+```
+
+The actor field carries the **BA's initials**: the framework is acting under the
+BA's own exclusion ruling. **Deduplication is the whole of the flood control** —
+a capture carrying forty references to one excluded folder writes **one** line,
+and a capture carrying none writes none.
+
+**An exclusion hides nothing.** The artifact stands on the `Sources:` line with
+its reason, every encounter stands in Events, and **only capture and following
+stop**. An exclusion that produced no record would be indistinguishable from a
+source nobody thought of — which is the hole the inventory exists to close.
+
+**Switchable, on the frame's own precedent.** An exclusion is **liftable at any
+time**: the state changes on the `Sources:` line, the switch appends a `source`
+Events line with its reason, and the lifted artifact becomes an **ordinary named
+source under the mechanics above, unchanged** — captured verbatim, mined under
+cite-or-mark. **Late arrival is zero new machinery:** an artifact arriving
+mid-band that matches a standing exclusion is **not captured**, and its arrival
+writes the encounter line. No new event kind, no new state, no new stop.
 
 **Where a capture lands — `sources/` at repo root**, deliberately outside
 `.specify/memory/` (the `canvas.md` placement), **one artifact per capture,
@@ -336,7 +396,7 @@ Write the pick and the frame into the ledger head:
 
 ```
 Profile: <Discovery | Presale> — picked <date> (P-O0); switches append to Events with a reason
-Sources: <kind — state, per named source>  (captured <date> | named — pending | skipped — <reason> | none)
+Sources: <kind — state, per named source>  (captured <date> | named — pending | skipped — <reason> | excluded — <reason> | none)
 Boundary: <ladder value(s) — MVP | MVP + Phase 2 | …> — set <date> (P-O0b); switches append to Events with a reason
 Budget: <amount + currency> | none stated  (<citation | BA-supplied | open — no source material>)
 Client label: <free text — PoC · prototype · pilot…>  (<citation | BA-supplied | open — no source material>)
@@ -354,10 +414,12 @@ silent head rewrite:
 ```
 
 **Every named source records an event too** — the switch grammar at source
-grain, appended for the life of the project:
+grain, appended for the life of the project, and the encounter of a reference to
+an excluded artifact on the same grammar (D-O70):
 
 ```
 <date> · source · <name> · <state> · <BA initials> — <basis>
+<date> · source · <artifact> · encounter — not followed · <BA initials> — excluded <date>
 ```
 
 **A constraint that arrives after Frame is a routed scope-frame-change
@@ -446,9 +508,11 @@ restriction: out-of-profile techniques stay electable by code ·
 **never sets or confirms the scope frame on the BA's behalf, and never takes
 P-O0b (scope-frame selection) under an autonomy grant** — the frame is a
 safety-floor act · **never rules a source disposition on the BA's behalf, and
-never reads silence as one** · never interprets a capture into the artifact it
-writes, and never lands one under `.specify/memory/` — a capture is verbatim,
-and `sources/` is its home · never writes a capacity figure into the canvas, the roadmap,
+never reads silence as one** · **never captures an artifact standing
+`excluded — <reason>`, never mines one, and never follows a reference to one
+inside any capture — and never lets an encounter go unrecorded** · never
+interprets a capture into the artifact it writes, and never lands one under
+`.specify/memory/` — a capture is verbatim, and `sources/` is its home · never writes a capacity figure into the canvas, the roadmap,
 a WBS or any other artifact: capacity is a head line and advisory prose, nothing
 else.
 

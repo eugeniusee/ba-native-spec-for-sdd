@@ -363,6 +363,59 @@ case "$NPAIRS" in
   *) bad "MVP lost its Yes under the narrow boundary: [$NPAIRS]" ;;
 esac
 
+# ── 2c. Billable renders blank where no boundary stands (D-O71) ──────────────
+#
+# The codification case, and the one the two frames above cannot reach: a frame
+# that stands — a ledger head, a label, a scope-decisions line — and names no
+# delivery boundary. The test has no ground, so the column has no value: every
+# cell blank, and never a default `Yes` or `No`. The exporter has behaved this
+# way since D-O67; D-O71 rules it, and this is the assertion that holds it.
+
+printf '\n▸ Billable — blank where no boundary stands in the frame (D-O71)\n'
+
+NOBND="$TMP/noboundary-proj"
+cp -R "$PROJ" "$NOBND"
+mkdir -p "$NOBND/.specify"
+cat > "$NOBND/.specify/aspect-state.md" <<'HEAD'
+# Aspect State — appointment booking
+## Current state
+Band: 1 (open)
+Profile: Presale — picked 2026-08-13 (P-O0)
+Budget: 50000 USD  (sources/brief.md §2)
+Client label: PoC  (sources/brief.md §1)
+Scope decisions: none found
+HEAD
+
+wbs --root "$NOBND" --profile presale --out-dir "$TMP/noboundary" \
+    --date 2026-08-19 > "$TMP/noboundary.summary" 2>&1 \
+  && ok "the no-boundary run exits clean — an absent boundary is never an error" \
+  || { bad "the no-boundary run failed"; sed 's/^/      /' "$TMP/noboundary.summary"; }
+
+python3 - "$TMP/noboundary/wbs.csv" > "$TMP/noboundary.txt" <<'PYX'
+import csv, sys
+rows = list(csv.reader(open(sys.argv[1], encoding="utf-8")))
+head, body = rows[0], rows[1:]
+ph, bi = head.index("Phase"), head.index("Billable")
+print("filled\t%d" % sum(1 for r in body if r[bi].strip()))
+print("phased\t%d" % sum(1 for r in body if r[ph].strip()))
+print("values\t%s" % "; ".join(sorted({r[bi].strip() or "<blank>" for r in body})))
+PYX
+NB_FILLED="$(awk -F'\t' '$1=="filled" {print $2}' "$TMP/noboundary.txt")"
+NB_PHASED="$(awk -F'\t' '$1=="phased" {print $2}' "$TMP/noboundary.txt")"
+NB_VALUES="$(awk -F'\t' '$1=="values" {print $2}' "$TMP/noboundary.txt")"
+
+[ "${NB_PHASED:-0}" -gt 0 ] \
+  && ok "…the render still carries $NB_PHASED phased row(s) — the case is not vacuous" \
+  || bad "no row carries a Phase: the no-boundary case proves nothing"
+[ "${NB_FILLED:-1}" = "0" ] \
+  && ok "…and every Billable cell renders blank: [$NB_VALUES]" \
+  || bad "$NB_FILLED Billable cell(s) hold a value with no boundary to test against: [$NB_VALUES]"
+
+# the sentence itself lives with the document's operative text — asserted at
+# check-orchestrator.sh (§10.5 · the ba-wbs carrier); what is proven here is
+# the behaviour it rules.
+
+
 # the xlsx title block — two lines above the bold header row, label verbatim
 python3 - "$TMP/framed/wbs.xlsx" > "$TMP/title.txt" 2>&1 <<'PYX'
 import sys, zipfile

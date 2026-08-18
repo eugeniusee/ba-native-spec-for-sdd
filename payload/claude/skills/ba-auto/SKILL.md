@@ -167,6 +167,9 @@ Next act: <one line> — any reply continues · /ba-auto off renders the resumpt
 
 The auto-trail count is **since the last boundary**, not since the grant.
 
+**Where a standing scope advisory stands, the decision-list tail follows this
+report's last line** — the shape above is untouched (below).
+
 **The health line is display only.** It carries the refresh state computed
 exactly as the dashboard's line 5 computes it — recorded `gate-health.md` runs
 against the gate's cadence, one full run per scope-brief ingestion batch — so
@@ -197,11 +200,69 @@ their items manually, each by its own ordinary checkpoint. Append the events:
 <date> · ratification · AG-<n> · <initials> — accepted all | exceptions: <list>
 ```
 
+## The scope-advisory decision list — a conditional tail on both reports
+
+Where the ledger head's `Scope advisories:` line carries at least one
+**`standing`** entry, the **band-boundary report** and the **resumption report**
+each render the list as a **tail after their last pinned line**. **The pinned
+shapes above do not change** — five lines and six, byte for byte — and the tail
+is **an addition, never a replacement**. Where no entry stands, **nothing
+renders**:
+
+```
+Scope advisories — <n> standing · decide each (P-A1 row shape — source-audit definition §5)
+Rulings: apply all · apply all except <#…> · <#>: <letter> <argument>
+```
+
+**The row shape is P-A1's — cited, never restated here:** one numbered list,
+each row carrying the advisory finding **with its verbatim citation**, lettered
+dispositions, and a **default such that `apply all` is a complete, safe
+ruling**. Two shapes for one list would drift; there is one, and it lives in the
+source-audit definition.
+
+**The dispositions, three:**
+
+- **(a) `hold as advisory — no move` — the default.** Visibility is preserved
+  and **nothing moves**. The row renders again at the next ratification for as
+  long as the finding stands.
+- **(b) `direct a move → <phase>`.** The move **rides T-18 — Scope allocation's
+  existing machinery** as a **BA-directed candidate** into the next allocation
+  diff, tagged `BA-directed (ADV-<n>)` — **never an inline phase edit**: the
+  roadmap's Phase column has one writer, and that technique is it.
+- **(c) `accept — <reason>`** with an **event-shaped revisit trigger**, on the
+  **SA record pattern** (source-audit definition §5, cited). The entry moves to
+  `accepted <date>` on the head line and stops re-rendering — **and returns to
+  the list the moment a new source or a new `SD-<n>` re-asserts the finding.**
+  An accept is a **recorded BA judgement, never a dismissal**: no disposition
+  removes a finding without a reason.
+
+**Where the ruling lands.** Under a standing AG it rides the **existing
+`ratification` event**; in manual mode it lands in the **T-18 — Scope allocation
+run-log entry** whose step-4 approval carried the list. Either way the head
+line's state changes and **no new event kind exists**.
+
+**The manual carrier is T-18 — Scope allocation's step-4 approval** — the
+advisory's own run, where the BA already edits and approves the diff. **No new
+prompt point and no new stop:** the P-O table is complete as it stands, and the
+≤ 8 Presale budget is arithmetically untouched — the list renders inside acts
+that already happen. There is **no act named *the manual ratification batch***
+and this creates none: **ratification stays the AG's instrument**, and manual
+mode rules the list where the finding is born.
+
+**Autonomy — the list is a BA act, and an AG never answers it.** **Assembling**
+the list may be AUTO like any other assembly; **ruling** it is not — the P-A1
+floor. **No policy row is added and none moves**, the safety floor keeps its
+four acts, and a run under a grant renders the tail and **ends its turn**
+exactly as the two reports already do. **Internal surfaces only:** the decision
+list never reaches the client-facing WBS export or any other client artifact.
+
 ## What this skill never does
 
 Never AUTO-stamps a ⚑ sign-off, an effective PASS, a handoff, or a scope
 frame · **never grants itself an AG** — the grant is the BA's act, and a framework that could write its
-own would have no boundary at all · never invents where unclear — that is an
+own would have no boundary at all · **never answers the scope-advisory decision
+list** — assembling it is AUTO, ruling it is the BA's act in every mode · never
+invents where unclear — that is an
 Open Question · never switches the profile mid-auto · never executes a reopen
 cascade · never takes an override, a cap adjust or a defer at
 P-O9 — overflow ruling · never runs a CC assertion itself · never leaves an act

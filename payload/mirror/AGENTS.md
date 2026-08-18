@@ -371,6 +371,34 @@ Next manual act: <one line>
 
 Ratification is one batch act; exceptions reopen their items manually.
 
+**The scope-advisory decision list — a conditional tail on both reports.** Where
+the ledger head's `Scope advisories:` line carries at least one **`standing`**
+entry, both reports render the list as a **tail after their last pinned line**;
+where no entry stands, **nothing renders**. **The pinned shapes above do not
+change** — five lines and six, byte for byte — and the tail is an addition,
+never a replacement:
+
+```
+Scope advisories — <n> standing · decide each (P-A1 row shape — source-audit definition §5)
+Rulings: apply all · apply all except <#…> · <#>: <letter> <argument>
+```
+
+**The row shape is P-A1's — cited, never restated:** each row the finding with
+its **verbatim citation**, lettered dispositions, and a default such that
+**`apply all` is a complete, safe ruling**. **Three dispositions:** **(a)
+`hold as advisory — no move`, the default** — nothing moves, the row returns at
+the next ratification · **(b) `direct a move → <phase>`** — riding
+T-18 — Scope allocation's existing machinery as a BA-directed candidate, tagged
+`BA-directed (ADV-<n>)`, **never an inline phase edit** · **(c)
+`accept — <reason>`** with an event-shaped revisit trigger on the SA record
+pattern, returning to the list the moment a new source or a new `SD-<n>`
+re-asserts the finding. **No disposition ends a finding without a reason.**
+**Where the ruling lands:** under a grant, the existing `ratification` event; in
+manual mode, the **T-18 — Scope allocation run-log entry** whose step-4 approval
+carried the list — **no new event kind, no new prompt point, and no act named
+*the manual ratification batch***. **Assembling the list may be AUTO; ruling it
+never is — an AG never answers it**, and the list reaches no client artifact.
+
 ## Where things live
 
 | What | Where |

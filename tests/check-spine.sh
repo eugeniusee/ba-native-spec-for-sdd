@@ -535,6 +535,30 @@ has "$T18" "D-O66" "T-18 cites the precedence principle rather than restating it
 hasnt "$T18" "governs **allocation**, never discovery" \
     "…and does not restate it — one statement, at its own site"
 
+# T-18: the advisory becomes a decision (D-B6-14 · D-B6-15)
+has "$T18" "The advisory is a decision list, not prose" \
+    "T-18's advisory renders as a decision list, never as prose"
+has "$T18" "\`ADV-<n>\`" "…each finding taking its id from the orchestrator's register"
+has "$T18" "P-A1 row shape" "…in the P-A1 row shape, cited and never restated"
+hasnt "$T18" "Rulings: apply all · apply all except" \
+    "…and the shape is not restated — one shape, at the source-audit definition"
+has "$T18" "hold as advisory — no move" \
+    "…disposition (a), the default that makes \`apply all\` safe"
+has "$T18" "never an inline phase edit" \
+    "…disposition (b) pinned in the diff, never an inline phase edit"
+has "$T18" "SA record pattern" \
+    "…disposition (c) on the SA record pattern, with its revisit trigger"
+has "$T18" "no disposition ends a finding without a reason" \
+    "…and no disposition ends a finding without a reason"
+has "$T18" "The step-4 approval carries the scope-advisory decision list" \
+    "…ruled at the step-4 approval, the run's existing BA act"
+has "$T18" "No second stop exists" "…with no second stop and no new prompt point"
+has "$T18" "assembling it may be AUTO, ruling it never is" "…assembly may be AUTO, the ruling never"
+has "$T18" "BA-directed (ADV-<n>)" "…and the §5 Reason tag set gains its third value"
+has "$SKILLS/ba-t18/references/example.md" "BA-directed (ADV-<n>)" \
+    "…carried into the worked example's row grammar"
+
+
 # ── T-18 · the SD run, seeded both ways ──────────────────────────────────────
 #
 # The sheet is prose, so the seeded fixtures are allocation logs: the shape a
@@ -631,6 +655,49 @@ else
     && ok "seeded defect caught by name: B82 — an SD tag does not license a new epic" \
     || { bad "the invented epic failed, but not as B82"; sed 's/^/      /' "$TMP/bad2.out"; }
 fi
+
+# ── T-18 · the ADV run, seeded both ways ─────────────────────────────────────
+#
+# D-B6-15's tag is the only thing joining a moved row back to the finding that
+# moved it, so it is proven the same way the SD tag was: the compliant row must
+# validate, and an advisory-driven move that dropped the tag must fail by name.
+
+printf '\n▸ T-18 · the ADV run — the tag survives into the log (D-B6-15)\n'
+
+# (v) the clean ADV run — a `direct a move` disposition, tagged in the diff
+seed_roadmap "$TMP/adv/roadmap.md" E-07 "Phase 2" '### Allocation 3 — 2026-08-19 · trigger: scope-frame · BA: Y.K.
+
+| Epic | Phase | Reason |
+|---|---|---|
+| E-07 Online Payment | MVP → Phase 2 | BA-directed (ADV-1): no legitimacy trace inside the boundary; the BA directed the move at the step-4 approval |
+
+Held: the remaining rows stand · Basis: the advisory named it, the BA ruled it — visibility, never a block.'
+if python3 "$VALIDATE" --roadmap "$TMP/adv/roadmap.md" --canvas "$CV" \
+     > "$TMP/adv.out" 2>&1; then
+  ok "seeded clean: a \`BA-directed (ADV-1)\` diff row passes the log grammar"
+else
+  bad "the ADV-tagged allocation row was rejected by the validator"
+  sed 's/^/      /' "$TMP/adv.out"
+fi
+
+# (vi) the seeded defect — an advisory-driven move that carries no tag at all
+printf '\n  seeded-defect control:\n'
+seed_roadmap "$TMP/advbad/roadmap.md" E-07 "Phase 2" '### Allocation 3 — 2026-08-19 · trigger: scope-frame · BA: Y.K.
+
+| Epic | Phase | Reason |
+|---|---|---|
+| E-07 Online Payment | MVP → Phase 2 | ADV-1: the advisory named it and the BA moved it |
+
+Held: the remaining rows stand · Basis: none stated.'
+if python3 "$VALIDATE" --roadmap "$TMP/advbad/roadmap.md" --canvas "$CV" \
+     > "$TMP/advbad.out" 2>&1; then
+  bad "an untagged ADV move passed the validator — the tag is what joins the row to the finding"
+else
+  grep -q "B80" "$TMP/advbad.out" \
+    && ok "seeded defect caught by name: B80 — an untagged ADV move" \
+    || { bad "the untagged ADV move failed, but not as B80"; sed 's/^/      /' "$TMP/advbad.out"; }
+fi
+
 
 # the writer split, stated on both sides
 has "$T17" "one file, three writers" "T-17 states the shared-file write discipline"

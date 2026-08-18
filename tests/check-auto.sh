@@ -600,6 +600,90 @@ diff -q "$TMP/bshape-doc.txt" "$TMP/bshape-dirty.txt" >/dev/null 2>&1 \
   && bad "a reworded continuation line slips through — the byte-match does not hold" \
   || ok "the control fires — a reworded boundary line goes red"
 
+# ── the scope-advisory decision list — the conditional tail on both reports ──
+#
+# D-O69. The tail is an addition to two shapes the suite already byte-matches,
+# so what is asserted here is what the byte-match cannot see: that the tail
+# exists on every surface that renders either report, in the document's own
+# words, with its three dispositions, its safe default, its ruling home, its
+# manual carrier and the autonomy clause. The pinned shapes are proven untouched
+# above — the tail is its own fenced block and never edits theirs.
+
+printf '\n▸ The scope-advisory decision list — the tail on both reports (§10.7; D-O68–D-O69)\n'
+
+ADVHEAD='Scope advisories — <n> standing · decide each (P-A1 row shape — source-audit definition §5)'
+ADVRULE='Rulings: apply all · apply all except <#…> · <#>: <letter> <argument>'
+
+has "$DOC" "$ADVHEAD" "§10.7 pins the decision-list tail's first line"
+has "$DOC" "$ADVRULE" "…and its rulings line"
+
+# every surface that renders either report carries the tail
+for pair in "$AUTO|the ba-auto skill" "$CB1|ba-close-band1 (P-O7)" \
+            "$ENTF|ba-enter-feature (P-O8)" "$BLOCK|the CLAUDE.md block" \
+            "$AGENTS|AGENTS.md"; do
+  f="${pair%%|*}"; label="${pair##*|}"
+  if grep -qF -- "$ADVHEAD" "$f" && grep -qF -- "$ADVRULE" "$f"; then
+    ok "$label renders a report and carries the decision-list tail"
+  else
+    bad "$label renders a report but carries no decision-list tail (D-O69)"
+  fi
+done
+
+# the tail is conditional, and it is an addition — never a replacement
+for pair in "$DOC|§10.7" "$AUTO|ba-auto" "$BLOCK|the CLAUDE.md block" "$AGENTS|AGENTS.md"; do
+  f="${pair%%|*}"; label="${pair##*|}"
+  grep -qF -- "never a replacement" "$f" \
+    && ok "the tail is an addition, never a replacement — $label" \
+    || bad "$label does not say the tail never replaces the pinned shape"
+done
+
+# the law the tail carries: the shape, the dispositions, the default, the home
+for pair in "$AUTO|ba-auto" "$BLOCK|the CLAUDE.md block" "$AGENTS|AGENTS.md"; do
+  f="${pair%%|*}"; label="${pair##*|}"
+  while IFS='|' read -r what phrase; do
+    [ -z "$what" ] && continue
+    grep -qF -- "$phrase" "$f" \
+      && ok "$label carries $what" \
+      || bad "$label is missing $what (D-O69)"
+  done <<'ADVLAW'
+the P-A1 row shape, cited never restated|P-A1 row shape
+disposition (a), the default|hold as advisory — no move
+disposition (b), never an inline edit|never an inline phase edit
+the ADV tag a directed move carries|BA-directed (ADV-<n>)
+disposition (c) on the SA record pattern|SA record
+the safe default|apply all
+the reason rule — no silent end to a finding|without a reason
+the manual carrier — T-18's step-4 approval|step-4 approval
+the autonomy clause — an AG never answers it|never answers it
+ADVLAW
+done
+
+# the register the tail reads is the ledger head's, and the ruling lands on an
+# event that already exists — no new event kind
+has "$AUTO" "Scope advisories:" "ba-auto reads the register from the ledger head"
+has "$AUTO" "no new event kind exists" "…and the ruling lands with no new event kind"
+has "$AUTO" "the manual ratification batch" \
+    "…and the act that does not exist is named as not existing"
+
+# seeded defect — a standing advisory that reaches no report tail
+ADVC="$TMP/adv-corpus"
+mkdir -p "$ADVC"
+cp "$AUTO" "$ADVC/SKILL.md"
+python3 - "$ADVC/SKILL.md" "$ADVHEAD" <<'PYSTRIP'
+import pathlib, sys
+p = pathlib.Path(sys.argv[1])
+t = p.read_text(encoding="utf-8")
+p.write_text(t.replace(sys.argv[2] + "\n", ""), encoding="utf-8")
+PYSTRIP
+if grep -qF -- "$ADVHEAD" "$ADVC/SKILL.md"; then
+  bad "the seeded strip did not land — the control proves nothing"
+elif grep -qF -- "$ADVHEAD" "$AUTO"; then
+  ok "the control fires — a standing advisory reaching no report tail goes red"
+else
+  bad "ba-auto lost its decision-list tail: a standing advisory would reach no report"
+fi
+
+
 # the shape is a pinned format, so it joins register rule 8's list
 has "$DOC" "band-boundary report §10.7" "§10.3 rule 8's list carries the band-boundary report"
 for f in "$ORC" "$BLOCK" "$AGENTS"; do

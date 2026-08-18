@@ -94,6 +94,9 @@ RULES = {
     "L12": "ledger home — outside .specify/memory/ (D-O3, D-G1/D-G8)",
     "L13": "chronology — events append in non-decreasing date order (§2.4)",
     "L14": "RO lifecycle — received before ruled; open ROs stand in the head (§5.1)",
+    "L15": "exclusion — an artifact standing `excluded` is never captured (§8.1, D-O70)",
+    "L16": "encounter — a capture referencing an excluded artifact carries its "
+           "encounter line (§8.1 · §2.4, D-O70)",
 }
 
 # ── event forms ──────────────────────────────────────────────────────────────
@@ -130,13 +133,21 @@ RE_AUTO_OFF = re.compile(rf"^({DATE}) · auto off · AG-(\d+) · (.+?) — (.+)$
 RE_RATIFICATION = re.compile(
     rf"^({DATE}) · ratification · AG-(\d+) · (.+?) — (.+)$")
 
-# The `Sources:` state vocabulary, closed at four (D-O48). In an event the date
-# rides the event itself, so bare `captured` is the common render.
+# The `Sources:` state vocabulary, closed at five — D-O48's four, extended on
+# the record by D-O70's `excluded — <reason>`. In an event the date rides the
+# event itself, so bare `captured` is the common render.
 RE_SOURCE_STATE = re.compile(
-    r"^(captured(\s+\S.*)?|named — pending|skipped — \S.*|none)$")
+    r"^(captured(\s+\S.*)?|named — pending|skipped — \S.*"
+    r"|excluded — \S.*|none)$")
+
+# The encounter of a reference to an excluded artifact rides the same `source`
+# event grammar and is not a state (D-O70): `<artifact> · encounter — not
+# followed · <initials> — excluded <date>`. No new event kind exists.
+RE_ENCOUNTER = re.compile(r"^encounter — not followed$")
 
 HEAD_LINES = ["Standing aspect waivers:", "Open reopens:",
-              "Upstream flags:", "Deferred consequences:"]
+              "Upstream flags:", "Deferred consequences:",
+              "Scope advisories:"]
 
 
 class Report:
@@ -182,7 +193,7 @@ def parse_blocks(lines, start, end):
     return blocks
 
 
-def check(path: pathlib.Path, allow_open_band: bool) -> Report:
+def check(path: pathlib.Path, allow_open_band: bool, captures=None) -> Report:
     rep = Report()
     text = path.read_text(encoding="utf-8")
     lines = text.splitlines()
@@ -258,6 +269,8 @@ def check(path: pathlib.Path, allow_open_band: bool) -> Report:
     # ── replay the events ───────────────────────────────────────────────────
     state = {a: "untouched" for a in ASPECTS}
     since = {a: "" for a in ASPECTS}
+    excluded = {}                 # artifact → line-no of its standing exclusion
+    encountered = set()           # artifacts whose encounter line was written
     band_entered = False
     closed_on = None
     last_date = ""
@@ -489,11 +502,29 @@ def check(path: pathlib.Path, allow_open_band: bool) -> Report:
         m = RE_SOURCE.match(header)
         if m:
             date, name, src_state = m.group(1), m.group(2), m.group(3)
-            if not RE_SOURCE_STATE.match(src_state):
+            if RE_ENCOUNTER.match(src_state):
+                # not a state — the encounter of a reference the run refused to
+                # follow, on the same grammar (D-O70). It never changes the
+                # artifact's standing.
+                encountered.add(name)
+            elif not RE_SOURCE_STATE.match(src_state):
                 rep.bad("L3", lineno,
                         f"source {name!r} carries state {src_state!r} — the vocabulary is "
-                        "closed at four: `captured <date>` · `named — pending` · "
-                        "`skipped — <reason>` · `none` (§2.4, D-O48)")
+                        "closed at five: `captured <date>` · `named — pending` · "
+                        "`skipped — <reason>` · `excluded — <reason>` · `none` "
+                        "(§2.4, D-O48 extended by D-O70)")
+            else:
+                # L15 — the exclusion law: never captured, at any later moment.
+                # An exclusion is liftable, so the standing state is the latest.
+                if src_state.startswith("excluded — "):
+                    excluded[name] = lineno
+                elif name in excluded and src_state.startswith("captured"):
+                    rep.bad("L15", lineno,
+                            f"source {name!r} stands `excluded` and is captured anyway — "
+                            "an excluded artifact is never captured and never mined; "
+                            "lift the exclusion first, with its reason (§8.1, D-O70)")
+                else:
+                    excluded.pop(name, None)
             if date < last_date:
                 rep.bad("L13", lineno, f"source event dated {date} follows {last_date}")
             last_date = max(last_date, date)
@@ -552,6 +583,27 @@ def check(path: pathlib.Path, allow_open_band: bool) -> Report:
                     f"AW-{aid} is standing but absent from the head's "
                     "`Standing aspect waivers:` line — the debt must stay named")
 
+    # ── L16 — the encounter is recorded, never silently skipped ─────────────
+    #
+    # The law's third clause: a reference inside ANY capture that resolves to an
+    # excluded artifact is never followed — *and the encounter is recorded* on
+    # the source grammar. Silence is what makes an exclusion indistinguishable
+    # from a source nobody thought of, which is the hole the inventory closes.
+    # Checkable only against the captures themselves, so it runs when they are
+    # handed over; the dedup rule bounds the count from above, and what is
+    # asserted here is the floor: referenced at least once → at least one line.
+    if captures is not None and excluded:
+        for name, lineno in sorted(excluded.items()):
+            if name in encountered:
+                continue
+            for cap in sorted(captures.rglob("*.md")):
+                if name in cap.read_text(encoding="utf-8", errors="replace"):
+                    rep.bad("L16", lineno,
+                            f"{cap.name} references the excluded artifact {name!r} and no "
+                            "encounter line records it — the reference is never followed, "
+                            "and the encounter is never silent (§8.1 · §2.4, D-O70)")
+                    break
+
     return rep
 
 
@@ -562,6 +614,8 @@ def main():
                     help="comma-separated rule IDs this ledger MUST trip (negatives)")
     ap.add_argument("--allow-open-band", action="store_true",
                     help="permit Band-2/3 events without a closure event (partial fixtures)")
+    ap.add_argument("--captures", default="",
+                    help="the run's sources/ directory — enables L16, the encounter guard")
     ap.add_argument("--rules", action="store_true")
     a = ap.parse_args()
 
@@ -577,7 +631,11 @@ def main():
         print(f"✗ no such ledger: {path}", file=sys.stderr)
         return 2
 
-    rep = check(path, a.allow_open_band)
+    captures = pathlib.Path(a.captures) if a.captures else None
+    if captures is not None and not captures.is_dir():
+        print(f"✗ no such captures directory: {captures}", file=sys.stderr)
+        return 2
+    rep = check(path, a.allow_open_band, captures)
 
     if a.expect:
         want = sorted({r.strip() for r in a.expect.split(",") if r.strip()})

@@ -571,7 +571,7 @@ has "$FRAME" "A late source brings zero new machinery." \
     "late sources add no mechanism (D-O49)"
 
 # the head line, in the document exhibit and in all three compiled carriers
-HEADLINE='Sources: <kind — state, per named source>  (captured <date> | named — pending | skipped — <reason> | none)'
+HEADLINE='Sources: <kind — state, per named source>  (captured <date> | named — pending | skipped — <reason> | excluded — <reason> | none)'
 has "$RULES_SRC" "$HEADLINE" "the §2.4 head exhibit carries the Sources line"
 for c in "$FRAME" "$SKILLS/ba-status/SKILL.md" "$TPL"; do
   has "$c" "$HEADLINE" "…and so does $(basename "$(dirname "$c")")/$(basename "$c")"
@@ -797,6 +797,152 @@ PY
 done
 
 
+# ── 5d. the excluded source — the disposition the inventory had no word for ──
+#
+# D-O70. The state joins a vocabulary D-O48 closed at four, so the first thing
+# asserted is that the fifth stands in every carrier (5b's HEADLINE sweep
+# already does that) and the second is the law the state exists for: never
+# captured, never mined, never followed — and never silent. The encounter line
+# is the whole reason the law is safe to have, so it is asserted at the
+# document, at the compiled carriers, and live against the ledger validator.
+
+printf '\n▸ The excluded source — never captured, never followed, never silent (§8.1 · §2.4; D-O70)\n'
+
+has "$RULES_SRC" "An excluded artifact is **never captured**." \
+    "§8.1 states the law's first clause"
+has "$RULES_SRC" "is **never followed**" \
+    "…and its third — a reference inside any capture is never followed"
+has "$RULES_SRC" "one Events line per distinct excluded artifact per capture" \
+    "…with the encounter recorded, deduplicated per capture"
+has "$RULES_SRC" "It is a state, not a triage outcome" \
+    "…and it is a state, never a fourth triage outcome (D-O46 untouched)"
+has "$RULES_SRC" "a container covering its contents" \
+    "…at named-artifact grain, a container covering its contents"
+has "$RULES_SRC" "An exclusion hides nothing" \
+    "…and an exclusion hides nothing — only capture and following stop"
+has "$RULES_SRC" "Late arrival is zero new machinery" \
+    "…late arrival adding no mechanism (the D-O49 precedent)"
+
+ENCOUNTER='<date> · source · <artifact> · encounter — not followed · <BA initials> — excluded <date>'
+has "$RULES_SRC" "$ENCOUNTER" "§2.4 pins the encounter line on the source grammar"
+has "$FRAME" "$ENCOUNTER" "…and ba-frame carries it"
+has "$TPL" "<date> · source · <artifact> · encounter — not followed · <initials> — excluded <date>" \
+    "…and the shipped template's event exhibit carries it"
+
+for c in "$FRAME" "$SKILLS/ba-audit/SKILL.md"; do
+  lbl="$(basename "$(dirname "$c")")"
+  grep -qF -- 'never followed' "$c" \
+    && ok "the never-follow clause is compiled into $lbl" \
+    || bad "$lbl does not carry the never-follow clause (D-O70)"
+done
+
+# the scan filter and its named count line (D-O70; D-O45's block amended)
+has "$RULES_SRC" "<k> channel(s) excluded by BA ruling" \
+    "§8.1's pinned block carries the conditional exclusion line"
+has "$FRAME" "filtered out of the candidate ranking and out of" \
+    "…and ba-frame filters excluded channels out of the ranking and out of <N>"
+hasnt "$FRAME" "Do not invent a fifth state." \
+    "…and no carrier still forbids the fifth state D-O70 created"
+
+# live: the state, the encounter form, and the law, against the validator
+printf '\n  the ledger validator, live:\n'
+EXCL_EVENT="2026-07-09 · source · drive/Handover · excluded — client legal hold · Y.K. — BA ruling at Frame"
+mutate "$B" "$M/ev-excl.md" "$EV_ANCHOR" "$EV_ANCHOR
+
+$EXCL_EVENT
+
+2026-07-09 · source · drive/Handover · encounter — not followed · Y.K. — excluded 09.07"
+if python3 "$HERE/check-ledger.py" "$M/ev-excl.md" > "$TMP/ev.out" 2>&1; then
+  ok "L3  source — \`excluded — <reason>\` and its encounter line both validate (D-O70)"
+else
+  bad "L3  source — the fifth state or its encounter line does not validate:"
+  sed 's/^/      /' "$TMP/ev.out"
+fi
+
+# seeded defect — an excluded artifact that got captured anyway
+mutate "$B" "$M/ev-excl-cap.md" "$EV_ANCHOR" "$EV_ANCHOR
+
+$EXCL_EVENT
+
+2026-07-09 · source · drive/Handover · captured 09.07 · Y.K. — read it anyway"
+neg "L15 an excluded artifact captured anyway" "$M/ev-excl-cap.md" L15
+
+# seeded defect — a capture references an excluded artifact, no encounter line
+mutate "$B" "$M/ev-excl-silent.md" "$EV_ANCHOR" "$EV_ANCHOR
+
+$EXCL_EVENT"
+mkdir -p "$TMP/captures"
+printf 'the old scope lives in drive/Handover — see there\n' \
+  > "$TMP/captures/slack-proj-2026-07-09.md"
+if python3 "$HERE/check-ledger.py" "$M/ev-excl-silent.md" --captures "$TMP/captures" \
+     --expect L16 > "$TMP/neg.out" 2>&1; then
+  ok "L16 a capture referencing an excluded artifact with no encounter line → L16"
+else
+  bad "L16 the encounter guard did not fire — silence is what the law forbids"
+  sed 's/^/      /' "$TMP/neg.out"
+fi
+
+# ── 5e. the standing-advisory register and its decision list ─────────────────
+#
+# D-O68–D-O69. The register is a head line; the list is a conditional tail on
+# two pinned reports and, in manual mode, T-18's step-4 approval. What is
+# asserted here is the document's law and the head line in every carrier; the
+# compiled tail on the report surfaces is check-auto.sh's, and T-18's half is
+# check-spine.sh's.
+
+printf '\n▸ The standing-advisory register and its decision list (§2.4 · §10.7; D-O68–D-O69)\n'
+
+ADVLINE='Scope advisories:         none | ADV-<n> · <epic> — standing | accepted <date> — revisit: <event>'
+has "$RULES_SRC" "$ADVLINE" "the §2.4 head exhibit carries the Scope advisories line"
+has "$SKILLS/ba-status/SKILL.md" "$ADVLINE" "…and so does ba-status's head render"
+has "$TPL" "Scope advisories:         none" \
+    "…and the shipped template is born with the register at none"
+has "$RULES_SRC" "It is a register, not an instrument" \
+    "…and the register never joins §4.3's instrument table (D-O68)"
+has "$RULES_SRC" "the **verbatim finding and its citation stay in the plans-file run log**" \
+    "…the head holding the summary, the finding staying where D-B6-8 put it"
+
+has "$RULES_SRC" "Scope advisories — <n> standing · decide each (P-A1 row shape — source-audit definition §5)" \
+    "§10.7 pins the decision-list tail in the cited P-A1 shape"
+has "$RULES_SRC" "The row shape is P-A1's — cited, never restated here" \
+    "…cited and never restated — one shape, in the source-audit definition"
+has "$RULES_SRC" "\`hold as advisory — no move\` — the default" \
+    "…disposition (a), the default that makes \`apply all\` safe"
+has "$RULES_SRC" "never an inline phase edit" \
+    "…disposition (b) riding T-18, never an inline phase edit"
+has "$RULES_SRC" "on the **SA record pattern**" \
+    "…disposition (c) on the SA record pattern, with its revisit trigger"
+has "$RULES_SRC" "no disposition removes a finding without a reason" \
+    "…and no disposition ends a finding without a reason"
+has "$RULES_SRC" "the T-18 run-log entry in manual mode" \
+    "…the ruling landing on the ratification event or T-18's run log — no new event kind"
+has "$RULES_SRC" "The framework has no act named *the manual ratification batch*" \
+    "…and no act named the manual ratification batch is created"
+has "$RULES_SRC" "an AG never answers the list" \
+    "…assembly may be AUTO, the ruling never is (the P-A1 floor)"
+
+
+# ── 5f. Billable renders blank where no boundary stands (D-O71) ─────────────
+#
+# Codification: the exporter already behaved this way — D-O71 makes it law, at
+# the rule it governs, so the sentence must stand in §10.5 and in the skill that
+# renders the column. The behaviour itself is check-wbs.sh's, against a seeded
+# frame that names no boundary.
+
+printf '\n▸ Billable — blank where no boundary stands (§10.5; D-O71)\n'
+
+has "$RULES_SRC" "blank where no boundary stands in the frame" \
+    "§10.5's Billable rule carries the never-invents clause"
+has "$RULES_SRC" "never a default \`Yes\` or \`No\`" \
+    "…and refuses a default in the same breath"
+has "$SKILLS/ba-wbs/SKILL.md" "blank where no boundary stands in the frame" \
+    "…and ba-wbs carries the sentence at its own column rule"
+has "$SKILLS/ba-wbs/SKILL.md" "never a default \`Yes\` or \`No\`" \
+    "…and its refusal too"
+has "$RULES_SRC" "the never-numeric guarantee (D-O44(b)) is untouched" \
+    "…with D-O60's never-numeric guarantee untouched — nine columns, ending at Billable"
+
+
 # ── 6. the agent's discipline ────────────────────────────────────────────────
 
 printf '\n▸ The orchestrator agent (§10.2, build plan §2.3)\n'
@@ -882,9 +1028,13 @@ has "$RULES_DOC" "v0.25" "…and the edition the readable-capture clause produce
 has "$RULES_DOC" "D-O61–D-O64" "…and the AUTO-mode fix set's ruling block"
 has "$RULES_DOC" "v0.26" "…and the edition the AUTO-mode fix set produced"
 has "$RULES_DOC" "D-O65–D-O67" "…and the scope-decision + §10.5 ruling block"
-head -2 "$RULES_DOC" | grep -q 'v0\.27' \
-  && ok "the header states the live edition — v0.27, the scope-decision harvest" \
-  || bad "the header does not name v0.27: the edition and the change record disagree"
+has "$RULES_DOC" "v0.27" "…and the edition the scope-decision harvest produced"
+has "$RULES_DOC" "D-O68–D-O71" "…and the advisory-register + excluded-source ruling block"
+has "$RULES_DOC" "## 31. Review record (v0.27 → v0.28)" \
+    "…and §31, the review record that carries it"
+head -2 "$RULES_DOC" | grep -q 'v0\.28' \
+  && ok "the header states the live edition — v0.28, the standing advisory and the excluded source" \
+  || bad "the header does not name v0.28: the edition and the change record disagree"
 has "$RULES_DOC" "D-O45–D-O49" "…and the source-inventory ruling block"
 has "$RULES_DOC" "D-O50" "…and the change record names the unreadable-spec ruling"
 has "$RULES_DOC" "D-O51–D-O52" "…and the continuity-under-a-grant ruling block"
@@ -894,11 +1044,11 @@ has "$RULES_DOC" "v0.20" "…and the edition the candidate scan produced"
 has "$RULES_DOC" "D-O54" "…and the scan-method ruling"
 
 # the ruling block is contiguous from the live high-water mark: no gap, no reuse
-python3 - "$RULES_DOC" <<'PYX' && ok "the D-O block runs 1…67 with no gap and no skipped number" \
+python3 - "$RULES_DOC" <<'PYX' && ok "the D-O block runs 1…71 with no gap and no skipped number" \
   || bad "the D-O decision block is not contiguous — a number is missing or reused"
 import re, sys
 seen = {int(n) for n in re.findall(r"D-O(\d+)", open(sys.argv[1], encoding="utf-8").read())}
-sys.exit(0 if seen == set(range(1, 68)) else 1)
+sys.exit(0 if seen == set(range(1, 72)) else 1)
 PYX
 
 # ── 6b. Band-2 plan composition — the record home has its producer (D-O55) ──

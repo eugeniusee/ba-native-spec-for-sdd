@@ -9309,3 +9309,166 @@ master conversation rather than settled here.
 **Open:** nothing from this ruling. `check-audit.sh` · `sk_audit.py` stand named
 and unbuilt from the earlier sittings; the ratification sweep covers this
 sitting's rulings with the prior ones.
+
+## The Standing Advisory Becomes a Decision — EC-11 + EC-13 + Рт5 propagated · orchestrator v0.28 · catalogue-b6 v0.6 · package 0.1.27 · 19 August 2026 · GREEN
+
+**Session prompt:** the Lane B compile pass — propagate the two bumped documents
+into the runtime (orchestrator v0.28, D-O68–D-O71, §31 · catalogue-b6 v0.6,
+D-B6-14–D-B6-15). Compiled units only; the one-way rule in force. Owner-directed
+through commit and push.
+
+**Precondition, clean.** HEAD `acdff37`, VERSION 0.1.26, tree carrying exactly
+the two owner-supplied documents. The orchestrator stood at v0.28 with the
+D-O68–D-O71 change record, §31, the footer locked range D-O1–D-O71 and base
+commit `acdff37` stamped; catalogue-b6 at v0.6 with D-B6-14–D-B6-15; elicitation
+v0.8 and catalogue-b1 v0.6 untouched. Baseline residual: `check-orchestrator.sh`
+305 / 4 — the header pin at v0.27, the D-O contiguity range at 1…67, the §2.4
+`Sources:` exhibit and the byte-identity of ba-frame's pinned inventory block.
+All four are this pass's own consumers; they were taken, not reported as a stop.
+
+**What the ruling gives the runtime.** **The standing-advisory register
+(D-O68)** — a `Scope advisories:` head line joins §2.4's standing-instrument
+group, one `ADV-<n>` per standing scope-frame advisory finding with its epic and
+its state (`standing` · `accepted <date>` with an event-shaped revisit trigger ·
+`none`). The head holds the machine-readable summary; the verbatim finding stays
+in the plans-file run log, where D-B6-8 already put it. It is a register, not an
+instrument — it joins no §4.3 table · **the advisory decision list (D-O69 ·
+D-B6-14)** — the finding renders as one numbered list in the source-audit
+definition's **P-A1 row shape, cited and never restated**: a conditional tail on
+the band-boundary and resumption reports under a standing grant, and **T-18's
+step-4 approval** in manual mode. Three dispositions, `hold as advisory — no
+move` the default so `apply all` is a complete, safe ruling; a move riding
+T-18's existing candidate machinery and **never an inline phase edit**;
+`accept — <reason>` on the SA record pattern with its revisit trigger, and no
+disposition ending a finding without a reason. Assembling the list may be AUTO;
+**ruling it never is — an AG never answers it** · **the ADV tag (D-B6-15)** — the
+§5 Reason tag set gains its third value, `BA-directed (ADV-<n>)`, so the finding
+that moved a row survives into the allocation log · **the excluded source
+(D-O70)** — `excluded — <reason>` joins the `Sources:` state vocabulary at
+named-artifact grain, a container covering its contents: never captured, never
+mined, and **a reference to one inside any capture is never followed** — with the
+encounter recorded, one Events line per distinct excluded artifact per capture,
+deduplicated, on the existing source grammar. No new event kind. Excluded
+channels leave the D-O53 scan and leave `<N>`, named in one conditional line;
+exclusions are switchable on the frame's precedent and late arrival is zero new
+machinery · **Billable blank where no boundary stands (D-O71)** — codification of
+§10.5's own never-invents clause, never a default `Yes` or `No`.
+
+**The pinned shapes are untouched.** The band-boundary report's five lines and
+the resumption report's six stand byte-identical to §10.7 in every carrier — the
+suite's byte-match proves it, and the decision list is its own fenced block
+appended after them. D-O45's inventory block gained one conditional line and is
+byte-identical to §8.1 again.
+
+**Files touched — 23:** the two methodology documents (owner-supplied) ·
+`ba-frame/SKILL.md` · `ba-auto/SKILL.md` · `ba-close-band1/SKILL.md` ·
+`ba-enter-feature/SKILL.md` · `ba-t18/SKILL.md` + `references/example.md` ·
+`ba-status/SKILL.md` · `ba-audit/SKILL.md` · `ba-wbs/SKILL.md` ·
+`mirror/AGENTS.md` · `mirror/claude-block.md` · `templates/aspect-state.md` ·
+`scripts/sk_wbs.py` · `tests/check-ledger.py` · `tests/check-orchestrator.sh` ·
+`tests/check-auto.sh` · `tests/check-spine.sh` · `tests/check-wbs.sh` ·
+`tests/check-band2-artifacts.py` · the two fixture ledgers · `BUILD-LOG.md` ·
+`VERSION` (0.1.26 → **0.1.27**).
+
+**The consumer list, in full.**
+
+1. **`ba-frame`** — Step 1's initial content names **five** standing-instrument
+   head lines, the fifth the advisory register · the `Sources:` head line gains
+   `excluded — <reason>` · a new *The excluded source* section carries grain, the
+   law in three clauses, the encounter line with its dedup rule, the switchable
+   clause and late arrival · the pinned inventory block gains
+   `<k> channel(s) excluded by BA ruling` · the Slack scan filters excluded
+   channels out of the ranking and out of `<N>` · the Events grammar gains the
+   encounter line · the never-does list gains the exclusion law.
+2. **The report surfaces** — the conditional decision-list tail on every carrier
+   that renders either report: `ba-auto` (the full law — P-A1 shape, three
+   dispositions, the ruling's home, the manual carrier, the autonomy clause),
+   both mirrors (the same law, condensed), `ba-close-band1` and
+   `ba-enter-feature` (the tail with its conditional rule, the law cited to
+   `/ba-auto`). `ba-auto`'s never-does list gains *never answers the list*.
+3. **`ba-t18` and the allocation machinery** — the advisory renders as a decision
+   list with its three dispositions · the step-4 approval carries it, ruled row
+   by row in the same breath as the diff, logged in this run's entry · the §5
+   Reason tag set gains `BA-directed (ADV-<n>)` in the skill and in the worked
+   example · `check-band2-artifacts.py`'s **B80** extends to the new tag.
+4. **`ba-status` and the shipped ledger template** — the `Scope advisories:` head
+   line beside the other four, the `Sources:` fifth state, and the template's
+   event exhibit gains the encounter line.
+5. **`ba-wbs` and `sk_wbs.py`** — the Р5 sentence carried at the Billable column
+   rule and in the no-estimate paragraph; `billable_cell`'s docstring records
+   that its absent-boundary behaviour is now **law rather than a reading**. The
+   exporter's behaviour is unchanged — it already rendered blank.
+6. **`ba-audit`** — a consumer the map did not list, and not a self-resolution:
+   D-O70's never-follow clause reaches *any* capture, and Scope S is the
+   framework's other capture reader. Its Stage-0 `Sources:` read enumerated three
+   states; it now enumerates the fifth as unaudited ground with its reason — an
+   exclusion hides nothing and is never a gap to fill — and it never follows a
+   reference that resolves to an excluded artifact.
+
+**The suite: 1930 checks, 17 of 17 green** (1826 → 1930).
+`check-orchestrator.sh` 305 → **349** — the header pinned at v0.28, the
+D-O68–D-O71 block and §31 asserted, the D-O contiguity range moved to 1…71, the
+`Sources:` head-line sweep taken to five states, and two new sections: **5d** the
+excluded source (the law's three clauses at the document, the encounter line in
+all three carriers, the never-follow clause at both capture readers, the scan
+filter, and the validator live) and **5e** the register with its decision list
+(the head line in all three carriers, the P-A1 citation, the three dispositions,
+the ruling's home, the manual carrier, the autonomy clause), plus **5f** D-O71's
+sentence at §10.5 and at `ba-wbs`. `check-auto.sh` 208 → **250** — the tail
+asserted on all five report carriers, the law on the three that state it, and a
+**seeded control**: a standing advisory that reaches no report tail goes red.
+`check-spine.sh` 206 → **221** — T-18's decision-list half on the sheet, the
+`hasnt` guard that the P-A1 shape is cited and not restated, and **two new seeded
+fixtures**: a `BA-directed (ADV-1)` row that must validate, and an untagged ADV
+move caught by name as **B80**. `check-wbs.sh` 80 → **83** — a seeded frame that
+stands and names **no boundary**, asserting the render still carries phased rows
+(the case is not vacuous) and that every Billable cell is blank.
+`check-ledger.py` **14 → 16 rules** — the source-state vocabulary opened to five,
+the `encounter — not followed` form recognised as a form and not a state, and two
+new rules: **L15**, an artifact standing `excluded` that is captured anyway, and
+**L16**, the encounter guard — a capture referencing an excluded artifact with no
+encounter line — enabled by a new `--captures <dir>` argument. Both are seeded
+and both fail by name.
+
+**Divergences — six, none self-resolved.**
+
+1. **§8.1's D-O53 paragraph still reads "its four-state vocabulary is closed"**
+   (the declined-candidate rule) while D-O70 makes the vocabulary five. The
+   edition amended D-O48's vocabulary on the record and left D-O53's operative
+   sentence at four. The document is compiled as written. At the carrier the
+   sentence could not be: `ba-frame` had compiled it as *"its four states are
+   closed … **Do not invent a fifth state.**"*, which would forbid the state the
+   law now requires. Rendered as *"its state vocabulary is closed at the five
+   below and nothing else: a proposal the BA did not take was never a source, and
+   never gets a state of its own"* — the rule's force preserved (a declined
+   proposal enters no ledger entry and never ages into a state), the count made
+   true. **Flagged to the master conversation, not settled here.**
+2. **D-O46's decision row reads "one of the four, never absence"** where §8.1's
+   operative line now reads five. Same class as (1) — a locked row amended by a
+   later ruling on the record. The carriers compile from the operative line.
+3. **The encounter line's dedup is per (capture, artifact), but the pinned Events
+   grammar names only the artifact.** A validator therefore cannot verify the
+   per-capture dedup from the ledger. **L16 asserts the floor and claims nothing
+   more** — referenced at least once → at least one encounter line, which is the
+   *silence is impossible* half of the law. The dedup ceiling stands unasserted
+   and is named here rather than approximated.
+4. **`Scope advisories:` joins L1's required head lines.** A ledger written
+   before this edition is now L1-illegal — the consequence every earlier head
+   line carried. Two fixture ledgers gained the line:
+   `band1/aspect-state.md` and `band1/negatives/base.md`.
+5. **`ba-audit` was a consumer the map did not list** (item 6 above). Compiled
+   from D-O70's *any capture* clause, not invented.
+6. **One correction made in step, named rather than made quietly:** the new
+   `ba-auto` disposition (b) text rendered a **bare `T-18`** on its second
+   mention, which register rule 5 forbids — caught by `check-register.sh` in the
+   same run and rewritten. The register sweep never regressed; this is recorded
+   because it was a defect this pass authored, not one it inherited.
+
+**The open queue item was left exactly as it stands, by instruction:** the xlsx
+title block's delivery-boundary line still renders `not set` / `none` where no
+boundary stands. D-O71 rules the **Billable cell**, not the title block, and no
+edit reached it — it awaits its own ruling.
+
+**Open:** nothing from this ruling. `check-audit.sh` · `sk_audit.py` stand named
+and unbuilt from the earlier sittings; the ratification sweep covers this
+sitting's rulings with the prior ones.

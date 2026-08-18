@@ -49,10 +49,16 @@ operational state, never quoted into a spec.
    `/ba-run specs all` (Presale) or `/ba-enter-feature` (Discovery).
 2. Read the ledger head. The `Sources:` line is the audit's ground: every
    source standing `captured` is read from `sources/` or its recorded
-   attachment; every source standing `named — pending` or `skipped` goes on
-   the report head as **unaudited ground**, verbatim, with its state. The
+   attachment; every source standing `named — pending`, `skipped` or
+   **`excluded — <reason>`** goes on the report head as **unaudited ground**,
+   verbatim, with its state — **an exclusion hides nothing, and it is a BA
+   ruling on the record, never a gap to fill.** The
    audit never reaches for material the inventory did not capture — a thin
    `Sources:` line is a finding about the inventory, not a license to browse.
+   **A reference inside a capture that resolves to an excluded artifact is
+   never followed** (D-O70): the encounter is recorded on the ledger's source
+   grammar, one line per distinct excluded artifact per capture, and the audit
+   reads no further.
 3. Assemble the band read set, all read-only: every `specs/NNN-*/spec.md` and
    its `gate-report.md` · every `.specify/memory/scope/<E-nn>.md` ·
    `.specify/memory/roadmap.md` · out-of-scope · `canvas.md` · standing

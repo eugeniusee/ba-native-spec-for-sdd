@@ -29,6 +29,7 @@ Standing aspect waivers:  none
 Open reopens:             none
 Upstream flags:           none
 Deferred consequences:    none
+Scope advisories:         none
 
 ## Events
 

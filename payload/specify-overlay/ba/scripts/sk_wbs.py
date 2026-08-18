@@ -647,7 +647,7 @@ def read_profile(root: Path) -> str:
 # record. Read-only, like everything else here: this command never writes a
 # ledger. Absence is never an error and never a guess (§10.5, "never invents") —
 # a missing label renders the project name alone, a missing boundary leaves
-# every Billable cell empty.
+# every Billable cell empty (D-O71).
 
 def read_frame(root: Path):
     """The ledger head's `Client label:` and `Boundary:` (§2.4, D-O67).
@@ -681,11 +681,15 @@ def read_frame(root: Path):
 
 
 def billable_cell(phase: str, boundary) -> str:
-    """`Yes` inside the boundary · `No` outside · blank on a blank Phase.
+    """`Yes` inside the boundary · `No` outside · blank on a blank Phase, and
+    blank where no boundary stands in the frame.
 
     Derived, never a guess and never a number (D-O67): an absent Phase renders
     an empty cell, and so does an absent boundary — there is no ground to test
-    against, and the export never invents one.
+    against, and the export never invents one. The absent-boundary half was the
+    exporter's reading of §10.5's never-invents clause from the start; **D-O71
+    rules it**, so the behaviour below is now the law rather than a reading:
+    never a default `Yes` or `No`.
     """
     phase = (phase or "").strip()
     if not phase or not boundary:

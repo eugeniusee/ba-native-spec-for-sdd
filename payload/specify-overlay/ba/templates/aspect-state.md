@@ -57,7 +57,7 @@
 ## Current state
 Band: 1 (open)
 Profile: <Discovery | Presale> — picked <date> (P-O0); switches append to Events with a reason
-Sources: <kind — state, per named source>  (captured <date> | named — pending | skipped — <reason> | none)
+Sources: <kind — state, per named source>  (captured <date> | named — pending | skipped — <reason> | excluded — <reason> | none)
 Boundary: <ladder value(s) — MVP | MVP + Phase 2 | …> — set <date> (P-O0b); switches append to Events with a reason
 Budget: <amount + currency> | none stated  (<citation | BA-supplied | open — no source material>)
 Client label: <free text — PoC · prototype · pilot…>  (<citation | BA-supplied | open — no source material>)
@@ -79,6 +79,7 @@ Standing aspect waivers:  none
 Open reopens:             none
 Upstream flags:           none
 Deferred consequences:    none
+Scope advisories:         none
 
 <!-- Head line shapes once populated:
   Band: 1 (closed <date>) — Bands 2/3 capable
@@ -87,6 +88,7 @@ Deferred consequences:    none
   Open reopens:             RO-<n> · <aspect> — <conflict, one line>
   Upstream flags:           <aspect> flagged: prerequisite <aspect> reopened
   Deferred consequences:    RO-<n>: <item> — trigger: <event>
+  Scope advisories:         ADV-<n> · <epic> — standing | accepted <date> — revisit: <event>
 -->
 
 ## Events
@@ -119,6 +121,7 @@ Deferred consequences:    none
 
   <date> · scope-frame · <from → to> · <initials> — <reason>
   <date> · source · <name> · <state> · <initials> — <basis>
+  <date> · source · <artifact> · encounter — not followed · <initials> — excluded <date>
   <date> · auto on  · AG-<n> · scope <…> · <initials> — profile <…> (stated | inferred: <basis>)
   <date> · auto off · AG-<n> · <initials> — <n> AUTO acts, awaiting ratification
   <date> · ratification · AG-<n> · <initials> — accepted all | exceptions: <list>
