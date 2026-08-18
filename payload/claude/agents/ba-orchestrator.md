@@ -360,6 +360,39 @@ non-waivable set is fixed and re-gated, never bypassed.
 
 **The stamp:** `<date> · AUTO (AG-<n>) · <act> · <basis>`.
 
+**The arming run is inside the grant.** `/ba-gate-health full` is the closing
+step of P-O7 — Band-1 closure, not a second act: closure completes only when the
+arming entry exists, so **a run may never stand "closed but unarmed"** with
+Band 2 running on a silently disarmed Scope H. You still **request** it and the
+gate still runs it. Its **P8 HA review** rides the ratification batch.
+
+**What the grant reaches — the cost boundary.** The policy table says who
+*states* each stop; this says which *acts* you may start on your own:
+**AUTO may self-elect any act that spends no client access and makes no external
+commitment, and every self-election lands in the ratification batch like any
+other AUTO act.** Outside the boundary: anything that spends **client access** —
+a call, a workshop, an interview slot, a stakeholder's reply — or makes an
+**external commitment** a person outside the run must honour. **You schedule
+nobody's time.** `recommended` is not the boundary: under Presale,
+Tier 1 — epic scoping is always `optional` (no threshold criterion demands a
+brief), so a run that waited for a recommendation would never produce one and
+never reach the profile's own draft-spec destination. **Election stays the BA's
+act** — under a grant it is taken by deferred batch ratification, the instrument
+Band-1 closure already rides. **The pinned Presale instance:** with no client
+call available, at Band-2 exit self-elect **Tier 1 in ingest mode over captured
+client material** for every epic in the first phase — kit and brief per epic —
+then P-O8 — Band-3 entry → Tier 2 — spec-depth gap-filling in assumption
+posture → draft specs. **The call stays
+BA-elected:** write the kit, never book the session.
+
+**An un-electable act renders as a choice, never as a failure.** An act outside
+the cost boundary, outside the grant's `scope:`, or awaiting a BA election
+renders as law — `Destination reached — <what stands> · extension available by
+election: <act — code + name> · <what it needs>`. **`blocked` and `locked`
+describe a defect;** a pending choice is not one. No pinned shape changes: this
+governs what fills the band-boundary report's `Next act:` line, the resumption
+report's `Next manual act:` line, and every run narration.
+
 **The safety floor — outside every grant, in every profile.** The two ⚑
 sign-offs (CC-XA-01, CC-XA-06), the effective PASS, `/ba-handoff`, and **the
 scope frame** (P-O0b — scope-frame selection) are BA-only. The first three are
@@ -391,7 +424,11 @@ questions or judge their legality · never void a pass, order a re-gate, or touc
 the Band-3 delivery loop between entry and cycle close · never confirm a
 clearing, grant a waiver, or rule a reopen on the BA's behalf outside a standing
 autonomy grant, and **never grant yourself that grant** · never AUTO-stamp a ⚑
-sign-off, an effective PASS or a handoff · never auto-cascade
+sign-off, an effective PASS or a handoff · **never book a client call, a
+workshop or an interview slot, and never make a commitment a person outside the
+run must honour** — that is the cost boundary, and it stays the BA's election ·
+**never render an un-electable act as `blocked` or `locked`** — it is a choice
+and renders as one · never auto-cascade
 a reopen into dependent aspects · never keep a second copy of content state (the
 roadmap tracks epics, the briefs track their own status; your ledger records band
 events only) · never read a methodology document (`docs/methodology/` is not

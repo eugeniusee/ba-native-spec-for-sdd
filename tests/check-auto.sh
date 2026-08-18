@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 #
 # BA-Native Spec — autonomous mode: the autonomy grant and the safety floor
-# (orchestrator rules §1 · §2.4 · §4.4 · §6.2 · §10.7; D-O35–D-O41 · gate §7.1).
+# (orchestrator rules §1 · §2.4 · §4.4 · §6.2 · §8.2 · §10.7; D-O35–D-O41 ·
+# D-O61–D-O64 · gate §7.1).
 #
 # An autonomy grant moves the *moment* the BA states a decision. The whole of
 # its safety is that it never moves the *content* of one — so the assertions
@@ -23,6 +24,9 @@
 #   6.  the ratification grammar — the events, the batch act, the exceptions
 #   7.  the two locked amendments — D-O40 (consent in advance, not silence) and
 #       D-O41 (a recorded, revocable grant is not a self-clear)
+#   8.  the AUTO-mode fix set — the cost boundary the grant now runs on, the
+#       arming run inside the grant, and the render rule that makes an
+#       un-electable act a choice (D-O61–D-O64)
 #
 # The floor list and the negation list are both printed on every run: a sweep
 # whose edges are invisible is a sweep nobody can extend. `--list` prints them
@@ -82,7 +86,7 @@ for a in "$@"; do
   case "$a" in
     -v|--verbose) VERBOSE=1 ;;
     --list) LIST=1 ;;
-    -h|--help) sed -n '2,29p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
+    -h|--help) sed -n '2,33p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
     *) printf 'unknown option: %s\n' "$a" >&2; exit 2 ;;
   esac
 done
@@ -118,6 +122,22 @@ has_joined() {
 import re, sys
 text = open(sys.argv[1], encoding="utf-8").read()
 sys.exit(0 if sys.argv[2] in re.sub(r"\n(?=\S)", " ", text) else 1)
+PY
+}
+# `has_flow <file> <needle> <what>` — the same probe one step looser: block-quote
+# markers are stripped and every run of whitespace collapses to one space, on
+# both sides. `has_joined` reads a paragraph as the BA sees it; this reads a
+# *sentence* as the BA sees it, wherever its carrier chose to wrap it and
+# whether or not that carrier put it in a quote. A rule quoted as law in one
+# unit and set as running text in another is one string here — which is what
+# lets a single needle assert the same law across the document and four
+# compiled surfaces.
+has_flow() {
+  python3 - "$1" "$2" <<'PY' && ok "$3" || bad "$3 — not found (flow): $2"
+import re, sys
+text = open(sys.argv[1], encoding="utf-8").read()
+flat = re.sub(r"\s+", " ", re.sub(r"(?m)^\s*>\s?", "", text))
+sys.exit(0 if re.sub(r"\s+", " ", sys.argv[2]).strip() in flat else 1)
 PY
 }
 
@@ -744,11 +764,133 @@ done
 n=0; for d in 35 36 37 38 39 40 41; do grep -qF -- "**D-O$d**" "$DOC" && n=$((n+1)); done
 [ "$n" -eq 7 ] && ok "the D-O35–D-O41 block is contiguous and complete — 7 rulings"
 
+# ── 8. the cost boundary · the arming run · the render rule ─────────────────
+#
+# D-O61–D-O64, the AUTO-mode fix set. The field defect this closes: a Presale
+# auto run took Band 1 and Band 2 correctly and then held for good, because the
+# grant reached *recommended* acts only and Tier 1 — epic scoping is always
+# `optional` under Presale (no AT criterion demands a brief: briefs are Band-2
+# ground and Band 2 is aspect-less, D-O1). The one act that produces briefs was
+# permanently out of reach of the one mode meant to run without the BA — on
+# every project. Three assertions follow: the boundary is *cost* and says so in
+# the document and on all four surfaces; the arming request is inside the grant
+# wherever closure is performed; and an un-electable act renders as a choice.
+
+printf '\n▸ The cost boundary · the arming run · the render rule (D-O61–D-O64)\n'
+
+CB1S="$PKG_ROOT/payload/claude/skills/ba-close-band1/SKILL.md"
+GH="$PKG_ROOT/payload/claude/skills/ba-gate-health/SKILL.md"
+T1="$PKG_ROOT/payload/claude/skills/ba-tier1/SKILL.md"
+
+# the boundary itself — one sentence, five carriers, however each one wraps it
+for pair in "$DOC|§10.7" "$AUTO|the skill" "$ORC|the orchestrator persona" \
+            "$BLOCK|the CLAUDE.md block" "$AGENTS|AGENTS.md"; do
+  f="${pair%%|*}"; label="${pair##*|}"
+  has_flow "$f" "self-elect any act that spends no client access and makes no external commitment" \
+      "$label states the cost boundary"
+  has_flow "$f" "self-election lands in the ratification batch" \
+      "…and $label sends every self-election to the batch"
+done
+
+# the boundary's own edges, in the document that owns them
+has_flow "$DOC" "the framework schedules nobody's time" \
+    "§10.7 refuses to spend client time"
+has_flow "$DOC" "The safety floor is not this boundary" \
+    "…and keeps the floor outside the cost test"
+has_flow "$DOC" "D-O12 is preserved, not weakened" \
+    "…and preserves election-remains-the-BA's-act"
+has_flow "$DOC" "recommended\` was a proxy for" \
+    "…and names the replaced boundary as the proxy it was"
+
+# the pinned Presale instance — the dead end the run hit, closed by name
+for pair in "$DOC|§10.7" "$AUTO|the skill"; do
+  f="${pair%%|*}"; label="${pair##*|}"
+  has_flow "$f" "every epic allocated to the first phase" "$label pins the first-phase set"
+  has_flow "$f" "still gets its brief" "…and briefs the open-question-blocked epic anyway"
+done
+has_flow "$DOC" "ingest mode over captured client material" "§10.7 names the input path"
+has_flow "$PKG_ROOT/docs/methodology/ba-native-spec-orchestrator-rules.md" \
+    "Under a standing AG the captured-material path is self-elected" \
+    "…and §6.5 carries it where the profile is defined"
+
+# the call is client access — it stays the BA's, in the skill that would run it
+has_flow "$T1" "never books, schedules or commits a client call" \
+    "ba-tier1 never books a call"
+has_flow "$T1" "grant reaches every act that" \
+    "…and states which of its modes the grant reaches"
+for pair in "$DOC|§10.7" "$AUTO|the skill" "$ORC|the persona" \
+            "$BLOCK|the CLAUDE.md block" "$AGENTS|AGENTS.md"; do
+  has_flow "${pair%%|*}" "call stays BA-elected" "${pair##*|} — the client call stays BA-elected"
+done
+
+# the arming run — inside the grant wherever closure is performed (D-O62)
+for pair in "$DOC|§10.7 + §8.2" "$AUTO|the skill" "$ORC|the persona" \
+            "$BLOCK|the CLAUDE.md block" "$AGENTS|AGENTS.md" \
+            "$CB1S|ba-close-band1" "$GH|ba-gate-health"; do
+  has_flow "${pair%%|*}" "closed but unarmed" "${pair##*|} — no run stands closed but unarmed"
+done
+has_flow "$DOC" "the closing step of P-O7" "§10.7's row makes it P-O7's closing step"
+has_flow "$DOC" "Under a standing AG, step 3 is inside the grant" \
+    "…and §8.2 says so where the act happens"
+for pair in "$DOC|§10.7" "$AUTO|the skill" "$CB1S|ba-close-band1" "$GH|ba-gate-health"; do
+  has_flow "${pair%%|*}" "rides the ratification batch" "${pair##*|} — gate P8 rides the batch"
+done
+# the division of labour survives the ruling: the orchestrator still runs nothing
+has_flow "$DOC" "The **gate still runs it** — the orchestrator requests and runs nothing" \
+    "§10.7 keeps the request/run split"
+has_flow "$CB1S" "you request, the gate runs" "…and ba-close-band1 keeps it too"
+
+# the render rule (D-O63) — the pinned choice line, and the banned words
+for pair in "$DOC|§10.7" "$AUTO|the skill" "$ORC|the persona" \
+            "$BLOCK|the CLAUDE.md block" "$AGENTS|AGENTS.md" \
+            "$ENTF|ba-enter-feature"; do
+  has_flow "${pair%%|*}" \
+      "Destination reached — <what stands> · extension available by election: " \
+      "${pair##*|} — the choice line, pinned"
+done
+for pair in "$DOC|§10.7" "$AUTO|the skill" "$ORC|the persona" \
+            "$BLOCK|the CLAUDE.md block" "$AGENTS|AGENTS.md"; do
+  has_flow "${pair%%|*}" "describe a defect" "${pair##*|} — blocked/locked name a defect, not a choice"
+done
+has_flow "$DOC" "No pinned shape changes" "§10.7 changes no pinned shape"
+has_flow "$AUTO" "never renders an un-electable act as \`blocked\` or \`locked\`" \
+    "…and the skill's never-list carries the render rule"
+has_flow "$ORC" "never render an un-electable act as \`blocked\` or \`locked\`" \
+    "…and the persona's never-list carries it"
+has_flow "$AUTO" "never books a client call, a workshop or an interview slot" \
+    "…and the skill's never-list carries the cost boundary"
+
+# the pinned shapes are untouched by D-O63 — the byte-compares above already
+# proved it; this asserts the *claim*, so a future edit cannot quietly widen it
+grep -qF -- 'Next manual act: <one line>' "$TMP/shape-doc.txt" \
+  && ok "the resumption report's slot is unchanged — the rule fills it, never replaces it" \
+  || bad "the resumption report lost its Next manual act line"
+grep -qF -- 'Next act: <one line>' "$TMP/bshape-doc.txt" \
+  && ok "…and the band-boundary report's slot is unchanged" \
+  || bad "the band-boundary report lost its Next act line"
+
+# the corpus home (D-O64), and the four rulings on the record
+has_flow "$DOC" "This section **is** autonomous mode's definition, and the whole of it" \
+    "§10.7 is ruled the mode's corpus home"
+has_flow "$DOC" "legislates nothing of its own" \
+    "…and every compiled surface legislates nothing of its own"
+has_flow "$DOC" "the hold conditions, and the whole of them" \
+    "…and the four stop events are named the hold conditions"
+has "$DOC" "## 29. Review record (v0.25 → v0.26)" "§29 records the ruling set"
+n=0; for d in 61 62 63 64; do
+  grep -qF -- "**D-O$d**" "$DOC" && n=$((n+1)) || bad "D-O$d is not ruled in the document"
+done
+[ "$n" -eq 4 ] && ok "the D-O61–D-O64 block is contiguous and complete — 4 rulings"
+
+# and the framework-only scope of the ruling is on the record
+has_flow "$DOC" "a defective run is superseded by a fresh run of the fixed framework, never patched" \
+    "§29 states the framework-only scope"
+
 # ── roll-up ──────────────────────────────────────────────────────────────────
 
 printf '\n  passed: %s   failed: %s\n' "$PASSED" "$FAILED"
 if [ "$FAILED" -eq 0 ]; then
-  printf '✓ GREEN — autonomous mode: the AG record and the Auto head line · the §10.7 policy table on four surfaces · the four-act safety floor swept across %s files with 4 seeded breaches · the resumption report byte-identical in 3 units · the mode read in %s carriers · the two locked amendments\n' \
+  printf '✓ GREEN — autonomous mode: the AG record and the Auto head line · the §10.7 policy table on four surfaces · the four-act safety floor swept across %s files with 4 seeded breaches · the resumption report byte-identical in 3 units · the mode read in %s carriers · the two locked amendments · the cost boundary on five carriers, the arming run inside the grant on seven, the choice line on six\n' \
     "${F_FILES:-?}" "${MR_UNITS:-?}"
   exit 0
 fi

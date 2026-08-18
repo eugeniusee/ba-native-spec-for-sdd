@@ -48,6 +48,18 @@ Self-check, and stop if it fails:
   Tier-2 overflow signal. A supplement with no named gap list is a second full
   call wearing a smaller name; refuse it and ask which gaps.
 
+**Under a standing autonomy grant, the run elects this technique itself.** The
+grant reaches every act that **spends no client access and makes no external
+commitment**, so `kit` and `ingest` over **captured client material** are
+self-elected and stamped `AUTO (AG-<n>)`, standing for ratification at `off`.
+Under Presale with no client call available, that election fires at **Band-2
+exit for every epic allocated to the first phase** — kit then brief, per epic.
+**The call itself is never elected here:** a live client session is client
+access and stays the BA's act, so the framework writes the kit and **books
+nobody's time**. The notes input in that case is the captured material at
+`sources/` — RFP, client documents, transcripts on hand — never an invention,
+and never a session the framework arranged.
+
 **On a pass** — render one line:
 `Tier 1 <mode> — <epic> → <mode's destination>`, and begin. No confirmation
 dialog: the command was the act.
@@ -196,7 +208,11 @@ kit is in `references/example.md`.
 ### Inputs
 
 The raw notes and/or transcript the BA supplies, **plus the kit** — the kit's
-question IDs and pre-draft are the parsing frame.
+question IDs and pre-draft are the parsing frame. **Where no call happened**, the
+input is the **captured client material** at `sources/` — RFP, client documents,
+transcripts on hand — read exactly as call notes are read: it answers what it
+answers, and every remaining kit question becomes an Open Question. The six
+steps below do not change with the input.
 
 ### Process — six steps, in order
 
@@ -365,7 +381,10 @@ follow-up questions from it · never writes a governance file directly · never
 silently reconciles a contradiction · never interprets a hedged statement ·
 never deletes an Open Question — it is answered or `Overtaken — <reason>` ·
 never writes `Confirmed` into §8 · never drafts stories, requirements or
-acceptance · never runs a check, clears an aspect, or rules a reopen.
+acceptance · **never books, schedules or commits a client call — under a
+standing grant or outside one, the session is the BA's act and the framework
+spends nobody's time** · never runs a check, clears an aspect, or rules a
+reopen.
 
 **Mode read (framework-wide):** before the first act of any session, read the
 aspect-state head — the Profile and Auto lines govern.

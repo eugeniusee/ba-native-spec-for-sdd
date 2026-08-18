@@ -9126,3 +9126,88 @@ sitting that moved the edition.
 ratification sweep covers this sitting's owner rulings with the prior ones.
 Nothing else from run 1 stands open — the band closed at zero gaps, zero
 ungrounded, zero contradictions.
+
+## The Grant Learns What It Costs — the AUTO-mode fix set · orchestrator v0.26 · package 0.1.25 · 17 August 2026 · GREEN
+
+**Session prompt:** apply the AUTO-mode fix ruling handed over from the first
+end-to-end `/ba-auto` run on a live Presale engagement (17 Aug 2026). Four
+rulings, framework-only scope, register per the review-record convention.
+
+**The trace the ruling came from.** The run took Band 1 and Band 2 correctly and
+then held for good: *"Band-3 entry is blocked — it reads the parent brief's
+slicing row at `.specify/memory/scope/<epic>.md`, and no brief exists."* Three
+defects sit under that one sentence. The grant reached **recommended** acts
+only, and under Presale **Tier 1 — epic scoping** can never be recommended — no
+AT criterion demands a brief, because briefs are Band-2 ground and Band 2 is
+aspect-less (D-O1) — so the one act that produces briefs was permanently out of
+reach of the one mode meant to run without the BA, **on every project**. The
+arming request sat outside the grant, so the run stood **"closed but unarmed"**
+and Band 2 executed with Scope H silently disarmed. And the resumption report
+rendered an un-electable act as *"next act … blocked"* — failure framing for a
+pending choice.
+
+**Ruled (BA Lead, applied as ruled; D-O61–D-O64, §29, orchestrator v0.25 →
+v0.26):** the **cost boundary** — *AUTO may self-elect any act that spends no
+client access and makes no external commitment; every self-election lands in the
+ratification batch like any other AUTO act* — replacing the `recommended`
+proxy, with the Presale dead end closed by a pinned instance at Band-2 exit
+(Tier 1 in ingest mode over captured material, kit and brief per first-phase
+epic, then P-O8 → Tier 2 → draft specs) while **the client call stays the BA's
+election** · the **arming run inside the grant** as P-O7's closing step, gate P8
+riding the ratification batch, the request/run split untouched · the **render
+rule** — `Destination reached … extension available by election: …`, never
+`blocked`, extending D-O26 from one read-only render to every render an auto run
+makes · **§10.7 ruled the mode's corpus home**, the four hold conditions named.
+
+**Untouched, deliberately:** the safety floor's four acts · thresholds ·
+assertions · gate law · the §10.2 session boundary · every pinned shape (D-O63
+rules what fills a slot, never the slot). **No engagement run was edited,
+resumed or patched** — the held run of 17 Aug 2026 stands as the failing
+baseline a fresh run is measured against.
+
+**One reading recorded, not invented.** The handoff's *"Kit mode — a live client
+call — remains BA-elected"* is applied as: the **kit artifact** is written (its
+own verification trace expects *briefs + kits generated for all first-phase
+epics*, and ingest mode cannot parse without the kit as its frame), and **the
+call** — the thing that spends a person's time, which is the rationale the
+ruling gives — is what stays the BA's election.
+
+**Files touched — 17:** orchestrator rules (§6.5 · §8.2 · §10.7 · §29 · header ·
+footer) · `ba-auto/SKILL.md` · `ba-orchestrator.md` · `mirror/claude-block.md` ·
+`mirror/AGENTS.md` · `ba-close-band1/SKILL.md` · `ba-gate-health/SKILL.md` ·
+`ba-tier1/SKILL.md` · `ba-enter-feature/SKILL.md` · `docs/quickstart.md` ·
+`README.md` · `tests/check-auto.sh` · `tests/check-orchestrator.sh` ·
+`tests/check-layout.sh` · `tests/check-install.sh` · `BUILD-LOG.md` · `VERSION`
+(0.1.24 → **0.1.25**).
+
+**The suite:** `check-auto.sh` gains **section 8** (D-O61–D-O64) and a third
+probe, `has_flow` — quote markers stripped, whitespace collapsed on both sides —
+so one needle asserts the same law across the document and four compiled
+surfaces however each wraps it. 143 → **208** checks. `check-orchestrator.sh`
+pins the header at **v0.26**, demotes v0.25 to a change-record `has`, and moves
+the D-O contiguity range to 1…64.
+
+**Three incidental corrections, made in step and named here rather than made
+quietly — none of them this ruling's:**
+
+1. **`check-layout.sh` and `check-install.sh` hardcoded 34 `/ba-*` skills** while
+   the package has shipped **35** since `/ba-audit` landed at 0.1.22 and
+   `layout.expected` registered it by name. The three install-based runs were
+   therefore **red at HEAD, before this sitting** — verified against a clean
+   `git archive HEAD` copy, not assumed. Constants moved to 35 (`15 workflow +
+   20 technique`); the manifest itself needed nothing.
+2. **`docs/quickstart.md` stated the safety floor as three acts** — pre-D-O42,
+   missing the scope frame. Now four.
+3. **`README.md` said three seeded floor breaches** where `check-auto.sh` has
+   seeded four since the scope frame landed. Now four.
+
+**Verification stands where the ruling put it:** a **fresh** auto run over
+captured inputs, not a patched one. Expected trace — Band-1 closure ending with
+the arming entry in `.specify/gate-health.md` → briefs and kits for every
+first-phase epic → features into Band 3 → draft specs with markers → holds only
+for batch ratification and open-question answers, epics whose slicing depends on
+an open question flagged with their briefs still produced.
+
+**Open:** nothing from this ruling. `check-audit.sh` · `sk_audit.py` stand named
+and unbuilt from the prior sitting; the ratification sweep covers this sitting's
+rulings with the prior ones.

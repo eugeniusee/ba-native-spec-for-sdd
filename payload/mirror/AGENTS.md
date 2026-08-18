@@ -288,10 +288,42 @@ consents to nothing.
 route `go` · defer batches, with **unclear still an Open Question, never an
 invention** · clearing when every criterion is met, otherwise an auto-AW whose
 revisit trigger is `BA ratification sweep (auto off)` · waiver acts, Band-1
-closure, Band-3 entry · a reopen ruling defaulting to Real, blast radius stated,
+closure, Band-3 entry · **the arming run** — `/ba-gate-health full`, the closing
+step of Band-1 closure, requested inside the same act so **no run ever stands
+"closed but unarmed"**, its P8 HA review riding the ratification batch · a reopen
+ruling defaulting to Real, blast radius stated,
 **no cascade executed** · an overflow ruling taking the **supplement lane**
 only. At the gate: **waivers AUTO on real gaps, overrides never**, and the
 non-waivable set fixed and re-gated, never bypassed.
+
+**What the grant reaches — the cost boundary.** The list above says who *states*
+each stop; this says which *acts* the run may start on its own: **AUTO may
+self-elect any act that spends no client access and makes no external
+commitment, and every self-election lands in the ratification batch like any
+other AUTO act.** Outside the boundary: anything that spends **client access** —
+a call, a workshop, an interview slot, a stakeholder's reply — or makes an
+**external commitment** a person outside the run must honour. **The framework
+schedules nobody's time.** `recommended` is not the boundary: under Presale,
+Tier 1 — epic scoping is always `optional` (no threshold criterion demands a
+brief), so a run that waited for a recommendation would never produce one and
+never reach the profile's own draft-spec destination. **Election stays the BA's
+act** — under a grant it is taken by deferred batch ratification, the instrument
+Band-1 closure already rides. **The pinned Presale instance:** with no client
+call available, at Band-2 exit self-elect **Tier 1 — epic scoping in ingest mode
+over captured client material** for every epic allocated to the first phase —
+**kit and brief per epic** — then P-O8 — Band-3 entry → Tier 2 — spec-depth
+gap-filling in assumption posture → draft specs. **The call stays BA-elected:**
+write the kit, **never book the session it was written for**. An epic whose
+slicing hangs on an open question **still gets its brief**, the dependency in its
+Open Questions and named in the resumption report.
+
+**An un-electable act renders as a choice, never as a failure.** An act outside
+the cost boundary, outside the grant's own `scope:`, or awaiting a BA election
+renders as law — `Destination reached — <what stands> · extension available by
+election: <act — code + name> · <what it needs>`. **`blocked`, `locked` and
+`cannot proceed` describe a defect;** a pending choice is not one. No pinned
+shape changes: this governs what fills the band-boundary report's `Next act:`
+line, the resumption report's `Next manual act:` line, and every run narration.
 
 **The stamp:** `<date> · AUTO (AG-<n>) · <act> · <basis>`.
 

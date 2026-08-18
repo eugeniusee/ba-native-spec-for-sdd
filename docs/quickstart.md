@@ -309,13 +309,29 @@ moves the **moment** you decide. It never moves **what** gets decided.
 defer batches are accepted · an aspect clears when its evidence is complete, and
 otherwise takes a waiver with the misses named and a revisit trigger of
 `BA ratification sweep (auto off)` · reopens default to Real, with the blast
-radius stated and nothing cascaded · gate waivers are taken on real gaps. Every
-one of those acts is stamped `AUTO (AG-<n>)` in the ledger.
+radius stated and nothing cascaded · Band-1 closure carries its arming run with
+it, so a run never stands closed-but-unarmed · gate waivers are taken on real
+gaps. Every one of those acts is stamped `AUTO (AG-<n>)` in the ledger.
 
-**What never runs on its own.** The two ⚑ sign-offs, the effective PASS, and
-`/ba-handoff`. Those three are yours in every mode — they are where a false pass
-becomes a security incident, a scope escape, or code built on unread text. Auto
-therefore takes a feature to **"done, awaiting ratification"** and stops.
+**The line it works to is cost, not confidence.** Auto will start any act that
+**spends none of your client's access and commits nobody outside the run** — and
+every such act comes back in the ratification batch like all the others. So
+under Presale with no call booked, it scopes the first phase's epics itself from
+the material you captured (kit and brief per epic), enters the features, and
+drafts their specs. What it will never do is **spend someone's time**: it writes
+the call kit and leaves the call for you to arrange.
+
+**What never runs on its own.** The two ⚑ sign-offs, the effective PASS,
+`/ba-handoff`, and the **scope frame** you confirm at `/ba-frame`. Those four are
+yours in every mode — the first three are where a false pass becomes a security
+incident, a scope escape, or code built on unread text, and the fourth is the
+boundary everything else is measured against. Auto therefore takes a feature to
+**"done, awaiting ratification"** and stops.
+
+**It never tells you something is blocked when it is your choice.** Where the
+next act is one auto may not take on its own, the report says
+`Destination reached … extension available by election: …` and names the act.
+A pending decision reads as a decision, not as a fault to go hunting for.
 
 **Two things it will not do to you.** It never guesses: where something is
 unclear it writes an Open Question, exactly as in manual mode. And it never

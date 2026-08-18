@@ -20,6 +20,13 @@ enforced at Stage 0 of `/ba-gate`, nowhere else.
   **disarmed**: in-band quality belongs to the aspect gates (`/ba-clear`). If
   `.specify/gate-health.md` does not exist and this is not the arming run
   dispatched by `/ba-close-band1`, stop and say so.
+- **The arming run is inside a standing autonomy grant** (`/ba-auto`): it is the
+  closing step of P-O7 — Band-1 closure, so it arrives dispatched under the
+  grant like any other AUTO act, and **the run may never stand "closed but
+  unarmed"**. Every later refresh stays **BA-invoked** — a grant does not extend
+  to it, and the band-boundary report's health line renders the state without
+  firing one. The **P8 review** below rides the ratification batch when the
+  arming run raises it.
 - **Smallest sufficient scope.** State the scope and the rationale *before*
   running — "scoped check: glossary + 2 dependents — nothing else changed",
   "full run: ingestion touched 4 artifacts". The BA may widen or narrow.

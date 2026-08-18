@@ -47,6 +47,17 @@ Read the parent brief at `.specify/memory/scope/<epic>.md`, §8 (the slicing
 table), and render the row for this feature exactly as it stands — its slice
 statement, its dependencies, its current `Status`.
 
+**Where the brief does not exist yet, that is a choice, not a block.** Render it
+as law and name the act that produces it — never `blocked`, never `locked`:
+
+```
+Destination reached — <what stands> · extension available by election: Tier 1 — epic scoping (<epic>) · <what it needs>
+```
+
+Under a standing grant the run self-elects that act itself where it spends no
+client access (`/ba-auto` — the cost boundary); outside one it is the BA's
+election. Either way the state is a pending choice, and it renders as one.
+
 Take the BA's confirmation. On confirmation the row's `Status` becomes:
 
 ```

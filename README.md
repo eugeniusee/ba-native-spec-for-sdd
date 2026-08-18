@@ -158,10 +158,14 @@ It holds down the `AG-<n>` record and the ledger head's `Auto:` line, the §10.7
 policy table across the skill, the persona and both mirrors, and §10.7's pinned
 resumption report byte-for-byte wherever it renders. Its third section is the
 safety-floor sweep: no compiled sentence in the payload may put an `AUTO` token
-and a floor act — a ⚑ sign-off, an effective PASS, a handoff — in one sentence
-without a prohibition, with three seeded breaches proving the sweep fires and
-two negated forms proving it can read a prohibition. `--list` prints the floor
-list and the negations.
+and a floor act — a ⚑ sign-off, an effective PASS, a handoff, the scope frame —
+in one sentence without a prohibition, with four seeded breaches proving the
+sweep fires and two negated forms proving it can read a prohibition. Its eighth
+section holds the AUTO-mode fix set (D-O61–D-O64): the **cost boundary** the
+grant runs on — self-election is legal exactly where an act spends no client
+access and makes no external commitment — the arming run inside the grant on
+every surface that closes Band 1, and the choice line that an un-electable act
+renders instead of `blocked`. `--list` prints the floor list and the negations.
 
 `check-orchestrator.sh` replays the orchestrator rules' §12 exhibits — the
 BA-planning loop, a threshold cleared into Band-1 closure, and the RO-1 reopen

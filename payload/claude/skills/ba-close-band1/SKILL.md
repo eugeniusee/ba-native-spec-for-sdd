@@ -83,6 +83,13 @@ the pre-flight subset at every Scope-F Stage 0, and the session-start habit.
 
 **Closure completes when the arming entry exists — regardless of its verdict.**
 
+**Under a standing grant this request is inside the grant** — it is the closing
+step of P-O7 — Band-1 closure, not a second act. Make it in the same act as the
+stamp: **a run may never stand "closed but unarmed"**, because that puts Band 2
+on the road with Scope H silently disarmed. The division of labour is unchanged
+— you request, the gate runs — and the **P8 HA review** the full run raises
+rides the ratification batch with every other AUTO act.
+
 Gaps the arming run finds are the gate's ground from that moment: fixed via
 routing, or accepted via an `HA-<nn>`. They do **not** reverse the closure and do
 **not** send the Requirements aspect back to `/ba-clear`.
@@ -126,7 +133,9 @@ means Band 2 decomposes a guess. Say it; the BA's call stands.
 ## Under a standing grant — the band-boundary report
 
 The P-O7 — Band-1 closure stamp is **AUTO** under a grant (`/ba-auto`), and
-closure is ratified in one batch at `off` — unchanged. **Band-1 closure is a band boundary**, so it is
+closure is ratified in one batch at `off` — unchanged. **The arming run is
+inside the grant:** request `/ba-gate-health full` in the same act, and render
+the report only once its entry exists — never before. **Band-1 closure is a band boundary**, so it is
 one of the four events that end the run's turn. After the stamp, render the
 pinned band-boundary report and **stop there**; the grant stands, and the BA's
 next message resumes the run:
@@ -147,7 +156,9 @@ between acts is narrated, and this report is the whole of what the BA sees.
 Never runs a Scope-H check itself — it *requests* the arming run (no Bash, and
 that is the mechanical half of the rule) · never closes with a `reopened` aspect
 or an unmet state · never offers a partial-band entry · never re-affirms or
-lapses a waiver on the BA's behalf · never blocks closure on the arming run's
+lapses a waiver on the BA's behalf · **never leaves the run "closed but
+unarmed"** — the arming request goes with the stamp, under a grant and outside
+one alike · never blocks closure on the arming run's
 verdict · never converts an arming-run gap into an aspect waiver · never edits
 `.specify/gate-health.md`, any content artifact, or anything under
 `.specify/memory/`.

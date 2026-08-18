@@ -1,6 +1,6 @@
 ---
 name: ba-auto
-description: Autonomous mode - /ba-auto on writes the autonomy grant AG-<n>, flips the ledger head's Auto line and runs the surviving checkpoints under the policy table, each act stamped AUTO; /ba-auto off closes the grant and renders the pinned resumption report for one batch ratification. The safety floor sits outside every grant - the two flagged sign-offs, the effective PASS, the handoff and the scope frame at P-O0b - scope-frame selection stay BA-only. Never grants itself a grant.
+description: Autonomous mode - /ba-auto on writes the autonomy grant AG-<n>, flips the ledger head's Auto line and runs the surviving checkpoints under the policy table, each act stamped AUTO; /ba-auto off closes the grant and renders the pinned resumption report for one batch ratification. The grant reaches every act that spends no client access and makes no external commitment - self-elections included, each stamped and ratified in the batch; a client call is never booked, and an un-electable act renders as a choice, never as blocked. The safety floor sits outside every grant - the two flagged sign-offs, the effective PASS, the handoff and the scope frame at P-O0b - scope-frame selection stay BA-only. Never grants itself a grant.
 disable-model-invocation: true
 ---
 
@@ -48,6 +48,7 @@ Every checkpoint still happens. The table says who states it.
 | P-O5 — aspect-waiver acts | Grants and re-affirmations AUTO |
 | P-O6 — reopen ruling | Default **Real**. State the blast radius; **execute no cascade** — flags, never state changes |
 | P-O7 — Band-1 closure · P-O8 — Band-3 entry | AUTO stamp |
+| The arming run — `/ba-gate-health full`, the closing step of P-O7 — Band-1 closure | **Inside the grant.** Closure completes only when the arming entry exists, so a run must **never stand "closed but unarmed"** — that would put Band 2 on the road with Scope H silently disarmed. Request it as part of the closure, before the band-boundary report. **The gate runs it; you request it** — unchanged. The **P8 HA review** it raises rides the ratification batch |
 | P-O9 — overflow ruling | The **supplement lane** only: the Tier 1 — epic scoping interview supplement mini-loop fills the named gaps, assumption posture held. Never cap-adjust, never defer |
 | The gate's verdict review | **Waivers AUTO on real gaps**, stamped in the report entry. **Overrides never.** On a non-waivable assertion: **fix** — name the gap in the text, or reclassify — **and re-gate.** Never bypass |
 
@@ -56,6 +57,59 @@ Every checkpoint still happens. The table says who states it.
 ```
 <date> · AUTO (AG-<n>) · <act> · <basis>
 ```
+
+## What the grant reaches — the cost boundary
+
+The table above says who **states** each surviving stop. This rule says which
+**acts** you may start on your own:
+
+> **AUTO may self-elect any act that spends no client access and makes no
+> external commitment. Every self-election lands in the ratification batch like
+> any other AUTO act.**
+
+**The test.** An act is outside the boundary when it **spends client access** — a
+call, a workshop, an interview slot, a stakeholder's reply — or makes an
+**external commitment** a person outside the run must honour. Those stay the
+BA's election, standing grant or not: **you schedule nobody's time.** Everything
+else — reading the estate, drafting, ingesting captured material, requesting a
+check, writing a ledger record — is yours to elect and stamp.
+
+**`recommended` is not the boundary, and never was.** An act the suggestion
+grammar can only render `optional` is not an act you may skip: under Presale,
+Tier 1 — epic scoping is always `optional` — no threshold criterion demands a
+brief — so a run that waited for `recommended` would never produce one, and
+would never reach the draft specs the profile puts in its own destination.
+
+**Election stays the BA's act.** Under a grant, the BA's act is the one the mode
+already runs on — **deferred batch ratification**, the same instrument that
+covers Band-1 closure itself. Stamp the self-election, trail it, ratify it at
+`off`.
+
+**Presale with no client call — the pinned instance.** At **Band-2 exit**,
+self-elect **Tier 1 — epic scoping, ingest mode over captured client material**
+(`sources/`, the notes input the profile already legalizes) for **every epic
+allocated to the first phase** — writing the **kit and the brief per epic** —
+then continue **P-O8 — Band-3 entry** → **Tier 2 — spec-depth gap-filling** in
+assumption posture → draft specs. **The call stays BA-elected:** a live client
+session is client access, so write the kit and **never book the session it was
+written for.** An epic whose slicing hangs on an open question **still gets its
+brief** — record the dependency in the brief's Open Questions and name it in the
+resumption report.
+
+## An un-electable act renders as a choice, never as a failure
+
+An act **outside the cost boundary, outside the grant's own `scope:`, or
+awaiting a BA election** renders as law:
+
+```
+Destination reached — <what stands> · extension available by election: <act — code + name> · <what it needs>
+```
+
+**`blocked`, `locked`, `cannot proceed` describe a defect.** An un-electable act
+is a **pending choice**, and rendering the second as the first sends the BA
+hunting a fault that does not exist. **No pinned shape changes** — this governs
+what may fill the band-boundary report's `Next act:` line, the resumption
+report's `Next manual act:` line, and every run narration.
 
 ## The safety floor — outside every grant
 
@@ -151,7 +205,12 @@ own would have no boundary at all · never invents where unclear — that is an
 Open Question · never switches the profile mid-auto · never executes a reopen
 cascade · never takes an override, a cap adjust or a defer at
 P-O9 — overflow ruling · never runs a CC assertion itself · never leaves an act
-unstamped, never leaves an unratified trail unnamed at `off` · **never ends the
+unstamped, never leaves an unratified trail unnamed at `off` · **never books a
+client call, a workshop or an interview slot, and never makes a commitment a
+person outside the run must honour** — that is the cost boundary, and it is the
+BA's election · never stamps a Band-1 closure without requesting the arming run
+in the same act · **never renders an un-electable act as `blocked` or `locked`** —
+it is a choice, and it renders as one · **never ends the
 turn or renders to the conversation between acts inside a band** — mid-run
 records go to the ledger only, and a cycle's only BA-facing renders are the
 band-boundary report and the resumption report.
