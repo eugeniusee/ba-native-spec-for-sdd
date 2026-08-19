@@ -29,3 +29,6 @@ Glossary hygiene: every entry is defined (no stub entries); no duplicate or syno
 
 ### CC-H-05 · Checks: roles+mem
 Role registry consistency: every role referenced anywhere in `memory/` or existing specs exists in `roles-permissions.md`; no policy row references an undefined role or entity.
+
+### CC-H-07 · Checks: roadmap+oos+ledger head
+No standing acceptance-shape conflict is unresolved: every epic allocated outside the delivery boundary and every global out-of-scope entry that matches a `standing` `AS-<n>` entry (orchestrator §2.4) carries a recorded BA ruling — an ADV disposition, `superseded — SD-<n>`, or `accepted — <reason>`.

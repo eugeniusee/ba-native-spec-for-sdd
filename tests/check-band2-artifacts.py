@@ -62,8 +62,22 @@ compiled drafting rule and the M checkers that read the spec's form.  A run that
 carries the epic and no story trips nothing here, and that limit is stated
 rather than papered over.
 
+B105's bound, and it is the sharpest of the four.  D-O79 rules that no deferring
+act completes silently against a `standing` acceptance-shape entry — but whether
+a deferred row CONFLICTS with an acceptance item is a judgement, which is exactly
+why contract v0.3 makes CC-H-07 an **A** assertion and not an M one.  B105 judges
+the two halves a rule can hold.  The finding's SHAPE is fully decidable: an
+`(AS-<n>)` tag must name an entry the head holds `standing`, and the row must
+cite both sides — one citation is half a finding, and the id tags themselves are
+stripped before counting so a row cannot cite itself.  The SILENCE half is
+stem-keyed against the epic NAME only and under-reports by construction, the L18
+and B78 pattern: it catches the flagrant case — a row outside the boundary whose
+name shares a content stem with a standing item, over which the log says nothing
+— and claims nothing beyond it.  A conflict worded any other way is CC-H-07's at
+the gate, where a human-grade reader judges it; this rule never invents one.
+
 Same idiom as tests/check-band1-artifacts.py, and the same rule namespace
-continued: this file owns B71–B104.  It is a TEST HARNESS and is never installed.
+continued: this file owns B71–B105.  It is a TEST HARNESS and is never installed.
 
   check-band2-artifacts.py --roadmap F [--canvas F] [--frame F]
   check-band2-artifacts.py --kit F [--roadmap F]
@@ -99,6 +113,9 @@ RULES = {
     "B104": "roadmap — a fired language obligation carries its dedicated epic: "
             "every non-default `language` XO entry is `carried — <unit>` and "
             "that unit resolves to a row, or `accepted — <reason>` (D-O74)",
+    "B105": "roadmap — the acceptance cross-check's record: an `(AS-<n>)`-tagged "
+            "finding names a standing entry and cites both sides; a row deferred "
+            "outside the boundary over a standing entry carries one (D-O79)",
     # ── the call kit ──────────────────────────────────────────────────────
     "B84": "kit — four parts A–D, exact headings, in order",
     "B85": "kit — every question is `Q<n> [destination: …] [must-ask|if-time]` + question + `Why it matters:`; numbering from 1, contiguous, unique",
@@ -293,6 +310,53 @@ def cited(cell: str) -> bool:
 XO_RE = re.compile(r"^XO-(?P<n>\d+)\s+—\s+(?P<cls>[^:]+):\s*(?P<rest>.+)$")
 XO_STATE_RE = re.compile(r"\s+—\s+(?P<state>captured|carried|accepted|default)\b")
 
+# The acceptance-shape register on the same head (orchestrator §2.4, D-O78),
+# read here for one rule only — B105.  Same last-token state reading as XO's:
+# `superseded — SD-<n>` and `accepted — <reason>` each carry a separator.
+AS_RE = re.compile(r"^AS-(?P<n>\d+)\s+—\s+(?P<rest>.+)$")
+AS_STATE_RE = re.compile(r"\s+—\s+(?P<state>standing|superseded|accepted)\b")
+BOUNDARY_RE = re.compile(r"^Boundary:[ \t]*(?P<v>.*)$", re.M)
+ID_TAG_RE = re.compile(r"\((?:AS|ADV|SD|XO)-\d+\)")
+AS_HEAD_RE = re.compile(r"^Acceptance shapes:[ \t]*(?P<v>.*)$", re.M)
+
+# Words that carry no subject in an acceptance item or an epic name.  The stem
+# match below is deliberately coarse; this list only stops it firing on them.
+AS_STOPWORDS = {
+    "the", "a", "an", "and", "or", "of", "to", "for", "in", "on", "at", "by",
+    "with", "is", "are", "be", "can", "must", "will", "works", "work", "when",
+    "accepted", "end", "all", "any", "own", "its", "their", "from", "into",
+}
+
+
+def _stems(text: str) -> set[str]:
+    """Content stems of a phrase — lowercase, de-pluralized, stopwords dropped."""
+    out = set()
+    for w in re.findall(r"[A-Za-z][A-Za-z-]{2,}", text.lower()):
+        w = re.sub(r"(ing|ies|es|s)$", "", w)
+        if len(w) >= 4 and w not in AS_STOPWORDS:
+            out.add(w)
+    return out
+
+
+def standing_acceptance(head: str) -> dict[str, str]:
+    """`AS-<n>` → item text, for the `standing` entries only."""
+    m = AS_HEAD_RE.search(head)
+    if not m or m.group("v").strip().lower() in ("", "none found", "none"):
+        return {}
+    out: dict[str, str] = {}
+    for chunk in m.group("v").split(" · "):
+        chunk = chunk.strip()
+        am = AS_RE.match(chunk)
+        if not am:
+            continue
+        rest, last = am.group("rest"), None
+        for sm in AS_STATE_RE.finditer(rest):
+            last = sm
+        if last is None or last.group("state") != "standing":
+            continue          # superseded or accepted: surfaced once and ruled
+        out["AS-%s" % am.group("n")] = rest[:last.start()]
+    return out
+
 
 # ────────────────────────────────────────────────────────────────── roadmap ─
 
@@ -409,6 +473,70 @@ def check_roadmap(path: pathlib.Path, canvas: pathlib.Path | None, rep: Report,
                 rep.fail("B104",
                          f"{xid} is carried by {unit!r} and no epic row resolves it — "
                          "the register names a unit the roadmap does not hold")
+
+    # ── B105 — the acceptance cross-check's record (D-O79 · D-B6-17) ─────────
+    #
+    # Two halves, and the second one states its floor.
+    #
+    # (a) The finding's SHAPE is fully decidable: a log line tagged `(AS-<n>)`
+    #     must name an entry the head actually holds `standing`, and must cite
+    #     BOTH sides — the acceptance item and the deferring record.  A tag
+    #     pointing at an entry that is superseded, accepted or absent is a
+    #     finding about nothing; one citation is half a finding.
+    #
+    # (b) The SILENCE floor is stem-keyed and under-reports by construction —
+    #     the L18 / B78 pattern, named rather than hidden.  Whether a deferred
+    #     row conflicts with an acceptance item is a judgement, which is why
+    #     the contract makes CC-H-07 an A assertion; a mechanical rule cannot
+    #     make it.  What it CAN do is catch the flagrant case — a row allocated
+    #     outside the boundary whose name shares a content stem with a standing
+    #     item, over which the log says nothing at all.  It claims no more:
+    #     a conflict worded any other way is CC-H-07's, and this rule never
+    #     invents one.
+    if frame is not None and frame.is_file():
+        head = frame.read_text(encoding="utf-8")
+        standing = standing_acceptance(head)
+        log = text.split("## Allocation log", 1)[1] if "## Allocation log" in text else ""
+
+        # (a) every `(AS-<n>)` tag in the log, judged on its own shape
+        for line in log.splitlines():
+            for aid in re.findall(r"\(AS-\d+\)", line):
+                aid = aid.strip("()")
+                if aid not in standing:
+                    rep.fail("B105",
+                             f"a finding is tagged {aid} and the head holds no "
+                             f"`standing` entry by that id — a ruled or absent "
+                             f"entry fires nothing (D-O79)")
+                    continue
+                # the id tags are parenthesised too — strip them, or a row
+                # would cite itself twice and satisfy the rule saying nothing
+                bare = ID_TAG_RE.sub("", GROUND_CLASS_RE.sub("", line))
+                if len(CITATION_RE.findall(bare)) < 2:
+                    rep.fail("B105",
+                             f"the {aid} finding cites fewer than two sources — "
+                             "the row cites BOTH sides verbatim: the acceptance "
+                             "item and the deferring record (D-B6-17)")
+
+        # (b) the silence floor — a deferral outside the boundary, unnamed
+        bm = BOUNDARY_RE.search(head)
+        if bm and standing:
+            inside = {v.strip() for v in re.split(r"\s*\+\s*",
+                      bm.group("v").split("—")[0].strip()) if v.strip()}
+            for aid, item in standing.items():
+                item_stems = _stems(item)
+                if not item_stems:
+                    continue
+                for eid, phase in sorted(phases.items()):
+                    if phase.strip() in inside or phase.strip() == "Unallocated":
+                        continue
+                    if not (item_stems & _stems(names.get(eid, ""))):
+                        continue
+                    if not any(aid in l and eid in l for l in log.splitlines()):
+                        rep.fail("B105",
+                                 f"{eid} ({phase}) sits outside the boundary over "
+                                 f"{aid} {item.strip()!r} and the log names no "
+                                 "finding — no act that postpones scope completes "
+                                 "silently against a standing entry (D-O79)")
 
 
 

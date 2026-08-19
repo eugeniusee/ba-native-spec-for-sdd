@@ -37,7 +37,7 @@ Create both from their templates, at `.specify/` top level:
 
 | File | From | Initial content |
 |---|---|---|
-| `.specify/aspect-state.md` | `.specify/ba/templates/aspect-state.md` | head: `Band: 1 (open)`; `Profile:`, `Sources:` and the seven scope-frame lines left for Step 2 — the `Cross-cutting:` line born carrying its English default (D-O74); the six-row table at `untouched`, `Since` and `Basis` empty; all five standing-instrument head lines `none` — `Standing aspect waivers:` · `Open reopens:` · `Upstream flags:` · `Deferred consequences:` · `Scope advisories:` (the advisory register, D-O68) |
+| `.specify/aspect-state.md` | `.specify/ba/templates/aspect-state.md` | head: `Band: 1 (open)`; `Profile:`, `Sources:` and the eight scope-frame lines left for Step 2 — the `Cross-cutting:` line born carrying its English default (D-O74), the `Acceptance shapes:` line born `none found` (D-O78); the six-row table at `untouched`, `Since` and `Basis` empty; all five standing-instrument head lines `none` — `Standing aspect waivers:` · `Open reopens:` · `Upstream flags:` · `Deferred consequences:` · `Scope advisories:` (the advisory register, D-O68) |
 | `.specify/aspect-plans.md` | `.specify/ba/templates/aspect-plans.md` | the eight empty sections: `## Frame`, the six aspects, `## Band 2` |
 
 Both files sit **outside `.specify/memory/`** and stay there. Orchestration state
@@ -110,6 +110,35 @@ amended it, never superseded), no new prompt point, and the ≤ 8 Presale budget
 stands arithmetically untouched. **Autonomy is untouched by composition:** P-O0b
 sits on the never-AUTO safety floor (D-O42), so XO confirmation is BA-only under
 any grant.
+
+**The acceptance-shape harvest (D-O78) — auto-pickup extends from obligations to
+acceptance shapes.** Before rendering the block, scan the same sources for
+**engagement-level acceptance shapes** — a pass list, success criteria, a
+definition of done, an acceptance table governing the delivery as a whole — and
+pre-fill **line 6** with one entry per **item**:
+`AS-<n> — <acceptance item, one line> (<verbatim citation>)`.
+
+**The class is narrow by ruling:** it names what the client will accept the
+delivery against; **per-feature acceptance criteria are spec ground and are
+never harvested here** — requirements and wishes stay discovery ground
+(**T-01 — Discovery canvas framing**'s). **Item grain:** "accepted when booking
+works end-to-end, reminders fire, admin can export" is **three entries**, each
+independently checkable.
+
+Cite-or-mark applies unchanged: **every harvested item carries its verbatim
+citation**, the verbatim ground living in the cited source artifact — no new
+artifact class. **`none found` is a legal, recorded state** — it lands on the
+head line, never as silence. **An ambiguous candidate is asked, never guessed:**
+it renders on the same line as
+`AS-? — <candidate, one line> (<citation>) — keep or discard`, resolved in the
+same single Frame reply.
+
+**The stop count is untouched here too:** line 6 rides inside the P-O0b block —
+one render, one reply (D-O42, amended on the record by D-O78 exactly as D-O65
+and D-O73 amended it, never superseded), no new prompt point, and the ≤ 8
+Presale budget stands arithmetically untouched. **Autonomy is untouched by
+composition:** P-O0b sits on the never-AUTO safety floor (D-O42), so AS
+confirmation is BA-only under any grant.
 
 Auto-pickup runs against the **material on hand at render time** — the
 inventory's first line is exactly that list. Sources the BA names, pastes or
@@ -227,6 +256,7 @@ Scope frame — before any aspect opens (P-O0b — scope-frame selection):
 3. Client label: <free text — how the client names it: PoC, prototype, pilot…> [cite | BA-supplied | open — no source material]
 4. Scope decisions: <SD-<n> — <the decision, one line> (<citation>), per harvested decision> | none found
 5. Cross-cutting: <XO-<n> — <class>: <value, one line> (<citation>), per harvested obligation> | XO-1 English default only
+6. Acceptance shapes: <AS-<n> — <acceptance item, one line> (<citation>), per harvested item> | none found
 Parameters (defaults shown; edit or confirm):
   Rate: $50/h · Team mix: 3 fullstack eng + 1 QA + 1 BA + 1 PM (eng-share ~60%) · Capacity check: on
 Waiting for your confirmation. Switchable later; the switch is logged.
@@ -450,6 +480,66 @@ via the register, the WBS title block and the source audit's forward trace.
 ground the **T-17 — Epics decomposition** sweep reads — the law binds what
 carries an obligation, never what the sweep finds.
 
+**The acceptance-shape register — `Acceptance shapes:` (D-O78).** One
+**`AS-<n>`** entry per acceptance **item** — one line of an engagement-level
+acceptance shape: a pass list, success criteria, a definition of done, an
+acceptance table governing the delivery as a whole — with its **one-line item**,
+its **verbatim citation** and its **state**, or **`none found`**.
+
+**Item grain:** a three-item pass list is **three entries**, each independently
+checkable. **The class is narrow by ruling:** it names what the client will
+accept the delivery against; **per-feature acceptance criteria are spec ground
+and are never harvested here.**
+
+**The state vocabulary is closed at three, and nothing else:**
+
+- **`standing`** — the client's acceptance item, live and uncontested;
+- **`superseded — SD-<n>`** — a later negotiated scope decision is the
+  controlling client statement (D-O66; elicitation principle 4's D13), and the
+  supersession is **recorded, never silent**;
+- **`accepted — <reason>`**, with an event-shaped revisit trigger — a declined
+  item is a record, never silence.
+
+The head holds the machine-readable summary; the verbatim ground lives in the
+cited source artifact. Switches and mid-band arrivals ride the existing
+**`scope-frame`** event grammar — **no new event kind exists**. **This register
+is runtime and standing; the source audit's `OB-<nnn>` register is per-run and
+derived** — deliberately disjoint ID spaces, the cross-cutting register's
+pattern exactly.
+
+**The acceptance cross-check (D-O79) — stated once, here; every deferring act
+reaches it by reference.** **No act that postpones or excludes scope completes
+silently against a `standing` acceptance-shape entry.**
+
+**The deferring acts, named:**
+
+- an epic **allocated or held outside the delivery boundary** — a
+  **T-18 — Scope allocation** phase move or held row;
+- a **slide-down candidate**;
+- an **SD-directed trim** — D-O66's application;
+- a **standing `out-of-scope.md` fence row**.
+
+Where such an act's subject matches a `standing` `AS-<n>` entry, the conflict is
+a **named, cited finding — never a block at the act, and never silence**: it
+takes an **`ADV-<n>`** id (the `Scope advisories:` register) and renders in
+**T-18 — Scope allocation**'s existing step-4 decision list, ruled with the
+existing three dispositions. The run mechanics are that sheet's and are never
+legislated here. **A fence row is reached by this principle, never by editing
+its sheet:** a fence written outside any **T-18 — Scope allocation** run
+surfaces at the next run's list and stands to the gate meanwhile.
+
+**The supersession law.** Where a negotiated SD trims an item an acceptance
+shape requires, the SD is the later, negotiated client statement — the AS entry
+records **`superseded — SD-<n>`**, the conflict is surfaced once and ruled, and
+**no finding fires again for that item.**
+
+**The standing backstop is the gate's.** **CC-H-07** holds every unruled
+standing conflict as a **live H gap**, blocking under the gate's own law with
+`HA-<nn>` the conscious-acceptance valve; **a conflict any ADV disposition has
+ruled is not a gap — the record is the ruling itself.** **No new prompt point,
+no new stop, no new event kind, no threshold:** the list, the dispositions, the
+register grammar and the gate's blocking law are each consumed as they stand.
+
 **Capacity — two operations, two risk classes.**
 
 - **Envelope → capacity conversion, always on.** Pure arithmetic, no judgment:
@@ -476,6 +566,7 @@ Budget: <amount + currency> | none stated  (<citation | BA-supplied | open — n
 Client label: <free text — PoC · prototype · pilot…>  (<citation | BA-supplied | open — no source material>)
 Scope decisions: SD-<n> — <the decision, one line> (<citation>) · … | none found
 Cross-cutting: XO-1 — language: English (engagement default — framework law, D-O74) — default · XO-<n> — <class>: <value, one line> (<citation>) — <state> · …
+Acceptance shapes: AS-<n> — <acceptance item, one line> (<citation>) — <state> · … | none found
 Parameters: rate <amount>/h · team mix <…> (eng-share <n>%) · capacity check <on | off>
 Capacity: ~<n> eng-h (envelope ÷ rate × eng-share) | — (no envelope)
 ```
@@ -517,6 +608,14 @@ kind** — and a capture contradicting a confirmed entry rides the correction st
 above, already budgeted. Where the recognized obligation is a stated
 non-English or multi-language one, the unit-form law above governs what carries
 it: the register line is the record, never the carrier.
+
+**An acceptance shape recognized mid-band brings zero new machinery either
+(D-O78).** An acceptance shape recognized under cite-or-mark in **any later
+capture or mining pass** appends its `AS-<n>` entry to the head's
+`Acceptance shapes:` line and one **`scope-frame`** Events line — **no new event
+kind** — a capture contradicting a confirmed entry rides the correction stop
+above, already budgeted, and a **newly standing entry re-asserts any `accepted`
+advisory finding through its existing revisit trigger**: nothing new fires.
 
 **A late source brings zero new machinery.** A channel, thread or folder that
 appears mid-band routes its content through the existing ingestion, and a
@@ -594,7 +693,12 @@ P-O0b (scope-frame selection) under an autonomy grant** — the frame is a
 safety-floor act · **never guesses a cross-cutting obligation, and never lets a
 harvested one stand without its verbatim citation** — an ambiguous candidate is
 asked inside the block, never resolved by the framework · **never renders the
-`Cross-cutting:` line as `none`** — the English default always stands · **never rules a source disposition on the BA's behalf, and
+`Cross-cutting:` line as `none`** — the English default always stands ·
+**never guesses an acceptance shape, never lets a harvested item stand without
+its verbatim citation, and never harvests a per-feature acceptance criterion**
+— that is spec ground · **never lets a deferring act complete silently against
+a `standing` `AS-<n>` entry, and never blocks one either** — the conflict is a
+named, cited finding in **T-18 — Scope allocation**'s decision list · **never rules a source disposition on the BA's behalf, and
 never reads silence as one** · **never captures an artifact standing
 `excluded — <reason>`, never mines one, and never follows a reference to one
 inside any capture — and never lets an encounter go unrecorded** · never

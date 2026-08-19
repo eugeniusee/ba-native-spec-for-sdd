@@ -1,5 +1,7 @@
 # Geniusee Completeness Contract
-### BA-Native Spec · gate contract · v0.2 — review incorporated (19 July 2026)
+### BA-Native Spec · gate contract · v0.3 — the acceptance cross-check row: CC-H-07 (19 Aug 2026; review incorporated 19 July 2026)
+
+**v0.3 change record:** one assertion row, ruled 19 Aug 2026 (origin: **EC-02** — deferrals and exclusions were never cross-checked against the acceptance/pass/success lists the sources state, and conflicts stayed silent until delivery; BA Lead ruling **`apply all`**, 19 Aug 2026; base commit `448384b`, package 0.1.28): **§6 gains CC-H-07** — no epic allocated outside the delivery boundary and no global out-of-scope entry may conflict **unresolved** with a `standing` acceptance-shape entry (**`AS-<n>`**, orchestrator §2.4 — the register D-O78 harvests at Frame); a conflict stands **resolved** only by a recorded BA ruling — a step-4 ADV disposition (catalogue-b6 D-B6-17), or the entry itself `superseded — SD-<n>` or `accepted — <reason>`. **The contract states the assertion; classing, counting and run points are the gate's ground** (gate v0.11 §10.2 · §10.4 — the CC-H-02 division of labor verbatim), and the read of the ledger head this assertion needs is the gate's **named** boundary change, legislated there. The assertion count moves **61 → 62** (24 M · 38 A); no other row, tag, scope rule, glob or section moves, and the §3 cadence is consumed as written. Companions: orchestrator v0.30 (D-O78–D-O79) · gate v0.11 · catalogue-b6 v0.7 (D-B6-16–D-B6-17).
 
 **What this is:** the executable definition of *requirements done*. When a feature's spec and the artifacts it depends on satisfy every assertion below — or carry a logged waiver for the ones they don't — the feature may cross into `/speckit.plan`. Not before.
 **Design rule:** every line is a pass/fail assertion a checker can answer with evidence. Quality wishes ("roles are well defined") are banned from this document by construction — if it cannot fail with a named gap, it is not in the contract.
@@ -216,6 +218,7 @@ Generation granularity for CC-TR-04 = what is structurally derivable: FR ⇄ US 
 | CC-H-04 | Glossary hygiene: every entry is defined (no stub entries); no duplicate or synonymous entries left unmerged. | gloss | 10.23 · 5.2 | A |
 | CC-H-05 | Role registry consistency: every role referenced anywhere in `memory/` or existing specs exists in `roles-permissions.md`; no policy row references an undefined role or entity. | roles+mem | 10.39 | A |
 | CC-H-06 | Every governance file the constitution references exists and is stub-free. | gov | 5.2 | M |
+| CC-H-07 | No standing acceptance-shape conflict is unresolved: every epic allocated outside the delivery boundary and every global out-of-scope entry that matches a `standing` `AS-<n>` entry (orchestrator §2.4) carries a recorded BA ruling — an ADV disposition, `superseded — SD-<n>`, or `accepted — <reason>`. | roadmap+oos+ledger head | 10.1 · 7.2 consistent | A |
 
 ---
 
@@ -366,4 +369,4 @@ Ten decisions ruled by the BA Lead, 19 July 2026:
 
 ---
 
-*v0.2 · review incorporated 19 July 2026 · assertion count: 61 (6 global · 49 across C1–C12 · 6 project-health) · ⚑: CC-XA-01 · CC-XA-06 · non-waivable: CC-G-01 · CC-G-02 · CC-FR-01 · CC-TR-01 · CC-XA-01 · CC-XA-02 · runs on top of writing standard v0.2 · consumed by gate definition (document 4)*
+*v0.3 · CC-H-07 — the acceptance cross-check row (§6), applied 19 Aug 2026 (EC-02, `apply all`; classing, counting and run points the gate's — gate v0.11 §10.2 · §10.4) · assertion count: 62 (6 global · 49 across C1–C12 · 7 project-health) · v0.2 · review incorporated 19 July 2026 · ⚑: CC-XA-01 · CC-XA-06 · non-waivable: CC-G-01 · CC-G-02 · CC-FR-01 · CC-TR-01 · CC-XA-01 · CC-XA-02 · runs on top of writing standard v0.2 · consumed by gate definition (document 4)*

@@ -63,7 +63,7 @@ Voided certifications: <"PASS of <NNN> voided by <artifact> edit — cheap re-ga
   Scoped  — every framework write to a governance/context artifact; the touched
             artifact's H assertions + its cross-reference dependents; SILENT
             UNLESS FAIL
-  Pre-flight — Stage 0 of every Scope-F run, the six CC-H restricted to deps(F);
+  Pre-flight — Stage 0 of every Scope-F run, the seven CC-H restricted to deps(F);
             this is the hard guarantee
   Disarmed — before Band-1 closure
 -->

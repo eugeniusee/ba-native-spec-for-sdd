@@ -440,6 +440,111 @@ CONTRACT_DOC="$PKG_ROOT/docs/methodology/ba-native-spec-completeness-contract.md
 has "$CONTRACT_DOC" "| CC-H-02 | Roadmap discipline: every epic carries a status; every re-allocation entry logs a diff and a reason. | roadmap | 10.2" \
     "the contract's CC-H-02 row stands unedited — the assertion did not move"
 
+# ── 6c. CC-H-07 — the acceptance cross-check at the H layer (contract v0.3 §6 ·
+#       gate v0.11 §10.2 · §10.4) ─────────────────────────────────────────────
+#
+# EC-02. Deferrals were never cross-checked against the acceptance/pass/success
+# lists the sources state, so a conflict surfaced at delivery rather than at the
+# decision. T-18's step-4 list is the runtime surface; this is the STANDING
+# BACKSTOP — an unruled conflict is a live H gap and blocks like any other, with
+# `HA-<nn>` the conscious valve. The contract states the assertion; classing,
+# counting and run points are the gate's — the CC-H-02 division of labor.
+
+printf '\n▸ CC-H-07 — the acceptance cross-check at the H layer (contract §6 · gate §10.2 · §10.4)\n'
+
+CARDS_H="$PKG_ROOT/payload/specify-overlay/ba/cards/assertions-h.md"
+SKILLS_D="$PKG_ROOT/payload/claude/skills"
+
+has "$CONTRACT_DOC" "| CC-H-07 | No standing acceptance-shape conflict is unresolved" \
+    "the contract carries the CC-H-07 row (§6)"
+has "$CONTRACT_DOC" "| roadmap+oos+ledger head | 10.1 · 7.2 consistent | A |" \
+    "…with its Checks set and its class — A, judged, never mechanical"
+has "$CONTRACT_DOC" "The assertion count moves **61 → 62** (24 M · 38 A)" \
+    "…and the count moves 61 → 62, the M third untouched"
+has "$CONTRACT_DOC" "assertion count: 62 (6 global · 49 across C1–C12 · 7 project-health)" \
+    "…the footer counting seven project-health rows"
+has "$CARDS_H" "### CC-H-07 · Checks: roadmap+oos+ledger head" \
+    "the compiled A card carries CC-H-07 — check-cards.py holds it byte-identical"
+
+has "$GATE_DOC" "The acceptance cross-check (CC-H-07) — classing, ground and run points" \
+    "§10.4 owns the runtime — the contract states the assertion"
+has "$GATE_DOC" "**Element grain is the conflicting pair**" \
+    "…element grain is the conflicting pair: one deferred item × one standing entry"
+has "$GATE_DOC" 'CC-H-07 FAIL — E-05 (Phase 2) × AS-2 "reminders fire" — no recorded ruling' \
+    "…rendered in named-gap grammar"
+has "$GATE_DOC" "\`hold as advisory\` included: the BA saw it and chose visibility, which is a ruling" \
+    "…RESOLVED by any recorded ADV disposition, \`hold as advisory\` among them"
+has "$GATE_DOC" "the AS entry itself standing \`superseded — SD-<n>\` or \`accepted — <reason>\`" \
+    "…or by the entry itself, superseded or accepted"
+has "$GATE_DOC" "a ruled conflict is not a finding — the record is the ruling itself" \
+    "…and a ruled conflict is not re-named"
+has "$GATE_DOC" "it counts in \`n gaps\` and **blocks under this section's rule**" \
+    "…UNRESOLVED is a live gap that counts and blocks"
+has "$GATE_DOC" "\`HA-<nn>\` applies exactly as to any H gap" \
+    "…with HA the conscious valve, D-G9's mechanics untouched"
+has "$GATE_DOC" "**Run points:** full Scope-H runs · Stage-0 pre-flight where \`roadmap\` or \`out-of-scope.md\` ∈ \`deps(F)\` · scoped runs on \`roadmap\` and \`out-of-scope.md\` edits" \
+    "…the three run points, named"
+has "$GATE_DOC" "The head is ground, never a trigger and never audited" \
+    "…and the first ledger-head read is the named boundary change — read-only"
+has "$GATE_DOC" "CC-H-02 · CC-H-03 · CC-H-07 (the roadmap half" \
+    "§10.2's scoped map gives roadmap the roadmap half"
+has "$GATE_DOC" "CC-H-07 — \`out-of-scope.md\` only (the fence half" \
+    "…and out-of-scope.md the fence half, that artifact alone"
+
+# the compiled surfaces
+has "$SKILLS_D/ba-gate/SKILL.md" "CC-H-05 · CC-H-07" \
+    "the compiled gate dispatches CC-H-07 with the A third"
+has "$SKILLS_D/ba-gate/SKILL.md" "read-only, never a trigger" \
+    "…naming the boundary at the surface that reads it"
+has "$SKILLS_D/ba-gate-health/SKILL.md" "CC-H-01 · CC-H-04 · CC-H-05 · CC-H-07" \
+    "…and /ba-gate-health carries it in the A third too"
+has "$SKILLS_D/ba-gate-health/SKILL.md" "Element grain is the conflicting pair" \
+    "…with the element grain compiled at its own site"
+has "$SKILLS_D/ba-gate-health/SKILL.md" "the record is the ruling itself" \
+    "…and a ruled conflict named as not a finding"
+
+# live: an unresolved pair blocks admission exactly as any H gap does
+printf '\n  the pre-flight block, live:\n'
+python3 - "$TMP/blocked.json" "$TMP/h07.json" <<'PYH7'
+import json, sys, pathlib
+d = json.loads(pathlib.Path(sys.argv[1]).read_text(encoding="utf-8"))
+d["run"], d["date"] = 5, "2026-07-20"
+d["preflight"] = {"status": "gaps", "gaps": [{
+    "assertion": "CC-H-07",
+    "element": 'E-05 (Phase 2) x AS-2 "reminders fire"',
+    "problem": "no recorded ruling",
+    "fix": "rule it at T-18's step-4 decision list, or record the entry "
+           "`superseded - SD-<n>` / `accepted - <reason>`",
+    "evidence": "", "location": ".specify/memory/roadmap.md",
+    "gap_line": 'CC-H-07 FAIL — E-05 (Phase 2) × AS-2 "reminders fire" — no recorded ruling',
+    "ha": None}]}
+pathlib.Path(sys.argv[2]).write_text(json.dumps(d, indent=2, ensure_ascii=False))
+PYH7
+python3 "$SK/sk_snapshot.py" report "$TMP/h07.json" > "$TMP/h07.entry" 2>&1
+RC=$?
+[ $RC -eq 1 ] && ok "an unresolved conflicting pair is a non-zero run — it blocks like any H gap" \
+              || bad "expected exit 1 on an unresolved CC-H-07 pair, got $RC — the backstop does not block"
+has "$TMP/h07.entry" "Verdict: BLOCKED AT PRE-FLIGHT (1 H gap)" \
+    "…counted in \`n gaps\` and named in the verdict"
+has "$TMP/h07.entry" 'CC-H-07 FAIL — E-05 (Phase 2) × AS-2 "reminders fire" — no recorded ruling' \
+    "…the pair rendered as the element, in named-gap grammar"
+hasnt "$TMP/h07.entry" "Category summary" \
+      "…and nothing else is evaluated — Stage 0 halts the run"
+
+# the control — HA lifts it exactly as it lifts any other H gap (D-G9 untouched)
+python3 - "$TMP/h07.json" "$TMP/h07-ha.json" <<'PYH7B'
+import json, sys, pathlib
+d = json.loads(pathlib.Path(sys.argv[1]).read_text(encoding="utf-8"))
+for g in d["preflight"]["gaps"]:
+    g["ha"] = "HA-02"
+pathlib.Path(sys.argv[2]).write_text(json.dumps(d, indent=2, ensure_ascii=False))
+PYH7B
+python3 "$SK/sk_snapshot.py" report "$TMP/h07-ha.json" > "$TMP/h07-ha.entry" 2>&1
+has "$TMP/h07-ha.entry" "Pre-flight:           1 gap(s) lifted by HA-02" \
+    "…and an HA lifts it, the conscious valve working on CC-H-07 as on any H gap"
+has "$TMP/h07-ha.entry" "Category summary" "…the run proceeding past Stage 0 once accepted"
+
+
 # ── 7. R4 — the A pass takes §5.1 by reference, and carries no copy ──────────
 #
 # BA Lead ruling R4 = (a), 14 August 2026: §5.1's SKIPPED-on-unsupported-parse

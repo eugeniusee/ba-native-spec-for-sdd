@@ -139,12 +139,15 @@ line in the roadmap.
 5. dependency ground: `.specify/memory/domain-model.md` relations · canvas
    connection rows · the journeys in `processes.md` the core value line crosses
 6. `.specify/memory/out-of-scope.md` — resolved rows carry phase hints on the
-   epics they graduated into
+   epics they graduated into; **standing fence rows** are the acceptance
+   cross-check's subjects below
 7. `.specify/aspect-state.md` — the ledger head's scope-frame fields:
-   `Boundary:` · `Budget:` · `Scope decisions:` · `Parameters:` · the derived
-   `Capacity:`. **Read-only.** This run never writes a ledger. The
-   `Scope decisions:` line is ground the four locked factors read, **never a
-   fifth factor**.
+   `Boundary:` · `Budget:` · `Scope decisions:` · `Acceptance shapes:` ·
+   `Parameters:` · the derived `Capacity:`. **Read-only.** This run never
+   writes a ledger. The `Scope decisions:` line is ground the four locked
+   factors read, **never a fifth factor**, and the `Acceptance shapes:` line
+   is **the same class of ground** — an `AS-<n>` is read by the factors, never
+   added to them.
 8. on rerun: delivery state — the roadmap statuses, and any closed cycles
 
 ## Procedure
@@ -191,6 +194,27 @@ line in the roadmap.
      the first test still passes it where the product cannot meet its goal
      without it. The controlling-statement law is elicitation principle 4's
      (D13), cited and never restated.
+   - *The acceptance cross-check — the third reading rule, beside the
+     ground-class and the SD rule.* Check **every deferring row this run
+     touches or stands over** — an epic **allocated or held outside the
+     delivery boundary**, every **slide-down candidate** the capacity
+     comparison names, every **`BA-directed (SD-<n>)`** trim, and every
+     **standing `out-of-scope.md` fence row** — against the head's
+     **`standing` `AS-<n>`** entries. **A match is a named finding in the same
+     decision list below:** the row cites **both sides verbatim** — the
+     acceptance item with its citation, and the deferring record — and is
+     tagged **`(AS-<n>)`** beside its `ADV-<n>` id. The dispositions are the
+     existing three, `hold as advisory — no move` the default, so `apply all`
+     stays a complete, safe ruling, and a `direct a move` pins
+     **`BA-directed (ADV-<n>)`** exactly as any other. **An entry standing
+     `superseded — SD-<n>` or `accepted — <reason>` fires nothing** — the
+     conflict was surfaced once and ruled; a newly standing entry re-asserts an
+     `accepted` finding through the existing revisit trigger. **Visibility,
+     never a block; the BA's call stands** — the standing backstop is the
+     gate's **CC-H-07**: a conflict no disposition has ruled is a live H gap
+     there, and a ruled one is not. The cross-check principle is
+     orchestrator §8.1's (D-O79), consumed here by reference and never
+     restated.
    - *With `Capacity check: on`,* add the rough comparison, explicitly
      assumption-grade: `MVP phase ≈ <n> eng-h against capacity ≈ <m> — rough,
      assumption-grade. Slide-down candidates: <epics>.` With the check `off` the

@@ -63,6 +63,7 @@ Budget: <amount + currency> | none stated  (<citation | BA-supplied | open — n
 Client label: <free text — PoC · prototype · pilot…>  (<citation | BA-supplied | open — no source material>)
 Scope decisions: SD-<n> — <the decision, one line> (<citation>) · … | none found
 Cross-cutting: XO-1 — language: English (engagement default — framework law, D-O74) — default
+Acceptance shapes: AS-<n> — <acceptance item, one line> (<citation>) — <state> · … | none found
 Parameters: rate <amount>/h · team mix <…> (eng-share <n>%) · capacity check <on | off>
 Capacity: ~<n> eng-h (envelope ÷ rate × eng-share) | — (no envelope)
 Auto: off
@@ -93,6 +94,11 @@ Scope advisories:         none
   Cross-cutting: XO-1 — language: English (engagement default — framework law, D-O74) — default · XO-<n> — <class>: <value, one line> (<citation>) — <state> · …
                             classes: language · device · accessibility · branding · compliance (closed at five)
                             states:  captured | carried — <unit> | accepted — <reason> — revisit: <event> | default (closed at four)
+  Acceptance shapes: AS-<n> — <acceptance item, one line> (<citation>) — <state> · …
+                            one entry per acceptance item — engagement-level shapes only (a pass list, success
+                            criteria, a definition of done, an acceptance table governing the delivery as a whole);
+                            per-feature acceptance criteria are spec ground and are never harvested here
+                            states:  standing | superseded — SD-<n> | accepted — <reason> — revisit: <event> (closed at three)
 -->
 
 ## Events

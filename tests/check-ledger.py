@@ -101,6 +101,8 @@ RULES = {
            "<state>`, five classes, four states, never `none` (§2.4, D-O72)",
     "L18": "cross-cutting harvest — a capture stating an obligation carries its "
            "`XO-<n>` entry (§8.1, D-O73)",
+    "L19": "acceptance-shape register — `AS-<n> — <item> (<citation>) — "
+           "<state>`, three states, `none found` legal (§2.4, D-O78)",
 }
 
 # ── event forms ──────────────────────────────────────────────────────────────
@@ -151,7 +153,7 @@ RE_ENCOUNTER = re.compile(r"^encounter — not followed$")
 
 HEAD_LINES = ["Standing aspect waivers:", "Open reopens:",
               "Upstream flags:", "Deferred consequences:",
-              "Scope advisories:", "Cross-cutting:"]
+              "Scope advisories:", "Cross-cutting:", "Acceptance shapes:"]
 
 # ── the cross-cutting register (§2.4, D-O72) ─────────────────────────────────
 #
@@ -165,6 +167,19 @@ XO_CLASSES = ("language", "device", "accessibility", "branding", "compliance")
 XO_STATES = ("captured", "carried", "accepted", "default")
 RE_XO = re.compile(r"^XO-(?P<n>\d+)\s+—\s+(?P<cls>[^:]+):\s*(?P<rest>.+)$")
 RE_XO_STATE = re.compile(r"\s+—\s+(?P<state>%s)\b" % "|".join(XO_STATES))
+
+# ── the acceptance-shape register (§2.4, D-O78) ──────────────────────────────
+#
+# `Acceptance shapes: AS-<n> — <acceptance item> (<citation>) — <state> · …` or
+# `none found`, which is a legal, RECORDED state — unlike the cross-cutting
+# line, whose engagement default always stands.  The state vocabulary is closed
+# at three by ruling.  The state token is matched at a ` — ` boundary from the
+# right for the same reason XO's is: `superseded — SD-<n>` and
+# `accepted — <reason>` each carry a separator of their own, so the LAST state
+# token on an entry is that entry's state.
+AS_STATES = ("standing", "superseded", "accepted")
+RE_AS = re.compile(r"^AS-(?P<n>\d+)\s+—\s+(?P<rest>.+)$")
+RE_AS_STATE = re.compile(r"\s+—\s+(?P<state>%s)\b" % "|".join(AS_STATES))
 
 # L18's marker set — the harvest floor, and it claims nothing more.  Each entry
 # is a phrasing that names its class unmistakably in captured client prose; a
@@ -342,6 +357,54 @@ def check(path: pathlib.Path, allow_open_band: bool, captures=None) -> Report:
                         f"XO-{n}: `{last.group('state')}` carries no "
                         f"{'unit' if last.group('state') == 'carried' else 'reason'} — "
                         "no state ends an obligation without one")
+
+    # ── L19 — the acceptance-shape register's grammar (§2.4, D-O78) ─────────
+    #
+    # Presence is L1's above; this is the line's own shape.  The state
+    # vocabulary is closed at three, ids are unique, and `none found` is a
+    # legal, recorded value — the acceptance register is not the cross-cutting
+    # one, which the language default keeps non-empty.  A `superseded` entry
+    # names its `SD-<n>`; an `accepted` one names its reason: no state ends an
+    # acceptance item without one.
+    as_line = head_line_value("Acceptance shapes:")
+    if as_line and as_line.lower() not in ("none found", "none"):
+        seen_as = {}
+        for chunk in as_line.split(" · "):
+            chunk = chunk.strip()
+            if not chunk or chunk.startswith("<"):
+                continue
+            m = RE_AS.match(chunk)
+            if not m:
+                rep.bad("L19", i_head + 2,
+                        f"register entry does not parse as "
+                        f"`AS-<n> — <acceptance item> (<citation>) — <state>`: {chunk!r}")
+                continue
+            n, rest = int(m.group("n")), m.group("rest")
+            if n in seen_as:
+                rep.bad("L19", i_head + 2, f"AS-{n} appears twice on the line")
+            seen_as[n] = True
+            if "(" not in rest or ")" not in rest:
+                rep.bad("L19", i_head + 2,
+                        f"AS-{n}: no verbatim citation — cite-or-mark applies "
+                        "to every harvested item (D-O78)")
+            last = None
+            for sm in RE_AS_STATE.finditer(rest):
+                last = sm
+            if last is None:
+                rep.bad("L19", i_head + 2,
+                        f"AS-{n}: no state — one of "
+                        f"{' · '.join(AS_STATES)}, never absence")
+                continue
+            st = last.group("state")
+            tail = rest[last.end():].strip(" —")
+            if st == "superseded" and not re.match(r"^SD-\d+\b", tail):
+                rep.bad("L19", i_head + 2,
+                        f"AS-{n}: `superseded` names no `SD-<n>` — the "
+                        "supersession is recorded, never silent (D-O78)")
+            elif st == "accepted" and not tail:
+                rep.bad("L19", i_head + 2,
+                        f"AS-{n}: `accepted` carries no reason — a declined "
+                        "item is a record, never silence")
 
     # ── replay the events ───────────────────────────────────────────────────
     state = {a: "untouched" for a in ASPECTS}

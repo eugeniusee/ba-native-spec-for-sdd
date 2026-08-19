@@ -14,7 +14,7 @@
 #             cascade · resolution on the emitting batch · event-shaped deferral
 #             · delta re-clear (T6) with AT-ST-1 carried
 #   4.        the whole replay is grammar-legal under tests/check-ledger.py
-#   5.        22 seeded defects across the 18 rules — the suite is not vacuous
+#   5.        26 seeded defects across the 19 rules — the suite is not vacuous
 #   6.        the nine P-O checkpoints render, with their refusals and locked
 #             vocabularies, in the skills that own them
 #
@@ -1059,6 +1059,114 @@ else
 fi
 
 
+# ── 5i. the acceptance-shape register and the deferral cross-check ──────────
+#
+# EC-02. Deferring acts never consulted the acceptance/pass/success lists the
+# sources state, so an item an acceptance list required could be postponed with
+# a clean record and the conflict surfaced at delivery. D-O78 lands the register
+# and its harvest at line 6 of P-O0b; D-O79 states the cross-check once, at the
+# frame surface, every deferring act reaching it by reference. The head-line
+# grammar is check-ledger.py's L19 (live below); the T-18 consumption is
+# catalogue-b6's D-B6-16–D-B6-17, asserted from check-spine.sh; the standing
+# backstop is CC-H-07, asserted from check-gate.sh.
+
+printf '\n▸ The acceptance-shape register and the deferral cross-check (§2.4 · §8.1; D-O78–D-O79)\n'
+
+ASHEAD='Acceptance shapes: AS-<n> — <acceptance item, one line> (<citation>) — <state> · … | none found'
+has "$RULES_SRC" "$ASHEAD" "the §2.4 head exhibit carries the Acceptance shapes line"
+has "$FRAME"     "$ASHEAD" "…and so does ba-frame's head-write block"
+has "$SKILLS/ba-status/SKILL.md" "$ASHEAD" "…and ba-status's head render"
+has "$TPL"       "$ASHEAD" "…and the shipped template is born carrying it"
+
+has "$RULES_SRC" "closed at three: \`standing\`" \
+    "the state vocabulary is closed at three (D-O78)"
+has "$FRAME" "The state vocabulary is closed at three, and nothing else" \
+    "…and ba-frame compiles the closed three"
+has "$RULES_SRC" "per-feature acceptance criteria are spec ground" \
+    "…the class narrow by ruling — per-feature ACs are spec ground, never harvested"
+has "$FRAME" "never harvested here" "…and the carrier refuses them at its own site"
+has "$RULES_SRC" "a three-item pass list is three entries" \
+    "…item grain: a three-item pass list is three entries (D-O78)"
+has "$FRAME" "is **three entries**, each" "…and ba-frame compiles the grain"
+has "$RULES_SRC" "the audit's \`OB-<nnn>\` register is per-run and derived" \
+    "…the runtime register deliberately disjoint from the audit's (D-O78)"
+
+# the capture — line 6 of the pinned block, one render one reply
+has "$RULES_SRC" "6. Acceptance shapes: <AS-<n> — <acceptance item, one line> (<citation>), per harvested item> | none found" \
+    "§8.1's pinned P-O0b block carries line 6 (D-O78)"
+has "$FRAME" "6. Acceptance shapes: <AS-<n> — <acceptance item, one line> (<citation>), per harvested item> | none found" \
+    "…and ba-frame's block renders it verbatim"
+has "$RULES_SRC" "AS-? — <candidate, one line> (<citation>) — keep or discard" \
+    "…an ambiguous candidate asked inside the block, never guessed"
+has "$FRAME" "AS-? — <candidate, one line> (<citation>) — keep or discard" \
+    "…and the carrier asks it in the same single Frame reply"
+has "$FRAME" "AS confirmation is BA-only under any grant" \
+    "…confirmation BA-only under any grant — P-O0b's safety-floor standing"
+has "$FRAME" "re-asserts any \`accepted\`" \
+    "…mid-band: a newly standing entry re-asserts an accepted finding (D-O78)"
+
+# the cross-check — stated once, at the frame surface; the four deferring acts
+has "$RULES_SRC" "No act that postpones or excludes scope completes silently against a \`standing\`" \
+    "the cross-check is stated once, at §8.1 (D-O79)"
+has "$FRAME" "No act that postpones or excludes scope completes" \
+    "…and ba-frame is its compiled home"
+for CLAUSE in "allocated or held outside the delivery boundary" \
+              "slide-down candidate" "SD-directed trim" "fence row"; do
+  has "$FRAME" "$CLAUSE" "…the deferring acts named: $CLAUSE"
+done
+has "$FRAME" "never a block at the act, and never silence" \
+    "…a match a named cited finding — never a block, never silence (D-O79)"
+has "$FRAME" "renders in
+**T-18 — Scope allocation**'s existing step-4 decision list" \
+    "…rendering in T-18 — Scope allocation's existing step-4 decision list"
+has "$FRAME" "never by editing
+its sheet" "…a fence row reached by the principle, never by editing its sheet"
+has "$FRAME" "records **\`superseded — SD-<n>\`**" \
+    "…the supersession law: the SD is the later negotiated statement"
+has "$FRAME" "no finding fires again for that item" \
+    "…and no finding fires again once the conflict is ruled"
+has "$FRAME" "**CC-H-07** holds every unruled
+standing conflict as a **live H gap**" \
+    "…the standing backstop is the gate's CC-H-07 (D-O79)"
+has "$FRAME" "the record is the ruling itself" \
+    "…and a ruled conflict is not a gap"
+has "$FRAME" "no new stop, no new event kind, no threshold" \
+    "…with no new prompt point, stop, event kind or threshold"
+
+# live: the register's grammar, against the validator
+printf '\n  the ledger validator, live:\n'
+AS_ANCHOR='Acceptance shapes:        none found'
+mutate "$B" "$M/as-ok.md" "$AS_ANCHOR" \
+  "Acceptance shapes:        AS-1 — booking works end-to-end (rfp.md §9) — standing · AS-2 — reminders fire (rfp.md §9) — superseded — SD-2 · AS-3 — admin can export (rfp.md §9) — accepted — client defers reporting — revisit: phase-2 kickoff"
+if python3 "$HERE/check-ledger.py" "$M/as-ok.md" > "$TMP/as.out" 2>&1; then
+  ok "L19 the register validates — a standing item, a superseded one, an accepted one (D-O78)"
+else
+  bad "L19 a legal register does not validate:"; sed 's/^/      /' "$TMP/as.out"
+fi
+
+if python3 "$HERE/check-ledger.py" "$B" > "$TMP/as0.out" 2>&1; then
+  ok "…and \`none found\` is a legal, recorded value — unlike the cross-cutting line"
+else
+  bad "L19 rejects \`none found\`, which the ruling makes legal:"; sed 's/^/      /' "$TMP/as0.out"
+fi
+
+mutate "$B" "$M/as-state.md" "$AS_ANCHOR" \
+  "Acceptance shapes:        AS-1 — booking works end-to-end (rfp.md §9) — noted"
+neg "L19 a state outside the closed three" "$M/as-state.md" L19
+
+mutate "$B" "$M/as-cite.md" "$AS_ANCHOR" \
+  "Acceptance shapes:        AS-1 — booking works end-to-end — standing"
+neg "L19 a harvested item with no verbatim citation" "$M/as-cite.md" L19
+
+mutate "$B" "$M/as-sd.md" "$AS_ANCHOR" \
+  "Acceptance shapes:        AS-1 — reminders fire (rfp.md §9) — superseded"
+neg "L19 \`superseded\` naming no SD — the supersession is never silent" "$M/as-sd.md" L19
+
+mutate "$B" "$M/as-reason.md" "$AS_ANCHOR" \
+  "Acceptance shapes:        AS-1 — admin can export (rfp.md §9) — accepted"
+neg "L19 \`accepted\` carrying no reason — a decline is a record" "$M/as-reason.md" L19
+
+
 # ── 5h. the export teeth, the design guide, and the none-stated boundary ────
 #
 # D-O75 · D-O76 · D-O77. The title block's third line and the generation
@@ -1201,11 +1309,13 @@ has "$RULES_DOC" "v0.27" "…and the edition the scope-decision harvest produced
 has "$RULES_DOC" "D-O68–D-O71" "…and the advisory-register + excluded-source ruling block"
 has "$RULES_DOC" "v0.28" "…and the edition the standing-advisory register produced"
 has "$RULES_DOC" "D-O72–D-O77" "…and the cross-cutting-register + language-unit ruling block"
-has "$RULES_DOC" "## 32. Review record (v0.28 → v0.29)" \
-    "…and §32, the review record that carries it"
-head -2 "$RULES_DOC" | grep -q 'v0\.29' \
-  && ok "the header states the live edition — v0.29, cross-cutting obligations first-class" \
-  || bad "the header does not name v0.29: the edition and the change record disagree"
+has "$RULES_DOC" "v0.29" "…and the edition cross-cutting obligations first-class produced"
+has "$RULES_DOC" "D-O78–D-O79" "…and the acceptance-register + cross-check ruling block"
+has "$RULES_DOC" "## 33. Review record (v0.29 → v0.30)" \
+    "…and §33, the review record that carries it"
+head -2 "$RULES_DOC" | grep -q 'v0\.30' \
+  && ok "the header states the live edition — v0.30, the deferral answers to the acceptance shape" \
+  || bad "the header does not name v0.30: the edition and the change record disagree"
 has "$RULES_DOC" "D-O45–D-O49" "…and the source-inventory ruling block"
 has "$RULES_DOC" "D-O50" "…and the change record names the unreadable-spec ruling"
 has "$RULES_DOC" "D-O51–D-O52" "…and the continuity-under-a-grant ruling block"
@@ -1215,11 +1325,11 @@ has "$RULES_DOC" "v0.20" "…and the edition the candidate scan produced"
 has "$RULES_DOC" "D-O54" "…and the scan-method ruling"
 
 # the ruling block is contiguous from the live high-water mark: no gap, no reuse
-python3 - "$RULES_DOC" <<'PYX' && ok "the D-O block runs 1…77 with no gap and no skipped number" \
+python3 - "$RULES_DOC" <<'PYX' && ok "the D-O block runs 1…79 with no gap and no skipped number" \
   || bad "the D-O decision block is not contiguous — a number is missing or reused"
 import re, sys
 seen = {int(n) for n in re.findall(r"D-O(\d+)", open(sys.argv[1], encoding="utf-8").read())}
-sys.exit(0 if seen == set(range(1, 78)) else 1)
+sys.exit(0 if seen == set(range(1, 80)) else 1)
 PYX
 
 # ── 6b. Band-2 plan composition — the record home has its producer (D-O55) ──
@@ -1362,7 +1472,7 @@ done
 
 printf '\n  passed: %s   failed: %s\n' "$PASSED" "$FAILED"
 if [ "$FAILED" -eq 0 ]; then
-  printf '✓ GREEN — S4 orchestrator: §12 exhibits ×3 · ledger grammar · 22 seeded defects · P-O1–P-O9\n'
+  printf '✓ GREEN — S4 orchestrator: §12 exhibits ×3 · ledger grammar · 26 seeded defects · P-O1–P-O9\n'
   exit 0
 fi
 printf '✗ RED — %s check(s) failed\n' "$FAILED"

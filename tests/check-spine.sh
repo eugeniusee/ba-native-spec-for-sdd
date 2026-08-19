@@ -558,6 +558,37 @@ has "$T18" "BA-directed (ADV-<n>)" "…and the §5 Reason tag set gains its thir
 has "$SKILLS/ba-t18/references/example.md" "BA-directed (ADV-<n>)" \
     "…carried into the worked example's row grammar"
 
+# T-18: the acceptance cross-check (D-B6-16 · D-B6-17) — the advisory's third
+# reading rule.  D-B6-16 puts the `Acceptance shapes:` line in the step-2
+# evidence read as GROUND, never a fifth factor — the D-B6-12 pattern exactly;
+# D-B6-17 makes the deferral answer to it, findings entering the list D-B6-14
+# already built.  The record half is check-band2-artifacts.py's B105, live below.
+has "$T18" "\`Acceptance shapes:\`" "T-18 reads the acceptance-shape head line (D-B6-16)"
+has "$T18" "the same class of ground" \
+    "…as the same class of ground the SD line is — read by the factors, never added to them"
+has "$T18" "never added to them" "…an AS-<n> never becoming a fifth factor"
+has "$T18" "The acceptance cross-check" \
+    "T-18's advisory carries the cross-check as its third reading rule (D-B6-17)"
+for CLAUSE in "allocated or held outside the" "slide-down candidate" \
+              "standing \`out-of-scope.md\` fence row"; do
+  has "$T18" "$CLAUSE" "…checking every deferring row: $CLAUSE"
+done
+has "$T18" "\`BA-directed (SD-<n>)\`** trim" \
+    "…checking every deferring row: every BA-directed (SD-<n>) trim"
+has "$T18" "against the head's" "…against the head's standing AS entries"
+has "$T18" "cites **both sides verbatim**" \
+    "…the finding citing both sides verbatim — the item and the deferring record"
+has "$T18" "tagged **\`(AS-<n>)\`** beside its \`ADV-<n>\` id" \
+    "…tagged (AS-<n>) beside its ADV-<n> id"
+has "$T18" "dispositions are the
+     existing three" "…ruled with the existing three dispositions, no new one"
+has "$T18" "fires nothing" \
+    "…a superseded or accepted entry firing nothing — surfaced once and ruled"
+has "$T18" "the standing backstop is the
+     gate's **CC-H-07**" "…with the gate's CC-H-07 the standing backstop"
+hasnt "$T18" "No act that postpones or excludes scope completes" \
+    "…and the principle is not restated — one statement, at the frame surface"
+
 
 # ── T-18 · the SD run, seeded both ways ──────────────────────────────────────
 #
@@ -779,6 +810,104 @@ else
 fi
 
 
+# ── T-18 · the acceptance cross-check's record, live (D-O79 · D-B6-17) ──────
+#
+# B105's two halves against the fixture roadmap. The frame supplies the
+# `Boundary:` line and the `Acceptance shapes:` register; the roadmap supplies
+# the deferrals and the log. E-07 Online Payment sits at Phase 2 — outside an
+# MVP boundary — which is the pair the seeded defects turn on.
+
+printf '\n▸ T-18 · the deferral answers to the acceptance shape (D-O79 · D-B6-17)\n'
+
+AS_FR="$TMP/asframes"; mkdir -p "$AS_FR"
+as_frame() {   # $1 → file, $2 → the Acceptance shapes: line value
+  printf 'Boundary: MVP — set 2026-07-07 (P-O0b)\n%s\nAcceptance shapes: %s\n' \
+    "$XO_DEF" "$2" > "$1"
+}
+as_frame "$AS_FR/standing.md" 'AS-1 — payment taken at booking (rfp.md §9) — standing'
+as_frame "$AS_FR/superseded.md" 'AS-1 — payment taken at booking (rfp.md §9) — superseded — SD-2'
+as_frame "$AS_FR/unrelated.md" 'AS-1 — booking works end-to-end (rfp.md §9) — standing'
+
+AS_RM="$TMP/asroadmaps"; mkdir -p "$AS_RM"
+python3 - "$RM" "$AS_RM" <<'PYX'
+import pathlib, sys
+src, out = pathlib.Path(sys.argv[1]), pathlib.Path(sys.argv[2])
+t = src.read_text(encoding="utf-8")
+row = ("| E-07 Online Payment | Unallocated → Phase 2 | value vs. effort: no payment "
+       "surface needed for O-2 at launch; integration-heavy; phase hint carried from "
+       "the graduated out-of-scope row |")
+assert row in t, "the E-07 log row moved — the B105 fixtures need re-aiming"
+ruled = ('| E-07 Online Payment | Unallocated → Phase 2 | BA-directed (ADV-1) (AS-1): the '
+         'acceptance list requires "payment taken at booking" (rfp.md §9) against the '
+         'deferral "payments deferred — graduated this run" (out-of-scope.md); held as '
+         'advisory — no move |')
+half = ('| E-07 Online Payment | Unallocated → Phase 2 | BA-directed (ADV-1) (AS-1): the '
+        'acceptance list requires payment at booking; held as advisory — no move |')
+ghost = ('| E-07 Online Payment | Unallocated → Phase 2 | BA-directed (ADV-1) (AS-9): the '
+         'acceptance list requires "payment taken at booking" (rfp.md §9) against the '
+         'deferral "payments deferred" (out-of-scope.md); held as advisory — no move |')
+for name, r in (("ruled", ruled), ("half", half), ("ghost", ghost)):
+    (out / ("%s.md" % name)).write_text(t.replace(row, r), encoding="utf-8")
+PYX
+
+# (xii) the clean run — the conflict surfaced, cited both sides, and ruled
+if python3 "$VALIDATE" --roadmap "$AS_RM/ruled.md" --frame "$AS_FR/standing.md" \
+     > "$TMP/as-ruled.out" 2>&1; then
+  ok "seeded clean: a deferral over a standing entry, named and cited on both sides, passes"
+else
+  bad "a ruled conflict was rejected"; sed 's/^/      /' "$TMP/as-ruled.out"
+fi
+
+# (xiii) the supersession law — surfaced once and ruled, so nothing fires again
+if python3 "$VALIDATE" --roadmap "$RM" --frame "$AS_FR/superseded.md" \
+     > "$TMP/as-sup.out" 2>&1; then
+  ok "…and an entry standing \`superseded — SD-<n>\` fires nothing, the log silent"
+else
+  bad "a superseded entry still demanded a finding — the supersession law is not applied"
+  sed 's/^/      /' "$TMP/as-sup.out"
+fi
+
+# (xiv) the regression guard — a standing entry no deferral touches asks nothing
+if python3 "$VALIDATE" --roadmap "$RM" --frame "$AS_FR/unrelated.md" \
+     > "$TMP/as-un.out" 2>&1; then
+  ok "…and a standing entry no deferred row answers to leaves the roadmap alone"
+else
+  bad "the cross-check fired on a pair that does not meet"; sed 's/^/      /' "$TMP/as-un.out"
+fi
+
+printf '\n  seeded-defect control:\n'
+
+# (xv) the seeded defect — the deferral completes silently against a standing entry
+if python3 "$VALIDATE" --roadmap "$RM" --frame "$AS_FR/standing.md" \
+     > "$TMP/as-silent.out" 2>&1; then
+  bad "a row deferred over a standing acceptance entry passed with the log silent — EC-02's own loss"
+else
+  grep -q "B105" "$TMP/as-silent.out" \
+    && ok "seeded defect caught by name: B105 — a deferral conflicting a standing entry, no named finding" \
+    || { bad "the silent deferral failed, but not as B105"; sed 's/^/      /' "$TMP/as-silent.out"; }
+fi
+
+# (xvi) the seeded defect — an AS-tagged finding citing only one side
+if python3 "$VALIDATE" --roadmap "$AS_RM/half.md" --frame "$AS_FR/standing.md" \
+     > "$TMP/as-half.out" 2>&1; then
+  bad "a finding citing one side passed — \`cites both sides verbatim\` would mean nothing"
+else
+  grep -q "B105" "$TMP/as-half.out" \
+    && ok "seeded defect caught by name: B105 — an AS-tagged finding missing its verbatim citation pair" \
+    || { bad "the half-cited finding failed, but not as B105"; sed 's/^/      /' "$TMP/as-half.out"; }
+fi
+
+# (xvii) the seeded defect — a tag naming an entry the head does not hold standing
+if python3 "$VALIDATE" --roadmap "$AS_RM/ghost.md" --frame "$AS_FR/standing.md" \
+     > "$TMP/as-ghost.out" 2>&1; then
+  bad "a finding tagged with an entry the head never held passed — the tag joins nothing"
+else
+  grep -q "B105" "$TMP/as-ghost.out" \
+    && ok "seeded defect caught by name: B105 — a tag naming no standing entry" \
+    || { bad "the ghost tag failed, but not as B105"; sed 's/^/      /' "$TMP/as-ghost.out"; }
+fi
+
+
 # the writer split, stated on both sides
 has "$T17" "one file, three writers" "T-17 states the shared-file write discipline"
 has "$T18" "one file, three writers" "…and so does T-18, from its own side"
@@ -875,7 +1004,7 @@ done
 
 printf '\n  passed: %s   failed: %s\n' "$PASSED" "$FAILED"
 if [ "$FAILED" -eq 0 ]; then
-  printf '✓ GREEN — S8 Band 2 + spine: T-17 · T-18 · Tier 1 · Tier 2 · ba-analyst · 39 seeded defects\n'
+  printf '✓ GREEN — S8 Band 2 + spine: T-17 · T-18 · Tier 1 · Tier 2 · ba-analyst · 42 seeded defects\n'
   exit 0
 fi
 printf '✗ RED — %s check(s) failed\n' "$FAILED"

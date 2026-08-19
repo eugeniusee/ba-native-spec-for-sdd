@@ -9635,3 +9635,157 @@ the audit-side reconciliation family (runtime `XO` ↔ audit `OB`), the gate
 consequence, and the design-guide **consumption** format — all three out of
 scope by the document's own fences. `check-audit.sh` · `sk_audit.py` stand named
 and unbuilt from the earlier sittings.
+
+## The Deferral Answers to the Acceptance Shape — EC-02 propagated · orchestrator v0.30 · catalogue-b6 v0.7 · gate v0.11 · contract v0.3 · package 0.1.29 · 19 August 2026 · GREEN
+
+**Session prompt:** the Lane B compile pass — propagate the four bumped
+documents into the runtime (orchestrator v0.30 · catalogue-b6 v0.7 · gate v0.11
+· contract v0.3). Compiled units only; the one-way rule in force.
+
+**Precondition, clean.** The orchestrator carried v0.30 with **D-O78–D-O79**,
+§33 and the footer locked at D-O1–D-O79, base commit `448384b` stamped;
+catalogue-b6 carried v0.7 with **D-B6-16–D-B6-17**; the gate carried v0.11 with
+CC-H-07's runtime and its named ledger-head read; the contract carried v0.3 with
+the **CC-H-07** row and the count **62 (24 M · 38 A)**; catalogue-b1 v0.7 and
+elicitation v0.8 stood untouched; `git log --oneline -1` read `448384b`, VERSION
+`0.1.28`. The suite's residuals at baseline were the expected ones —
+`check-orchestrator.sh` pinned at v0.29 and D-O contiguity 1…77, and
+`check-cards.py` / `check-gate.sh` failing on the compiled A card the contract's
+new row had overtaken. Three consumers, all this pass's own.
+
+**What the ruling gives the runtime.** **The acceptance-shape register (D-O78)**
+— an `Acceptance shapes:` head line joins §2.4's scope-frame group beside
+`Cross-cutting:`, one **`AS-<n>`** entry per acceptance **item** with its
+one-line item · verbatim citation · state. **Item grain** — a three-item pass
+list is three entries, each independently checkable. **The class narrow by
+ruling** — engagement-level shapes only, and **per-feature acceptance criteria
+are spec ground (the contract's CC-AC's), never harvested**. **States closed at
+three** — `standing` · `superseded — SD-<n>` (the later negotiated statement
+controls: D-O66 · elicitation D13, recorded and never silent) · `accepted —
+<reason>` with its revisit trigger — and **`none found` is a legal, recorded
+state**, unlike the cross-cutting line the English default keeps non-empty.
+Runtime and standing, deliberately disjoint from the audit's per-run `OB-<nnn>`
+· **the capture (D-O78)** — **line 6 of the pinned P-O0b block**, harvested by
+the D-O65 auto-pickup pattern, ambiguity asked as `AS-? … keep or discard`
+inside the single Frame reply; mid-band and late arrival append the entry and
+one `scope-frame` Events line, a newly standing entry re-asserting an `accepted`
+advisory finding through D-O68's existing revisit trigger — no new prompt point,
+no new event kind, no new stop · **the acceptance cross-check (D-O79)** — stated
+once, at the frame surface: **no act that postpones or excludes scope completes
+silently against a `standing` AS entry.** The four deferring acts named — an
+epic allocated or held outside the delivery boundary, a slide-down candidate, an
+SD-directed trim, a standing `out-of-scope.md` fence row. A match is a **named,
+cited finding** taking an `ADV-<n>` id and rendering in T-18's existing step-4
+decision list, ruled with the existing three dispositions — never a block at the
+act, never silence, never a new surface · **the consumption (D-B6-16–D-B6-17)**
+— the head's `Acceptance shapes:` line joins T-18's step-2 evidence read as
+**ground the four locked factors read, never a fifth factor**, and the advisory
+gains its **third reading rule** beside the ground-class and the SD rule: the
+finding cites **both sides verbatim** and is tagged **`(AS-<n>)`** beside its
+`ADV-<n>` id · **the backstop (contract v0.3 · gate v0.11)** — **CC-H-07**, the
+conflicting pair the element, resolved by any recorded ADV disposition (`hold as
+advisory` included — the BA saw it and chose visibility, which is a ruling) or
+by the entry standing `superseded`/`accepted`; unresolved is a live H gap that
+counts and blocks, with `HA-<nn>` the conscious valve.
+
+**Files touched — 23.** The four methodology documents (owner-supplied) ·
+`ba-frame/SKILL.md` · `ba-status/SKILL.md` · `ba-t18/SKILL.md` ·
+`ba-gate/SKILL.md` · `ba-gate-health/SKILL.md` · `templates/aspect-state.md` ·
+`templates/gate-health.md` · `cards/assertions-h.md` (recompiled) ·
+`scripts/sk_snapshot.py` · `tests/check-orchestrator.sh` · `tests/check-gate.sh`
+· `tests/check-cards.py` · `tests/check-ledger.py` · `tests/check-spine.sh` ·
+`tests/check-band2-artifacts.py` · the two fixture ledgers · `BUILD-LOG.md` ·
+`VERSION` (0.1.28 → **0.1.29**).
+
+**The suite: 17 of 17 green.** `check-orchestrator.sh` **409 → 448** — the
+header pinned at v0.30, v0.29 demoted to a change-record `has`, the D-O78–D-O79
+block, contiguity moved to **1…79**, and one new section: §5i (the register in
+all four carriers, the closed three states, `none found` legal, line 6 of the
+pinned block, the mid-band re-assertion, and the cross-check's four deferring
+acts with the supersession law and the CC-H-07 backstop). Four new seeded
+defects, all failing by name — a state outside the closed three, a harvested
+item with no verbatim citation, a `superseded` naming no `SD-<n>`, an `accepted`
+carrying no reason — with `none found` asserted legal as the regression guard
+that keeps L19 off the XO line's law. `check-gate.sh` **77 → 105** — a new §6c:
+the contract's CC-H-07 row with its Checks set and its **A** class, the count
+61 → 62 and the footer's seven project-health, the compiled card, §10.4's
+element grain · resolved/unresolved classing · three run points · the named
+ledger-head boundary, §10.2's roadmap and fence halves, and both compiled gate
+surfaces. Live: an unresolved conflicting pair driven through the report writer
+**blocks** — exit 1, `BLOCKED AT PRE-FLIGHT (1 H gap)`, the pair rendered as the
+element in named-gap grammar, nothing else evaluated — and its control, an
+`HA-<nn>` lifting it exactly as it lifts any H gap. `check-spine.sh` **232 →
+253** — T-18's AS ground line and the third reading rule asserted from the
+sheet, with `hasnt` holding the principle unrestated, plus six new roadmap
+fixtures: a conflict named and cited on both sides, a `superseded` entry firing
+nothing, a standing entry no deferral answers to, and **three defects by name —
+B105** for a deferral completing silently against a standing entry, **B105** for
+an AS-tagged finding missing its verbatim citation pair, and **B105** for a tag
+naming no standing entry. `check-ledger.py` **18 → 19 rules** — **L19**, the
+acceptance register's grammar (three states, ids unique, citation required,
+`superseded` naming its SD and `accepted` its reason, `none found` legal) —
+and `Acceptance shapes:` joins L1's required head lines.
+`check-band2-artifacts.py` **B71–B104 → B71–B105**. `check-cards.py`'s pinned
+Scope-H A-card count **3 → 4**, the card recompiled by `--record`.
+
+**Divergences — seven, none self-resolved.**
+
+1. **CC-H-07's compiled home is the A third, not `sk_health.py`.** The session
+   brief named `sk_health.py` — the M third's script. **The contract's own §6
+   class column says `A`**, and its change record's count moves 24 M · 37 A →
+   **24 M · 38 A**: the M third is arithmetically untouched. So the assertion
+   compiles at `cards/assertions-h.md` (via `check-cards.py --record`), at
+   `ba-gate`'s A-third dispatch and at `ba-gate-health`'s A third, and
+   `sk_health.py` is **not edited**. The law governed the brief, named here
+   rather than reconciled quietly.
+2. **The gate's §10.1 count cells still read "six CC-H."** v0.11 adds CC-H-07's
+   run points at §10.4 and its map rows at §10.2 without renumbering §10.1's
+   Full and Pre-flight cells, while the contract's own footer counts **7
+   project-health**. A carrier cannot compile "six" at the very site where it
+   dispatches seven, so `ba-gate`, `ba-gate-health` and `templates/gate-health.md`
+   render **seven** — the Р6 precedent of package 0.1.28 (divergence 1) applied
+   at its sibling site. **The documents are not edited.**
+3. **The contract §7 worked example still totals "61 checked · 54 passed."**
+   v0.3's change record says no other section moves, so the pinned example
+   stands as the owner left it. `sk_snapshot.py`'s reconciliation docstring
+   keeps the quoted figure verbatim and gains one clause naming it as
+   pre-CC-H-07 history — the live pre-flight set is `SCOPE_H`, now seven — and
+   `check-gate.sh`'s assertion label is untouched. Nothing self-resolved.
+4. **`ba-t16` is deliberately not edited.** D-O79 rules a fence row **reached by
+   the principle, never by editing its sheet**, and §33's conflict scan states
+   catalogue-b5 (T-16) untouched. The fence row is checked at T-18's run and
+   stands to CC-H-07 meanwhile; T-16's sheet gains nothing. Named rather than
+   skipped quietly.
+5. **No canvas mirror and no WBS title-block line for `AS`.** D-O78 gives the
+   register the head and the cited source artifact only — unlike D-O72's `XO`,
+   which took a catalogue-b1 §13 mirror (D-B1-8) and a §10.5 title-block line
+   (D-O75). catalogue-b1 stands at v0.7 and §10.5 is untouched by this edition,
+   so `ba-t01`, `canvas-template.md`, `ba-wbs` and `sk_wbs.py` gain nothing.
+   The asymmetry is the ruling's, named rather than assumed away.
+6. **B105's silence half under-reports by construction.** Whether a deferred row
+   *conflicts* with an acceptance item is a judgement — which is exactly why the
+   contract classes CC-H-07 as **A**. B105 judges the two decidable halves: the
+   finding's **shape** (the `(AS-<n>)` tag names an entry the head holds
+   `standing`; the row cites both sides, with the id tags stripped before
+   counting so a row cannot cite itself) and a **stem-keyed silence floor on the
+   epic name only** — the L18 / B78 pattern. A conflict worded any other way is
+   CC-H-07's at the gate. **The bound is written into
+   `check-band2-artifacts.py`'s own docstring** beside B78's, B101's and B104's,
+   not left to inference.
+7. **`Acceptance shapes:` joins L1's required head lines.** A ledger written
+   before this edition is now L1-illegal — the consequence every earlier head
+   line carried, `Cross-cutting:` last sitting and `Scope advisories:` before
+   it. Both fixture ledgers gained the line at `none found`.
+
+**No incidental corrections this pass.** Two banner counts moved and both are
+this pass's own delta, not inherited staleness: `check-orchestrator.sh`'s
+seeded-defect total **22 → 26** across **18 → 19** ledger rules, and
+`check-spine.sh`'s **39 → 42**. §4's own "14 rules, 14 mutations" was verified
+accurate and left alone.
+
+**Open:** nothing from this ruling. Routed by the edition and not built here:
+the reconciliation family (runtime `AS` ↔ audit `OB`) and §10.1's P-O0b act
+cell, whose enumeration still omits cross-cutting obligations — a v0.29-era
+omission §33 names and routes, deliberately untouched by scope discipline.
+`check-audit.sh` · `sk_audit.py` stand named and unbuilt from the earlier
+sittings.

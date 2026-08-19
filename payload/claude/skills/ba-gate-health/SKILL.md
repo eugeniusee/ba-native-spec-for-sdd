@@ -38,9 +38,9 @@ enforced at Stage 0 of `/ba-gate`, nowhere else.
 
 | Mode | When | Coverage | Voice |
 |---|---|---|---|
-| **Full** | Band-1 closure (the arming run) · after each scope-brief ingestion batch · on demand | all six CC-H over every spec-anchored artifact | always reported; the entry appends to the ledger |
+| **Full** | Band-1 closure (the arming run) · after each scope-brief ingestion batch · on demand | all seven CC-H over every spec-anchored artifact | always reported; the entry appends to the ledger |
 | **Scoped** | every framework write to a governance or context artifact | the touched artifact's assertions + its cross-reference dependents | **silent unless FAIL** |
-| **Pre-flight** | Stage 0 of every Scope-F run — *dispatched by `/ba-gate`, not by this skill* | the six CC-H restricted to `deps(F)` | reported into that run's entry |
+| **Pre-flight** | Stage 0 of every Scope-F run — *dispatched by `/ba-gate`, not by this skill* | the seven CC-H restricted to `deps(F)` | reported into that run's entry |
 
 ### The scoped-run map
 
@@ -50,9 +50,9 @@ enforced at Stage 0 of `/ba-gate`, nowhere else.
 | `roles-permissions.md` | CC-H-01 · CC-H-05 | same |
 | `domain-model.md` | CC-H-01 · CC-H-05 (policy rows referencing entities) | same |
 | `scope/<epic>.md` | CC-H-01 · CC-H-03 (that epic) | notice for that epic's certified features |
-| `roadmap.md` | CC-H-02 · CC-H-03 | — |
+| `roadmap.md` | CC-H-02 · CC-H-03 · CC-H-07 (the roadmap half — rows outside the head's `Boundary:` set against standing `AS-<n>` entries) | — |
 | `constitution.md` / a governance file | CC-H-01 · CC-H-06 | notice where it sits in a `deps(F)` |
-| `canvas.md` · `context.md` · `constraints.md` · `stakeholders.md` · `processes.md` · `out-of-scope.md` | CC-H-01 | notice where the artifact is in a certified feature's manifest |
+| `canvas.md` · `context.md` · `constraints.md` · `stakeholders.md` · `processes.md` · `out-of-scope.md` | CC-H-01 · CC-H-07 — `out-of-scope.md` only (the fence half — fence rows against standing `AS-<n>` entries) | notice where the artifact is in a certified feature's manifest |
 
 ## Running it
 
@@ -62,9 +62,32 @@ enforced at Stage 0 of `/ba-gate`, nowhere else.
 python3 .specify/ba/scripts/sk_health.py --format json --root .
 ```
 
-**The A third** — CC-H-01 · CC-H-04 · CC-H-05: dispatch the `ba-gate` subagent
-with `.specify/ba/cards/assertions-h.md` and the assertion list for this scope.
-On a full run that is all three; on a scoped run, only the ones the map names.
+**The A third** — CC-H-01 · CC-H-04 · CC-H-05 · CC-H-07: dispatch the `ba-gate`
+subagent with `.specify/ba/cards/assertions-h.md` and the assertion list for
+this scope. On a full run that is all four; on a scoped run, only the ones the
+map names.
+
+**CC-H-07 — the acceptance cross-check.** It reads three grounds: the
+aspect-state head's **`Acceptance shapes:`** line (`standing` `AS-<n>` entries),
+the **roadmap** (rows allocated outside the head's `Boundary:` set), and
+**`out-of-scope.md`** (fence rows) — and, as resolution evidence, the head's
+**`Scope advisories:`** line and the allocation log's step-4 ADV rulings.
+**Element grain is the conflicting pair** — one deferred or excluded item × one
+`standing` AS entry — in named-gap grammar:
+
+```
+CC-H-07 FAIL — E-05 (Phase 2) × AS-2 "reminders fire" — no recorded ruling
+```
+
+**Resolved:** any recorded ADV disposition for the finding — `hold as advisory`
+included, because the BA saw it and chose visibility, which is a ruling — or the
+AS entry itself standing `superseded — SD-<n>` or `accepted — <reason>`. **A
+ruled conflict is not a finding — the record is the ruling itself**, and it is
+not re-named. **Unresolved:** a live CC-H-07 gap — it counts in `n gaps`, it
+blocks wherever `roadmap` or `out-of-scope.md` sits in `deps(F)`, and
+**`HA-<nn>` applies exactly as to any H gap.** **The ledger head is ground,
+never a trigger and never audited** — read-only, outside every glob and outside
+the scoped-run write set.
 
 Both read the artifacts as they stand. A Scope-H run has no snapshot of its
 own: it is a health reading of the live estate, and its findings are what the

@@ -338,7 +338,7 @@ def main(argv):
     h_a = [r for r in rows if r[4].startswith("A") and r[0].split("-")[1] == "H"]
     at_ids = [aid for _, rs in blocks for aid, _ in rs]
     for label, got, want in (("Scope-F A cards", len(f_a), 34),
-                             ("Scope-H A cards", len(h_a), 3),
+                             ("Scope-H A cards", len(h_a), 4),
                              ("AT criteria", len(at_ids), 18),
                              ("aspects", len(blocks), 6),
                              ("non-waivable set", len(nw), 6)):

@@ -31,6 +31,7 @@ Upstream flags:           none
 Deferred consequences:    none
 Scope advisories:         none
 Cross-cutting:            XO-1 — language: English (engagement default — framework law, D-O74) — default
+Acceptance shapes:        none found
 
 ## Events
 

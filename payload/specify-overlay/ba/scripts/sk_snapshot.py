@@ -89,7 +89,8 @@ ASSERTIONS = [
 ]
 
 SCOPE_H = [("CC-H-01", "H", "A"), ("CC-H-02", "H", "M"), ("CC-H-03", "H", "M"),
-           ("CC-H-04", "H", "A"), ("CC-H-05", "H", "A"), ("CC-H-06", "H", "M")]
+           ("CC-H-04", "H", "A"), ("CC-H-05", "H", "A"), ("CC-H-06", "H", "M"),
+           ("CC-H-07", "H", "A")]
 
 # The whole-spec A set, verbatim from gate §14.2's worked composition.
 WHOLE_SPEC_A = {"CC-G-02", "CC-G-05", "CC-G-06", "CC-XA-03", "CC-XA-06",
@@ -621,6 +622,13 @@ def _category_summary(recs, carried, live, waived, overridden, skipped,
     Both worked examples reconcile under exactly this reading: contract §7's
     "61 checked · 54 passed" = the 55 Scope-F assertions + the 6 CC-H pre-flight
     ones, and gate §14.3's "55 in force · 1 waived · 1 overridden (re-applied)".
+
+    The contract's §7 example is a **pinned worked run** and is quoted as it
+    stands: it predates CC-H-07 (contract v0.3), whose row the v0.3 change
+    record adds without moving any other section. The live pre-flight set is
+    `SCOPE_H` above — seven — and the summary this function computes is the
+    Scope-F one either way; the reconciliation note is history, not arithmetic
+    the runtime performs.
     """
     failed_ids = {aid for aid, _ in live}
     waived_ids = {aid for aid, _ in waived}
