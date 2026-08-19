@@ -62,6 +62,7 @@ Boundary: <ladder value(s) — MVP | MVP + Phase 2 | …> — set <date> (P-O0b)
 Budget: <amount + currency> | none stated  (<citation | BA-supplied | open — no source material>)
 Client label: <free text — PoC · prototype · pilot…>  (<citation | BA-supplied | open — no source material>)
 Scope decisions: SD-<n> — <the decision, one line> (<citation>) · … | none found
+Cross-cutting: XO-1 — language: English (engagement default — framework law, D-O74) — default
 Parameters: rate <amount>/h · team mix <…> (eng-share <n>%) · capacity check <on | off>
 Capacity: ~<n> eng-h (envelope ÷ rate × eng-share) | — (no envelope)
 Auto: off
@@ -89,6 +90,9 @@ Scope advisories:         none
   Upstream flags:           <aspect> flagged: prerequisite <aspect> reopened
   Deferred consequences:    RO-<n>: <item> — trigger: <event>
   Scope advisories:         ADV-<n> · <epic> — standing | accepted <date> — revisit: <event>
+  Cross-cutting: XO-1 — language: English (engagement default — framework law, D-O74) — default · XO-<n> — <class>: <value, one line> (<citation>) — <state> · …
+                            classes: language · device · accessibility · branding · compliance (closed at five)
+                            states:  captured | carried — <unit> | accepted — <reason> — revisit: <event> | default (closed at four)
 -->
 
 ## Events

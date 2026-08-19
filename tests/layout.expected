@@ -44,10 +44,11 @@ S5|file|.claude/agents/ba-discovery.md|Discovery BA — Band-1/2 technique execu
 S8|file|.claude/agents/ba-analyst.md|Requirements Analyst — Tier-2 authoring persona
 S3|file|.claude/agents/ba-gate.md|gate agent — A-pass evaluator, read-only tools
 
-# ── workflow skills — 14 (build plan §2.2, D-P2-1/D-P2-5) ────────────────────
+# ── workflow skills — 15 (build plan §2.2, D-P2-1/D-P2-5) ────────────────────
 S4|file|.claude/skills/ba-frame/SKILL.md|Band-1 entry (orchestrator §8.1)
 S4|file|.claude/skills/ba-status/SKILL.md|ledger-head render
 S9|file|.claude/skills/ba-wbs/SKILL.md|WBS export (orchestrator §10.5) — added in package 0.1.6, after S9
+S9|file|.claude/skills/ba-design/SKILL.md|design-guide export (orchestrator §10.8) — added in package 0.1.28, after S9
 S4|file|.claude/skills/ba-aspect/SKILL.md|open + suggestion + composition (P-O1/P-O2)
 S4|file|.claude/skills/ba-run/SKILL.md|P-O3 contract check → technique dispatch
 S4|file|.claude/skills/ba-clear/SKILL.md|evidence table → confirmation (P-O4)

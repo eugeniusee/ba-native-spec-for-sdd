@@ -14,7 +14,7 @@
 #             cascade · resolution on the emitting batch · event-shaped deferral
 #             · delta re-clear (T6) with AT-ST-1 carried
 #   4.        the whole replay is grammar-legal under tests/check-ledger.py
-#   5.        14 seeded defects, one per rule — the suite is not vacuous
+#   5.        22 seeded defects across the 18 rules — the suite is not vacuous
 #   6.        the nine P-O checkpoints render, with their refusals and locked
 #             vocabularies, in the skills that own them
 #
@@ -943,6 +943,175 @@ has "$RULES_SRC" "the never-numeric guarantee (D-O44(b)) is untouched" \
     "…with D-O60's never-numeric guarantee untouched — nine columns, ending at Billable"
 
 
+# ── 5g. the cross-cutting obligations register (D-O72–D-O74) ────────────────
+#
+# EC-01 + owner ruling Р8. The register is a head line with a closed class set
+# and a closed state vocabulary; the capture is line 5 of the pinned P-O0b
+# block; the language obligation materializes as a spec unit or it is not
+# carried at all. The head-line grammar is check-ledger.py's L17 (live below);
+# the epic half is check-band2-artifacts.py's B104, run from check-spine.sh.
+
+printf '\n▸ The cross-cutting obligations register (§2.4 · §8.1; D-O72–D-O74)\n'
+
+XOHEAD='Cross-cutting: XO-1 — language: English (engagement default — framework law, D-O74) — default · XO-<n> — <class>: <value, one line> (<citation>) — <state> · …'
+has "$RULES_SRC" "$XOHEAD" "the §2.4 head exhibit carries the Cross-cutting line"
+has "$FRAME"     "$XOHEAD" "…and so does ba-frame's head-write block"
+has "$SKILLS/ba-status/SKILL.md" "$XOHEAD" "…and ba-status's head render"
+has "$TPL" "Cross-cutting: XO-1 — language: English (engagement default — framework law, D-O74) — default" \
+    "…and the shipped template is born carrying the English default"
+
+has "$RULES_SRC" "closed at five: language · device · accessibility · branding · compliance" \
+    "the class set is closed at five (D-O72)"
+has "$FRAME" "closed at five: language · device · accessibility ·" \
+    "…and ba-frame compiles the closed five"
+has "$RULES_SRC" "a sixth class enters only by decision number on the record" \
+    "…a sixth entering only by decision number, the D-O48 pattern"
+has "$FRAME" "A sixth class enters only by decision number on the" \
+    "…and ba-frame carries that refusal too"
+has "$RULES_SRC" "this line is never \`none\`" \
+    "…and the line is never \`none\` — the default always stands"
+has "$FRAME" "this line is never \`none\`" "…in the carrier as well"
+has "$RULES_SRC" "the audit's \`OB-<nnn>\` register is per-run and derived" \
+    "…the runtime register deliberately disjoint from the audit's (D-O72)"
+has "$FRAME" "the source audit's \`OB-<nnn>\` register is per-run and" \
+    "…and ba-frame states the disjointness at its own site"
+
+# the capture — line 5 of the pinned block, one render one reply
+has "$RULES_SRC" "5. Cross-cutting: <XO-<n> — <class>: <value, one line> (<citation>), per harvested obligation> | XO-1 English default only" \
+    "§8.1's pinned P-O0b block carries line 5 (D-O73)"
+has "$FRAME" "5. Cross-cutting: <XO-<n> — <class>: <value, one line> (<citation>), per harvested obligation> | XO-1 English default only" \
+    "…and ba-frame's block renders it verbatim"
+has "$RULES_SRC" "XO-? — <candidate, one line> (<citation>) — keep or discard" \
+    "…an ambiguous candidate asked inside the block, never guessed"
+has "$FRAME" "XO-? — <candidate, one line> (<citation>) — keep or discard" \
+    "…and the carrier asks it in the same single Frame reply"
+has "$FRAME" "no new prompt point" "…with no new prompt point created (D-O73)"
+has "$FRAME" "XO confirmation is BA-only under any grant" \
+    "…and confirmation BA-only under any grant — P-O0b's safety-floor standing"
+has "$FRAME" "in **any later capture or mining pass**" \
+    "…mid-band recognition compiled: any later capture or mining pass (D-O73)"
+has "$FRAME" "one **\`scope-frame\`** Events line — **no new event kind**" \
+    "…appending one scope-frame Events line, no new event kind"
+
+# the language unit — Р8
+has "$RULES_SRC" "English is the engagement's ultra-default language" \
+    "the language default is framework law, recorded (D-O74 — Р8)"
+has "$FRAME" "English is the engagement's ultra-default language" \
+    "…and ba-frame states it at its own site"
+has "$RULES_SRC" "never a fabricated client citation" \
+    "…recorded as its own ground, never a fabricated citation"
+has "$RULES_SRC" "one dedicated localization epic" \
+    "…a stated obligation materializing as one dedicated localization epic"
+has "$SKILLS/ba-t17/SKILL.md" "one dedicated localization epic" \
+    "…and T-17 — Epics decomposition compiles the unit form"
+has "$SKILLS/ba-tier2/SKILL.md" "at least one story holding the entry's verbatim citation" \
+    "…and Tier 2 — spec-depth gap-filling carries the story half"
+has "$RULES_SRC" "a comment is not a carrier" \
+    "…with the audit's own law promoted to runtime"
+has "$SKILLS/ba-t17/SKILL.md" "a comment is not a carrier" "…in the epic carrier too"
+has "$SKILLS/ba-t17/SKILL.md" "coverage-complete and the exclusive partition stand untouched" \
+    "…and T-17's coverage-complete stands untouched by construction"
+has "$RULES_SRC" "language-only by ruling" "…and the unit-form law is language-only"
+
+# live: the register's grammar, against the validator
+printf '\n  the ledger validator, live:\n'
+XO_ANCHOR='Cross-cutting:            XO-1 — language: English (engagement default — framework law, D-O74) — default'
+mutate "$B" "$M/xo-ok.md" "$XO_ANCHOR" \
+  "$XO_ANCHOR · XO-2 — language: Ukrainian + English UI (brief.md §2) — carried — E-07 Localization · XO-3 — accessibility: WCAG 2.1 AA (rfp.md §6) — accepted — client defers to phase 2 — revisit: client sign-off"
+if python3 "$HERE/check-ledger.py" "$M/xo-ok.md" > "$TMP/xo.out" 2>&1; then
+  ok "L17 the register validates — the default, a carried entry, an accepted one (D-O72)"
+else
+  bad "L17 a legal register does not validate:"; sed 's/^/      /' "$TMP/xo.out"
+fi
+
+mutate "$B" "$M/xo-class.md" "$XO_ANCHOR" \
+  "$XO_ANCHOR · XO-2 — performance: p95 under 200ms (rfp.md §7) — captured"
+neg "L17 a sixth class, invented rather than ruled" "$M/xo-class.md" L17
+
+mutate "$B" "$M/xo-state.md" "$XO_ANCHOR" \
+  "$XO_ANCHOR · XO-2 — device: tablet-first (brief.md §3) — noted"
+neg "L17 a state outside the closed four" "$M/xo-state.md" L17
+
+mutate "$B" "$M/xo-none.md" "$XO_ANCHOR" "Cross-cutting:            none"
+neg "L17 the line rendered \`none\` — the default always stands" "$M/xo-none.md" L17
+
+# seeded defect — a capture states a cross-cutting fact, the register is silent
+mkdir -p "$TMP/xo-captures"
+printf 'Kickoff notes\n\nThe UI language must be Ukrainian, with English as a fallback.\n' \
+  > "$TMP/xo-captures/slack-proj-2026-07-09.md"
+if python3 "$HERE/check-ledger.py" "$B" --captures "$TMP/xo-captures" \
+     --expect L18 > "$TMP/neg.out" 2>&1; then
+  ok "L18 a cross-cutting fact captured with no XO entry → L18 (D-O73)"
+else
+  bad "L18 the harvest floor did not fire — a captured obligation left to silence"
+  sed 's/^/      /' "$TMP/neg.out"
+fi
+
+# and the control: with the obligation registered, the same capture is clean
+mutate "$B" "$M/xo-harvested.md" "$XO_ANCHOR" \
+  "$XO_ANCHOR · XO-2 — language: Ukrainian UI, English fallback (slack-proj-2026-07-09.md) — carried — E-07 Localization"
+if python3 "$HERE/check-ledger.py" "$M/xo-harvested.md" --captures "$TMP/xo-captures" \
+     > "$TMP/xo2.out" 2>&1; then
+  ok "…and the same capture is clean once the obligation stands on the line"
+else
+  bad "L18 fires on a registered obligation — the guard is not keyed to the register:"
+  sed 's/^/      /' "$TMP/xo2.out"
+fi
+
+
+# ── 5h. the export teeth, the design guide, and the none-stated boundary ────
+#
+# D-O75 · D-O76 · D-O77. The title block's third line and the generation
+# summary's naming are §10.5's; `/ba-design` is §10.8's whole section; the
+# none-stated boundary line is the D-O71 pattern at the title block. The
+# rendering behaviour itself is check-wbs.sh's, against seeded frames.
+
+printf '\n▸ The carry, the design guide and the none-stated boundary (§10.5 · §10.8; D-O75–D-O77)\n'
+
+has "$RULES_SRC" 'Cross-cutting: <class>: <value> (XO-<n>) · … | none stated' \
+    "§10.5's title block pins the third line (D-O75)"
+has "$SKILLS/ba-wbs/SKILL.md" 'Cross-cutting: <class>: <value> (XO-<n>) · … | none stated' \
+    "…and ba-wbs renders it"
+has "$RULES_SRC" "the language default itself never renders here" \
+    "…the engagement default never reaching the export — client ground only"
+has "$SKILLS/ba-wbs/SKILL.md" "The language default itself never renders here" \
+    "…and the carrier refuses it too"
+has "$RULES_SRC" "names every register entry not in a terminal state" \
+    "…the generation summary naming every non-terminal entry (D-O75)"
+has "$SKILLS/ba-wbs/SKILL.md" "names every \`Cross-cutting:\` register entry not in a terminal state" \
+    "…and ba-wbs carries the summary rule"
+has "$RULES_SRC" "the export never blocks" "…and the export never blocks — read-only, any time"
+has "$SKILLS/ba-wbs/SKILL.md" "the export never blocks" "…in the carrier as well"
+
+has "$RULES_SRC" 'Delivery boundary: none stated · generated <date>' \
+    "§10.5 pins the none-stated boundary line (D-O77)"
+has "$SKILLS/ba-wbs/SKILL.md" 'Delivery boundary: none stated · generated <date>' \
+    "…and ba-wbs renders it where no boundary stands"
+has "$RULES_SRC" "never an empty value" "…never an empty value — the D-O71 pattern at the line it governs"
+
+has "$RULES_SRC" "### 10.8 The design-guide export" "§10.8 exists — the design guide's own section (D-O76)"
+DESIGN="$SKILLS/ba-design/SKILL.md"
+if [ ! -f "$DESIGN" ]; then
+  bad "the /ba-design skill is missing — §10.8 has no carrier"
+else
+  ok "/ba-design is registered — §10.8's carrier"
+  head -6 "$DESIGN" | grep -qx 'name: ba-design' \
+    && ok "…frontmatter name matches the directory" || bad "…frontmatter name does not match"
+  head -6 "$DESIGN" | grep -qx 'disable-model-invocation: true' \
+    && ok "…BA-invoked, never auto-fired (D-P2-2)" || bad "…missing disable-model-invocation"
+  has "$DESIGN" "exports/design-guide.md" "…it emits exports/design-guide.md"
+  has "$RULES_SRC" "\`exports/design-guide.md\`" "…and §10.8 names the same destination"
+  has "$DESIGN" "Extraction only, never interpretation" "…extraction only, every entry cited"
+  has "$DESIGN" "Client provided none — no palette, visual reference or brand constraint stands" \
+      "…and the pinned none-record renders: silence impossible"
+  has "$RULES_SRC" "Client provided none — no palette, visual reference or brand constraint stands" \
+      "…the same record §10.8 pins"
+  has "$DESIGN" "is out of scope by ruling" "…the consumption format out of scope by ruling"
+  has "$PKG_ROOT/payload/mirror/claude-block.md" "\`/ba-design\`" \
+      "…and the mirror's command surface names it"
+fi
+
+
 # ── 6. the agent's discipline ────────────────────────────────────────────────
 
 printf '\n▸ The orchestrator agent (§10.2, build plan §2.3)\n'
@@ -1030,11 +1199,13 @@ has "$RULES_DOC" "v0.26" "…and the edition the AUTO-mode fix set produced"
 has "$RULES_DOC" "D-O65–D-O67" "…and the scope-decision + §10.5 ruling block"
 has "$RULES_DOC" "v0.27" "…and the edition the scope-decision harvest produced"
 has "$RULES_DOC" "D-O68–D-O71" "…and the advisory-register + excluded-source ruling block"
-has "$RULES_DOC" "## 31. Review record (v0.27 → v0.28)" \
-    "…and §31, the review record that carries it"
-head -2 "$RULES_DOC" | grep -q 'v0\.28' \
-  && ok "the header states the live edition — v0.28, the standing advisory and the excluded source" \
-  || bad "the header does not name v0.28: the edition and the change record disagree"
+has "$RULES_DOC" "v0.28" "…and the edition the standing-advisory register produced"
+has "$RULES_DOC" "D-O72–D-O77" "…and the cross-cutting-register + language-unit ruling block"
+has "$RULES_DOC" "## 32. Review record (v0.28 → v0.29)" \
+    "…and §32, the review record that carries it"
+head -2 "$RULES_DOC" | grep -q 'v0\.29' \
+  && ok "the header states the live edition — v0.29, cross-cutting obligations first-class" \
+  || bad "the header does not name v0.29: the edition and the change record disagree"
 has "$RULES_DOC" "D-O45–D-O49" "…and the source-inventory ruling block"
 has "$RULES_DOC" "D-O50" "…and the change record names the unreadable-spec ruling"
 has "$RULES_DOC" "D-O51–D-O52" "…and the continuity-under-a-grant ruling block"
@@ -1044,11 +1215,11 @@ has "$RULES_DOC" "v0.20" "…and the edition the candidate scan produced"
 has "$RULES_DOC" "D-O54" "…and the scan-method ruling"
 
 # the ruling block is contiguous from the live high-water mark: no gap, no reuse
-python3 - "$RULES_DOC" <<'PYX' && ok "the D-O block runs 1…71 with no gap and no skipped number" \
+python3 - "$RULES_DOC" <<'PYX' && ok "the D-O block runs 1…77 with no gap and no skipped number" \
   || bad "the D-O decision block is not contiguous — a number is missing or reused"
 import re, sys
 seen = {int(n) for n in re.findall(r"D-O(\d+)", open(sys.argv[1], encoding="utf-8").read())}
-sys.exit(0 if seen == set(range(1, 72)) else 1)
+sys.exit(0 if seen == set(range(1, 78)) else 1)
 PYX
 
 # ── 6b. Band-2 plan composition — the record home has its producer (D-O55) ──
@@ -1191,7 +1362,7 @@ done
 
 printf '\n  passed: %s   failed: %s\n' "$PASSED" "$FAILED"
 if [ "$FAILED" -eq 0 ]; then
-  printf '✓ GREEN — S4 orchestrator: §12 exhibits ×3 · ledger grammar · 14 seeded defects · P-O1–P-O9\n'
+  printf '✓ GREEN — S4 orchestrator: §12 exhibits ×3 · ledger grammar · 22 seeded defects · P-O1–P-O9\n'
   exit 0
 fi
 printf '✗ RED — %s check(s) failed\n' "$FAILED"

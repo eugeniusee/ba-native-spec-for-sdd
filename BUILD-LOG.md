@@ -9472,3 +9472,166 @@ edit reached it — it awaits its own ruling.
 **Open:** nothing from this ruling. `check-audit.sh` · `sk_audit.py` stand named
 and unbuilt from the earlier sittings; the ratification sweep covers this
 sitting's rulings with the prior ones.
+
+## Cross-Cutting Obligations Become First-Class — EC-01 + owner ruling Р8 propagated · orchestrator v0.29 · catalogue-b1 v0.7 · package 0.1.28 · 19 August 2026 · GREEN
+
+**Session prompt:** the Lane B compile pass — propagate the two bumped documents
+into the runtime (orchestrator v0.29 · catalogue-b1 v0.7). Compiled units only;
+the one-way rule in force.
+
+**Precondition, clean.** The orchestrator carried v0.29 with **D-O72–D-O77**,
+§32 and the footer locked at D-O1–D-O77, base commit `506e58c` stamped;
+catalogue-b1 carried v0.7 with **D-B1-8**; catalogue-b6 v0.6 and elicitation
+v0.8 stood untouched; `git log --oneline -1` read `506e58c`, VERSION `0.1.27`.
+The suite's only residual at baseline was the expected one — `check-orchestrator.sh`
+pinned at v0.28 and D-O contiguity 1…71, this pass's own consumer.
+
+**What the ruling gives the runtime.** **The cross-cutting obligations register
+(D-O72)** — a `Cross-cutting:` head line joins §2.4's scope-frame group beside
+`Scope decisions:`, one **`XO-<n>`** entry per obligation with its class ·
+one-line value · verbatim citation · state. **Classes closed at five** —
+language · device · accessibility · branding · compliance — a sixth only by
+decision number on the record. **States closed at four** — `captured` ·
+`carried — <unit>` · `accepted — <reason>` with its revisit trigger · `default`
+— and **the line is never `none`:** the language engagement default always
+stands. Runtime and standing, deliberately disjoint from the source audit's
+per-run `OB-<nnn>` · **the capture (D-O73)** — **line 5 of the pinned P-O0b
+block**, harvested by the D-O65 auto-pickup pattern, ambiguity asked as
+`XO-? … keep or discard` inside the single Frame reply; mid-band, a fact
+recognized under cite-or-mark in any later capture or mining pass appends its
+entry and one `scope-frame` Events line — no new prompt point, no new event
+kind, no new stop · **the language unit (D-O74 — owner ruling Р8)** — English
+the **recorded** default, framework law as its own ground and never a fabricated
+citation; a stated non-English or multi-language obligation **materializes as
+one dedicated localization epic holding at least one cited story**, never only a
+register line, a mark, a question or a comment · **the carry (D-O75)** — a
+**third xlsx title-block line** rendering non-`default` entries, `none stated`
+where only the default stands, **the csv untouched**; the generation summary
+**names every entry not in a terminal state**, and the export never blocks ·
+**the design guide (D-O76)** — a new `/ba-design`, read-only in the `/ba-wbs`
+family, emitting `exports/design-guide.md` with its pinned `client provided
+none` record · **`Delivery boundary: none stated` (D-O77 — Р7)**, closing the
+open queue item 0.1.27 left standing.
+
+**Р6, closed at its own site.** The last pass rendered §8.1's D-O53 sentence as
+*"its state vocabulary is closed at the five below and nothing else"* because
+the document still said four and the carrier could not compile a count the law
+had overtaken — divergence 1 of package 0.1.27. The codification landed, and
+`ba-frame` now re-extracts the document's own words: *"its **five-state
+vocabulary** (D-O48 extended by D-O70) **is closed**, and a proposal the BA did
+not take was never a source, and **never gets a state of its own.**"* The
+divergence closes; nothing was self-resolved to close it.
+
+**Files touched — 28.** The two methodology documents (owner-supplied) ·
+`ba-frame/SKILL.md` · `ba-status/SKILL.md` · `ba-t01/SKILL.md` +
+`references/example.md` · `ba-t17/SKILL.md` · `ba-tier2/SKILL.md` ·
+`ba-wbs/SKILL.md` · **`ba-design/SKILL.md` (new)** · `mirror/claude-block.md` ·
+`templates/aspect-state.md` · `templates/canvas-template.md` ·
+`scripts/sk_wbs.py` · `scripts/sk_xlsx.py` · `tests/check-orchestrator.sh` ·
+`tests/check-wbs.sh` · `tests/check-spine.sh` · `tests/check-ledger.py` ·
+`tests/check-band2-artifacts.py` · `tests/check-layout.sh` ·
+`tests/check-install.sh` · `tests/layout.expected` · the two fixture ledgers ·
+`README.md` · `BUILD-LOG.md` · `VERSION` (0.1.27 → **0.1.28**).
+
+**The suite: 17 of 17 green.** `check-orchestrator.sh` **347 → 409** — the
+header pinned at v0.29, v0.28 demoted to a change-record `has`, the
+D-O72–D-O77 block, contiguity moved to **1…77**, and two new sections: §5g (the
+register in all four carriers, the closed vocabularies, line 5 of the pinned
+block, the mid-band clause, the language unit across the orchestrator, T-17 and
+Tier 2) and §5h (the third title-block line, the summary's naming, the
+none-stated boundary, and `/ba-design` with its frontmatter, its destination and
+its pinned none-record). Five new seeded defects, all failing by name — a sixth
+class, a state outside the four, the line rendered `none`, a captured obligation
+the register never received, and its own control showing the guard is keyed to
+the register and not to the capture. `check-wbs.sh` **83 → 99** — the xlsx
+reader moved to three title rows, the seeded frame grown a register, line 3 read
+back off the sheet with its class · value · `(XO-<n>)` provenance, the
+engagement default asserted **absent** from it, the citation asserted absent
+too, the csv asserted still pure rows, `Delivery boundary: none stated ·
+generated <date>` read back off the no-boundary render, and the summary's
+`Cross-cutting — entries not carried:` line asserted to name the `captured`
+entry and to stay silent on `carried`, `accepted` and `default`. Two new seeded
+controls: a title block that lost its third line, and — running the generator's
+own `title_block()` with D-O75's filter defeated — the default leaking into the
+client's copy. `check-spine.sh` **221 → 232** — T-17's compiled unit form on the
+sheet, plus five new roadmap fixtures: a carried obligation that resolves, an
+`accepted` decline, the English default alone as the regression guard, and **two
+defects by name — B104** for a stated non-English language that produced no spec
+unit, and B104 again for a `carried` naming a unit the roadmap does not hold.
+`check-ledger.py` **16 → 18 rules** — **L17**, the register's grammar (five
+classes, four states, ids unique, `carried`/`accepted` carrying their unit and
+reason, and never `none`), and **L18**, the harvest floor from the captures.
+`check-band2-artifacts.py` **B71–B103 → B71–B104**, with a new `--frame`
+argument. `check-layout.sh` **116 → 117** and the `/ba-*` registry moved from 35
+to **36** (16 workflow + 20 technique), `check-install.sh`'s bootstrap count
+with it.
+
+**Divergences — six, none self-resolved.**
+
+1. **D-O73's mid-band clause names no compiled unit.** It says a fact
+   recognized *"in any later capture or mining pass"* appends its entry, and
+   the corpus has four surfaces that mine. The clause is compiled **once**, at
+   `ba-frame` — §8.1's carrier, beside D-O65's own late-arrival paragraph — and
+   the mining surfaces reach it through the register they read rather than
+   through a clause copied into each. Copying it into T-01, T-17 and Tier 2
+   would have been four restatements of one rule, which the register rules
+   forbid; naming it here rather than choosing silently.
+2. **D-O74's story half is compiled but not asserted as a live join.** The
+   epic half is decidable — the register names its carrier and the roadmap
+   either holds it or does not — and **B104** judges exactly that. The story
+   half needs a spec and a register handed to one validator together, which no
+   harness does today; it stands as Tier 2's compiled drafting rule, asserted
+   as text on the sheet. **The bound is written into
+   `check-band2-artifacts.py`'s own docstring** beside B78's and B101's, not
+   left to inference.
+3. **L18's detection is marker-keyed, and it under-reports by construction.**
+   Three of the five classes carry markers unambiguous enough to key on in
+   captured client prose — language, accessibility, branding. **Device and
+   compliance carry none**: every phrasing tried returned false positives on
+   ordinary text, and a rule that cries wolf on a clean capture is worse than a
+   rule with a stated floor. L18 asserts the floor and claims nothing more —
+   the L16 pattern, and the rule text says so.
+4. **`Cross-cutting:` joins L1's required head lines.** A ledger written before
+   this edition is now L1-illegal — the consequence every earlier head line
+   carried, `Scope advisories:` last sitting. Two fixture ledgers gained the
+   line: `band1/aspect-state.md` and `band1/negatives/base.md`.
+5. **`/ba-design` ships as a skill with no generator script.** §10.8 names
+   none, and the act is extraction from client prose — palette values, asset
+   references, stated brand constraints — which no parser can do. The layout
+   manifest registers the skill alone, and `exports/design-guide.md` is
+   runtime-born like the WBS pair.
+6. **`docs/quickstart.md` was deliberately not extended.** It carries no
+   `/ba-audit` row either — the last command added took the same route — so the
+   file is a curated walkthrough and not a command registry. Named rather than
+   skipped quietly.
+
+**Five incidental corrections, made in step and named here rather than made
+quietly — none of them this ruling's:**
+
+1. **`ba-frame`'s Step-1 table read "the five scope-frame lines."** It has been
+   six since D-O65 added `Scope decisions:` and was never updated. Now seven,
+   and it names the `Cross-cutting:` line's birth value.
+2. **`canvas-template.md`'s §13 row carried no scope-frame mirror at all** —
+   D-B1-7's SD line was ruled 18 Aug and never compiled there, the exact
+   sibling of last pass's `ba-t01/references/example.md` correction. Both the
+   SD line and the XO line brought in step.
+3. **`check-orchestrator.sh`'s banner claimed "14 seeded defects, one per
+   rule"** while the file carried 18 rules and ran 22 seeded defects. Corrected
+   to the true counts at both sites.
+4. **`check-spine.sh`'s closing banner claimed 34 seeded defects** while the
+   file ran 39 — the SD and ADV fixtures of the last two sittings never reached
+   it. The per-rule section keeps its own 34, now said so.
+5. **`README.md` read "byte-identical in all 34 skills"** — stale since
+   `/ba-audit` landed. Now 36.
+
+**The queue item 0.1.27 left open is closed by ruling.** The xlsx title block's
+delivery-boundary line rendered `not set` / `none` where no boundary stood; the
+last pass flagged it because D-O71 ruled the **Billable cell** and not the
+block. **D-O77 rules the line** — `Delivery boundary: none stated · generated
+<date>`, never an empty value — and `check-wbs.sh` reads it back off the sheet.
+
+**Open:** nothing from this ruling. Routed by the edition and not built here:
+the audit-side reconciliation family (runtime `XO` ↔ audit `OB`), the gate
+consequence, and the design-guide **consumption** format — all three out of
+scope by the document's own fences. `check-audit.sh` · `sk_audit.py` stand named
+and unbuilt from the earlier sittings.

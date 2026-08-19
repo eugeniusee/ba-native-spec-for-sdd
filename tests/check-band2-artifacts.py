@@ -52,10 +52,20 @@ that is decidable — that every answer the session recorded actually landed at
 every destination its packet named — and the undecidable half stays where the
 corpus put it.  A spec's *form* is the M checkers' ground regardless.
 
-Same idiom as tests/check-band1-artifacts.py, and the same rule namespace
-continued: this file owns B71–B103.  It is a TEST HARNESS and is never installed.
+B104's bound, on the same principle.  D-O74 rules that a fired language
+obligation materializes as "one dedicated localization epic holding at least one
+story carrying the verbatim citation".  The EPIC half is decidable here — the
+register names its carrier and the roadmap either holds it or does not — and it
+is what B104 judges.  The STORY half lives in a spec this validator is not
+handed alongside a register, and it stays where the corpus put it: Tier 2's
+compiled drafting rule and the M checkers that read the spec's form.  A run that
+carries the epic and no story trips nothing here, and that limit is stated
+rather than papered over.
 
-  check-band2-artifacts.py --roadmap F [--canvas F]
+Same idiom as tests/check-band1-artifacts.py, and the same rule namespace
+continued: this file owns B71–B104.  It is a TEST HARNESS and is never installed.
+
+  check-band2-artifacts.py --roadmap F [--canvas F] [--frame F]
   check-band2-artifacts.py --kit F [--roadmap F]
   check-band2-artifacts.py --brief F
   check-band2-artifacts.py --spec F --answers F --brief F [--cap 7]
@@ -85,6 +95,10 @@ RULES = {
     "B81": "allocation log — every entry carries Held and Basis, or is the `no change — <reason>` form",
     "B82": "allocation log — allocation never creates or retires an epic: every logged epic resolves to a row, no phase cell is a retirement",
     "B83": "allocation log — the log is the Phase column's ground: every row's Phase equals its latest logged outcome",
+
+    "B104": "roadmap — a fired language obligation carries its dedicated epic: "
+            "every non-default `language` XO entry is `carried — <unit>` and "
+            "that unit resolves to a row, or `accepted — <reason>` (D-O74)",
     # ── the call kit ──────────────────────────────────────────────────────
     "B84": "kit — four parts A–D, exact headings, in order",
     "B85": "kit — every question is `Q<n> [destination: …] [must-ask|if-time]` + question + `Why it matters:`; numbering from 1, contiguous, unique",
@@ -272,10 +286,19 @@ def cited(cell: str) -> bool:
     return bool(CITATION_RE.search(GROUND_CLASS_RE.sub("", cell)))
 
 
+# The cross-cutting register on the ledger head (orchestrator §2.4, D-O72),
+# read here for one rule only — B104.  The state token is matched at a ` — `
+# boundary from the right: `carried — <unit>` carries a separator of its own, so
+# the LAST state token on an entry is that entry's state.
+XO_RE = re.compile(r"^XO-(?P<n>\d+)\s+—\s+(?P<cls>[^:]+):\s*(?P<rest>.+)$")
+XO_STATE_RE = re.compile(r"\s+—\s+(?P<state>captured|carried|accepted|default)\b")
+
+
 # ────────────────────────────────────────────────────────────────── roadmap ─
 
 
-def check_roadmap(path: pathlib.Path, canvas: pathlib.Path | None, rep: Report) -> None:
+def check_roadmap(path: pathlib.Path, canvas: pathlib.Path | None, rep: Report,
+                  frame: pathlib.Path | None = None) -> None:
     text = path.read_text(encoding="utf-8")
     heads = [h for h, _ in sections(text)]
 
@@ -295,6 +318,7 @@ def check_roadmap(path: pathlib.Path, canvas: pathlib.Path | None, rep: Report) 
     ids: list[str] = []
     phases: dict[str, str] = {}
     sources: dict[str, str] = {}
+    names: dict[str, str] = {}
     retired: set[str] = set()
     skip_phase: set[str] = set()
     for cells in rows:
@@ -316,6 +340,7 @@ def check_roadmap(path: pathlib.Path, canvas: pathlib.Path | None, rep: Report) 
         ids.append(eid)
         phases[eid] = phase
         sources[eid] = source
+        names[eid] = name.strip()
 
         words = len(name.split())
         if not 2 <= words <= 4:
@@ -342,6 +367,49 @@ def check_roadmap(path: pathlib.Path, canvas: pathlib.Path | None, rep: Report) 
         check_coverage(canvas, sources, rep)
 
     check_allocation(text, phases, skip_phase, rep)
+
+    # ── B104 — the fired language obligation carries its epic (D-O74, Р8) ────
+    #
+    # Runs only when the ledger head is handed over beside the roadmap: the
+    # register names what fired, and the roadmap is where the unit either
+    # stands or does not.  `default` is the English engagement default and asks
+    # for nothing; `accepted — <reason>` is the BA's recorded decline;
+    # `captured` is an obligation that reached export uncarried, which is the
+    # loss EC-01 opened with.  See B104's bound in the module docstring: the
+    # epic half is judged here, the story half is Tier 2's.
+    if frame is not None and frame.is_file():
+        head = frame.read_text(encoding="utf-8")
+        m = re.search(r"^Cross-cutting:[ \t]*(?P<v>.*)$", head, re.M)
+        for chunk in (m.group("v").split(" · ") if m else []):
+            xm = XO_RE.match(chunk.strip())
+            if not xm or xm.group("cls").strip().lower() != "language":
+                continue
+            rest = xm.group("rest")
+            sm = None
+            for sm in XO_STATE_RE.finditer(rest):
+                pass
+            state = sm.group("state") if sm else ""
+            xid = "XO-%s" % xm.group("n")
+            if state in ("default", "accepted"):
+                continue
+            if state != "carried":
+                rep.fail("B104",
+                         f"{xid} states a language obligation and stands {state or '(no state)'!r} — "
+                         "a fired obligation is carried by a dedicated epic or declined "
+                         "on the record, never left uncarried")
+                continue
+            unit = rest[sm.end():].strip(" —").strip()
+            if not unit:
+                rep.fail("B104", f"{xid} is `carried` but names no unit")
+                continue
+            resolved = any(unit.startswith(eid) or eid in unit or
+                           (names.get(eid) and names[eid].lower() in unit.lower())
+                           for eid in ids)
+            if not resolved:
+                rep.fail("B104",
+                         f"{xid} is carried by {unit!r} and no epic row resolves it — "
+                         "the register names a unit the roadmap does not hold")
+
 
 
 def canvas_functions(path: pathlib.Path) -> list[str]:
@@ -703,6 +771,8 @@ def main() -> int:
     ap.add_argument("--roadmap", type=pathlib.Path)
     ap.add_argument("--canvas", type=pathlib.Path,
                     help="judge coverage & exclusivity against this canvas's Core Functions")
+    ap.add_argument("--frame", type=pathlib.Path,
+                    help="the ledger head — enables B104, the language obligation's unit")
     ap.add_argument("--kit", type=pathlib.Path)
     ap.add_argument("--brief", type=pathlib.Path)
     ap.add_argument("--spec", type=pathlib.Path)
@@ -715,7 +785,7 @@ def main() -> int:
     checked: list[str] = []
 
     if args.roadmap:
-        check_roadmap(args.roadmap, args.canvas, rep)
+        check_roadmap(args.roadmap, args.canvas, rep, args.frame)
         checked.append("roadmap")
     if args.kit:
         check_kit(args.kit, args.roadmap, rep)

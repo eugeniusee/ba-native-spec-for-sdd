@@ -640,24 +640,68 @@ def read_profile(root: Path) -> str:
     return m.group("p").lower() if m else ""
 
 
-# ── the frame fields the export reads (§2.4 · D-O67) ─────────────────────────
+# ── the frame fields the export reads (§2.4 · D-O67 · D-O75) ─────────────────
 #
 # The read set gains the ledger head's `Client label:` and `Boundary:` fields
 # beside the profile — D-O25's *profile field only* clause amended on the
-# record. Read-only, like everything else here: this command never writes a
-# ledger. Absence is never an error and never a guess (§10.5, "never invents") —
-# a missing label renders the project name alone, a missing boundary leaves
-# every Billable cell empty (D-O71).
+# record — and, with D-O75, the `Cross-cutting:` register line: the third
+# title-block line's and the generation summary's naming ground. Read-only,
+# like everything else here: this command never writes a ledger. Absence is
+# never an error and never a guess (§10.5, "never invents") — a missing label
+# renders the project name alone, a missing boundary leaves every Billable cell
+# empty (D-O71) and renders `none stated` on the title block (D-O77), and a
+# missing register line renders `none stated` too.
+
+# One `XO-<n>` entry: `XO-<n> — <class>: <value> (<citation>) — <state>`
+# (§2.4, D-O72). The state token is what closes the entry, and it is matched at
+# a ` — ` boundary from the RIGHT: `carried — <unit>` carries a separator of its
+# own, so the LAST state token on the entry is the entry's state.
+XO_CLASSES = ("language", "device", "accessibility", "branding", "compliance")
+XO_STATES = ("captured", "carried", "accepted", "default")
+RE_XO_ENTRY = re.compile(
+    r"^XO-(?P<n>\d+)\s+—\s+(?P<cls>[^:]+):\s*(?P<rest>.*)$")
+RE_XO_STATE = re.compile(
+    r"\s+—\s+(?P<state>%s)\b" % "|".join(XO_STATES))
+
+
+def parse_cross_cutting(line: str):
+    """The `Cross-cutting:` head line → a list of `(n, cls, value, state)`.
+
+    Entries are ` · `-separated; the value is what stands ahead of the entry's
+    citation parenthetical. An entry that does not parse is skipped rather than
+    guessed — the export never invents (§10.5).
+    """
+    out = []
+    for chunk in line.split(" · "):
+        chunk = chunk.strip()
+        m = RE_XO_ENTRY.match(chunk)
+        if not m:
+            continue
+        cls = m.group("cls").strip().lower()
+        rest = m.group("rest").strip()
+        state, last = "", None
+        for sm in RE_XO_STATE.finditer(rest):
+            last = sm
+        if last:
+            state = last.group("state")
+            rest = rest[:last.start()].strip()
+        # `<value, one line> (<citation>)` — drop the trailing citation
+        value = re.sub(r"\s*\([^()]*\)\s*$", "", rest).strip()
+        out.append((int(m.group("n")), cls, value, state))
+    return out
+
 
 def read_frame(root: Path):
-    """The ledger head's `Client label:` and `Boundary:` (§2.4, D-O67).
+    """The ledger head's `Client label:`, `Boundary:` and `Cross-cutting:`
+    (§2.4 — D-O67 · D-O75).
 
-    Returns `(label, boundary)` — the label verbatim as the client wrote it or
-    "" where it stands open, and the boundary as the ladder values it names.
+    Returns `(label, boundary, cross)` — the label verbatim as the client wrote
+    it or "" where it stands open, the boundary as the ladder values it names,
+    and the register as parsed `(n, cls, value, state)` entries.
     """
     head = root / ".specify" / "aspect-state.md"
     if not head.is_file():
-        return "", []
+        return "", [], []
     text = head.read_text(encoding="utf-8")
 
     label = ""
@@ -677,7 +721,12 @@ def read_frame(root: Path):
         v = m.group("v").split(" — ")[0].strip()
         if v and not v.startswith("<"):
             boundary = [part.strip() for part in v.split("+") if part.strip()]
-    return label, boundary
+
+    cross = []
+    m = re.search(r"^Cross-cutting:[ \t]*(?P<v>.*)$", text, re.M)
+    if m:
+        cross = parse_cross_cutting(m.group("v").strip())
+    return label, boundary, cross
 
 
 def billable_cell(phase: str, boundary) -> str:
@@ -793,21 +842,34 @@ def collect(root: Path, profile: str, include):
 # ── the writers (D-O23 — xlsx first, then csv) ───────────────────────────────
 
 
-def title_block(project: str, label: str, boundary, date: str):
-    """The two title-block lines — the xlsx render only (D-O67).
+def title_block(project: str, label: str, boundary, date: str, cross=()):
+    """The three title-block lines — the xlsx render only (D-O67 · D-O75 ·
+    D-O77).
 
     The label is verbatim, the client's own word; where it stands open the
     first line renders the project name alone — the export never invents.
     Budget never enters the header: the deferral named the label and the
     marking, and this is exactly that.
+
+    Where no delivery boundary stands in the frame the second line renders
+    `Delivery boundary: none stated · generated <date>` — never an empty value
+    (D-O77), the never-invents clause stated at the line it governs.
+
+    The third line renders every non-`default` register entry (D-O75), and
+    `none stated` where only the English engagement default stands. The default
+    itself never renders: it is framework law, not a client fact, and the
+    export states client ground only — the label's own `open` logic, applied.
     """
     first = "%s — %s" % (label, project) if label else project
-    second = "Delivery boundary: %s — billable phases: %s · generated %s" % (
-        " + ".join(boundary) if boundary else "not set",
-        ", ".join(boundary) if boundary else "none",
-        date,
-    )
-    return [first, second]
+    if boundary:
+        second = "Delivery boundary: %s — billable phases: %s · generated %s" % (
+            " + ".join(boundary), ", ".join(boundary), date)
+    else:
+        second = "Delivery boundary: none stated · generated %s" % date
+    stated = ["%s: %s (XO-%d)" % (cls, value, n)
+              for n, cls, value, state in cross if state != "default"]
+    third = "Cross-cutting: %s" % (" · ".join(stated) if stated else "none stated")
+    return [first, second, third]
 
 
 def write_xlsx(path: Path, rows, title=()):
@@ -831,7 +893,8 @@ def write_csv(path: Path, rows):
 # ── the generation summary (§10.5; BA-facing register, §10.3) ────────────────
 
 
-def summary(features, rows, epic_rowcount, profile, xlsx_path, csv_path):
+def summary(features, rows, epic_rowcount, profile, xlsx_path, csv_path,
+            cross=()):
     default = ("every drafted feature" if profile == "presale"
                else "certified features only")
     # Counted off the rows that were actually emitted, never off what was
@@ -879,6 +942,15 @@ def summary(features, rows, epic_rowcount, profile, xlsx_path, csv_path):
     if empty:
         out.append("No rows: %s — selected, but §2 yielded no User Story"
                    % ", ".join(empty))
+    # The register's teeth (D-O75): `carried`, `accepted` and `default` are
+    # terminal states; anything else — a `captured` entry above all — is an
+    # obligation that left Frame with no carrier, and it is NAMED, never
+    # blocked. Counts render, the BA judges, and the export stays invocable.
+    open_xo = ["XO-%d — %s: %s" % (n, cls, value)
+               for n, cls, value, state in cross
+               if state not in ("carried", "accepted", "default")]
+    out.append("Cross-cutting — entries not carried: %s"
+               % (" · ".join(open_xo) if open_xo else "none"))
     out.append("Next: open %s — the render ends at Billable; estimating is the "
                "client's act on their own copy" % xlsx_path)
     return "\n".join(out)
@@ -906,7 +978,7 @@ def main(argv=None) -> int:
 
     root = Path(args.root).resolve()
     profile = args.profile or read_profile(root) or "discovery"
-    label, boundary = read_frame(root)
+    label, boundary, cross = read_frame(root)
 
     features, rows, epic_rowcount = collect(root, profile, args.include)
 
@@ -923,7 +995,7 @@ def main(argv=None) -> int:
 
     if not args.summary_only:
         stamp = args.date or __import__("datetime").date.today().isoformat()
-        title = title_block(root.name, label, boundary, stamp)
+        title = title_block(root.name, label, boundary, stamp, cross)
         write_xlsx(xlsx_path, rows, title)   # primary, written first (D-O23)
         write_csv(csv_path, rows)            # no title block (D-O67)
 
@@ -934,7 +1006,7 @@ def main(argv=None) -> int:
             return str(path)
 
     print(summary(features, rows, epic_rowcount, profile,
-                  shown(xlsx_path), shown(csv_path)))
+                  shown(xlsx_path), shown(csv_path), cross))
     return 0
 
 

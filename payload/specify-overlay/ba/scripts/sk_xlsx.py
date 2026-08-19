@@ -77,7 +77,8 @@ def _sheet(header, rows, widths, title=()) -> str:
         "<sheetData>",
     ]
     # The title block sits above the bold header row, one single-cell row per
-    # line, body-styled — the header row keeps the bold to itself (D-O67).
+    # line, body-styled — the header row keeps the bold to itself (D-O67; three
+    # lines since D-O75, the caller's count and never this writer's).
     all_rows = [([line], S_BODY) for line in title]
     all_rows += [(header, S_HEADER)] + [(r, S_BODY) for r in rows]
     for n, (cells, style) in enumerate(all_rows, start=1):
@@ -157,7 +158,8 @@ def write(path, header, rows, widths=None, sheet_name="WBS", title=()) -> Path:
     `widths` are per-column character widths. Empty cells keep the body style,
     so a blank cell wraps and aligns like the rest of the sheet. `title` is the
     optional title block — one single-cell row per line, rendered above the
-    header row (D-O67); the csv render passes none.
+    header row (D-O67 · D-O75); the csv render passes none. The line count is
+    the caller's: this writer renders whatever it is handed.
     """
     path = Path(path)
     widths = widths or [24] * len(header)

@@ -97,6 +97,10 @@ RULES = {
     "L15": "exclusion — an artifact standing `excluded` is never captured (§8.1, D-O70)",
     "L16": "encounter — a capture referencing an excluded artifact carries its "
            "encounter line (§8.1 · §2.4, D-O70)",
+    "L17": "cross-cutting register — `XO-<n> — <class>: <value> (<citation>) — "
+           "<state>`, five classes, four states, never `none` (§2.4, D-O72)",
+    "L18": "cross-cutting harvest — a capture stating an obligation carries its "
+           "`XO-<n>` entry (§8.1, D-O73)",
 }
 
 # ── event forms ──────────────────────────────────────────────────────────────
@@ -147,7 +151,34 @@ RE_ENCOUNTER = re.compile(r"^encounter — not followed$")
 
 HEAD_LINES = ["Standing aspect waivers:", "Open reopens:",
               "Upstream flags:", "Deferred consequences:",
-              "Scope advisories:"]
+              "Scope advisories:", "Cross-cutting:"]
+
+# ── the cross-cutting register (§2.4, D-O72) ─────────────────────────────────
+#
+# `Cross-cutting: XO-1 — language: English (…) — default · XO-<n> — <class>:
+# <value> (<citation>) — <state> · …`.  Both vocabularies are closed by ruling —
+# five classes, four states — and the line is NEVER `none`: the language line's
+# engagement default always stands (D-O74).  The state token is matched at a
+# ` — ` boundary from the right, because `carried — <unit>` carries a separator
+# of its own: the LAST state token on an entry is that entry's state.
+XO_CLASSES = ("language", "device", "accessibility", "branding", "compliance")
+XO_STATES = ("captured", "carried", "accepted", "default")
+RE_XO = re.compile(r"^XO-(?P<n>\d+)\s+—\s+(?P<cls>[^:]+):\s*(?P<rest>.+)$")
+RE_XO_STATE = re.compile(r"\s+—\s+(?P<state>%s)\b" % "|".join(XO_STATES))
+
+# L18's marker set — the harvest floor, and it claims nothing more.  Each entry
+# is a phrasing that names its class unmistakably in captured client prose; a
+# fact worded any other way is not detected here, exactly as L16 asserts the
+# floor of the encounter rule and leaves its ceiling to the law.  Under-reports
+# by construction; never invents.
+XO_MARKERS = {
+    "language": re.compile(
+        r"\b(multi-?lingual|multi-?language|bilingual|localis\w*|localiz\w*"
+        r"|(ui|interface|content|support)[ -]languages?)\b", re.I),
+    "accessibility": re.compile(r"\b(wcag|accessibility|screen[ -]reader)\b", re.I),
+    "branding": re.compile(r"\b(brand[ -](guideline|book|manual)s?|style[ -]guide"
+                           r"|colou?r[ -]palette)\b", re.I),
+}
 
 
 class Report:
@@ -265,6 +296,52 @@ def check(path: pathlib.Path, allow_open_band: bool, captures=None) -> Report:
             if l.startswith(prefix):
                 return l[len(prefix):].strip()
         return ""
+
+    # ── L17 — the cross-cutting register's grammar (§2.4, D-O72) ────────────
+    #
+    # Presence is L1's above; this is the line's own shape. Both vocabularies
+    # are closed by ruling, ids are unique, and `none` is not a value the line
+    # can take: the language engagement default always stands (D-O74).
+    xo_line = head_line_value("Cross-cutting:")
+    if xo_line:
+        if xo_line.lower() in ("none", "none found", "none stated"):
+            rep.bad("L17", i_head + 2,
+                    "the `Cross-cutting:` line reads `none` — the language "
+                    "engagement default always stands, so this line is never "
+                    "empty (D-O74)")
+        seen_xo = {}
+        for chunk in xo_line.split(" · "):
+            chunk = chunk.strip()
+            if not chunk or chunk.startswith("<"):
+                continue
+            m = RE_XO.match(chunk)
+            if not m:
+                rep.bad("L17", i_head + 2,
+                        f"register entry does not parse as "
+                        f"`XO-<n> — <class>: <value> (<citation>) — <state>`: {chunk!r}")
+                continue
+            n, cls, rest = int(m.group("n")), m.group("cls").strip().lower(), m.group("rest")
+            if n in seen_xo:
+                rep.bad("L17", i_head + 2, f"XO-{n} appears twice on the line")
+            seen_xo[n] = True
+            if cls not in XO_CLASSES:
+                rep.bad("L17", i_head + 2,
+                        f"XO-{n}: class {cls!r} is not one of the five "
+                        f"({' · '.join(XO_CLASSES)}) — the set is closed, and a sixth "
+                        "enters only by decision number on the record")
+            last = None
+            for sm in RE_XO_STATE.finditer(rest):
+                last = sm
+            if last is None:
+                rep.bad("L17", i_head + 2,
+                        f"XO-{n}: no state — one of "
+                        f"{' · '.join(XO_STATES)}, never absence")
+            elif last.group("state") in ("carried", "accepted") \
+                    and not rest[last.end():].strip(" —"):
+                rep.bad("L17", i_head + 2,
+                        f"XO-{n}: `{last.group('state')}` carries no "
+                        f"{'unit' if last.group('state') == 'carried' else 'reason'} — "
+                        "no state ends an obligation without one")
 
     # ── replay the events ───────────────────────────────────────────────────
     state = {a: "untouched" for a in ASPECTS}
@@ -603,6 +680,44 @@ def check(path: pathlib.Path, allow_open_band: bool, captures=None) -> Report:
                             "encounter line records it — the reference is never followed, "
                             "and the encounter is never silent (§8.1 · §2.4, D-O70)")
                     break
+
+    # ── L18 — the harvest floor: a captured obligation reaches the register ──
+    #
+    # D-O73's mid-band clause, at its decidable half: a cross-cutting fact
+    # standing in a capture appends its `XO-<n>` entry — the register line is
+    # the record, and silence is what the ruling forbids. Detection is at the
+    # marker grade above and UNDER-REPORTS by construction: a fact worded
+    # outside the marker set is not seen here, exactly as L16 asserts the floor
+    # of the encounter rule and claims nothing beyond it. Runs only when the
+    # captures are handed over.
+    if captures is not None:
+        classes_held = set()
+        for chunk in head_line_value("Cross-cutting:").split(" · "):
+            m = RE_XO.match(chunk.strip())
+            if not m:
+                continue
+            cls = m.group("cls").strip().lower()
+            sm = None
+            for sm in RE_XO_STATE.finditer(m.group("rest")):
+                pass
+            # the reserved English default is the framework's own law, never a
+            # captured client fact — it satisfies nothing on this line
+            if sm is not None and sm.group("state") == "default":
+                continue
+            classes_held.add(cls)
+        for cap in sorted(captures.rglob("*.md")):
+            text = cap.read_text(encoding="utf-8", errors="replace")
+            for cls, marker in sorted(XO_MARKERS.items()):
+                if cls in classes_held:
+                    continue
+                m = marker.search(text)
+                if m:
+                    rep.bad("L18", i_head + 2,
+                            f"{cap.name} states a {cls} obligation ({m.group(0)!r}) and the "
+                            f"`Cross-cutting:` line carries no {cls} `XO-<n>` entry — a "
+                            "captured obligation is registered, never left to silence "
+                            "(§8.1, D-O73)")
+                    classes_held.add(cls)
 
     return rep
 

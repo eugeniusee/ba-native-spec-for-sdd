@@ -67,7 +67,7 @@ yet:** Frame is first, and there is no `.specify/memory/` estate to read.
 
 Plus, where a frame stands, the ledger head's scope-frame fields in
 `.specify/aspect-state.md` — `Boundary:` · `Budget:` · `Client label:` ·
-`Scope decisions:` — the §13 mirror's source, **read-only**.
+`Scope decisions:` · `Cross-cutting:` — the §13 mirror's source, **read-only**.
 
 ## Procedure
 
@@ -86,10 +86,13 @@ Plus, where a frame stands, the ledger head's scope-frame fields in
    P-O0b (scope-frame selection) before this run — carry its detail into
    **§13 Context/Constraints** as cited lines: budget envelope · delivery
    boundary · client label · scope decisions (`SD-<n>`, each with its verbatim
-   citation), each with its source or an explicit
+   citation) · cross-cutting obligations (`XO-<n>` — class and one-line value,
+   each with its verbatim citation; the language line's engagement default as
+   `language: English (engagement default)`, framework law recorded as its own
+   ground and never a fabricated citation), each with its source or an explicit
    `open — no source material`. The ledger head holds the machine-readable
    summary; the canvas holds the cited detail. **Mirror only: this run neither
-   sets nor edits the frame.**
+   sets nor edits the frame, and it neither sets nor edits the register.**
 
    **Real names are the requirement, never masked.** This canvas is the
    project's own repo artifact: the sponsor is named, the populations are named.

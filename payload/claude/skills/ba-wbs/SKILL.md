@@ -40,7 +40,7 @@ estate, and carries no checkpoint: the BA's invocation is the whole act.
 | `specs/NNN-*/gate-report.md` | the latest run entry: verdict · waivers in force · the certification line |
 | `.specify/memory/scope/<E-nn>.md` | the epic name from the header · §3 `Deferred — this epic, later` items |
 | `.specify/memory/roadmap.md` | Phase · epic row order |
-| `.specify/aspect-state.md` | the ledger head's **profile** — the selection-default source · **`Client label:`** and **`Boundary:`** — the title block's and the Billable column's ground (D-O67) |
+| `.specify/aspect-state.md` | the ledger head's **profile** — the selection-default source · **`Client label:`** and **`Boundary:`** — the title block's and the Billable column's ground (D-O67) · **`Cross-cutting:`** — the third title-block line's and the generation summary's naming ground (D-O75) |
 
 No new artifact, no new BA step, no new field anywhere.
 
@@ -56,6 +56,13 @@ One output row per User Story; rows grouped by epic in roadmap row order.
 **Nothing is silently dropped or silently included.** The generation summary
 names every `specs/NNN-*` folder with its disposition and its open-marker
 counts. **No numeric threshold exists** — counts render, the BA judges.
+
+**The summary also names every `Cross-cutting:` register entry not in a
+terminal state (D-O75).** `carried` · `accepted` · `default` are terminal; a
+`captured` entry renders by ID with its class and value. Counts render, the BA
+judges, and **the export never blocks**: this command stays read-only and
+invocable at any time, and an obligation leaving Frame uncarried is a named
+fact on the summary, never a silent drop.
 
 Void detection is never re-run here: it stays lazy, and it is the gate's.
 "Certified" means the report's last entry says so, with the run date shown.
@@ -128,25 +135,37 @@ The generation summary is BA-facing and follows the communication register.
 
 One build, both renders, one row model:
 
-- `exports/wbs.xlsx` — the primary, client-presentable render: the two-line
+- `exports/wbs.xlsx` — the primary, client-presentable render: the three-line
   title block above the bold header row, wrapped text, column widths, **no cell
   merges** — the Epic value repeats per row.
 - `exports/wbs.csv` — the canonical, diff-friendly render.
 
 Stable paths, overwritten per run.
 
-### The title block — the xlsx render only (D-O67)
+### The title block — the xlsx render only (D-O67 · D-O75 · D-O77)
 
-Two lines above the bold header row:
+Three lines above the bold header row — D-O67's two, and D-O75's third:
 
 ```
 <Client label> — <project>
 Delivery boundary: <ladder value(s)> — billable phases: <list> · generated <date>
+Cross-cutting: <class>: <value> (XO-<n>) · … | none stated
 ```
 
 The label is **verbatim, the client's own word** (PoC · prototype · pilot…),
 read from the ledger head; where the label stands `open — no source material`
 the line renders **the project name alone — the export never invents**.
+
+**Where no delivery boundary stands in the frame the second line renders
+`Delivery boundary: none stated · generated <date>` — never an empty value**
+(D-O77): the export's own never-invents clause stated at the line it governs,
+beside the Billable column's own blank-where-no-boundary rule.
+
+The third line renders **every non-`default` register entry**, and
+**`none stated`** where only the English default stands. **The language default
+itself never renders here** — an engagement default is framework law, not a
+client fact, and the export states client ground only: the label's own `open`
+logic, applied.
 
 **The csv carries no title block:** it is the canonical, diff-friendly render,
 and lines above the column row break its shape. The per-row fact both renders
@@ -165,7 +184,9 @@ separate artifact.
 Never writes a spec, a brief, a gate report or the roadmap · never runs or
 invokes the gate · never re-runs void detection · never renders an estimate
 column — estimating is the client's act, outside the export · never invents a
-cell where the source is silent · never renders a CC-ID, an EARS keyword in caps, or a
+cell where the source is silent · never renders the language engagement default
+into the title block — the export states client ground only · never blocks on an
+uncarried cross-cutting obligation: it names it on the summary · never renders a CC-ID, an EARS keyword in caps, or a
 marker bracket into a client-facing cell · never carries the FAIL report's
 named-gap lines into Comments / Questions · never changes a state, a profile or
 a stage — rendering is its whole act.

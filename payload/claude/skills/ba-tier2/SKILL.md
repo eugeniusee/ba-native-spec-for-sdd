@@ -104,6 +104,15 @@ specific and freshest layer, loaded on top of everything else.
    does not inherit — is `references/story-drafting.md`. **Read it before
    drafting stories.**
 
+   **The language obligation's story (D-O74 — owner ruling Р8).** Where this
+   feature slices the **dedicated localization epic** a fired `language` entry
+   on the ledger head's `Cross-cutting:` line produced (D-O74), the set carries
+   **at least one story holding the entry's verbatim citation** — a
+   single-language obligation legally holds exactly one. **Never only a
+   marker, an open question or a Comments-cell mention** — *a comment is not a
+   carrier.* This is carry, not breadth: the obligation is cited estate ground
+   the brief already carries, so the principle-4 clause above stands untouched.
+
 2. **Skeleton around them — copied from the template file, never retyped.**
 
    > **Start by copying `.specify/templates/spec-template.md` to

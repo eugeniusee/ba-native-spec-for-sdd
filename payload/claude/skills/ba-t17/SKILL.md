@@ -136,6 +136,11 @@ The complete estate, in this order:
 7. on re-decomposition: the current `roadmap.md` and every brief under
    `.specify/memory/scope/`
 
+Plus the ledger head's **`Cross-cutting:`** line in `.specify/aspect-state.md`
+(D-O72) — the standing `XO-<n>` register, **read-only**: this run neither sets
+nor edits it, and it asks nothing about it. It is read for one reason — the
+language obligation's unit form below.
+
 ## Procedure
 
 1. **BA act.** With Band-1 closure standing, the run is invoked under the
@@ -175,6 +180,27 @@ The complete estate, in this order:
    downstream. **A row is `inferred` only when every one of its citations is; a
    single `[stated]` citation makes the row `stated`.**
 
+   **The language obligation carries as its own epic (D-O74 — owner ruling
+   Р8).** Where the head's `Cross-cutting:` line carries a `language` entry
+   that is **not** the English engagement default — any stated UI/content/
+   support language other than English, or multi-language support of any kind —
+   the set **must hold one dedicated localization epic**, named in the client's
+   own wording where one stands, its Source carrying the entry's **verbatim
+   citation**. It is an ordinary row: it takes its own Phase from
+   **T-18 — Scope allocation** and its own Billable cell in the export, so the
+   obligation is independently allocable. **Never only a register line, a mark,
+   an open question or a comment** — *a comment is not a carrier.* Say so in
+   the decomposition report, and record the entry's state as
+   `carried — <the epic>`; a BA who declines the unit rules
+   `accepted — <reason>` on the register, never silence.
+
+   **This is carry, not breadth.** The obligation is cited estate ground, so
+   coverage-complete and the exclusive partition stand untouched by
+   construction: the law binds what carries an obligation, never what the sweep
+   finds. **Language-only by ruling** — the other four classes carry via the
+   register, the WBS title block and the source audit's forward trace, and none
+   of them earns a row here.
+
 4. **Framework act — coverage & exclusivity.** The pass that makes the set a
    partition rather than a list:
 
@@ -189,7 +215,8 @@ The complete estate, in this order:
      a conflict for BA ruling. You do not resolve it.
 
    Output: **the decomposition report** — the set · the coverage map · the
-   graduations · the conflicts · the open edges.
+   graduations · the conflicts · the open edges · the fired language
+   obligation and the epic that carries it, where one stands (D-O74).
 
 5. **BA act — the rulings.** Merge, split, rename, drop, add; the conflicts and
    the open edges settled; the set approved. **The framework's set is advisory;

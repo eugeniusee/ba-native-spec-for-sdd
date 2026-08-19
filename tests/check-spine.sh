@@ -287,7 +287,7 @@ has "$R5" "Cancellation inside 24h of start_time keeps the Slot unavailable for 
 
 # ── 5. the seeded defects — one per rule ─────────────────────────────────────
 
-printf '\n▸ 34 seeded defects — the suite is not vacuous\n'
+printf '\n▸ 34 seeded defects — one per rule; the suite is not vacuous\n'
 
 # roadmap · T-17 side
 mutate "$RM" "$M/b71.md" "## Allocation log" "## Log"
@@ -698,6 +698,86 @@ else
     || { bad "the untagged ADV move failed, but not as B80"; sed 's/^/      /' "$TMP/advbad.out"; }
 fi
 
+# ── T-17 · the language obligation's unit (D-O74 — owner ruling Р8) ──────────
+#
+# EC-01's field case, at the surface that either carries it or loses it: a
+# stated non-English or multi-language obligation MUST materialize as one
+# dedicated localization epic. The register names what fired; the roadmap is
+# where the unit stands or does not. B104 judges the epic half — the story half
+# is Tier 2's, and the bound is stated in the validator's own docstring.
+
+printf '\n▸ T-17 · the language obligation carries as its own epic (D-O74)\n'
+
+# the sheet's own text — the compiled rule the run follows
+has "$T17" "one dedicated localization epic" \
+    "T-17 compiles the unit form: one dedicated localization epic"
+has "$T17" "Never only a register line, a mark, an open question or a comment" \
+    "…never only a register line, a mark, a question or a comment"
+has "$T17" "carried — <the epic>" "…and records the register state the epic satisfies"
+has "$T17" "coverage-complete and the exclusive partition stand untouched" \
+    "…with coverage-complete untouched by construction — carry, not breadth"
+has "$T17" "Language-only by ruling" "…and the law bounded to the language class"
+has "$T17" "read-only" "…the register joining T-17's inputs read-only, never edited here"
+
+FR="$TMP/frames"; mkdir -p "$FR"
+XO_DEF='Cross-cutting: XO-1 — language: English (engagement default — framework law, D-O74) — default'
+
+# (vii) the clean run — the obligation fired and an epic on the roadmap carries it
+printf '%s · XO-2 — language: Ukrainian + English UI (sources/brief.md §4) — carried — E-07 Online Payment\n' \
+  "$XO_DEF" > "$FR/carried.md"
+if python3 "$VALIDATE" --roadmap "$RM" --canvas "$CV" --frame "$FR/carried.md" \
+     > "$TMP/xo-carried.out" 2>&1; then
+  ok "seeded clean: a fired obligation whose \`carried — <unit>\` resolves to a row passes"
+else
+  bad "a carried language obligation was rejected"; sed 's/^/      /' "$TMP/xo-carried.out"
+fi
+
+# (viii) the recorded decline — `accepted — <reason>` is a record, never a defect
+printf '%s · XO-2 — language: Ukrainian UI (sources/brief.md §4) — accepted — client defers localization to phase 2 — revisit: phase-2 sign-off\n' \
+  "$XO_DEF" > "$FR/accepted.md"
+if python3 "$VALIDATE" --roadmap "$RM" --canvas "$CV" --frame "$FR/accepted.md" \
+     > "$TMP/xo-acc.out" 2>&1; then
+  ok "…and a BA who declines the unit records \`accepted — <reason>\`, which is legal"
+else
+  bad "an accepted decline was treated as a defect"; sed 's/^/      /' "$TMP/xo-acc.out"
+fi
+
+# (ix) the regression guard — the English default alone changes nothing
+printf '%s\n' "$XO_DEF" > "$FR/default.md"
+if python3 "$VALIDATE" --roadmap "$RM" --canvas "$CV" --frame "$FR/default.md" \
+     > "$TMP/xo-def.out" 2>&1; then
+  ok "…and a register holding only the English default asks the roadmap for nothing"
+else
+  bad "the English default demanded an epic — the ruling is not additive"
+  sed 's/^/      /' "$TMP/xo-def.out"
+fi
+
+printf '\n  seeded-defect control:\n'
+
+# (x) the seeded defect — a stated non-English language that produced no unit
+printf '%s · XO-2 — language: Ukrainian + English UI (sources/brief.md §4) — captured\n' \
+  "$XO_DEF" > "$FR/uncarried.md"
+if python3 "$VALIDATE" --roadmap "$RM" --canvas "$CV" --frame "$FR/uncarried.md" \
+     > "$TMP/xo-bad.out" 2>&1; then
+  bad "a stated language obligation reached export with no spec unit and passed — EC-01's own loss"
+else
+  grep -q "B104" "$TMP/xo-bad.out" \
+    && ok "seeded defect caught by name: B104 — a stated non-English language that produced no spec unit" \
+    || { bad "the uncarried obligation failed, but not as B104"; sed 's/^/      /' "$TMP/xo-bad.out"; }
+fi
+
+# (xi) the seeded defect — a carrier the roadmap does not hold
+printf '%s · XO-2 — language: Ukrainian UI (sources/brief.md §4) — carried — E-42 Localization\n' \
+  "$XO_DEF" > "$FR/ghost.md"
+if python3 "$VALIDATE" --roadmap "$RM" --canvas "$CV" --frame "$FR/ghost.md" \
+     > "$TMP/xo-ghost.out" 2>&1; then
+  bad "the register named a unit no epic row holds and it passed — \`carried\` would mean nothing"
+else
+  grep -q "B104" "$TMP/xo-ghost.out" \
+    && ok "seeded defect caught by name: B104 — \`carried\` naming a unit the roadmap does not hold" \
+    || { bad "the ghost carrier failed, but not as B104"; sed 's/^/      /' "$TMP/xo-ghost.out"; }
+fi
+
 
 # the writer split, stated on both sides
 has "$T17" "one file, three writers" "T-17 states the shared-file write discipline"
@@ -795,7 +875,7 @@ done
 
 printf '\n  passed: %s   failed: %s\n' "$PASSED" "$FAILED"
 if [ "$FAILED" -eq 0 ]; then
-  printf '✓ GREEN — S8 Band 2 + spine: T-17 · T-18 · Tier 1 · Tier 2 · ba-analyst · 34 seeded defects\n'
+  printf '✓ GREEN — S8 Band 2 + spine: T-17 · T-18 · Tier 1 · Tier 2 · ba-analyst · 39 seeded defects\n'
   exit 0
 fi
 printf '✗ RED — %s check(s) failed\n' "$FAILED"

@@ -146,7 +146,7 @@ its name. The names are read from the catalogue index and orchestrator §10.1's
 Moment column, not hardcoded, so a rename in either document breaks the scan
 instead of drifting past it. Its fifth section holds down the other rule that
 compiles into every unit — orchestrator §10.2's session boundary: byte-identical
-in all 34 skills and 4 personas, and §10.2's own paragraph in both mirrors,
+in all 36 skills and 4 personas, and §10.2's own paragraph in both mirrors,
 derived from the document rather than pinned here. Its eighth holds the three
 standing blocks in one order — mode read, then register self-check, then the
 boundary — across every carrier. A new skill that ships

@@ -215,10 +215,10 @@ def cells(row):
     return out
 
 
-# The title block occupies the first two rows; the bold header row follows
-# it (D-O67). Everything below indexes off `body`, so the assertions read the
-# same whether or not a title block is present.
-TITLE = 2
+# The title block occupies the first three rows; the bold header row follows
+# it (D-O67's two, D-O75's third). Everything below indexes off `body`, so the
+# assertions read the same whether or not a title block is present.
+TITLE = 3
 title = [cells(r) for r in rows[:TITLE]]
 body = rows[TITLE:]
 
@@ -227,6 +227,7 @@ print("rows\t%d" % len(body))
 print("titlerows\t%d" % len(title))
 print("title1\t%s" % (title[0][0] if title and title[0] else ""))
 print("title2\t%s" % (title[1][0] if len(title) > 1 and title[1] else ""))
+print("title3\t%s" % (title[2][0] if len(title) > 2 and title[2] else ""))
 print("titlewidth\t%d" % max((len(t) for t in title), default=0))
 print("header\t%s" % "|".join(cells(body[0])))
 print("styles\t%s" % ("bold" if b"<b/>" in z.read("xl/styles.xml") else "none"))
@@ -299,6 +300,7 @@ Boundary: MVP + Phase 2 — set 2026-08-13 (P-O0b); switches append to Events wi
 Budget: 50000 USD  (sources/brief.md §2)
 Client label: PoC  (sources/brief.md §1)
 Scope decisions: none found
+Cross-cutting: XO-1 — language: English (engagement default — framework law, D-O74) — default · XO-2 — language: Ukrainian + English UI (sources/brief.md §4) — carried — E-07 Localization · XO-3 — accessibility: WCAG 2.1 AA (sources/rfp.md §6) — captured
 HEAD
 
 wbs --root "$FRAMED" --profile presale --out-dir "$TMP/framed" \
@@ -384,6 +386,7 @@ Profile: Presale — picked 2026-08-13 (P-O0)
 Budget: 50000 USD  (sources/brief.md §2)
 Client label: PoC  (sources/brief.md §1)
 Scope decisions: none found
+Cross-cutting: XO-1 — language: English (engagement default — framework law, D-O74) — default
 HEAD
 
 wbs --root "$NOBND" --profile presale --out-dir "$TMP/noboundary" \
@@ -415,6 +418,63 @@ NB_VALUES="$(awk -F'\t' '$1=="values" {print $2}' "$TMP/noboundary.txt")"
 # check-orchestrator.sh (§10.5 · the ba-wbs carrier); what is proven here is
 # the behaviour it rules.
 
+# ── 2c-ii. `Delivery boundary: none stated` on the title block (D-O77) ───────
+#
+# The other half of the same absent-boundary case, and Р7's codification: the
+# line renders, and it renders `none stated` — never an empty value, and never
+# a `not set` placeholder nobody ruled. The third line renders `none stated`
+# too, because only the English default stands on this frame's register.
+
+python3 - "$TMP/noboundary/wbs.xlsx" > "$TMP/nb-title.txt" 2>&1 <<'PYX'
+import sys, zipfile
+import xml.etree.ElementTree as ET
+NS = "{http://schemas.openxmlformats.org/spreadsheetml/2006/main}"
+z = zipfile.ZipFile(sys.argv[1])
+sheet = ET.fromstring(z.read("xl/worksheets/sheet1.xml"))
+rows = sheet.find(NS + "sheetData").findall(NS + "row")
+def first(row):
+    c = row.find(NS + "c")
+    tx = c.find(NS + "is/" + NS + "t") if c is not None else None
+    return tx.text if tx is not None else ""
+for i in (0, 1, 2):
+    print("line%d\t%s" % (i + 1, first(rows[i])))
+PYX
+NB2="$(awk -F'\t' '$1=="line2" {print $2}' "$TMP/nb-title.txt")"
+NB3="$(awk -F'\t' '$1=="line3" {print $2}' "$TMP/nb-title.txt")"
+
+[ "$NB2" = "Delivery boundary: none stated · generated 2026-08-19" ] \
+  && ok "the boundary line reads \`none stated\` where no boundary stands: $NB2" \
+  || bad "the boundary line is [$NB2], expected 'Delivery boundary: none stated · generated 2026-08-19'"
+case "$NB2" in
+  *"not set"*|*"billable phases:"*)
+     bad "the no-boundary line still carries a placeholder or the billable-phases tail: [$NB2]" ;;
+  *) ok "…never an empty value, a \`not set\` placeholder or a phases tail (D-O77)" ;;
+esac
+[ "$NB3" = "Cross-cutting: none stated" ] \
+  && ok "…and the cross-cutting line reads \`none stated\` where only the default stands" \
+  || bad "the cross-cutting line is [$NB3], expected 'Cross-cutting: none stated'"
+
+# ── 2c-iii. the generation summary names what is not carried (D-O75) ─────────
+#
+# The export's teeth, and its limit: an obligation that left Frame uncarried is
+# NAMED on the summary, and the run still succeeds — counts render, the BA
+# judges, and `/ba-wbs` never blocks.
+
+grep -q 'Cross-cutting — entries not carried: XO-3 — accessibility: WCAG 2.1 AA' "$TMP/framed.summary" \
+  && ok "the summary names the \`captured\` entry no unit carries — by id, class and value" \
+  || { bad "the summary does not name the uncarried obligation"; \
+       grep -i 'cross-cutting' "$TMP/framed.summary" | sed 's/^/      /'; }
+grep -q 'Cross-cutting — entries not carried:.*XO-2' "$TMP/framed.summary" \
+  && bad "the summary named a \`carried\` entry — carried is a terminal state" \
+  || ok "…and a \`carried\` entry is terminal: it is not named"
+grep -q 'Cross-cutting — entries not carried:.*XO-1' "$TMP/framed.summary" \
+  && bad "the summary named the engagement default — \`default\` is terminal" \
+  || ok "…and the \`default\` entry is terminal too"
+grep -q 'Cross-cutting — entries not carried: none' "$TMP/noboundary.summary" \
+  && ok "…and a register holding only the default reports none" \
+  || { bad "the no-boundary summary does not report an empty non-terminal set"; \
+       grep -i 'cross-cutting' "$TMP/noboundary.summary" | sed 's/^/      /'; }
+
 
 # the xlsx title block — two lines above the bold header row, label verbatim
 python3 - "$TMP/framed/wbs.xlsx" > "$TMP/title.txt" 2>&1 <<'PYX'
@@ -432,10 +492,12 @@ def cells(row):
     return out
 print("line1\t%s" % cells(rows[0])[0])
 print("line2\t%s" % cells(rows[1])[0])
-print("header\t%s" % "|".join(cells(rows[2])))
+print("line3\t%s" % cells(rows[2])[0])
+print("header\t%s" % "|".join(cells(rows[3])))
 PYX
 T1="$(awk -F'\t' '$1=="line1" {print $2}' "$TMP/title.txt")"
 T2="$(awk -F'\t' '$1=="line2" {print $2}' "$TMP/title.txt")"
+TX="$(awk -F'\t' '$1=="line3" {print $2}' "$TMP/title.txt")"
 T3="$(awk -F'\t' '$1=="header" {print $2}' "$TMP/title.txt")"
 
 case "$T1" in
@@ -446,6 +508,33 @@ case "$T2" in
   "Delivery boundary: MVP + Phase 2 — billable phases: "*)
      ok "…and line 2 is the delivery-boundary line: $T2" ;;
   *) bad "the xlsx title line 2 is [$T2], expected the delivery-boundary line" ;;
+esac
+
+# line 3 — the cross-cutting carry (D-O75): non-`default` entries only, each
+# with its `(XO-<n>)` provenance; the engagement default never reaches it.
+case "$TX" in
+  "Cross-cutting: "*) ok "…and line 3 is the cross-cutting line: $TX" ;;
+  *) bad "the xlsx title line 3 is [$TX], expected the cross-cutting line (D-O75)" ;;
+esac
+case "$TX" in
+  *"language: Ukrainian + English UI (XO-2)"*)
+     ok "…carrying a stated obligation with its class, value and register id" ;;
+  *) bad "line 3 does not carry the stated language obligation: [$TX]" ;;
+esac
+case "$TX" in
+  *"accessibility: WCAG 2.1 AA (XO-3)"*)
+     ok "…and a second class beside it — the line is not language-only" ;;
+  *) bad "line 3 does not carry the accessibility obligation: [$TX]" ;;
+esac
+case "$TX" in
+  *"English (engagement default"*|*"XO-1"*)
+     bad "the engagement default reached the title block: [$TX] — framework law is not client ground" ;;
+  *) ok "…and the English engagement default never renders there — client ground only" ;;
+esac
+case "$TX" in
+  *"sources/brief.md"*|*"sources/rfp.md"*)
+     bad "a citation leaked into the title block: [$TX] — the line carries class, value and id" ;;
+  *) ok "…and the citation stays on the ledger head, not in the client render" ;;
 esac
 [ "$T3" = "$WANT" ] \
   && ok "…with the pinned column set on the row below the block" \
@@ -464,6 +553,9 @@ CSV1="$(head -1 "$TMP/framed/wbs.csv" | tr -d '\r')"
 grep -q 'Delivery boundary:' "$TMP/framed/wbs.csv" \
   && bad "the delivery-boundary line leaked into the csv" \
   || ok "…and the delivery-boundary line is absent from it"
+grep -q '^Cross-cutting:' "$TMP/framed/wbs.csv" \
+  && bad "the cross-cutting line leaked into the csv — it is pure rows (D-O75)" \
+  || ok "…and the cross-cutting line is absent from it too"
 
 # an open label renders the project name alone — the export never invents
 FRAMED2="$TMP/openlabel-proj"
@@ -520,6 +612,59 @@ SEEDED_CSV1="$(head -1 "$TMP/seed-title.csv" | tr -d '\r')"
 [ "$SEEDED_CSV1" = "$WANT_CSV" ] \
   && bad "the seeded csv title block was not caught" \
   || ok "seeded: a title block in the csv is caught — line 1 reads [$SEEDED_CSV1]"
+
+# (c) the title block loses its third line — the carry silently disappears
+python3 - "$TMP/framed/wbs.xlsx" > "$TMP/seed-third.txt" <<'PYX'
+import sys, zipfile
+import xml.etree.ElementTree as ET
+NS = "{http://schemas.openxmlformats.org/spreadsheetml/2006/main}"
+z = zipfile.ZipFile(sys.argv[1])
+sheet = ET.fromstring(z.read("xl/worksheets/sheet1.xml"))
+rows = sheet.find(NS + "sheetData").findall(NS + "row")
+def first(row):
+    c = row.find(NS + "c")
+    tx = c.find(NS + "is/" + NS + "t") if c is not None else None
+    return tx.text if tx is not None else ""
+# the seed: the block as it would stand with D-O75 never compiled
+seeded = [first(rows[0]), first(rows[1])]
+print("third\t%s" % (seeded[2] if len(seeded) > 2 else ""))
+PYX
+SEED_THIRD="$(awk -F'\t' '$1=="third" {print $2}' "$TMP/seed-third.txt")"
+case "$SEED_THIRD" in
+  "Cross-cutting: "*) bad "the seeded two-line block was not caught — it still reads as carrying the line" ;;
+  *) ok "seeded: a title block that lost its third line is caught — line 3 reads [${SEED_THIRD:-<absent>}]" ;;
+esac
+
+# (d) the engagement default renders into the client's copy — the generator's
+#     own title_block, run with D-O75's filter defeated, against the guard that
+#     rejects it above
+python3 - "$SK" > "$TMP/seed-default.txt" <<'PYX'
+import sys, importlib.util, pathlib
+spec = importlib.util.spec_from_file_location(
+    "sk_wbs", str(pathlib.Path(sys.argv[1]) / "sk_wbs.py"))
+m = importlib.util.module_from_spec(spec)
+sys.modules["sk_wbs"] = m            # @dataclass resolves its own module
+spec.loader.exec_module(m)
+cross = [(1, "language", "English (engagement default — framework law, D-O74)", "default"),
+         (2, "language", "Ukrainian + English UI", "carried")]
+clean = m.title_block("proj", "PoC", ["MVP"], "2026-08-19", cross)[2]
+# the seed: `default` treated as an ordinary entry, the filter defeated
+seeded = "Cross-cutting: %s" % " · ".join(
+    "%s: %s (XO-%d)" % (c, v, n) for n, c, v, _ in cross)
+print("clean\t%s" % clean)
+print("seeded\t%s" % seeded)
+PYX
+SD_CLEAN="$(awk -F'\t' '$1=="clean" {print $2}' "$TMP/seed-default.txt")"
+SD_SEED="$(awk -F'\t' '$1=="seeded" {print $2}' "$TMP/seed-default.txt")"
+case "$SD_CLEAN" in
+  *"engagement default"*) bad "the generator renders the engagement default: [$SD_CLEAN]" ;;
+  *) ok "the generator's own third line drops the \`default\` entry: [$SD_CLEAN]" ;;
+esac
+case "$SD_SEED" in
+  *"engagement default"*)
+     ok "seeded: with the filter defeated the default leaks, and the guard above rejects it" ;;
+  *) bad "the seeded default-leak control does not carry the default: the probe is blind" ;;
+esac
 
 # ── 3. selection (D-O20) ─────────────────────────────────────────────────────
 

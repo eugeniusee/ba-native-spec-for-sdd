@@ -37,7 +37,7 @@ Create both from their templates, at `.specify/` top level:
 
 | File | From | Initial content |
 |---|---|---|
-| `.specify/aspect-state.md` | `.specify/ba/templates/aspect-state.md` | head: `Band: 1 (open)`; `Profile:`, `Sources:` and the five scope-frame lines left for Step 2; the six-row table at `untouched`, `Since` and `Basis` empty; all five standing-instrument head lines `none` — `Standing aspect waivers:` · `Open reopens:` · `Upstream flags:` · `Deferred consequences:` · `Scope advisories:` (the advisory register, D-O68) |
+| `.specify/aspect-state.md` | `.specify/ba/templates/aspect-state.md` | head: `Band: 1 (open)`; `Profile:`, `Sources:` and the seven scope-frame lines left for Step 2 — the `Cross-cutting:` line born carrying its English default (D-O74); the six-row table at `untouched`, `Since` and `Basis` empty; all five standing-instrument head lines `none` — `Standing aspect waivers:` · `Open reopens:` · `Upstream flags:` · `Deferred consequences:` · `Scope advisories:` (the advisory register, D-O68) |
 | `.specify/aspect-plans.md` | `.specify/ba/templates/aspect-plans.md` | the eight empty sections: `## Frame`, the six aspects, `## Band 2` |
 
 Both files sit **outside `.specify/memory/`** and stay there. Orchestration state
@@ -90,6 +90,26 @@ discard`, resolved in the same single Frame reply.
 render, one reply (D-O42, extended by D-O45 and by D-O65), no new prompt point.
 **Autonomy is untouched by composition:** P-O0b sits on the never-AUTO safety
 floor (D-O42), so SD confirmation is BA-only under any grant.
+
+**The cross-cutting harvest (D-O73) — auto-pickup extends from decisions to
+obligations.** Before rendering the block, scan the same sources for
+**cross-cutting obligations** — the five classes of the head's `Cross-cutting:`
+line: **language · device · accessibility · branding · compliance** — and
+pre-fill line 5 with one entry per obligation:
+`XO-<n> — <class>: <value, one line> (<verbatim citation>)`. Cite-or-mark
+applies unchanged: **every harvested obligation carries its verbatim
+citation**, and the verbatim ground lives in the cited source artifact — no new
+artifact class. **An ambiguous candidate is asked, never guessed:** it renders
+on the same line as
+`XO-? — <candidate, one line> (<citation>) — keep or discard`, resolved in the
+same single Frame reply.
+
+**The stop count is untouched here too:** line 5 rides inside the P-O0b block —
+one render, one reply (D-O42, amended on the record by D-O73 exactly as D-O65
+amended it, never superseded), no new prompt point, and the ≤ 8 Presale budget
+stands arithmetically untouched. **Autonomy is untouched by composition:** P-O0b
+sits on the never-AUTO safety floor (D-O42), so XO confirmation is BA-only under
+any grant.
 
 Auto-pickup runs against the **material on hand at render time** — the
 inventory's first line is exactly that list. Sources the BA names, pastes or
@@ -174,9 +194,9 @@ matches the project's, and offer the **best match** on the inventory's own line.
   has just confirmed. That stop is the one already budgeted — **the scan adds no
   second consumer of the slack.**
 - **Declined** — **no ledger entry at all.** The `Sources:` line records
-  **BA-named and BA-confirmed sources only**, and its state vocabulary is
-  closed at the five below and nothing else: a proposal the BA did not take was
-  never a source, and **never gets a state of its own.**
+  **BA-named and BA-confirmed sources only**, its **five-state vocabulary**
+  (D-O48 extended by D-O70) **is closed**, and a proposal the BA did not take
+  was never a source, and **never gets a state of its own.**
 - **A candidate the reply does not answer is declined.** This does not weaken
   *silence never resolves a source* below: that rule governs a source the **BA
   named**. Your own proposal is not a hole in the BA's inventory, and ageing it
@@ -206,6 +226,7 @@ Scope frame — before any aspect opens (P-O0b — scope-frame selection):
 2. Budget envelope: <amount + currency> | none stated
 3. Client label: <free text — how the client names it: PoC, prototype, pilot…> [cite | BA-supplied | open — no source material]
 4. Scope decisions: <SD-<n> — <the decision, one line> (<citation>), per harvested decision> | none found
+5. Cross-cutting: <XO-<n> — <class>: <value, one line> (<citation>), per harvested obligation> | XO-1 English default only
 Parameters (defaults shown; edit or confirm):
   Rate: $50/h · Team mix: 3 fullstack eng + 1 QA + 1 BA + 1 PM (eng-share ~60%) · Capacity check: on
 Waiting for your confirmation. Switchable later; the switch is logged.
@@ -376,6 +397,59 @@ communication, read by nothing.** Its landed home is the canvas —
 T-01 — Discovery canvas framing carries it into §13 Context/Constraints as a
 cited line.
 
+**The cross-cutting register — `Cross-cutting:` (D-O72).** One **`XO-<n>`**
+entry per cross-cutting obligation — a constraint the client's material states
+once and the whole product must honor — with its **class**, its **one-line
+value**, its **verbatim citation** and its **state**.
+
+**The class set is closed at five: language · device · accessibility ·
+branding · compliance.** A sixth class enters only by decision number on the
+record.
+
+**The state vocabulary is closed at four, and nothing else:**
+
+- **`captured`** — registered, carrier pending;
+- **`carried — <unit>`** — the story, epic or title-block line that holds it;
+- **`accepted — <reason>`**, with an event-shaped revisit trigger — a declined
+  obligation is a record, never silence;
+- **`default`** — reserved for the language line's engagement default, which
+  always stands: **this line is never `none`.**
+
+The head holds the machine-readable summary; the verbatim ground lives in the
+cited source artifact, and the canvas mirror is
+**T-01 — Discovery canvas framing**'s — §13 Context/Constraints, beside the
+scope decisions. Switches and mid-band arrivals ride the existing
+**`scope-frame`** event grammar — **no new event kind exists**. **This register
+is runtime and standing; the source audit's `OB-<nnn>` register is per-run and
+derived** — deliberately disjoint ID spaces, and a runtime `XO` row is exactly
+the ground the audit's forward trace expects to find carried.
+
+**The language obligation's unit form (D-O74).** **English is the engagement's
+ultra-default language, and the default is recorded, never silent:** the
+`Cross-cutting:` line always carries
+`XO-1 — language: English (engagement default — framework law, D-O74) — default`
+where no source states otherwise — the framework recording **its own law as its
+own ground**, never a fabricated client citation.
+
+The moment the corpus states **(a) any UI/content/support language other than
+English, or (b) multi-language support of any kind**, that obligation **must
+materialize as an explicit unit of the specification: one dedicated
+localization epic** — named in the client's own wording where one stands —
+**holding at least one story carrying the verbatim citation**; a single-language
+obligation legally holds exactly one story. **Never only a register line, a
+mark, an open question or a Comments-cell mention** — *a comment is not a
+carrier.*
+
+The dedicated epic takes its **own Phase and its own Billable cell**, so the
+obligation is independently allocable and stands as a visible WBS row; the `XO`
+entry then stands **`carried — <the epic>`**, and a BA who declines the unit
+records **`accepted — <reason>`** with its revisit trigger — never silence.
+**The unit-form law is language-only by ruling:** the other four classes carry
+via the register, the WBS title block and the source audit's forward trace.
+**Discovery is untouched by construction:** the obligation is cited estate
+ground the **T-17 — Epics decomposition** sweep reads — the law binds what
+carries an obligation, never what the sweep finds.
+
 **Capacity — two operations, two risk classes.**
 
 - **Envelope → capacity conversion, always on.** Pure arithmetic, no judgment:
@@ -401,6 +475,7 @@ Boundary: <ladder value(s) — MVP | MVP + Phase 2 | …> — set <date> (P-O0b)
 Budget: <amount + currency> | none stated  (<citation | BA-supplied | open — no source material>)
 Client label: <free text — PoC · prototype · pilot…>  (<citation | BA-supplied | open — no source material>)
 Scope decisions: SD-<n> — <the decision, one line> (<citation>) · … | none found
+Cross-cutting: XO-1 — language: English (engagement default — framework law, D-O74) — default · XO-<n> — <class>: <value, one line> (<citation>) — <state> · …
 Parameters: rate <amount>/h · team mix <…> (eng-share <n>%) · capacity check <on | off>
 Capacity: ~<n> eng-h (envelope ÷ rate × eng-share) | — (no envelope)
 ```
@@ -433,6 +508,15 @@ as the existing
 `scope-frame` event — **no new event kind exists** — and a capture contradicting
 a just-confirmed SD rides the correction stop above. All by reference; nothing
 is re-legislated here.
+
+**A cross-cutting obligation recognized mid-band brings zero new machinery
+either (D-O73).** A cross-cutting fact recognized under cite-or-mark in **any
+later capture or mining pass** appends its `XO-<n>` entry to the head's
+`Cross-cutting:` line and one **`scope-frame`** Events line — **no new event
+kind** — and a capture contradicting a confirmed entry rides the correction stop
+above, already budgeted. Where the recognized obligation is a stated
+non-English or multi-language one, the unit-form law above governs what carries
+it: the register line is the record, never the carrier.
 
 **A late source brings zero new machinery.** A channel, thread or folder that
 appears mid-band routes its content through the existing ingestion, and a
@@ -507,7 +591,10 @@ and no aspect opens until the pick is on record · never treats a profile as a
 restriction: out-of-profile techniques stay electable by code ·
 **never sets or confirms the scope frame on the BA's behalf, and never takes
 P-O0b (scope-frame selection) under an autonomy grant** — the frame is a
-safety-floor act · **never rules a source disposition on the BA's behalf, and
+safety-floor act · **never guesses a cross-cutting obligation, and never lets a
+harvested one stand without its verbatim citation** — an ambiguous candidate is
+asked inside the block, never resolved by the framework · **never renders the
+`Cross-cutting:` line as `none`** — the English default always stands · **never rules a source disposition on the BA's behalf, and
 never reads silence as one** · **never captures an artifact standing
 `excluded — <reason>`, never mines one, and never follows a reference to one
 inside any capture — and never lets an encounter go unrecorded** · never
