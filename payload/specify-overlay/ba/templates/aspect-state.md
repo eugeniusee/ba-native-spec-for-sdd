@@ -7,10 +7,13 @@
   spec-anchored glob, out of the scoped-run write trigger, out of any memory/
   mirror toward the coding agent.
 
-  Born by /ba-frame at Band-1 entry: head at six × `untouched`, `Band: 1 (open)`,
+  Born by /ba-frame at Band-1 entry: head at six × `untouched`, Band 1 open,
   the flow profile picked at P-O0 — flow-profile selection and the scope frame
   set at P-O0b — scope-frame selection, both in one render, one reply.
   File discipline: the head is REWRITTEN IN PLACE; events are APPEND-ONLY.
+  Head rewrites are line-anchored — full-line match at line start — never by
+  substring search (field defect 2026-08-20, B8); this comment deliberately
+  avoids the literal head-line string.
 
   States (D-O2): untouched · open · first-pass-cleared · waived · reopened.
   Transitions T1–T8 are all BA acts; an aspect gate never self-clears

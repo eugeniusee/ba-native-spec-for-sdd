@@ -10239,3 +10239,85 @@ pass.** Standing and carried unchanged: the reconciliation family (runtime
 `AS` ↔ audit `OB`); §10.1's P-O0b act cell and its cross-cutting omission; the
 P-A1 band-wide search set's corpus application; `check-audit.sh` ·
 `sk_audit.py`, named and unbuilt from the earlier sittings.
+
+## The Comment Stops Naming The Heading — B8 ledger-template comment hardening, Lane A mechanical · package 0.1.33 · 21 August 2026 · GREEN
+
+**Session prompt:** close **B8** of the 2026-08-21 errata registration
+(`claude_ba-native-spec-errata-ec17-19-registration-2026-08-21.md`, R-2), ruled
+by the BA as **"apply all recommendations"** on the 2026-08-20 field defect
+report. Five assertion-guarded edits across the two payload ledger templates,
+count-verified before and after; Lane A, mechanical only — no rule, assertion,
+threshold, check or methodology document moves.
+
+**Precondition, clean.** `origin/main` and `HEAD` both at `9ca5731` (the EC-16
+propagation commit, package 0.1.32) — the queue's first item landed and pushed
+before this one opened. VERSION `0.1.32`, tree clean. The three entry counts
+the prompt names read exactly **3 · 3 · 2**: `## Frame` and `## Band 2` three
+times each in `aspect-plans.md`, `Band: 1 (open)` twice in `aspect-state.md`
+— in each file one body occurrence and the comment-block hazards beside it.
+
+**Origin — the defect.** Field defect report **2026-08-20, Part B item B8**,
+from the Nutrivity presale run. Both runtime-ledger templates embedded their
+own live heading and head-line strings inside their comment blocks. One
+substring-anchored edit matched a **comment** instead of the body and deleted
+`## Frame` plus all six aspect sections from a live plans ledger — silent at
+the time, and unrecoverable without the session transcript. The template
+taught the hazard to every ledger born from it.
+
+**What moved — comment prose, and nothing else.** In
+`payload/specify-overlay/ba/templates/aspect-plans.md`: the head comment now
+reads *"the Frame section (D-B1-4) and the Band-2 section"*, the Band-3
+comment now enumerates *"the aspects, Frame and Band 2"*, and the first
+comment block closes on a new **edit-discipline paragraph** — headings and
+head lines are edited **line-anchored**, full-line match at line start, never
+by substring search, and the comment says plainly that it names its sections
+without their literal heading strings. In `aspect-state.md`: the born-by line
+now reads *"head at six × `untouched`, Band 1 open"*, and the file-discipline
+line gains the same **line-anchored** rule beside the rewrite-in-place /
+append-only pair it already carried. Post-state, verified by sweep: each
+literal string occurs **exactly once per file** — the body occurrence the
+checks read — and both body anchors survive line-anchored (`^## Frame$`,
+`^## Band 2$`, `^Band: 1 (open)$`), one each.
+
+**Every edit was guarded, not trusted.** Each of the five `old` strings was
+required to match **exactly once** in its file before any byte was written —
+a 0 or ≥2 match was a stop — and the count was re-checked at apply time
+against the running buffer, so no earlier edit could silently widen a later
+one. The seven-value residual sweep ran after: three killed-string counts at
+1, three body-anchor counts at 1, and the discipline note present once per
+file.
+
+**What did not move.** No rule. No D-number minted. No assertion, no
+threshold, no check edited. No methodology document touched — template comment
+text is compile commentary, not law, and B8 is a hazard in the commentary.
+**EC-17–EC-19**, registered the same day, are untouched by this pass. The two
+live-ledger fixtures under `tests/fixtures/appointment-booking/band1/` were
+read and do **not** carry the hazard — their comment blocks embed no literal
+heading or head-line string — so nothing was needed there.
+
+**The suite: 17 of 17 green.** `check-m.sh` 71 · `check-gate.sh` 105 ·
+`check-orchestrator.sh` 501 · techniques 104 / 122 / 159 · `check-spine.sh`
+253 · `check-register.sh` 63 · `check-wbs.sh` 99 · `check-status.sh` 115 ·
+`check-ledger.py` 19 rules · `check-cards.py` byte-identical ·
+`check-layout.sh` 117 · `check-exit.sh` 99 · `check-install.sh` 64 ·
+`check-budget.sh` 50 · `check-auto.sh` 250. **Every count unmoved**, as a
+comment-only pass must leave them. `check-orchestrator.sh` reads the **body**
+`## Frame` heading, which this pass did not touch; nothing in the suite
+asserted the comment fragments, checked before the first edit and confirmed by
+the run.
+
+**No incidental corrections this pass.** Nothing tripped outside the two
+comment blocks.
+
+**Open — one, named and deliberately unbuilt.** **The discipline is stated,
+not enforced.** Both templates now tell a reader to edit line-anchored, but
+nothing asserts it: no check forbids a comment from re-embedding a literal
+heading string, and an agent that never reads the comment is unguarded by it.
+The natural homes are a template-hygiene assertion in the suite and an
+edit-discipline line in the orchestrator's ledger-write rules — **both are
+Lane B**, and this pass is Lane A by ruling, so neither was built here.
+Standing and carried unchanged: **D-P2-14 has no regression assertion** (the
+highest-value follow-up of the 0.1.32 pass); the reconciliation family
+(runtime `AS` ↔ audit `OB`); §10.1's P-O0b act cell and its cross-cutting
+omission; the P-A1 band-wide search set's corpus application; `check-audit.sh`
+· `sk_audit.py`, named and unbuilt from the earlier sittings.

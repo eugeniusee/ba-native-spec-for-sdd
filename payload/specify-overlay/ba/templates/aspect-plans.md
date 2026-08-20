@@ -2,7 +2,7 @@
 
 <!--
   BA-Native Spec — the planning record. Compiled from the orchestrator rules
-  §6.4, incl. the `## Frame` section (D-B1-4) and the `## Band 2` section
+  §6.4, incl. the Frame section (D-B1-4) and the Band-2 section
   (D-B6-5). Destination: .specify/aspect-plans.md — outside .specify/memory/
   under the same D-G1/D-G8 rule as the state ledger.
 
@@ -17,6 +17,11 @@
   class · destination file}. Catalogue techniques come pre-pinned by their
   sheets; custom techniques take a BA-supplied or BA-confirmed contract. An
   unconfirmed contract makes the run illegal.
+
+  Edit discipline (field defect 2026-08-20, B8): section headings and head
+  lines are edited line-anchored — full-line match at line start — never by
+  substring search. This comment deliberately names sections without their
+  literal heading strings.
 -->
 
 <!-- Section shape, repeated for each heading below:
@@ -75,7 +80,7 @@ Run log:
        <date> · TIER-2 NNN-feature · contract: …
 
      §7.3 owes a contract-fulfillment line for every run; §6.4 enumerates
-     section homes for the aspects, `## Frame` and `## Band 2`, and names none
+     section homes for the aspects, Frame and Band 2, and names none
      for a Band-3 run. This section is the PACKAGE's placement of a line the
      methodology mandates but does not house — recorded as a build divergence,
      awaiting a one-line §6.4 re-ruling. Nothing else about Band 3 is recorded
