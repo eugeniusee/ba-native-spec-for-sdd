@@ -379,7 +379,14 @@ for root, pattern in (
         for p in sorted(root.glob(pattern)):
             if p.is_file() and p.name != ".gitkeep":
                 installed.append(p)
-for name in ("AGENTS.md", "CLAUDE.md"):
+# D-P2-14: the two mirror targets are ⬒ only inside their fenced block. What sits
+# outside the fence is the project's own material and was never the installer's to
+# certify — whole-file hashing there reports false ⬒-drift on any pre-existing
+# content or later user edit.
+MERGE_TARGETS = ("AGENTS.md", "CLAUDE.md")
+BEGIN, END = "<!-- ba-native-spec:begin -->", "<!-- ba-native-spec:end -->"
+
+for name in MERGE_TARGETS:
     p = target / name
     if p.exists():
         installed.append(p)
@@ -387,10 +394,29 @@ for name in ("AGENTS.md", "CLAUDE.md"):
 manifest_path = target / ".specify" / "ba" / "manifest.md"
 installed = [p for p in installed if p != manifest_path]
 
+
+def fenced_block(p):
+    """The installer-owned region of a merge target — markers included."""
+    text = p.read_text(encoding="utf-8")
+    i, j = text.find(BEGIN), text.find(END)
+    if i < 0 or j < 0 or j < i:
+        return None
+    return text[i:j + len(END)]
+
+
 rows = []
 for p in installed:
-    h = hashlib.sha256(p.read_bytes()).hexdigest()
-    rows.append((str(p.relative_to(target)), h))
+    rel = str(p.relative_to(target))
+    if rel in MERGE_TARGETS:
+        block = fenced_block(p)
+        if block is None:
+            sys.exit("  ✗ %s carries no ba-native-spec fence — the mirror merge did "
+                     "not complete, and a manifest cannot certify a broken install "
+                     "(D-P2-14)." % rel)
+        h = hashlib.sha256(block.encode("utf-8")).hexdigest()
+    else:
+        h = hashlib.sha256(p.read_bytes()).hexdigest()
+    rows.append((rel, h))
 rows.sort()
 
 # --- write ---------------------------------------------------------------------
@@ -425,6 +451,11 @@ out += [
     "The ⬒ set: everything install.sh laid down. Runtime-born (◇) content, the",
     "five ledgers, and specs/ are deliberately not listed — they are authored,",
     "not installed.",
+    "",
+    "AGENTS.md and CLAUDE.md are hashed over the installer-owned fenced block",
+    "(<!-- ba-native-spec:begin --> … <!-- ba-native-spec:end -->, markers",
+    "included), never the whole file: what sits outside the fence is the",
+    "project's own material and was never the installer's to certify (D-P2-14).",
     "",
     "```",
 ]

@@ -128,6 +128,14 @@ Do not invoke them on your own initiative and do not simulate their effects.
 | `tier1 <kit\|ingest\|supplement> <epic>` | Epic scoping interview | `memory/scope/<epic>.md` |
 | `tier2` | Spec-depth gap-filling | `specs/NNN-<feature>/spec.md` |
 
+**Superseded — 1**
+
+`/speckit-constitution` — **superseded by `/ba-run t15`**. `constitution.md`
+is born from Band-1 evidence at T-15 — Constitution, never from a template; a template-born
+file is governance ground manufactured outside the evidence chain. Do not
+invoke the Spec Kit skill, and do not follow Spec Kit's Next Steps panel
+where that panel advertises it.
+
 ### Stops and routes — the checkpoint law
 
 A stop is legitimate only where the BA decides between materially different

@@ -10091,3 +10091,151 @@ cross-cutting obligations (a v0.29-era omission §33 names and routes); the
 P-A1 band-wide search set's corpus application (routed by v0.31, deliberately
 unbuilt); `check-audit.sh` · `sk_audit.py`, named and unbuilt from the earlier
 sittings.
+
+## The Guard On Our Side Of The Fence — EC-16 installer integrity reaches the code · build plan v0.3 · package 0.1.32 · 21 August 2026 · GREEN
+
+**Session prompt:** propagate the committed Phase-2 build plan **v0.3** into
+`install.sh` and `payload/mirror/` per **D-P2-13 · D-P2-14 · D-P2-15(a)**;
+documents before code — the committed doc is the ruling record and every code
+edit traces to its locked text, cite-never-restate; falsify on a scratch
+target; close per the standing build discipline.
+
+**Precondition, clean.** `git log -1` read `bd01ee4` (the EC-16 authoring
+commit, build plan v0.3) on `c1c2bfc` (the 0.1.31 sibling), VERSION `0.1.31`,
+tree clean, all 17 checks green at baseline. The four doc fingerprints the
+prompt names were verified before any edit: version line **v0.3** · D-P2-13
+and D-P2-14 as locked decision rows · **D-P2-15 locked to (a)**, the one-line
+empty-⬒ trace standing on the D-P2-6 install-time content policy row and not
+an open row · **§8 amendment record** present. **One deviation from the
+precondition, named:** `origin/main` sat at `3d378ee`, two commits behind —
+`git merge-base --is-ancestor` confirmed a clean fast-forward, no divergence,
+so this pass proceeded and its push carries all three commits.
+
+**Origin — the defect.** **EC-16 · installer integrity**, registered 20 Aug
+2026 from a field bootstrap install of 0.1.30 into a live presale project.
+The ruling record is the committed build plan **§8**; it is cited here and
+never restated. Two holes on the ⬒ side of the install, one footnote — the
+pinned kit's own `/speckit-constitution` recreating from template the file
+D-P2-6 sets aside, and the manifest whole-file-hashing the two fenced-block
+merge targets it does not own outright.
+
+**What the pass gives the runtime.** **D-P2-13 — the supersession notice.**
+Both mirror sources carry it, and therefore the fenced block in every
+installed `CLAUDE.md` and `AGENTS.md`: **`/speckit-constitution` superseded by
+`/ba-run t15`**, `constitution.md` born from Band-1 evidence at **T-15 —
+Constitution**, never from a template, with both do-nots stated — do not
+invoke the Spec Kit skill, and do not follow Spec Kit's Next Steps panel where
+that panel advertises it. Placement follows each file's own structure:
+`claude-block.md` gains a **`Superseded — 1`** entry closing the `/ba-*`
+command index, beside its `Workflow — 17` and `Techniques — 20` lists;
+`AGENTS.md`, which carries no command index, gains a **third prohibition** in
+the analysis-session bullet list, in that list's own grammar — *"You never
+birth governance from a template."* **The guard lives entirely on our side of
+the fence:** Spec Kit's `SKILL.md` and its Next Steps panel are pinned
+upstream content and are untouched. **D-P2-14 — the fenced-block hash.** The
+manifest's ⬒ set hashes the installer-owned block for the two merge targets,
+never the whole file, and the manifest header states the rule to its reader.
+**D-P2-15(a) — zero code edits, by ruling.** `install.sh:245`'s carry-over
+comment was established accurate about the install act and stands byte-
+unchanged; the trace is doc-side and already landed with the authoring commit.
+
+**Two semantics ruled at the gate, nothing silently resolved.** The locked
+text leaves both open, so both were surfaced as lettered questions before any
+line was written. **Q1 — marker inclusivity: (a) inclusive.** The hashed
+region runs from `<!-- ba-native-spec:begin -->` through
+`<!-- ba-native-spec:end -->`, markers included — one definition of "the
+block", the same value `merge()` already writes, and marker tampering
+registers as drift. §8's "on first contact the block is the whole file" is
+literally true only under this reading. **Q2 — a merge target that exists but
+carries no fence at hash time: (c) fail the install loudly.** The fence is
+absent immediately after the installer wrote it, so the merge failed and a
+manifest must not certify a broken install; the verify side stands as §8 locks
+it — a missing fence is **real drift**.
+
+**D-P2-14 has two code surfaces, not one — named, not assumed.**
+`tests/verify-manifest.py` is the install manifest's verifier and re-hashed
+whole files; changing the generator alone would have shipped red. Both sides
+move together, which is the same ⬒-set rule on its read side.
+**`sk_handoff.py` is correctly untouched** — its whole-file hashing serves the
+**certification** manifest (gate §11.1), a different artifact.
+
+**Files touched — 6.** `payload/mirror/claude-block.md` ·
+`payload/mirror/AGENTS.md` (D-P2-13; both files also carry the 0.1.31
+sibling's stop-point closing-ask block — **pure insertions, the sibling's
+block byte-untouched**) · `install.sh` (D-P2-14: the manifest generator's
+merge-target branch, the `fenced_block()` helper, the fail-loudly guard, and
+the manifest header prose) · `tests/verify-manifest.py` (the same rule on the
+read side: docstring claim 3, the constants and helper, the verify branch) ·
+`BUILD-LOG.md` · `VERSION` (0.1.31 → **0.1.32**). **No file added or removed
+— `tests/layout.expected` is untouched, verified rather than assumed.**
+
+**Falsification — a scratch target, four probes, then re-run on the shipped
+text.** A throwaway git repo carrying a **pre-existing `CLAUDE.md` with
+project content outside the fence** — the false-drift case itself. (1) Both
+installed fenced blocks carry the supersession line **and** the sibling's
+stop-point block, one fence pair each, the pre-existing content preserved.
+(2) The manifest rows for both merge targets match the **block** hash and not
+the whole-file hash. (3) An edit **outside** the fence leaves the verifier at
+exit 0 — the false ⬒-drift is closed; an edit **inside** the fence is
+reported; the fence **removed** is reported as real drift in the verifier's
+own words. (4) Three consecutive installs: exactly one supersession line, one
+fence pair, project content kept, and the manifest byte-stable across
+re-installs. **The fail-loudly branch was exercised against the shipped code**
+— the generator extracted verbatim from `install.sh` and run on a
+fence-stripped target exits **1** with its named message; end-to-end it is
+unreachable by construction, because the merge step re-fences before the
+manifest runs, and that is recorded rather than glossed.
+
+**The suite: 17 of 17 green.** `check-m.sh` 71 · `check-gate.sh` 105 ·
+`check-orchestrator.sh` 501 · techniques 104 / 122 / 159 · `check-spine.sh`
+253 · `check-register.sh` 63 · `check-wbs.sh` 99 · `check-status.sh` 115 ·
+`check-ledger.py` 19 rules · `check-cards.py` byte-identical ·
+`check-layout.sh` 117 · `check-exit.sh` 99 · `check-install.sh` 64 ·
+`check-budget.sh` 50 · `check-auto.sh` 250. **Every count unmoved** — this
+pass moves no harness constant, recompiles no card and adds no contract
+assertion; it touches no CC row and no AT threshold.
+
+**One red caught and fixed inside the pass.** The first full run came back
+**RED at `check-register.sh` (56 / 7)**: both new mirror paragraphs rendered
+**`T-15` bare**, violating register rule 5 — a known code must carry its name
+— and the suite's own self-test cascaded off the two defects, its control
+corpus no longer clean at 0. Fixed at source by rendering the canonical
+**`T-15 — Constitution`**, the form the payload already uses at
+`ba-t15/SKILL.md` and `ba-frame`; `check-register.sh` returned **63 / 0** and
+the full suite went green. Recorded because the sweep caught a real defect in
+this pass's own new text, which is what it exists to do.
+
+**Decisions named — three, none silent.**
+
+1. **Placement was a build judgment, taken per file and not uniformly.** §2.6
+   fixes the mirror rows' *content*; the doc does not pin an insertion point.
+   `claude-block.md` has a command index, so the supersession belongs at its
+   end in the section's own `**Heading — count**` shape. `AGENTS.md` has none,
+   so the line belongs where that file states the agent's prohibitions. A
+   uniform placement would have put a command entry into a file with no
+   command list.
+2. **The installer's closing-print counter-line was not implemented.** §8
+   records it as named-not-ruled and the prompt forbids it; Spec Kit's Next
+   Steps panel is reprinted by our installer, and whether our own print should
+   answer it beside the panel remains an open question for the master
+   conversation.
+3. **No row marker was added to the manifest's two merge-target rows.** The
+   hash list is parsed as `path  digest` by `verify-manifest.py`; annotating
+   those rows would break the parser to restate what the header now says in
+   prose. The rule is stated once, where a reader meets the list.
+
+**No incidental corrections this pass.** Nothing tripped outside the surfaces
+these decisions touch.
+
+**Open — one, routed and deliberately unbuilt.** **D-P2-14 has no regression
+assertion.** The generator and the verifier now agree on fenced-block hashing,
+and every install-based run exercises them together — but they would agree
+just as green if both regressed to whole-file hashing, because no check
+asserts *which* rule is in force. The hand falsification above is exactly the
+missing assertion, and its natural home is `check-install.sh`. Not built here:
+the prompt scopes this pass to edits taken strictly from the doc's locked
+text, and a new check is not among them. **Highest-value follow-up of this
+pass.** Standing and carried unchanged: the reconciliation family (runtime
+`AS` ↔ audit `OB`); §10.1's P-O0b act cell and its cross-cutting omission; the
+P-A1 band-wide search set's corpus application; `check-audit.sh` ·
+`sk_audit.py`, named and unbuilt from the earlier sittings.

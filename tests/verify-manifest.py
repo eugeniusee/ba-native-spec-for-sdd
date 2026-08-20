@@ -10,7 +10,12 @@ Three claims, each checkable:
                             bump that did not recompile shows up here.
   3. Installed-file hashes— every listed file exists and hashes as recorded.
                             A drifted hash means the installed tree is not what
-                            the manifest certifies.
+                            the manifest certifies. AGENTS.md and CLAUDE.md are
+                            merge targets: they hash over the installer-owned
+                            fenced block, markers included, never the whole file
+                            (D-P2-14) — content outside the fence is the
+                            project's own and is not ⬒. A missing fence is real
+                            drift.
 
 Exit 0 on all three; 1 otherwise. Python 3 standard library only (D-P2-7).
 """
@@ -21,6 +26,19 @@ import re
 import sys
 
 VERSION_RE = re.compile(r"\bv(\d+\.\d+)\b")
+
+# D-P2-14 — the ⬒-set rule for the two fenced-block merge targets.
+MERGE_TARGETS = ("AGENTS.md", "CLAUDE.md")
+BEGIN, END = "<!-- ba-native-spec:begin -->", "<!-- ba-native-spec:end -->"
+
+
+def fenced_block(path):
+    """The installer-owned region of a merge target — markers included."""
+    text = path.read_text(encoding="utf-8")
+    i, j = text.find(BEGIN), text.find(END)
+    if i < 0 or j < 0 or j < i:
+        return None
+    return text[i:j + len(END)]
 
 DOCS = {
     "definition & plan": "ba-native-spec-definition-and-plan-v2.md",
@@ -122,7 +140,16 @@ def main(argv: list[str]) -> int:
             if not f.is_file():
                 problems.append(f"hash list: {rel} is recorded but absent")
                 continue
-            actual = hashlib.sha256(f.read_bytes()).hexdigest()
+            if rel in MERGE_TARGETS:
+                block = fenced_block(f)
+                if block is None:
+                    problems.append(
+                        f"hash list: {rel} carries no ba-native-spec fence — "
+                        f"the installer-owned block is gone (real drift)")
+                    continue
+                actual = hashlib.sha256(block.encode("utf-8")).hexdigest()
+            else:
+                actual = hashlib.sha256(f.read_bytes()).hexdigest()
             if actual != digest:
                 problems.append(f"hash list: {rel} content differs from the manifest record")
             checked += 1

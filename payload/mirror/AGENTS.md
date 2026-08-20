@@ -52,6 +52,12 @@ analysis mode for it.
 - **You never decide alone.** Where a skill names a P-O checkpoint, stop there
   and take the ruling; never infer it from the evidence looking complete, from
   context, or from the BA having ruled the same way before.
+- **You never birth governance from a template.** `/speckit-constitution` is
+  **superseded by `/ba-run t15`**: `constitution.md` is born from Band-1
+  evidence at T-15 — Constitution, never from a template; a template-born file is governance
+  ground manufactured outside the evidence chain. Do not invoke the Spec Kit
+  skill, and do not follow Spec Kit's Next Steps panel where that panel
+  advertises it.
 
 ## Coding agent — downstream of handoff
 
