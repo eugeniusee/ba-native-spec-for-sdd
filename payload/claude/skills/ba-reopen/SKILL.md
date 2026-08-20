@@ -66,6 +66,19 @@ Present the mapping with the contradicted line, and take the BA's ruling:
   defines. Close the RO naming that route. Where the finding *also* contradicts
   an aspect-owned artifact, it names that artifact and maps normally.
 
+The ruling stop closes per §10.3 rule 9 — after the mapping table and the
+contradicted line, the plain-English ask through the AskUserQuestion tool, one
+call:
+
+```
+What I need from you:
+1. Does this finding really contradict <aspect>'s ground?
+   a. real — reopen the aspect (recommended) — the quoted lines conflict as mapped
+   b. not real — a misreading or a stale quote; close it, logged toward tuning
+   c. brief-shaped — it hits a scope brief, not an aspect; route it as a brief edit
+Reply with the letter, or rule it in your own words.
+```
+
 ## Step 3 — execute, on Real
 
 ### 3a. State

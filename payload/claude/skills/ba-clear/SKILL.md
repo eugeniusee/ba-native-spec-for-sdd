@@ -103,6 +103,22 @@ You may **propose** confirmation when a refresh shows all criteria met
 ("threshold evidence complete — confirm?"). You never confirm. **An aspect gate
 never self-clears.**
 
+The stop closes per §10.3 rule 9 — after the pinned evidence table, the
+plain-English ask through the AskUserQuestion tool, one call:
+
+```
+What I need from you:
+1. <Aspect> — does the evidence above clear it?
+   a. cleared — sign it with your initials (recommended) — every criterion shows met
+   b. not cleared — the named misses stand as the aspect's to-do
+   c. waive instead — progression now, the debt named (/ba-waive-aspect)
+Reply with the letter, or rule it in your own words.
+```
+
+Exactly one option carries `(recommended)`: `cleared` where the table shows
+every criterion met, `not cleared` where any miss stands — the safe
+disposition, never debt by suggestion.
+
 **Under a standing autonomy grant** (`/ba-auto on`), this act is stated in
 advance and taken AUTO — a recorded, revocable grant is not a self-clear, and
 the transition stands for ratification at `off`. All criteria met → clear,

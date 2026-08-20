@@ -281,6 +281,46 @@ the frame on the BA's behalf. **Do not rule a source disposition on the BA's
 behalf, and never read silence as one.** No aspect opens until the profile and
 the frame are on record.
 
+**The closing ask (§10.3 rule 9) — appended after the three pinned blocks,
+never inside them.** Close the render with the final plain-English block: every
+open item of this one stop — each source disposition, the profile pick, the
+frame confirmation, every `SD-? / XO-? / AS-?` keep-or-discard candidate —
+becomes one specific question a person who has never read the framework can
+answer, every code glossed in plain language beside it. Present the enumerable
+items through the AskUserQuestion tool — single-select, one question per open
+item, the stop's items batched into one call, each with an "other / free text"
+escape; items past the tool's per-call capacity ride the lettered block itself.
+Options are lettered; exactly one per question carries `(recommended)` — the
+pre-filled, cited value where one stands; for a keep-or-discard candidate, the
+disposition its citation grounds best, `discard` where the ground is thin. The
+marker never pre-selects and never auto-applies. Transcribe the selections into
+the single Frame reply's existing grammar — the typed reply ("none · Presale ·
+frame confirmed …") stays a legal shortcut, never the only channel. The shape,
+for this stop:
+
+```
+What I need from you:
+1. Sources — is the list above complete?
+   a. complete as shown (recommended)
+   b. add more — name, paste or attach them
+2. The Slack channel #<channel> — read it as a source?
+   a. include it (recommended) — its name matches the project
+   b. ignore it
+3. Which flow fits this engagement?
+   a. Presale — limited client access; destination: roadmap + open questions (recommended) — canvas.md is present
+   b. Discovery — the full analysis path to certified specs
+4. The scope frame — do the pre-filled values hold?
+   a. confirm as rendered (recommended) — every value carries its citation
+   b. correct — name the line and the new value
+5. SD-? — "<candidate, one line>": a negotiated scope decision, or not?
+   a. keep it (recommended) — the citation reads as an agreed trim
+   b. discard it — not a negotiated decision
+Reply with the letters, or answer the questions above in your own words.
+```
+
+One render, one reply — the ask adds no interaction and no prompt point, and
+the three pinned blocks above stand byte-untouched.
+
 ### Capture mechanics and reachability
 
 **A source the framework can reach** — a Slack channel behind a connected
@@ -384,6 +424,12 @@ prompt point** — the P-O table is complete as it stands. It is a justified sto
 under the checkpoint law: a materially different outcome hangs on it, and it
 rides the ≤ 8 budget's one interaction of slack (7 + 1). **Captures consistent
 with the frame produce no stop** — report and proceed.
+
+The correction proposal closes per §10.3 rule 9: one plain lettered question
+per contradicted field — take the captured value, its citation glossed, or
+hold the value you confirmed — exactly one option `(recommended)`: the
+disposition the citation grounds best, the later negotiated client statement
+where the two are that pair (the D-O66 precedence principle, by reference).
 
 **P-O0b (scope-frame selection) is a safety-floor act.** No autonomy grant
 reaches it, in any

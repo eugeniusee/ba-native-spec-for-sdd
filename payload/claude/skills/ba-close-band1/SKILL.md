@@ -53,6 +53,19 @@ A **lapse** at this moment returns that aspect to `open` (T8) and precondition 1
 is no longer met: say so and stop. Dependents keep their states — lapse is not
 reopen.
 
+Both manual stops here close per §10.3 rule 9 — `What I need from you:` — one
+AskUserQuestion call each.
+The precondition-1 miss: one lettered question per blocking aspect —
+`a. clear it — /ba-clear <aspect>` · `b. waive it — /ba-waive-aspect
+<aspect>, the debt named` · `c. hold — closure waits`; exactly one option per
+question carries `(recommended)` — `clear` where that aspect's evidence table
+is complete, else `waive`, the valve this section itself names. The
+re-affirmation list: one lettered question per standing waiver —
+`a. re-affirm into the armed state (recommended) — the revisit trigger has not
+fired` · `b. lapse — the aspect returns to open and closure stops`. Under a
+standing grant nothing here changes: the band-boundary report and its
+decision-list tail keep their pinned shapes (rule 9 is inert under AUTO).
+
 ## P-O7 (Band-1 closure) — the act
 
 Take the BA's declaration and record the closure event in `## Events`:

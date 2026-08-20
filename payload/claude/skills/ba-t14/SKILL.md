@@ -47,6 +47,8 @@ begin. No confirmation dialog: the command was the act.
 **On a miss** — stop in ≤ 2 lines: the failed check, and the single act that
 unblocks — `/ba-aspect requirements` to open and compose. Nothing else runs;
 nothing else is explained.
+The stop closes per §10.3 rule 9 — `What I need from you:` with the repairing
+act as the `(recommended)` option.
 
 **Skip-if — refuse the run and say so:** AT-RQ-1's design slot reads met — the
 file present, seeded, stub-free — **or** the conditionality branch stands ruled:
@@ -160,6 +162,8 @@ Plus routed batches where the sweep found cross-cutting ground.
    divergence is a **contract miss** (orchestrator §6.3) — stop and report the
    shape expected against the line as written; never record `fulfilled`, and
    never downgrade to `partial`.
+   The stop closes per §10.3 rule 9 — `What I need from you:` with the
+   repairing act as the `(recommended)` option.
 2. **Cross-cutting findings route** as one proposed batch: the framework
    assembles the edits · the BA approves the batch · the framework writes. In
    Band 1 proper Scope H is disarmed and nothing fires; post-closure runs get

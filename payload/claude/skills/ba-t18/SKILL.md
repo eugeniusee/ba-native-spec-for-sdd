@@ -44,6 +44,8 @@ confirmation dialog: the command was the act.
 unblocks — `/ba-aspect band2` to compose the Band-2 plan, or `/ba-close-band1`
 where Band 1 does not yet stand closed. Nothing else runs; nothing else is
 explained.
+The stop closes per §10.3 rule 9 — `What I need from you:` with the repairing
+act as the `(recommended)` option.
 
 **Skip-if — refuse the run and say so:** the current allocation stands approved
 and **no event has occurred since the last log entry**. The suggestion engine
@@ -296,6 +298,26 @@ line in the roadmap.
    orchestrator adds no prompt point: the advisory is born here, so it is ruled
    here.
 
+   **The step-4 closing ask (§10.3 rule 9) — after the pinned diff and the
+   decision list, never inside either.** The plain-English ask, one
+   AskUserQuestion call for the whole stop: the diff as one lettered question,
+   then one lettered question per `ADV-<n>` row, each glossed in plain
+   language beside its id. `(recommended)` sits on the pinned defaults — so
+   taking every recommended option is `apply all` exactly — and the typed
+   grammar stays the shortcut. The shape, for this stop:
+
+   ```
+   What I need from you:
+   1. The allocation — approve the diff as shown?
+      a. approve it (recommended) — it fits the boundary and the capacity advisory
+      b. edit it — say which epic moves to which phase
+   2. ADV-1 — "<finding, one line>" (a scope warning: <plain gloss>): what do you want done?
+      a. hold as advisory — no move; it stays visible and returns next run (recommended)
+      b. direct a move — name the phase; it pins as your directed row
+      c. accept — closes the warning, on the record with your reason
+   Reply with the letters, or type: apply all · apply all except <#…> · <#>: <letter> <argument>
+   ```
+
 5. **Framework act — write.** Phase cells updated; **one** log entry appended.
 
    **Every approved run logs, including no-change.** A rerun that moves nothing
@@ -371,6 +393,8 @@ The template and a worked example are in `references/example.md`.
    divergence is a **contract miss** (orchestrator §6.3) — stop and report the
    shape expected against the line as written; never record `fulfilled`, and
    never downgrade to `partial`.
+   The stop closes per §10.3 rule 9 — `What I need from you:` with the
+   repairing act as the `(recommended)` option.
 2. **Cross-cutting findings route** as one proposed batch: the framework
    assembles the edits · the BA approves the batch · the framework writes. In
    Band 1 proper Scope H is disarmed and nothing fires; post-closure runs get

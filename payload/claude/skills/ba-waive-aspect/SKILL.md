@@ -45,6 +45,16 @@ which field, and what would fix it. A waiver whose trigger is "in a few weeks"
 is a waiver nobody will ever read again — the whole re-affirmation mechanism is
 a *lazy read at defined touchpoints*, and only an event can be recognized at one.
 
+Each stop here closes per §10.3 rule 9, under `What I need from you:`. The
+assembled record's stop asks one plain lettered question — `a. grant the waiver as assembled (recommended) —
+the record is complete and the debt named` · `b. hold — the aspect stays where
+it is` · `c. edit a field first — name it`. A refusal's stop asks the one
+question that fixes the named field. A re-affirmation pass asks one lettered
+question per standing waiver, all in one AskUserQuestion call — `a. re-affirm
+(recommended) — the revisit trigger has not fired` · `b. lapse it — the aspect
+returns to open`; where the trigger has fired, `(recommended)` sits on the
+disposition the fired event grounds.
+
 Record shape, appended to `## Events` in `.specify/aspect-state.md`:
 
 ```

@@ -1471,9 +1471,13 @@ has "$RULES_DOC" "v0.30" "…and the edition the acceptance-shape register produ
 has "$RULES_DOC" "D-O80–D-O81" "…and the listing-corpus + corpus-declaration ruling block"
 has "$RULES_DOC" "## 34. Review record (v0.30 → v0.31)" \
     "…and §34, the review record that carries it"
-head -2 "$RULES_DOC" | grep -q 'v0\.31' \
-  && ok "the header states the live edition — v0.31, the listing declares its corpus" \
-  || bad "the header does not name v0.31: the edition and the change record disagree"
+has "$RULES_DOC" "v0.31" "…and the edition the corpus-declaration rule produced"
+has "$RULES_DOC" "D-O82" "…and the stop-point closing-ask ruling"
+has "$RULES_DOC" "## 35. Review record (v0.31 → v0.32)" \
+    "…and §35, the review record that carries it"
+head -2 "$RULES_DOC" | grep -q 'v0\.32' \
+  && ok "the header states the live edition — v0.32, the stop speaks plainly" \
+  || bad "the header does not name v0.32: the edition and the change record disagree"
 has "$RULES_DOC" "D-O45–D-O49" "…and the source-inventory ruling block"
 has "$RULES_DOC" "D-O50" "…and the change record names the unreadable-spec ruling"
 has "$RULES_DOC" "D-O51–D-O52" "…and the continuity-under-a-grant ruling block"
@@ -1483,11 +1487,11 @@ has "$RULES_DOC" "v0.20" "…and the edition the candidate scan produced"
 has "$RULES_DOC" "D-O54" "…and the scan-method ruling"
 
 # the ruling block is contiguous from the live high-water mark: no gap, no reuse
-python3 - "$RULES_DOC" <<'PYX' && ok "the D-O block runs 1…81 with no gap and no skipped number" \
+python3 - "$RULES_DOC" <<'PYX' && ok "the D-O block runs 1…82 with no gap and no skipped number" \
   || bad "the D-O decision block is not contiguous — a number is missing or reused"
 import re, sys
 seen = {int(n) for n in re.findall(r"D-O(\d+)", open(sys.argv[1], encoding="utf-8").read())}
-sys.exit(0 if seen == set(range(1, 82)) else 1)
+sys.exit(0 if seen == set(range(1, 83)) else 1)
 PYX
 
 # ── 6b. Band-2 plan composition — the record home has its producer (D-O55) ──

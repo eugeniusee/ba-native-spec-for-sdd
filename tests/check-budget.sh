@@ -18,6 +18,8 @@
 #       skill/persona/mirror surface, with a seeded control
 #   5.  plan-as-route and the two /ba-run forms — the runner's own operative
 #       text, and the invariant it must not quietly drop
+#   6.  the closing ask — §10.3 rule 9 in the document, the six register
+#       carriers and every stop-carrying skill, with a stripped control
 #
 # The banned list is seeded from the ruling (WS-2) and extended by judgment;
 # every phrasing it carries is logged in section 4's output, so a future reader
@@ -292,11 +294,106 @@ done
 has "$BLOCK" '| `/ba-run` |' "the CLAUDE.md block lists the route runner"
 has "$BLOCK" '`/ba-run specs all`' "…and the batch driver"
 
+# ── 6. the closing ask — §10.3 rule 9 (D-O82) ────────────────────────────────
+#
+# The field defect of 20 Aug 2026: a legitimate stop closed in framework jargon
+# ("Reply with: sources · profile · frame confirmed, including the
+# SD-?/XO-?/AS-? keep-or-discard calls") and the BA had to ask what was
+# expected. Rule 9 is the render half's last mile — every render that ends the
+# turn awaiting BA input closes with the plain-English `What I need from you:`
+# block, lettered options, exactly one `(recommended)` marker per question,
+# AskUserQuestion where the runtime has it, appended after the pinned render
+# (the D-O56 tail), inert under a standing AG (D-O51). The document states the
+# law; the six register carriers compile rule 9; every stop-carrying skill
+# names the ask at its own stop.
+
+printf '\n▸ The closing ask — §10.3 rule 9 (D-O82)\n'
+
+has_joined "$DOC" 'The stop-point closing ask (D-O82).' \
+    "§10.3 rule 9 states the closing-ask law"
+has_joined "$DOC" 'ends with a final plain-English block titled `What I need from you:`' \
+    "…the final plain-English block, titled"
+has_joined "$DOC" 'exactly one option per question carries the marker `(recommended)`' \
+    "…exactly one recommended marker per question"
+has_joined "$DOC" 'it never pre-selects and never auto-applies' \
+    "…the marker is a label, never a pre-selection"
+has_joined "$DOC" 'appended after the pinned render' \
+    "…additive on the D-O56 tail precedent"
+has_joined "$DOC" 'under a standing AG this rule does not apply' \
+    "…and inert under a standing grant (D-O51)"
+has_joined "$DOC" 'one stop stays one interaction' \
+    "…with the ≤ 8 budget arithmetically untouched"
+
+# rule 9 compiled into the register's six carriers — section 3's loop, one rule up
+R9='ends with a final plain-English block titled `What I need from you:`'
+r9=0; r9n=0
+for f in "$PKG_ROOT"/payload/claude/agents/*.md "$PKG_ROOT"/payload/mirror/*.md; do
+  r9n=$((r9n+1))
+  python3 - "$f" "$R9" <<'PY' && r9=$((r9+1))
+import re, sys
+text = open(sys.argv[1], encoding="utf-8").read()
+sys.exit(0 if sys.argv[2] in re.sub(r"\n\s*(?=\S)", " ", text) else 1)
+PY
+done
+[ "$r9n" -gt 0 ] \
+  && ok "the register carriers derive — $r9n personas and mirrors" \
+  || bad "the persona/mirror glob matched nothing: section 6 would pass vacuously"
+[ "$r9" -eq "$r9n" ] \
+  && ok "rule 9's closing-ask clause is compiled into all $r9n register carriers" \
+  || bad "rule 9's closing-ask clause is missing from $((r9n-r9)) of $r9n carriers"
+
+# every stop-carrying skill names the ask at its own stop. The set is named,
+# not globbed: a skill with no BA-input stop (a read-only render, a report act)
+# legitimately carries none, and a glob would ban that.
+ASK_SKILLS='ba-frame ba-aspect ba-run ba-clear ba-waive-aspect ba-reopen
+ba-close-band1 ba-enter-feature ba-gate ba-audit ba-tier1 ba-tier2
+ba-t01 ba-t17 ba-t18'
+askmiss=0; askn=0
+for s in $ASK_SKILLS; do
+  askn=$((askn+1))
+  grep -qF 'What I need from you:' "$PKG_ROOT/payload/claude/skills/$s/SKILL.md" \
+    || { askmiss=$((askmiss+1)); printf '      no closing ask: %s\n' "$s"; }
+done
+[ "$askmiss" -eq 0 ] \
+  && ok "the closing ask is named at every stop-carrying skill — $askn of $askn" \
+  || bad "$askmiss of $askn stop-carrying skill(s) never name the closing ask"
+
+# both miss stops — the invocation miss and the §6.3 contract miss — carry the
+# uniform sentence in every technique-class skill
+missmiss=0; missn=0
+for f in "$PKG_ROOT"/payload/claude/skills/ba-t[0-9][0-9]/SKILL.md \
+         "$PKG_ROOT"/payload/claude/skills/ba-tier1/SKILL.md \
+         "$PKG_ROOT"/payload/claude/skills/ba-tier2/SKILL.md; do
+  [ -f "$f" ] || continue
+  missn=$((missn+1))
+  n="$(grep -c '§10.3 rule 9' "$f")"
+  [ "$n" -ge 2 ] || { missmiss=$((missmiss+1)); printf '      %s carries %s of 2\n' "${f#"$PKG_ROOT"/}" "$n"; }
+done
+[ "$missn" -eq 20 ] \
+  && ok "the technique-class glob derives 20 units" \
+  || bad "the technique-class glob derived $missn units, expected 20"
+[ "$missmiss" -eq 0 ] \
+  && ok "both miss stops carry the closing-ask sentence in all $missn technique-class skills" \
+  || bad "$missmiss technique-class skill(s) miss the closing-ask sentence at a miss stop"
+
+# the control: a skill stripped of the ask must be caught by the same probe
+CA="$TMP/ca"
+mkdir -p "$CA"
+cp "$PKG_ROOT/payload/claude/skills/ba-frame/SKILL.md" "$CA/stripped.md"
+python3 - "$CA/stripped.md" <<'PY'
+import pathlib, sys
+p = pathlib.Path(sys.argv[1])
+p.write_text(p.read_text(encoding="utf-8").replace("What I need from you:", ""), encoding="utf-8")
+PY
+grep -qF 'What I need from you:' "$CA/stripped.md" \
+  && bad "the control is blind: the stripped copy still matches" \
+  || ok "the control fires — a skill stripped of the ask is caught"
+
 # ── roll-up ──────────────────────────────────────────────────────────────────
 
 printf '\n  passed: %s   failed: %s\n' "$PASSED" "$FAILED"
 if [ "$FAILED" -eq 0 ]; then
-  printf '✓ GREEN — manual-mode UX: the budget (%s ≤ %s) · the route render §10.6 · the checkpoint law · zero acknowledgement-only stops · plan-as-route + the two run forms\n' \
+  printf '✓ GREEN — manual-mode UX: the budget (%s ≤ %s) · the route render §10.6 · the checkpoint law · zero acknowledgement-only stops · plan-as-route + the two run forms · the closing ask §10.3 rule 9\n' \
     "$N" "$BUDGET"
   exit 0
 fi

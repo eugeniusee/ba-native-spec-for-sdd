@@ -192,6 +192,21 @@ stated. The composed plan is the BA's document; the snapshot stays beside it
 unchanged. Never edit a snapshot to match what the BA chose — the divergence
 between the two *is* the tuning signal.
 
+**The closing ask (§10.3 rule 9) — appended after the pinned snapshot and the
+choice line, never replacing either.** Close the render with the final
+plain-English block, and present the choice through the AskUserQuestion tool —
+single-select, one call, an "other / free text" escape; the four acts stay the
+typed channel, and every selection is transcribed into the composed-plan record
+verbatim. The shape, for this stop:
+
+```
+What I need from you:
+1. The plan for <aspect> — take the suggestion as your plan?
+   a. compose it as suggested (recommended) — every full row closes a named hole
+   b. change it first — select / drop / reorder / add custom, by row number
+Reply with the letter, or state the four acts in your own words.
+```
+
 You may **propose** a sequence when the evidence points one way. You never
 compose. **The plan is the BA's act.**
 

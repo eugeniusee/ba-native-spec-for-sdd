@@ -58,6 +58,12 @@ Under a standing grant the run self-elects that act itself where it spends no
 client access (`/ba-auto` — the cost boundary); outside one it is the BA's
 election. Either way the state is a pending choice, and it renders as one.
 
+The stop closes per §10.3 rule 9 — after the rendered row, the plain-English
+ask (`What I need from you:`) through the AskUserQuestion tool, one call: `1. Enter delivery for
+<feature> on this slice?` — `a. confirm the row as rendered (recommended) —
+the parent brief's own slice` · `b. edit the slice statement first — say what
+changes` · `c. not now — nothing flips`.
+
 Take the BA's confirmation. On confirmation the row's `Status` becomes:
 
 ```

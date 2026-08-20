@@ -57,6 +57,8 @@ confirmation dialog: the command was the act.
 **On a miss** — stop in ≤ 2 lines: the failed check, and the single act that
 unblocks — `/ba-aspect band2` to compose the Band-2 plan. Nothing else runs;
 nothing else is explained.
+The stop closes per §10.3 rule 9 — `What I need from you:` with the repairing
+act as the `(recommended)` option.
 
 **Skip-if — refuse the run and say so:** the roadmap stands current — rows whole
 (every row carrying its status), **no candidate and no conflict standing**.
@@ -224,6 +226,14 @@ language obligation's unit form below.
    description adjacency** — the wording that tells the kit generator where the
    sibling boundary needs checking.
 
+   The rulings stop closes per §10.3 rule 9 — after the decomposition report,
+   the plain-English ask, one AskUserQuestion call: `a. approve the set as
+   decomposed (recommended) — coverage complete, conflicts settled as listed`
+   · `b. edit it — say merge / split / rename / drop / add` · `c. hold —
+   settle the named conflicts first`; the graduation batch rides the same call
+   as its own lettered question (`a. route the batch as proposed (recommended)`
+   · `b. edit the batch`).
+
 6. **Framework act — write and hand off.** Write `roadmap.md`: rows at stable
    `E-<nn>` assigned in this run, Phase `Unallocated`, Status `Defined`. The
    approved graduation batch routes under the routing discipline. The armed
@@ -282,6 +292,8 @@ Plus the routed graduation batch to `out-of-scope.md`.
    divergence is a **contract miss** (orchestrator §6.3) — stop and report the
    shape expected against the line as written; never record `fulfilled`, and
    never downgrade to `partial`.
+   The stop closes per §10.3 rule 9 — `What I need from you:` with the
+   repairing act as the `(recommended)` option.
 2. **Cross-cutting findings route** as one proposed batch: the framework
    assembles the edits · the BA approves the batch · the framework writes. In
    Band 1 proper Scope H is disarmed and nothing fires; post-closure runs get

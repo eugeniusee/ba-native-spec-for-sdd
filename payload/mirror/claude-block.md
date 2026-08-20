@@ -328,6 +328,23 @@ are out of its reach.
    the shape governs. **Under a standing autonomy grant, register renders
    address the ledger, not the conversation:** the band-boundary report and the
    resumption report are the **only** BA-facing renders of an auto cycle.
+9. **The stop-point closing ask.** Every render that ends the turn awaiting BA
+   input — every legitimate §10.1 stop, a contract-miss stop (§6.3), any
+   keep-or-discard ask — ends with a final plain-English block titled
+   `What I need from you:` — each open item one specific question a person who
+   has never read the framework can answer; a framework code appears only with
+   a plain-language gloss beside it. An enumerable choice is presented through
+   the AskUserQuestion tool — single-select, one question per open item, the
+   stop's items batched into one call, each with an "other / free text" escape;
+   options are lettered (a, b, c …) and exactly one per question carries
+   `(recommended)` — the pinned default or safe disposition where one exists,
+   else the best-grounded suggestion. The marker is a label only: it never
+   pre-selects and never auto-applies. No AskUserQuestion in the runtime → the
+   same lettered list plus "reply with the letter". Selections are transcribed
+   into the existing pinned reply and record grammar; typed token shortcuts
+   stay legal, never the only channel. The ask is appended after the pinned
+   render and replaces nothing. Under a standing autonomy grant this rule is
+   inert — no mid-run questions exist there.
 
 ### Analysis session — the default mode
 

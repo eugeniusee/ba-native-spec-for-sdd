@@ -261,6 +261,19 @@ it. On a FAIL verdict both lines read `— (verdict FAIL)`.
 self-certifies. A FAIL needs no approval — it is final until fixed, overridden
 or waived.
 
+**Every gate stop closes per §10.3 rule 9** — after the pinned report lines,
+the plain-English ask under `What I need from you:`, one AskUserQuestion call
+per stop, framework codes glossed. P2 — verdict review: one lettered question per named gap —
+`a. leave it standing — fix it in the spec (recommended) — every FAIL line
+already names its fix action` · `b. waive — the gap is real and consciously
+accepted; the six-field record follows` · `c. override — the verdict is wrong;
+the reason follows`. P3 — the ⚑ sign-offs, one question per bundle —
+`a. sign it (recommended) — the evidence bundle above supports it` ·
+`b. decline — name your gap, the verdict flips`. P4 — approval:
+`a. approve — the PASS becomes effective (recommended) — the report is clean`
+· `b. hold — say what you want re-checked`. The marker never pre-selects:
+the sign-offs and the approval stay the BA's own acts, outside every grant.
+
 **The safety floor — never under an AG.** An autonomy grant (`/ba-auto on`)
 reaches P2 and stops there: waivers on real gaps may be taken AUTO, stamped
 `AUTO (AG-<n>)` in the report entry and standing for ratification at `off`;

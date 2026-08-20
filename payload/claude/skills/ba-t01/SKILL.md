@@ -35,6 +35,8 @@ and begin. No confirmation dialog: the command was the act.
 
 **On a miss** — stop in ≤ 2 lines: the failed check, and the single act that
 unblocks — `/ba-frame`. Nothing else runs; nothing else is explained.
+The stop closes per §10.3 rule 9 — `What I need from you:` with the repairing
+act as the `(recommended)` option.
 
 **Skip-if — refuse the run and say which:** `canvas.md` is already present in
 framework shape (thirteen sections, `P-n`/`O-n` line-IDs) and confirmed carried.
@@ -140,6 +142,14 @@ Plus, where a frame stands, the ledger head's scope-frame fields in
    acknowledgement-only stop under the §10.1 checkpoint law. Under Discovery the
    density stays the BA's choice.
 
+   The review stop closes per §10.3 rule 9 — after the rendered canvas, the
+   plain-English ask, one AskUserQuestion call: `a. confirm the landing — the
+   canvas stands as drafted (recommended) — every line cited or marked` ·
+   `b. correct — name the section and the change` · `c. rule the open N/A
+   candidates first — they are listed above`; each open `N/A` candidate rides
+   the same call as its own lettered question (`a. N/A — <reason> holds
+   (recommended)` · `b. it applies — the section stays open`).
+
 ## Output
 
 `canvas.md` at the repo root — **deliberately outside `.specify/memory/`**, and
@@ -168,6 +178,8 @@ or a `[CONFLICT: …]` marker in the canvas and read by the aspect that owns it.
    divergence is a **contract miss** (orchestrator §6.3) — stop and report the
    shape expected against the line as written; never record `fulfilled`, and
    never downgrade to `partial`.
+   The stop closes per §10.3 rule 9 — `What I need from you:` with the
+   repairing act as the `(recommended)` option.
 2. **Cross-cutting findings route** as one proposed batch: the framework
    assembles the edits · the BA approves the batch · the framework writes. In
    Band 1 proper Scope H is disarmed and nothing fires; post-closure runs get

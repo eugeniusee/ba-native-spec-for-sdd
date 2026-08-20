@@ -67,6 +67,8 @@ dialog: the command was the act.
 **On a miss** — stop in ≤ 2 lines: the failed check, and the single act that
 unblocks — `/ba-aspect band2` to compose the Band-2 plan. Nothing else runs;
 nothing else is explained.
+The stop closes per §10.3 rule 9 — `What I need from you:` with the repairing
+act as the `(recommended)` option.
 
 ## The two guards — both are tests, and both are falsifiable
 
@@ -231,6 +233,10 @@ steps below do not change with the input.
    `references/routing.md`. **The BA approves the batch**; on approval the
    framework writes, and the armed scoped health check fires silently.
 
+   The approval stop closes per §10.3 rule 9 — one plain lettered question:
+   `a. approve the batch as listed (recommended) — every edit is cited` ·
+   `b. approve all except — give the numbers` · `c. hold the batch`.
+
    **A new role or permission implication is a governance change: proposed,
    never silently written.**
 
@@ -353,6 +359,8 @@ batch is written only after the BA approves it.
    divergence is a **contract miss** (orchestrator §6.3) — stop and report the
    shape expected against the line as written; never record `fulfilled`, and
    never downgrade to `partial`.
+   The stop closes per §10.3 rule 9 — `What I need from you:` with the
+   repairing act as the `(recommended)` option.
 2. **Cross-cutting findings route** as one proposed batch: the framework
    assembles the edits · the BA approves the batch · the framework writes. In
    Band 1 proper Scope H is disarmed and nothing fires; post-closure runs get

@@ -145,6 +145,15 @@ Rulings: apply all · apply all except <#…> · <#>: SA <reason> · <#>: amend 
 - **The floor.** Under a standing AG, Stages 0–3 may run AUTO; **P-A1 is the
   BA's in every mode.** Auto ends here at "list rendered, awaiting ruling",
   stamped `AUTO (AG-<n>)` in the entry.
+- **The closing ask (§10.3 rule 9).** After the pinned list and its `Rulings:`
+  line, the plain-English ask under `What I need from you:` — one lettered
+  question per row, all in one
+  AskUserQuestion call, each row's default the `(recommended)` option —
+  `apply` glossed "make the proposed edit at the named target", `SA` glossed
+  "decline it, on the record with your reason" — and an `amend` row carrying
+  its one question verbatim with the members it covers named. Taking every
+  recommended option is `apply all` exactly; the typed ruling grammar above
+  stays the shortcut.
 
 Write the ruling into `decision-list.md`. A declined row becomes an SA record
 in `.specify/source-audit.md` — all fields, reason in the BA's words, revisit

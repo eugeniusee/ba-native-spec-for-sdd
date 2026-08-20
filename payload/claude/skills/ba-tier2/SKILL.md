@@ -59,6 +59,8 @@ dialog: the command was the act.
 **On a miss** — stop in ≤ 2 lines: the failed check, and the single act that
 unblocks — `/ba-enter-feature <epic>/<feature>`. Nothing else runs; nothing
 else is explained.
+The stop closes per §10.3 rule 9 — `What I need from you:` with the repairing
+act as the `(recommended)` option.
 
 ## Step 1 — load the context stack, in this order
 
@@ -231,6 +233,18 @@ enlarge its own budget. Never defer — deferring is debt the BA takes knowingly
 
 **This keeps the tiers honest: Tier 2 fills gaps; it does not re-run discovery.**
 
+**Each Tier-2 stop closes per §10.3 rule 9** — the packet shapes stay pinned,
+the ask follows them, one AskUserQuestion call per stop. A question packet:
+one lettered question per queued item — `a. confirm the recommended value
+(recommended) — the value the draft already carries, marked` · `b. edit —
+give the value` · `c. reject — the section drops it` · `d. defer — the marker
+stands as the record`. The deferral batch: `a. defer all <n> as listed
+(recommended) — none can reach the client under this profile` · `b. keep
+asking — give the numbers` · `c. dissolve the batch`. P-O9 — overflow ruling:
+`a. supplement — a Tier-1 mini-loop fills the named gaps (recommended) — the
+blockers are already named` · `b. raise the cap — name the number` · `c. defer
+the blockers — a band event plus a roadmap note`.
+
 ## Question legality — the rule, and it is a test
 
 > A Tier-2 question is legal **iff** its answer **(a)** closes a named would-be
@@ -341,6 +355,8 @@ worked gap-question exchange is in `references/example.md`.
    divergence is a **contract miss** (orchestrator §6.3) — stop and report the
    shape expected against the line as written; never record `fulfilled`, and
    never downgrade to `partial`.
+   The stop closes per §10.3 rule 9 — `What I need from you:` with the
+   repairing act as the `(recommended)` option.
 2. **Cross-cutting findings route** as one proposed batch: the framework
    assembles the edits · the BA approves the batch · the framework writes. In
    Band 1 proper Scope H is disarmed and nothing fires; post-closure runs get

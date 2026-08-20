@@ -9947,3 +9947,147 @@ the reconciliation family (runtime `AS` ↔ audit `OB`); §10.1's P-O0b act cell
 whose enumeration still omits cross-cutting obligations (a v0.29-era omission
 §33 names and routes); `check-audit.sh` · `sk_audit.py`, named and unbuilt from
 the earlier sittings.
+
+## The Stop Speaks Plainly — the closing ask at every stop point · orchestrator v0.32 · package 0.1.31 · 20 August 2026 · GREEN
+
+**Session prompt:** codify the 20 Aug 2026 field feedback — a live Presale run
+halted and the BA could not tell what was expected — as **one cross-cutting
+render rule** at orchestrator §10.3 under the next free D-O; sweep
+`payload/claude/skills/*` and `payload/claude/agents/*` so every compiled stop
+point gains the closing-ask pattern; **reshape closing asks only — no step
+redesigned, no pinned output shape touched**; run the standard build pass.
+Documents before code.
+
+**Precondition, clean — then a sibling appeared.** `git log -1` read `3d378ee`,
+VERSION `0.1.30`, tree clean; all 17 checks green at baseline
+(`check-orchestrator.sh` 498, `check-budget.sh` 37). **Mid-session a
+concurrent pass began writing in this tree:**
+`docs/methodology/ba-native-spec-phase2-build-plan.md` moved to a v0.3
+**EC-16 installer-integrity** edit (D-P2-13…D-P2-15) that is no part of this
+ruling and appeared after this pass's baseline read. Standing law applied: this
+pass stages **named paths only**, the sibling's file is left in the working
+tree exactly as found and is **not** in this pass's commit, and green was
+re-verified in an **isolated copy** holding HEAD plus this pass's files alone.
+
+**Origin — the defect, verbatim.** When a step halts and waits for the BA, the
+closing ask is framework jargon: *"Reply with: sources · profile · frame
+confirmed, including the SD-?/XO-?/AS-? keep-or-discard calls."* The BA — the
+framework's own operator — has to ask *"what do you expect from me?"*. **A
+stop-render UX defect, not a mechanics defect:** the stop was legitimate under
+the checkpoint law, the pinned blocks intact, the harvest lines cited. The last
+mile — the sentence that turns a legal stop into an answerable question — had
+no law anywhere in the corpus, so every stop improvised it. The class sits in
+§10.3's charter (the BA-facing register), and per the v0.31 lesson — a class
+patched at one escape site escapes at the next — the fix is one register rule,
+not a Frame patch.
+
+**What the ruling gives the runtime (D-O82 — §10.3 rule 9).** Every render
+that ends the turn awaiting BA input — every legitimate §10.1 stop, a
+contract-miss stop (§6.3), any keep-or-discard ask — **ends with a final
+plain-English block titled `What I need from you:`**, each open item one
+specific question a person who has never read the framework can answer,
+framework codes only with a plain-language gloss beside them · **enumerable
+choices ride the AskUserQuestion tool** — single-select, one question per open
+item, all items of the stop batched into one call, each with an "other / free
+text" escape; items past the tool's per-call capacity ride the lettered block
+in the same render, still one stop and one reply · **options lettered, exactly
+one `(recommended)` per question** — the pinned default or safe disposition
+where one exists, else the best-grounded suggestion — **a label that never
+pre-selects and never auto-applies** · no AskUserQuestion in the runtime → the
+same lettered list plus "reply with the letter" · **selections transcribed
+into the existing pinned reply and record grammar**, typed token strings an
+optional shortcut and never the only channel · **additive on the D-O56 tail
+precedent** — appended after the pinned render, nothing replaced, reordered or
+dropped · **AUTO exempt (D-O51)** — no mid-run questions exist there, the
+band-boundary and resumption reports byte-untouched · **arithmetic untouched**
+— one stop stays one interaction, D-O33's ≤ 8 stands, no new stop, no new
+prompt point, no new register, no new event kind, no threshold moved, no
+assertion added or weakened, no gate rule touched.
+
+**Files touched — 41.**
+`docs/methodology/ba-native-spec-orchestrator-rules.md` (v0.31 → **v0.32**:
+the head change record, §10.3 rule 9, §35, the footer at D-O1–D-O82) · **the
+six register carriers**, rule 9 compiled after rule 8 —
+`payload/mirror/claude-block.md` · `payload/mirror/AGENTS.md` ·
+`payload/claude/agents/ba-orchestrator.md` · `ba-analyst.md` ·
+`ba-discovery.md` · `ba-gate.md` · **the stop-point sweep, 30 skills** — the
+tailored asks at `ba-frame` (the Frame single stop with a worked five-question
+shape, and the correction stop) · `ba-aspect` (P-O2 — plan composition, with
+its shape) · `ba-run` (the route `go`, the batch confirmation table, the
+consolidated defer-confirm) · `ba-clear` (P-O4 — clearing confirmation, with
+its shape) · `ba-waive-aspect` (grant · refusal · re-affirmation) ·
+`ba-reopen` (P-O6 — reopen ruling, with its shape) · `ba-close-band1` (the
+precondition miss and the re-affirmation list) · `ba-enter-feature` (P-O8 —
+Band-3 entry) · `ba-gate` (P2 · P3 · P4) · `ba-audit` (P-A1 — source-audit
+ruling) · `ba-tier1` (the routing-batch approval) · `ba-tier2` (question
+packets · the deferral batch · P-O9 — overflow ruling) · `ba-t01` (the
+review-and-landing batch) · `ba-t17` (the step-5 rulings and the graduation
+batch) · `ba-t18` (the step-4 approval with its worked shape) — and the
+uniform sentence at **both miss stops in all 20 technique-class skills**
+(`ba-t01`…`ba-t18` · `ba-tier1` · `ba-tier2`): *"The stop closes per §10.3
+rule 9 — `What I need from you:` with the repairing act as the `(recommended)`
+option."* · `tests/check-orchestrator.sh` · `tests/check-budget.sh` ·
+`BUILD-LOG.md` · `VERSION` (0.1.30 → **0.1.31**).
+
+**The suite: 17 of 17 green.** `check-orchestrator.sh` **498 → 501** — the
+header pinned at v0.32, v0.31 demoted to a change-record `has`, the D-O82 and
+§35 rows, contiguity moved to **1…82**. `check-budget.sh` **37 → 50** — the
+new §6 on the closing ask: seven document literals of rule 9 held down
+(`What I need from you:` · exactly one `(recommended)` · never pre-selects ·
+appended after the pinned render · AG-inert · one stop one interaction), the
+compiled clause read in **all six register carriers** on section 3's
+joined-read loop, the ask named in **all 15 stop-carrying skills** (a named
+set, not a glob — a read-only render legitimately carries none), the uniform
+sentence at **both miss stops in all 20 technique-class units**, and a
+stripped control that fires. **Every other check unmoved:** `check-gate.sh`
+105, `check-spine.sh` 253, `check-auto.sh` 250, `check-register.sh` 63,
+`check-wbs.sh` 99, `check-status.sh` 115, `check-m.sh` 71, techniques
+104 / 122 / 159, `check-layout.sh` 117, `check-exit.sh` 99,
+`check-install.sh` 64, `check-ledger.py` 19 rules, `check-cards.py`
+byte-identical. **No card recompiled and no contract assertion added** — the
+ruling touches no CC row.
+
+**Decisions named — five, none silent.**
+
+1. **The register self-check is deliberately not extended.** It compiles rules
+   1, 5, 6, 7 and the checkpoint law, byte-pinned across 42 units, and rule
+   9's enforcement sites are the stop points themselves — every one of which
+   now carries the pattern in its own text. Extending the pinned block would
+   re-hash 42 units and the harness pin to add a second enforcement channel
+   without adding protection. §35 records the same reasoning at the document.
+2. **The AUTO surfaces are untouched by the sweep.** `ba-auto` is not in the
+   file list; the band-boundary and resumption reports stand byte-identical
+   (check-auto's 3-unit byte check, unmoved at 250). The exemption is the
+   ruling's own clause, not an omission.
+3. **The tool-capacity clause is stated in the rule, not improvised at
+   render.** AskUserQuestion carries at most four questions per call; the
+   Frame stop routinely holds five or more open items. Rule 9 says the excess
+   rides the lettered block in the same render — one stop, one reply — which
+   is the ruling's own fallback channel doing double duty, and the worked
+   shape in `ba-frame` shows a five-item block for exactly this reason.
+4. **`tests/presale-path.md` is deliberately not edited.** It is the budget's
+   counting script — `## Interaction` headings against ≤ 8 — and the ask adds
+   no interaction, so the count it holds down is unchanged. Its instantiated
+   renders predate the rule and are not the pinned template. Named rather
+   than skipped quietly.
+5. **The gate's judgment stops keep their weight.** P3 — the ⚑ sign-offs and
+   P4 — approval gain the ask like every stop, and the marker sits on the
+   best-grounded option (`sign it` beside a complete evidence bundle) — but
+   the marker is a label by rule text, the sign-offs and the approval stay
+   outside every grant, and nothing signs itself. The non-waivable set and
+   the safety floor stand exactly where they stood.
+
+**No incidental corrections this pass.** Nothing tripped outside the surfaces
+this ruling touches; the harness constants that moved — the contiguity bound
+81 → 82, the header pin, budget's new section — are this pass's own delta.
+
+**Open:** nothing from this ruling. **In flight beside it, named above:** the
+sibling EC-16 installer-integrity pass (build plan v0.3, D-P2-13…D-P2-15),
+writing in this tree during this sitting — its file left untouched and
+uncommitted here; its own BUILD-LOG entry and package bump belong to it.
+Standing and carried unchanged: the reconciliation family (runtime `AS` ↔
+audit `OB`); §10.1's P-O0b act cell, whose enumeration still omits
+cross-cutting obligations (a v0.29-era omission §33 names and routes); the
+P-A1 band-wide search set's corpus application (routed by v0.31, deliberately
+unbuilt); `check-audit.sh` · `sk_audit.py`, named and unbuilt from the earlier
+sittings.

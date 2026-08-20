@@ -29,12 +29,26 @@ composed plan; no aspect open and Band 2 reachable → the `## Band 2` section's
 route. Under a standing AG (`/ba-auto on`), proceed through those stops per the
 `/ba-auto` policy table; execution mechanics are unchanged.
 
+The route stop closes per §10.3 rule 9 — the pinned §10.6 shape above stands
+whole, `Next: step 1 — go?` included, and after it the plain-English ask:
+`What I need from you:` — one lettered question through the AskUserQuestion
+tool, `a. go — run all <n> steps as listed (recommended)` · `b. hold — change
+the plan first`; `go` typed stays the shortcut. Every en-route stop closes
+with its owning skill's own §10.3 rule 9 ask — one call per stop, never
+per-row drip.
+
 **Batch spec driver — §8.4.** `specs all` (or `specs <epic-list>`): one
 P-O8 — Band-3 entry confirmation table for every selected feature (rows
 strikeable by number, one confirm); record each confirmed feature's status flip
 and band event individually; run Tier 2 — spec-depth gap-filling per feature in
 assumption posture, each run writing its own `## Band 3` run-log line; stop once
 at the consolidated defer-confirm.
+
+Both batch stops close per §10.3 rule 9: the confirmation table asks one
+lettered question — `a. enter all <n> features as listed (recommended)` ·
+`b. all except — give the row numbers` — and the consolidated defer-confirm
+closes with its owner's ask (Tier 2 — spec-depth gap-filling), one call, one
+reply.
 
 **Catalogue techniques** (`t01`…`t18`, `tier1 <mode> <epic>`, `tier2 <feature>`):
 `/ba-run <id>` is a thin alias for `/ba-<id>`. Read the technique's skill file
