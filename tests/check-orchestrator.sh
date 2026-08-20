@@ -761,12 +761,21 @@ done
 # the residual read: inside the scan clause, the only search wording left is
 # the wording that removes it. Extract the clause, require each permitted
 # sentence exactly once, strip them, and require the remainder search-free.
+#
+# D-O81 lands its law paragraph inside this clause — immediately after D-O80's,
+# where the ruling put it — and that law names retrieval kinds generically
+# ("a listing, a search set, a sweep, a glob") and routes P-A1's band-wide
+# search set. Neither is scan-method wording, so both are permitted BY EXACT
+# PHRASE at the document only; the skill carries no D-O81 text and its
+# permitted set is unchanged. The check keeps its whole force: a future
+# "fall back to search" edit still leaves wording no permitted phrase covers,
+# and each removal sentence must still appear exactly once.
 for spec in "doc|The Slack candidate scan (D-O53, locked).|The profile picker" \
             "skill|The Slack candidate scan — the framework proposes, you dispose.|Then the profile picker"; do
   kind="${spec%%|*}"; rest="${spec#*|}"; start="${rest%%|*}"; stop="${rest#*|}"
   if [ "$kind" = doc ]; then c="$RULES_SRC"; else c="$FRAME"; fi
   lbl="$(basename "$(dirname "$c")")/$(basename "$c")"
-  if python3 - "$c" "$start" "$stop" > "$TMP/residual.err" 2>&1 <<'PY'
+  if python3 - "$c" "$start" "$stop" "$kind" > "$TMP/residual.err" 2>&1 <<'PY'
 import pathlib, re, sys
 t = re.sub(r"\s+", " ", pathlib.Path(sys.argv[1]).read_text(encoding="utf-8"))
 i = t.index(sys.argv[2]); j = t.index(sys.argv[3], i)
@@ -779,6 +788,14 @@ PERMITTED = [
     "a fuzzy search could never certify the count",
     "not running a search",
 ]
+# document-only: D-O81's law names retrieval kinds generically and routes the
+# P-A1 application. Neither is scan-method wording; both are exact phrases.
+DOC_ONLY = [
+    "a listing, a search set, a sweep, a glob",
+    "band-wide-search-set application is routed, never legislated here",
+]
+if sys.argv[4] == "doc":
+    PERMITTED = PERMITTED + DOC_ONLY
 for ph in PERMITTED:
     if clause.count(ph) != 1:
         print("permitted sentence not exactly once (%d): %r" % (clause.count(ph), ph))
@@ -796,6 +813,143 @@ PY
   fi
 done
 
+
+# ── 5d. the listing's corpus and the corpus-declaration rule (D-O80–D-O81) ───
+#
+# The second field post-mortem on the record, at
+# docs/field-notes/2026-08-20-slack-scan-corpus-miss.md: the scan rendered
+# "no match" over a listing it called complete. The listing covered 225 of 705
+# channels — the target sat in the 480 it never enumerated — and every D-O53 /
+# D-O54 rule was obeyed, because those rules govern the retrieval METHOD and
+# never its CORPUS: "paging the broad listing to completion" is fully satisfied
+# by paging a *filtered* listing to completion. D-O80 makes the corpus explicit
+# and strips the terminator of its false authority; D-O81 states the class once
+# as framework law. Each law is asserted in both carriers exactly as the D-O54
+# laws above are — except D-O81 and the durable tool facts, which are
+# **document-only by ruling**: §34 compiles `ba-frame` alone, and framework law
+# is reached by reference, never recompiled into every carrier depending on it.
+#
+# The bound, written down beside D-O54's rather than left to inference: this
+# section asserts the LAW's presence and the RENDER's shape — that both
+# carriers state the corpus, refuse the terminator as proof, hold the
+# known-channel falsification, and pin the same two render deltas
+# byte-for-byte. It does NOT execute a scan; whether a live listing actually
+# sets both axes is a runtime property no file-only suite can reach, which is
+# exactly why the render line must carry `<n>` and its corpus — an auditable
+# claim is the only thing a document can buy. The volatile mechanics of report
+# §7 — cursor encoding, the silent limit clamp, parallel fan-out, reference
+# corpus sizes — are asserted ABSENT from the law: they live in the field note
+# by ruling, and law carrying a tool's implementation detail ages into a lie.
+
+printf '\n▸ The listing declares its corpus (§8.1; D-O80–D-O81)\n'
+
+NOMATCH_LINE='Slack — no channel matches the project name · listed <n> channels (public + private, archived included).   (renders only when Slack is reachable and the scan found no match)'
+MATCH_LINE='Slack — closest match on the project name: #<channel> (archived) — include it, or ignore it.'
+
+for c in "$RULES_SRC" "$FRAME"; do
+  lbl="$(basename "$(dirname "$c")")/$(basename "$c")"
+  # D-O80 — the corpus is named, and a default is presumed narrowing
+  has "$c" "The corpus is every channel the workspace holds — both visibilities, every archive state" \
+      "the listing names its corpus — every channel, both visibilities, every archive state — $lbl (D-O80)"
+  has "$c" "presumed narrowing" \
+      "…and a retrieval parameter left at its default is presumed narrowing — $lbl (D-O80)"
+  has "$c" "visibility and archive state are set **explicitly**, never by omission" \
+      "…the axes set explicitly, never by omission — $lbl (D-O80)"
+  # D-O80 — the terminator certifies the query, never the workspace
+  has "$c" "An end-of-results terminator certifies the query, never the workspace" \
+      "the terminator certifies the query, never the workspace — $lbl (D-O80)"
+  has "$c" "exhaustion of its own filtered result set" \
+      "…the tool reporting exhaustion of its own filtered result set — $lbl (D-O80)"
+  has "$c" "Completeness is a property the scan **establishes**, never a signal it **receives**" \
+      "…completeness established by the scan, never received as a signal — $lbl (D-O80)"
+  has "$c" "the listing is a sample, and a sample reports what it found, never what does not exist" \
+      "…and until every axis is explicit the listing is a sample — $lbl (D-O80)"
+  # D-O80 — the falsification half, in its operational form (report §6.3)
+  has "$c" "A zero-channel listing is a tool fault, never a finding" \
+      "a zero-channel listing is a tool fault, never a finding — $lbl (D-O80)"
+  has "$c" "a listing that misses a known channel is void" \
+      "…and a listing that misses a known Sources: channel is void — $lbl (D-O80)"
+  has "$c" "and no render rests on it" \
+      "…with no render resting on it — $lbl (D-O80)"
+  # the two render deltas, pinned identically in both carriers
+  has "$c" "$MATCH_LINE" \
+      "the match line carries the (archived) marker — $lbl (D-O80 render delta 1)"
+  has "$c" '"(archived)" only when the candidate is archived' \
+      "…and the marker renders only when the candidate is archived — $lbl (D-O80)"
+  has "$c" "$NOMATCH_LINE" \
+      "the no-match line renders with <n> and its corpus — $lbl (D-O80 render delta 2)"
+  # the improvised line the escape produced can never come back unmarked
+  hasnt "$c" "Slack — closest match on the project name: #<channel> — include it" \
+      "the unmarked match line is gone — the render delta landed, not duplicated — $lbl (D-O80)"
+done
+
+# D-O81 and the durable tool facts — document-only by ruling; the carrier
+# reaches the law by reference and is asserted clean of it, so a future
+# recompile that quietly mirrors framework law into a skill turns this red.
+has "$RULES_SRC" "The corpus-declaration rule" \
+    "the corpus-declaration rule is stated, once, at the document (D-O81)"
+has "$RULES_SRC" "names the corpus that retrieval must cover" \
+    "…a retrieval-dependent rule names the corpus that retrieval must cover (D-O81)"
+has "$RULES_SRC" "the retrieval **states the corpus it covered**" \
+    "…and the retrieval states the corpus it covered (D-O81)"
+has "$RULES_SRC" "never inherited from the tool that terminated it" \
+    "…a completeness claim never inherited from the tool that terminated it (D-O81)"
+has "$RULES_SRC" "a sample never grounds a negative" \
+    "…and where the corpus is not stated, a sample never grounds a negative (D-O81)"
+has "$RULES_SRC" "at the escape site only" \
+    "the rule is applied at the escape site only — the application stays narrow (D-O81)"
+has "$RULES_SRC" "band-wide-search-set application is routed, never legislated here" \
+    "…and P-A1's band-wide search set is routed, never legislated here (D-O81)"
+has "$RULES_SRC" "the listing tool's visibility and archive parameters default narrow — public, non-archived" \
+    "the durable tool fact rides the clause — the parameters default narrow (D-O80)"
+has "$RULES_SRC" "the endpoint has no listing mode" \
+    "…and the endpoint has no listing mode, the broad listing a match-all query (D-O80)"
+has "$RULES_SRC" "docs/field-notes/2026-08-20-slack-scan-corpus-miss.md" \
+    "…and the edition names the field note carrying the run as it happened"
+hasnt "$FRAME" "The corpus-declaration rule" \
+    "framework law is reached by reference, never recompiled into the carrier (D-O81)"
+
+# the volatile mechanics stay in the field note — law that carries a tool's
+# implementation detail ages into a lie (report §7, deliberately not encoded)
+for phrase in "CURRENT_PAGE" "page_limit_exceeded" "clamp silently" "fanned out in parallel"; do
+  hasnt "$RULES_SRC" "$phrase" \
+      "volatile tool mechanics stay in the field note, never in the law — $phrase (D-O80)"
+done
+
+# the field note itself is on the record and carries the run's own evidence
+FIELDNOTE="$PKG_ROOT/docs/field-notes/2026-08-20-slack-scan-corpus-miss.md"
+if [ -f "$FIELDNOTE" ]; then
+  ok "the field note is on the record at docs/field-notes/2026-08-20-slack-scan-corpus-miss.md"
+else
+  bad "the field note is missing: the ruling cites a record that does not exist"
+fi
+has "$FIELDNOTE" "225 of 705" "…and it carries the run's own evidence — 225 of 705 channels enumerated"
+has "$FIELDNOTE" "second escape of one shape" "…and names the class: the second escape in four days"
+
+# the pinned block is byte-identical across the two carriers — a divergence
+# here IS the render defect the pinned shape exists to prevent
+python3 - "$RULES_SRC" "$FRAME" <<'PYBLOCK' && ok "the pinned source-inventory block is byte-identical in both carriers (D-O45 · D-O53 · D-O70 · D-O80)" \
+  || bad "the pinned source-inventory block diverges between the document and ba-frame — a render defect"
+import pathlib, sys
+
+def block(path):
+    lines = pathlib.Path(path).read_text(encoding="utf-8").split("\n")
+    i = next(n for n, l in enumerate(lines) if l.startswith("Sources on hand: <list of supplied material>."))
+    j = next(n for n in range(i, len(lines)) if lines[n].strip() == "```")
+    return lines[i:j]
+
+a, b = block(sys.argv[1]), block(sys.argv[2])
+if a != b:
+    for x, y in zip(a, b):
+        if x != y:
+            print("doc:   %r" % x); print("skill: %r" % y); break
+    print("doc lines %d, skill lines %d" % (len(a), len(b)))
+    sys.exit(1)
+# six lines before this ruling, seven after it: D-O80's no-match line is the
+# delta, and a count guard is what keeps a future line from arriving unruled.
+if len(a) != 7:
+    print("the pinned block is not seven lines: %d" % len(a)); sys.exit(1)
+PYBLOCK
 
 # ── 5d. the excluded source — the disposition the inventory had no word for ──
 #
@@ -1313,9 +1467,13 @@ has "$RULES_DOC" "v0.29" "…and the edition cross-cutting obligations first-cla
 has "$RULES_DOC" "D-O78–D-O79" "…and the acceptance-register + cross-check ruling block"
 has "$RULES_DOC" "## 33. Review record (v0.29 → v0.30)" \
     "…and §33, the review record that carries it"
-head -2 "$RULES_DOC" | grep -q 'v0\.30' \
-  && ok "the header states the live edition — v0.30, the deferral answers to the acceptance shape" \
-  || bad "the header does not name v0.30: the edition and the change record disagree"
+has "$RULES_DOC" "v0.30" "…and the edition the acceptance-shape register produced"
+has "$RULES_DOC" "D-O80–D-O81" "…and the listing-corpus + corpus-declaration ruling block"
+has "$RULES_DOC" "## 34. Review record (v0.30 → v0.31)" \
+    "…and §34, the review record that carries it"
+head -2 "$RULES_DOC" | grep -q 'v0\.31' \
+  && ok "the header states the live edition — v0.31, the listing declares its corpus" \
+  || bad "the header does not name v0.31: the edition and the change record disagree"
 has "$RULES_DOC" "D-O45–D-O49" "…and the source-inventory ruling block"
 has "$RULES_DOC" "D-O50" "…and the change record names the unreadable-spec ruling"
 has "$RULES_DOC" "D-O51–D-O52" "…and the continuity-under-a-grant ruling block"
@@ -1325,11 +1483,11 @@ has "$RULES_DOC" "v0.20" "…and the edition the candidate scan produced"
 has "$RULES_DOC" "D-O54" "…and the scan-method ruling"
 
 # the ruling block is contiguous from the live high-water mark: no gap, no reuse
-python3 - "$RULES_DOC" <<'PYX' && ok "the D-O block runs 1…79 with no gap and no skipped number" \
+python3 - "$RULES_DOC" <<'PYX' && ok "the D-O block runs 1…81 with no gap and no skipped number" \
   || bad "the D-O decision block is not contiguous — a number is missing or reused"
 import re, sys
 seen = {int(n) for n in re.findall(r"D-O(\d+)", open(sys.argv[1], encoding="utf-8").read())}
-sys.exit(0 if seen == set(range(1, 80)) else 1)
+sys.exit(0 if seen == set(range(1, 82)) else 1)
 PYX
 
 # ── 6b. Band-2 plan composition — the record home has its producer (D-O55) ──

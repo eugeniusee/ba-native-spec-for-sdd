@@ -9789,3 +9789,161 @@ cell, whose enumeration still omits cross-cutting obligations — a v0.29-era
 omission §33 names and routes, deliberately untouched by scope discipline.
 `check-audit.sh` · `sk_audit.py` stand named and unbuilt from the earlier
 sittings.
+
+## The Listing Declares Its Corpus — the second escape of one class, ruled at its site · orchestrator v0.31 · package 0.1.30 · 20 August 2026 · GREEN
+
+**Session prompt:** land the maintainer defect report *"the Slack candidate
+scan certifies its filter, not the workspace"* (Nutrivity run, 20 Aug 2026) as
+a field note, rule D-O80–D-O81 into the orchestrator, compile the `ba-frame`
+carrier, extend the harness, run the build pass. Documents first, then package.
+
+**Precondition, clean.** `git log -1` read `3efa67e`, VERSION `0.1.29`, tree
+clean. The orchestrator carried v0.30 with **D-O78–D-O79**, §33 and the footer
+locked at D-O1–D-O79. **The suite had no residuals at baseline** — all 17
+checks green, `check-orchestrator.sh` at **448**. Unlike every propagation
+sitting since S2, this pass opens on a *field* origin rather than a bumped
+document: nothing was pre-ruled, so the documents are written here and the
+carrier follows them in the same pass.
+
+**Origin — the escape, on the record verbatim.** A live `/ba-frame Presale`
+run, project Nutrivity. The Slack candidate scan rendered *no match* over a
+listing it described as complete. **The listing covered 225 of 705 channels.**
+The target — `#est_nutrivity`, the project's own presale channel, private,
+active in the workspace throughout — sat in the 480 the scan never enumerated,
+and an entire naming convention (`est_<project>`, ~90 instances) was absent
+from an enumeration reported as complete. **The scan obeyed every rule D-O53
+and D-O54 state.** Those rules govern the retrieval **method** and never the
+retrieval **corpus**, so *"paging the broad listing to completion"* is fully
+satisfied by paging a **filtered** listing to completion: the rule was not
+violated, it was simply not load-bearing. The BA caught it; nothing in the
+framework could have. The report is written **byte-for-byte, unedited** — its
+`.claude/` path references included — to
+`docs/field-notes/2026-08-20-slack-scan-corpus-miss.md`, because it records the
+run as it happened and a post-mortem edited to match the repo is a post-mortem
+that has already started lying.
+
+**What the ruling gives the runtime.** **The listing's corpus (D-O80)** —
+**the corpus is every channel the workspace holds, both visibilities and every
+archive state**, and a retrieval parameter left at its default is **presumed
+narrowing**: visibility and archive state are set **explicitly, never by
+omission**. **An end-of-results terminator certifies the query, never the
+workspace** — the tool reports exhaustion of *its own filtered result set*, so
+**completeness is a property the scan establishes, never a signal it
+receives**, and until every axis is explicit the listing is a **sample**, a
+sample reporting what it found and never what does not exist. **The
+falsification half, in operational form** — **a zero-channel listing is a tool
+fault, never a finding**, and where a Slack source already stands on the
+`Sources:` line the listing **must surface it: a listing that misses a known
+channel is void**, and no render rests on it. **The durable tool facts** ride
+the clause on the D-O54 pattern, so they are never re-derived — visibility and
+archive parameters **default narrow** (public, non-archived); the endpoint
+**has no listing mode**, the broad listing being a match-all query with both
+axes set explicitly; the terminator certifying the query's result set, never
+the workspace · **the two render deltas (D-O80)** — the match line gains an
+**`(archived)`** marker rendering only where the candidate is archived, and
+**one new conditional line** carries the no-match case with its corpus:
+`Slack — no channel matches the project name · listed <n> channels (public +
+private, archived included).` The no-match case previously had **no line at
+all** — sound as far as it goes, since it prevents a false claim by preventing
+any claim, but it left the scan with a result and no sanctioned way to report
+it, and in the field run the operator improvised one asserting a coverage no
+rule had asked anyone to verify. **The absence of a safe line manufactured an
+unsafe one.** Forcing `<n>` and the corpus into the pinned shape converts an
+improvised claim into an auditable one, and **a scan that cannot fill the line
+honestly cannot render it** · **the corpus-declaration rule (D-O81)** —
+framework law, stated once: **any rule that depends on a retrieval — a listing,
+a search set, a sweep, a glob — names the corpus that retrieval must cover, and
+the retrieval states the corpus it covered; a completeness claim is carried by
+the act that establishes it, never inherited from the tool that terminated it;
+where the corpus is not stated, the result is a sample, and a sample never
+grounds a negative.** **Applied this sitting at the escape site only.**
+
+**Why the class, and not a third patch.** The shape is *a state line asserting
+a completeness no rule required anyone to establish.* The first instance is
+already on the record as the binary-readability clause (v0.25, 17 Aug 2026):
+`captured` was true of the transport and false of the artifact. Here `complete`
+is true of the query and false of the workspace. **Two instances in four days
+establish the class** — so the principle takes its own decision number and is
+stated once, while its **application** stays deliberately narrow.
+
+**Files touched — 6.** `docs/field-notes/2026-08-20-slack-scan-corpus-miss.md`
+(**new**, verbatim) · `docs/methodology/ba-native-spec-orchestrator-rules.md`
+(v0.30 → **v0.31**; §8.1's two new paragraphs, D-O45's pinned block amended,
+§34, the head change record, the footer at D-O1–D-O81) ·
+`payload/claude/skills/ba-frame/SKILL.md` · `tests/check-orchestrator.sh` ·
+`BUILD-LOG.md` · `VERSION` (0.1.29 → **0.1.30**).
+
+**The suite: 17 of 17 green.** `check-orchestrator.sh` **448 → 498** — the
+header pinned at v0.31, v0.30 demoted to a change-record `has`, the
+D-O80–D-O81 block, contiguity moved to **1…81**, and one new §5d section
+carrying the corpus law, the terminator law and the falsification law in **both
+carriers**, the two render deltas asserted in both, a `hasnt` retiring the
+unmarked match line, D-O81 and the tool facts asserted **document-only** with
+the carrier asserted clean of them, the four volatile mechanics of report §7
+asserted **absent** from the law, the field note asserted present with its own
+evidence (`225 of 705`), and a **cross-carrier byte-identity check on the whole
+pinned source-inventory block** with a seven-line count guard — a divergence
+there *is* the render defect the pinned shape exists to prevent. **Every other
+check unmoved:** `check-gate.sh` 105, `check-spine.sh` 253, `check-auto.sh`
+250, `check-budget.sh` 37, `check-register.sh` 63, `check-wbs.sh` 99,
+`check-status.sh` 115, `check-m.sh` 71, techniques 104 / 122 / 159,
+`check-layout.sh` 117, `check-exit.sh` 99, `check-install.sh` 64,
+`check-ledger.py` 19 rules, `check-cards.py` byte-identical. **No card
+recompiled and no contract assertion added** — the ruling touches no CC row.
+
+**Divergences — five, none self-resolved.**
+
+1. **The D-O54 residual read gained a document-only permitted list.** D-O81's
+   law paragraph lands **inside the scan clause** — immediately after D-O80's,
+   where the ruling places it — and the law names retrieval kinds generically
+   (*"a listing, a search set, a sweep, a glob"*) and routes P-A1's
+   band-wide search set. Both carry the token `search`, which the residual
+   read exists to forbid inside that clause. Neither is scan-method wording,
+   so both are permitted **by exact phrase, at the document only**; the skill
+   carries no D-O81 text and **its permitted set is unchanged**. The check
+   keeps its whole force — each removal sentence must still appear exactly
+   once, and a future *"fall back to search"* edit still leaves wording no
+   permitted phrase covers. Named here rather than reconciled quietly.
+2. **D-O81 is document-only by ruling, and the carrier is asserted clean of
+   it.** §34 compiles **`ba-frame` alone**, and framework law is reached by
+   reference, never recompiled into every carrier that depends on it — so
+   `hasnt "$FRAME" "The corpus-declaration rule"` is an assertion, not an
+   omission. The durable tool facts ride the same split.
+3. **Report §6.3 is adopted in operational form, not as drafted.** The draft
+   asked the scan to *"prove the listing surfaces a channel known to sit inside
+   it"* — a synthetic positive control the scan would have to invent, which is
+   a second unexamined corpus. The adopted form uses an artifact **the ledger
+   already holds**: where a Slack source stands on the `Sources:` line, the
+   listing must surface it or is void. Same falsification, no invented probe.
+4. **`tests/presale-path.md` is deliberately not edited.** It carries an
+   **instantiated** render (`#acme-portal`, not archived), not the pinned
+   template, and the `(archived)` marker renders **only where the candidate is
+   archived** — so the example stands correct and unchanged under this ruling.
+   Named rather than skipped quietly.
+5. **No seeded defect added; the banner stays at 26 across 19 rules.** The
+   ruling adds **no ledger grammar** — no event kind, no head line, no state.
+   The field note records that no ledger event was written for this defect
+   because the event grammar is closed and holds no kind for an orchestrator
+   execution fault, and **inventing one to hold a post-mortem would be its own
+   violation** of the discipline this ruling tightens. §4's *"14 rules, 14
+   mutations"* and the 26 / 19 totals were re-counted and are accurate as they
+   stand.
+
+**No incidental corrections this pass.** Nothing tripped outside the surfaces
+this ruling touches; the two harness constants that moved — the pinned block's
+line count 6 → 7 and the D-O contiguity bound 79 → 81 — are this pass's own
+delta, not inherited staleness.
+
+**Open:** nothing from this ruling. **Routed by the edition and deliberately
+not built here: the P-A1 band-wide search set's corpus application** — the
+report's highest-value follow-up, the same defect one level up: the audit's
+two-way trace rests on that set, its findings carry it as evidence, and the
+rule mandating it never says what *band-wide* ranges over, so its false
+negatives land in a source audit rather than an inventory. Legislating a second
+application from the post-mortem of the first would be exactly the
+unexamined-corpus move D-O81 exists to forbid, and the audit's own corpus axes
+are not established by this sitting's evidence. Standing and carried unchanged:
+the reconciliation family (runtime `AS` ↔ audit `OB`); §10.1's P-O0b act cell,
+whose enumeration still omits cross-cutting obligations (a v0.29-era omission
+§33 names and routes); `check-audit.sh` · `sk_audit.py`, named and unbuilt from
+the earlier sittings.

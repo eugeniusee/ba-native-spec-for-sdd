@@ -152,7 +152,8 @@ exactly:
 
 ```
 Sources on hand: <list of supplied material>.
-Slack — closest match on the project name: #<channel> — include it, or ignore it.   (renders only when Slack is reachable and the scan matched)
+Slack — closest match on the project name: #<channel> (archived) — include it, or ignore it.   (renders only when Slack is reachable and the scan matched; "(archived)" only when the candidate is archived)
+Slack — no channel matches the project name · listed <n> channels (public + private, archived included).   (renders only when Slack is reachable and the scan found no match)
 and <N> more matched — name them to see                                             (renders only when N ≥ 1)
 <k> channel(s) excluded by BA ruling                                                 (renders only when k ≥ 1)
 Anything else? Slack channel(s) · email threads · drive folders · call recordings —
@@ -178,17 +179,30 @@ matches the project's, and offer the **best match** on the inventory's own line.
   with that client) and **never domain terms** (they return the workspace). **No
   project name on hand → no key and no scan:** a guessed key is a guess, and
   cite-or-mark forbids one.
-- **List, then filter — there is no other method.** Enumerate the workspace's
-  channels by **paging the broad listing to completion**, and filter
-  **locally** for the project name. Name-keyed search against the Slack search
-  endpoint is **removed from the scan entirely** — not demoted to a fallback,
-  removed: the search tool's matching is reliable for **exact names and
-  left-anchored prefixes only**; infix is fuzzy — which is why the scan lists
-  and filters rather than searches.
+- **List, then filter — there is no other method, and the listing declares its
+  corpus.** Enumerate the workspace's channels by **paging the broad listing to
+  completion**, and filter **locally** for the project name. **The corpus is
+  every channel the workspace holds — both visibilities, every archive state.**
+  A retrieval parameter left at its default is **presumed narrowing**:
+  visibility and archive state are set **explicitly**, never by omission.
+  Name-keyed search against the Slack search endpoint is **removed from the
+  scan entirely** — not demoted to a fallback, removed: the search tool's
+  matching is reliable for **exact names and left-anchored prefixes only**;
+  infix is fuzzy — which is why the scan lists and filters rather than
+  searches.
 - **A zero from a name-keyed search is inconclusive.** It says a query failed
   an opaque matcher, not that the channel is absent. Render "no match" **only
   after the local filter over the complete listing comes back empty** — never
   from a zero-result.
+- **An end-of-results terminator certifies the query, never the workspace.**
+  The tool reports exhaustion of its own filtered result set. Completeness is a
+  property the scan **establishes**, never a signal it **receives** — until
+  every axis is set explicitly the listing is a sample, and a sample reports
+  what it found, never what does not exist.
+- **A zero-channel listing is a tool fault, never a finding.** And where a
+  Slack source already stands on the `Sources:` line, the listing **must
+  surface it — a listing that misses a known channel is void**, and no render
+  rests on it.
 - **The match rule.** Tokenize channel names on `_` and `-`, case-insensitive;
   a channel is a candidate **iff every token of the project name appears among
   the channel's tokens**. The listing resolves names and metadata, never a
@@ -698,7 +712,10 @@ asked inside the block, never resolved by the framework · **never renders the
 its verbatim citation, and never harvests a per-feature acceptance criterion**
 — that is spec ground · **never lets a deferring act complete silently against
 a `standing` `AS-<n>` entry, and never blocks one either** — the conflict is a
-named, cited finding in **T-18 — Scope allocation**'s decision list · **never rules a source disposition on the BA's behalf, and
+named, cited finding in **T-18 — Scope allocation**'s decision list ·
+**never renders a coverage claim the scan did not establish, and never
+volunteers a line the pinned shape does not define — a scan result outside the
+pinned lines is a render defect** · **never rules a source disposition on the BA's behalf, and
 never reads silence as one** · **never captures an artifact standing
 `excluded — <reason>`, never mines one, and never follows a reference to one
 inside any capture — and never lets an encounter go unrecorded** · never
