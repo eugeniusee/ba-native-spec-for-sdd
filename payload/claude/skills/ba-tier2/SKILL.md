@@ -71,7 +71,7 @@ specific and freshest layer, loaded on top of everything else.
 |---|---|---|
 | 1 | `.specify/memory/glossary.md` | write in canonical terms from the first token — synonym drift is cheaper to prevent than to repair |
 | 2 | `canvas.md` | the value frame, and the fallback target for the spec's value claim |
-| 3 | `.specify/memory/roles-permissions.md` | story actors must exist **verbatim**; authorization tuples visible before drafting |
+| 3 | `.specify/memory/roles-permissions.md` | story actors, per **standard §3's two branches** — **verbatim** from this file where it exists; from the canvas Core Functions actors and marked at first use where the standing profile leaves its producing technique out of profile and the file does not. CC-US-02 is unlifted either way. Authorization tuples visible before drafting |
 | 4 | `.specify/memory/domain-model.md` | the entities and relationships the spec may rely on |
 | 5 | `.specify/memory/processes.md` | flow context — where this feature sits in the journeys |
 | 6 | `.specify/memory/context.md` + `constraints.md` | integration and NFR reality |
@@ -105,6 +105,16 @@ specific and freshest layer, loaded on top of everything else.
    the two acceptance forms, and the seven behaviors this framework deliberately
    does not inherit — is `references/story-drafting.md`. **Read it before
    drafting stories.**
+
+   **Roles follow standard §3's two branches, and the module carries them.**
+   Where `roles-permissions.md` exists, the actor is its defined string, verbatim.
+   Where it does not — the standing profile leaves its producing technique out of
+   profile; read the ledger head's `Profile:` line — the actor is verbatim from
+   the **canvas Core Functions actors**, **marked at first use** and used
+   unchanged after. **A missing governance file never stops the draft**, and it
+   never licenses an invented role or an "as a user". `CC-US-02` still fails those
+   actors at the gate, and under a draft-spec destination that FAIL is the
+   expected named-gap list, not a defect.
 
    **The language obligation's story (D-O74 — owner ruling Р8).** Where this
    feature slices the **dedicated localization epic** a fired `language` entry

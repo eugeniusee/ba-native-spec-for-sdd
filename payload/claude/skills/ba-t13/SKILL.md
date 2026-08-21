@@ -48,6 +48,10 @@ nothing else is explained.
 The stop closes per §10.3 rule 9 — `What I need from you:` with the repairing
 act as the `(recommended)` option.
 
+**Preconditions — declared, rendered, never a block.** `.specify/memory/roles-permissions.md` (**T-12 — Roles & permissions**) — **hard**: every journey's role cell is **verbatim** from that file · `.specify/memory/domain-model.md` (**T-11 — Domain (conceptual) modeling**) — **hard**: the numbered steps touch entities **by domain-model name**. Absent, draft from the canvas Core Functions actors and function objects, mark the role and entity cells, and record what the coherence pass could not resolve.
+
+**A declared precondition never refuses this run and never pulls its producer in.** Where the artifact is absent, say so in one line at the start, draft every cell the run can ground, and **mark** the cells it grounded on nothing — `[NEEDS CLARIFICATION: …]`, cited-marked-or-asked, never guessed. Electing the producing technique is the BA's act at `/ba-aspect <aspect>`, never yours.
+
 **Skip-if — refuse the run and say so:** AT-RQ-4's **journeys clause** reads met
 in the current evidence table — journey maps already stand, confirmed against the
 framed canvas and the role model. Swimlane suites, BPMN and exhaustive journey

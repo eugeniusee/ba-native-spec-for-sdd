@@ -47,6 +47,10 @@ else is explained.
 The stop closes per §10.3 rule 9 — `What I need from you:` with the repairing
 act as the `(recommended)` option.
 
+**Preconditions — declared, rendered, never a block.** `.specify/memory/stakeholders.md` (**T-03 — Stakeholder register**) — **hard**: every P-line's who-hurts must resolve to a register population, and the resolution has no target without the register.
+
+**A declared precondition never refuses this run and never pulls its producer in.** Where the artifact is absent, say so in one line at the start, draft every cell the run can ground, and **mark** the cells it grounded on nothing — `[NEEDS CLARIFICATION: …]`, cited-marked-or-asked, never guessed. Electing the producing technique is the BA's act at `/ba-aspect <aspect>`, never yours.
+
 **Skip-if — refuse the run and say so:** AT-VA-1 and AT-VA-2 both read met in the
 current evidence table — for instance a presale canvas that arrived with
 who-hurts and linkage already at aspect grade, and the resolution pass confirms

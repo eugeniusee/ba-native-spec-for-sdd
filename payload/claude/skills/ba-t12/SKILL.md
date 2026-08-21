@@ -49,6 +49,10 @@ nothing else is explained.
 The stop closes per §10.3 rule 9 — `What I need from you:` with the repairing
 act as the `(recommended)` option.
 
+**Preconditions — declared, rendered, never a block.** `.specify/memory/domain-model.md` (**T-11 — Domain (conceptual) modeling**) — **hard**: the Policy table's entity cells are **verbatim** from that file, so without it every entity cell is a mark rather than a citation · `.specify/memory/constitution.md` (**T-15 — Constitution**) — **soft**: the authorization principle is *named* here and *authored* there; absent, the template's principle line marks the reference and the policy rows stand unchanged.
+
+**A declared precondition never refuses this run and never pulls its producer in.** Where the artifact is absent, say so in one line at the start, draft every cell the run can ground, and **mark** the cells it grounded on nothing — `[NEEDS CLARIFICATION: …]`, cited-marked-or-asked, never guessed. Electing the producing technique is the BA's act at `/ba-aspect <aspect>`, never yours.
+
 **Skip-if — refuse the run and say so:** AT-RQ-2 reads met in the current
 evidence table — every referenced role defined, and the persona clause **clean or
 dormant** (dormant is what charter absence leaves it, and charter absence is

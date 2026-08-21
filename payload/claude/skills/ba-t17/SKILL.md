@@ -60,6 +60,10 @@ nothing else is explained.
 The stop closes per §10.3 rule 9 — `What I need from you:` with the repairing
 act as the `(recommended)` option.
 
+**Preconditions — declared, rendered, never a block.** `.specify/memory/processes.md` (**T-13 — Core process mapping**) · `.specify/memory/domain-model.md` (**T-11 — Domain (conceptual) modeling**) · `.specify/memory/roles-permissions.md` (**T-12 — Roles & permissions**) · `.specify/memory/out-of-scope.md` deferred rows (**T-16 — Global out-of-scope**) — all **soft**: candidate-sweep and grouping inputs beside the primary ground, the canvas Core Functions lines with their `→ O-n` links. Absent, sweep on the canvas and connection ground with fewer grouping and graduation candidates and say so; coverage-completeness and exclusive partition are properties of the Core Functions set and stand unchanged.
+
+**A declared precondition never refuses this run and never pulls its producer in.** Where the artifact is absent, say so in one line at the start, draft every cell the run can ground, and **mark** the cells it grounded on nothing — `[NEEDS CLARIFICATION: …]`, cited-marked-or-asked, never guessed. Electing the producing technique is the BA's act at `/ba-aspect <aspect>`, never yours.
+
 **Skip-if — refuse the run and say so:** the roadmap stands current — rows whole
 (every row carrying its status), **no candidate and no conflict standing**.
 Re-decomposition has its own named grounds, and "the set could be tidier" is not

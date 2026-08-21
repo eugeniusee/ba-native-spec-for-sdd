@@ -51,6 +51,10 @@ nothing else is explained.
 The stop closes per §10.3 rule 9 — `What I need from you:` with the repairing
 act as the `(recommended)` option.
 
+**Preconditions — declared, rendered, never a block.** `.specify/memory/context.md` (**T-05 — Context & landscape mapping**) — **soft**: the Boundary-references rows point at a `context.md` / canvas §8 home, and canvas §8 alone satisfies the pointer. The entity and relation tables need nothing beyond canvas §§7–8.
+
+**A declared precondition never refuses this run and never pulls its producer in.** Where the artifact is absent, say so in one line at the start, draft every cell the run can ground, and **mark** the cells it grounded on nothing — `[NEEDS CLARIFICATION: …]`, cited-marked-or-asked, never guessed. Electing the producing technique is the BA's act at `/ba-aspect <aspect>`, never yours.
+
 **Skip-if — refuse the run and say so:** AT-RQ-4's **entity clause** reads met in
 the current evidence table — a conceptual model already stands, confirmed current
 against the framed canvas. Enrichment beyond the threshold — attribute

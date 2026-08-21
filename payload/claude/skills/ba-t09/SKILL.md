@@ -42,6 +42,10 @@ else is explained.
 The stop closes per §10.3 rule 9 — `What I need from you:` with the repairing
 act as the `(recommended)` option.
 
+**Preconditions — declared, rendered, never a block.** `.specify/memory/constraints.md` (**T-06 — Constraints elicitation**) — **hard**: the AT-VI-3 scan reads its Confirmed rows, and a scan with no row set is not a scan · `.specify/memory/competitive-analysis.md` (**T-07 — Competitive analysis**) — **soft**: the differentiation keys against a named canvas §10 Unlike entry; the analysis file supplies the keyed deltas, not the names.
+
+**A declared precondition never refuses this run and never pulls its producer in.** Where the artifact is absent, say so in one line at the start, draft every cell the run can ground, and **mark** the cells it grounded on nothing — `[NEEDS CLARIFICATION: …]`, cited-marked-or-asked, never guessed. Electing the producing technique is the BA's act at `/ba-aspect <aspect>`, never yours.
+
 **Skip-if — refuse the run and say which:** AT-VI-1 through AT-VI-3 all read met
 in the current evidence table — a complete, differentiated statement carried from
 presale, with the scan clean against the current Confirmed set. **Target-side work

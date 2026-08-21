@@ -44,7 +44,7 @@ Every checkpoint still happens. The table says who states it.
 | **P-O0b — scope-frame selection** | **Never AUTO — the safety floor.** Auto-pickup still pre-fills every value with its citation and the block still renders; it then waits for the BA, standing grant or not. The boundary and the envelope are what every later act is measured against, and a grant that could set them would be a run choosing its own budget |
 | P-O2 — plan composition, and the route `go` | Compose **as-recommended from the snapshot**, AUTO. The grant **is** the `go`. Record the snapshot verbatim — it is the ratification's evidence |
 | Defer batches · the consolidated defer-confirm | Accepted AUTO. **Unclear stays an Open Question, never an invention** |
-| P-O4 — clearing confirmation | All criteria met → clear AUTO. Any miss → **auto-AW**: a full waiver record, misses named, revisit trigger `BA ratification sweep (auto off)` |
+| P-O4 — clearing confirmation | All criteria met → clear AUTO. Any miss → **auto-AW**: a full waiver record, misses named, revisit trigger `BA ratification sweep (auto off)`. An auto-AW whose every miss resolves to an out-of-profile technique's artifact carries its **expected profile debt** class into the record and the band-boundary report, where it renders as the class and not as a finding |
 | P-O5 — aspect-waiver acts | Grants and re-affirmations AUTO |
 | P-O6 — reopen ruling | Default **Real**. State the blast radius; **execute no cascade** — flags, never state changes |
 | P-O7 — Band-1 closure · P-O8 — Band-3 entry | AUTO stamp |

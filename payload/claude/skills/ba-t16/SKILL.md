@@ -45,6 +45,10 @@ nothing else is explained.
 The stop closes per §10.3 rule 9 — `What I need from you:` with the repairing
 act as the `(recommended)` option.
 
+**Preconditions — declared, rendered, never a block.** `.specify/memory/competitive-analysis.md` (**T-07 — Competitive analysis**) — **soft**: its Covers entries are **one of four** sweep patterns, beside canvas §7 function neighbors, canvas §8 connection sides and constraint-driven exclusions. Absent, sweep the remaining three and say so: fewer candidates, no unwritable cell.
+
+**A declared precondition never refuses this run and never pulls its producer in.** Where the artifact is absent, say so in one line at the start, draft every cell the run can ground, and **mark** the cells it grounded on nothing — `[NEEDS CLARIFICATION: …]`, cited-marked-or-asked, never guessed. Electing the producing technique is the BA's act at `/ba-aspect <aspect>`, never yours.
+
 **Skip-if — refuse the run and say so:** the file is present, seeded (**≥ 1
 exclusion**), stub-free, and **no unfenced adjacency stands** in the current
 evidence. Post-closure boundary maintenance — graduation, retirement, new fences

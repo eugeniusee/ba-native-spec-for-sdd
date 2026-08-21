@@ -52,6 +52,7 @@ Capacity: ~<n> eng-h (envelope ÷ rate × eng-share) | — (no envelope)
 | Requirements  | … |
 
 Standing aspect waivers:  none | AW-<n> · <aspect> · <AT-IDs unmet> — revisit: <event>
+                          AW-<n> · <aspect> · expected profile debt · <AT-IDs unmet> — revisit: <event>
 Open reopens:             none | RO-<n> · <aspect> — <conflict, one line>
 Upstream flags:           none | <aspect> flagged: prerequisite <aspect> reopened
 Deferred consequences:    none | RO-<n>: <item> — trigger: <event>

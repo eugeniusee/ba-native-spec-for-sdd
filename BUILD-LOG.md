@@ -10525,3 +10525,237 @@ literal heading string); **D-P2-14 has no regression assertion**; the
 reconciliation family (runtime `AS` ↔ audit `OB`); §10.1's P-O0b act cell and
 its cross-cutting omission. **EC-18 and EC-19**, registered 2026-08-21, are
 untouched by this pass.
+
+
+## The Profile Stops Fighting Its Own Destination — EC-18 presale circularity, documents before code · orchestrator v0.33 · standard v0.5 · package 0.1.35 · 21 August 2026 · GREEN
+
+**Session prompt:** close **EC-18 — presale circularity**, items **B5**, **B6**
+and **B7** of the 2026-08-20 field defect report, under the BA's ruling **"apply
+all recommendations"** (21 Aug 2026). Three rulings legislated into the
+methodology documents **first** — orchestrator, writing standard, elicitation
+engine, all six catalogue batches, the sequencing plan's uniform sheet template
+and the catalogue index — then propagated into sixteen carriers, every carrier
+string tracing to the doc's locked text. Question protocol: nothing silently
+resolved.
+
+**Precondition, clean.** `HEAD` and `origin/main` both at `289bcaf` (the EC-17
+audit-integrity commit, package 0.1.34), VERSION `0.1.34`, tree clean, all 17
+checks green at baseline — `check-orchestrator.sh` 501, `check-techniques2.sh`
+122, `check-techniques3.sh` 159, `check-spine.sh` 253, `check-budget.sh` 50,
+`check-cards.py` byte-identical. No sibling pass appeared in the tree at any
+point; the 35 files this pass staged are the only files that moved.
+
+**Origin — the three defects.** A compliant Presale run **always** waives
+Requirements and arms `CC-H-01`/`CC-H-05`, because `AT-RQ-1` demands
+`roles-permissions.md`, `domain-model.md`, core processes and `constitution.md`
+while D-O15 (set amended by D-O19) leaves **T-12, T-11, T-13 and T-15 out of
+profile** — the waiver is the profile's arithmetic and the run re-argued it at
+every surface it touched (**B5**). The writing standard's rule 7 said draft-and-
+mark while `story-drafting.md` said a role absent from `roles-permissions.md` is
+"a governance gap, proposed and approved **before** the story is written" — two
+rules over one draft, and the field run improvised the reconciliation (**B6**).
+Electing T-12 alone silently pulled in two artifacts — `domain-model.md` (T-11
+output) and `constitution.md` (T-15 output) — declared nowhere the election could
+see (**B7**). **Documents before code by ruling:** the law moved first and every
+carrier string traces to it.
+
+**The four questions, ruled before a byte moved.** Three the prompt marked, one
+the rulings left genuinely open; all four answered **as recommended**. *(1)*
+**CC-H arming under the expected waiver** — the arming **stands**; only the
+rendering changes. *(2)* **D-O83's home** — orchestrator **§4**, a new **§4.5**,
+not a third locked note beside AT-RQ-1 in §3.3: the rule classifies an *aspect
+waiver*, so it lives with the instrument, and §3.3's notes compile verbatim into
+`at-thresholds.md`, which carries operative criterion text and nothing else.
+*(3)* **R2's home** — **writing standard §3**, where the role rule already lives;
+`story-drafting.md`, the Tier-2 skill and elicitation §5.2/§5.3/§7.2 cite it.
+*(4)* **What a declared precondition does at a P-O2 election** — **visibility,
+never a block**. One consequence followed mechanically and was stated rather than
+asked: "visible at election" places the declaration in the sheet's **§2
+metadata**, which obliges the sequencing plan's uniform template to carry the
+field and the index to gain the matching column, by each document's own rule.
+
+**What moved — the law first (orchestrator v0.32 → v0.33, D-O83–D-O84).** New
+**§4.5 — Expected profile debt**: the **mechanical test** (a waiver is expected
+profile debt **iff every** named miss resolves to an artifact whose producing
+technique is out of profile; one in-profile miss takes the whole waiver out of
+the class; the test is **re-read at every render, never cached**) · **the record
+is the AW, unchanged** — `AW-<n>`, the six fields of §4.1, **no new instrument
+and no fourth row in §4.3's table** — with two field conventions so the class
+reads the same everywhere (the **Reason** names the profile and the out-of-profile
+techniques; the **Revisit trigger** stays event-shaped, canonically *"when the
+profile switches to Discovery, or any of the four is elected at plan
+composition"*) · **the rendering, and only that** — the class is named **once per
+surface** and **re-litigated at none of them**, never as a finding, an anomaly, a
+defect or an avoidable gap · **the arming stands** — §8.2 step 3's full Scope-H
+run happens as written, `CC-H-01` and `CC-H-05` **arm over the gap and keep
+policing it**, lifted only by an `HA-<nn>` per the §3.3 handover rule. §3.3 gains
+a **citation into §4.5** and §6.5's Presale paragraph gains the class beside its
+own *"debt named — not an anomaly"*, both naming **AT-RQ-1 under Presale as the
+ruled case**. §10.7's P-O4 row carries the class into the auto-AW it already
+writes. **D-O84** lands in §6.1: a sheet declares its preconditions, graded
+**hard** or **soft**, and an absent one renders on the snapshot's **single new
+pinned line, `Preconditions open:`** — the election sees what it is taking on ·
+never a silent pull-in, composition staying the BA's act · never a refusal, the
+run proceeding in **assumption posture** with the dependent cells drafted and
+**marked** under doc 3's principle 3, which every technique already inherits.
+
+**What moved — the second law, one home (writing standard v0.4 → v0.5).** §3's
+role rule gains its **second branch**: where `roles-permissions.md` **exists**,
+nothing moves — the file's defined string, verbatim, a missing role a governance
+gap approved **before** the story. Where it **does not exist** because the
+standing profile leaves its producing technique out of profile, the role is
+**verbatim from the canvas Core Functions actors** — the same actor surface the
+role model itself derives from — and **marked at its first use**, the marked
+string used unchanged thereafter, **the marker carried once and not re-stamped
+per story**. Three things stay illegal: inventing a role · softening an actor to
+"user" · **refusing to draft**. And the branch **lifts nothing at the gate** —
+`CC-US-02` still fails those actors, and under a draft-spec destination that FAIL
+is §6.5's own informative named-gap list, the client Q&A agenda. The elicitation
+engine (v0.8 → v0.9) stops restating *"roles from `roles-permissions.md` only"*
+at §5.2 row 3, §5.3 step 1 and §7.2 and **cites §3's two branches** instead; its
+stack order, membership and the governance-wins precedence clause are untouched.
+
+**What moved — the third law, and the sweep it demanded (all six batches, the
+sequencing plan, the index).** The sequencing plan's **uniform §2 template gains
+a fifth field, `Preconditions`** (v0.4 → v0.5), and **all eighteen sheets carry
+it** — b1 v0.8, b2–b5 v0.3, b6 v0.8 — because a `—` only means "takes nothing"
+if every sheet has been asked. **The reported case, T-12:** `domain-model.md`
+(T-11) **hard** — the Policy table's entity cells are verbatim from it, §3, §4
+step 4 and the §5 template comment all saying so — and `constitution.md` (T-15)
+**soft**, the sheet already disclaiming the principle's authorship. **The sweep
+found five more:** **T-04** — `stakeholders.md` (T-03) **hard**, TC-1's Details
+cell resolving to a register entry · **T-08** — `stakeholders.md` (T-03)
+**hard**, §3's who-hurts resolving to a register population · **T-09** —
+`constraints.md` (T-06) **hard**, the AT-VI-3 scan's Confirmed rows, and
+`competitive-analysis.md` (T-07) **soft** · **T-11** — `context.md` (T-05)
+**soft**, the Boundary-references pointer canvas §8 alone satisfies · **T-13** —
+`roles-permissions.md` (T-12) **and** `domain-model.md` (T-11), **both hard**,
+the two halves of its own §4 step-4 coherence pass · **T-15** —
+`roles-permissions.md` (T-12) **hard**, the Authorization principle's enforcement
+surface the reference spine must resolve to, and `design-standards.md` (T-14)
+**soft** · **T-16** — `competitive-analysis.md` (T-07) **soft**, one of four
+independently sufficient sweep patterns · **T-17** — four **soft**, the grouping
+and graduation inputs beside the canvas Core Functions primary. **Examined and
+declared `—`, with the reason on the record:** T-01, T-02, T-03, T-05, T-06,
+T-07, T-10, T-14 and **T-18** — the last the only one that needed an argument,
+`roadmap.md` being **its own destination file** under the one-file-three-writers
+discipline (D-B6-4) rather than another technique's artifact, its rows already
+presupposed by the sheet's own first C1 trigger. **No dependency in the sweep
+was structurally undegradable**, so the prompt's escape question never fired: the
+index gained the matching column (v0.5 → v0.6) and **no standing cell changed**.
+
+**What moved — the carriers, third.** Sixteen files, every string tracing to the
+doc. **R1:** `ba-clear` (a new *Expected profile debt* section — the test, the
+ruled AT-RQ-1 case, the class render, the three things it never does, and the
+`(recommended)` marker moving to `waive instead` where every miss is expected) ·
+`ba-waive-aspect` (the class as a section of the *record*, the two field
+conventions, the worked `AW-2`, and the arming clause) · `ba-close-band1` (the
+re-affirmation naming the class into the armed state) · `ba-status` (the head
+line's class form) · `ba-auto`, `ba-orchestrator`, both mirrors (the auto-AW row).
+**R2:** `story-drafting.md` (both branches, its home named, and behavior #1's
+"or the story does not get written" replaced) · `ba-tier2` (stack row 3 and the
+drafting step, both citing §3). **R3:** the nine technique skills that have a
+precondition, each declaring it **with code + name** per register rule 5, each
+closing with the same refusal — *never refuses this run and never pulls its
+producer in* · `ba-aspect` (the rule, the pinned line in the block, and both
+render-whole lists).
+
+**The suite: 17 of 17 green. Four counts moved; every other count is unmoved.**
+`check-orchestrator.sh` **501 → 520** — three from the change-record stack (the
+v0.32 assertion the bump displaced, `D-O83–D-O84`, `## 36`), the header pin
+re-anchored to v0.33 and the contiguity check to `1…84`, plus a sixteen-assertion
+**EC-18 section**: §4.5's existence, the mechanical test both ways, the AW
+unchanged, the no-re-litigation rule, the arming standing, §3.3's citation, the
+threshold staying profile-blind, §6.5's class, §6.1's rule and its pinned line,
+visibility-never-a-block, no-silent-pull-in, a live `check-cards.py` call proving
+the card survived the edition, and a `hasnt` on the relaxation that must never
+appear. `check-techniques2.sh` **122 → 127** and `check-techniques3.sh`
+**159 → 166** — the declarations on T-04/T-08/T-09 and T-11…T-16, plus a loop
+asserting **no sheet converts a precondition into a refusal**. `check-spine.sh`
+**253 → 266** — the two role branches in `story-drafting.md` and the Tier-2
+skill, T-17's declaration, and a `flat_has`-guarded probe that the absolute
+*"or the story does not get written"* rule is gone. `check-register.sh` **63**,
+`check-budget.sh` **50**, `check-auto.sh` **250**, `check-status.sh` **115**,
+`check-gate.sh` **105**, `check-m.sh` **71**, `check-wbs.sh` **99**,
+`check-techniques.sh` **104**, `check-layout.sh` **117/0/0**, `check-exit.sh`
+**99**, `check-install.sh` **64** — all unmoved.
+
+**The compiled cards did not move, and that is an assertion.** `at-thresholds.md`
+is **byte-identical** — the intended outcome of homing D-O83 in §4.5 rather than
+§3.3, and now checked by a live `check-cards.py` call inside the orchestrator
+suite. `assertions-f.md`, `assertions-h.md` and `assertions-s.md` are
+byte-identical: **no CC wording moved**, `CC-H-01`, `CC-H-05` and `CC-US-02`
+keeping their pass conditions, read sets and classes verbatim.
+
+**Falsification, and what it caught.** A single printed sweep over the
+methodology and the payload, in three parts — the killed behaviours absent, the
+sheet grammar complete, the required strings at their one home with their
+citations counted. It caught four things, two of them real. **Real:** the class
+name never rendered in `ba-close-band1`, which carried only the hyphenated
+adjectival form — the head line now names it; and the register's rule-5 sweep
+found **25 bare codes** in the new precondition text, every `(T-11)` written
+without its technique name, which is exactly the defect that rule exists for —
+all nine declarations plus `ba-clear` and `ba-waive-aspect` were rewritten to
+code + name, and the seven cascading self-test failures cleared with them.
+**Probe errors, corrected rather than papered over:** one probe counted the
+change record's own quotation of the killed string *"roles from
+`roles-permissions.md` only"* as a live hit — legitimate text, the EC-17
+precedent exactly, and the probe was re-anchored to live lines; another counted
+index columns with a pipe-naive `awk` and mis-read the one row carrying an
+escaped pipe in a code span.
+
+**What did not move.** **No threshold text** — §3.3's eighteen criteria, their
+grade, allocation and the handover rule stand as **D-O4** locked them, and the
+two locked conditionality notes (D-B5-3, D-B4-4) are untouched; the paragraph
+§3.3 gains is a citation, not a third note. **No profile set** — D-O15 and D-O19
+are not re-ruled; T-11, T-12, T-13 and T-15 stay out of the Presale profile,
+electable at any P-O2 exactly as D-O14 has always had them, which is the pass's
+whole point: the run's repair path was already legal and is now on the record
+rather than improvised. **No instrument** — §4.3's three stay three and the AG
+stays outside them; §4.1–§4.4 are byte-unchanged. **No assertion, no gate
+verdict rule, no waiver-vs-override calculus.** **§8.2 untouched** — closure's
+preconditions, its four steps, D-O7 and D-O62 each stand; §4.5 states the arming
+consequence by citing them. **No new prompt point, no new aspect state, no new
+transition, no new event kind, no new ledger field, no new record class, no new
+signal, no new status value** — §6.1's closed `Status` vocabulary (D-O12) is
+untouched and the snapshot gains exactly **one pinned line**. **No fixture moved,
+no template moved, `tests/layout.expected` unchanged**, and §8's ≤ 8 Presale
+interaction budget is arithmetically untouched — a render that names a class is
+the render it already was. **The completeness contract, the gate definition, the
+source-audit definition and the phase-2 build plan are untouched.**
+
+**Citation honesty, on the record.** The prompt's basis line names the **field
+defect report of 20 August 2026, items B5–B7**. **That report is not in the
+repository and is not in `~/Downloads`** — `docs/field-notes/` holds only the
+2026-08-20 *Slack-scan corpus miss*, a different document on a different
+component — so it was never read this session. Per the prompt's own instruction
+and the EC-17 precedent, **only the dictated anchors were used, verbatim**, and
+**no inferred mapping is presented anywhere as a citation**: B5 → D-O83, B6 →
+standard §3, B7 → D-O84, each stated in the prompt itself. Where a doc names a
+count from the report — the 16 draft specs and 37 markers of B6 — it is the
+prompt's own figure, carried unchanged.
+
+**Incidental, noticed and deliberately not fixed.** **T-13, T-15 and T-12 already
+carried their dependency in §4 step 1** ("after T-11", "after T-12") — the fact
+was on the sheet all along and B7's complaint is precisely that a *procedure*
+step is not a surface an **election** reads. That is now stated in b4's change
+record rather than treated as a contradiction, and the step-1 sentences stand
+byte-unchanged. **A precondition's grade is an authoring judgement, not a
+derived value** — nothing computes `hard` from a sheet's text, so a future sheet
+edit can outgrow its own declaration with no check noticing. **Routed, not fixed
+here.**
+
+**Open — routed from this pass.** **No check derives the precondition grade** —
+`hard`/`soft` is asserted string-wise, never re-derived from the §3/§5 text it
+summarizes; the same class of gap as D-P2-14's missing regression assertion.
+**The catalogue index has no compiler** — it is regenerated by hand at every
+batch bump, and its own "on divergence the sheet governs" clause is enforced by
+nothing; a `check-index.py` re-deriving all eleven columns from the six batches
+is the natural sibling of `check-cards.py` and is **named, unbuilt**. **The
+`Preconditions open:` line has no fixture** — `tests/fixtures/.../aspect-plans.md`
+carries no snapshot exercising it, so the render is asserted in the skill and
+never executed. **Standing and carried unchanged:** the B8 comment discipline
+still enforced by nothing; the reconciliation family (runtime `AS` ↔ audit `OB`);
+§10.1's P-O0b act cell and its cross-cutting omission; `check-audit.sh` ·
+`sk_audit.py`, named and unbuilt. **EC-19**, registered 2026-08-21, is untouched
+by this pass.

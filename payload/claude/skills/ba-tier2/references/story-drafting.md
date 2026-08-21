@@ -15,10 +15,29 @@ scope drift**, and it is a defect the gate names.
 US<N> (P<1|2|3>) — As a <role>, I want <capability>, so that <value>.
 ```
 
-**The role is verbatim from `roles-permissions.md`.** Not "a more precise role
-where available" — the defined string, exactly. *As a user* fails outright:
-which role? A role the file does not define is a governance gap, proposed and
-approved **before** the story is written, never invented inside it.
+**The role rule has two branches, and the standard's §3 is its one home** — read
+there, applied here, restated nowhere.
+
+**Where `roles-permissions.md` exists** — the role is verbatim from it. Not "a
+more precise role where available": the defined string, exactly. *As a user*
+fails outright: which role? A role the file does not define is a governance gap,
+proposed and approved **before** the story is written, never invented inside it.
+
+**Where `roles-permissions.md` does not exist**, because the standing flow
+profile leaves its producing technique out of profile — read the ledger head's
+`Profile:` line — the role is verbatim from the **canvas Core Functions actors**
+and **marked at its first use in the spec**:
+`[NEEDS CLARIFICATION: confirm role "<actor>" — basis: canvas Core Functions; no
+roles-permissions.md under the <profile> profile]`. The marked string is used
+unchanged at every later use — the marker is carried **once**, not re-stamped per
+story. **Inventing a role, softening an actor to "user", and refusing to draft
+are each illegal here.** The file's absence is the profile's shape, and the
+marker is what makes it visible.
+
+**This branch lifts nothing at the gate.** `CC-US-02` still fails a story actor no
+`roles-permissions.md` defines; under a profile whose destination includes draft
+specs that FAIL is the expected named-gap list — the client Q&A agenda — not a
+defect. Never delete a marker to make the assertion pass.
 
 **One capability per story, strictly.** Combine when two lines are genuinely one
 intent; never chain behaviors. If the sentence needs an *and*, it is two stories.
@@ -67,7 +86,10 @@ quietly break the framework, listed so the break is a decision and not an
 accident:
 
 1. **"Use a precise role where available."** Hardened: the role is verbatim from
-   the governance file, or the story does not get written.
+   the governance file where that file exists; where the profile leaves its
+   producing technique out of profile, the role is verbatim from the canvas Core
+   Functions actors and marked at first use (standard §3's two branches, cited
+   above). What never survives is the soft form — a role nobody wrote down.
 2. **No priority model.** Added: P1–P3, at least one P1 — the gate reads it.
 3. **Free-running IDs.** Added: stable, never reused.
 4. **Checklist-only acceptance.** Added: the Gherkin tier with concrete data,

@@ -185,7 +185,9 @@ consents to nothing.
 **What runs AUTO.** Plan composition as-recommended, the grant standing as the
 route `go` · defer batches, with **unclear still an Open Question, never an
 invention** · clearing when every criterion is met, otherwise an auto-AW whose
-revisit trigger is `BA ratification sweep (auto off)` · waiver acts, Band-1
+revisit trigger is `BA ratification sweep (auto off)` — carrying its **expected
+profile debt** class where every miss resolves to an out-of-profile technique's
+artifact, rendered as the class and never as a finding · waiver acts, Band-1
 closure, Band-3 entry · **the arming run** — `/ba-gate-health full`, the closing
 step of Band-1 closure, requested inside the same act so **no run ever stands
 "closed but unarmed"**, its P8 HA review riding the ratification batch · a reopen

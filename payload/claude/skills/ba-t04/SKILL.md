@@ -49,6 +49,10 @@ the **BA elects it** into an open aspect's composed plan, or the BA asks for
 enrichment options and it is **listed among them**. If you arrived here from a
 framework suggestion, the suggestion was illegal; stop and say so.
 
+**Preconditions — declared, rendered, never a block.** `.specify/memory/stakeholders.md` (**T-03 — Stakeholder register**) — **hard**: TC-1 pins each charter's Details cell to exactly one register population resolving to a register entry, and the population election is made against that table.
+
+**A declared precondition never refuses this run and never pulls its producer in.** Where the artifact is absent, say so in one line at the start, draft every cell the run can ground, and **mark** the cells it grounded on nothing — `[NEEDS CLARIFICATION: …]`, cited-marked-or-asked, never guessed. Electing the producing technique is the BA's act at `/ba-aspect <aspect>`, never yours.
+
 **Skip-if — refuse the run and say which:** **always skippable.** Charter absence
 is a legal end state, not a hole — the persona clause that reads this file is
 conditional, and stays dormant while the file does not exist. Redundancy: the

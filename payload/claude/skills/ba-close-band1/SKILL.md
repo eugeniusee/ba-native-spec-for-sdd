@@ -49,6 +49,15 @@ The re-affirmation here is explicitly **into the armed state**:
 
 > carried past closure — debt visible to CC-H where it touches spec-anchored ground
 
+**An expected-profile-debt waiver re-affirms as its class.** Where every miss on
+the waiver resolves to an out-of-profile technique's artifact, the line names the
+class — `AW-<n> · <aspect> · expected profile debt · re-affirmed <initials> into
+the armed state` — and does not argue it — it is the profile's own arithmetic, and
+re-affirming it is a profile decision confirmed, not an exception forgiven. The
+arming is unaffected: step 3 requests the full Scope-H run exactly as written, and
+CC-H-01 and CC-H-05 **arm over the gap and keep policing it** — expected is not
+absent, and from here the debt is the contract's, lifted only by an `HA-<nn>`.
+
 A **lapse** at this moment returns that aspect to `open` (T8) and precondition 1
 is no longer met: say so and stop. Dependents keep their states — lapse is not
 reopen.

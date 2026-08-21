@@ -52,6 +52,10 @@ nothing else is explained.
 The stop closes per §10.3 rule 9 — `What I need from you:` with the repairing
 act as the `(recommended)` option.
 
+**Preconditions — declared, rendered, never a block.** `.specify/memory/roles-permissions.md` (**T-12 — Roles & permissions**) — **hard**: the Authorization principle's enforcement surface, which the Governance references table must resolve to, existing and stub-free at write · `.specify/memory/design-standards.md` (**T-14 — Design & UX standards**) — **soft**, and evidence-conditional in its own right. The Authorization principle is seeded **unconditionally** either way; absent, its reference row is marked rather than resolved — a dangling reference is surfaced now, never silently written.
+
+**A declared precondition never refuses this run and never pulls its producer in.** Where the artifact is absent, say so in one line at the start, draft every cell the run can ground, and **mark** the cells it grounded on nothing — `[NEEDS CLARIFICATION: …]`, cited-marked-or-asked, never guessed. Electing the producing technique is the BA's act at `/ba-aspect <aspect>`, never yours.
+
 **Skip-if — refuse the run and say so:** the constitution is present, seeded,
 stub-free, **every reference resolving**, and the persona clause
 satisfied-or-dormant. Dormant is what charter absence leaves it — and the

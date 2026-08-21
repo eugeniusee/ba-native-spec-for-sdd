@@ -560,6 +560,32 @@ for f in "$SKILLS"/ba-t0{4,5,6,7,8,9}/SKILL.md "$SKILLS"/ba-t10/SKILL.md \
 done
 [ "$LEAK" -eq 0 ] && ok "zero BABOK anchors, mining notes, review records or decision IDs in the 14 S6 payload files"
 
+# ── EC-18 · B7 — declared preconditions on the sheets that have them ─────────
+#
+# Electing a technique used to pull another technique's artifact in silently.
+# Each sheet now declares what it takes, graded, and the declaration never
+# blocks: absent, the run drafts and marks. Code + name is register rule 5.
+
+printf '\n▸ EC-18 — declared preconditions (T-04 · T-08 · T-09)\n'
+
+for t in t04 t08 t09; do
+  f="$SKILLS/ba-$t/SKILL.md"
+  flat_has "$f" "**Preconditions — declared, rendered, never a block.**" \
+    || bad "ba-$t — no precondition declaration"
+  flat_has "$f" "never refuses this run and never pulls its producer in" \
+    || bad "ba-$t — the declaration does not state visibility-never-a-block"
+done
+ok "three sheets declare their preconditions and refuse to block on them"
+
+has "$SKILLS/ba-t04/SKILL.md" "\`.specify/memory/stakeholders.md\` (**T-03 — Stakeholder register**) — **hard**" \
+    "ba-t04 declares the register hard — TC-1's Details cell resolves to it"
+has "$SKILLS/ba-t08/SKILL.md" "\`.specify/memory/stakeholders.md\` (**T-03 — Stakeholder register**) — **hard**" \
+    "ba-t08 declares the register hard — who-hurts resolves to a population"
+has "$SKILLS/ba-t09/SKILL.md" "\`.specify/memory/constraints.md\` (**T-06 — Constraints elicitation**) — **hard**" \
+    "ba-t09 declares constraints hard — the AT-VI-3 scan reads its Confirmed rows"
+has "$SKILLS/ba-t09/SKILL.md" "(**T-07 — Competitive analysis**) — **soft**" \
+    "…and the competitive file soft — the Unlike names are canvas ground"
+
 # ── roll-up ──────────────────────────────────────────────────────────────────
 
 printf '\n  passed: %s   failed: %s\n' "$PASSED" "$FAILED"

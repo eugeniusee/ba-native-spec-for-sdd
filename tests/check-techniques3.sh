@@ -688,6 +688,41 @@ for f in "$SKILLS"/ba-t1{1,2,3,4,5,6}/SKILL.md "$SKILLS"/ba-t1{1,2,3,4,5,6}/refe
 done
 [ "$LEAK" -eq 0 ] && ok "zero BABOK anchors, mining notes, review records or decision IDs in the 12 S7 payload files"
 
+# ── EC-18 · B7 — the reported case and its chain ────────────────────────────
+#
+# B7, verbatim: electing T-12 alone silently pulled in domain-model.md (T-11
+# output) and constitution.md (T-15 output), and the dependency was declared
+# nowhere. Both are now on the sheet, graded, and neither blocks the run.
+
+printf '\n▸ EC-18 — declared preconditions (T-11…T-16, the reported chain)\n'
+
+for t in t11 t12 t13 t15 t16; do
+  f="$SKILLS/ba-$t/SKILL.md"
+  flat_has "$f" "**Preconditions — declared, rendered, never a block.**" \
+    || bad "ba-$t — no precondition declaration"
+  flat_has "$f" "never refuses this run and never pulls its producer in" \
+    || bad "ba-$t — the declaration does not state visibility-never-a-block"
+done
+ok "five sheets declare their preconditions and refuse to block on them"
+
+has "$SKILLS/ba-t12/SKILL.md" "\`.specify/memory/domain-model.md\` (**T-11 — Domain (conceptual) modeling**) — **hard**" \
+    "ba-t12 declares the domain model hard — the reported half of B7"
+has "$SKILLS/ba-t12/SKILL.md" "\`.specify/memory/constitution.md\` (**T-15 — Constitution**) — **soft**" \
+    "…and the constitution soft — the principle is named here, authored there"
+has "$SKILLS/ba-t13/SKILL.md" "(**T-12 — Roles & permissions**) — **hard**" \
+    "ba-t13 declares the roles model hard — journey role cells are verbatim"
+has "$SKILLS/ba-t15/SKILL.md" "(**T-12 — Roles & permissions**) — **hard**" \
+    "ba-t15 declares the roles model hard — the reference spine must resolve"
+has "$SKILLS/ba-t16/SKILL.md" "(**T-07 — Competitive analysis**) — **soft**" \
+    "ba-t16 declares the competitive file soft — one of four sweep patterns"
+
+# the killed behaviour: no sheet turns a precondition into a refusal
+for t in t11 t12 t13 t15 t16; do
+  flat_has "$SKILLS/ba-$t/SKILL.md" "refuse the run until" \
+    && bad "ba-$t — a precondition became a hard block"
+done
+ok "no sheet converts a declared precondition into a refusal"
+
 # ── roll-up ──────────────────────────────────────────────────────────────────
 
 printf '\n  passed: %s   failed: %s\n' "$PASSED" "$FAILED"

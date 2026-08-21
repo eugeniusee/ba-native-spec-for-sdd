@@ -80,6 +80,54 @@ record then **names the unresolved conflict, citing its RO**).
 <date> · T3 · Context · open → waived · Y.K. — AW-1
 ```
 
+## Expected profile debt — a class of this record, not a second instrument
+
+**Read the ledger head's `Profile:` line while you assemble the record.** Where
+**every** named miss in the unmet-criteria field resolves to an artifact whose
+producing technique is **out of profile** in the standing profile's set, this
+waiver is **expected profile debt** — the profile's own arithmetic, not a
+judgement about the project. One miss on an in-profile technique's artifact takes
+the whole waiver out of the class. Re-read the test at every render: an election
+or a profile switch can move a waiver out of it.
+
+**Nothing is added to the record.** Same `AW-<n>`, same six fields, same refusal
+rules. Two field conventions fix how the class reads:
+
+- **Reason** names the profile and the out-of-profile techniques whose artifacts
+  the misses want — *"Presale profile: AT-RQ-1's remaining artifacts are the
+  output of T-11 — Domain (conceptual) modeling, T-12 — Roles & permissions,
+  T-13 — Core process mapping and T-15 — Constitution, all out of profile"* —
+  never "we ran out of time".
+- **Revisit trigger** stays event-shaped, and the canonical one is *"when the
+  profile switches to Discovery, or any of the four is elected at
+  P-O2 — plan composition"*. Both are events the ledger's Events line already
+  records.
+
+```
+AW-2 · Requirements · expected profile debt · unmet: AT-RQ-1 — roles-permissions.md,
+  domain-model.md, processes.md and constitution.md absent; their techniques are
+  all out of profile under Presale
+  reason: Presale profile — the destination is a scoped roadmap with draft specs;
+    these four artifacts are out of the profile's technique set
+  risk accepted: draft specs carry marked roles and unresolved entity names;
+    CC-H-01 and CC-H-05 arm over the gap and keep policing it
+  approver: Y. Kliukin · 2026-08-20
+  revisit trigger: when the profile switches to Discovery, or any of the four is
+    elected at plan composition
+  status: granted
+```
+
+**Render it as the class wherever it renders**, and **argue it at no surface** —
+named once, with its class, never as a finding, an anomaly, a defect or a gap the
+run should have avoided, and never re-opened lower down or in the closing ask.
+At the re-affirmation pass, `(recommended)` sits on `re-affirm` while the trigger
+has not fired: re-affirming expected profile debt is a profile decision
+confirmed, not an exception forgiven.
+
+**The debt is still real.** Expected is not absent: the criteria stay named in the
+head, and at closure the arming happens exactly as it always does — see the
+effect below.
+
 ## Effect — exactly this much
 
 A `waived` aspect satisfies prerequisites **exactly as `first-pass-cleared`
@@ -90,6 +138,12 @@ and does not travel to any other layer.
 
 One advisory, said once and not repeated: decomposing on a **waived Solution** is
 decomposing a guess. Say it when Band 2 opens over one; the BA's call stands.
+
+**Closure arms over this waiver, expected or not.** `/ba-close-band1` requests the
+full Scope-H run exactly as it always does, and the assertions the debt touches —
+CC-H-01 and CC-H-05 where the missing artifacts are theirs — **arm over the gap
+and keep policing it**, lifted only by an `HA-<nn>` at the gate. A profile that
+could disarm an assertion would be a restriction, and a profile is never one.
 
 ## Lifecycle
 

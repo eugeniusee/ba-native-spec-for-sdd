@@ -125,6 +125,24 @@ unmet criterion behind them render on every snapshot, not only when the BA asks.
 Listing is not recommending: an enrichment row carries `optional`, never
 `recommended`.
 
+**Declared preconditions render — visibility, never a block.** Each catalogue
+technique declares in the index's `Preconditions` column the **other techniques'
+artifacts** its own contract and template text demand, graded **hard** (a
+contracted cell cannot be authored without it) or **soft** (one input among
+several), `—` where it takes none. Check each rendered technique's declaration
+against what is **on disk**, and carry every open one on the block's single
+`Preconditions open:` line — `—` when none is open.
+
+- **The election sees what it is taking on.** The line renders before the
+  composition act, so the BA elects knowing which cells will land marked.
+- **Never pull the producer in.** Electing a technique elects **that** technique.
+  You never add its producer to the plan; composition is the BA's act.
+- **Never block.** An open precondition never makes a technique un-electable and
+  never refuses a run. The run proceeds in assumption posture with the dependent
+  cells drafted and **marked**.
+- **No new column and no new status value.** `Status` stays the closed set below;
+  the precondition is one line in the block, never a cell.
+
 **`Status` is a closed set** — `recommended — criterion unmet` · `done — <date>` ·
 `optional` · `dropped — <date>`. A `dropped` row resurfaces marked; it is never
 re-pushed. Nothing else may appear in that column.
@@ -146,6 +164,7 @@ Enrichment — electable, no unmet criterion behind them:
 | E1 | T-04 — Persona charters | Charters the elected user populations | — | optional |
 
 Outside this profile (electable by code): <codes> — say "show all" for full rows.
+Preconditions open: <technique — artifact (producer), hard|soft: what it grounds> · <…> · —
 Sequence rationale: <one line>
 ```
 
@@ -163,9 +182,9 @@ its contract is pinned, wherever the contract came from.
 Render the snapshot to the BA in the Step 3 shape — **the whole pinned block,
 every line of it, in its own order**: the `Suggestion` header with the profile,
 the `State:` line, the in-profile table, the standing enrichment block, the
-out-of-profile line, the `Sequence rationale:` line. The BA-facing render and the
-`.specify/aspect-plans.md` write carry the same shape; the file is not the only
-place it renders whole.
+out-of-profile line, the `Preconditions open:` line, the `Sequence rationale:`
+line. The BA-facing render and the `.specify/aspect-plans.md` write carry the
+same shape; the file is not the only place it renders whole.
 
 **Two lines the render drops most often, and never may.** The `State:` line is
 **two sentences** — the count, then *Nothing runs until you compose the plan
@@ -268,7 +287,8 @@ its entry happened at Band-1 closure (§8.2), and this fork only composes.
   never `recommended`. The `State:` line carries the roadmap state in place of
   the criteria count — there is no threshold table to count against. Everything
   else is Step 3's own rules, unchanged: the closed `Status` set, the standing
-  enrichment block, the out-of-profile line, the `Sequence rationale:` line,
+  enrichment block, the out-of-profile line, the `Preconditions open:` line,
+  the `Sequence rationale:` line,
   and the verbatim write — into `## Band 2`.
 - **Composition is Step 4, unchanged.** The same choice line, the same stop.
   The composed plan appends under `## Band 2`, dated, in the same row shape —

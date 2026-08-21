@@ -1000,6 +1000,55 @@ done
   && bad "the Band-2 validator leaked into the installed scripts" \
   || ok "the Band-2 validator stays repo-side: no runtime checker judges technique output"
 
+# ── EC-18 · B6 — the role rule's two branches, cited not restated ───────────
+#
+# B6, verbatim: 16 draft specs were written with every role marked
+# [NEEDS CLARIFICATION] at first use — 37 markers that vanished the moment T-12
+# ran. Standard §3's rule and the module's hardening could not both govern a
+# Presale draft. The standard is now the one home; both carriers cite it, and
+# the drafting path that required a nonexistent roles-permissions.md is gone.
+
+printf '\n▸ EC-18 — the role rule under a profile without the governance file (B6)\n'
+
+SD="$SKILLS/ba-tier2/references/story-drafting.md"
+TI2S="$SKILLS/ba-tier2/SKILL.md"
+
+has "$SD" "**The role rule has two branches, and the standard's §3 is its one home**" \
+    "story-drafting names the standard as the home and itself as the reader"
+has "$SD" "the role is verbatim from the canvas Core Functions actors" \
+    "…and the second branch takes the actor from the canvas"
+has "$SD" "marked at its first use in the spec" \
+    "…marked at first use, per rule 7"
+has "$SD" "the marker is carried **once**, not re-stamped per" \
+    "…and carried once, not re-stamped per story"
+has "$SD" "and refusing to draft" \
+    "…with refusing-to-draft named illegal beside inventing and softening"
+has "$SD" "**This branch lifts nothing at the gate.**" \
+    "…and the branch lifts nothing at the gate"
+has "$SD" "Never delete a marker to make the assertion pass." \
+    "…and a marker is never deleted to buy a pass"
+
+has "$TI2S" "**Roles follow standard §3's two branches, and the module carries them.**" \
+    "the Tier-2 skill cites the standard rather than restating the rule"
+has "$TI2S" "**A missing governance file never stops the draft**" \
+    "…and a missing governance file never stops the draft"
+
+# the killed behaviour: neither carrier may state the absolute form alone
+flat_has "$SD" "the role is verbatim from the governance file, or the story does not get written" \
+  && bad "story-drafting still carries the absolute rule that made B6's 16 drafts illegal" \
+  || ok "the absolute 'or the story does not get written' rule is gone"
+
+# ── EC-18 · B7 — the Band-2 pair's declared preconditions ───────────────────
+
+printf '\n▸ EC-18 — declared preconditions (T-17)\n'
+
+has "$SKILLS/ba-t17/SKILL.md" "**Preconditions — declared, rendered, never a block.**" \
+    "ba-t17 declares its preconditions"
+has "$SKILLS/ba-t17/SKILL.md" "(**T-13 — Core process mapping**)" \
+    "…naming the journeys' producer with its code and name"
+has "$SKILLS/ba-t17/SKILL.md" "coverage-completeness and exclusive partition are properties of the Core Functions set and stand unchanged" \
+    "…and the four soft absences cost candidates, never the coverage property"
+
 # ── roll-up ──────────────────────────────────────────────────────────────────
 
 printf '\n  passed: %s   failed: %s\n' "$PASSED" "$FAILED"

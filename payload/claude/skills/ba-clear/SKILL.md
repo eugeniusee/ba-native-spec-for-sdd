@@ -69,6 +69,42 @@ Three rules govern what may appear in the Evidence column:
   further roles into the journey set. Significance is a checkable fact here, not
   an adjective.
 
+## Expected profile debt — name the class once, argue it at no surface
+
+**Read the ledger head's `Profile:` line before you render a miss.** Where
+**every** named miss on this aspect resolves to an artifact whose producing
+technique is **out of profile** in the standing profile's set, the waiver that
+follows is **expected profile debt**: the profile's own arithmetic, not a
+judgement about the project. One miss on an in-profile technique's artifact takes
+the whole waiver out of the class, and the ordinary record applies. Re-read the
+test each time — an election or a profile switch can move a waiver out of it.
+
+**The ruled case is `AT-RQ-1` under Presale.** Its four remaining artifacts are
+the output of techniques the profile leaves out: `roles-permissions.md`
+(**T-12 — Roles & permissions**), `domain-model.md`
+(**T-11 — Domain (conceptual) modeling**), core processes
+(**T-13 — Core process mapping**) and `constitution.md`
+(**T-15 — Constitution**). A compliant Presale run therefore reaches Requirements
+with this waiver already determined.
+
+Render it as the class, on the table's own line:
+
+```
+| AT-RQ-1 | expected profile debt — roles-permissions.md, domain-model.md,
+  processes.md and constitution.md absent; their techniques are out of profile
+  under Presale. Elect any at /ba-aspect requirements to lift its miss | ✗ (expected) |
+```
+
+**Three things this render never does.** It never calls the miss a finding, an
+anomaly, a defect or a gap the run should have avoided. It never argues the point
+a second time — named once per render, with its class, and not re-opened lower
+down or in the closing ask. And it never softens the criterion: the miss is real,
+`✗` is still `✗`, and the debt is what the waiver carries.
+
+**The criterion does not bend.** Thresholds are profile-blind. Never read
+`AT-RQ-1` more loosely because the profile is Presale; read it exactly, mark the
+misses exactly, and let the class carry the meaning.
+
 ## Step 2 — delta evidence (re-clearing after a reopen, T6)
 
 When the aspect is `reopened`, do **not** re-confirm the whole table. **State the
@@ -97,7 +133,7 @@ Present the table and take one of three:
 |---|---|
 | **CLEARED** — initials, date | **T2** (`open →`) or **T4** (`waived →`, and the AW closes `superseded — <date>`) or **T6** (`reopened →`, and the RO closes `resolved — <refs>`, flags drop) |
 | **NOT CLEARED** | no transition; the named misses stand as the aspect's visible to-do |
-| **WAIVE** | hand to `/ba-waive-aspect <aspect>` — T3 from `open`, T7 from `reopened` |
+| **WAIVE** | hand to `/ba-waive-aspect <aspect>` — T3 from `open`, T7 from `reopened`; where the misses meet the expected-profile-debt test, say so in the hand-off so the record carries the class |
 
 You may **propose** confirmation when a refresh shows all criteria met
 ("threshold evidence complete — confirm?"). You never confirm. **An aspect gate
@@ -117,14 +153,20 @@ Reply with the letter, or rule it in your own words.
 
 Exactly one option carries `(recommended)`: `cleared` where the table shows
 every criterion met, `not cleared` where any miss stands — the safe
-disposition, never debt by suggestion.
+disposition, never debt by suggestion. **Where every miss is expected profile
+debt**, `(recommended)` moves to `waive instead` — the profile determined this
+outcome and the safe disposition is the one the profile already names; the ask
+says so in one plain line and does not re-argue it.
 
 **Under a standing autonomy grant** (`/ba-auto on`), this act is stated in
 advance and taken AUTO — a recorded, revocable grant is not a self-clear, and
 the transition stands for ratification at `off`. All criteria met → clear,
 stamped `<date> · AUTO (AG-<n>) · <act> · <basis>`. Any miss → an **auto-AW**
 instead: a full waiver record with every miss named, revisit trigger
-`BA ratification sweep (auto off)`. Debt is never silent under auto.
+`BA ratification sweep (auto off)`. Debt is never silent under auto. An auto-AW
+whose every miss meets the test above carries its **expected profile debt** class
+into the record and into the band-boundary report, where it renders as the class
+and not as a finding.
 
 ## Step 4 — record
 

@@ -368,7 +368,10 @@ as-recommended from the snapshot — an aspect's or `## Band 2`'s alike — and 
 grant **is** the route `go` · defer
 batches accepted, with unclear still an Open Question and never an invention ·
 P-O4 — clearing confirmation clears when every criterion is met, and otherwise
-grants an auto-AW whose revisit trigger is `BA ratification sweep (auto off)` ·
+grants an auto-AW whose revisit trigger is `BA ratification sweep (auto off)` —
+carrying its **expected profile debt** class where every miss resolves to an
+out-of-profile technique's artifact, rendered as the class and never as a
+finding ·
 P-O5 — aspect-waiver acts, P-O7 — Band-1 closure and P-O8 — Band-3 entry take
 the AUTO stamp · P-O6 — reopen ruling defaults to Real, states the blast radius,
 and executes no cascade · P-O9 — overflow ruling takes the supplement lane only.

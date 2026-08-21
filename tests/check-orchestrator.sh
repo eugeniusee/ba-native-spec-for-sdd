@@ -1475,9 +1475,13 @@ has "$RULES_DOC" "v0.31" "…and the edition the corpus-declaration rule produce
 has "$RULES_DOC" "D-O82" "…and the stop-point closing-ask ruling"
 has "$RULES_DOC" "## 35. Review record (v0.31 → v0.32)" \
     "…and §35, the review record that carries it"
-head -2 "$RULES_DOC" | grep -q 'v0\.32' \
-  && ok "the header states the live edition — v0.32, the stop speaks plainly" \
-  || bad "the header does not name v0.32: the edition and the change record disagree"
+has "$RULES_DOC" "v0.32" "…and the edition the stop-point closing ask produced"
+has "$RULES_DOC" "D-O83–D-O84" "…and the profile-debt + precondition ruling block"
+has "$RULES_DOC" "## 36. Review record (v0.32 → v0.33)" \
+    "…and §36, the review record that carries it"
+head -2 "$RULES_DOC" | grep -q 'v0\.33' \
+  && ok "the header states the live edition — v0.33, the profile stops fighting its destination" \
+  || bad "the header does not name v0.33: the edition and the change record disagree"
 has "$RULES_DOC" "D-O45–D-O49" "…and the source-inventory ruling block"
 has "$RULES_DOC" "D-O50" "…and the change record names the unreadable-spec ruling"
 has "$RULES_DOC" "D-O51–D-O52" "…and the continuity-under-a-grant ruling block"
@@ -1487,11 +1491,11 @@ has "$RULES_DOC" "v0.20" "…and the edition the candidate scan produced"
 has "$RULES_DOC" "D-O54" "…and the scan-method ruling"
 
 # the ruling block is contiguous from the live high-water mark: no gap, no reuse
-python3 - "$RULES_DOC" <<'PYX' && ok "the D-O block runs 1…82 with no gap and no skipped number" \
+python3 - "$RULES_DOC" <<'PYX' && ok "the D-O block runs 1…84 with no gap and no skipped number" \
   || bad "the D-O decision block is not contiguous — a number is missing or reused"
 import re, sys
 seen = {int(n) for n in re.findall(r"D-O(\d+)", open(sys.argv[1], encoding="utf-8").read())}
-sys.exit(0 if seen == set(range(1, 83)) else 1)
+sys.exit(0 if seen == set(range(1, 85)) else 1)
 PYX
 
 # ── 6b. Band-2 plan composition — the record home has its producer (D-O55) ──
@@ -1629,6 +1633,56 @@ for f in "$AG" "$SKILLS"/ba-{frame,status,aspect,run,clear,waive-aspect,reopen,c
   fi
 done
 [ "$LEAK" -eq 0 ] && ok "zero BABOK anchors, mining notes or review records in the 10 payload files"
+
+# ── EC-18 · expected profile debt (D-O83) and declared preconditions (D-O84) ──
+#
+# B5: a compliant Presale run always waives Requirements, because AT-RQ-1's
+# artifacts are T-11/T-12/T-13/T-15 output and all four are out of profile. The
+# waiver is the profile's arithmetic, and the run used to re-argue it at every
+# surface. B7: electing T-12 silently pulled in two artifacts nobody declared.
+# What must stay true: the class exists and the rendering changes; the *arming*
+# does not; the threshold does not bend; the election renders, and never blocks.
+
+printf '\n▸ EC-18 — expected profile debt and declared preconditions (D-O83 · D-O84)\n'
+
+has "$RULES_DOC" "### 4.5 Expected profile debt" \
+    "§4.5 exists — the class lives with the instrument it classifies"
+has "$RULES_DOC" "resolves to an artifact whose producing technique is **out of profile**" \
+    "…and the test is mechanical: every named miss, out-of-profile producer"
+has "$RULES_DOC" "One miss resolving to an in-profile technique's artifact takes the whole waiver out of the class" \
+    "…and one in-profile miss takes the waiver out of the class"
+has "$RULES_DOC" "**The record is the AW, unchanged.**" \
+    "…and the record stays the AW — no fourth instrument"
+has "$RULES_DOC" "re-litigated at no surface it touches" \
+    "…and the class is argued at no surface"
+has "$RULES_DOC" "**The arming stands (§8.2).**" \
+    "…and the arming stands — expected is not absent"
+has "$RULES_DOC" "arm over the gap and keep policing it" \
+    "…CC-H-01 and CC-H-05 keep policing what the waiver names"
+has "$RULES_DOC" "**Expected profile debt (D-O83, §4.5).**" \
+    "§3.3 cites the class rather than carrying a third locked note"
+has "$RULES_DOC" "**The criterion itself does not bend:** thresholds are profile-blind" \
+    "…and the threshold stays profile-blind — the waiver bends, never AT-RQ-1"
+has "$RULES_DOC" "**Where every named miss on an aspect resolves to an out-of-profile technique's artifact, that waiver is expected profile debt (§4.5, D-O83)**" \
+    "§6.5's Presale paragraph names the class beside its own 'not an anomaly'"
+has "$RULES_DOC" "**Declared preconditions render at the election (D-O84).**" \
+    "§6.1 carries the precondition rule"
+has "$RULES_DOC" "Preconditions open: <technique — artifact (producer), hard|soft: what it grounds>" \
+    "…and the snapshot block gains exactly one pinned line"
+has "$RULES_DOC" "**Never a block.** A missing precondition does not refuse the run" \
+    "…visibility, never a block"
+has "$RULES_DOC" "**Never a silent pull-in.** Electing a technique elects **that** technique." \
+    "…and electing a technique never elects its producer"
+
+# the compiled card is the load-bearing consequence of homing D-O83 in §4.5:
+# a §3.3 note would have travelled into it and check-cards.py would have to grow
+python3 "$HERE/check-cards.py" >/dev/null 2>&1 \
+  && ok "the compiled at-thresholds card is untouched by this edition" \
+  || bad "the at-thresholds card diverged — a §3.3 note travelled into it"
+
+# the killed behaviour, stated as a refusal the document must not contain
+hasnt "$RULES_DOC" "AT-RQ-1 is relaxed under Presale" \
+    "no surface relaxes AT-RQ-1 under a profile"
 
 # ── roll-up ──────────────────────────────────────────────────────────────────
 

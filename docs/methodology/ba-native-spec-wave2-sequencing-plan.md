@@ -1,5 +1,7 @@
 # Geniusee Wave-2 Sequencing Plan
-### BA-Native Spec · technique-catalogue authoring plan · v0.4 — D-B2-1 mirror applied (30 July 2026; review incorporated 25 July 2026)
+### BA-Native Spec · technique-catalogue authoring plan · v0.5 — the §2 template declares what a sheet takes in (21 Aug 2026; review incorporated 25 July 2026)
+**v0.5 change record:** one template amendment, ruled 21 Aug 2026 (**R3** of the EC-18 package; origin: the field defect report of 20 Aug 2026, **Part B item B7** — electing T-12 alone silently pulled in `domain-model.md` and `constitution.md`, and the dependency was declared nowhere the election could see it): the **§2 metadata table gains a fifth field, `Preconditions`** — the other techniques' artifacts this sheet's own contract and template text demand, each graded **hard** (a cell cannot be authored without it) or **soft** (one input among several; its absence costs candidates, not cells), each naming the technique that produces it, and `—` where a sheet takes none. **What the field does at a P-O2 election is orchestrator law, not this template's:** it makes the closure **visible** — never a silent pull-in, never a block. The catalogue index gains the matching column by its own condense rule. **§1's inventory, §3's batch order, §4's standing prompt and §§5–6 are untouched**, and the other four §2 fields keep their text and their order.
+
 **v0.4 change record:** one catalogue-b2 mirror, additive — D-B2-1 (enrichment-serve trigger semantics note) → §2. No other changes.
 **v0.3 change record:** D-W8 erratum only — glossary ★ removed (B1 kickoff verified: no presale glossary skill exists among the user skills): §1 T-02 row · §5.1 stored row text · §5.3 stored bullet text. No other changes.
 
@@ -85,6 +87,14 @@ Elicitation Results). House decisions cited as `plan Qn/Cn`.
 |   | elicits at threshold grade, and what it must NOT descend into
 |   | (spec-depth detail is Tier-2 ground; naming the forbidden zone makes
 |   | a bad question illegal by construction). |
+| Preconditions | The **other techniques' artifacts** this sheet's own contract
+|   | and template text demand, each with its producing technique and its
+|   | grade — **hard** (a contracted cell cannot be authored without it:
+|   | "`domain-model.md` (T-11) — hard: entity cells verbatim") or **soft**
+|   | (one input among several; absence costs candidates, not cells). `—`
+|   | where the sheet takes none. Declared so the **election sees what it is
+|   | taking on** (orchestrator §6.1/§6.5): a missing precondition is visible
+|   | at P-O2, never silently pulled in and never a block. |
 
 ### 3. Output contract (Q2+ — pre-pinned; orchestrator §6.3)
 | Field | Value |
