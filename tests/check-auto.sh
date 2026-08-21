@@ -970,6 +970,113 @@ done
 has_flow "$DOC" "a defective run is superseded by a fresh run of the fixed framework, never patched" \
     "§29 states the framework-only scope"
 
+# ── EC-19 · the two untethered stops, and the trail after ratification ───────
+#
+# B10: D-O51 names four hold conditions and only two had a render. A live run
+# hit the other two — the safety floor, then the grant's own scope edge — and
+# improvised twice in one session. D-O86 gives both one pinned shape. B12: the
+# resumption report demanded the full trail from a BA who had already ratified;
+# D-O87 gives the trail line one conditional and leaves rule 8's precedence
+# alone. What must stay true: the third shape is compiled, never rewritten; the
+# closing ask reaches it; the trail's short form points at the ledger.
+
+printf '\n▸ EC-19 — the mid-grant stop report and the trail conditional (D-O86 · D-O87)\n'
+
+PHEAD='Auto paused — '
+python3 "$SHAPE" doc "$DOC" "$PHEAD" > "$TMP/pshape-doc.txt" 2>"$TMP/pshape-doc.err"
+if [ -s "$TMP/pshape-doc.txt" ]; then
+  ok "§10.7 yields the mid-grant stop report — $(wc -l < "$TMP/pshape-doc.txt" | tr -d ' ') lines"
+else
+  bad "§10.7 has no mid-grant stop report block: D-O86's shape cannot be checked from source"
+  sed 's/^/      /' "$TMP/pshape-doc.err"
+fi
+
+# vacuity: an emptied block that still extracts would assert nothing
+while IFS='|' read -r label phrase; do
+  [ -z "$label" ] && continue
+  grep -qF -- "$phrase" "$TMP/pshape-doc.txt" \
+    && ok "the source block still carries $label" \
+    || bad "D-O86's block no longer carries $label — re-read the document first"
+done <<'LINES'
+the safety-floor branch of line 1|safety floor: <act — code + name>
+the scope-exhaustion branch of line 1|scope exhausted: <the AG's scope edge
+what stands, and the mid-flight state|Stands: <what the run completed, one line> · mid-flight:
+the trail and assumption counts|Auto-trail since <start | last boundary>: <n> acts · Assumptions:
+the resumption act and the grant's standing|Resume from: <the act the BA takes — one line> · AG-<n>: <stands | reaches no further>
+LINES
+
+# four lines, and the count is guarded: a fifth arriving unruled goes red
+[ "$(wc -l < "$TMP/pshape-doc.txt" | tr -d ' ')" = "4" ] \
+  && ok "the mid-grant stop report is four lines — the closing ask is a tail, not a line" \
+  || bad "the mid-grant stop report is not four lines: a line arrived unruled (D-O86)"
+
+for pair in "$AUTO|the ba-auto skill" "$BLOCK|the CLAUDE.md block" "$AGENTS|AGENTS.md"; do
+  f="${pair%%|*}"; label="${pair##*|}"
+  python3 "$SHAPE" unit "$f" "$PHEAD" > "$TMP/pshape-unit.txt" 2>"$TMP/pshape-unit.err"
+  if [ ! -s "$TMP/pshape-unit.txt" ]; then
+    bad "$label carries no mid-grant stop report block (D-O86)"
+    sed 's/^/      /' "$TMP/pshape-unit.err"
+  elif diff -u "$TMP/pshape-doc.txt" "$TMP/pshape-unit.txt" > "$TMP/pshape.diff" 2>&1; then
+    ok "$label is byte-identical to §10.7 — the third shape is compiled, not rewritten"
+  else
+    bad "$label diverges from §10.7's mid-grant stop report:"
+    sed 's/^/      /' "$TMP/pshape.diff" | head -14
+  fi
+done
+
+# the control: a dropped line in a private copy must go red
+PSHC="$TMP/pshape-corpus"
+mkdir -p "$PSHC"
+cp "$AUTO" "$PSHC/SKILL.md"
+python3 - "$PSHC/SKILL.md" <<'PYDROP'
+import pathlib, sys
+p = pathlib.Path(sys.argv[1])
+t = p.read_text(encoding="utf-8")
+p.write_text(t.replace("Resume from: <the act the BA takes — one line> · AG-<n>: <stands | reaches no further>\n", ""), encoding="utf-8")
+PYDROP
+python3 "$SHAPE" unit "$PSHC/SKILL.md" "$PHEAD" > "$TMP/pshape-dirty.txt" 2>&1
+diff -q "$TMP/pshape-doc.txt" "$TMP/pshape-dirty.txt" >/dev/null 2>&1 \
+  && bad "a dropped Resume-from line slips through — the byte-match does not hold" \
+  || ok "the control fires — a dropped stop-report line goes red"
+
+# every hold condition has a render, on every surface that lists them
+for pair in "$DOC|§10.7" "$AUTO|the skill" "$BLOCK|the CLAUDE.md block" "$AGENTS|AGENTS.md"; do
+  has_flow "${pair%%|*}" "mid-grant stop report" \
+      "${pair##*|} — the two untethered stops name their render (D-O86)"
+done
+has_flow "$DOC" "**§10.7's pinned-shape count moves two → three**" \
+    "§10.7 states the shape count it moved"
+has_flow "$DOC" "**It does not reach the mid-grant stop report (§10.7):**" \
+    "…and rule 9's AUTO exemption is narrowed to the two renders it names"
+has_flow "$AUTO" "**The AUTO exemption does not reach this render:**" \
+    "…the skill carries the closing-ask reach"
+has_flow "$DOC" "**D-O69's decision-list tail is not extended to this report.**" \
+    "…and the advisory tail is not extended to the new shape"
+has_flow "$AUTO" "the decision-list tail does not follow this report" \
+    "…the skill says so too"
+# the killed state: a halt that quietly closes a grant
+has_flow "$DOC" "the grant **not closed** and no ratification asked" \
+    "the mid-grant stop closes no grant and asks no ratification"
+has_flow "$DOC" "**at scope exhaustion it reaches no further**" \
+    "…and each event states what it does to the grant"
+
+# D-O87 — the trail conditional, in the shape and in its rule
+grep -qF -- 'Auto-trail: <n> acts — ratified in this reply · full trail: .specify/aspect-state.md Events' \
+    "$TMP/shape-doc.txt" \
+  && ok "the resumption report carries the collapsed trail line (D-O87)" \
+  || bad "the resumption report has no collapsed trail line — D-O87 did not land in the shape"
+grep -qF -- 'Auto-trail: <n> acts — one line each:' "$TMP/shape-doc.txt" \
+  && ok "…and the full one-line-per-act trail is still the pinned default" \
+  || bad "the full trail was replaced rather than conditioned (D-O87)"
+has_flow "$DOC" "**A ratification that names exceptions renders the full trail.**" \
+    "an exception renders the acts it might except"
+has_flow "$DOC" "**§10.3 rule 8 stands untouched" \
+    "…and rule 8's precedence is stated, not moved"
+has_flow "$AUTO" "**The trail line has one conditional, and one only.**" \
+    "the skill carries the conditional, and says it is the only one"
+has_flow "$AUTO" "**The report is still six lines.**" \
+    "…and the report's line count is unmoved"
+
 # ── roll-up ──────────────────────────────────────────────────────────────────
 
 printf '\n  passed: %s   failed: %s\n' "$PASSED" "$FAILED"

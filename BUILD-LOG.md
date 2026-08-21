@@ -10759,3 +10759,214 @@ still enforced by nothing; the reconciliation family (runtime `AS` ↔ audit `OB
 §10.1's P-O0b act cell and its cross-cutting omission; `check-audit.sh` ·
 `sk_audit.py`, named and unbuilt. **EC-19**, registered 2026-08-21, is untouched
 by this pass.
+
+## The Undefined Cases Get Law — EC-19 errata, documents before code · orchestrator v0.34 · package 0.1.36 · 21 August 2026 · GREEN
+
+**Session prompt:** close **EC-19**, last of the three errata — items
+**B9-residual**, **B10** and **B12** of the 2026-08-20 field defect report,
+plus the **routed-not-fixed** half of the B8 pass — under the BA's standing
+ruling **"apply all recommendations"** (21 Aug 2026). Four rulings legislated
+into the orchestrator **first**, then propagated into 46 carriers, every
+carrier string tracing to the doc's locked text. Question protocol: nothing
+silently resolved.
+
+**Precondition, clean.** `HEAD` and `origin/main` both at `77985a6` (the EC-18
+presale-circularity commit, package 0.1.35), VERSION `0.1.35`, tree clean, all
+17 checks green at baseline — `check-orchestrator.sh` 520, `check-auto.sh` 250,
+`check-spine.sh` 266, `check-cards.py` byte-identical. No sibling pass appeared
+in the tree at any point; the 47 files this pass staged are the only files that
+moved.
+
+**Origin — one shape, three escapes and a stranded discipline.** B9-residual:
+v0.31 ruled the endpoint facts, the corpus declaration and that a sample never
+grounds a negative, and left one case open — a listing **cut before
+completion**. The field run hit it (paging denied by a permission classifier at
+page 3), rendered the candidate line, withheld the coverage line, and had
+**nothing on the record to be right by**. B10: `/ba-auto` names four stop
+events and only **two** had a pinned render; both untethered stops — the
+Presale destination reached under the first grant, two ⚑ sign-offs under the
+second — fired in one session, and the render was improvised **twice**. B12:
+the BA said *"accept and shut up"* and the pinned resumption shape still
+demanded the full trail, one line per act, ~27 lines. B8's routed half: the
+line-anchored ledger-edit discipline was stated in two template comment blocks
+and existed nowhere as law. **Documents before code by ruling:** the
+orchestrator moved first and every carrier string traces to it.
+
+**Citation honesty, on the record.** The prompt's basis line names the field
+defect report of 20 August 2026, items **B9 · B10 · B12**. **That report is not
+in the repository and is not in `~/Downloads`** — `docs/field-notes/` holds the
+2026-08-20 *Slack-scan corpus miss*, a different document on a different
+component — so it was never read this session. Per the prompt's own instruction
+and the **EC-17 / EC-18 precedent**, **only the dictated anchors were used,
+verbatim**, and **no inferred mapping is presented anywhere as a citation**: B9
+→ D-O85, B10 → D-O86, B12 → D-O87, B8-routed → D-O88, each stated in the prompt
+itself. Where the doc names a figure from the report — the cut at page 3, the
+~27-line trail — it is the prompt's own figure, carried unchanged.
+
+**Three questions surfaced before a byte moved; all three ruled as
+recommended.** *(1)* **R1's residue.** The prompt's gate — *ask only if the
+declaration grammar cannot carry the interrupted case without extension* — did
+**not** fire: D-O81's grammar carries it, and the pinned block gains one
+conditional line as an **instance** of that grammar, on the same
+amended-on-the-record footing D-O70 and D-O80 already used. What the ruling
+genuinely left open was the block's **second** count line: `and <N> more
+matched` **withholds** with the no-match line, because D-O54 already says *the
+complete listing is what makes `<N>` honest*. `<k> channel(s) excluded by BA
+ruling` **renders unchanged** — it states the scan's own act, never the
+workspace. *(2)* **One shape for both untethered stops**, against D-O63's law
+line standing alone and against two separate shapes. *(3)* **The trail
+conditional is deterministic** — it **collapses**, not *may collapse*.
+
+**What moved — the law first (orchestrator v0.33 → v0.34, D-O85–D-O88).**
+**D-O85 — the interrupted listing** (§8.1, D-O80's corpus rules extended on the
+record): a cut yields a **partial corpus**, and the three consequences are
+**not symmetric** — a **positive stands** on D-O53's candidate line unchanged ·
+a **negative and the coverage line are never grounded by it**, the pinned
+`no channel matches …· listed <n> channels` line being one line carrying both a
+negative and a completeness claim · the **count line withholds with them**
+(D-O54 applied, not new law) · the **cut renders**, never silently, on **one
+new conditional line** of D-O45's pinned block · and a **retryable cut is
+retried first**, a cut never converted into a negative by narrowing an axis or
+falling back to the endpoint D-O54 removed. **D-O86 — the mid-grant stop
+report** (§10.7, new): D-O51's hold conditions **2 and 3** are **one class** —
+auto halts mid-grant and hands control back, the grant **not closed** and **no
+ratification asked** — and get **one pinned shape, four lines**, the **event
+named first**, the resumption act and the grant's standing last, with the
+**D-O82 closing ask following as the tail that rule already defines**. **At a
+safety-floor stop the grant stands; at scope exhaustion it reaches no further**
+— stated, never inferred. **§10.7's shape count moves two → three.** **D-O87 —
+the trail after ratification** (§10.7, D-O52's shape amended on the record):
+**one conditional on the trail line alone** — a **full** ratification already
+standing collapses it to its count plus the ledger pointer; absent that the
+full one-line-per-act trail is the pinned default; **a ratification naming
+exceptions renders the full trail**, because an act nobody can see is an act
+nobody can except. **The report is still six lines.** **D-O88 — the ledger edit
+discipline** (§2.4, new): head lines and section headings of the two runtime
+ledgers are edited **line-anchored**, full-line match at line start, **never by
+substring search**; the reach is those two files at the grain the defect has,
+body content arriving by append and having no anchor to get wrong.
+
+**The two amendments this forced, both on the record.** **§10.3 rule 9's AUTO
+exemption** is narrowed to the **two renders it names**: its stated rationale —
+*"no mid-run questions exist there"* — is exactly what B10's two events
+falsify, since both **end the turn awaiting BA input**, which is D-O82's own
+trigger. **§10.3 rule 8's pinned-format list and its *only BA-facing renders*
+sentence** now carry **three** shapes, not two. **Rule 8's precedence itself is
+untouched** — the shape governs, rule 7 still does not reach a pinned shape —
+and D-O87 **dissolves** the B12 conflict **inside the shape** rather than
+resolving it against rule 7, which is stated explicitly so the next session
+never has to infer it.
+
+**What moved — the carriers, second. 46 files, every string tracing to the
+doc.** **R1:** `ba-frame` — the pinned block (byte-identical to §8.1's, now
+eight lines) and a new **interrupted-listing branch** in the scan clause, four
+sub-rules deep, carrying no framework-law text of its own. **R2 · R3:**
+`ba-auto` (hold conditions 2 and 3 naming their render, the new
+**mid-grant stop report** section, the resumption shape's two trail forms, the
+conditional stated as *one and only*, the never-list's render claim now three
+and gaining *never halts mid-grant without the stop report*, and the
+front-matter description) · both **mirrors** (the third shape compiled byte-
+identical, the trail conditional, the advisory tail explicitly **not** extended
+to the new report) · `ba-orchestrator` (the safety-floor paragraph naming the
+halt render). **The register sweep:** the compiled self-check block lives in
+**42 payload files** and every one of them now names three BA-facing renders —
+guarded before a byte moved, all four exact strings counted across the payload
+(42 · 3 · 3 · 6) and re-counted after. **R4:** both ledger templates cite
+**§2.4, D-O88** instead of standing alone, their day-old discipline text kept.
+
+**The suite: 17 of 17 green. Two counts moved; every other count is unmoved.**
+`check-orchestrator.sh` **520 → 564** — three from the change-record stack (the
+v0.33 assertion the bump displaced, `D-O85–D-O88`, `## 37`), the header pin
+re-anchored to v0.34, the contiguity guard to `1…88`, the pinned-block line
+count **7 → 8** with its comment extended, the two render-delta constants
+re-pinned and two new ones added (`CUT_LINE`, `COUNT_LINE`), plus a
+**37-assertion EC-19 section**: D-O85's asymmetry in all three parts and both
+carriers, a `hasnt` on the killed coverage path, D-O86's shape lines and the
+rule-9 narrowing, a live probe that **every** D-O51 hold condition names a
+render, D-O87's collapsed line and the stated precedence, D-O88 with its
+routed-not-built marker, and both templates' citation. `check-auto.sh`
+**250 → 278** — the **mid-grant stop report extracted from §10.7 and compared
+byte-for-byte against all three compiled units** (the resumption report's own
+machinery, reused at a third head), a five-phrase vacuity guard, a **four-line
+count guard** so a fifth line cannot arrive unruled, a dropped-line **control**
+that must go red, the hold-condition sweep on four surfaces, and D-O87's two
+trail forms in the extracted shape. `check-m.sh` **71**, `check-gate.sh`
+**105**, `check-techniques.sh` **104**, `check-techniques2.sh` **127**,
+`check-techniques3.sh` **166**, `check-spine.sh` **266**, `check-register.sh`
+**63**, `check-wbs.sh` **99**, `check-status.sh` **115**, `check-ledger.py` **19
+rules**, `check-layout.sh` **117/0/0**, `check-exit.sh` **99**,
+`check-install.sh` **64**, `check-budget.sh` **50** — all unmoved.
+
+**The compiled cards did not move, and that is an assertion.**
+`at-thresholds.md`, `assertions-f.md`, `assertions-h.md` and `assertions-s.md`
+are **byte-identical to `77985a6`**, checked by name and by
+`check-cards.py`'s own re-derivation: no CC wording moved, no threshold text
+moved, and nothing this edition ruled travels into a card.
+
+**The new checks were proved non-vacuous, not assumed.** Four seeded breaches,
+each reverted: the mid-grant stop report dropped from hold condition 2 (the
+live hold-condition probe fired) · D-O85's *a positive stands* inverted (fired)
+· the interrupted line removed from the pinned block (the byte-identity compare
+**and** the eight-line guard both fired) · one line dropped from AGENTS.md's
+copy of the new shape (the three-carrier byte-match fired). The suite returned
+to 564 / 278 green after each restore.
+
+**Falsification, and what it caught.** One printed sweep over the doc and the
+carriers, in five parts — the killed states absent, the required strings at
+their one home, the citations pointing at them. **It caught two things, both
+probe errors, corrected rather than papered over:** the sweep expected the
+third shape in **45** payload files when the register self-check block lives in
+**42** — the probe now compares the two **sets** rather than trusting a guessed
+number, which is the stronger assertion; and it expected the collapsed trail
+line **once** in the document when it legitimately stands **three** times —
+pinned block, D-O87's ruling, §37's record row — exactly the pattern the
+no-match line has carried since v0.31, and the EC-18 precedent for a probe that
+counts a document's own quotation as a live hit. **No finding against the work
+survived.**
+
+**What did not move.** **D-O53's key and D-O54's method, match rule and
+deterministic ranking** — D-O85 rules what a listing that never finished may
+ground, and changes nothing about how a listing is taken or filtered. **D-O80
+and D-O81 stand word for word**, extended and never rewritten, and the **P-A1
+band-wide-search-set application stays routed**, as v0.31 left it. **The safety
+floor keeps its four acts** (D-O37, D-O42) — D-O86 renders a stop, it does not
+move one. **No §10.7 policy row added and none moved.** **D-O36's one-batch
+ratification at `off` stands** — D-O87 shortens a **report**, never a record:
+the AUTO stamps append to `.specify/aspect-state.md` unchanged. **D-O63's law
+line is untouched** and keeps its slots. **D-O69's decision-list tail is not
+extended to the new report** — stated on both surfaces, never left to
+inference. **No new prompt point, no new stop, no new event kind, no new ledger
+field, no new record class, no new state, no new transition, no new instrument,
+no new status value, no threshold text and no assertion text.** **No fixture
+moved, no template body moved, `tests/layout.expected` unchanged**, and D-O33's
+≤ 8 Presale interaction budget is arithmetically untouched — every render this
+edition adds fires at a turn-ending stop that already happened. **The writing
+standard, the elicitation engine, all six catalogue batches, the sequencing
+plan, the index, the completeness contract, the gate definition, the
+source-audit definition and the phase-2 build plan are untouched.**
+
+**Incidental, noticed and deliberately not fixed.** **`ba-close-band1` and
+`ba-enter-feature` each say "one of the four events that end the run's turn"
+without enumerating them** — read and left alone: each scopes itself to its own
+band-boundary event and names its own render, so neither carries a stale count.
+**Routed, not fixed here.**
+
+**Open — routed from this pass.** **The `Ratify:` line under a prior
+ratification** — where D-O87's condition fires, the resumption report still
+renders `Ratify: accept all / list exceptions`, an ask for a ruling already
+given; that is a **second conditional on a second line**, which is a second
+ruling, and the prompt ruled one. **The enforcing check for D-O88** — nothing
+asserts a line-anchored edit and nothing forbids a template from re-embedding a
+literal heading string; **named routed-not-built for the regression-floor
+pass**, as the B8 pass left it and as D-O88 now says on the record. **The `<m>`
+in the interrupted line is often `unknown`** — a tool that denies page three
+rarely states how many pages there were, so the honest render carries a hole
+the grammar allows and no rule can fill. **The mid-grant stop report has no
+fixture** — the shape is asserted in four places and executed in none, the
+`Preconditions open:` gap of the previous pass, one shape over. **Standing and
+carried unchanged:** no check derives a precondition grade; the catalogue index
+has no compiler; the reconciliation family (runtime `AS` ↔ audit `OB`);
+§10.1's P-O0b act cell and its cross-cutting omission; `check-audit.sh` ·
+`sk_audit.py`, named and unbuilt. **The EC wave is closed:** EC-17, EC-18 and
+EC-19 are all landed, and no errata item from the 2026-08-21 registration
+remains open.

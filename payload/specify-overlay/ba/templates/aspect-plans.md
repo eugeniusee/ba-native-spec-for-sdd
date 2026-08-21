@@ -18,10 +18,10 @@
   sheets; custom techniques take a BA-supplied or BA-confirmed contract. An
   unconfirmed contract makes the run illegal.
 
-  Edit discipline (field defect 2026-08-20, B8): section headings and head
-  lines are edited line-anchored — full-line match at line start — never by
-  substring search. This comment deliberately names sections without their
-  literal heading strings.
+  Edit discipline — the orchestrator rules §2.4, D-O88 (field defect
+  2026-08-20, B8): section headings and head lines are edited line-anchored —
+  full-line match at line start — never by substring search. This comment
+  deliberately names sections without their literal heading strings.
 -->
 
 <!-- Section shape, repeated for each heading below:

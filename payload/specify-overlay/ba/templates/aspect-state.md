@@ -12,8 +12,9 @@
   set at P-O0b — scope-frame selection, both in one render, one reply.
   File discipline: the head is REWRITTEN IN PLACE; events are APPEND-ONLY.
   Head rewrites are line-anchored — full-line match at line start — never by
-  substring search (field defect 2026-08-20, B8); this comment deliberately
-  avoids the literal head-line string.
+  substring search: the orchestrator rules §2.4, D-O88 (field defect
+  2026-08-20, B8). This comment deliberately avoids the literal head-line
+  string.
 
   States (D-O2): untouched · open · first-pass-cleared · waived · reopened.
   Transitions T1–T8 are all BA acts; an aspect gate never self-clears

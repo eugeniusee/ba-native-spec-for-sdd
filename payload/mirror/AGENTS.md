@@ -25,8 +25,9 @@ aspect-state head — the Profile and Auto lines govern.
 code + name · state first, then the act · ≤ 10 lines outside pinned shapes ·
 no acknowledgement-only stop. A failing render is rewritten, not sent.
 **Under a standing autonomy grant, register renders address the ledger, not
-the conversation** — the band-boundary report and the resumption report are the
-only BA-facing renders of an auto cycle (`/ba-auto`).
+the conversation** — the band-boundary report, the mid-grant stop report and
+the resumption report are the only BA-facing renders of an auto cycle
+(`/ba-auto`).
 
 **Session mode — the analysis boundary (framework-wide).** Every conversation
 this framework conducts is an **analysis session**. An analysis session produces
@@ -269,12 +270,14 @@ are out of its reach.
    ledger head §2.4, source inventory §8.1, profile picker §8.1,
    scope frame §8.1,
    project dashboard §10.4, WBS export §10.5, route render §10.6,
-   band-boundary report §10.7, resumption report §10.7,
+   band-boundary report §10.7, mid-grant stop report §10.7,
+   resumption report §10.7,
    P-O prompts) keep their shapes; never re-narrate what a
    format already shows. On conflict between this register and a pinned shape,
    the shape governs. **Under a standing autonomy grant, register renders
-   address the ledger, not the conversation:** the band-boundary report and the
-   resumption report are the **only** BA-facing renders of an auto cycle.
+   address the ledger, not the conversation:** the band-boundary report, the
+   mid-grant stop report and the resumption report are the **only** BA-facing
+   renders of an auto cycle.
 9. **The stop-point closing ask.** Every render that ends the turn awaiting BA
    input — every legitimate §10.1 stop, a contract-miss stop (§6.3), any
    keep-or-discard ask — ends with a final plain-English block titled
@@ -291,7 +294,9 @@ are out of its reach.
    into the existing pinned reply and record grammar; typed token shortcuts
    stay legal, never the only channel. The ask is appended after the pinned
    render and replaces nothing. Under a standing autonomy grant this rule is
-   inert — no mid-run questions exist there.
+   inert for the two renders the exemption names — the band-boundary report and
+   the resumption report. It reaches the mid-grant stop report: that render
+   ends the turn awaiting a BA act, and the ask follows it.
 
 ## Autonomous mode — the autonomy grant
 
@@ -366,7 +371,8 @@ inside a band**. Every record — AUTO stamps, auto-AWs, deferrals, open questio
 until exactly one of four events: **a band boundary** (P-O7 — Band-1 closure ·
 P-O8 — Band-3 entry) · **a safety-floor stop** (the ⚑ sign-offs · the effective
 PASS · `/ba-handoff` · P-O0b — scope-frame selection) · **exhaustion of the
-grant's scope** · **`off`**. A conversational render **ends the turn**, so under
+grant's scope** · **`off`**. The middle two render the **mid-grant stop report**
+below. A conversational render **ends the turn**, so under
 a grant a mid-band render is a de-facto stop — the exact thing the grant was
 written to remove.
 
@@ -383,22 +389,48 @@ Health refresh: <current | overdue: <r> runs vs cadence>
 Next act: <one line> — any reply continues · /ba-auto off renders the resumption report
 ```
 
+**The mid-grant stop report — pinned shape**, rendered at a **safety-floor
+stop** or at **exhaustion of the grant's scope**. One class: auto halts
+mid-grant and hands control back, the grant **not closed** and **no
+ratification asked**. Render it, **end the turn**:
+
+```
+Auto paused — <date> · <safety floor: <act — code + name> | scope exhausted: <the AG's scope edge, as AG-<n> states it>>
+Stands: <what the run completed, one line> · mid-flight: <none | run aborted, artifact stays draft>
+Auto-trail since <start | last boundary>: <n> acts · Assumptions: <n> · Open questions: <n>
+Resume from: <the act the BA takes — one line> · AG-<n>: <stands | reaches no further>
+```
+
+**The closing ask follows these four lines** — the AUTO exemption reaches the
+other two reports, not this one: this render ends the turn awaiting a BA act.
+At a **safety-floor stop the grant stands** and the run continues under the same
+`AG-<n>`; at **scope exhaustion it reaches no further**. It opens no new path
+and asks for no ratification.
+
 **The resumption report — pinned shape**, rendered at `off`:
 
 ```
 Auto off — <date>
 Stopped at: <point> · mid-flight: <none | run aborted, artifact stays draft>
-Auto-trail: <n> acts — one line each: <date> · AUTO (AG-<n>) · <act> · <basis>
+Auto-trail: <n> acts — one line each: <date> · AUTO (AG-<n>) · <act> · <basis>   (the pinned default)
+Auto-trail: <n> acts — ratified in this reply · full trail: .specify/aspect-state.md Events   (renders instead, and only, where a full ratification already stands)
 Assumptions: <n> · Open questions: <n>
 Ratify: accept all / list exceptions
 Next manual act: <one line>
 ```
 
-Ratification is one batch act; exceptions reopen their items manually.
+Ratification is one batch act; exceptions reopen their items manually. **The
+trail line has one conditional:** a **full** ratification already standing —
+nothing excepted — collapses it to its count plus the ledger pointer; a
+ratification naming exceptions prints the full trail, because an act nobody can
+see is an act nobody can except. The acts live append-only in
+`.specify/aspect-state.md` either way, and the report is still six lines.
 
 **The scope-advisory decision list — a conditional tail on both reports.** Where
 the ledger head's `Scope advisories:` line carries at least one **`standing`**
-entry, both reports render the list as a **tail after their last pinned line**;
+entry, those two reports render the list as a **tail after their last pinned
+line** — never the mid-grant stop report, which rules nothing and closes no
+grant;
 where no entry stands, **nothing renders**. **The pinned shapes above do not
 change** — five lines and six, byte for byte — and the tail is an addition,
 never a replacement:

@@ -1,6 +1,6 @@
 ---
 name: ba-auto
-description: Autonomous mode - /ba-auto on writes the autonomy grant AG-<n>, flips the ledger head's Auto line and runs the surviving checkpoints under the policy table, each act stamped AUTO; /ba-auto off closes the grant and renders the pinned resumption report for one batch ratification. The grant reaches every act that spends no client access and makes no external commitment - self-elections included, each stamped and ratified in the batch; a client call is never booked, and an un-electable act renders as a choice, never as blocked. The safety floor sits outside every grant - the two flagged sign-offs, the effective PASS, the handoff and the scope frame at P-O0b - scope-frame selection stay BA-only. Never grants itself a grant.
+description: Autonomous mode - /ba-auto on writes the autonomy grant AG-<n>, flips the ledger head's Auto line and runs the surviving checkpoints under the policy table, each act stamped AUTO; /ba-auto off closes the grant and renders the pinned resumption report for one batch ratification. The grant reaches every act that spends no client access and makes no external commitment - self-elections included, each stamped and ratified in the batch; a client call is never booked, and an un-electable act renders as a choice, never as blocked. The safety floor sits outside every grant - the two flagged sign-offs, the effective PASS, the handoff and the scope frame at P-O0b - scope-frame selection stay BA-only. A halt mid-grant - the safety floor, or the grant's own scope exhausted - renders the pinned mid-grant stop report and hands control back with the grant still standing. Never grants itself a grant.
 disable-model-invocation: true
 ---
 
@@ -139,8 +139,10 @@ events:
 1. **A band boundary** — P-O7 — Band-1 closure, or P-O8 — Band-3 entry. Stamp,
    render the band-boundary report below, end the turn.
 2. **A safety-floor stop** — the two ⚑ sign-offs, the effective PASS,
-   `/ba-handoff <feature>`, or P-O0b — scope-frame selection.
-3. **Exhaustion of the grant's scope** — the `scope:` field of `AG-<n>`.
+   `/ba-handoff <feature>`, or P-O0b — scope-frame selection. Render the
+   **mid-grant stop report** below, end the turn.
+3. **Exhaustion of the grant's scope** — the `scope:` field of `AG-<n>`. The
+   same report, its first line naming the scope edge instead of the floor.
 4. **`off`** — `/ba-auto off`, or the BA interrupting.
 
 **Why this is a rule and not a preference:** a conversational render **ends the
@@ -177,6 +179,46 @@ the two renders can never disagree. **The refresh act is not yours:**
 `/ba-gate-health` runs it and the BA invokes it. A grant does not extend to it,
 the report never fires it, and an `overdue` line is a fact rendered, not a stop.
 
+## The mid-grant stop report — a pinned shape
+
+Hold conditions **2 and 3** — a **safety-floor stop** and **exhaustion of the
+grant's scope** — are **one class**: auto halts **mid-grant** and hands control
+back. The grant is **not closed** and **no ratification is asked**. One shape
+covers both; the difference between them is its **first line**. Render it and
+**end the turn**:
+
+```
+Auto paused — <date> · <safety floor: <act — code + name> | scope exhausted: <the AG's scope edge, as AG-<n> states it>>
+Stands: <what the run completed, one line> · mid-flight: <none | run aborted, artifact stays draft>
+Auto-trail since <start | last boundary>: <n> acts · Assumptions: <n> · Open questions: <n>
+Resume from: <the act the BA takes — one line> · AG-<n>: <stands | reaches no further>
+```
+
+**Four lines, then the closing ask.** The register's `What I need from you:`
+block follows the last pinned line — appended, never replacing one. **The AUTO
+exemption does not reach this render:** it ends the turn **awaiting a BA act**,
+which is the closing ask's own trigger. The exemption stands for the
+band-boundary report and the resumption report, and for those two only.
+
+**What each event does to the grant — say which, never leave it inferred.** At
+a **safety-floor stop** the grant **stands**: the floor's four acts sit outside
+every grant on their own account, the BA performs the act, and the run
+continues under the same `AG-<n>`. At **scope exhaustion** the grant **reaches
+no further**: `AG-<n>` stands as a record awaiting ratification, and you may
+self-elect nothing past the edge its own `scope:` field states. The
+`Resume from:` line carries which of the two it is.
+
+**It opens no new path, and it is not a ratification point.** Every option the
+closing ask may offer already exists: **`off`** — the resumption report and one
+batch ratification · **the act itself**, where the floor's act is the BA's to
+perform · **the extension by election**, in the words above —
+`Destination reached — … extension available by election: …`. **Ratification
+stays the grant's instrument at `off`**, and this report asks for none.
+
+**Where a standing scope advisory stands, the decision-list tail does not
+follow this report.** That list is ruled at ratification and at
+**T-18 — Scope allocation's** step-4 approval, and a mid-grant stop is neither.
+
 ## `off` — the resumption report
 
 `/ba-auto off` (or the BA interrupting) closes the grant and renders this
@@ -185,7 +227,8 @@ the report never fires it, and an `overdue` line is a fact rendered, not a stop.
 ```
 Auto off — <date>
 Stopped at: <point> · mid-flight: <none | run aborted, artifact stays draft>
-Auto-trail: <n> acts — one line each: <date> · AUTO (AG-<n>) · <act> · <basis>
+Auto-trail: <n> acts — one line each: <date> · AUTO (AG-<n>) · <act> · <basis>   (the pinned default)
+Auto-trail: <n> acts — ratified in this reply · full trail: .specify/aspect-state.md Events   (renders instead, and only, where a full ratification already stands)
 Assumptions: <n> · Open questions: <n>
 Ratify: accept all / list exceptions
 Next manual act: <one line>
@@ -193,7 +236,20 @@ Next manual act: <one line>
 
 A run cut off mid-flight leaves its artifact a **draft** — never half-land an
 output and call it done. **Ratification is one batch act.** Exceptions reopen
-their items manually, each by its own ordinary checkpoint. Append the events:
+their items manually, each by its own ordinary checkpoint.
+
+**The trail line has one conditional, and one only.** Where a **full**
+ratification already stands when the report renders — the reply that ends the
+grant accepts the batch **with nothing excepted**, or a `ratification` event
+for `AG-<n>` is already on the ledger — the trail line **is** its count plus
+the ledger pointer. Absent that, print the **full one-line-per-act trail**: it
+is the pinned default and it stays. **A ratification that names exceptions
+prints the full trail** — an act nobody can see is an act nobody can except.
+**Nothing is lost either way:** the acts live append-only in
+`.specify/aspect-state.md`, and the short line is a **pointer to that record**,
+never a substitute for it. **The report is still six lines.**
+
+Append the events:
 
 ```
 <date> · auto off · AG-<n> · <initials> — <n> AUTO acts, awaiting ratification
@@ -274,7 +330,9 @@ in the same act · **never renders an un-electable act as `blocked` or `locked`*
 it is a choice, and it renders as one · **never ends the
 turn or renders to the conversation between acts inside a band** — mid-run
 records go to the ledger only, and a cycle's only BA-facing renders are the
-band-boundary report and the resumption report.
+band-boundary report, the mid-grant stop report and the resumption report ·
+**never halts mid-grant without the stop report** — a run that hands control
+back and says nothing has made the BA guess what stopped it.
 
 **Mode read (framework-wide):** before the first act of any session, read the
 aspect-state head — the Profile and Auto lines govern.
@@ -283,8 +341,9 @@ aspect-state head — the Profile and Auto lines govern.
 code + name · state first, then the act · ≤ 10 lines outside pinned shapes ·
 no acknowledgement-only stop. A failing render is rewritten, not sent.
 **Under a standing autonomy grant, register renders address the ledger, not
-the conversation** — the band-boundary report and the resumption report are the
-only BA-facing renders of an auto cycle (`/ba-auto`).
+the conversation** — the band-boundary report, the mid-grant stop report and
+the resumption report are the only BA-facing renders of an auto cycle
+(`/ba-auto`).
 
 **The session boundary (framework-wide).** This is an **analysis session**. It
 produces analysis artifacts only. It never produces an implementation plan, a

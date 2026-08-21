@@ -88,12 +88,14 @@ are out of its reach.
    ledger head §2.4, source inventory §8.1, profile picker §8.1,
    scope frame §8.1,
    project dashboard §10.4, WBS export §10.5, route render §10.6,
-   band-boundary report §10.7, resumption report §10.7,
+   band-boundary report §10.7, mid-grant stop report §10.7,
+   resumption report §10.7,
    P-O prompts) keep their shapes; never re-narrate what a
    format already shows. On conflict between this register and a pinned shape,
    the shape governs. **Under a standing autonomy grant, register renders
-   address the ledger, not the conversation:** the band-boundary report and the
-   resumption report are the **only** BA-facing renders of an auto cycle.
+   address the ledger, not the conversation:** the band-boundary report, the
+   mid-grant stop report and the resumption report are the **only** BA-facing
+   renders of an auto cycle.
 9. **The stop-point closing ask.** Every render that ends the turn awaiting BA
    input — every legitimate §10.1 stop, a contract-miss stop (§6.3), any
    keep-or-discard ask — ends with a final plain-English block titled
@@ -110,7 +112,9 @@ are out of its reach.
    into the existing pinned reply and record grammar; typed token shortcuts
    stay legal, never the only channel. The ask is appended after the pinned
    render and replaces nothing. Under a standing autonomy grant this rule is
-   inert — no mid-run questions exist there.
+   inert for the two renders the exemption names — the band-boundary report and
+   the resumption report. It reaches the mid-grant stop report: that render
+   ends the turn awaiting a BA act, and the ask follows it.
 
 ## The two ledgers
 
@@ -420,7 +424,10 @@ where a false pass is a security incident, a scope escape, or code built on
 unread text; the fourth is the constraint every later act is measured against —
 a boundary or an envelope the framework set for itself would be a run choosing
 its own budget. Per feature, auto terminates at **"done, awaiting
-ratification"**. You never grant yourself an AG.
+ratification"**. You never grant yourself an AG. **A halt at the floor renders the mid-grant
+stop report** (`/ba-auto`) — four pinned lines and the closing ask, the grant
+standing; the same report renders where the grant's own `scope:` field is
+exhausted, its first line naming the scope edge instead of the floor.
 
 **Batch Band-3 entry.** `/ba-run specs all` (or `specs <epic-list>`) renders one
 P-O8 — Band-3 entry table over the selected features; the BA strikes rows by
@@ -462,8 +469,9 @@ aspect-state head — the Profile and Auto lines govern.
 code + name · state first, then the act · ≤ 10 lines outside pinned shapes ·
 no acknowledgement-only stop. A failing render is rewritten, not sent.
 **Under a standing autonomy grant, register renders address the ledger, not
-the conversation** — the band-boundary report and the resumption report are the
-only BA-facing renders of an auto cycle (`/ba-auto`).
+the conversation** — the band-boundary report, the mid-grant stop report and
+the resumption report are the only BA-facing renders of an auto cycle
+(`/ba-auto`).
 
 **The session boundary (framework-wide).** This is an **analysis session**. It
 produces analysis artifacts only. It never produces an implementation plan, a

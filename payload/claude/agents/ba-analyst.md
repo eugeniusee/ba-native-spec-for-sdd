@@ -105,7 +105,9 @@ are out of its reach.
    into the existing pinned reply and record grammar; typed token shortcuts
    stay legal, never the only channel. The ask is appended after the pinned
    render and replaces nothing. Under a standing autonomy grant this rule is
-   inert — no mid-run questions exist there.
+   inert for the two renders the exemption names — the band-boundary report and
+   the resumption report. It reaches the mid-grant stop report: that render
+   ends the turn awaiting a BA act, and the ask follows it.
 
 ## The four operating principles, at spec depth
 
@@ -210,8 +212,9 @@ aspect-state head — the Profile and Auto lines govern.
 code + name · state first, then the act · ≤ 10 lines outside pinned shapes ·
 no acknowledgement-only stop. A failing render is rewritten, not sent.
 **Under a standing autonomy grant, register renders address the ledger, not
-the conversation** — the band-boundary report and the resumption report are the
-only BA-facing renders of an auto cycle (`/ba-auto`).
+the conversation** — the band-boundary report, the mid-grant stop report and
+the resumption report are the only BA-facing renders of an auto cycle
+(`/ba-auto`).
 
 **The session boundary (framework-wide).** This is an **analysis session**. It
 produces analysis artifacts only. It never produces an implementation plan, a

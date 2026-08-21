@@ -153,8 +153,9 @@ exactly:
 ```
 Sources on hand: <list of supplied material>.
 Slack — closest match on the project name: #<channel> (archived) — include it, or ignore it.   (renders only when Slack is reachable and the scan matched; "(archived)" only when the candidate is archived)
-Slack — no channel matches the project name · listed <n> channels (public + private, archived included).   (renders only when Slack is reachable and the scan found no match)
-and <N> more matched — name them to see                                             (renders only when N ≥ 1)
+Slack — no channel matches the project name · listed <n> channels (public + private, archived included).   (renders only when Slack is reachable, the listing completed, and the scan found no match)
+Slack — listing interrupted at <act>: covered <n> of <m | unknown> pages — corpus not established; no negative rests on it.   (renders only when the listing was cut before completion; a matched candidate still renders on its own line)
+and <N> more matched — name them to see                                             (renders only over a completed listing, when N ≥ 1)
 <k> channel(s) excluded by BA ruling                                                 (renders only when k ≥ 1)
 Anything else? Slack channel(s) · email threads · drive folders · call recordings —
 name them, paste them, or attach them; or "none".
@@ -203,6 +204,27 @@ matches the project's, and offer the **best match** on the inventory's own line.
   Slack source already stands on the `Sources:` line, the listing **must
   surface it — a listing that misses a known channel is void**, and no render
   rests on it.
+- **A listing cut before completion yields a partial corpus.** A permission
+  denial, a rate limit, a tool fault — any interruption. **Retry a retryable
+  cut first:** a listing that completes on retry is complete and declares
+  nothing. Where the cut stands, the corpus is a **sample**, and the sample is
+  not symmetric:
+  - **A positive stands.** A hit is a hit — render the candidate line
+    unchanged and let the BA dispose of it as they dispose of any candidate.
+  - **No negative, and no counts.** Never render
+    `Slack — no channel matches the project name …`: it is one line carrying
+    both a negative and a completeness claim, and a partial corpus grounds
+    neither. Never render `and <N> more matched` — the complete listing is
+    what makes `<N>` honest. **`<k> channel(s) excluded by BA ruling` still
+    renders:** it states what *you* removed on the BA's own ruling, never what
+    the workspace holds.
+  - **Render the cut — never stay silent about it.** The interrupted line of
+    the block above: what you covered, where it was cut, and that the corpus
+    is **not established**.
+  - **Never convert a cut into a negative.** No fallback to the endpoint
+    removed above · no narrowing of an axis to make a listing "finish" — a
+    default is presumed narrowing · no second scan whose smaller corpus is
+    reported as the first one's.
 - **The match rule.** Tokenize channel names on `_` and `-`, case-insensitive;
   a channel is a candidate **iff every token of the project name appears among
   the channel's tokens**. The listing resolves names and metadata, never a
@@ -777,8 +799,9 @@ aspect-state head — the Profile and Auto lines govern.
 code + name · state first, then the act · ≤ 10 lines outside pinned shapes ·
 no acknowledgement-only stop. A failing render is rewritten, not sent.
 **Under a standing autonomy grant, register renders address the ledger, not
-the conversation** — the band-boundary report and the resumption report are the
-only BA-facing renders of an auto cycle (`/ba-auto`).
+the conversation** — the band-boundary report, the mid-grant stop report and
+the resumption report are the only BA-facing renders of an auto cycle
+(`/ba-auto`).
 
 **The session boundary (framework-wide).** This is an **analysis session**. It
 produces analysis artifacts only. It never produces an implementation plan, a

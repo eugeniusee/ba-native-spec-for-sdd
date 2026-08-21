@@ -843,7 +843,11 @@ done
 
 printf '\n▸ The listing declares its corpus (§8.1; D-O80–D-O81)\n'
 
-NOMATCH_LINE='Slack — no channel matches the project name · listed <n> channels (public + private, archived included).   (renders only when Slack is reachable and the scan found no match)'
+NOMATCH_LINE='Slack — no channel matches the project name · listed <n> channels (public + private, archived included).   (renders only when Slack is reachable, the listing completed, and the scan found no match)'
+# D-O85's render delta: the cut declares itself, and the two corpus-grounded
+# lines say out loud that they need a completed listing.
+CUT_LINE='Slack — listing interrupted at <act>: covered <n> of <m | unknown> pages — corpus not established; no negative rests on it.   (renders only when the listing was cut before completion; a matched candidate still renders on its own line)'
+COUNT_LINE='and <N> more matched — name them to see                                             (renders only over a completed listing, when N ≥ 1)'
 MATCH_LINE='Slack — closest match on the project name: #<channel> (archived) — include it, or ignore it.'
 
 for c in "$RULES_SRC" "$FRAME"; do
@@ -945,10 +949,11 @@ if a != b:
             print("doc:   %r" % x); print("skill: %r" % y); break
     print("doc lines %d, skill lines %d" % (len(a), len(b)))
     sys.exit(1)
-# six lines before this ruling, seven after it: D-O80's no-match line is the
-# delta, and a count guard is what keeps a future line from arriving unruled.
-if len(a) != 7:
-    print("the pinned block is not seven lines: %d" % len(a)); sys.exit(1)
+# six lines before D-O80, seven after it, eight after D-O85: the no-match line
+# and the interrupted line are the two deltas, and a count guard is what keeps a
+# future line from arriving unruled.
+if len(a) != 8:
+    print("the pinned block is not eight lines: %d" % len(a)); sys.exit(1)
 PYBLOCK
 
 # ── 5d. the excluded source — the disposition the inventory had no word for ──
@@ -1444,7 +1449,7 @@ has "$RULES_DOC" "An acknowledgement-only stop is a banned render" \
     "§10.3 rule 7 carries the banned-render clause (D-O30)"
 has "$RULES_DOC" "WBS export §10.5, route render §10.6," \
     "§10.3 rule 8's pinned-formats list names the WBS export and the route render"
-has "$RULES_DOC" "band-boundary report §10.7, resumption report §10.7" \
+has "$RULES_DOC" "band-boundary report §10.7, mid-grant stop report §10.7, resumption report §10.7" \
     "…and both §10.7 renders, the boundary report ahead of the resumption report (D-O52)"
 has "$RULES_DOC" "v0.13" "the change-record stack keeps the edition WS-2 produced"
 has "$RULES_DOC" "D-O30–D-O34" "…and the decisions it ruled"
@@ -1479,9 +1484,13 @@ has "$RULES_DOC" "v0.32" "…and the edition the stop-point closing ask produced
 has "$RULES_DOC" "D-O83–D-O84" "…and the profile-debt + precondition ruling block"
 has "$RULES_DOC" "## 36. Review record (v0.32 → v0.33)" \
     "…and §36, the review record that carries it"
-head -2 "$RULES_DOC" | grep -q 'v0\.33' \
-  && ok "the header states the live edition — v0.33, the profile stops fighting its destination" \
-  || bad "the header does not name v0.33: the edition and the change record disagree"
+has "$RULES_DOC" "v0.33" "…and the edition expected profile debt produced"
+has "$RULES_DOC" "D-O85–D-O88" "…and the undefined-cases ruling block"
+has "$RULES_DOC" "## 37. Review record (v0.33 → v0.34)" \
+    "…and §37, the review record that carries it"
+head -2 "$RULES_DOC" | grep -q 'v0\.34' \
+  && ok "the header states the live edition — v0.34, the undefined cases get law" \
+  || bad "the header does not name v0.34: the edition and the change record disagree"
 has "$RULES_DOC" "D-O45–D-O49" "…and the source-inventory ruling block"
 has "$RULES_DOC" "D-O50" "…and the change record names the unreadable-spec ruling"
 has "$RULES_DOC" "D-O51–D-O52" "…and the continuity-under-a-grant ruling block"
@@ -1491,11 +1500,11 @@ has "$RULES_DOC" "v0.20" "…and the edition the candidate scan produced"
 has "$RULES_DOC" "D-O54" "…and the scan-method ruling"
 
 # the ruling block is contiguous from the live high-water mark: no gap, no reuse
-python3 - "$RULES_DOC" <<'PYX' && ok "the D-O block runs 1…84 with no gap and no skipped number" \
+python3 - "$RULES_DOC" <<'PYX' && ok "the D-O block runs 1…88 with no gap and no skipped number" \
   || bad "the D-O decision block is not contiguous — a number is missing or reused"
 import re, sys
 seen = {int(n) for n in re.findall(r"D-O(\d+)", open(sys.argv[1], encoding="utf-8").read())}
-sys.exit(0 if seen == set(range(1, 85)) else 1)
+sys.exit(0 if seen == set(range(1, 89)) else 1)
 PYX
 
 # ── 6b. Band-2 plan composition — the record home has its producer (D-O55) ──
@@ -1683,6 +1692,116 @@ python3 "$HERE/check-cards.py" >/dev/null 2>&1 \
 # the killed behaviour, stated as a refusal the document must not contain
 hasnt "$RULES_DOC" "AT-RQ-1 is relaxed under Presale" \
     "no surface relaxes AT-RQ-1 under a profile"
+
+# ── EC-19 · the undefined cases get law (D-O85 · D-O86 · D-O87 · D-O88) ─────
+#
+# Three places the law stopped short and a live run finished the sentence for
+# it, plus one discipline stated in template commentary and nowhere in law.
+# B9-residual: a listing cut at page three had to decide for itself what a
+# partial corpus may ground. B10: a run halted at a safety floor, and again at
+# its own scope edge, and improvised a render twice in one session. B12: the
+# report demanded the full trail from a BA who had already ratified. B8's
+# routed half: the ledger edit discipline had no rule to cite.
+#
+# What must stay true: a positive survives a cut and a negative never does;
+# both untethered stops have one render and it carries the closing ask; the
+# trail's conditional is the shape's own, and rule 8's precedence is untouched;
+# the ledger rule is law and its enforcing check is named, not claimed built.
+
+printf '\n▸ EC-19 — the interrupted listing, the two untethered stops, the trail (D-O85–D-O88)\n'
+
+# R1 · D-O85 — the interrupted listing, and its asymmetry
+has "$RULES_DOC" "**The interrupted listing (D-O85" \
+    "D-O85 exists — the case D-O80 left open is ruled"
+has "$RULES_DOC" "yields a **partial corpus**, and the partial corpus is a **sample** in D-O81" \
+    "…and a cut listing is a sample in D-O81's own sense"
+has "$RULES_DOC" "**A positive finding stands.** A hit is a hit" \
+    "…a positive survives the cut — the field improvisation, now the rule"
+has "$RULES_DOC" "**never renders over a cut listing**" \
+    "…and the no-match line never renders over one"
+has "$RULES_DOC" "**The count line withholds with it.**" \
+    "…and the count line withholds with it (D-O54 applied, not new law)"
+has "$RULES_DOC" 'renders unchanged**: it states what the scan itself removed' \
+    "…while the excluded-count line renders — it states the scan's own act"
+has "$RULES_DOC" "**The cut renders — it is never silent.**" \
+    "…and the cut is declared, never passed over"
+has "$RULES_DOC" "**Retry before you render (D-O85).**" \
+    "…a retryable cut is retried before anything renders"
+has "$RULES_DOC" "**This is the declaration grammar, not an extension of it.**" \
+    "…and the ruling instances D-O81's grammar rather than extending it"
+# the killed states, as refusals the document must not contain
+hasnt "$RULES_DOC" "a partial listing may render the coverage line" \
+    "no path lets a partial listing fill the coverage line"
+for c in "$RULES_SRC" "$FRAME"; do
+  lbl="$(basename "$(dirname "$c")")/$(basename "$c")"
+  has "$c" "$CUT_LINE" "the interrupted line is pinned identically — $lbl (D-O85 render delta)"
+  has "$c" "$COUNT_LINE" "…and the count line renders only over a completed listing — $lbl (D-O85)"
+done
+has "$FRAME" "**A listing cut before completion yields a partial corpus.**" \
+    "ba-frame carries the interrupted branch operationally (D-O85)"
+has "$FRAME" "**Never convert a cut into a negative.**" \
+    "…and never converts a cut into a negative"
+
+# R2 · D-O86 — one render for the two untethered stops
+has "$RULES_DOC" "**The mid-grant stop report — a pinned shape (D-O86" \
+    "D-O86 exists — the two untethered hold conditions have a render"
+has "$RULES_DOC" "Auto paused — <date> · <safety floor: <act — code + name> | scope exhausted:" \
+    "…and the shape names its event on the first line"
+has "$RULES_DOC" "Resume from: <the act the BA takes — one line> · AG-<n>: <stands | reaches no further>" \
+    "…and its last line carries the resumption act and the grant's standing"
+has "$RULES_DOC" "**Four lines, and the D-O82 closing ask follows as the tail that rule already defines**" \
+    "…the closing ask follows the four pinned lines, appended not merged"
+has "$RULES_DOC" "**§10.3 rule 9's AUTO exemption is amended on the record, never rewritten:**" \
+    "…and rule 9's exemption is amended on the record"
+has "$RULES_DOC" "**It does not reach the mid-grant stop report (§10.7):**" \
+    "…narrowed to the two renders it names"
+has "$RULES_DOC" "**§10.7's pinned-shape count moves two → three**" \
+    "…and the shape count moves by exactly one"
+has "$RULES_DOC" "**at scope exhaustion it reaches no further**" \
+    "…scope exhaustion states what it does to the grant"
+has "$RULES_DOC" "**D-O69's decision-list tail is not extended to this report.**" \
+    "…and the advisory tail is not extended — routed, never inferred"
+has "$RULES_DOC" "band-boundary report §10.7, mid-grant stop report §10.7, resumption report §10.7" \
+    "…register rule 8's pinned-format list carries all three shapes"
+# the killed state: a hold condition with no render
+python3 - "$RULES_DOC" <<'PYX' && ok "every D-O51 hold condition names a render — none is left untethered" \
+  || bad "a hold condition still has no defined render (D-O86)"
+import re, sys
+t = re.sub(r"\s+", " ", open(sys.argv[1], encoding="utf-8").read())
+i = t.index("The run proceeds continuously until exactly one of four events")
+holds = t[i:t.index("Why this is a rule and not a preference", i)]
+need = ["band-boundary report", "mid-grant stop report", "the same report", "off"]
+sys.exit(0 if all(s in holds for s in need) else 1)
+PYX
+
+# R3 · D-O87 — the trail after ratification
+has "$RULES_DOC" "**The trail after ratification (D-O87" \
+    "D-O87 exists — the trail has a conditional"
+has "$RULES_DOC" "Auto-trail: <n> acts — ratified in this reply · full trail: .specify/aspect-state.md Events" \
+    "…and the collapsed line is its count plus the ledger pointer"
+has "$RULES_DOC" "**A ratification that names exceptions renders the full trail.**" \
+    "…an exception renders the acts it might except"
+has "$RULES_DOC" "**§10.3 rule 8 stands untouched: on conflict between the register and a pinned shape, the shape governs**" \
+    "…and the governing rule is stated, never left to inference"
+has "$RULES_DOC" "**dissolves it inside the shape**" \
+    "…the conflict dissolved inside the shape, not resolved against rule 7"
+has "$RULES_DOC" "**The report's line count does not move**" \
+    "…and the six-line count does not move"
+
+# R4 · D-O88 — the ledger edit discipline
+has "$RULES_DOC" "**The ledger edit discipline (D-O88).**" \
+    "D-O88 exists at §2.4 — the ledger grammar's own home"
+has "$RULES_DOC" "**Head lines and section headings are edited line-anchored — a full-line match at line start — never by substring search.**" \
+    "…and the rule is line-anchored, full-line, never substring"
+has "$RULES_DOC" "a live-ledger edit that lands in commentary is **silent**" \
+    "…the hazard is named: a silent edit into commentary"
+has "$RULES_DOC" "**Routed to the regression-floor pass, not built by this ruling**" \
+    "…and the enforcing check is named unbuilt, never claimed built"
+for tpl in aspect-state aspect-plans; do
+  TP="$PKG_ROOT/payload/specify-overlay/ba/templates/$tpl.md"
+  has "$TP" "D-O88" "$tpl.md cites the rule instead of standing alone (D-O88)"
+  has "$TP" "line-anchored" "…and still states the discipline it teaches — $tpl.md"
+done
 
 # ── roll-up ──────────────────────────────────────────────────────────────────
 
