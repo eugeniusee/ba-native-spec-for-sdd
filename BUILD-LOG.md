@@ -10766,7 +10766,7 @@ by this pass.
 **B9-residual**, **B10** and **B12** of the 2026-08-20 field defect report,
 plus the **routed-not-fixed** half of the B8 pass — under the BA's standing
 ruling **"apply all recommendations"** (21 Aug 2026). Four rulings legislated
-into the orchestrator **first**, then propagated into 46 carriers, every
+into the orchestrator **first**, then propagated into 44 carriers, every
 carrier string tracing to the doc's locked text. Question protocol: nothing
 silently resolved.
 
@@ -10857,7 +10857,7 @@ and D-O87 **dissolves** the B12 conflict **inside the shape** rather than
 resolving it against rule 7, which is stated explicitly so the next session
 never has to infer it.
 
-**What moved — the carriers, second. 46 files, every string tracing to the
+**What moved — the carriers, second. 44 files, every string tracing to the
 doc.** **R1:** `ba-frame` — the pinned block (byte-identical to §8.1's, now
 eight lines) and a new **interrupted-listing branch** in the scan clause, four
 sub-rules deep, carrying no framework-law text of its own. **R2 · R3:**
@@ -10970,3 +10970,11 @@ has no compiler; the reconciliation family (runtime `AS` ↔ audit `OB`);
 `sk_audit.py`, named and unbuilt. **The EC wave is closed:** EC-17, EC-18 and
 EC-19 are all landed, and no errata item from the 2026-08-21 registration
 remains open.
+
+**Correction, on the record.** This entry and the `8b5601c` commit message both
+first said **46 carriers**; the true count is **44** — 36 skills, 4 personas, 2
+mirrors, 2 ledger templates, verified against `git show --name-only`. The two
+figures in this entry are corrected; the commit message stands as written and
+is wrong on that one number. Nothing else moves: the 49 staged paths are the
+44 carriers plus the orchestrator document, two checks, `VERSION` and
+`BUILD-LOG.md`.
