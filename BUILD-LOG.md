@@ -10321,3 +10321,207 @@ highest-value follow-up of the 0.1.32 pass); the reconciliation family
 (runtime `AS` ↔ audit `OB`); §10.1's P-O0b act cell and its cross-cutting
 omission; the P-A1 band-wide search set's corpus application; `check-audit.sh`
 · `sk_audit.py`, named and unbuilt from the earlier sittings.
+
+## The Register Stops Lying About Its Own Coverage — EC-17 audit integrity, documents before code · source-audit definition v0.2 · package 0.1.34 · 21 August 2026 · GREEN
+
+**Session prompt:** close **EC-17 — audit integrity**, items **B1–B4** and
+**B11** of the 2026-08-20 field defect report, under the BA's ruling **"apply
+all recommendations"** (21 Aug 2026). Five rulings legislated into
+`docs/methodology/ba-native-spec-source-audit-definition.md` **first**, then
+propagated into `payload/claude/skills/ba-audit/SKILL.md`, every carrier edit
+tracing to the doc's locked text. Question protocol: nothing silently
+resolved.
+
+**Precondition, clean.** `HEAD` and `origin/main` both at `3f0f59d` (the B8
+template-hardening commit, package 0.1.33), VERSION `0.1.33`, tree clean, all
+17 checks green at baseline — `check-orchestrator.sh` 501, `check-budget.sh`
+50, `check-cards.py` byte-identical. No sibling pass appeared in the tree at
+any point; the three files this pass staged are the only files that moved.
+
+**Origin — the defect.** A `/ba-audit` run 1 over a live band rendered a P-A1
+head claiming **118 obligations over a register that held 30**, never ran its
+backward trace or its critic pass, **self-authored every CC-S verdict** where
+operator policy forbade subagent dispatch, and **never wrote
+`decision-list.md`**. The register lied about its own coverage and the
+definition made every one of those failures either invisible or inevitable:
+the counts were free text nobody had to derive, the walk declared no corpus so
+a thirty-row keyword probe and a full two-pass walk were the same object on
+disk, Stage 2's dispatch clause anticipated only mechanical death so a policy
+refusal had no legal state at all, and the run's own workspace was never the
+condition of its ledger entry. **Documents before code by ruling:** the law
+moved first and every carrier string traces to it.
+
+**The eight questions, ruled before a byte moved.** Three the prompt marked,
+five the rulings left genuinely open; all eight answered **as recommended**.
+*(1)* **B11 precedence** — shared disposition → one enumerated amend row,
+CC-S-04's grain across distinct dispositions, enumeration count equal to the
+absorbed count. *(2)* **Status line** — lifted from *draft for maintainer
+review* to **ruled**, v0.2 minted, the maintainer's own ruling the basis a
+draft was waiting on. *(3)* **Scope** — `check-audit.sh` and `sk_audit.py`
+**PARKED**; doc + carrier only. *(4)* **The election's channel** — a BA ruling
+at the Stage-0 refusal's closing ask, **no invocation flag**: an election
+typed before the restriction is known is an election made blind, and the
+skill's argument line stays `[--full]`. *(5)* **Detection point** — Stage 0
+tests admissibility **and** a Stage-2 discovery halts back to that same
+refusal; one refusal text, two entry points. *(6)* **INCOMPLETE's home** — a
+pinned `Status:` field on the report entry, which made
+`source-audit-report-entry.md` a **third carrier** this pass touches. *(7)*
+**R3's render surfaces** — register head **and** both pinned heads. *(8)*
+**R4's required set** — conditional and named per file.
+
+**What moved — the law first (v0.1 → v0.2, D-S1…D-S5).** The `D-S` decision
+space is new and was verified free before minting. **D-S1 (B1) — §4 · §11:**
+the dispatch has **three** states, not two — alive · dead-mechanical
+(re-dispatched) · **UNDISPATCHABLE**, policy unavailability, which *is not a
+dispatch that died* and for which re-dispatch is not the remedy. Default path
+is a **Stage-0 refusal with its named unblocking act**; the **BA-electable
+self-evaluated mode** stamps every verdict `self-evaluated — no independent A
+pass` and **forces the run status to `INCOMPLETE`**, uncleared by any later
+act. **Silence is not a legal path**, and substituting the orchestrating
+session for the evaluator absent the election is a **defined violation**.
+**D-S2 (B2) — §5:** the five header numbers are **counted from
+`obligations.md`'s rows by status at render time**, `c + p + a + g = t`, with
+`Sources read:` and the `Claims:` line deriving the same way; a head
+disagreeing with the on-disk rows is **invalid audit output** on the bar §5
+already set for a finding without its quote, corrected before render and never
+rendered-and-explained. **D-S3 (B3) — §2 · §3 · §5:** per-source coverage
+accounting in the register head — `<sections walked>/<sections total> · <n>
+rows`, a zero-row source stating why — plus the **corpus-declaration rule
+(D-O81, orchestrator §8.1) applied at this document's own two retrievals**:
+the Stage-1 walk and the band-wide search set each **declare the corpus they
+must cover**, the run **states the corpus it covered**, and **a sample never
+grounds a `gap`**. **D-S4 (B4) — §5 · §6 · §7:** `decision-list.md` is an
+explicit **Stage-3 write act** — written before the ruling is asked for,
+written back when it is given, **and written on a clean run too**, zero rows
+and its `Rulings:` line — with §7 marking the **required set** and §6's Stage-5
+entry **refusing to append** over a missing required file. **D-S5 (B11) —
+§5:** the finding grain is CC-S-04's and untouched; the list-row grain is §5's,
+and the enumeration equality is the force.
+
+**§34's routed item is closed by D-S3, and closed on its own terms.** BUILD-LOG
+§34 and D-O81 named the P-A1 band-wide search set's corpus application *the
+same defect one level up*, **named and left unbuilt on purpose** — because
+legislating a second application from the post-mortem of the first would be
+the unexamined-corpus move the rule exists to forbid, and *the audit's own
+corpus axes were not established by that sitting's evidence*. This sitting has
+that evidence: a live audit run whose negatives rested on an undeclared
+corpus. The condition the routing set is met, and the item is closed rather
+than carried. **Framework law is cited, never restated** — D-O81's own
+sentence appears nowhere in either surface, verified by grep.
+
+**What moved — the carrier, second.** `ba-audit/SKILL.md`: Stage 0 gains item
+**5, dispatch admissibility** — the refusal, its `refused at Stage 0` grammar,
+and the two-option closing ask under §10.3 rule 9 with **(a) lift and re-run**
+recommended · Stage 1 gains the walk's corpus declaration and the per-source
+coverage block, and its self-description corrected **"Three rules" → "Four
+rules"** · Stage 2 gains **the search set's corpus declaration**, the
+three-state dispatch paragraph, the self-evaluated stamp, and *both traces
+write their rows* — a backward trace that did not run renders `0` against an
+empty block, visible, never a number the render supplies · Stage 3's pinned
+head gains `Corpus covered:` (unconditional) and a conditional `Status:` line,
+plus the derived-counts rule, the D-S5 precedence and `decision-list.md` as
+this stage's act · Stage 5 gains the workspace check before the append · the
+run-workspace block marks the required set · the *never does* list gains four
+clauses. **The mirror command table, the skill's `[--full]` argument line and
+`tests/layout.expected` are untouched** — the election is a ruling, not a flag.
+
+**What moved — the pinned entry template, third.**
+`payload/specify-overlay/ba/templates/source-audit-report-entry.md` gains
+`Status: <complete | INCOMPLETE — <reason>>` and `Corpus covered:` on the entry
+head, with three comment paragraphs carrying the status forcing, the sample
+rule and the count derivation. **The comment names its own fields without
+their literal head-line strings** — B8's edit discipline, applied one day
+after it was legislated and at a template B8 itself did not reach.
+
+**The CC-S card did not move, and that is an assertion.**
+`payload/specify-overlay/ba/cards/assertions-s.md` stands **byte-unchanged**,
+verified by `git diff --quiet`. D-S5 fixes a boundary *between* CC-S-04's
+finding grain and §5's list-row grain and edits neither: the card's *each
+unmapped row is its own finding* is true of the A pass exactly as written, and
+the absorption that looks like a contradiction happens one stage later, at a
+render the card does not own. Named in the doc's §12 and here rather than left
+as a silent non-edit.
+
+**The suite: 17 of 17 green, every count unmoved.** `check-m.sh` 71 ·
+`check-gate.sh` 105 · `check-orchestrator.sh` 501 · techniques 104 / 122 / 159
+· `check-spine.sh` 253 · `check-register.sh` 63 · `check-wbs.sh` 99 ·
+`check-status.sh` 115 · `check-ledger.py` 19 rules · `check-cards.py`
+byte-identical · `check-layout.sh` 117 · `check-exit.sh` 99 ·
+`check-install.sh` 64 · `check-budget.sh` 50 · `check-auto.sh` 250.
+**No count moved in either direction** — nothing in the suite asserts the
+edited text, checked before the first edit and confirmed after the last. The
+two pre-existing anchors *inside* the edited carrier were re-verified
+explicitly: `check-orchestrator.sh:986`'s D-O70 never-follow clause and
+`check-budget.sh:349`'s closing ask both still present.
+
+**Falsification, and what it caught.** A single printed sweep over all four
+surfaces: eight **killed** behaviours at zero (the live draft status line, the
+stale "Three rules", the two-state dispatch run-on, a P-A1 head with no corpus
+line above `Obligations:` in either surface, D-O81 restated rather than cited
+in either surface), eight **pinned lines** at exactly one occurrence each
+line-anchored, eleven **law strings** present in doc *and* carrier, D-O81
+cited in both, and the CC-S card byte-clean. **The sweep caught a real
+propagation miss on its first run:** D-S3 legislates *two* retrievals and the
+carrier had taken only one — Stage 1's walk declared its corpus, Stage 2's
+band-wide search set did not. Fixed, and a second red then caught the carrier
+saying *names its corpus* where §3's locked text says *declares its corpus*;
+the **carrier was moved to the doc's wording, never the reverse**. Two further
+reds were probe defects, not surface defects, and are recorded as such: §12's
+own account of the status lift legitimately contains the string *draft for
+maintainer review*, and §12's D-S3 cell legitimately quotes §2's coverage
+grammar — both probes were re-anchored to the live line rather than to any
+mention.
+
+**Citation honesty, on the record.** The prompt's basis line names **Part A
+evidence A1–A5 and A7**, and that set-level citation stands verbatim at the
+doc's head, at §12 and in the footer. **The field defect report itself is not
+in the repository and is not in `~/Downloads`** — it was never read this
+session. Four per-clause `A<n>` anchors were drafted from the prompt's
+plain-words description of the run and then **removed before commit**,
+because attaching a specific anchor to a specific clause would have been
+inference presented as citation: six anchors, four described failures, no
+determinable mapping. The **B-item anchors are exact** — they are stated in
+the prompt itself (B1→D-S1 · B2→D-S2 · B3→D-S3 · B4→D-S4 · B11→D-S5). If the
+report's per-anchor mapping is wanted in the doc, it is a one-line follow-up
+against the report.
+
+**What did not move.** No new CC-S family and no assertion text — the card is
+byte-identical. No new instrument, no new record class, no new prompt point,
+no new status value in any register, no new event kind, no threshold. **P-A1
+stays the one checkpoint** and §8's ≤ 8 Presale interaction budget is
+arithmetically untouched: the Stage-0 refusal is a refusal, not an interaction
+the budget counts, exactly as a refused admission has always been. No skill
+outside `ba-audit` moved, no agent moved, no check was edited, no fixture was
+edited, `tests/layout.expected` unchanged. The orchestrator, gate, contract and
+build-plan documents are untouched — D-O81 is reached by reference from both
+new surfaces.
+
+**Two structures this pass added, named rather than slipped in.** The document
+had **no version number, no change record and no footer line** — every sibling
+methodology document carries all three. Minting v0.2 without them would leave a
+versioned document whose history has nowhere to live, so the head gains a
+**`v0.2 change record:`** paragraph, the tail gains the standard italic
+**footer**, and §11 is followed by a new **§12 amendment record** on the build
+plan's §8 model. Structure added to carry this ruling, not content invented.
+
+**Incidental, noticed and deliberately not fixed.** §9's calibration fixture
+(`tests/fixtures/nutrivity-audit/run-1-outcome.md`) states **"register 118
+obligations"** in prose — and **118 is exactly the number the live run
+rendered over a register of 30**. Whether a fixture may carry a live-looking
+count in a form a run can echo is a **fixture-hygiene** question, adjacent to
+D-S2 and outside EC-17's five rulings. Named in the doc's §12 under
+*deliberately not legislated here* and routed here; **not fixed in this pass**.
+
+**Open — re-routed, and one now newly specified.** **`check-audit.sh`** —
+parked by ruling, and **D-S2/D-S3 now fix exactly what its first assertions
+check**: the header-count derivation (`c + p + a + g = t` against
+`obligations.md`), the per-source coverage block, the two corpus declarations
+and the required-set append condition; named at §10 item 7 of the definition
+and re-routed here. **`sk_audit.py`** — parked; its ground is a register that
+exists only at run time. **Fixture hygiene** — §9's `118`, above. **Standing
+and carried unchanged:** the B8 discipline is stated in three templates and
+**still enforced by nothing** (no check forbids a comment re-embedding a
+literal heading string); **D-P2-14 has no regression assertion**; the
+reconciliation family (runtime `AS` ↔ audit `OB`); §10.1's P-O0b act cell and
+its cross-cutting omission. **EC-18 and EC-19**, registered 2026-08-21, are
+untouched by this pass.
