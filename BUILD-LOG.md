@@ -10978,3 +10978,178 @@ figures in this entry are corrected; the commit message stands as written and
 is wrong on that one number. Nothing else moves: the 49 staged paths are the
 44 carriers plus the orchestrator document, two checks, `VERSION` and
 `BUILD-LOG.md`.
+
+---
+
+## The Estate Takes A Guest — the humanizer vendored, explicit invocation only, documents before code · orchestrator v0.35 · package 0.1.37 · 21 August 2026 · GREEN
+
+**Session prompt:** close the sync-board item **"Женя: додати скіл Humanizer у
+фреймворк"** (team sync 20 Aug 2026, AI #2) under the owner's ruling **option
+A** — *"вендоримо pinned SKILL.md у payload + обгороджуємо застосування, після
+EC-16"* (21 Aug 2026). Lane B: legislate in the orchestrator **first**, then
+vendor. Question protocol: nothing silently resolved; every failed assertion a
+stop.
+
+**Precondition, clean.** `HEAD` and `origin/main` both at `8a914e0` (the EC-19
+BUILD-LOG correction, package 0.1.36), VERSION `0.1.36`, tree clean.
+**Sequencing satisfied, and not by the prompt's own test:** the prompt asked for
+an EC-16 entry in the BUILD-LOG *tail*, and there is none — three EC passes have
+landed on top of it since. EC-16 is established instead by its own closure
+heading at **line 10095**, *"The Guard On Our Side Of The Fence — EC-16
+installer integrity reaches the code · package 0.1.32 · GREEN"*, with the EC-19
+tail confirming EC-17, EC-18 and EC-19 all landed after it. **The stronger
+check, recorded rather than substituted silently.**
+
+**Origin — a directive that fights the framework if you just do it.** The team's
+complaint is real and it is not about the artifacts: framework-adjacent prose
+reads as machine-written, and there is a mature MIT skill upstream that does
+exactly this repair. **Installing it unfenced is the problem.** A skill with a
+broad `description:` is offered on relevance, and framework prose is relentlessly
+relevant to a prose-repair skill — it would reach `spec.md` bodies, the pinned
+exports and the ledger heads, **every surface the writing standard already
+owns.** Two owners of one sentence is one owner too many, and the second one
+wins **silently**, because a rewrite that preserves meaning leaves no diff a
+reader would question. Option A ships the tool and fences the tool.
+
+**The pin moved under the ruling — stopped, rendered, ruled.** The ruling named
+**v2.11.0**; upstream stood at **v2.11.2** (`e2e92e7` HEAD, 18 Aug 2026). Per
+the prompt, the pin is the owner's, so the pass **stopped before writing a
+byte** and reported — with the delta measured rather than guessed: `SKILL.md`
+between `43c9767` (2.11.0) and 2.11.2 is **four lines** — the frontmatter
+description, the version string, and the opening body sentence — **all 35
+patterns byte-identical**, the intervening releases being packaging changes to
+files this estate does not vendor. Because local delta (a) replaces the
+`description` block outright, the choice reached the shipped artifact as **one
+prose line.** **Owner ruled: pin 2.11.2 at `38b8890`** — the commit that *sets*
+the version, not the clone HEAD, which stands one README-only commit later.
+**LICENSE asserted MIT and byte-identical at both points.**
+
+**D-O89, ruled and applied.** *The humanizer vendored as an estate skill —
+explicit invocation only; the canonical-artifact fence is absolute.* The skill
+ships at `payload/claude/skills/humanizer/`, pinned to upstream
+**https://github.com/blader/humanizer**, **v2.11.2**, commit
+**`38b88903a5080c72a8c0472e79dcc9ffbf07938b`**, MIT, licence vendored verbatim,
+provenance recorded beside it. **Invocation is explicit BA request only** — the
+skill never self-triggers, and §10.3 rules 1–9 remain the only law over
+framework prose. **It never applies to a canonical artifact** — `spec.md`
+bodies, §10.5 pinned exports and renders, ledger heads and pinned blocks, gate
+and audit records, `BUILD-LOG.md` — and an **explicit** ask against one is
+**declined with a pointer to the writing standard**, because **the fence is a
+property of the artifact and never of the asker.** Lawful surface: free prose
+the BA supplies or requests. **Naming is law, not habit:** the directory and
+skill keep upstream's `humanizer` and take no `ba-` prefix — the prefix marks
+framework-owned skills, and a vendored guest does not wear the house colours.
+
+**Rejected and routed, both on the record.** **(B) pipeline wiring** — a
+mandatory humanizer pass on named surfaces — **rejected**: it mutates pinned
+shapes (a pass that may merge paragraphs may move a line the framework's
+assertions count), and it contradicts *"counts render, the BA judges."* **(C)
+distilling the 35 patterns into §10.3** on this section's own **ASD-STE100
+mined-as-reference precedent** — **not rejected, routed**: parked to the master
+conversation pending field runs, and named in §38 so it is not rediscovered as
+a new idea.
+
+**Documents first, then the payload.** Orchestrator **v0.34 → v0.35**: the
+change-record header entry, **§38** (review record v0.34 → v0.35), the D-O89
+decision row, and **§10.3 rule 10** — the humanizer boundary, additive, rules
+1–9 untouched word for word. Every edit assertion-guarded, each anchor
+`count == 1` before replacement and re-grepped after.
+
+**The compilation obligation §10.3 carries, honoured.** §10.3 states its rules
+are *"compiled verbatim into the CLAUDE.md framework block and all four
+personas"* — v0.32 compiled rule 9 into **six** carriers. Rule 10 inherits that
+and is now byte-identical in all six: `payload/mirror/claude-block.md`,
+`payload/mirror/AGENTS.md`, and the four personas. **The register self-check
+line is untouched** — it compiles a curated subset (rules 1, 5, 6, 7), not every
+rule, so rule 10 adds no clause and the byte-identical pin across 42 units still
+holds.
+
+**Payload — three files, exactly two deltas.** `SKILL.md` carries **(a)** the
+frontmatter `description` replaced with the fence-stating text (block scalar `|`
+→ `>-` so the value folds to exactly the specified single line), so a loader
+that offers skills on description match cannot offer this one for framework
+prose; and **(b)** a **Scope fence (BA-Native Spec estate law, D-O89)** block at
+the top of the body, immediately after the `# Humanizer` heading and before all
+upstream prose, its first line marking it a local addition. **`diff` against
+upstream shows those two hunks and nothing else — all 35 patterns stand as
+upstream wrote them.** `LICENSE` is byte-identical to upstream (`cmp` clean).
+`PROVENANCE.md` records URL, pin, commit, date, the measured 2.11.0→2.11.2
+delta, the pin ruling, and both local deltas.
+
+**Manifest, installer, registry — the guest is installer-laid, so the estate
+certifies it.** Three places enumerate skills selectively and the `ba-*` glob
+does not reach a guest by design: `install.sh`'s manifest hash-list gained a
+**separate** `humanizer/**/*` entry — **never a widened `ba-*` glob**, because
+the prefix distinction is what D-O89 just legislated; `install.sh`'s re-install
+cleanup gained an explicit `rm -rf` for the vendored directory, without which it
+would linger through a re-install and stop being a true ⬒-replacement; and
+`tests/layout.expected` gained three rows on the **S9 late-addition precedent**
+(`ba-audit`'s block). **The copy needed nothing** — `payload/claude/` is carried
+wholesale. **Verified against a real install:** 99 files hashed (was 96), all
+three humanizer files certified, `verify-manifest.py` exit 0; a planted
+`STALE.md` in the installed skill was gone after re-install, and the manifest
+re-verified. **No mirror artifact invented** — `payload/mirror/claude-block.md`
+holds a `/ba-*` **command** table, not a skills index, and a guest invoked by
+asking is not a command; rule 10 in that same file is where the BA learns it
+exists.
+
+**Four test globs narrowed, and why that is the fix and not a weakening.** The
+standing-instruction sweeps — session boundary (§10.2), register self-check
+(§10.3), the mode read, and the mode → self-check → boundary stack order — take
+their unit set from `payload/claude/skills/*/SKILL.md`, so the vendored file
+entered the framework corpus and was demanded to carry framework standing blocks
+(42 units → 43, six reds in `check-register.sh` and two in `check-auto.sh`).
+**The alternative fix was a third local delta**, which would have made the guest
+a framework unit and broken the byte-identity guarantee. All four globs now read
+`skills/ba-*/SKILL.md` — **framework units only**, which is precisely the
+distinction the naming ruling exists to carry. **The rule-5 code sweep was left
+at `*`** deliberately: the guest is BA-facing prose, it renders no framework
+code today, and keeping it in that corpus is a live safety net.
+
+**Correction applied, as ruled.** The document's trailing version line still
+read **`decisions D-O1–D-O82 locked`** while the document carried D-O88 — a
+**two-edition lag**, standing since v0.33. Surfaced before writing and ruled by
+the owner: corrected to **`D-O1–D-O89`**, on the record here rather than
+repaired silently.
+
+**What did not move.** **The writing standard is untouched** — D-O89 protects it
+by naming it, never by amending it. **§10.3 rules 1–9 stand word for word**, and
+rule 9's D-O86 amendment is not touched again. **No pinned shape is edited** —
+the fence exists so that none needs to be. **No skill renamed, none
+re-prefixed:** the 36 framework skills keep `ba-`, and both hard-coded 36-counts
+(`check-layout.sh`, `check-install.sh`) are arithmetically untouched **because**
+the guest takes no prefix. **No new prompt point, no new stop, no new event
+kind, no new register, no new ledger field, no new record class, no new state,
+no new transition, no new instrument, no new status value, no threshold text and
+no assertion text.** **No fixture moved, no template body moved, no card moved**
+— `check-cards.py` reports every card byte-identical to its re-derivation.
+**D-O33's ≤ 8 Presale interaction budget is arithmetically untouched:** an
+explicit-only skill adds no render to a run that never asks. **The elicitation
+engine, all six catalogue batches, the sequencing plan, the index, the
+completeness contract, the gate definition, the source-audit definition and the
+phase-2 build plan are untouched.**
+
+**Suite — 17/17 GREEN**, the three install-based runs included. Movement, all
+upward and all accounted: `check-orchestrator.sh` 562 → **566** (the two new
+edition rows plus the two pins that had gone stale), `check-register.sh` 57 →
+**63**, `check-auto.sh` 276 → **278**. `check-spine.sh` 266,
+`check-layout.sh` 120/0/0, `check-install.sh` 64, `check-cards.py`
+byte-identical — all unmoved.
+
+**Noticed, not touched.** An untracked **`_to_delete/`** directory (`z2`, `w2`,
+`x5`) appeared in the working tree **mid-session** — it was not present at the
+clean precondition and is **no part of this pass**. Under the concurrent-pass
+discipline it was neither staged nor removed: staging was by **named path
+only**, and the 17 paths this pass staged are the only files that moved.
+
+**Open — routed from this pass.** **Option (C), the pattern distillation** — the
+35 upstream patterns read against §10.3's ten rules, distilled where they earn a
+rule and dropped where they do not; **parked to the master conversation pending
+field runs.** **Nothing enforces the fence but the skill's own text** — the
+scope block and the description state it, and no check asserts that a humanizer
+invocation did not touch a canonical path; the fence is documentary, as the
+estate's other skill-level boundaries are, and an **enforcing check belongs with
+the regression-floor pass where D-O88's check already waits.** **The upstream
+pin will drift** — 2.11.2 was already two releases past the ruling's 2.11.0
+within four days, and nothing in the estate watches for it; **refresh is a
+ruling, never a routine.**

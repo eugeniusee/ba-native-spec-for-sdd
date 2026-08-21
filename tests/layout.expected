@@ -155,3 +155,10 @@ S9|file|.claude/skills/ba-audit/SKILL.md|Scope-S run, stages 0–5 (source-audit
 S9|file|.specify/ba/cards/assertions-s.md|CC-S card — the A pass of /ba-audit — added in package 0.1.x, after S9
 S9|file|.specify/ba/templates/source-audit-report-entry.md|pinned Scope-S entry — added in package 0.1.x, after S9
 RT|absent|.specify/source-audit.md|◇ /ba-audit report ledger + standing SA records
+
+# ── vendored skill (D-O89) — added in package 0.1.37, after S9; upstream
+# blader/humanizer v2.11.2 @ 38b8890, MIT. No `ba-` prefix: the prefix marks
+# framework-owned skills and a vendored guest is not one ─────────────────────
+S9|file|.claude/skills/humanizer/SKILL.md|explicit-invocation-only prose skill, canonical artifacts fenced (D-O89) — added in package 0.1.37, after S9
+S9|file|.claude/skills/humanizer/LICENSE|upstream MIT, verbatim — added in package 0.1.37, after S9
+S9|file|.claude/skills/humanizer/PROVENANCE.md|upstream URL · pin · commit · the two local deltas — added in package 0.1.37, after S9

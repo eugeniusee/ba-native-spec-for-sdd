@@ -714,7 +714,10 @@ MR_N="$(wc -l < "$TMP/moderead.txt" | tr -d ' ')"
 
 moderead_sweep() {
   local root="$1" n=0 okc=0 miss=0 alt=0 ln
-  for f in "$root"/payload/claude/skills/*/SKILL.md \
+  # D-O89 — framework units only. The vendored `humanizer` skill carries no
+  # 'ba-' prefix and no framework standing blocks by design: it is a pinned
+  # third-party file, and requiring our instructions in it would be a delta.
+  for f in "$root"/payload/claude/skills/ba-*/SKILL.md \
            "$root"/payload/claude/agents/*.md \
            "$root"/payload/mirror/*.md; do
     [ -f "$f" ] || continue

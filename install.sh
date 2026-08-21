@@ -252,10 +252,14 @@ say "spec-template override + .specify/ba/ ✓"
 # true ⬒-replacement — a unit deleted from the package does not linger.
 run mkdir -p "$TARGET/.claude/agents" "$TARGET/.claude/skills"
 if [ "$DRY_RUN" -eq 1 ]; then
-  say "[dry-run] replace .claude/agents/ba-*.md and .claude/skills/ba-*/"
+  say "[dry-run] replace .claude/agents/ba-*.md, .claude/skills/ba-*/ and .claude/skills/humanizer/"
 else
   find "$TARGET/.claude/agents" -maxdepth 1 -name 'ba-*.md' -exec rm -f {} + 2>/dev/null || true
   find "$TARGET/.claude/skills" -maxdepth 1 -type d -name 'ba-*' -exec rm -rf {} + 2>/dev/null || true
+  # D-O89 — the vendored humanizer carries no 'ba-' prefix, so the glob above
+  # never reaches it; without this line it would linger through a re-install and
+  # stop being a true ⬒-replacement.
+  rm -rf "$TARGET/.claude/skills/humanizer" 2>/dev/null || true
   ( cd "$PKG_ROOT/payload/claude" \
       && find . -type f ! -name '.gitkeep' ! -name '*.pyc' \
            ! -path '*/__pycache__/*' -print0 \
@@ -372,6 +376,10 @@ installed = []
 for root, pattern in (
     (target / ".claude" / "agents", "ba-*.md"),
     (target / ".claude" / "skills", "ba-*/**/*"),
+    # D-O89 — the vendored humanizer is installer-laid, so the manifest certifies
+    # it like anything else we put down. Kept a separate entry, never a widened
+    # 'ba-*' glob: the prefix marks framework-owned skills and stays meaningful.
+    (target / ".claude" / "skills", "humanizer/**/*"),
     (target / ".specify" / "ba", "**/*"),
     (target / ".specify" / "templates", "spec-template.md"),
 ):

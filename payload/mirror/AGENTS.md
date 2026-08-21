@@ -297,6 +297,16 @@ are out of its reach.
    inert for the two renders the exemption names — the band-boundary report and
    the resumption report. It reaches the mid-grant stop report: that render
    ends the turn awaiting a BA act, and the ask follows it.
+10. **The humanizer boundary.** The estate carries a vendored `humanizer` skill —
+    upstream `blader/humanizer`, pinned, MIT — at `.claude/skills/humanizer/`. It
+    runs **only when the BA explicitly asks for it**: it never self-triggers, and
+    rules 1–9 above stay the only law over framework prose. It **never modifies a
+    canonical artifact, even on an explicit request** — `spec.md` bodies, the WBS
+    export and any §10.5 pinned render, ledger heads and pinned blocks, gate and
+    audit records, `BUILD-LOG.md`. Asked to humanize one of those, decline and
+    name the writing standard, which owns artifact prose: the fence is a property
+    of the artifact, never of the asker. Its lawful surface is free prose the BA
+    supplies or requests — client-facing summaries, e-mails, arbitrary text.
 
 ## Autonomous mode — the autonomy grant
 

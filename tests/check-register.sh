@@ -502,7 +502,10 @@ PHRASES
 # scanner's contract, in bash
 boundary_sweep() {
   local root="$1" sk=0 ag=0 okc=0 miss=0 alt=0 f rel s
-  for f in "$root"/payload/claude/skills/*/SKILL.md "$root"/payload/claude/agents/*.md; do
+  # D-O89 — framework units only. The vendored `humanizer` skill carries no
+  # 'ba-' prefix and no framework standing blocks by design: it is a pinned
+  # third-party file, and requiring our instructions in it would be a delta.
+  for f in "$root"/payload/claude/skills/ba-*/SKILL.md "$root"/payload/claude/agents/*.md; do
     [ -f "$f" ] || continue
     case "$f" in *"/skills/"*) sk=$((sk+1)) ;; *) ag=$((ag+1)) ;; esac
     rel="${f#"$root"/}"
@@ -876,7 +879,10 @@ CLAUSES
 selfcheck_sweep() {
   # <root> → one line per offender, then the summary the caller parses
   local root="$1" n=0 okc=0 miss=0 alt=0
-  for f in "$root"/payload/claude/skills/*/SKILL.md \
+  # D-O89 — framework units only. The vendored `humanizer` skill carries no
+  # 'ba-' prefix and no framework standing blocks by design: it is a pinned
+  # third-party file, and requiring our instructions in it would be a delta.
+  for f in "$root"/payload/claude/skills/ba-*/SKILL.md \
            "$root"/payload/claude/agents/*.md \
            "$root"/payload/mirror/*.md; do
     [ -f "$f" ] || continue
@@ -969,7 +975,10 @@ stack_of() {
 
 ST_N=0; ST_OK=0
 : > "$TMP/stack-bad.txt"
-for f in "$PKG_ROOT"/payload/claude/skills/*/SKILL.md \
+# D-O89 — framework units only. The vendored `humanizer` skill carries no
+# 'ba-' prefix and no framework standing blocks by design: it is a pinned
+# third-party file, and requiring our instructions in it would be a delta.
+for f in "$PKG_ROOT"/payload/claude/skills/ba-*/SKILL.md \
          "$PKG_ROOT"/payload/claude/agents/*.md \
          "$PKG_ROOT"/payload/mirror/*.md; do
   [ -f "$f" ] || continue
