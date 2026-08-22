@@ -19,9 +19,10 @@
 #   5.  plan-as-route and the two /ba-run forms — the runner's own operative
 #       text, and the invariant it must not quietly drop
 #   6.  the closing ask — §10.3 rule 9 in the document, the six register
-#       carriers and every stop-carrying skill, with a stripped control; and
+#       carriers and every stop-carrying skill, with a stripped control;
 #       D-O90's outcome-shaped Slack item at the Frame ask — the three
-#       variants, never folded into the sources-completeness question
+#       variants, never folded into the sources-completeness question; and
+#       D-O91's pinned ask tails on the two exempt auto reports
 #
 # The banned list is seeded from the ruling (WS-2) and extended by judgment;
 # every phrasing it carries is logged in section 4's output, so a future reader
@@ -40,6 +41,10 @@ RUN="$PKG_ROOT/payload/claude/skills/ba-run/SKILL.md"
 ORC="$PKG_ROOT/payload/claude/agents/ba-orchestrator.md"
 BLOCK="$PKG_ROOT/payload/mirror/claude-block.md"
 FRAME="$PKG_ROOT/payload/claude/skills/ba-frame/SKILL.md"
+AUTO="$PKG_ROOT/payload/claude/skills/ba-auto/SKILL.md"
+CB1="$PKG_ROOT/payload/claude/skills/ba-close-band1/SKILL.md"
+ENTF="$PKG_ROOT/payload/claude/skills/ba-enter-feature/SKILL.md"
+AGENTS="$PKG_ROOT/payload/mirror/AGENTS.md"
 SCRIPT="$HERE/presale-path.md"
 
 BUDGET=8
@@ -102,7 +107,7 @@ sys.exit(0 if sys.argv[2] in joined else 1)
 PY
 }
 
-for f in "$DOC" "$RUN" "$ORC" "$BLOCK" "$FRAME" "$SCRIPT"; do
+for f in "$DOC" "$RUN" "$ORC" "$BLOCK" "$FRAME" "$AUTO" "$CB1" "$ENTF" "$AGENTS" "$SCRIPT"; do
   [ -f "$f" ] || { printf '✗ missing source: %s\n' "$f" >&2; exit 2; }
 done
 
@@ -306,9 +311,9 @@ has "$BLOCK" '`/ba-run specs all`' "…and the batch driver"
 # turn awaiting BA input closes with the plain-English `What I need from you:`
 # block, lettered options, exactly one `(recommended)` marker per question,
 # AskUserQuestion where the runtime has it, appended after the pinned render
-# (the D-O56 tail), inert under a standing AG (D-O51). The document states the
-# law; the six register carriers compile rule 9; every stop-carrying skill
-# names the ask at its own stop.
+# (the D-O56 tail); under a standing AG the two exempt reports carry it as
+# pinned tails (D-O91). The document states the law; the six register carriers
+# compile rule 9; every stop-carrying skill names the ask at its own stop.
 
 printf '\n▸ The closing ask — §10.3 rule 9 (D-O82)\n'
 
@@ -322,8 +327,10 @@ has_joined "$DOC" 'it never pre-selects and never auto-applies' \
     "…the marker is a label, never a pre-selection"
 has_joined "$DOC" 'appended after the pinned render' \
     "…additive on the D-O56 tail precedent"
-has_joined "$DOC" 'under a standing AG this rule does not apply' \
-    "…and inert under a standing grant (D-O51)"
+has_joined "$DOC" 'amended on the record by D-O86 and D-O91, never rewritten' \
+    "…the AUTO exemption amended on the record twice, never rewritten"
+has_joined "$DOC" "each carries this rule's closing ask as an **additive tail in its own pinned shape**" \
+    "…and it grants the two exempt reports shape, not silence (D-O91)"
 has_joined "$DOC" 'one stop stays one interaction' \
     "…with the ≤ 8 budget arithmetically untouched"
 
@@ -426,11 +433,83 @@ has "$FRAME" 'a. re-run the listing to completion (recommended — a negative ne
 has "$FRAME" 'c. proceed without Slack' \
     "…and the interrupted variant keeps the proceed-without-Slack escape"
 
+# the two exempt reports gain pinned ask tails (D-O91) — the field defect of
+# 22 Aug 2026: at P-O7, P-O8 and at the resumption report the run ended the
+# turn bare ("any reply continues") and the BA invented a reply without ever
+# seeing the choices. Both reports keep their pinned shapes byte-untouched;
+# each now ends with a pinned closing-ask tail — continue recommended at the
+# boundary, ratify-all recommended at off — never composed at the stop.
+
+printf '\n▸ The pinned ask tails on the two exempt reports — §10.7 (D-O91)\n'
+
+has_joined "$DOC" "The closing ask — the report's tail (D-O91" \
+    "§10.7 pins the band-boundary tail paragraph"
+has_joined "$DOC" 'pinned here, never composed at the stop' \
+    "…pinned at the mode's corpus home, never composed at the stop"
+BQ='1. Band <n> is closed under the grant. How do we proceed?'
+RQ='1. <n> AUTO acts stand for ratification. Your call?'
+has "$DOC" "$BQ" "…the band question, its text pinned"
+has "$DOC" "a. continue — <the report's Next act line, in plain words> (recommended)" \
+    "…continue recommended, the Next act line in plain words"
+has "$DOC" 'b. pause and ratify — /ba-auto off; the resumption report renders' \
+    "…pause-and-ratify routing to the existing off act"
+has "$DOC" 'c. correct something first — name it' \
+    "…and correct-something-first the escape"
+has_joined "$DOC" 'run /ba-gate-health full first — it is overdue; no grant reaches it, this stays your act' \
+    "…the conditional health option, joining only where overdue renders"
+has_joined "$DOC" '**Recommended stays on continue:**' \
+    "…with recommended staying on continue (D-O59 display-only)"
+has_joined "$DOC" 'join the ask as questions' \
+    "…and the decision-list items join the ask as questions (T-18 step-4 shape)"
+has_joined "$DOC" 'The ask asks for **no ruling on the trail**' \
+    "…the boundary stays a render, not a ratification point (D-O52)"
+has "$DOC" "$RQ" "…the resumption question, its text pinned"
+has "$DOC" 'a. ratify all (recommended)' \
+    "…ratify-all recommended"
+has "$DOC" 'b. ratify all except — name the acts' \
+    "…ratify-all-except naming the acts"
+has "$DOC" 'c. discuss first — ask me anything about the trail' \
+    "…and discuss-first the escape"
+has_joined "$DOC" 'the typed grammar and the ask can never disagree' \
+    "…the typed grammar and the ask never disagreeing (the apply-all precedent)"
+
+# the compiled carriers: the band tail on every band-boundary renderer, the
+# resumption tail on every resumption renderer — the D-O69 tail's own set
+bandmiss=0
+for pair in "$AUTO|ba-auto" "$CB1|ba-close-band1" "$ENTF|ba-enter-feature" \
+            "$BLOCK|claude-block" "$AGENTS|AGENTS.md"; do
+  f="${pair%%|*}"
+  grep -qF -- "$BQ" "$f" && grep -qF -- 'Reply with a letter, or in your own words — any reply continues.' "$f" \
+    || { bandmiss=$((bandmiss+1)); printf '      no band tail: %s\n' "${pair##*|}"; }
+done
+[ "$bandmiss" -eq 0 ] \
+  && ok "the band-boundary tail is compiled into all 5 renderers" \
+  || bad "$bandmiss band-boundary renderer(s) carry no pinned ask tail (D-O91)"
+resmiss=0
+for pair in "$AUTO|ba-auto" "$BLOCK|claude-block" "$AGENTS|AGENTS.md"; do
+  f="${pair%%|*}"
+  grep -qF -- "$RQ" "$f" && grep -qF -- "Reply with a letter, or type the Ratify line's own grammar: accept all / list exceptions." "$f" \
+    || { resmiss=$((resmiss+1)); printf '      no resumption tail: %s\n' "${pair##*|}"; }
+done
+[ "$resmiss" -eq 0 ] \
+  && ok "the resumption tail is compiled into all 3 renderers" \
+  || bad "$resmiss resumption renderer(s) carry no pinned ask tail (D-O91)"
+
+# ba-auto — the mode's compiled carrier states the amendment and both glosses
+has_joined "$AUTO" 'shape, not silence' \
+    "ba-auto's exemption paragraph carries the amendment — shape, not silence"
+has_joined "$AUTO" 'Band 1 at P-O7 — Band-1 closure, Band 2 at P-O8 — Band-3 entry' \
+    "…and the <n> slot gloss — the band the boundary leaves behind"
+has_joined "$AUTO" 'any reply continues — the recommended option is the continue' \
+    "…any reply continues, the recommended option being the continue"
+has_joined "$AUTO" 'taking every recommended option is `apply all` exactly' \
+    "…and all-recommended is apply-all exactly, the T-18 step-4 precedent"
+
 # ── roll-up ──────────────────────────────────────────────────────────────────
 
 printf '\n  passed: %s   failed: %s\n' "$PASSED" "$FAILED"
 if [ "$FAILED" -eq 0 ]; then
-  printf '✓ GREEN — manual-mode UX: the budget (%s ≤ %s) · the route render §10.6 · the checkpoint law · zero acknowledgement-only stops · plan-as-route + the two run forms · the closing ask §10.3 rule 9 · the Slack item never folded (D-O90)\n' \
+  printf '✓ GREEN — manual-mode UX: the budget (%s ≤ %s) · the route render §10.6 · the checkpoint law · zero acknowledgement-only stops · plan-as-route + the two run forms · the closing ask §10.3 rule 9 · the Slack item never folded (D-O90) · the pinned ask tails on the two exempt reports (D-O91)\n' \
     "$N" "$BUDGET"
   exit 0
 fi

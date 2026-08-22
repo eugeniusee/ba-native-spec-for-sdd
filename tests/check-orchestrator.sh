@@ -1494,9 +1494,12 @@ has "$RULES_DOC" "## 38. Review record (v0.34 → v0.35)" \
 has "$RULES_DOC" "D-O90" "…and the Slack-item-never-folded ruling"
 has "$RULES_DOC" "## 39. Review record (v0.35 → v0.36)" \
     "…and §39, the review record that carries it"
-head -2 "$RULES_DOC" | grep -q 'v0\.36' \
-  && ok "the header states the live edition — v0.36, the Slack item is never folded" \
-  || bad "the header does not name v0.36: the edition and the change record disagree"
+has "$RULES_DOC" "D-O91" "…and the pinned-tails ruling"
+has "$RULES_DOC" "## 40. Review record (v0.36 → v0.37)" \
+    "…and §40, the review record that carries it"
+head -2 "$RULES_DOC" | grep -q 'v0\.37' \
+  && ok "the header states the live edition — v0.37, the bare boundary asks" \
+  || bad "the header does not name v0.37: the edition and the change record disagree"
 has "$RULES_DOC" "D-O45–D-O49" "…and the source-inventory ruling block"
 has "$RULES_DOC" "D-O50" "…and the change record names the unreadable-spec ruling"
 has "$RULES_DOC" "D-O51–D-O52" "…and the continuity-under-a-grant ruling block"
@@ -1506,11 +1509,11 @@ has "$RULES_DOC" "v0.20" "…and the edition the candidate scan produced"
 has "$RULES_DOC" "D-O54" "…and the scan-method ruling"
 
 # the ruling block is contiguous from the live high-water mark: no gap, no reuse
-python3 - "$RULES_DOC" <<'PYX' && ok "the D-O block runs 1…90 with no gap and no skipped number" \
+python3 - "$RULES_DOC" <<'PYX' && ok "the D-O block runs 1…91 with no gap and no skipped number" \
   || bad "the D-O decision block is not contiguous — a number is missing or reused"
 import re, sys
 seen = {int(n) for n in re.findall(r"D-O(\d+)", open(sys.argv[1], encoding="utf-8").read())}
-sys.exit(0 if seen == set(range(1, 91)) else 1)
+sys.exit(0 if seen == set(range(1, 92)) else 1)
 PYX
 
 # ── 6b. Band-2 plan composition — the record home has its producer (D-O55) ──

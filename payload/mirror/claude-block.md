@@ -259,6 +259,30 @@ Health refresh: <current | overdue: <r> runs vs cadence>
 Next act: <one line> — any reply continues · /ba-auto off renders the resumption report
 ```
 
+**Its closing ask — a pinned tail, never composed at the stop**, after the
+report's last line and after the decision-list tail where that renders:
+
+```
+What I need from you:
+1. Band <n> is closed under the grant. How do we proceed?
+   a. continue — <the report's Next act line, in plain words> (recommended)
+   b. pause and ratify — /ba-auto off; the resumption report renders
+   c. correct something first — name it
+Reply with a letter, or in your own words — any reply continues.
+```
+
+`<n>` is the band the boundary leaves behind — Band 1 at P-O7 — Band-1
+closure, Band 2 at P-O8 — Band-3 entry. Where the health line renders
+`overdue`, one option joins before c, re-lettering c to d — `run
+/ba-gate-health full first — it is overdue; no grant reaches it, this stays
+your act` — recommended staying on continue: the health line is display only
+and the refresh act stays the BA's. Where the decision-list tail renders, its
+items join the ask as questions in **T-18 — Scope allocation's** step-4 shape,
+`hold as advisory — no move` recommended; the typed ruling grammar stays the
+shortcut. Still a render, not a ratification point: the ask takes no ruling on
+the trail, option b routes to the existing `off` act, and the recommended
+option is the continue.
+
 **The mid-grant stop report — pinned shape**, rendered at a **safety-floor
 stop** or at **exhaustion of the grant's scope**. One class: auto halts
 mid-grant and hands control back, the grant **not closed** and **no
@@ -295,6 +319,26 @@ nothing excepted — collapses it to its count plus the ledger pointer; a
 ratification naming exceptions prints the full trail, because an act nobody can
 see is an act nobody can except. The acts live append-only in
 `.specify/aspect-state.md` either way, and the report is still six lines.
+
+**Its closing ask — the same pinned tail**, after the report's last line and
+after the decision-list tail where that renders:
+
+```
+What I need from you:
+1. <n> AUTO acts stand for ratification. Your call?
+   a. ratify all (recommended)
+   b. ratify all except — name the acts
+   c. discuss first — ask me anything about the trail
+Reply with a letter, or type the Ratify line's own grammar: accept all / list exceptions.
+```
+
+Taking (a) is the existing one-batch ratification exactly — the typed grammar
+and the ask can never disagree (the apply-all precedent: **T-18 — Scope
+allocation's** step-4 ask, where taking every recommended option **is**
+`apply all`). Option b is `list exceptions` in lettered form over the full
+trail above; option c invents no state — the acts already stand awaiting
+ratification. Advisory items join as questions exactly as at the band
+boundary. **Ratification stays the grant's instrument at `off`.**
 
 **The scope-advisory decision list — a conditional tail on both reports.** Where
 the ledger head's `Scope advisories:` line carries at least one **`standing`**
@@ -382,9 +426,11 @@ are out of its reach.
    same lettered list plus "reply with the letter". Selections are transcribed
    into the existing pinned reply and record grammar; typed token shortcuts
    stay legal, never the only channel. The ask is appended after the pinned
-   render and replaces nothing. Under a standing autonomy grant this rule is
-   inert for the two renders the exemption names — the band-boundary report and
-   the resumption report. It reaches the mid-grant stop report: that render
+   render and replaces nothing. Under a standing autonomy grant the two renders
+   the exemption names — the band-boundary report and the resumption report —
+   keep their pinned shapes byte-untouched, and each carries the ask as an
+   additive tail in its own pinned shape: what the exemption grants is shape,
+   not silence. The rule reaches the mid-grant stop report in full: that render
    ends the turn awaiting a BA act, and the ask follows it.
 10. **The humanizer boundary.** The estate carries a vendored `humanizer` skill —
     upstream `blader/humanizer`, pinned, MIT — at `.claude/skills/humanizer/`. It

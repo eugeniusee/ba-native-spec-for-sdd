@@ -11250,3 +11250,134 @@ block · `$FRAME` · the roll-up line) · `VERSION` (0.1.38) · `BUILD-LOG.md`
 **Nothing else moves.** No pinned shape edited, no fixture, no template, no
 card, no register carrier, no catalogue, no gate rule, no threshold moved; the
 Presale script still counts **8 ≤ 8**.
+
+## The Bare Boundary Asks — the closing ask joins the two exempt auto reports as pinned tails, documents before code · orchestrator v0.37 · package 0.1.39 · 22 August 2026 · GREEN
+
+**Session prompt:** codify the **owner ruling of 22 Aug 2026** — one amendment
+of D-O82's AUTO exemption, under the next free D-O — then propagate: `ba-auto`'s
+both report sections and its exemption paragraph, the §10.3 rule 9 exemption
+sentence and §10.7's report paragraphs in the orchestrator, the affected
+harness pins moved in step (`check-budget.sh`; `check-orchestrator.sh`
+version/contiguity). Law: **documents before code** — the amendment lands in
+the orchestrator first.
+
+**Precondition, clean.** `HEAD` at `2224020` (the D-O90 pass, package 0.1.38),
+VERSION `0.1.38`, tree clean; the orchestrator header at **v0.36** and the
+ruling block **contiguous through D-O90** — the baseline the prompt names,
+verified on entry per its own gate (a 0.1.37 tree would have stopped the
+pass). The suite was run **before any edit**: 17/17 GREEN
+(`check-orchestrator.sh` 568 · `check-budget.sh` 61), so every count that
+moves in this pass is this pass's own.
+
+**Origin — the run ends the turn bare.** Field feedback, 22 Aug 2026, a live
+`/ba-auto` Presale run: at every band boundary — P-O7 — Band-1 closure,
+P-O8 — Band-3 entry — and at the resumption report, the run ends the turn with
+*"Next act: … — any reply continues"* and nothing else. The BA has to invent
+an arbitrary reply ("go", "move on") and **never sees the real choices** —
+continue, drop to ratification, or correct something. The D-O82 AUTO
+exemption, as narrowed by D-O86, is what keeps the closing ask off these two
+renders: the D-O82 defect class, surviving inside D-O82's own exemption.
+
+**D-O91, ruled and applied.** *The closing ask joins the two exempt reports as
+pinned tails — D-O82's AUTO exemption amended on the record, never rewritten.*
+The **band-boundary report** and the **resumption report** keep their pinned
+shapes **byte-untouched**, and each gains the §10.3 rule 9 closing ask as an
+**additive tail** (the D-O56 precedent), **pinned at the mode's corpus home,
+never composed at the stop**. The band tail asks `Band <n> is closed under the
+grant. How do we proceed?` — **continue (recommended)**, the report's
+`Next act:` line in plain words · **pause and ratify**, routing to the
+existing `off` act · **correct something first**; `<n>` is the band the
+boundary leaves behind — Band 1 at P-O7, Band 2 at P-O8. Where the health
+line renders `overdue`, one conditional option joins before c — *run
+`/ba-gate-health full` first — it is overdue; no grant reaches it, this stays
+your act* — **recommended staying on continue** (the health line is
+display-only, D-O59, and the refresh stays BA-invoked). Where the D-O69
+decision-list tail renders, its items **join the ask as questions in T-18's
+step-4 shape** (`hold as advisory — no move (recommended)` …), the typed
+ruling grammar staying the shortcut. The resumption tail asks `<n> AUTO acts
+stand for ratification. Your call?` — **ratify all (recommended)** · **ratify
+all except** — name the acts · **discuss first**; **taking (a) is the
+existing one-batch ratification exactly** — the typed grammar and the ask can
+never disagree (the D-O82 apply-all precedent). **Invariants stated in the
+clause:** D-O52 stands — the boundary report is still a render, not a
+ratification point, the ask asks for no ruling on the trail, option b routes
+to the existing `off` act, and *any reply continues* stays true — the
+recommended option **is** the continue; D-O51 continuity untouched — the ask
+appears only at renders that already end the turn, no new stop, no new prompt
+point, no mid-band question; pinned shapes byte-untouched, no new register,
+no threshold moved, no assertion weakened; ratification stays the grant's
+instrument at `off`. Landed as: the **§10.3 rule 9 exemption sentence amended
+on the record** (D-O86 and D-O91 both named, the D-O86 narrowing sentence and
+the arithmetic sentence byte-kept) · **two tail paragraphs new at §10.7**, one
+per report, each with its pinned fence · the **v0.37 change record** · **§40**,
+the review record — which also puts on the record why the exemption is amended
+and not repealed (its pinned-shapes half keeps, its no-ask half is the
+defect: both renders end the turn awaiting BA input, rule 9's own trigger),
+why the mid-grant report keeps its composed ask (a floor stop names an act
+the tail cannot enumerate in advance), and that §37's routed `Ratify:`-line
+item **stays routed** — where a full ratification already stands, the tail's
+question renders over a ruling already given, the second conditional being a
+second ruling this sitting does not rule · the **footer line**, decisions
+D-O1–D-O91.
+
+**The compile — nine carriers, the D-O69 tail's own set.** The **band tail**
+into every band-boundary renderer — `ba-auto` (full: fence, both conditional
+joins, the presentation sentence), `ba-close-band1` (fence + `Band 1 here`
+gloss, conditionals cited to `/ba-auto`), `ba-enter-feature` (fence +
+`Band 2 here` gloss, same citation), both mirrors (fence + compressed
+conditionals). The **resumption tail** into every resumption renderer —
+`ba-auto` (full) and both mirrors (fence + compressed prose). `ba-auto`'s
+mid-grant **exemption paragraph amended** — its "for those two only" sentence
+now closes *"…and what it grants those two is shape, not silence"*, this
+report's ask staying composed at the stop. **Rule 9's amended sentence
+re-compiled into the six register carriers** (four personas, two mirrors) —
+the "inert for the two renders" sentence replaced by the pinned-tail grant,
+one identical replacement across all six. **The three pinned report fences
+are byte-untouched in every carrier** — `check-auto.sh`'s byte-parity probes
+still extract and match them exactly as before this pass.
+
+**The harness moves in step.** `check-orchestrator.sh`: the **D-O91** and
+**§40** pins beside the D-O90/§39 pair, the header pin **v0.36 → v0.37**, the
+contiguity gate **1…90 → 1…91** (`set(range(1, 92))`). `check-budget.sh`: the
+stale exemption pin (*"under a standing AG this rule does not apply"*)
+replaced by the amended pair (amended-on-the-record-twice · the
+additive-tail grant), the **D-O91 block** at section 6's tail — both question
+lines and all six option lines pinned in the document, the health option and
+the T-18-shape join, the D-O52 render-not-ratification pin, the
+never-disagree pin, the two carrier sweeps (the band tail on all 5 renderers,
+the resumption tail on all 3), and four `ba-auto` probes (shape-not-silence ·
+the `<n>` gloss · any-reply-continues · all-recommended-is-apply-all) — with
+`$AUTO` `$CB1` `$ENTF` `$AGENTS` joining the missing-source guard and the
+GREEN roll-up line naming the block.
+
+**Suite — 17/17 GREEN, the three install-based runs included, verified in an
+isolated copy of the tree** (the concurrent-pass discipline). Movement, all
+upward and all accounted: `check-orchestrator.sh` 568 → **570** (the two new
+pins), `check-budget.sh` 61 → **83** (the twenty-two D-O91 probes: two
+replacing the one stale exemption pin, twenty-one new). Everything else
+unmoved: `check-m.sh` 71, `check-gate.sh` 105, `check-techniques*.sh`
+104/127/166, `check-spine.sh` 266, `check-register.sh` 63, `check-wbs.sh` 99,
+`check-status.sh` 115, `check-ledger.py` grammar-legal, **`check-cards.py`
+byte-identical**, `check-layout.sh` 120/0/0, `check-exit.sh --offline` 99,
+`check-install.sh` 64, `check-auto.sh` 278.
+
+**Files touched — fourteen, staged by named path:**
+`docs/methodology/ba-native-spec-orchestrator-rules.md` (v0.37 — header ·
+change record · §10.3 rule 9 · two §10.7 tail paragraphs · §40 · footer) ·
+`payload/claude/skills/ba-auto/SKILL.md` (both tails · the exemption
+paragraph) · `payload/claude/skills/ba-close-band1/SKILL.md` ·
+`payload/claude/skills/ba-enter-feature/SKILL.md` (the band tail each) ·
+`payload/claude/agents/ba-analyst.md` · `payload/claude/agents/ba-discovery.md`
+· `payload/claude/agents/ba-gate.md` · `payload/claude/agents/ba-orchestrator.md`
+(the rule 9 sentence each) · `payload/mirror/claude-block.md` ·
+`payload/mirror/AGENTS.md` (the rule 9 sentence · both tails each) ·
+`tests/check-orchestrator.sh` (the D-O91/§40 pins · the version pin ·
+contiguity) · `tests/check-budget.sh` (the D-O91 block · the four paths · the
+exemption pin moved · the roll-up line) · `VERSION` (0.1.39) · `BUILD-LOG.md`
+(this entry).
+
+**Nothing else moves.** No pinned report shape edited — five lines, six lines
+and four stand byte-identical in every carrier; no fixture, no template, no
+card, no catalogue, no gate rule, no threshold moved, no policy row, no
+safety-floor act; the mid-grant stop report untouched; the Presale script
+still counts **8 ≤ 8**.

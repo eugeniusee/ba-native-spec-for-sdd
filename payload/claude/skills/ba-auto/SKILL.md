@@ -179,6 +179,41 @@ the two renders can never disagree. **The refresh act is not yours:**
 `/ba-gate-health` runs it and the BA invokes it. A grant does not extend to it,
 the report never fires it, and an `overdue` line is a fact rendered, not a stop.
 
+**The closing ask — this report's pinned tail.** The five pinned lines stand
+byte-untouched, and the register's `What I need from you:` block follows as an
+additive tail — after the report's last line, and after the decision-list tail
+where that renders. The tail is **pinned, never composed at the stop**:
+
+```
+What I need from you:
+1. Band <n> is closed under the grant. How do we proceed?
+   a. continue — <the report's Next act line, in plain words> (recommended)
+   b. pause and ratify — /ba-auto off; the resumption report renders
+   c. correct something first — name it
+Reply with a letter, or in your own words — any reply continues.
+```
+
+`<n>` is the band the boundary leaves behind — Band 1 at P-O7 — Band-1
+closure, Band 2 at P-O8 — Band-3 entry: the head line's own fact, said in
+plain words. **Two conditional joins, and no other.** Where the health line
+renders `overdue`, one option joins before c, re-lettering c to d:
+`run /ba-gate-health full first — it is overdue; no grant reaches it, this
+stays your act`. **Recommended stays on continue** — the health line is
+display only and the refresh act stays the BA's; the option words a choice
+the BA already owned, and the grant still does not reach the run. Where the
+decision-list tail renders, its items **join the ask as questions** — one
+lettered question per `ADV-<n>` row, after the proceed question, in
+**T-18 — Scope allocation's** step-4 shape: the row's finding with a plain
+gloss beside the id, the three dispositions lettered, `hold as advisory — no
+move` carrying `(recommended)` — so taking every recommended option is
+`apply all` exactly; the typed ruling grammar stays the shortcut, never the
+only channel. **This is still a render, not a ratification point:** the ask
+takes no ruling on the trail — ratification stays one batch act at `off`,
+option b routes to that existing act, and **any reply continues — the
+recommended option is the continue.** Present it per the register: one
+AskUserQuestion call for the whole stop where the runtime has the tool, the
+same lettered list with "reply with the letter" where it does not.
+
 ## The mid-grant stop report — a pinned shape
 
 Hold conditions **2 and 3** — a **safety-floor stop** and **exhaustion of the
@@ -198,7 +233,10 @@ Resume from: <the act the BA takes — one line> · AG-<n>: <stands | reaches no
 block follows the last pinned line — appended, never replacing one. **The AUTO
 exemption does not reach this render:** it ends the turn **awaiting a BA act**,
 which is the closing ask's own trigger. The exemption stands for the
-band-boundary report and the resumption report, and for those two only.
+band-boundary report and the resumption report, and for those two only — and
+what it grants those two is **shape, not silence**: each carries its own
+**pinned** ask tail, in its section above and below, where this report's ask
+is **composed at the stop** under the register's rules.
 
 **What each event does to the grant — say which, never leave it inferred.** At
 a **safety-floor stop** the grant **stands**: the floor's four acts sit outside
@@ -248,6 +286,38 @@ prints the full trail** — an act nobody can see is an act nobody can except.
 **Nothing is lost either way:** the acts live append-only in
 `.specify/aspect-state.md`, and the short line is a **pointer to that record**,
 never a substitute for it. **The report is still six lines.**
+
+**The closing ask — this report's pinned tail.** The six pinned lines stand
+byte-untouched, in both trail forms, and the register's `What I need from
+you:` block follows as the same additive tail — after the report's last line,
+and after the decision-list tail where that renders. **Pinned, never composed
+at the stop**:
+
+```
+What I need from you:
+1. <n> AUTO acts stand for ratification. Your call?
+   a. ratify all (recommended)
+   b. ratify all except — name the acts
+   c. discuss first — ask me anything about the trail
+Reply with a letter, or type the Ratify line's own grammar: accept all / list exceptions.
+```
+
+**Taking (a) is the existing one-batch ratification exactly** — it lands as
+`accept all`, the ratification event appends and the grant closes, so **the
+typed grammar and the ask can never disagree**: the apply-all precedent,
+**T-18 — Scope allocation's** step-4 ask, where taking every recommended
+option **is** `apply all`. Option b is `list exceptions` in lettered form —
+the named acts reopen manually, each by its own ordinary checkpoint, and the
+full trail stands above the ask: an act nobody can see is an act nobody can
+except. Option c invents no state — the acts already stand awaiting
+ratification, and reading the record before ruling on it was always legal.
+Where the decision-list tail renders, its items join the ask as questions
+exactly as at the band boundary — the **T-18 — Scope allocation** step-4
+shape, `hold as advisory — no move` recommended, the typed ruling grammar the
+shortcut. **Ratification stays the grant's instrument at `off`** — the ask
+restates it in plain words and adds nothing to it. Present it per the
+register: one AskUserQuestion call where the runtime has the tool, the
+lettered list with "reply with the letter" where it does not.
 
 Append the events:
 

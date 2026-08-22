@@ -183,6 +183,27 @@ The row shape, the three dispositions and the ruling's home are `/ba-auto`'s —
 cited here, never restated. **Assembling the list may be AUTO; ruling it never
 is: an AG never answers it.**
 
+**The closing ask — the report's pinned tail.** After the report's last line —
+and after the decision-list tail where that renders — the render ends with the
+pinned `What I need from you:` block; it is **never composed at the stop**:
+
+```
+What I need from you:
+1. Band <n> is closed under the grant. How do we proceed?
+   a. continue — <the report's Next act line, in plain words> (recommended)
+   b. pause and ratify — /ba-auto off; the resumption report renders
+   c. correct something first — name it
+Reply with a letter, or in your own words — any reply continues.
+```
+
+`<n>` is the band this boundary leaves behind — **Band 1 here**. The two
+conditional joins — the overdue health option before c with recommended
+staying on continue, and the decision-list items joining as questions in
+**T-18 — Scope allocation's** step-4 shape — and the presentation are
+`/ba-auto`'s, cited here, never restated. Still a render, not a ratification
+point: the ask takes no ruling on the trail, and **the recommended option is
+the continue**.
+
 The effects above go to the ledger, not the conversation: under a grant nothing
 between acts is narrated, and this report is the whole of what the BA sees.
 

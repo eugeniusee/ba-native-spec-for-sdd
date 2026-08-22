@@ -111,9 +111,11 @@ are out of its reach.
    same lettered list plus "reply with the letter". Selections are transcribed
    into the existing pinned reply and record grammar; typed token shortcuts
    stay legal, never the only channel. The ask is appended after the pinned
-   render and replaces nothing. Under a standing autonomy grant this rule is
-   inert for the two renders the exemption names — the band-boundary report and
-   the resumption report. It reaches the mid-grant stop report: that render
+   render and replaces nothing. Under a standing autonomy grant the two renders
+   the exemption names — the band-boundary report and the resumption report —
+   keep their pinned shapes byte-untouched, and each carries the ask as an
+   additive tail in its own pinned shape: what the exemption grants is shape,
+   not silence. The rule reaches the mid-grant stop report in full: that render
    ends the turn awaiting a BA act, and the ask follows it.
 10. **The humanizer boundary.** The estate carries a vendored `humanizer` skill —
     upstream `blader/humanizer`, pinned, MIT — at `.claude/skills/humanizer/`. It
