@@ -317,17 +317,35 @@ pre-filled, cited value where one stands; for a keep-or-discard candidate, the
 disposition its citation grounds best, `discard` where the ground is thin. The
 marker never pre-selects and never auto-applies. Transcribe the selections into
 the single Frame reply's existing grammar — the typed reply ("none · Presale ·
-frame confirmed …") stays a legal shortcut, never the only channel. The shape,
-for this stop:
+frame confirmed …") stays a legal shortcut, never the only channel.
+
+**The Slack item is never folded (D-O90).** Whenever any of the three pinned
+Slack lines rendered in the inventory above — match · no-match · interrupted —
+the ask carries **one dedicated Slack question, immediately after the
+sources-completeness item**, shaped by the line that rendered: exactly one of
+the three item-2 variants below — never two, and never zero. **The Slack
+outcome never rides inside the sources-completeness question.** Where no Slack
+line rendered — Slack unreachable, or not integrated — the reachability
+dispositions below govern and **no item is invented**: the ask proceeds from
+the sources item straight to the profile question and the numbering closes up.
+
+The shape, for this stop:
 
 ```
 What I need from you:
 1. Sources — is the list above complete?
    a. complete as shown (recommended)
    b. add more — name, paste or attach them
-2. The Slack channel #<channel> — read it as a source?
+2. The Slack channel #<channel> — read it as a source?   (the match variant — renders only when the match line rendered)
    a. include it (recommended) — its name matches the project
    b. ignore it
+2. I listed <n> channels (public + private, archived included) and none matches the project name. Is there a channel I should read anyway?   (the no-match variant — renders only when the no-match line rendered)
+   a. none — proceed without Slack (recommended)
+   b. yes — name it
+2. I covered <n> of <m> pages — I could not establish the full channel list. How should we proceed?   (the interrupted variant — renders only when the interrupted line rendered)
+   a. re-run the listing to completion (recommended — a negative never rests on a sample)
+   b. name the channel yourself
+   c. proceed without Slack
 3. Which flow fits this engagement?
    a. Presale — limited client access; destination: roadmap + open questions (recommended) — canvas.md is present
    b. Discovery — the full analysis path to certified specs

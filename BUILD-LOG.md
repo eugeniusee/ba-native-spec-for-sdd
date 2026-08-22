@@ -11153,3 +11153,100 @@ the regression-floor pass where D-O88's check already waits.** **The upstream
 pin will drift** — 2.11.2 was already two releases past the ruling's 2.11.0
 within four days, and nothing in the estate watches for it; **refresh is a
 ruling, never a routine.**
+
+## The Slack Item Is Never Folded — the Frame closing ask shaped by the line that rendered, documents before code · orchestrator v0.36 · package 0.1.38 · 22 August 2026 · GREEN
+
+**Session prompt:** codify the **owner ruling of 22 Aug 2026** — one clause at
+the D-O53/D-O80 source-inventory law, under the next free D-O — then propagate:
+the `ba-frame` closing-ask worked shape outcome-shaped, the affected harness
+pins moved in step (`check-budget.sh`; `check-orchestrator.sh`
+version/contiguity). Law: **documents before code** — the clause lands in the
+orchestrator first.
+
+**Precondition, clean.** `HEAD` and `origin/main` both at `be66dd8` (the
+humanizer pass, package 0.1.37), VERSION `0.1.37`, tree clean; the orchestrator
+header at **v0.35** and the ruling block **contiguous through D-O89** — the
+baseline the prompt names, verified on entry. The suite was run **before any
+edit**: 17/17 GREEN (`check-orchestrator.sh` 566 · `check-budget.sh` 50), so
+every count that moves in this pass is this pass's own.
+
+**Origin — the scan was right and the ask lost it.** Field feedback, 22 Aug
+2026, a live Presale Frame run under D-O82: the Frame closing ask carries its
+Slack item in **match shape only** — *"The Slack channel #\<channel\> — read it
+as a source?"*. When the scan rendered the **no-match** or the **interrupted**
+line (the pinned pair D-O80 and D-O85 put into the inventory block), there was
+no `#<channel>` to fill, the question **silently dropped**, and the Slack
+outcome dissolved into item 1's generic *"Sources — is the list complete?"*.
+Every mechanic behind the render was correct — corpus declared, negative
+withheld, cut named — and the last mile folded a first-class outcome into a
+generic completeness question: the D-O82 defect class one layer up.
+
+**D-O90, ruled and applied.** *The Slack item is never folded.* Whenever
+**any** of the three pinned Slack lines rendered (**match · no-match ·
+interrupted**), the Frame closing ask carries **one dedicated Slack question —
+immediately after the sources-completeness item — shaped by the line that
+rendered**: match → the existing question, unchanged; no match → *"I listed
+\<n\> channels (public + private, archived included) and none matches the
+project name. Is there a channel I should read anyway?"*, with
+proceed-without-Slack recommended; interrupted → the cut named in plain words
+(*"covered \<n\> of \<m\> — I could not establish the full channel list"*) with
+**re-run recommended — a negative never rests on a sample (D-O80/D-O81)** —
+name-it-yourself and proceed-without the BA's overrides. **Where no Slack line
+rendered, the existing reachability dispositions govern and no item is
+invented; the Slack outcome never rides inside the sources-completeness
+question.** Additive per §10.3 rule 9 and the D-O56 tail precedent — the three
+pinned inventory lines byte-untouched, one stop one interaction, D-O33's ≤ 8
+untouched, no new stop, no new prompt point, no new register, no threshold
+moved, no assertion weakened. Landed as: the **§8.1 clause** at the
+source-inventory law's tail · the **v0.36 change record** · **§39**, the
+review record — which also puts on the record why a §8.1 clause and not a
+rule-9 amendment (the register already says every open item becomes a
+question; what no rule said is that the Slack outcome **is** an open item
+whenever a Slack line rendered), and why proceed-without is never recommended
+under a cut (it would convert the interruption into a resting negative — the
+conversion D-O85 forbids) · the **footer line**, decisions D-O1–D-O90.
+
+**The compile — `ba-frame` alone, the D-O80 precedent.** The closing-ask
+section gains the D-O90 law paragraph — one dedicated question, exactly one of
+three item-2 variants, never two and never zero, the numbering closing up
+where none renders — and the worked shape's Slack item becomes **three item-2
+variants carrying their render conditions in the pinned-block annotation
+pattern** (*the match | no-match | interrupted variant — renders only when its
+line rendered*), the match text **as shipped**, its question and options
+byte-identical. **The pinned `Sources on hand:` block is byte-untouched** —
+`check-orchestrator.sh`'s byte-parity probe still extracts exactly one block
+per file and finds them identical. The six register carriers: untouched — rule
+9 is consumed, not amended.
+
+**The harness moves in step.** `check-orchestrator.sh`: the **D-O90** and
+**§39** pins beside the D-O89/§38 pair, the header pin **v0.35 → v0.36**, the
+contiguity gate **1…89 → 1…90** (`set(range(1, 91))`). `check-budget.sh`: the
+**D-O90 block** at section 6's tail — the §8.1 law and the never-rides
+sentence in the document, the law paragraph plus all three variants at their
+fixed strings in `ba-frame` (the match text, the no-match corpus-and-ask, both
+recommended dispositions, the cut named in plain words, the proceed-without
+escape) — with `$FRAME` joining the missing-source guard and the GREEN roll-up
+line naming the block.
+
+**Suite — 17/17 GREEN, the three install-based runs included, verified in an
+isolated copy of the tree** (the concurrent-pass discipline). Movement, all
+upward and all accounted: `check-orchestrator.sh` 566 → **568** (the two new
+pins), `check-budget.sh` 50 → **61** (the eleven D-O90 probes). Everything
+else unmoved: `check-m.sh` 71, `check-gate.sh` 105, `check-techniques*.sh`
+104/127/166, `check-spine.sh` 266, `check-register.sh` 63, `check-wbs.sh` 99,
+`check-status.sh` 115, `check-ledger.py` grammar-legal, **`check-cards.py`
+byte-identical**, `check-layout.sh` 120/0/0, `check-exit.sh --offline` 99,
+`check-install.sh` 64, `check-auto.sh` 278.
+
+**Files touched — six, staged by named path:**
+`docs/methodology/ba-native-spec-orchestrator-rules.md` (v0.36 — header ·
+change record · §8.1 clause · §39 · footer) ·
+`payload/claude/skills/ba-frame/SKILL.md` (the law paragraph · the
+three-variant worked shape) · `tests/check-orchestrator.sh` (the D-O90/§39
+pins · the version pin · contiguity) · `tests/check-budget.sh` (the D-O90
+block · `$FRAME` · the roll-up line) · `VERSION` (0.1.38) · `BUILD-LOG.md`
+(this entry).
+
+**Nothing else moves.** No pinned shape edited, no fixture, no template, no
+card, no register carrier, no catalogue, no gate rule, no threshold moved; the
+Presale script still counts **8 ≤ 8**.

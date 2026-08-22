@@ -19,7 +19,9 @@
 #   5.  plan-as-route and the two /ba-run forms — the runner's own operative
 #       text, and the invariant it must not quietly drop
 #   6.  the closing ask — §10.3 rule 9 in the document, the six register
-#       carriers and every stop-carrying skill, with a stripped control
+#       carriers and every stop-carrying skill, with a stripped control; and
+#       D-O90's outcome-shaped Slack item at the Frame ask — the three
+#       variants, never folded into the sources-completeness question
 #
 # The banned list is seeded from the ruling (WS-2) and extended by judgment;
 # every phrasing it carries is logged in section 4's output, so a future reader
@@ -37,6 +39,7 @@ DOC="$PKG_ROOT/docs/methodology/ba-native-spec-orchestrator-rules.md"
 RUN="$PKG_ROOT/payload/claude/skills/ba-run/SKILL.md"
 ORC="$PKG_ROOT/payload/claude/agents/ba-orchestrator.md"
 BLOCK="$PKG_ROOT/payload/mirror/claude-block.md"
+FRAME="$PKG_ROOT/payload/claude/skills/ba-frame/SKILL.md"
 SCRIPT="$HERE/presale-path.md"
 
 BUDGET=8
@@ -99,7 +102,7 @@ sys.exit(0 if sys.argv[2] in joined else 1)
 PY
 }
 
-for f in "$DOC" "$RUN" "$ORC" "$BLOCK" "$SCRIPT"; do
+for f in "$DOC" "$RUN" "$ORC" "$BLOCK" "$FRAME" "$SCRIPT"; do
   [ -f "$f" ] || { printf '✗ missing source: %s\n' "$f" >&2; exit 2; }
 done
 
@@ -389,11 +392,45 @@ grep -qF 'What I need from you:' "$CA/stripped.md" \
   && bad "the control is blind: the stripped copy still matches" \
   || ok "the control fires — a skill stripped of the ask is caught"
 
+# the Slack item is never folded (D-O90) — the field defect of 22 Aug 2026:
+# with the no-match or interrupted line rendered there was no #<channel> to
+# fill, the match-shaped question silently dropped, and the Slack outcome
+# dissolved into the generic sources-completeness item. Whenever any of the
+# three pinned Slack lines rendered, the Frame ask carries one dedicated Slack
+# question — immediately after the sources item — shaped by the line that
+# rendered; where no Slack line rendered, no item is invented.
+
+printf '\n▸ The Slack item is never folded — §8.1 (D-O90)\n'
+
+has_joined "$DOC" 'The Slack item is never folded (D-O90).' \
+    "§8.1 states the never-folded law"
+has_joined "$DOC" 'one dedicated Slack question' \
+    "…one dedicated Slack question, shaped by the line that rendered"
+has_joined "$DOC" 'The Slack outcome never rides inside the sources-completeness question.' \
+    "…and the outcome never rides inside the sources item"
+has_joined "$DOC" 'the existing reachability dispositions govern and no item is invented' \
+    "…and no item is invented where no Slack line rendered"
+
+has_joined "$FRAME" 'The Slack item is never folded (D-O90).' \
+    "ba-frame carries the law at its own stop"
+has "$FRAME" 'The Slack channel #<channel> — read it as a source?' \
+    "…the match variant, its text as shipped"
+has "$FRAME" 'none matches the project name. Is there a channel I should read anyway?' \
+    "…the no-match variant states its corpus and asks anyway"
+has "$FRAME" 'a. none — proceed without Slack (recommended)' \
+    "…with proceed-without-Slack the recommended no-match disposition"
+has "$FRAME" 'I could not establish the full channel list' \
+    "…the interrupted variant names the cut in plain words"
+has "$FRAME" 'a. re-run the listing to completion (recommended — a negative never rests on a sample)' \
+    "…with the re-run recommended — a negative never rests on a sample"
+has "$FRAME" 'c. proceed without Slack' \
+    "…and the interrupted variant keeps the proceed-without-Slack escape"
+
 # ── roll-up ──────────────────────────────────────────────────────────────────
 
 printf '\n  passed: %s   failed: %s\n' "$PASSED" "$FAILED"
 if [ "$FAILED" -eq 0 ]; then
-  printf '✓ GREEN — manual-mode UX: the budget (%s ≤ %s) · the route render §10.6 · the checkpoint law · zero acknowledgement-only stops · plan-as-route + the two run forms · the closing ask §10.3 rule 9\n' \
+  printf '✓ GREEN — manual-mode UX: the budget (%s ≤ %s) · the route render §10.6 · the checkpoint law · zero acknowledgement-only stops · plan-as-route + the two run forms · the closing ask §10.3 rule 9 · the Slack item never folded (D-O90)\n' \
     "$N" "$BUDGET"
   exit 0
 fi
