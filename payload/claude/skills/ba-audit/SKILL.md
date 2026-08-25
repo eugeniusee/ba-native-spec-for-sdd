@@ -1,13 +1,16 @@
 ---
 name: ba-audit
-description: Run the source audit over the whole band (Scope S) - build the obligations register from the captured sources, trace it forward into every spec, brief, roadmap row and deferral, trace every scope-bearing claim backward to its ground, evaluate the CC-S assertions, and render one decision list at P-A1 - source-audit ruling - where every finding carries its source quote, its band-wide search set and a default. On the BA's ruling it executes the repairs by dispatch and routing, re-audits incrementally, and appends the report entry. BA-invoked, band-level, one checkpoint.
+description: Run the source audit over the whole band (Scope S) - build the obligations register from the captured sources, trace it forward into every spec, brief, roadmap row and deferral, trace every scope-bearing claim backward to its ground, evaluate the CC-S assertions, and render one decision list at P-A1 - source-audit ruling - where every finding carries its source quote, its band-wide search set and a default. On the BA's ruling it executes the repairs by dispatch and routing, re-audits incrementally, renders the coverage report - exports/audit-report.xlsx and audit-report.csv, four pinned sheets over the post-repair state - and appends the report entry. A run is not closed until the report renders; --report re-renders it from the latest closed run without a new audit. BA-invoked, band-level, one checkpoint.
 disable-model-invocation: true
 ---
 
-# `/ba-audit [--full]` — the Scope-S run
+# `/ba-audit [--full | --report]` — the Scope-S run
 
 **Argument:** none — the scope is the band; that is the point. `--full` forces
 a from-scratch run where an incremental one would otherwise compose (run > 1).
+`--report` **re-renders the coverage report from the latest closed run and runs
+no audit** (Stage 5b) — no walk, no dispatch, no ruling, no repair, no append,
+no checkpoint. It is **exclusive with `--full`**.
 
 ## Invocation contract — check before you run
 
@@ -37,10 +40,15 @@ a from-scratch run where an incremental one would otherwise compose (run > 1).
                        — REQUIRED, a clean run included (zero rows)
   repairs.json         the executed route, per-row outcome — REQUIRED where
                        the ruling produced at least one executable row
+exports/audit-report.xlsx   the coverage report — four pinned sheets
+                       — REQUIRED, rendered at Stage 5b before the entry appends
+exports/audit-report.csv    the same run's Coverage Matrix, canonical
+                       — REQUIRED, rendered with it
 ```
 
-The four are this run's own evidence, and **Stage 5 checks them before the
-entry appends** (definition §7, **D-S4**). `<n>` is monotonic and band-global:
+The four workspace files are this run's own evidence and the two exports are the
+reader's copy of it; **Stage 5 checks all six before the entry appends**
+(definition §7, **D-S4** · **D-S6**). `<n>` is monotonic and band-global:
 read `.specify/source-audit.md`, take the highest `## Source audit run <n>`,
 add one. The report ledger and the standing
 `SA-<nn>` records live at `.specify/source-audit.md` — append-only,
@@ -258,7 +266,14 @@ every other run's head.
 **Write `decision-list.md` — it is this stage's act, not a side effect**
 (**D-S4**). The rendered list is written to the run workspace **before** the
 ruling is asked for, and the ruling is written back into the same file when it
-is given — *as rendered and as ruled*. **A clean run writes it too**, with its
+is given — *as rendered and as ruled*. **The write-back is line-anchored**
+(orchestrator §2.4, **D-O88 · D-O92**): the section is found by a **full-line
+match at line start**, never by substring search — this file is rewritten in
+place and repeats its own heading strings, which is the class that rule names.
+**And any note this file carries names its sections without reproducing their
+literal heading strings**: a note that quotes its own headings arms the next
+edit against the file it explains (field defect 2026-08-23). **A clean run
+writes it too**, with its
 `Rulings:` line and zero rows: *nothing found* is a result, and a result the
 workspace does not hold is a result no later run and no reader can check. A
 declined row becomes an SA record in `.specify/source-audit.md` — all fields,
@@ -268,39 +283,176 @@ incomplete record.
 ## Stage 4 — the repair route
 
 The P-A1 ruling is the route's `go`; ask for no second confirmation. Render
-the §10.6 route shape and run the rows:
+the §10.6 route shape and run the rows.
+
+**Rows standing ruled and unexecuted come first** (**D-S8**). Before this run's
+own rows, read **the most recent run whose workspace holds a `repairs.json`**
+and re-enter **every row standing `unexecuted`**, each on the ruling it already
+carries: the row **as ruled** is in that run's `decision-list.md`, its target
+and its `why` in that run's `repairs.json` — both required files, so the
+resumption is a read and adds no instrument. **No re-ruling and no second P-A1
+render** — a resumed row is a **standing ruling, not a finding**. Record it in
+**this** run's `repairs.json` naming the run that ruled it —
+`{"#": 3, "from-run": 7, "target": "<path>", "outcome": "landed"}`, `from-run`
+absent on a row this run ruled. A resumed row that still cannot execute lands
+`unexecuted` again with its `why` and resumes at the next run; **no count of
+attempts closes a row**. Where its obligation is no longer live — the
+post-repair register no longer carries it, or a standing SA now covers it —
+close it `superseded — <reason>`, **never silently**.
+
+Then the rows:
 
 - **Spec edits** — dispatch the `ba-analyst` subagent per target spec,
   draft-first, assumption posture: approved proposals land as drafts with
-  inferred values marked, exactly as Tier-2 fixes land. This skill authors
-  nothing itself.
+  inferred values marked, exactly as Tier-2 fixes land. **This dispatch is the
+  one named exception to that agent's own fence** (**D-S7**, definition §6),
+  and it is lawful because it is **post-ruling**: P-A1 has already fixed the
+  target, the quote, the proposal and the posture. This skill authors
+  nothing itself — and **where the dispatch is undispatchable** (§4's third
+  state, a policy restriction on agent calls) the row lands `unexecuted` with
+  its `why`, **never self-authored**, and D-S8 brings it back. A refused row
+  stops nothing else.
 - **Upstream artifact changes** (glossary · roles-permissions · out-of-scope ·
   roadmap) — the routing discipline: the ruled proposal is the approval →
   write → the scoped health run fires silently.
 - **Unowned obligations** — where no spec's epic owns the module, the row's
   proposal already named the brief and the Band-2 act; execute nothing
   band-2-shaped here beyond recording the routed signal.
-- Record each row's outcome in `repairs.json`. A row that cannot execute
+- Record each row's outcome in `repairs.json`, **keyed by the decision-list row
+  number** so Stage 5b's `Outcome` column can find it:
+  `{"rows": [{"#": 3, "target": "<path>", "outcome": "landed"}, …]}` —
+  `landed` · `SA-<nn>` · `unexecuted` with its `why`. A row that cannot execute
   stops nothing else; it lands in the report as `unexecuted — <why>`.
 
 ## Stage 5 — re-audit, delta, entry
 
 Re-run Stages 1–2 incrementally over the repair diff. Render the delta —
-obligations closed · claims resolved · anything newly surfaced — and append
-the entry to `.specify/source-audit.md` per the pinned template
+obligations closed · claims resolved · anything newly surfaced. Then **Stage 5b
+renders the coverage report** over the post-repair state, **and the entry
+appends last** to `.specify/source-audit.md` per the pinned template
 (`.specify/ba/templates/source-audit-report-entry.md`). Convergence is one
 cycle; a second cycle still finding new rows files itself as a finding.
 
-**Check the workspace before appending** (**D-S4**). The required set:
-`obligations.md` · `trace.json` · `decision-list.md` **always**, a clean run
-included; `repairs.json` **where the ruling produced at least one executable
-row**. **Where a required file is missing the entry does not append** — name
-the missing file and record the run `INCOMPLETE`. An append is a claim on an
+**Check the workspace before appending** (**D-S4** · **D-S6**). The required
+set: `obligations.md` · `trace.json` · `decision-list.md` **always**, a clean
+run included; `repairs.json` **where the ruling produced at least one
+executable row**; **`exports/audit-report.xlsx` and `exports/audit-report.csv`
+always** — checked after Stage 5b has written them. **Where a required file is
+missing the entry does not append** — name the missing file and record the run
+`INCOMPLETE`. An append is a claim on an
 append-only ledger that the run behind it happened; an entry that outruns its
 own workspace makes that claim false for every later reader, and the ledger is
 the one surface no later run can correct. The entry's `Status:` field carries
 `complete`, or `INCOMPLETE` with its reason — the self-evaluated election
 (Stage 0) forces the second in every mode.
+
+## Stage 5b — the coverage report
+
+**The run is not closed until it renders** (definition §6b, **D-S6**). The
+decision list renders findings; nothing renders the register. This stage is the
+reader's copy of it, and it is permanent — it runs on every run, a clean one
+included.
+
+```bash
+python3 .specify/ba/scripts/sk_audit_report.py --root . --run <n>
+python3 .specify/ba/scripts/sk_audit_report.py --root . --latest   # --report
+```
+
+Written, in this order: `exports/audit-report.xlsx` — the primary render —
+then `exports/audit-report.csv` — the canonical one. Stable paths, overwritten
+per run, **derived and never hand-edited**.
+
+**The state is the closed run's post-repair state**, never the P-A1 state: the
+register as this stage's re-audit left it, the decision list **as ruled**, the
+repairs as executed. A report over the pre-repair register would show the BA the
+band their own ruling has already fixed.
+
+**The four pinned sheets** — the names, the order, the columns:
+
+```
+Coverage Matrix      | OB | Source | Section | Quote | Modality | Phase claim | Carrier | Status | Finding # |
+Per-Source Summary   | Source | Sections walked | Sections total | Obligations | Carried | Partial | Accepted | Gaps | Coverage % | Note |
+Findings & Rulings   | # | CC-S | Evidence — source · section · "quote" | Band check | Proposal → target | Default | Ruling | Outcome |
+SA Register          | SA | OB | Source | Quote | Decision | Reason | Approver | Date | Revisit |
+```
+
+- **Coverage Matrix** — one row per post-repair register row, `OB-<nnn>` the row
+  key and the eight columns after it the register's own row grammar. **The quote
+  is verbatim** — unshortened, unrewritten; a matrix whose quotes are summaries
+  is not evidence. `Finding #` carries the P-A1 list number where the row
+  produced one and is **empty** where it produced none.
+- **Per-Source Summary** — one row per captured source off the register head's
+  coverage block, plus a `TOTAL` row. **Coverage % is
+  `(carried + accepted) ÷ obligations`, whole percent** — `partial` and `gap`
+  are the uncovered remainder and take **no half credit**; the four counts
+  render beside it so any other reading is the reader's arithmetic, never the
+  export's. A source with **zero** obligations renders an **empty** percentage
+  cell. `Note` carries the head's own words — a zero-row source's reason, and
+  **`sample — <what was not walked>` wherever the corpus fell short**.
+- **Findings & Rulings** — the decision list as ruled, `Outcome` from
+  `repairs.json`. **A clean run renders the sheet with its header row and no
+  rows**: a sheet the workbook omits is a result no reader can tell apart from a
+  run that never checked.
+- **SA Register** — the **standing** `SA-<nn>` records, this run's included: an
+  SA is project-level, and *what did we decline?* is a question to the register,
+  not to the run.
+
+**The render conventions are `/ba-wbs`'s** (`sk_xlsx.py`): xlsx first and
+primary, csv canonical and **carrying the Coverage Matrix alone with no title
+block**, a title block above the **bold header row** of every sheet, wrapped
+text, column widths, **no cell merges**. **§10.5's stakeholder register is not
+carried** — this export is **BA-facing operational state**, and the audit's
+evidence bar governs its cells: quotes verbatim, `CC-S` · `OB` · `SA` codes as
+themselves. It is never quoted into a spec.
+
+**The title block** — four lines, above the header row of **every** sheet: a
+sheet opened alone must still say which run it came from.
+
+```
+Source audit run <n> — <date> · profile: <profile>
+Status: <complete | INCOMPLETE — <reason>>
+Sources read: <k> · unaudited ground: <named, with states | none>
+Corpus covered: <the named corpus, walked | sample — <what was not walked>>
+```
+
+Its ground is the ground the entry's head is assembled from: lines 1, 3 and 4
+from `decision-list.md`'s pinned P-A1 head, lines 3 and 4 **verbatim**; line 2
+the run's recorded status where the ledger carries the entry, the P-A1 head's
+conditional `Status:` line where it does not, `complete` where neither speaks.
+The render precedes the append, so on a fresh run the P-A1 head is the only
+ground there is.
+
+**A sampled corpus renders twice.** Once on the title block — the
+`Corpus covered:` line verbatim — and once **per source**, on the `Note` of
+every source the register head shows short of its own section count
+(`sample — <walked>/<total> sections walked`). A spreadsheet is the most
+authoritative-looking render this framework produces, and a sample it does not
+name is the D-S3 defect in its most persuasive form.
+
+**Every number is derived** (**D-S2**, extended from the P-A1 head to the
+workbook). The renderer counts the post-repair state and asserts nothing of its
+own; **a field the workspace does not carry renders an empty cell** — never a
+guess, never a default. **Three surfaces, one number:** the Coverage Matrix's
+row count, the `TOTAL` row and the entry's `Register:` line. A disagreement is
+invalid audit output, corrected before the render stands.
+
+**Under `--report`.** The act is this stage alone, over the **latest closed
+run** — the highest-numbered entry on `.specify/source-audit.md` **that opened a
+workspace** — reading that workspace on disk. **Nothing else happens**: no walk,
+no dispatch, no ruling, no repair, **no append**, no checkpoint; the ledger
+already carries the run, and a second entry would claim a second run happened.
+Where the ledger holds no entry, **refuse and name `/ba-audit`** as the act.
+Where the closed run's workspace is missing a required file, **refuse and name
+the file** — a re-render is not a repair, and the evidence a report renders is
+evidence the run was supposed to leave.
+
+**A refused admission is stepped past; a holed workspace is not.** A Stage-0
+refusal takes a run number and opens **no workspace at all**, so a `--report`
+right after one meets it first: step past every such entry and **say which**.
+The latest entry that *did* open a workspace is the run to render — and where
+that workspace is short, refuse and name the file rather than stepping back
+another run. That run closed and D-S4 guaranteed its evidence; a hole in it is
+evidence gone missing.
 
 **Escapes.** A source obligation surfacing downstream that no audit run
 listed → `.specify/gate-tuning.md`, class `audit escape`, naming the CC-S
@@ -311,14 +463,28 @@ backstop shrinks to zero catches the same way the gate's does.
 
 Never changes a gate verdict, a waiver, an override or a certification ·
 never edits any file before the P-A1 ruling — except producing a missing `sources/*.extracted.md` rendering at Stage 0, capture completion and never band content · never authors repair content —
-it dispatches `ba-analyst` and routes upstream edits · never treats a
+it dispatches `ba-analyst` under the definition's one named exception and
+routes upstream edits (D-S7) · never dispatches that agent for anything but a
+**post-ruling** repair at a ruled target, and never self-authors a repair whose
+dispatch was refused (D-S7) · never re-rules a row that stands ruled and
+unexecuted, and never drops one without naming what closed it (D-S8) · never
+edits a file it rewrites in place by substring search, and never writes a note
+that quotes its own section headings (D-O92) · never treats a
 question, a marker or a comment as a carrier · never renders a finding
 without file + place + quote and the band-wide search set · never reports a
 gap out of a corpus it did not cover · never renders a header number it did
 not derive from the register on disk · never evaluates its own CC-S assertions
 absent the BA's explicit self-evaluated election, and never retries a policy
 refusal as if it were a dead dispatch · never appends a report entry over a
-workspace missing a required file · never reads a
+workspace missing a required file, the coverage report's two files included ·
+never renders a coverage report over anything but the closed run's post-repair
+state · never renders a workbook number it did not count from that state, and
+never fills a cell the workspace left empty · never renders a coverage
+percentage over a sampled corpus without naming the sample on the title block
+and on the source's own row · never treats the coverage report as
+client-facing content — it is operational state, and the WBS export's
+stakeholder register is not its rule · never appends, repairs or rules under
+`--report` · never reads a
 source the inventory did not capture · never re-proposes a standing SA
 absent new source ground · never asks the BA for the profile — head or
 nothing · never runs a per-feature audit — the band is the scope · never

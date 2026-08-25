@@ -102,8 +102,9 @@ S1|file|.specify/ba/templates/gate-health.md|gate §10.3 head + entries shape
 S1|file|.specify/ba/templates/gate-tuning.md|gate §7.4 two tables + §12 escape record
 S1|file|.specify/ba/templates/elicitation-tuning.md|doc 3 §10 three tables (D-P2-11)
 
-# vendored scripts — 14 (build plan §2.4, D-P2-7): 11 M checkers + the WBS pair
-#                     + the dashboard
+# vendored scripts — 15 (build plan §2.4, D-P2-7): 11 M checkers + the WBS pair
+#                     + the dashboard; the fifteenth is sk_audit_report.py,
+#                     listed below with its own source doc
 S2|file|.specify/ba/scripts/sk_snapshot.py|gate §3 · §7.2 · §9.2
 S2|file|.specify/ba/scripts/sk_structure.py|gate §4.1–§4.2 · standard §2
 S2|file|.specify/ba/scripts/sk_scan.py|contract §4/§5/C12
@@ -154,6 +155,7 @@ RT|absent|.specify/feature.json|◇ /ba-handoff (Spec Kit feature pointer)
 S9|file|.claude/skills/ba-audit/SKILL.md|Scope-S run, stages 0–5 (source-audit definition) — added in package 0.1.x, after S9
 S9|file|.specify/ba/cards/assertions-s.md|CC-S card — the A pass of /ba-audit — added in package 0.1.x, after S9
 S9|file|.specify/ba/templates/source-audit-report-entry.md|pinned Scope-S entry — added in package 0.1.x, after S9
+S9|file|.specify/ba/scripts/sk_audit_report.py|Stage-5b coverage report → exports/audit-report.xlsx + .csv (§6b, D-S6) — added in package 0.1.40, after S9
 RT|absent|.specify/source-audit.md|◇ /ba-audit report ledger + standing SA records
 
 # ── vendored skill (D-O89) — added in package 0.1.37, after S9; upstream

@@ -1,0 +1,8 @@
+{
+  "run": 3,
+  "forward": {"rows": 3, "carried": 3, "partial": 0, "accepted": 0, "gaps": 0},
+  "backward": {"rows": 9, "ungrounded": 0, "contradictions": 0},
+  "a_pass": {"evaluator": "self-evaluated — no independent A pass",
+             "families": ["CC-S-01", "CC-S-02", "CC-S-03", "CC-S-04",
+                          "CC-S-05", "CC-S-06", "CC-S-07", "CC-S-08"]}
+}

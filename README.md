@@ -93,7 +93,7 @@ the bootstrap closes by installing `uv` itself.
 ## Test
 
 ```sh
-tests/run-all.sh                                               # the regression — all seventeen checks, one table
+tests/run-all.sh                                               # the regression — all eighteen checks, one table
 tests/run-all.sh --file-only                                   # the fourteen checks that need no install; no network
 tests/check-exit.sh                                            # the Phase-2 exit test — all ten steps
 tests/check-install.sh                                         # the install UX — bootstrap · self-guard · uv-free
@@ -193,7 +193,7 @@ ba-native-spec/
 │  ├─ quickstart.md        BA quickstart — the loop, and manual mode (S9)
 │  └─ mode-b-fallback.md   the documented handoff fallback, and its cost (S9)
 └─ tests/
-   ├─ run-all.sh           the regression runner — all seventeen checks, one table
+   ├─ run-all.sh           the regression runner — all eighteen checks, one table
    │                       (Lane D; closes the hand-assembled roll-up)
    ├─ check-layout.sh · layout.expected
    ├─ check-m.sh           the M-checker suite (S2)

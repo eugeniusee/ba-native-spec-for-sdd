@@ -14,9 +14,15 @@ LibreOffice all open. Every string is written **inline** (`t="inlineStr"`) — a
 shared-string table would buy compression this file does not need and would add
 a part that can fall out of sync with the sheet.
 
-Deliberately not implemented: formulas, numbers, dates, merges, colours,
-multiple sheets. The export has one sheet of text cells; anything more would be
-capability this document does not ask for.
+Deliberately not implemented: formulas, numbers, dates, merges, colours. Every
+cell is text.
+
+**Multiple sheets** (source-audit definition §6b, D-S6): `write_book()` writes a
+workbook of several sheets, each with its own title block, header row, rows and
+widths. `write()` is the one-sheet call and keeps its contract and its bytes —
+`/ba-wbs`'s workbook is byte-for-byte what it was before the extension, and the
+suite asserts it. Nothing else about the format moves: the same two cell
+formats, the same inline strings, the same fixed zip timestamps.
 
 Python 3, standard library only (D-P2-7).
 """
@@ -41,6 +47,22 @@ CONTROL_RE = re.compile(r"[\x00-\x08\x0b\x0c\x0e-\x1f]")
 # style ids, as cellXfs orders them below
 S_BODY = 0
 S_HEADER = 1
+
+# Excel's own sheet-name rules: 31 characters, and five punctuation marks plus
+# the backslash are forbidden. A name that breaks them produces a file no reader
+# opens, so it is refused here rather than written.
+SHEET_NAME_BAD = set(r":\/?*[]")
+SHEET_NAME_MAX = 31
+
+
+def _check_sheet_name(name: str) -> str:
+    if not name or len(name) > SHEET_NAME_MAX:
+        raise ValueError("sheet name %r must be 1–%d characters"
+                         % (name, SHEET_NAME_MAX))
+    bad = sorted(SHEET_NAME_BAD & set(name))
+    if bad:
+        raise ValueError("sheet name %r carries %s" % (name, " ".join(bad)))
+    return name
 
 
 def col_letter(n: int) -> str:
@@ -91,16 +113,29 @@ def _sheet(header, rows, widths, title=()) -> str:
     return "".join(out)
 
 
-_CONTENT_TYPES = (
-    '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
-    '<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">'
-    '<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>'
-    '<Default Extension="xml" ContentType="application/xml"/>'
-    '<Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/>'
-    '<Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>'
-    '<Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/>'
-    "</Types>"
-)
+def _content_types(n_sheets: int) -> str:
+    """One Override per worksheet, then styles — the order Excel writes them.
+
+    At n_sheets == 1 this is byte-identical to the single-sheet part this module
+    emitted before the multi-sheet extension.
+    """
+    sheets = "".join(
+        '<Override PartName="/xl/worksheets/sheet%d.xml" '
+        'ContentType="application/vnd.openxmlformats-officedocument.'
+        'spreadsheetml.worksheet+xml"/>' % i
+        for i in range(1, n_sheets + 1)
+    )
+    return (
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+        '<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">'
+        '<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>'
+        '<Default Extension="xml" ContentType="application/xml"/>'
+        '<Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/>'
+        + sheets +
+        '<Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/>'
+        "</Types>"
+    )
+
 
 _ROOT_RELS = (
     '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
@@ -109,13 +144,23 @@ _ROOT_RELS = (
     "</Relationships>" % (NS_REL_PKG, NS_REL_DOC)
 )
 
-_WORKBOOK_RELS = (
-    '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
-    '<Relationships xmlns="%s">'
-    '<Relationship Id="rId1" Type="%s/worksheet" Target="worksheets/sheet1.xml"/>'
-    '<Relationship Id="rId2" Type="%s/styles" Target="styles.xml"/>'
-    "</Relationships>" % (NS_REL_PKG, NS_REL_DOC, NS_REL_DOC)
-)
+
+def _workbook_rels(n_sheets: int) -> str:
+    """rId1…rIdN the worksheets in order, rId(N+1) the stylesheet."""
+    rels = "".join(
+        '<Relationship Id="rId%d" Type="%s/worksheet" '
+        'Target="worksheets/sheet%d.xml"/>' % (i, NS_REL_DOC, i)
+        for i in range(1, n_sheets + 1)
+    )
+    return (
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+        '<Relationships xmlns="%s">' % NS_REL_PKG
+        + rels
+        + '<Relationship Id="rId%d" Type="%s/styles" Target="styles.xml"/>'
+          % (n_sheets + 1, NS_REL_DOC)
+        + "</Relationships>"
+    )
+
 
 # Two cell formats and nothing else: body (wrapped, top-aligned) and the bold
 # header row. Excel requires the gray125 second fill whether or not it is used.
@@ -142,12 +187,22 @@ _STYLES = (
 )
 
 
-def _workbook(sheet_name: str) -> str:
+def _workbook(sheet_names) -> str:
+    """The sheet list, in the order the caller handed them over.
+
+    A single name renders exactly the part this module emitted before the
+    multi-sheet extension.
+    """
+    sheets = "".join(
+        '<sheet name="%s" sheetId="%d" r:id="rId%d"/>'
+        % (esc(_check_sheet_name(name)), i, i)
+        for i, name in enumerate(sheet_names, start=1)
+    )
     return (
         '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
         '<workbook xmlns="%s" xmlns:r="%s">'
-        '<sheets><sheet name="%s" sheetId="1" r:id="rId1"/></sheets>'
-        "</workbook>" % (NS_MAIN, NS_REL_DOC, esc(sheet_name))
+        "<sheets>%s</sheets>"
+        "</workbook>" % (NS_MAIN, NS_REL_DOC, sheets)
     )
 
 
@@ -160,29 +215,60 @@ def write(path, header, rows, widths=None, sheet_name="WBS", title=()) -> Path:
     optional title block — one single-cell row per line, rendered above the
     header row (D-O67 · D-O75); the csv render passes none. The line count is
     the caller's: this writer renders whatever it is handed.
+
+    One sheet is the whole contract here, and the bytes are unchanged by the
+    multi-sheet extension: this is `write_book()` with a single sheet.
+    """
+    return write_book(path, [(sheet_name, header, rows, widths, title)])
+
+
+def write_book(path, sheets) -> Path:
+    """Write a workbook of several sheets, overwriting whatever is there.
+
+    `sheets` is an ordered sequence of `(name, header, rows, widths, title)` —
+    the same five arguments `write()` takes, once per sheet. Every sheet carries
+    its own title block, because a sheet a reader opens alone must still say
+    which run it came from (source-audit definition §6b, D-S6).
+
+    `widths` may be None for the 24-character default. Sheet names are checked
+    against Excel's own rules before a byte is written.
     """
     path = Path(path)
-    widths = widths or [24] * len(header)
-    if len(widths) != len(header):
-        raise ValueError("widths (%d) do not match the header (%d)"
-                         % (len(widths), len(header)))
-    for i, row in enumerate(rows):
-        if len(row) != len(header):
-            raise ValueError("row %d has %d cells, the header has %d"
-                             % (i + 1, len(row), len(header)))
+    sheets = list(sheets)
+    if not sheets:
+        raise ValueError("a workbook needs at least one sheet")
+
+    prepared = []
+    for name, header, rows, widths, title in sheets:
+        _check_sheet_name(name)
+        w = list(widths) if widths else [24] * len(header)
+        if len(w) != len(header):
+            raise ValueError("%s: widths (%d) do not match the header (%d)"
+                             % (name, len(w), len(header)))
+        for i, row in enumerate(rows):
+            if len(row) != len(header):
+                raise ValueError("%s: row %d has %d cells, the header has %d"
+                                 % (name, i + 1, len(row), len(header)))
+        prepared.append((name, header, list(rows), w, tuple(title or ())))
+
+    names = [s[0] for s in prepared]
+    if len(set(names)) != len(names):
+        raise ValueError("two sheets share a name: %s" % ", ".join(names))
 
     path.parent.mkdir(parents=True, exist_ok=True)
     # Fixed timestamps: the export is derived and regenerated on demand, and a
     # wall-clock date inside the zip would make two identical runs differ.
     stamp = (1980, 1, 1, 0, 0, 0)
     parts = [
-        ("[Content_Types].xml", _CONTENT_TYPES),
+        ("[Content_Types].xml", _content_types(len(prepared))),
         ("_rels/.rels", _ROOT_RELS),
-        ("xl/workbook.xml", _workbook(sheet_name)),
-        ("xl/_rels/workbook.xml.rels", _WORKBOOK_RELS),
+        ("xl/workbook.xml", _workbook(names)),
+        ("xl/_rels/workbook.xml.rels", _workbook_rels(len(prepared))),
         ("xl/styles.xml", _STYLES),
-        ("xl/worksheets/sheet1.xml", _sheet(header, rows, widths, title)),
     ]
+    for i, (_, header, rows, w, title) in enumerate(prepared, start=1):
+        parts.append(("xl/worksheets/sheet%d.xml" % i,
+                      _sheet(header, rows, w, title)))
     with zipfile.ZipFile(path, "w", zipfile.ZIP_DEFLATED) as z:
         for name, text in parts:
             info = zipfile.ZipInfo(name, date_time=stamp)

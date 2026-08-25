@@ -100,7 +100,7 @@ Do not invoke them on your own initiative and do not simulate their effects.
 | `/ba-handoff <feature>` | Mode-A adapter: hash guard, branch, ready report |
 | `/ba-wbs [--include NNN …]` | The WBS export — `exports/wbs.xlsx` + `exports/wbs.csv`, read-only |
 | `/ba-design` | The design-guide export — `exports/design-guide.md`, read-only: what the captured material states about visual identity, cited; the pinned none-record where it states nothing |
-| `/ba-audit [--full]` | The Scope-S source audit over the whole band: obligations register → two-way trace → one P-A1 (source-audit ruling) decision list, every row carrying its source quote, its band-wide search set and a default → ruled repairs → incremental re-audit |
+| `/ba-audit [--full \| --report]` | The Scope-S source audit over the whole band: obligations register → two-way trace → one P-A1 (source-audit ruling) decision list, every row carrying its source quote, its band-wide search set and a default → ruled repairs → incremental re-audit → the coverage report, `exports/audit-report.xlsx` + `exports/audit-report.csv`, four pinned sheets over the post-repair state; a run is not closed until it renders, and `--report` re-renders it from the latest closed run without a new audit |
 | `/ba-auto on [<profile>]` · `/ba-auto off` | Autonomous mode: write or close the autonomy grant `AG-<n>`; `off` renders the pinned resumption report for one batch ratification |
 
 **Techniques — 20** (one-step via `/ba-<id>`; the P-O3 (technique invocation) check compiled into each; `/ba-run <id>` aliases)

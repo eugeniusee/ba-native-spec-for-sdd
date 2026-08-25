@@ -28,6 +28,15 @@
   time, carried <c> + partial <p> + accepted <a> + gaps <g> summing to <t>.
   A count this entry asserts but the workspace does not carry is invalid audit
   output (definition D-S2).
+
+  The coverage-report field (head line 8) names the two files Stage 5b rendered
+  from this run's post-repair state — the reader's copy of the register
+  (definition §6b, D-S6). It is a REQUIRED field and the render precedes this
+  append: an entry naming a file that does not exist is the D-S4 defect one
+  artifact along. Where the render did not complete, this entry does not append
+  at all — the run names the file it could not write and stands INCOMPLETE.
+  `/ba-audit --report` re-renders the pair from the latest closed run and
+  appends nothing: one run, one entry.
 -->
 
 ## Source audit run <n> — <date>
@@ -37,6 +46,7 @@ Sources read: <k> — <list, by Sources-line name>
 Unaudited ground: <source — state, per entry | none>
 Band read set: specs <NNN…> · briefs <E-nn…> · roadmap · out-of-scope · [wbs]
 Corpus covered: <the named corpus, walked | sample — <what was not walked>>
+Coverage report: exports/audit-report.xlsx · exports/audit-report.csv
 
 Register: <t> obligations (<n_critic> from the critic pass)
 Forward: carried <c> · partial <p> · accepted <a> · gaps <g>

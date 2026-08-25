@@ -1497,9 +1497,12 @@ has "$RULES_DOC" "## 39. Review record (v0.35 → v0.36)" \
 has "$RULES_DOC" "D-O91" "…and the pinned-tails ruling"
 has "$RULES_DOC" "## 40. Review record (v0.36 → v0.37)" \
     "…and §40, the review record that carries it"
-head -2 "$RULES_DOC" | grep -q 'v0\.37' \
-  && ok "the header states the live edition — v0.37, the bare boundary asks" \
-  || bad "the header does not name v0.37: the edition and the change record disagree"
+has "$RULES_DOC" "D-O92" "…and the edit-discipline-by-class ruling"
+has "$RULES_DOC" "## 41. Review record (v0.37 → v0.38)" \
+    "…and §41, the review record that carries it"
+head -2 "$RULES_DOC" | grep -q 'v0\.38' \
+  && ok "the header states the live edition — v0.38, the edit discipline binds by class" \
+  || bad "the header does not name v0.38: the edition and the change record disagree"
 has "$RULES_DOC" "D-O45–D-O49" "…and the source-inventory ruling block"
 has "$RULES_DOC" "D-O50" "…and the change record names the unreadable-spec ruling"
 has "$RULES_DOC" "D-O51–D-O52" "…and the continuity-under-a-grant ruling block"
@@ -1509,11 +1512,11 @@ has "$RULES_DOC" "v0.20" "…and the edition the candidate scan produced"
 has "$RULES_DOC" "D-O54" "…and the scan-method ruling"
 
 # the ruling block is contiguous from the live high-water mark: no gap, no reuse
-python3 - "$RULES_DOC" <<'PYX' && ok "the D-O block runs 1…91 with no gap and no skipped number" \
+python3 - "$RULES_DOC" <<'PYX' && ok "the D-O block runs 1…92 with no gap and no skipped number" \
   || bad "the D-O decision block is not contiguous — a number is missing or reused"
 import re, sys
 seen = {int(n) for n in re.findall(r"D-O(\d+)", open(sys.argv[1], encoding="utf-8").read())}
-sys.exit(0 if seen == set(range(1, 92)) else 1)
+sys.exit(0 if seen == set(range(1, 93)) else 1)
 PYX
 
 # ── 6b. Band-2 plan composition — the record home has its producer (D-O55) ──
@@ -1811,6 +1814,47 @@ for tpl in aspect-state aspect-plans; do
   has "$TP" "D-O88" "$tpl.md cites the rule instead of standing alone (D-O88)"
   has "$TP" "line-anchored" "…and still states the discipline it teaches — $tpl.md"
 done
+
+# ── EC-20 · the edit discipline binds by class (D-O92) ───────────────────────
+#
+# D-O88 ruled the right rule and named two files. Four days later the same act
+# — an in-place, substring-anchored edit — took a third file the rule did not
+# name: a run's own header note carried the literal heading string its own edit
+# then matched, and the rendered table went with it. This block holds the
+# widening down at its three load-bearing points: the rule binds by CLASS, the
+# ruled instance is named without an enumerated list, and D-O88's own text is
+# not rewritten to get there.
+
+printf '\n▸ EC-20 — the edit discipline binds by class (D-O92)\n'
+
+has "$RULES_DOC" "**The rule therefore binds by class: every file a skill rewrites in place that carries section headings or its own commentary.**" \
+    "D-O92 binds by class — the act, not a filename"
+has "$RULES_DOC" "**\`decision-list.md\` is the ruled instance**" \
+    "…and names one ruled instance"
+has "$RULES_DOC" "deliberately not enumerated" \
+    "…and refuses an enumerated list, on the record"
+has "$RULES_DOC" "**What the class excludes is D-O88's own boundary, unchanged:**" \
+    "…and keeps D-O88's exclusion: an append has no anchor to get wrong"
+has "$RULES_DOC" "**The comment treatment travels with the rule.**" \
+    "…and the B8 comment treatment travels with it"
+has "$RULES_DOC" "names its sections without reproducing the literal heading strings" \
+    "…a note names its sections, never quotes their heading strings"
+has "$RULES_DOC" "**D-O92 enlarges that check's subject and does not build it either**" \
+    "…and the enforcing check stays named-and-unbuilt, never claimed built"
+has "$RULES_DOC" "amended on the record, never rewritten" \
+    "…and D-O88's reach is amended on the record"
+
+# the ruled instance's own author carries the discipline, cited not restated
+AUDIT_SKILL="$PKG_ROOT/payload/claude/skills/ba-audit/SKILL.md"
+has "$AUDIT_SKILL" "**The write-back is line-anchored**" \
+    "the decision-list author edits line-anchored (D-O92)"
+has "$AUDIT_SKILL" "**D-O88 · D-O92**" \
+    "…citing the rule at §2.4 rather than restating it"
+has "$AUDIT_SKILL" "**And any note this file carries names its sections without reproducing their" \
+    "…and its own note never quotes its section headings"
+grep -q '^## As ruled' "$AUDIT_SKILL" \
+  && bad "the decision-list author re-embeds a literal heading string — the B8 hazard, authored" \
+  || ok "…and no authored heading string stands at line start in the skill that writes the file"
 
 # ── roll-up ──────────────────────────────────────────────────────────────────
 

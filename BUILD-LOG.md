@@ -11381,3 +11381,458 @@ and four stand byte-identical in every carrier; no fixture, no template, no
 card, no catalogue, no gate rule, no threshold moved, no policy row, no
 safety-floor act; the mid-grant stop report untouched; the Presale script
 still counts **8 ≤ 8**.
+
+## The Coverage Report — a run is not closed until it renders, documents before code · source-audit definition v0.3 · package 0.1.40 · 23 August 2026 · GREEN
+
+**Session prompt:** rule in a **permanent Stage 5b** for `/ba-audit` — the
+coverage report: a run is not closed until it renders
+`exports/audit-report.xlsx` (+ `audit-report.csv`, the Coverage Matrix sheet,
+canonical) from the closed run's post-repair state; four pinned sheets —
+Coverage Matrix (per-OB: source · section · verbatim quote · modality · phase
+claim · carrier · status · finding #), Per-Source Summary (totals, statuses,
+coverage % per source), Findings & Rulings (the decision list as ruled, with
+outcomes), SA Register; `/ba-wbs` render conventions over the `sk_xlsx.py`
+helpers; `--report` to re-render from the latest closed run without a new
+audit. Land it **document-first in the source-audit definition**, compile the
+skill, carry the suite, BUILD-LOG and VERSION per house discipline at the
+current edition.
+
+**Precondition, clean.** `HEAD` and `origin/main` both at `3b028bd` (the D-O91
+pass, package 0.1.39), VERSION `0.1.39`, tree clean but for one untracked
+sibling artifact — `docs/field-notes/2026-08-22-cc-fl-04-coverage-inversion.md`,
+the CC-FL-04 triage, **neither staged nor touched** under the concurrent-pass
+discipline. The source-audit definition stood at **v0.2** with the ruling block
+**contiguous through D-S5**. The suite was run **before any edit**: 17/17
+GREEN, so every count that moves in this pass is this pass's own.
+
+**Origin — the evidence existed and nobody could read it.** The audit's own bar
+has always been met *inside the run workspace*: every finding carries file,
+place and verbatim quote, and D-S2 made the P-A1 head derive its numbers from
+`obligations.md`'s rows. The defect is one layer past that. The decision list
+renders **findings**; **nothing renders the register**. A closed run's whole
+coverage picture — every obligation, its quote, its carrier, its status — sits
+three directories down in a markdown row grammar built for the walker that
+writes it and not for the BA who has to answer *what did we cover?* The
+framework already ships the answer's shape one lane over: `/ba-wbs` renders a
+derived spreadsheet from artifacts the estate already produces. Scope S had no
+equivalent.
+
+**D-S6, ruled and applied.** *Stage 5b — the coverage report — is permanent,
+and the run is not closed until it renders.* `exports/audit-report.xlsx` and
+`exports/audit-report.csv`, from the **closed run's post-repair state** — the
+register as Stage 5's re-audit left it, the decision list **as ruled**, the
+repairs as executed. **The render stands after the re-audit delta and before
+the entry appends**, both files joining §7's required set at **D-S4**'s own
+force, and the entry gaining a pinned `Coverage report:` field: an entry that
+appends first and renders second names a file that may not exist, which is the
+D-S4 defect one artifact along, so the fix is **ordering**, not a second
+condition. **Four pinned sheets** — `Coverage Matrix`, one row per post-repair
+`OB` row with the code as key and §2's row grammar as its eight columns, the
+quote **verbatim** and the finding number **empty** where the list named none ·
+`Per-Source Summary`, off §2's per-source coverage block, with a `TOTAL` row ·
+`Findings & Rulings`, the list as ruled with each row's outcome from
+`repairs.json` · `SA Register`, the **standing** records and not this run's
+alone. **The csv carries the Coverage Matrix alone** and is the canonical
+render. **`/ba-wbs`'s render conventions over the same `sk_xlsx.py` helpers** —
+xlsx primary and written first, csv canonical and title-block-free, a title
+block above the bold header row of **every** sheet, wrapped text, widths, **no
+cell merges** — with **§10.5's stakeholder register expressly not carried**:
+this export is **BA-facing operational state**, the report ledger's own class,
+and the audit's evidence bar governs its cells, so quotes stay verbatim and
+`CC-S` · `OB` · `SA` codes render as themselves. **D-S2 extends from the P-A1
+head to the workbook** — every number counted from the post-repair state at
+render time, an absent field an **empty cell**, and the matrix's row count, the
+`TOTAL` row and the entry's `Register:` line **one figure counted three ways**.
+**Coverage % = `(carried + accepted) ÷ obligations`**, whole percent, `partial`
+and `gap` the uncovered remainder taking **no half credit** — a weighting is a
+number this framework does not produce — and an **empty cell at zero
+obligations**, because 0 ÷ 0 is not 100% and is not 0% either. **A sampled
+corpus renders twice** (D-S3): the title block carries the run's own
+`Corpus covered:` line verbatim, and every source the register head shows short
+of its own section count carries `sample — <walked>/<total> sections walked` on
+its `Note` — a spreadsheet is the most authoritative-looking render the
+framework produces, and a sample it does not name is D-S3's defect in its most
+persuasive form. **`--report`** re-renders the pair from the **latest closed
+run** — the highest entry on the ledger, never the highest directory on disk —
+with no walk, no dispatch, no ruling, no repair, **no append** and no
+checkpoint; exclusive with `--full`; refusing by **naming** the missing entry
+(`/ba-audit` the act) or the missing required file. **A refused admission is
+stepped past; a holed workspace is not** — Stage-0 refusals take run numbers
+and open no workspace at all, so `--report` steps past them **and says which**
+(refusing over evidence that was never supposed to exist is the wrong answer,
+and quietly rendering run 2 under a request for run 4 is the wrong artifact
+under the right name), while a workspace that exists and is **short** is
+refused where it stands: that run closed, D-S4 guaranteed its evidence, and a
+hole in it is the one thing a step backwards must not paper over. **No new assertion, no new
+CC-S family, no new instrument, no new record class, no new prompt point, no
+new stop and no new status value** — P-A1 stays the one checkpoint and §8's
+budget is arithmetically untouched. **The CC-S card is not recompiled** — D-S6
+adds a render and no assertion, and `assertions-s.md` stands byte-unchanged
+(`check-cards.py` byte-identical). Landed as: the **v0.3 header and change
+record** · **§6b**, the new section, additive rather than a renumber because
+the section anchors are cited from the skill, the entry template and the
+harness · **§6's re-audit bullet and append condition amended on the record** ·
+**§7's artifact block and required set** · **§10's unit list**, items 8–10 new
+and item 7 amended · **§11's never-list** · **§13**, the amendment record —
+which also puts on the record why a render was ruled and not an assertion, why
+the render precedes the append, why `--report` appends nothing, and why
+coverage takes no half credit · the **footer line**, decisions D-S1–D-S6.
+
+**The compile — the skill, and the entry template.** `ba-audit/SKILL.md`: the
+title and argument line take `--report` and state its exclusivity with
+`--full`; the frontmatter description names the report and the not-closed-until
+rule; the run-workspace block gains the two exports as **REQUIRED** and Stage 5
+now **checks all six**; Stage 5's text names the close's order — delta, then
+Stage 5b, **and the entry appends last**; **Stage 5b** is a stage of its own,
+carrying the four sheets with their columns, the title block and its ground,
+the sampled-corpus rule, the three-surface reconciliation, the conventions with
+the stakeholder register expressly excluded, and the `--report` act with both
+refusals; the never-list gains five clauses. Stage 4 gains **one sentence
+pinning `repairs.json`'s row key** — `{"rows": [{"#": 3, …, "outcome": …}]}` —
+because the `Outcome` column has to find it and nothing had ever fixed the
+shape. `source-audit-report-entry.md`: head line 8, `Coverage report:`, with
+its comment block. **The three standing blocks are byte-untouched.**
+
+**The code — two units.** `sk_xlsx.py` gains **`write_book()`**, the multi-sheet
+writer: one Override per worksheet, `rId1…rIdN` the sheets and `rId(N+1)` the
+stylesheet, one title block per sheet, Excel's own sheet-name rules enforced
+(31 characters, the six forbidden marks, no duplicate names) rather than
+written. **`write()` keeps its contract and its bytes** — it is now
+`write_book()` with one sheet, and the WBS workbook was regenerated against the
+pre-change writer and compared: **byte-identical, both profiles**, csv
+included. `sk_audit_report.py` is the Stage-5b renderer — stdlib only, read-only
+over the workspace and the ledger, writing exactly two files. It **derives and
+never asserts**: the register's rows are parsed at §2's own separators with the
+quote scanned to its closing double quote (a client's sentence may carry a
+middot of its own), the finding number rides the `OB` codes the list rows name,
+the ruling comes off the as-ruled `Rulings:` line — **the menu line, which
+carries the literal `<#…>` placeholders, is skipped**, because a menu read as a
+ruling would print `apply` against every row of a list nobody has answered — and
+an unreadable `repairs.json` leaves the `Outcome` column empty rather than
+guessing.
+
+**The harness — the eighteenth check.** `tests/check-audit.sh` **lands**, the
+audit's own suite, and §10 item 7 is amended on the record to say so
+(`sk_audit.py` stays pending). Six sections, 144 checks: the document (v0.3,
+D-S6, §6b, §7's required set, §10, §11, §13, the footer, the entry template,
+the mirror's command-table row) ·
+the skill (Stage 5b compiled, the argument line, the nevers, the three standing
+blocks) · the render against a new fixture — the **golden csv**, the four
+sheets read back by name and column, the title block on every sheet, a quote
+carrying its own middot surviving whole, the finding number on both members of
+an enumerated `amend`, the derived counts, the **three surfaces one number**
+reconciliation against the ledger's own `Register:` line, the coverage
+formula's three cases (67% · 50% with its sample note · the **empty** cell at
+zero obligations), a **`CC-S` code rendering as itself** — the stakeholder
+register's only mechanical consequence — and the clean run rendering a
+header-only Findings sheet under the P-A1 head's conditional `INCOMPLETE`, and
+`--latest` **stepping past a Stage-0 refusal** while a holed workspace is
+refused where it stands · the **four refusals**, each
+naming what is missing · the writer's single-sheet contract and its name rules
+· read-only, the fixture hashed across two renders. The fixture is
+`tests/fixtures/nutrivity-audit/closed-run/` — two workspaces and a ledger:
+**run 2** closed and on the ledger, **run 3** clean and not yet appended, **run
+4** a Stage-0 refusal with a run number and no workspace. `--latest` must pick
+run 2, so a directory scan and a naive `max(entry)` are both caught. `run-all.sh` goes
+**seventeen → eighteen**, the new row at 10 beside the WBS export.
+`tests/layout.expected` gains the renderer's row; the two export files take no
+row — `exports/` holds no installer-laid file, and the layout bar asserts the
+installed tree, not a run's output.
+
+**Suite — 18/18 GREEN, the three install-based runs included, verified in an
+isolated copy of the tree** (the concurrent-pass discipline). Movement, all
+accounted: **`check-audit.sh` new at 144**, `check-layout.sh` 120 → **121** (the
+renderer's row). Everything else unmoved: `check-m.sh` 71, `check-gate.sh` 105,
+`check-orchestrator.sh` 570, `check-techniques*.sh` 104/127/166,
+`check-spine.sh` 266, `check-register.sh` 63, **`check-wbs.sh` 99** — the
+`sk_xlsx` extension moved nothing in the WBS lane — `check-status.sh` 115,
+`check-ledger.py` grammar-legal, **`check-cards.py` byte-identical**,
+`check-exit.sh --offline` 99, `check-install.sh` 64, `check-budget.sh` 83,
+`check-auto.sh` 278.
+
+**Files touched — fourteen paths, staged by name:**
+`docs/methodology/ba-native-spec-source-audit-definition.md` (v0.3 — header ·
+change record · §6b · §6 · §7 · §10 · §11 · §13 · footer) ·
+`payload/claude/skills/ba-audit/SKILL.md` (the argument line · the workspace ·
+Stage 4's `repairs.json` key · Stage 5's order · Stage 5b · the never-list) ·
+`payload/specify-overlay/ba/templates/source-audit-report-entry.md` (the
+`Coverage report:` field) ·
+`payload/specify-overlay/ba/scripts/sk_xlsx.py` (`write_book()` · the name
+rules · `write()` re-expressed, bytes unchanged) ·
+`payload/specify-overlay/ba/scripts/sk_audit_report.py` (new — the renderer) ·
+`tests/check-audit.sh` (new — the eighteenth check) ·
+`tests/fixtures/nutrivity-audit/closed-run/**` (new — two workspaces and a
+ledger) · `tests/fixtures/nutrivity-audit/expected/audit-report.csv` (new — the
+golden) · `tests/layout.expected` (the renderer's row · the script count) ·
+`tests/run-all.sh` (seventeen → eighteen) ·
+`payload/mirror/claude-block.md` (the `/ba-audit` command-table row — the
+argument and the report) · `README.md` (the two suite-count lines) ·
+`VERSION` (0.1.40) · `BUILD-LOG.md` (this entry).
+
+**Nothing else moves.** No CC-S assertion, no card — `assertions-s.md` stands
+byte-unchanged and `check-cards.py` says so; no orchestrator edit and therefore
+no D-O, no §41 and no orchestrator version bump — `/ba-wbs`'s §10.5 is **read
+from**, never amended; no WBS column, no title-block line and no export byte in
+the WBS lane; no fixture of the appointment-booking estate, no template beyond
+the entry's one field, no gate rule, no threshold moved, no policy row, no
+safety-floor act, no new prompt point and no new stop. The Presale script still
+counts **8 ≤ 8**.
+
+**Open — routed from this pass.** **`sk_audit.py`**, the M share of §4, stays on
+§10's pending list: the render derives from a register that already exists, and
+a mechanical checker of the *walk* is a different act on different ground. **A
+client-facing derivative** of the coverage report is not ruled — this workbook
+is operational state by construction, and a client render would need §10.5's
+stakeholder register and a ruling of its own. **Whether a run may close with a
+stale report** — the workspace hand-edited after the render — is named in §13
+and not ruled: the register says *regenerated, never hand-edited* and
+`--report` is one command, which is the answer in practice and not on the
+record.
+
+## The Repair Route Becomes Legal — the Stage-4 routing conflict and the ledger-edit law's short reach · source-audit definition v0.4 · orchestrator v0.38 · package 0.1.41 · 25 August 2026 · GREEN
+
+**Session prompt (EC-20):** close the two defects the first post-wave field
+audit found — (1) `/ba-audit` Stage 4 **mandates** dispatching the `ba-analyst`
+subagent for spec edits while `ba-analyst`'s own definition **forbids any skill
+from dispatching it**, so 14 ruled repair rows stand unexecuted and every
+future repair route is blocked; (2) the session's own substring edit matched a
+literal `## As ruled` inside `decision-list.md`'s header note and **truncated
+the rendered table** — the exact B8 hazard class, which D-O88 does not reach
+because it names *the two runtime ledgers*. Three rulings: **R1** the repair
+lane becomes legal, **R2** ruled-unexecuted rows resume, **R3** D-O88's reach
+widens. **Documents before code.**
+
+**Precondition — the brief's base pins were stale in the forward direction, and
+that is a divergence, not a stop (house precedent D162/D164).** The brief
+expected `be66dd8` / VERSION `0.1.37` / audit definition **v0.2** / orchestrator
+**v0.35 past D-O89**. What stood: `be66dd8` an **ancestor of HEAD** — clean
+fast-forward confirmed — with HEAD at **`3b028bd`** (package 0.1.39, D-O91,
+orchestrator **v0.37**) and **two unpushed commits** ahead of `origin/main`
+(0.1.38 · 0.1.39); and, on the working tree, a **complete, GREEN, uncommitted
+sibling package 0.1.40** — the coverage-report pass of 23 August, which had
+already taken the source-audit definition to **v0.3** and edited **both** of
+this pass's carrier surfaces (§6b, §7, §10, §13; the skill's Stage-4
+`repairs.json` key, Stage 5, Stage 5b, the never-list). **D-1 · the pins are
+verification values.** Every target moved to the next free number **above the
+actual high-water**: audit definition **v0.3 → v0.4** with **D-S7 · D-S8** and
+**§14**; orchestrator **v0.37 → v0.38** with **D-O92** and **§41**; VERSION
+**0.1.40 → 0.1.41**. **D-2 · built on top of the sibling, never over it.** The
+0.1.40 work was read, relied on and left byte-exact — its `repairs.json` row
+key is, as it happens, exactly the ground R2's resumption reads. The suite was
+run **before any edit**: **18/18 GREEN**, so every count that moves below is
+this pass's own.
+
+**Field evidence — the anchors, and nothing but the anchors.** The 2026-08-23
+run report is **chat-only and not in this repository**; it was not read. Only
+the anchors dictated in the session prompt were used, **verbatim**, and **no
+inferred mapping is presented anywhere as a citation** — the EC-17 · EC-18 ·
+EC-19 precedent, held. The three anchors: the conflict, **both sides live on
+`3b028bd`** — Stage 4's *"Spec edits — dispatch the `ba-analyst` subagent per
+target spec, draft-first, assumption posture… This skill authors nothing
+itself"* against `ba-analyst.md:3`'s *"A compile source, not a dispatch target
+— this text compiles into the Tier-2 skill that does the work. No skill
+dispatches it, and none should."* · the outcome — the session refused the
+dispatch **and** refused to author, executed the five unambiguous upstream rows
+(out-of-scope basis restated · deferral narrowed · vocabulary declared ·
+roadmap pointer · SA-01/SA-02) and left **14 of 19** ruled rows unexecuted,
+status **INCOMPLETE** · the truncation — a substring edit matching an earlier
+`## As ruled` mention in the file's own header note, caught on read-back.
+
+**R1 · D-S7 — the fence gains one named exception.** *The `ba-analyst` fence
+gains exactly one carve-out: `/ba-audit`'s **post-ruling** Stage-4 repair
+route, draft-first and assumption posture exactly as Stage 4 already
+specifies.* **The law lives in the audit definition (§6, D-S space); the agent
+file cites it and never restates it** (§10 unit 11). **Why the fence existed and
+still does:** the persona text **compiles into** the Tier-2 skill, and the
+persona's body binds it to that skill's context order, cap, legality rule and
+output contract — a bare dispatch is **an author working without a
+definition**, producing a spec nobody scoped, capped or contracted. **Why this
+route is the exception:** the dispatch is post-ruling, so P-A1 has already
+fixed every input the Tier-2 definition would have supplied — target spec,
+verbatim quote, approved proposal, posture. **The definition arrives as the
+ruling.** **Why the A5 class does not reopen:** D-S1's separation is the
+**evaluator's** — the judge writing the verdict it was to have received — and
+this carve-out runs the other way, existing so the audit **need not** author.
+**Silent self-substitution stays a defined violation of §4**, untouched and
+unweakened; the audit's *authors nothing itself* bar (§11) stands exactly as
+written. **D-S7 moves who may be dispatched, never who may write.** And the
+refusal now has a landing: where the dispatch is **undispatchable** (§4's third
+state) the row stands `unexecuted` with its `why` — never self-authored — and
+**stops nothing else**: the remaining rows run, the re-audit runs, the report
+renders, the entry appends with the run's true status.
+
+**R2 · D-S8 — the standing ruling carries.** *A row standing ruled and
+`unexecuted` in the most recent run that wrote a `repairs.json` re-enters the
+next run's Stage-4 route, **ahead of that run's own rows**, on the ruling it
+already carries.* **Drawn from the route's own grammar, adding nothing:**
+`repairs.json` already records `unexecuted` **with its `why`**, keyed by the
+decision-list row number (the 0.1.40 pass's key), and `decision-list.md`
+already holds the row **as ruled** — **both §7 required files**, so the
+resumption is a **read**. **No re-ruling and no second P-A1 render** — that
+checkpoint rules the findings *this* run's A pass raised, and a resumed row is
+a **standing ruling, not a finding**. **The trail is one key**, `from-run`,
+absent on a row this run ruled. **A re-refusal resumes again** with its
+possibly-different `why`; **no count of attempts closes a row**, and a row does
+not expire — only execution, or a ruling. **Closure without execution is
+named** `superseded — <reason>`, never silent: the read that brings a row back
+is the read that would have to drop it. **No new flag, no new instrument, no
+new file, no new prompt point, no new stop, no new BA interaction** — §8's
+budget is arithmetically untouched. **The 14 field rows are the acceptance
+case:** after a package update, the next `/ba-audit` executes them with the BA
+re-ruling nothing.
+
+**R3 · D-O92 — the edit discipline binds by class.** *The line-anchored rule
+binds **every file a skill rewrites in place that carries section headings or
+its own commentary**.* The two runtime ledgers as D-O88 ruled them, and the
+**run-workspace files** join — **`decision-list.md` the ruled instance**.
+**Bound by class and named at one instance, deliberately not an enumerated
+list:** the hazard is a property of the **act** — an agent going back into a
+standing file to change one line, anchored on a short string the file also says
+about itself — and an enumerated set would be wrong the day a new artifact
+landed without an edit to that line. **D-O88's exclusion is unchanged:** an
+**append** has no anchor to get wrong, and a file **written whole** —
+`obligations.md` regenerated, `trace.json` written entire — has none either.
+**The B8 comment treatment travels with the rule:** a file carrying its own
+note **names its sections without reproducing the literal heading strings** —
+the two payload templates' discipline since 0.1.33, now binding at every
+authoring site, because **the note the run wrote is what the run's own edit
+then matched**. **D-O88's ruling text is byte-untouched** — the reach paragraph
+is amended on the record, nothing rewritten.
+
+**Default-taken decisions, with their alternatives (the standing delegation).**
+**D-3 · R1 resolved as Recommended** — the named exception, law in D-S space,
+the fence citing it. Alternatives on the record and **rejected in §14**: *the
+audit authors post-ruling repairs itself under the Tier-2 drafting law* —
+rejected on **separation**, since it collapses finder and author one stage
+after §4 spent a section keeping finder and judge apart; *a separate
+dispatch-target agent compiled from the same source* — rejected on
+**duplication**, since two files from one source drift and the day they
+disagree the framework has two answers to *how does a spec edit land*. The
+compile-source rationale was checked for a hidden constraint against dual use
+and none was found: the constraint it encodes is *an author never works without
+a definition*, which a named exception serves exactly and a copy serves only
+until someone edits one copy. **D-4 · R3 resolved as Recommended** — bind by
+class, name `decision-list.md`, no open list. **D-5 · the resumption reads one
+run deep**, not the whole band: an unexecuted row that resumes and fails again
+is re-recorded by the run that tried it, so the chain carries itself forward; a
+repair-history sweep is named in §14 and **not opened**. **D-6 · `from-run` is
+ruled as a `repairs.json` key**, so the trail exists on disk, while **what a
+sheet does with it is routed** (below). **D-7 · the two payload ledger
+templates were left byte-untouched** — both were already correct under the
+widened rule, and a citation churn would move bytes and no law.
+
+**Files touched — eight paths, staged by name:**
+`docs/methodology/ba-native-spec-source-audit-definition.md` (v0.4 — header ·
+change record · §6 the route order, the spec-edits bullet, the two ruling
+blocks · §7 the `repairs.json` forward reader and the required-set paragraph ·
+§10 unit 11 · §11 · §14 · footer) ·
+`docs/methodology/ba-native-spec-orchestrator-rules.md` (v0.38 — header ·
+change record · §2.4 the reach widened on the record · §41 · footer) ·
+`payload/claude/skills/ba-audit/SKILL.md` (Stage 3's write act · Stage 4's row
+order and spec-edits bullet · the never-list) ·
+`payload/claude/agents/ba-analyst.md` (the frontmatter fence · the body's
+caller paragraph) · `tests/check-orchestrator.sh` (the edition ladder · the
+D-O high-water 91 → 92 · the EC-20 block) · `tests/check-audit.sh` (the v0.4
+pins · the EC-20 block) · `VERSION` (0.1.41) · `BUILD-LOG.md` (this entry).
+
+**Nothing else moves.** **No card** — `assertions-s.md` stands byte-unchanged
+and `check-cards.py` says so; **no CC-S family text and no assertion**, because
+nothing about what the audit *checks* moved. No new skill, no new agent, no new
+template, no new script, no new fixture and **no new check file** — the suite
+stays at **eighteen**, so `README.md`'s two count lines and `tests/run-all.sh`
+do not move, and `tests/layout.expected` takes no row. No mirror edit: the
+command-table row describes `/ba-audit`'s invocation and report, neither of
+which changed. No gate rule, no threshold, no policy row, no safety-floor act,
+no new event kind, no new ledger field, no new state or transition, **no new
+prompt point and no new stop** — D-O33's ≤ 8 Presale budget and §8's audit
+budget are both arithmetically untouched. **This edition adds no render at
+all.**
+
+**Routed, not fixed.** **The coverage report's rendering of a resumed row** —
+§6b's `Findings & Rulings` sheet joins *this* run's decision list to *this*
+run's `repairs.json`, and a row resumed from an earlier run has its ruling in
+*that* run's list; whether the sheet grows a `from-run` column, renders the
+join, or shows nothing is a **render** question adjacent to D-S6 and outside
+these three rulings. The key is ruled so the trail exists on disk; the sheet is
+named and left. **D-O88's enforcing check** — nothing asserts a line-anchored
+edit and nothing forbids a template from re-embedding a literal heading string;
+**D-O92 enlarges that check's subject and does not build it**, and it stays at
+the regression-floor pass where D-O88 left it. **`sk_audit.py`**, the M share
+of §4, stays on §10's pending list, where v0.2 and v0.3 both left it. **How far
+back the resumption may read** is named in §14 and not ruled.
+
+**Suite — 18/18 GREEN, the three install-based runs included.** Movement, all
+accounted, and both moves are this pass's own assertions: **`check-audit.sh`
+144 → 178** (the v0.4 header and footer pins, and the EC-20 block — the
+exception's law in the document, the fence's carve-out and its cite-never-restate
+line, the body's caller paragraph, the fence sentence still *present and
+amended* rather than deleted, the resumption's seven clauses, §7's forward
+reader, Stage 4's row order and `from-run` key, the never-list's three new
+fences, and the contradiction-pair probe itself) · **`check-orchestrator.sh`
+570 → 584** (the edition ladder to D-O92 · §41 · header v0.38, the **D-O
+high-water 91 → 92**, and the EC-20 block — bind-by-class, the ruled instance,
+the refusal to enumerate, D-O88's exclusion kept, the comment treatment, the
+enforcing check still named-unbuilt, plus the writer's own citation and a probe
+that **no authored heading string stands at line start** in the skill that
+writes the file). **Everything else unmoved:** `check-m.sh` 71 ·
+`check-gate.sh` 105 · `check-techniques*.sh` 104/127/166 · `check-spine.sh`
+**266** — the analyst's own suite is unmoved, and its **layering sweep passes
+over the amended fence** · `check-register.sh` 63 — the three standing blocks
+and the self-check byte-match survive the skill edits · `check-wbs.sh` 99 ·
+`check-status.sh` 115 · `check-ledger.py` grammar-legal ·
+**`check-cards.py` byte-identical** · `check-layout.sh` 121 ·
+`check-exit.sh --offline` 99 · `check-install.sh` 64 · `check-budget.sh` 83 ·
+`check-auto.sh` 278.
+
+**Falsified, one command, four claims.** *The contradiction pair is gone* — the
+bare fence terminator no longer stands in `ba-analyst.md`, the carve-out is
+there, Stage 4 cites it and the law is in D-S space; **the other two agent
+fences are untouched and still bare** (`ba-discovery` · `ba-orchestrator` — no
+skill dispatches either, and none should). *The resumption is present at its
+homes* — definition §6, §7's `repairs.json` line, the skill's Stage 4, and the
+`from-run` key. *No authored `## As ruled`* — zero at line start anywhere under
+`payload/`; the two fixtures hold the string as a **real heading** of a real
+run's file, which is the content the rule protects, not a note that quotes it.
+*The widening is cited where the workspace files are written* — the skill's
+Stage-3 write act cites §2.4 **D-O88 · D-O92** and the law binds by class.
+
+**Not committed by this session — the reservation is the sibling's, not mine.**
+The tree carries the **uncommitted 0.1.40 package** and HEAD carries **two
+unpushed commits** (0.1.38 · 0.1.39). Every shared file — `VERSION`,
+`BUILD-LOG.md`, the source-audit definition, the `ba-audit` skill — holds both
+passes' work, so **no commit of this pass can be scoped to exclude 0.1.40**,
+and a push would carry all three packages to `origin/main`. Overriding a
+sibling's reservation is not the session's call (the D165 precedent) — and note
+the refinement this pass adds to it: **0.1.40 carries no *"Not committed"*
+closing line**, so the reservation is inferred not from a declaration but from
+the **arithmetic of the shared files**, which is the stronger test and the one
+that should be applied first. **Put to the venue at the pass and ruled
+`withhold`** (25 Aug 2026): the tree is left exactly as found and the prepared
+command stands in the pass record. **Suite green on the closed tree**, this
+entry and `VERSION 0.1.41` included.
+
+**D-8 · the peer collision, and the restore — recorded because it nearly
+shipped as a silent regression.** At **22:13 on 25 Aug**, after this pass had
+closed GREEN, a **peer session working the same EC-20 registration** overwrote
+`docs/methodology/ba-native-spec-orchestrator-rules.md` **from a `be66dd8`
+(0.1.37) base** — two commits stale. Three effects in one file: the committed
+**D-O90** (§39, the Slack item is never folded) and **D-O91** (§40, the bare
+boundary asks) were **reverted off the working copy**, §10.7's two pinned ask
+blocks with them; the peer **re-allocated `D-O90` · `§39` · `v0.36`** for a
+*different* ruling — its own answer to EC-20's R1, narrowing the orchestrator's
+**D-O16** reservation clause at persona grain rather than excepting the fence
+from D-S space; and this pass's **D-O92 · §41 · v0.38** was deleted. The suite
+went **RED 2/18** on exactly the D-O90/D-O91 text the write removed, which is
+how it was caught — **a commit of the whole tree at that moment would have
+pushed the revert to `origin/main` under a message naming none of it.**
+**Resolved on the BA's ruling at the pass:** the document was **restored to the
+HEAD baseline with this pass's D-O92 replayed on top** — D-O90, D-O91 and D-O92
+now standing together, ruling block contiguous, suite re-verified GREEN. **The
+peer's version was neither reverted nor discarded**: it is parked verbatim at
+`~/Downloads/orchestrator-PEER-EC20-v0.36-stale-base-2026-08-25.md` for that
+session to **rebase onto HEAD**, where its ruling takes the next free numbers —
+**D-O93 · §42** — and where its R1 answer must be reconciled against **D-S7**,
+since two documents ruling one act is precisely the duplication §14 rejected.
+**That reconciliation is not this pass's to take.** The mtime evidence is on
+the record: the doc written at 22:13:41 against this session's own last edit to
+it hours earlier, and the file byte-stable from the snapshot to the restore.

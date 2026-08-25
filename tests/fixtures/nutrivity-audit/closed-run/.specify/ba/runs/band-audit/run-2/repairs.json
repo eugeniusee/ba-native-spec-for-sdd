@@ -1,0 +1,10 @@
+{
+  "run": 2,
+  "rows": [
+    {"#": 1, "target": "specs/011-menu-planning/spec.md", "outcome": "landed"},
+    {"#": 2, "target": ".specify/source-audit.md", "outcome": "SA-03"},
+    {"#": 3, "target": "specs/004-patient-profiles/spec.md",
+     "outcome": "unexecuted",
+     "why": "the epic owner is Band 2 — routed, not executed here"}
+  ]
+}
