@@ -439,13 +439,19 @@ has  "$P" "No spec edit was requested" "(b) the plan states it needed no spec ed
 hasnt "$P" "spec must be amended" "(b) the plan asks for no spec amendment"
 
 # (c) the only [NEEDS CLARIFICATION] the coding agent reads is the waivered one.
-#     Asserted over the CERTIFIED ARTIFACT SET — the manifest's own file list.
+#     Asserted over the CERTIFIED ARTIFACT SET — the manifest's own file list,
+#     less the `cards` entry (gate §9.2): the compiled assertions are recorded
+#     in the manifest as what the run gated under, they are framework text and
+#     not an artifact the coding agent reads, and CC-G-02/CC-G-03 necessarily
+#     quote the marker they legislate.
 python3 - "$R3/cert.json" "$TARGET" > "$TMP/markers.txt" 2>&1 <<'PY'
 import json, pathlib, re, sys
 cert = json.loads(pathlib.Path(sys.argv[1]).read_text(encoding="utf-8"))
 root = pathlib.Path(sys.argv[2])
 total = 0
 for e in cert["files"]:
+    if "cards" in e.get("labels", []):
+        continue
     hits = re.findall(r"\[NEEDS CLARIFICATION[^\]]*\]",
                       (root / e["path"]).read_text(encoding="utf-8"))
     for h in hits:

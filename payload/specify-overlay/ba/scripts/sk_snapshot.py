@@ -125,6 +125,31 @@ READ_SCOPE = {
 MEMORY_LABELS = {"roles", "gloss", "dm", "brief", "gov", "oos", "roadmap",
                  "constitution", "mem"}
 
+# The compiled A cards the run gated under (gate §9.2). Not a member of deps(F)
+# and not a read set: the static core is what the assertions *read*, and this is
+# the assertions themselves — no CC-H assertion runs over it, no READ_SCOPE row
+# names it, and `cards` is deliberately outside MEMORY_LABELS. The manifest
+# carries its hash so §9.2's fourth re-run member can be computed: a verdict
+# taken under a card that has since changed is not a carriable verdict.
+CARDS_PATH = ".specify/ba/cards/assertions-f.md"
+CARDS_LABEL = "cards"
+
+
+def cards_entry(root: Path):
+    """The manifest entry for the compiled A cards — None where none is installed."""
+    p = root / CARDS_PATH
+    if not p.is_file():
+        return None
+    return {"labels": [CARDS_LABEL], "path": CARDS_PATH, "sha256": sha256(p)}
+
+
+def cards_hash(manifest):
+    """The cards hash a manifest records — None where the entry is absent."""
+    for e in manifest.get("files", []):
+        if CARDS_LABEL in e.get("labels", []):
+            return e["sha256"]
+    return None
+
 
 def sha256(path: Path) -> str:
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
@@ -182,6 +207,13 @@ def cmd_build(args) -> int:
             missing.append((labels, rel))
             continue
         entries.append({"labels": labels, "path": rel, "sha256": sha256(p)})
+
+    # gate §9.2 — the cards join `files`, never `deps(F)`: a missing card is not
+    # a missing static-core member, so it never fails --require-complete; a run
+    # whose prior manifest carried none reads as `cards changed` at rerun-set.
+    ce = cards_entry(root)
+    if ce:
+        entries.append(ce)
 
     manifest = {
         "feature": args.feature,
@@ -291,11 +323,21 @@ def cmd_rerun_set(args) -> int:
 
     non_clean = {x.strip() for x in (args.non_clean or "").split(",") if x.strip()}
 
+    # gate §9.2, fourth member — a changed card is never carried. Absent on both
+    # sides is not a change; a prior manifest that carried no cards entry against
+    # a current one that does *is* (None != hash), which is the upgrade case.
+    cards_changed = cards_hash(prev) != cards_hash(curr)
+
     rerun, carried, basis = [], [], {}
     for aid, cat, chk in ASSERTIONS:
         if chk == "M":
             rerun.append(aid)
             basis[aid] = "all M re-run (graph-integrity backbone)"
+            continue
+        if cards_changed:
+            # the A set re-runs whole — nothing A is carried
+            rerun.append(aid)
+            basis[aid] = "cards changed"
             continue
         if aid in non_clean:
             rerun.append(aid)
@@ -327,6 +369,7 @@ def cmd_rerun_set(args) -> int:
     result = {
         "diff": diff_paths,
         "changed_spec_sections": secs,
+        "cards_changed": cards_changed,
         "rerun": rerun,
         "carried": carried,
         "basis": basis,
@@ -340,6 +383,8 @@ def cmd_rerun_set(args) -> int:
         print("changed spec sections: %s"
               % (secs if secs == "all" else
                  ", ".join("§%d" % n for n in secs) or "none"))
+        print("cards: %s" % ("changed — the A set re-runs whole, nothing A is "
+                             "carried" if cards_changed else "unchanged"))
         print("re-run (%d): %s" % (len(rerun), " · ".join(rerun)))
         print("carried (%d): %s" % (len(carried), " · ".join(carried) or "none"))
     return 0
@@ -767,6 +812,9 @@ def cmd_report(args) -> int:
         return 2
 
     carried = spec.get("carried", []) or []
+    # gate §9.2 — an empty A carry under a re-cut card states its own basis on
+    # the pinned line; no line is added, removed or reordered by it.
+    cards_changed = bool(spec.get("cards_changed"))
     live, waived, overridden, skipped, in_force, applied = _disposition(
         recs, waivers, overrides)
     verdict = _verdict(live, skipped, in_force)
@@ -872,7 +920,8 @@ def cmd_report(args) -> int:
             "%-21s %s" % (
                 "Carried from run %s:"
                 % (int(run) - 1 if str(run).isdigit() and int(run) > 1 else "—"),
-                " · ".join(c["assertion"] for c in carried) or "none")]
+                " · ".join(c["assertion"] for c in carried)
+                or ("none — cards changed" if cards_changed else "none"))]
     if carried:
         bases = sorted({c.get("basis", "read set untouched by the diff")
                         for c in carried})
@@ -923,6 +972,8 @@ def _certification_block(m, run=None, date=None) -> str:
             note = "   (generated run %s)" % run
         if "hist" in e["labels"]:
             note = "   [hist]"
+        if CARDS_LABEL in e["labels"]:
+            note = "   [cards — gated under; recorded, not guarded (§9.2)]"
         out.append("  %-*s  %s%s" % (width, e["path"], e["sha256"][:4] + "…",
                                      note))
     out.append("Adapter precondition: every hash matches the live file at "

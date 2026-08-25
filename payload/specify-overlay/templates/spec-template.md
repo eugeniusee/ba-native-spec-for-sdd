@@ -41,6 +41,14 @@
 <!-- Main flow as numbered steps: actor → action → observable result.
      Then the alternates/errors table — every row: trigger · system behavior ·
      user-visible outcome. A happy-path-only flow fails. (CC-FL-01…05)
+     Every row's behavior is governed by a requirement in this spec — an
+     IF/THEN or WHILE FR for an error, a WHEN FR for an alternate, or a BR.
+     Cite it inline in the System behavior cell where it aids the reader;
+     the citation is style, the requirement is the coverage (CC-FL-04).
+     An assumption is never a behavior: draft the value and mark it
+     [NEEDS CLARIFICATION: confirm <value> — basis: <inference>] — never a tag
+     of your own; [ASSUMED: …] and every other bracket tag fail CC-G-02
+     (standard rule 7).
 
      | # | Trigger | System behavior | User-visible outcome |
      |---|---|---|---| -->

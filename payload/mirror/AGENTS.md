@@ -98,7 +98,11 @@ section above governs.
 6. **If it can't be tested, it isn't a requirement.**
 7. **Mark gaps, don't hide them.** Unknowns get an explicit
    `[NEEDS CLARIFICATION: <question>]`. A visible gap is workable; an invisible
-   one becomes wrong code.
+   one becomes wrong code. It is the spec's only marker: `[ASSUMED: …]`,
+   `[TBD]` and every other bracket tag are illegal and fail CC-G-02 as a mint;
+   an assumption is never a behavior — draft the value and mark it
+   `[NEEDS CLARIFICATION: confirm <value> — basis: <inference>]`
+   (standard rule 7 · elicitation §5.3).
 8. **No stubs.** A heading with placeholder text under it fails the gate. Fill
    it with real content or mark it `N/A — <reason>`.
 
@@ -374,7 +378,10 @@ sign-offs (CC-XA-01, CC-XA-06), the effective PASS, `/ba-handoff`, and **the
 scope frame** (P-O0b — scope-frame selection). The first three are where a false
 pass is a security incident, a scope escape, or code built on unread text; the
 fourth is the constraint every later act is measured against. Per feature, auto
-ends at **"done, awaiting ratification"**. Never grant yourself a grant.
+ends at **"done, awaiting ratification"**. Never grant yourself a grant. The
+floor is the signature, never the evaluation: the two ⚑ assertions are computed
+at Stage 3 on every run and under any grant — gate §5.3, which this floor
+consumes by reference.
 
 **Continuity under the grant.** Under a standing grant, **no conversational
 render occurs between acts**, and the run **never ends its turn between acts

@@ -304,6 +304,118 @@ has "$TMP/verify2.txt" "traceability.md — content changed" \
     "a post-certification edit to the generated file is caught too (gate §11.1)"
 cp "$TMP/ws6/$TRACE" "$R6/$TRACE"
 
+# ── 3b. gate run 4 — a re-cut card is never carried (gate §9.2, EC-21 R5) ─────
+
+printf '\n▸ Gate run 4 — the cards changed and nothing A is carried (gate §9.2)\n'
+
+# Two worlds identical in every read artifact; they differ only in the compiled
+# A cards the run gates under. The fixture project carries no installed cards,
+# so this pair installs them — which is also the upgrade case: a prior manifest
+# with no `cards` entry against a current one that has it.
+R7="$TMP/w/r7"; R8="$TMP/w/r8"
+cp -R "$R6" "$R7"
+mkdir -p "$R7/.specify/ba/cards"
+cp "$PKG_ROOT/payload/specify-overlay/ba/cards/assertions-f.md" "$R7/.specify/ba/cards/"
+cp -R "$R7" "$R8"
+printf '\n<!-- CC-FL-04 re-cut -->\n' >> "$R8/.specify/ba/cards/assertions-f.md"
+S7="$R7/specs/004-appointment-booking/spec.md"
+
+python3 "$SK/sk_snapshot.py" build --root "$R7" --feature 004-appointment-booking \
+  --epic E-03 --run 4 --date 2026-08-25 --out "$TMP/m7.json" \
+  --require-complete > /dev/null \
+  && ok "Stage 0 — the cards join the manifest, never deps(F) (--require-complete clean)" \
+  || bad "Stage 0 — the cards entry broke the static-core completeness check"
+python3 "$SK/sk_snapshot.py" build --root "$R8" --feature 004-appointment-booking \
+  --epic E-03 --run 5 --date 2026-08-25 --out "$TMP/m8.json" > /dev/null
+
+python3 - "$TMP/m7.json" <<'PY' && ok "the manifest carries the cards' hash under the \`cards\` label (gate §9.2)" \
+                                 || bad "the manifest carries no single \`cards\` entry"
+import json, pathlib, sys
+m = json.loads(pathlib.Path(sys.argv[1]).read_text(encoding="utf-8"))
+e = [x for x in m["files"] if "cards" in x["labels"]]
+sys.exit(0 if len(e) == 1
+         and e[0]["path"] == ".specify/ba/cards/assertions-f.md"
+         and len(e[0]["sha256"]) == 64 else 1)
+PY
+
+# `cards` is not a read set: no READ_SCOPE row names it, and it is outside
+# MEMORY_LABELS — the label reaches the re-run set and nothing else.
+python3 - "$SK/sk_snapshot.py" <<'PY' && ok "no assertion's read set names \`cards\` — it is the assertions, not an input" \
+                                     || bad "\`cards\` leaked into a read set or into MEMORY_LABELS"
+import pathlib, re, sys
+src = pathlib.Path(sys.argv[1]).read_text(encoding="utf-8")
+scope = re.search(r"READ_SCOPE = \{.*?\n\}", src, re.S).group(0)
+mem = re.search(r"MEMORY_LABELS = \{.*?\}", src, re.S).group(0)
+sys.exit(0 if '"cards"' not in scope and '"cards"' not in mem else 1)
+PY
+
+python3 "$SK/sk_snapshot.py" rerun-set --prev "$TMP/m7.json" --curr "$TMP/m8.json" \
+  --prev-spec "$S7" --curr-spec "$S7" --format json > "$TMP/rerun-cards.json"
+
+python3 - "$TMP/rerun-cards.json" > "$TMP/cards-verdict.txt" <<'PY'
+import json, pathlib, sys
+r = json.loads(pathlib.Path(sys.argv[1]).read_text(encoding="utf-8"))
+print("cards_changed=%s" % r["cards_changed"])
+print("carried=%d" % len(r["carried"]))
+print("a_cards_changed=%d"
+      % len([a for a in r["rerun"] if r["basis"][a] == "cards changed"]))
+PY
+hasx "$TMP/cards-verdict.txt" "cards_changed=True" \
+     "rerun-set sees the re-cut card (gate §9.2, the fourth re-run member)"
+hasx "$TMP/cards-verdict.txt" "a_cards_changed=34" \
+     "every A assertion joins the re-run set with basis \`cards changed\`"
+hasx "$TMP/cards-verdict.txt" "carried=0" \
+     "nothing A is carried — a changed card is never carried"
+
+# the runtime record states the basis on its own pinned line — none added,
+# none removed, none reordered
+python3 - "$TMP/run2.json" "$TMP/run-cards.json" <<'PY'
+import json, pathlib, sys
+d = json.loads(pathlib.Path(sys.argv[1]).read_text(encoding="utf-8"))
+d["carried"], d["cards_changed"] = [], True
+pathlib.Path(sys.argv[2]).write_text(json.dumps(d, indent=2, ensure_ascii=False),
+                                     encoding="utf-8")
+PY
+python3 "$SK/sk_snapshot.py" report "$TMP/run-cards.json" > "$TMP/cards.entry" 2>&1
+hasx "$TMP/cards.entry" "Carried from run 1:   none — cards changed" \
+     "the entry's carried line carries the basis (gate §9.2)"
+hasx "$TMP/run2.entry" "Carried from run 1:   none" \
+     "…and a run whose cards did not change still reads a bare \`none\`"
+[ "$(wc -l < "$TMP/cards.entry")" = "$(wc -l < "$TMP/run2.entry")" ] \
+  && ok "…and the entry is the same shape — no report line added or removed" \
+  || bad "the cards basis moved the entry's line count"
+
+# an effective PASS records the cards hash it was gated under, and the adapter
+# never guards it: guarding would void the PASS the moment a card is re-cut,
+# and §9.2 is explicit that nothing voids retroactively.
+python3 "$SK/sk_snapshot.py" certification "$TMP/m7.json" > "$TMP/cert-cards.txt" 2>&1
+has "$TMP/cert-cards.txt" "[cards — gated under; recorded, not guarded (§9.2)]" \
+    "the certification block names the cards hash as recorded, not guarded"
+
+# mutation — strip the rule and the same pair carries A verdicts again
+mkdir -p "$TMP/mutant"
+cp "$SK"/sk_*.py "$TMP/mutant/"
+python3 - "$SK/sk_snapshot.py" "$TMP/mutant/sk_snapshot.py" <<'PY'
+import pathlib, sys
+s = pathlib.Path(sys.argv[1]).read_text(encoding="utf-8")
+old = """        if cards_changed:
+            # the A set re-runs whole — nothing A is carried
+            rerun.append(aid)
+            basis[aid] = "cards changed"
+            continue
+"""
+assert s.count(old) == 1, "the mutation target moved — fix this check, not the rule"
+pathlib.Path(sys.argv[2]).write_text(s.replace(old, ""), encoding="utf-8")
+PY
+python3 "$TMP/mutant/sk_snapshot.py" rerun-set --prev "$TMP/m7.json" \
+  --curr "$TMP/m8.json" --prev-spec "$S7" --curr-spec "$S7" --format json \
+  > "$TMP/rerun-mutant.json" 2>&1
+MUT=$(python3 -c "import json,sys;print(len(json.load(open(sys.argv[1]))['carried']))" \
+      "$TMP/rerun-mutant.json" 2>/dev/null || echo 0)
+[ "$MUT" -gt 0 ] \
+  && ok "mutation: without the rule the same pair carries $MUT A verdicts — not vacuous" \
+  || bad "mutation: the rule was removed and the carry set did not move"
+
 # ── 4. the gate never self-certifies ─────────────────────────────────────────
 
 printf '\n▸ The gate never self-certifies (contract §2 · gate §6.1)\n'
@@ -627,6 +739,73 @@ PY
 python3 "$NODUP" "$GATE_DOC" "$TMP/agent-pasted.md" 2> /dev/null \
   && bad "a pasted §5.1 sentence slipped past the no-copy read — it is vacuous" \
   || ok "…and a pasted §5.1 sentence is caught: the no-copy read is not vacuous"
+
+# ── 7b. EC-21 — evidence and decision come apart (gate §4.1 · §5.2 · §5.3) ────
+#
+# Two runtime rules, compiled onto the two gate surfaces and nowhere else:
+#   R1  compute always, sign separately — ⚑ governs the signature, never the
+#       evaluation, so a skip names a CC-<ID> or a parse gap and nothing else;
+#   R2  a marker is evidence, never coverage — an A assertion reads the cell's
+#       stated content and gives a marker no weight.
+# Each is read in both layers: the document that rules it and the surface that
+# compiles it. The surfaces legislate nothing of their own (D-O64), so each
+# reads back to a cited section.
+
+printf '\n▸ EC-21 — evidence vs decision on the two gate surfaces (gate §4.1 · §5.2 · §5.3)\n'
+
+GATE_SKILL="$PKG_ROOT/payload/claude/skills/ba-gate/SKILL.md"
+
+fhas "$GATE_DOC" "**A marker is evidence, never coverage.**" \
+     "gate §5.2 rules the marker bullet"
+fhas "$GATE_DOC" "**Compute always; sign separately.**" \
+     "gate §5.3 rules compute-always"
+fhas "$GATE_DOC" "A blocker is always a \`CC-<ID>\` or §5.1's parse gap — never a mode, a grant or a flag" \
+     "gate §4.1 rules what a blocker is"
+fhas "$GATE_DOC" "**The floor is the signature, never the evaluation:**" \
+     "gate §7.1 carries the floor sentence"
+
+fhas "$GATE_AGENT" "**A marker is evidence, never coverage.**" \
+     "the A-pass surface carries the marker rule"
+fhas "$GATE_AGENT" "a cell whose only content is a marker is **unspecified**" \
+     "…and reads a marker-only cell as unspecified, the obligation's FAIL standing"
+fhas "$GATE_AGENT" "(gate §5.2)" \
+     "…citing §5.2, which rules it — the surface legislates nothing of its own"
+fhas "$GATE_AGENT" "You compute both bundles in full on **every** run you are asked to evaluate" \
+     "…and computes both ⚑ bundles on every run, under any grant (§5.3)"
+fhas "$GATE_AGENT" "the floor is the signature, never your evaluation: \`⚑\`, \`safety floor\` and \`no grant reaches it\` are never a reason to skip" \
+     "…and never treats the floor as a reason to skip"
+fhas "$GATE_AGENT" "a skip names a \`CC-<ID>\` or a parse gap and nothing else" \
+     "…a skip naming a CC-ID or a parse gap and nothing else (§4.1)"
+
+fhas "$GATE_SKILL" "the two ⚑ assertions among them, on every run and under any standing grant" \
+     "the gate skill dispatches the ⚑ pair on every run"
+fhas "$GATE_SKILL" "A blocker is always a \`CC-<ID>\` or §5.1's parse gap — never a mode, a grant or a flag (§5.3)." \
+     "…and states the blocker sentence beside the Stage-3 dispatch"
+fhas "$GATE_SKILL" "**The floor is the signature, never the evaluation:** the two ⚑ assertions are computed at Stage 3 on every run and under any grant (§5.3); what waits for the BA is the P3 signature on the computed bundle, and nothing else." \
+     "…and the floor paragraph carries §7.1's sentence verbatim"
+fhas "$GATE_SKILL" "every A assertion whose compiled card differs from the prior run's — a changed card is never carried" \
+     "…and the incremental section carries §9.2's fourth re-run member"
+
+# the compiled cards restate neither runtime rule: §5.2 is stated once, at the
+# document, and inherited by every A assertion (gate §5.2's own words)
+CARDS_F="$PKG_ROOT/payload/specify-overlay/ba/cards/assertions-f.md"
+hasnt "$CARDS_F" "a marker is evidence, never coverage" \
+      "no card restates the marker rule — it is the runtime's, stated once"
+hasnt "$CARDS_F" "Compute always" \
+      "no card restates compute-always either"
+
+# mutation: the marker rule is load-bearing on the surface, not decoration
+python3 - "$GATE_AGENT" "$TMP/gate-agent-mutant.md" <<'PY'
+import pathlib, re, sys
+s = pathlib.Path(sys.argv[1]).read_text(encoding="utf-8")
+i = s.index("**A marker is evidence, never coverage.**")
+j = s.index("\n\n", i)
+assert "(gate §5.2)" in s[i:j], "the marker paragraph lost its citation"
+pathlib.Path(sys.argv[2]).write_text(s[:i] + s[j + 2:], encoding="utf-8")
+PY
+grep -Fq "A marker is evidence, never coverage" "$TMP/gate-agent-mutant.md" \
+  && bad "mutation: the marker rule survived its own removal — the read is vacuous" \
+  || ok "mutation: removing the paragraph removes the rule — the read is not vacuous"
 
 # ── 8. the suite is not vacuous ──────────────────────────────────────────────
 

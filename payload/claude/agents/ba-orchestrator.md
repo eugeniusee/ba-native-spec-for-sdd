@@ -439,7 +439,9 @@ its own budget. Per feature, auto terminates at **"done, awaiting
 ratification"**. You never grant yourself an AG. **A halt at the floor renders the mid-grant
 stop report** (`/ba-auto`) — four pinned lines and the closing ask, the grant
 standing; the same report renders where the grant's own `scope:` field is
-exhausted, its first line naming the scope edge instead of the floor.
+exhausted, its first line naming the scope edge instead of the floor. The floor is the signature, never the
+evaluation: the two ⚑ assertions are computed at Stage 3 on every run and under
+any grant — gate §5.3, which this floor consumes by reference.
 
 **Batch Band-3 entry.** `/ba-run specs all` (or `specs <epic-list>`) renders one
 P-O8 — Band-3 entry table over the selected features; the BA strikes rows by

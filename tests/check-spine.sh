@@ -1049,6 +1049,77 @@ has "$SKILLS/ba-t17/SKILL.md" "(**T-13 — Core process mapping**)" \
 has "$SKILLS/ba-t17/SKILL.md" "coverage-completeness and exclusive partition are properties of the Core Functions set and stand unchanged" \
     "…and the four soft absences cost candidates, never the coverage property"
 
+# ── EC-21 · the marker grammar on the authoring side (R4 · R7) ───────────────
+#
+# The field minted `[ASSUMED: …]` in 45 error-table cells across 25 draft specs
+# — a tag no framework document defined, which the gate's stub test therefore
+# read as content. The standard closed the grammar (rule 7) and the elicitation
+# engine gave the shape pre-flight a fifth check (§5.3 step 4, D14). Both
+# carriers cite that law; neither invents any of it.
+
+printf '\n▸ EC-21 — one marker grammar, at authoring (standard rule 7 · elicitation §5.3)\n'
+
+has "$ANALYST" "\`[NEEDS CLARIFICATION: …]\` is the spec's only marker" \
+    "the analyst's rule 7 closes the namespace"
+has "$ANALYST" "\`[ASSUMED: …]\`, \`[TBD]\` and every other bracket tag are illegal and fail CC-G-02 as a mint" \
+    "…naming the mint and the assertion it fails"
+has "$ANALYST" "an assumption is never a behavior: draft the value and mark it" \
+    "…and an assumption is never a behavior — the value is drafted and marked"
+has "$ANALYST" "(standard rule 7 · elicitation §5.3)" \
+    "…citing the two documents that rule it, restating neither"
+has "$ANALYST" "[CONFLICT:" \
+    "…and the analyst keeps the canvas's [CONFLICT: …] instrument, untouched"
+
+has "$TI2" "Five checks:" \
+    "the Tier-2 shape pre-flight is five checks, not four (elicitation D14)"
+has "$TI2" "| Markers | every bracketed token of marker shape" \
+    "…and the fifth is the marker row"
+has "$TI2" "at the gate the same token is a non-waivable CC-G-02 line" \
+    "…which names what the same token costs at the gate"
+has "$TI2" "the shape is \`\\[[A-Z][A-Z ]*(:[^\\]]*)?\\]\` minus the two framework markers" \
+    "…and the check is mechanical, like the other four"
+has "$TI2" "It is also the spec's only marker" \
+    "the confidence rule at step 3 names the one marker, once"
+
+# the mirrors agree: the analyst and the CLAUDE.md block carry the same law
+MIRROR="$PKG_ROOT/payload/mirror/claude-block.md"
+AGENTS_MD="$PKG_ROOT/payload/mirror/AGENTS.md"
+for m in "$ANALYST" "$MIRROR" "$AGENTS_MD"; do
+  has "$m" "every other bracket tag are illegal and fail CC-G-02 as a mint" \
+      "${m##*/}: rule 7 carries the closed namespace — the two mirrors agree"
+  has "$m" "basis: <inference>" \
+      "${m##*/}: …and the marked-value form the standard names"
+done
+
+# the template's flow comment teaches the same two rules and nothing parses it
+TPL="$PKG_ROOT/payload/specify-overlay/templates/spec-template.md"
+has "$TPL" "the citation is style, the requirement is the coverage (CC-FL-04)" \
+    "the flow comment states CC-FL-04's semantic standard"
+has "$TPL" "[ASSUMED: …] and every other bracket tag fail CC-G-02" \
+    "…and that a minted tag fails CC-G-02 (standard rule 7)"
+python3 - "$TPL" <<'PY' && ok "…and the whole flow note stays inside one HTML comment — nothing parses it" \
+                       || bad "the flow comment is not enclosed — a reader would parse it"
+import pathlib, re, sys
+t = pathlib.Path(sys.argv[1]).read_text(encoding="utf-8")
+i = t.index("## Flows, States & Errors")
+body = t[i:t.index("\n## ", i + 1)]
+opens = body.count("<!--")
+sys.exit(0 if opens == 1 and body.count("-->") == 1
+         and body.index("<!--") < body.index("-->")
+         and "[ASSUMED" in body[body.index("<!--"):body.index("-->")] else 1)
+PY
+
+# mutation: the fifth row is load-bearing, not a fifth line of prose
+python3 - "$TI2" <<'PY' && ok "mutation: the pre-flight table has exactly five data rows — the count is the table's" \
+                       || bad "mutation: 'Five checks' and the table disagree"
+import pathlib, sys
+t = pathlib.Path(sys.argv[1]).read_text(encoding="utf-8")
+i = t.index("Five checks:")
+rows = [l for l in t[i:t.index("\n\n", t.index("| Check |", i))].splitlines()
+        if l.strip().startswith("|")]
+sys.exit(0 if len(rows) - 2 == 5 else 1)   # header + separator + five checks
+PY
+
 # ── roll-up ──────────────────────────────────────────────────────────────────
 
 printf '\n  passed: %s   failed: %s\n' "$PASSED" "$FAILED"

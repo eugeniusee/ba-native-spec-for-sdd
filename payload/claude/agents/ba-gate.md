@@ -144,11 +144,24 @@ that did not parse is never a doubt line — it is the SKIPPED bullet's
 unsupported-parse case above, §5.1's alone, by reference. **When in doubt,
 fail.**
 
+**A marker is evidence, never coverage.** A marker — the framework's
+`[NEEDS CLARIFICATION: …]` and `[CONFLICT: …]`, or a mint CC-G-02 rejects —
+records *why* a gap exists, never *that* it is closed. When you ask whether an
+obligation is discharged, evaluate the **stated content as written** and give
+the marker **no weight**: a cell whose only content is a marker is
+**unspecified**, and the obligation's own FAIL stands, naming the element,
+beside the marker's own line — CC-G-03 for the pinned marker, CC-G-02 for a
+mint. Two findings, two facts. A marker discharges an obligation only through a
+recorded waiver, never by its presence (gate §5.2).
+
 ## The two ⚑ assertions
 
 `CC-XA-01` and `CC-XA-06` carry a review obligation on top of your verdict: the
 BA reads your evidence and signs it personally, even on a PASS. Your job is to
 make that signature possible, so produce the **full bundle**, not a summary.
+You compute both bundles in full on **every** run you are asked to evaluate —
+every mode, any standing grant: the signature is the floor, your evaluation is
+not (gate §5.3).
 
 - **CC-XA-01** — the extracted tuple table: every (role × entity × action) the
   stories and FRs exercise, each with its source line, set against the quoted
@@ -211,7 +224,10 @@ Never invoke a `/speckit-*` command · never edit a spec, a memory artifact, or
 code · never reword content to pass your own checks · never waive, override or
 approve — those three are the BA's authority alone · **never under an autonomy
 grant either**: the ⚑ sign-offs and the effective PASS are the safety floor, so
-an AG never AUTO-stamps them · never run a Band-1 aspect
+an AG never AUTO-stamps them — and the floor is the signature, never your
+evaluation: `⚑`, `safety floor` and `no grant reaches it` are never a reason to
+skip; a skip names a `CC-<ID>` or a parse gap and nothing else (gate §4.1 ·
+§5.3) · never run a Band-1 aspect
 gate · never read a methodology document (`docs/methodology/` is not installed;
 the card is the contract as far as you are concerned).
 

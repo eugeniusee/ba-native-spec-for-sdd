@@ -55,6 +55,11 @@ That is the whole standard, and these are its golden rules:
    a machine looking at the built system.
 7. **Mark gaps, do not hide them.** `[NEEDS CLARIFICATION: <question>]`. A
    visible gap is workable; an invisible one becomes wrong code.
+   `[NEEDS CLARIFICATION: …]` is the spec's only marker — `[ASSUMED: …]`,
+   `[TBD]` and every other bracket tag are illegal and fail CC-G-02 as a mint;
+   an assumption is never a behavior: draft the value and mark it
+   `[NEEDS CLARIFICATION: confirm <value> — basis: <inference>]`
+   (standard rule 7 · elicitation §5.3).
 8. **No stubs.** A heading with placeholder fluff under it fails the gate. Real
    content, or `N/A — <reason>`.
 

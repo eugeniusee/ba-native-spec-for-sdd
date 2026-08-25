@@ -115,8 +115,11 @@ PASS. On a FAIL it is discarded.
 Dispatch the `ba-gate` subagent. Give it: the snapshot workspace path, the path
 to `.specify/ba/cards/assertions-f.md`, and **the explicit list of A assertions
 to evaluate** — all 34 on a full run, the re-run set on an incremental one
-(below). Tell it which elements are already blocked by an M failure so it can
-skip at element granularity.
+(below) — the two ⚑ assertions among them, on every run and under any standing
+grant: ⚑ is the signature, never the evaluation (gate §5.3). Tell it which
+elements are already blocked by an M failure so it can skip at element
+granularity. A blocker is always a `CC-<ID>` or §5.1's parse gap — never a
+mode, a grant or a flag (§5.3).
 
 Write its JSON to `<run>/a-pass.json`. Do not edit its verdicts. If it returns
 an assertion you did not ask for, or omits one you did, that is a runtime
@@ -135,8 +138,14 @@ python3 .specify/ba/scripts/sk_snapshot.py rerun-set \
 ```
 
 Re-run set = **all M** ∪ everything not clean last run ∪ every A whose read set
-intersects the diff ∪ every whole-spec A on any spec edit. The rest are
-**carried**, each with its basis; they go into `run.json`'s `carried` list. An
+intersects the diff ∪ every whole-spec A on any spec edit ∪ every A assertion
+whose compiled card differs from the prior run's — a changed card is never
+carried: when the manifest's cards hash differs, the A set re-runs whole with
+the basis `cards changed`. The rest are
+**carried**, each with its basis; they go into `run.json`'s `carried` list —
+and `rerun-set`'s `cards_changed` goes into `run.json`'s field of that name, so
+the entry's `Carried from run n−1:` line reads `none — cards changed` rather
+than a bare `none`. An
 effective PASS from an incremental run certifies the full assertion set: fresh
 verdicts plus carried verdicts whose read sets are provably untouched. A full
 run is always available on BA demand and is the right hygiene after many
@@ -165,6 +174,7 @@ Assemble `run.json`:
   "checkers": ["checkers/structure.json", "…"],
   "a_pass": "a-pass.json",
   "carried":   [{"assertion": "CC-OV-01", "basis": "read set untouched by the diff"}],
+  "cards_changed": false,
   "waivers":   [], "overrides": [], "signoffs": {}, "approval": null,
   "preflight": {"status": "clean"}
 }
@@ -281,7 +291,10 @@ reaches P2 and stops there: waivers on real gaps may be taken AUTO, stamped
 mode — the auto path names the gap in the text or reclassifies, then re-gates,
 and never bypasses. **P3 — the ⚑ sign-offs — and P4 — approval — sit outside
 every grant**, in every profile. Under auto a feature ends at "done, awaiting
-ratification"; these two acts wait for the BA.
+ratification"; these two acts wait for the BA. **The floor is the signature,
+never the evaluation:** the two ⚑ assertions are computed at Stage 3 on every
+run and under any grant (§5.3); what waits for the BA is the P3 signature on
+the computed bundle, and nothing else.
 
 ## Stage 5 — certification (effective PASS only)
 

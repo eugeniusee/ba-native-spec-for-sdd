@@ -29,7 +29,7 @@ The artifact(s) the checker reads. Shorthand: `spec` = `specs/NNN-feature/spec.m
 ## Global assertions (CC-G)
 
 ### CC-G-02 · Checks: spec · [non-waivable]
-No stub content: every required section contains substantive, feature-specific content or explicit `N/A — <reason>`. Empty bodies, placeholder tokens (TBD, TODO, "to be defined", template boilerplate) fail.
+No stub content: every required section contains substantive, feature-specific content or explicit `N/A — <reason>`. Empty bodies, placeholder tokens (TBD, TODO, "to be defined", template boilerplate) fail. **The marker namespace is closed:** the framework defines `[NEEDS CLARIFICATION: …]` and `[CONFLICT: …]` and no others. Any further bracketed token of marker shape — an upper-case label, with or without a colon: `[ASSUMED: …]`, `[TBD]` — is a mint, is not content, and fails wherever it stands in place of required content, a table cell included. A mint is converted to `[NEEDS CLARIFICATION: …]`, never honoured.
 
 > No waiver can exist: An *unnamed* gap cannot be risk-accepted. The path is: name it — convert the stub to `[NEEDS CLARIFICATION: …]`, which fails CC-G-03, which **is** waivable. Every accepted gap is thereby a named gap, by construction.
 
@@ -80,7 +80,7 @@ The main flow is present as numbered steps, each with actor → action → obser
 Every error row states trigger + system behavior + user-visible outcome; none of the three empty or generic ("show error").
 
 ### CC-FL-04 · Checks: spec
-Every error path's system behavior is covered by an unwanted-behavior FR (IF/THEN, WHILE) or references a BR. Unspecified error handling fails.
+Every row of the alternates/errors table is governed by a requirement in this spec: an unwanted-behavior FR (IF … THEN, WHILE) for an error, an event-driven FR (WHEN) where the row is an alternate, or a BR the row's behavior applies. Coverage is semantic — the evaluator searches the spec's FR (§3) and BR (§6) lists and fails only where no governing requirement exists; an inline citation such as `(FR-002)` is permitted style, never the pass condition, and the template's four columns are the table's whole shape. The evidence names, per row, the governing FR or BR, or `none`. Unspecified error handling fails with the row named.
 
 ### CC-FL-05 · Checks: spec
 Every state name used in flows, FRs, or acceptance exists in the Data section's states table (where the entity has a lifecycle).

@@ -70,6 +70,15 @@ sys.dont_write_bytecode = True
 READY, REFUSED, DEFECT = 0, 1, 2
 
 MARKER_RE = re.compile(r"\[NEEDS CLARIFICATION[^\]]*\]")
+
+# The certification manifest records the compiled A cards the run gated under
+# (gate §9.2). The hash guard does not read them: the guard's question is "is
+# the certified text still the read text", and the cards are not the read text
+# — they are the assertions that read it. Guarding them would void an effective
+# PASS the moment the framework re-cuts a card, and §9.2 is explicit that
+# nothing voids retroactively — the PASS stands until the feature's next
+# re-gate, and re-gates under the current cards then.
+CARDS_LABEL = "cards"
 RUN_HEAD_RE = re.compile(r"^## Gate run (\S+) — (.*)$")
 
 
@@ -150,13 +159,15 @@ def find_certification(root: Path, feature: str, explicit=None):
 def verify(manifest, root: Path):
     """(diverged, checked) — diverged is [(path, why)], in manifest order."""
     diverged = []
-    for e in manifest["files"]:
+    guarded = [e for e in manifest["files"]
+               if CARDS_LABEL not in e.get("labels", [])]
+    for e in guarded:
         p = root / e["path"]
         if not p.is_file():
             diverged.append((e["path"], "missing"))
         elif sha256(p) != e["sha256"]:
             diverged.append((e["path"], "content changed"))
-    return diverged, len(manifest["files"])
+    return diverged, len(guarded)
 
 
 # ── 3/4. the artifact set, and the pipeline this hands to ────────────────────

@@ -155,12 +155,14 @@ specific and freshest layer, loaded on top of everything else.
    The draft stays maximally complete; the uncertainty stays maximally visible.
    **Each such marker is a recommended-answer question in embryo** — which is
    exactly what makes the next step's legality rule cover validation questions at
-   all. Marking is not a confession of weakness; unmarked inference is the one
+   all. It is also the spec's only marker: `[ASSUMED: …]`, `[TBD]` and every
+   other bracket tag are illegal and fail CC-G-02 as a mint — an assumption is
+   never a behavior (standard rule 7 · elicitation §5.3). Marking is not a confession of weakness; unmarked inference is the one
    failure mode no rule downstream can catch.
 
 4. **Shape pre-flight — run it before you write the draft out.** Check the draft
    against the shapes the framework's readers actually parse. A miss **stops the
-   write**: fix the shape, then continue. Four checks:
+   write**: fix the shape, then continue. Five checks:
 
    | Check | Required shape | Never |
    |---|---|---|
@@ -168,6 +170,11 @@ specific and freshest layer, loaded on top of everything else.
    | Stories | `US<N> (P<1\|2\|3>) — As a …` at the line start | `**US1 (P1)** — …` — no `**` around the ID |
    | Requirements | `FR-0NN (US<n>) — <EARS text>`, one per line | `\| FR-001 \| US1 \| WHEN … \|` — a requirement is never a table row |
    | Rules & NFRs | `BR-0NN — …` · `NFR-0NN (<category>) — …` at the line start | bolded or bulleted IDs |
+   | Markers | every bracketed token of marker shape — an upper-case label, with or without a colon — is the spec's one marker, `[NEEDS CLARIFICATION: …]` | `[ASSUMED: …]`, `[TBD]`, any mint — stops the write here; at the gate the same token is a non-waivable CC-G-02 line |
+
+   The marker check is mechanical like the other four: the shape is
+   `\[[A-Z][A-Z ]*(:[^\]]*)?\]` minus the two framework markers, and a match
+   outside them is reported found vs expected.
 
    Report a miss the way the checkers do — **what you found and what was
    expected** — and fix it here, at authoring time, which is the one moment the

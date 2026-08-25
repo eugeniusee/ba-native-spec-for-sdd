@@ -11836,3 +11836,216 @@ since two documents ruling one act is precisely the duplication §14 rejected.
 **That reconciliation is not this pass's to take.** The mtime evidence is on
 the record: the doc written at 22:13:41 against this session's own last edit to
 it hours earlier, and the file byte-stable from the snapshot to the restore.
+## Evidence And Decision Come Apart — a marker is never coverage, the ⚑ bundle is always computed, a changed card is never carried, documents before code · contract v0.4 · gate v0.12 · standard v0.6 · elicitation v0.10 · package 0.1.42 · 25 August 2026 · GREEN
+
+**Session prompt (EC-21, Lane A):** compile the four already-amended
+methodology documents into the payload — the BA Lead's `apply all` over R1–R7
+on the field design-defect report *the gate does not distinguish evidence from
+decision* — cards recompiled, the compiled surfaces amended **by reference**,
+one script rule, tests, this entry, package patch. Lane B (the documents
+themselves) was **done before this session opened**: the BA dropped contract
+v0.4 · gate v0.12 · standard v0.6 · elicitation v0.10 into the tree, and this
+pass **authored no methodology text** — where instruction and corpus could
+disagree, the corpus was read first and governs every line below.
+
+**Precondition — the base pins held exactly, and the baseline did not.** HEAD
+`6970a0a` = `origin/main`, ahead/behind **0/0**, `VERSION` **0.1.41**, working
+tree clean except the four dropped documents — every pin as the brief expected,
+so **no forward divergence and no renumbering**: the targets are simply the next
+free, `VERSION` **0.1.41 → 0.1.42**. All four documents were verified by their
+second line, verbatim, before any edit. **D-1 · the pre-edit suite was 15/18,
+not 18/18.** The brief expected green; what stood was **three reds with one
+cause** — `assertions-f.md` had not yet been recompiled against the dropped
+documents, and `check-gate.sh` and `check-orchestrator.sh` each shell out to
+`check-cards.py`, so one stale card rendered as three failures (including one
+reading *"the at-thresholds card diverged"*, which it had not — the message
+belongs to a check that runs the whole card script). Recorded because it is the
+**expected** state of a documents-before-code tree between lanes, and because
+the recompile alone cleared all three: the environmental trio was green
+throughout, the vendored archive being present. Every count that moves below is
+this pass's own.
+
+**R1 · compute always, sign separately (gate §4.1 · §5.3 · §7.1).** The ⚑ tag
+governs the **signature** and never the **evaluation**. Compiled onto three
+surfaces and legislated on none: the A-pass agent computes both bundles in full
+on every run it is asked to evaluate, every mode, any standing grant; the gate
+skill dispatches the ⚑ pair among the Stage-3 set and carries §7.1's floor
+sentence **verbatim**; the never-list's autonomy bullet gains the consequence —
+`⚑`, `safety floor` and `no grant reaches it` are **never a reason to skip**,
+and a skip names a `CC-<ID>` or a parse gap and nothing else. The field symptom
+this closes: `CC-XA-01` rendering *Skipped … ← ⚑ … no autonomy grant reaches
+it*, after which the BA was asked to sign a tuple table nobody had computed.
+
+**R2 · a marker is evidence, never coverage (gate §5.2 · contract CC-G-02).**
+One paragraph beside the doubt rule on `ba-gate.md`, citing §5.2 and restating
+none of it: an obligation is judged on the **stated content as written**, a
+marker carries no weight, a marker-only cell is **unspecified**, and the
+obligation's own FAIL stands beside the marker's own line — CC-G-03 for the
+pinned marker, CC-G-02 for a mint. **Stated once, at the runtime, inherited by
+every A assertion** — and the suite asserts that **no card restates it**, which
+is §5.2's own instruction and the reason the fix is a class fix: the escape was
+measured on CC-FL-04 and reproduced on CC-FL-03 over the same row.
+
+**R3 · CC-FL-04 names one standard (contract v0.4).** The card recompiled to
+the semantic standard — the evaluator searches the FR and BR lists, a citation
+is permitted style and never the pass condition, evidence names per row the
+governing FR/BR or `none`. **No fifth column**: the template's flow comment
+gains prose only, and `check-cards.py` reports the two cards byte-identical to
+their re-derivation.
+
+**R4 · R7 · one marker grammar, at authoring.** `ba-analyst.md` rule 7 and both
+mirrors close the namespace and carry *an assumption is never a behavior* — the
+value drafted **and** marked. The Tier-2 shape pre-flight goes **four checks →
+five**, the fifth row mechanical like the other four, its shape
+`\[[A-Z][A-Z ]*(:[^\]]*)?\]` minus the two framework markers. The analyst's
+`[CONFLICT: …]` instrument is untouched — the canvas's marker, not a spec form.
+
+**R5 · a changed card is never carried (gate §9.2).** The one real behavior this
+pass ships. `sk_snapshot.py` gains the cards entry in the manifest, the fourth
+re-run member, and the report's basis; verified live — a run whose **only**
+change is the cards file re-runs **all 34** A assertions with basis
+`cards changed` and carries **zero**, while an identical-cards pair still
+carries 25.
+
+**Divergences, numbered — the instruction's silences, resolved and recorded.**
+**D-2 · the cards join `files`, never `deps(F)`.** The brief says the entry
+joins the manifest's file list; `deps(F)` is the **static core**, which is what
+the assertions *read* and what the pre-flight's six CC-H assertions run over.
+Putting the cards there would make a missing card a missing static-core member
+(failing `--require-complete`) and would run health assertions over the
+assertions. The entry is appended in `cmd_build` instead, labelled `cards`,
+hashed like every other, absent where no card is installed — and the suite
+asserts `cards` appears in **no** `READ_SCOPE` row and **not** in
+`MEMORY_LABELS`. **D-3 · absent on both sides is not a change.** The brief's
+*"or `prev` has none"* is implemented as `prev_cards != curr_cards` with absent
+as `None`, so the **upgrade** case (no entry → an entry) is a change and two
+legacy manifests are not; read the other way, every pre-0.1.42 pair would force
+a full A pass forever and the existing `12 carried` case could never stand.
+**D-4 · the certification records the cards hash; the adapter never guards
+it.** `sk_handoff.py`'s hash guard now **skips** the `cards` entry, and the
+certification block says so on that line —
+`[cards — gated under; recorded, not guarded (§9.2)]`. Guarding it would refuse
+handoff on an already-certified feature the moment the framework re-cuts a
+card, which is precisely the **retroactive void** §9.2 forbids: *an effective
+PASS records the cards hash it was gated under, stands until the feature's next
+re-gate, and re-gates under the current cards then*. The guard's own question is
+*is the certified text still the read text*, and the cards are not the read text
+— they are the assertions that read it. This also leaves the pinned `11/11`
+adapter counts byte-stable, and the pinned *"Adapter precondition"* sentence
+untouched. **D-5 · `cards_changed` is a run-record key.** The report has to
+learn the fact from somewhere and `carried` is empty **by construction** in this
+case, so no basis can be read off it; `rerun-set` emits the flag in both output
+formats and `run.json` carries it. It is a **runtime record** key, documented in
+the gate skill's own example — not a ledger field, and §2.9's budget is
+untouched. **D-6 · `payload/mirror/AGENTS.md` was amended alongside
+`claude-block.md`.** The brief's 2.4 named only the CLAUDE.md block, but
+`AGENTS.md` carries **both** the floor paragraph and rule 7, and the house
+asserts the two mirrors as a **pair** at every site in `check-auto.sh` and
+`check-budget.sh`. Amending one and not the other would have shipped the exact
+inversion this edition exists to kill — one mirror closing the marker namespace
+while its twin left it open — and **no test would have caught it**, so the pair
+now goes into `check-spine.sh` as a loop over all three carriers. **D-7 ·
+`check-exit.sh`'s marker sweep excludes the `cards` entry.** That sweep asserts
+*the only `[NEEDS CLARIFICATION]` the coding agent reads is the waivered one*
+over the certified artifact set; the cards are framework text and CC-G-02 and
+CC-G-03 necessarily **quote the marker they legislate**. The assertion's meaning
+is preserved exactly, its scope stated in the comment. The runtime needed no
+such change — `sk_handoff.py`'s own inventory reads the certified **spec**, and
+still reports `1 × [NEEDS CLARIFICATION]`. **D-8 · the template's flow comment
+keeps its blank line** before the table skeleton, matching the file's own rhythm
+and the sibling NFR comment; the brief's block had collapsed it. Cosmetic,
+inside an HTML comment nothing parses — asserted as enclosed by the suite.
+**D-9 · the regression fixture is two files.** `README.md` carries the record
+and `spec.md` the runnable artifact, because *spec + expected verdicts* needs a
+spec; both live under `tests/`, so `tests/layout.expected` takes no row.
+
+**Files touched — sixteen paths, staged by name:**
+`payload/specify-overlay/ba/cards/assertions-f.md` (recompiled — **CC-G-02 and
+CC-FL-04 only**) · `payload/claude/agents/ba-gate.md` (the marker rule beside
+the doubt rule · the compute-always sentence · the never-list's autonomy
+bullet) · `payload/claude/skills/ba-gate/SKILL.md` (Stage-3 dispatch · the
+blocker sentence · the floor paragraph · the incremental re-gate's fourth
+member · the run-record key) · `payload/claude/agents/ba-orchestrator.md` ·
+`payload/mirror/claude-block.md` (the floor sentence by reference · rule 7) ·
+`payload/mirror/AGENTS.md` (the same two, D-6) ·
+`payload/claude/agents/ba-analyst.md` (rule 7) ·
+`payload/claude/skills/ba-tier2/SKILL.md` (step 3's one sentence · *Four
+checks* → *Five checks* · the Markers row · the mechanical line) ·
+`payload/specify-overlay/templates/spec-template.md` (the flow comment) ·
+`payload/specify-overlay/ba/scripts/sk_snapshot.py` (the cards constants and
+two accessors · `cmd_build` · `rerun-set`'s fourth member and both outputs ·
+the report's carried basis · the certification note) ·
+`payload/specify-overlay/ba/scripts/sk_handoff.py` (the guard's exclusion,
+D-4) · `tests/check-gate.sh` (run 4 · the EC-21 surfaces block) ·
+`tests/check-spine.sh` (the EC-21 authoring block) · `tests/check-exit.sh`
+(the sweep's scope, D-7) · `tests/fixtures/cc-fl-04-inversion/` (README +
+spec) · `VERSION` (0.1.42) · `BUILD-LOG.md` (this entry).
+
+**Nothing else moves.** **`assertions-h.md` and `at-thresholds.md` are
+byte-identical** — MD5-checked before and after the recompile, and
+`check-cards.py` says so. `docs/methodology/ba-native-spec-orchestrator-rules.md`
+is **untouched in any way**: `D-O93 · §42 · v0.39` stays reserved for the parked
+peer rebase (the 0.1.41 entry's D-8), this pass allocates **no orchestrator
+ruling**, and the ⚑ clause reaching the orchestrator persona is taken **by
+reference to gate §5.3**, which that floor already consumes by reference. **No
+new assertion, no new CC-ID, no new stop, no new prompt point, no new ledger
+field, no new payload file** — the suite stays at **eighteen**, so `README.md`'s
+count lines, `tests/run-all.sh` and `tests/layout.expected` do not move. No
+`docs/quickstart.md` change (no command changed), no field-note edit, and **no
+engagement estate touched** — the Nutrivity corpus that surfaced the defect was
+never read.
+
+**Routed, not fixed (R6, verbatim from the corpus's own change records).** The
+**P3 stop under a draft-spec destination** — under a standing grant P2 waives
+marker gaps AUTO, a draft turns pass-bound, and the ⚑ stop renders per feature
+toward an effective PASS the Presale destination does not include; this, not the
+⚑ evaluation, is the field's fifty signature acts, and it is **orchestrator
+ground** (§10.7) · **batching the P3 acceptance across features** · **a health
+assertion on the inversion signature** (marker density rising while the failure
+count falls) · **the orchestrator's §10.7 cross-reference to §5.3**. All four
+ride the next orchestrator bump, **after D-O93 lands**. Also open and **not
+ruled**: the `[CONFLICT: …]`-in-a-spec edge — the canvas's marker is not a spec
+form (standard rule 7), CC-G-02's namespace admits it framework-wide, and what
+a spec carrying one should produce is stated nowhere.
+
+**For the BA — the next gate on any live project must be a full run, not
+incremental.** The 82 CC-FL-04 findings re-derive under the new card and the 45
+false passes surface as CC-G-02 mints. §9.2's new member makes this automatic
+wherever a prior manifest exists — a re-cut card forces the whole A set — but a
+feature whose prior manifest predates the cards entry gets the same treatment
+only because absent-vs-present is a change (D-3); a feature gated with **no
+manifest pair at all** is a full run anyway. Ask for the full run and do not
+rely on the arithmetic.
+
+**Suite — 18/18 GREEN, the three install-based runs included.** Movement, all
+accounted: **`check-gate.sh` 105 → 133** (+28 — the run-4 block's eleven: the
+cards clearing `--require-complete`, the labelled entry, `cards` in no read set,
+the flag, all 34 A on `cards changed`, zero carried, the entry's basis line, the
+bare `none` control, the entry's line count unmoved, the certification note, and
+the **mutation** — stripping the rule puts **34** A verdicts back in the carry
+set; and the EC-21 surfaces block's seventeen: four document reads, six on
+`ba-gate.md`, four on the skill, two proving **no card restates** either runtime
+rule, and a mutation on the marker paragraph) · **`check-spine.sh` 266 → 286**
+(+20 — five on the analyst, five on Tier-2, six on the three-carrier mirror
+loop, three on the template plus its enclosure probe, and a mutation reading the
+pre-flight table's **row count** against its own *Five checks*) ·
+**`check-orchestrator.sh` 583 → 584** (**no new assertion** — its single
+`check-cards.py` shell-out flipped red to green on the recompile) ·
+**`check-cards.py` byte-identical**. **Everything else unmoved:** `check-m.sh`
+71 · `check-techniques*.sh` 104/127/166 · `check-register.sh` 63 ·
+`check-wbs.sh` 99 · `check-audit.sh` 178 · `check-status.sh` 115 ·
+`check-ledger.py` grammar-legal · `check-layout.sh` 121 ·
+`check-exit.sh --offline` **99** — the rescoped sweep adds no check and removes
+none · `check-install.sh` 64 · `check-budget.sh` 83 · `check-auto.sh` 278.
+
+**Falsified, four claims.** *The two cards moved and nothing else did* — the
+recompile diff is **two lines**, and `assertions-h.md` / `at-thresholds.md` hold
+their pre-pass MD5s. *The compiled surfaces legislate nothing* — every added
+paragraph carries a section citation, and the two probes that no card restates
+§5.2 or §5.3 pass. *The re-run rule bites* — the mutation puts 34 carried
+verdicts back. *The fixture reproduces the escape* — `spec.md` passes **every**
+machine checker, CC-G-03 included, which reports `0 unresolved
+[NEEDS CLARIFICATION] markers` over a spec carrying two `[ASSUMED: …]` cells:
+the mint is invisible to the whole M pass, which is why the weight falls on
+CC-G-02 at Stage 3 and why a per-card patch would have left the next card to be
+found in the field.
