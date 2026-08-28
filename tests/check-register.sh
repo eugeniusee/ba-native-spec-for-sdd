@@ -429,8 +429,9 @@ scan_root "$CORPUS" > "$TMP/fenced.out" 2>&1
 # sentence down. Two forms, one rule:
 #
 #   · skills and personas carry the **compiled block** — §10.2's boundary said in
-#     the unit's own voice, naming the two commands that lift it. Pinned here
-#     verbatim; every unit must match it byte for byte.
+#     the unit's own voice, naming the one command that lifts it and the check
+#     that never does (D-O95). Pinned here verbatim; every unit must match it
+#     byte for byte.
 #   · the two mirrors carry §10.2's **own paragraph**, derived from source: the
 #     document's line with the decision id and the trailing compile note dropped,
 #     which is the whole of the compile.
@@ -449,9 +450,11 @@ cat > "$TMP/block.txt" <<'BLOCK'
 **The session boundary (framework-wide).** This is an **analysis session**. It
 produces analysis artifacts only. It never produces an implementation plan, a
 task list, a prototype, or code — not as a proposal, not as a "next step," not as
-initiative. The boundary lifts **per feature**, and only by the pair: an
-effective PASS at `/ba-gate <feature>` and a completed `/ba-handoff <feature>`.
-Wanting to implement is never evidence of readiness: the only exit is the gate.
+initiative. The boundary lifts **per feature**,
+by the effective PASS at `/ba-gate <feature>` alone; the certified-text check
+runs by itself when implementation takes the feature and is never a lift
+condition. Wanting to implement is never evidence of readiness:
+the only exit is the gate.
 BLOCK
 BLOCK_N="$(wc -l < "$TMP/block.txt" | tr -d ' ')"
 BLOCK_SHA="$(sha_of < "$TMP/block.txt")"
@@ -492,7 +495,8 @@ while IFS='|' read -r label phrase; do
 done <<'PHRASES'
 the session is an analysis session|an **analysis session**
 what it never produces|It never produces an implementation plan, a task list, a prototype, or code — not as a proposal, not as a "next step," not as initiative.
-the boundary lifts per feature, by the pair|The boundary lifts **per feature**, and only by the pair:
+the boundary lifts per feature, by the PASS alone|The boundary lifts **per feature**, by the
+the check is never a lift condition|is never a lift condition
 wanting is not readiness|Wanting to implement is never evidence of readiness: the only exit is the gate.
 PHRASES
 

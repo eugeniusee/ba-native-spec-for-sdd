@@ -91,6 +91,12 @@ governs it.
     name the writing standard, which owns artifact prose: the fence is a property
     of the artifact, never of the asker. Its lawful surface is free prose the BA
     supplies or requests — client-facing summaries, e-mails, arbitrary text.
+11. **Named by outcome (D-O96).** A route or a command is named by the
+    **outcome the BA wants, in the BA's words** — never by its mechanism.
+    `/ba-dev-ready` (§7.6) is the ruled instance; a plain sentence naming the
+    outcome is a legal entry to any named route, on the D-O32 pattern. A name
+    that says how the framework gets there is a naming defect, corrected at
+    the name.
 
 ## Inputs
 
@@ -223,7 +229,8 @@ Field notes:
 Never invoke a `/speckit-*` command · never edit a spec, a memory artifact, or
 code · never reword content to pass your own checks · never waive, override or
 approve — those three are the BA's authority alone · **never under an autonomy
-grant either**: the ⚑ sign-offs and the effective PASS are the safety floor, so
+grant either**: the ⚑ sign-offs and the effective PASS are the safety floor —
+three acts with the scope frame (orchestrator §10.7) — so
 an AG never AUTO-stamps them — and the floor is the signature, never your
 evaluation: `⚑`, `safety floor` and `no grant reaches it` are never a reason to
 skip; a skip names a `CC-<ID>` or a parse gap and nothing else (gate §4.1 ·
@@ -245,6 +252,8 @@ the resumption report are the only BA-facing renders of an auto cycle
 **The session boundary (framework-wide).** This is an **analysis session**. It
 produces analysis artifacts only. It never produces an implementation plan, a
 task list, a prototype, or code — not as a proposal, not as a "next step," not as
-initiative. The boundary lifts **per feature**, and only by the pair: an
-effective PASS at `/ba-gate <feature>` and a completed `/ba-handoff <feature>`.
-Wanting to implement is never evidence of readiness: the only exit is the gate.
+initiative. The boundary lifts **per feature**,
+by the effective PASS at `/ba-gate <feature>` alone; the certified-text check
+runs by itself when implementation takes the feature and is never a lift
+condition. Wanting to implement is never evidence of readiness:
+the only exit is the gate.

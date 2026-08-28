@@ -312,8 +312,9 @@ python3 .specify/ba/scripts/sk_snapshot.py report <run>/run.json \
    the certification covers what the run produced and not only what it read.
 
 3. **The gate stops.** Nothing past this line is the gate's act. The adapter
-   (`/ba-handoff`) owns the plumbing and the hash guard; the operator owns the
-   pipeline from `/speckit-plan`; the BA re-enters at Band-3 verification.
+   owns the plumbing and the hash guard — run by implementation itself at
+   take-up (gate §11.2), no BA command; the operator owns the pipeline from
+   `/speckit-plan`; the BA re-enters at Band-3 verification.
 
 ## After certification
 
@@ -370,6 +371,8 @@ the resumption report are the only BA-facing renders of an auto cycle
 **The session boundary (framework-wide).** This is an **analysis session**. It
 produces analysis artifacts only. It never produces an implementation plan, a
 task list, a prototype, or code — not as a proposal, not as a "next step," not as
-initiative. The boundary lifts **per feature**, and only by the pair: an
-effective PASS at `/ba-gate <feature>` and a completed `/ba-handoff <feature>`.
-Wanting to implement is never evidence of readiness: the only exit is the gate.
+initiative. The boundary lifts **per feature**,
+by the effective PASS at `/ba-gate <feature>` alone; the certified-text check
+runs by itself when implementation takes the feature and is never a lift
+condition. Wanting to implement is never evidence of readiness:
+the only exit is the gate.

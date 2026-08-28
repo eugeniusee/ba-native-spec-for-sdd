@@ -1,11 +1,18 @@
 #!/usr/bin/env python3
-"""sk_handoff — the Mode-A adapter: hash guard · branch · plumbing · ready report.
+"""sk_handoff — the Mode-A adapter: hash guard · branch · plumbing · take-up check.
 
 BA-Native Spec · vendored runtime script (build plan §2.4, S9).
+Run by implementation itself, automatically, at take-up — the coding side's
+first act on a feature, before any implementation act (gate §11.2, D-O94); no
+BA command invokes it. Clean → silent (exit 0, nothing printed); diverged →
+work does not start, and exactly one plain-language refusal renders, pinned at
+gate §11.2. `--verify-only` survives as the internal check — *is the feature
+still certified?* — never a BA command, and `--report` prints the ready report
+the silent take-up run no longer prints.
 Anchors: gate definition §11.1 (the certification manifest and its adapter
-precondition) · §11.2 (the adapter's ordered acts) · §14.4 (the worked handoff
-this implementation reproduces) · plan Q5 (Mode A: no LLM between gate and
-plan — the certified text is the read text).
+precondition) · §11.2 (when it runs, the ordered acts, the pinned refusal) ·
+§14.4 (the worked handoff this implementation reproduces) · plan Q5 (Mode A:
+no LLM between gate and plan — the certified text is the read text).
 
 **This script is not a checker and not a judge.** It verifies, it plumbs, it
 reports. It never edits a spec, never edits a memory artifact, never re-runs an
@@ -15,18 +22,30 @@ prints the diverged paths, and demands a re-gate.
 
 Order of acts (gate §11.2, "In order")
 --------------------------------------
-    1. resolve the feature and its certification manifest
+    1. resolve the feature (the argument · the NNN-* branch · the feature
+       pointer) and its certification manifest
     2. HASH GUARD — every certified path, before any side effect
     3. the certified artifact set is in place
     4. Spec Kit plumbing — the pipeline this hands to actually exists
     5. branch create/checkout
     6. RE-VERIFY — a checkout can move a certified file; see below
     7. the feature pointer Spec Kit resolves paths through
-    8. the ready report
+    8. the ready report — behind --report (and --format json); the take-up
+       run is silent when clean
 
 Steps 1–4 have no side effects, so a refusal at any of them leaves the project
 exactly as it was: no branch created, no branch switched, no file written. That
 ordering is the point of the guard — a refused handoff must not be half-done.
+
+The refusal render, pinned at gate §11.2 — text mode, exactly one shape:
+
+    <NNN-feature> — not started: a certified file changed after the PASS.
+      <path> — <edited after certification | missing | branch <name> carries another revision>
+    Keep the change → re-gate: /ba-gate <NNN>. Don't want it → revert the file; the check passes again.
+
+No PASS on record refuses in the same shape, its first line
+`<NNN-feature> — not started: no PASS on record — run /ba-gate <NNN>.`
+A refusal is a result, not an error: it is the framework working.
 
 **Step 7 is gate §11.2's "any copies Spec Kit's layout requires", made
 concrete at the pin.** At v0.12.5 `setup-plan.sh` no longer derives the feature
@@ -119,6 +138,30 @@ def resolve_feature(root: Path, arg: str) -> str:
                    "(present: %s)" % (arg, ", ".join(candidates) or "none"))
 
 
+def takeup_feature(root: Path, arg):
+    """The take-up resolution order (gate §11.2): an explicit argument, else
+    the current branch when it matches `NNN-*`, else the `.specify/feature.json`
+    pointer. Returns (feature, None) or (None, why)."""
+    if arg:
+        return resolve_feature(root, arg), None
+    r = git(root, "rev-parse", "--abbrev-ref", "HEAD")
+    if r.returncode == 0:
+        branch = r.stdout.strip()
+        if re.match(r"^\d{3}-", branch):
+            return resolve_feature(root, branch), None
+    fj = root / ".specify" / "feature.json"
+    if fj.is_file():
+        try:
+            fd = json.loads(fj.read_text(encoding="utf-8")).get(
+                "feature_directory") or ""
+        except (OSError, ValueError):
+            fd = ""
+        if fd.startswith("specs/"):
+            return resolve_feature(root, fd), None
+    return None, ("no argument was passed, the current branch does not match "
+                  "NNN-*, and no .specify/feature.json pointer exists")
+
+
 def find_certification(root: Path, feature: str, explicit=None):
     """The certification manifest of the feature's latest certified run.
 
@@ -166,7 +209,7 @@ def verify(manifest, root: Path):
         if not p.is_file():
             diverged.append((e["path"], "missing"))
         elif sha256(p) != e["sha256"]:
-            diverged.append((e["path"], "content changed"))
+            diverged.append((e["path"], "edited after certification"))
     return diverged, len(guarded)
 
 
@@ -326,13 +369,22 @@ def block_field(block, field: str):
 # ── the run ──────────────────────────────────────────────────────────────────
 
 
-def refuse(title, lines, tail, args, payload=None):
+def refuse(feature, reason, lines, tail, args, payload=None):
+    """The pinned refusal render (gate §11.2) — exactly one shape:
+
+        <NNN-feature> — not started: <reason>
+          <one indented line per diverged file, or per named fact>
+        <the routes line, where the shape pins one>
+
+    A refusal is a result, not an error: it is the framework working. The json
+    render keeps its fields for the internal callers.
+    """
     if args.format == "json":
-        print(json.dumps({"result": "REFUSED", "reason": title,
+        print(json.dumps({"result": "REFUSED", "reason": reason,
                           "diverged": lines, **(payload or {})},
                          indent=2, ensure_ascii=False))
     else:
-        print("REFUSED — %s" % title)
+        print("%s — not started: %s" % (feature, reason))
         for l in lines:
             print("  %s" % l)
         for l in tail:
@@ -342,8 +394,12 @@ def refuse(title, lines, tail, args, payload=None):
 
 def main(argv=None) -> int:
     p = argparse.ArgumentParser(
-        description="Mode-A adapter — hash guard · branch · plumbing · ready")
-    p.add_argument("feature", help="004 · 004-appointment-booking · specs/…")
+        description="Mode-A adapter — the take-up check: hash guard · branch "
+                    "· plumbing; silent when clean")
+    p.add_argument("feature", nargs="?", default=None,
+                   help="004 · 004-appointment-booking · specs/… — optional at "
+                        "take-up: the NNN-* branch, then the feature pointer, "
+                        "resolve it")
     p.add_argument("--root", default=".", help="project root (default: .)")
     p.add_argument("--cert", help="explicit certification manifest (default: "
                                   "the feature's latest run cert.json)")
@@ -354,19 +410,29 @@ def main(argv=None) -> int:
                    help="the hash guard alone — the cheap pre-handoff check")
     p.add_argument("--dry-run", action="store_true",
                    help="report the branch act without performing it")
+    p.add_argument("--report", action="store_true",
+                   help="print the ready report (the take-up run is silent "
+                        "when clean)")
     p.add_argument("--format", choices=("text", "json"), default="text")
     args = p.parse_args(argv)
 
     root = Path(args.root).resolve()
-    feature = resolve_feature(root, args.feature)
+    feature, why = takeup_feature(root, args.feature)
+    if feature is None:
+        return refuse("(no feature)",
+                      "no feature named — pass one (sk_handoff.py <NNN>), run "
+                      "from the NNN-* branch, or set .specify/feature.json.",
+                      [why], [], args, {"stage": "resolve"})
+    nnn = feature.split("-", 1)[0]
     branch = args.branch or feature
 
     # ── 1. the certification ────────────────────────────────────────────────
     cert_path, why = find_certification(root, feature, args.cert)
     if cert_path is None:
-        return refuse("%s carries no certification" % feature, [why],
-                      ["→ run /ba-gate %s to an effective PASS before handoff."
-                       % feature], args)
+        return refuse(feature,
+                      "no PASS on record — run /ba-gate %s." % nnn,
+                      [why], [], args,
+                      {"stage": "certification", "feature": feature})
     try:
         manifest = json.loads(cert_path.read_text(encoding="utf-8"))
     except (OSError, ValueError) as exc:
@@ -375,13 +441,15 @@ def main(argv=None) -> int:
     run, date = manifest.get("run", "?"), manifest.get("date", "—")
 
     # ── 2. the hash guard — before any side effect ──────────────────────────
+    # A refusal here leaves the project exactly as it was: steps 1–4 have no
+    # side effects, so nothing was done — no branch created or checked out.
     diverged, checked = verify(manifest, root)
     if diverged:
         return refuse(
-            "%d certified path(s) diverged from the live files" % len(diverged),
+            feature, "a certified file changed after the PASS.",
             ["%s — %s" % (path, why) for path, why in diverged],
-            ["→ re-gate before handoff; the certified text is the read text.",
-             "  Nothing was done: no branch was created or checked out."],
+            ["Keep the change → re-gate: /ba-gate %s. Don't want it → revert "
+             "the file; the check passes again." % nnn],
             args, {"stage": "hash-guard", "feature": feature,
                    "certification": {"run": run, "date": date}})
 
@@ -398,24 +466,22 @@ def main(argv=None) -> int:
     # ── 3. the certified artifact set ───────────────────────────────────────
     present, missing = artifact_set(root, feature)
     if missing:
-        return refuse("the certified artifact set is incomplete",
+        return refuse(feature, "the certified artifact set is incomplete.",
                       ["%s — missing" % m for m in missing],
-                      ["→ re-gate: the gate commits traceability.md and appends "
-                       "the report at Stage 5.",
-                       "  Nothing was done: no branch was created or checked "
-                       "out."],
+                      ["Re-gate: /ba-gate %s — the gate commits "
+                       "traceability.md and appends the report at Stage 5."
+                       % nnn],
                       args, {"stage": "artifact-set", "feature": feature})
 
     # ── 4. Spec Kit plumbing ────────────────────────────────────────────────
     plumb_ok, plumb_missing = plumbing(root)
     if plumb_missing:
-        return refuse("Spec Kit's structure is incomplete — there is no "
-                      "pipeline to hand to",
+        return refuse(feature, "Spec Kit's structure is incomplete — there is "
+                      "no pipeline to hand to.",
                       ["%s — expected at %s" % (label, rel)
                        for label, rel in plumb_missing],
-                      ["→ re-run install.sh (pinned specify init + overlay).",
-                       "  Nothing was done: no branch was created or checked "
-                       "out."],
+                      ["Re-run install.sh (pinned specify init + overlay); "
+                       "the check passes again."],
                       args, {"stage": "plumbing", "feature": feature})
 
     # ── 5. the branch ───────────────────────────────────────────────────────
@@ -424,8 +490,8 @@ def main(argv=None) -> int:
     else:
         state, detail = branch_act(root, branch, args.dry_run)
         if state == "error":
-            return refuse("the branch act failed", [detail],
-                          ["→ resolve the git state and re-run; the guard "
+            return refuse(feature, "the branch act failed.", [detail],
+                          ["Resolve the git state and re-run; the hash guard "
                            "passed, so nothing else stands in the way."],
                           args, {"stage": "branch", "feature": feature})
 
@@ -434,12 +500,11 @@ def main(argv=None) -> int:
         diverged, _ = verify(manifest, root)
         if diverged:
             return refuse(
-                "the branch act moved %d certified path(s)" % len(diverged),
-                ["%s — %s" % (path, why) for path, why in diverged],
-                ["→ branch '%s' carries a different revision of the certified "
-                 "text." % branch,
-                 "  You are now on that branch; re-gate there, or return to the "
-                 "revision that was certified."],
+                feature, "a certified file changed after the PASS.",
+                ["%s — branch %s carries another revision" % (path, branch)
+                 for path, _why in diverged],
+                ["Keep the change → re-gate: /ba-gate %s. Don't want it → "
+                 "revert the file; the check passes again." % nnn],
                 args, {"stage": "post-branch", "feature": feature,
                        "branch": branch})
 
@@ -448,7 +513,12 @@ def main(argv=None) -> int:
         root, feature,
         write=not (args.no_branch or args.dry_run))
 
-    # ── 8. the ready report ─────────────────────────────────────────────────
+    # ── 8. the ready report — behind --report; the take-up run is silent ────
+    # Clean → exit 0 and print NOTHING (gate §11.2: "Clean → silent;
+    # implementation proceeds"). The report survives for the internal callers.
+    if args.format != "json" and not args.report:
+        return READY
+
     block = certified_run_entry(root, feature, run)
     waivers = block_field(block, "Waivers in force")
     markers = carried_markers(root, feature)

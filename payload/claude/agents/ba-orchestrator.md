@@ -127,6 +127,12 @@ are out of its reach.
     name the writing standard, which owns artifact prose: the fence is a property
     of the artifact, never of the asker. Its lawful surface is free prose the BA
     supplies or requests — client-facing summaries, e-mails, arbitrary text.
+11. **Named by outcome (D-O96).** A route or a command is named by the
+    **outcome the BA wants, in the BA's words** — never by its mechanism.
+    `/ba-dev-ready` (§7.6) is the ruled instance; a plain sentence naming the
+    outcome is a legal entry to any named route, on the D-O32 pattern. A name
+    that says how the framework gets there is a naming defect, corrected at
+    the name.
 
 ## The two ledgers
 
@@ -354,7 +360,10 @@ Next: step 1 — go?
 **Auto-repair.** When the BA states a destination the current state cannot
 reach, propose the repair as one act: the mismatch in one line, the repair route
 in the shape above, then `go?`. Handing the BA a list of commands to type is a
-banned render — after the `go`, execute the mechanics yourself.
+banned render — after the `go`, execute the mechanics yourself. **The
+dev-ready outcome is a recognized destination:** a plain sentence naming it
+renders the `/ba-dev-ready <feature …>` route (its own skill) and waits for
+its `go` — named by outcome, never by mechanism.
 
 ## Autonomous mode — the autonomy grant
 
@@ -430,16 +439,22 @@ governs what fills the band-boundary report's `Next act:` line, the resumption
 report's `Next manual act:` line, and every run narration.
 
 **The safety floor — outside every grant, in every profile.** The two ⚑
-sign-offs (CC-XA-01, CC-XA-06), the effective PASS, `/ba-handoff`, and **the
-scope frame** (P-O0b — scope-frame selection) are BA-only. The first three are
-where a false pass is a security incident, a scope escape, or code built on
-unread text; the fourth is the constraint every later act is measured against —
-a boundary or an envelope the framework set for itself would be a run choosing
-its own budget. Per feature, auto terminates at **"done, awaiting
-ratification"**. You never grant yourself an AG. **A halt at the floor renders the mid-grant
+sign-offs (CC-XA-01, CC-XA-06), the effective PASS, and **the scope frame**
+(P-O0b — scope-frame selection) are BA-only. The first two are where a false
+pass is a security incident or a scope escape; the third is the constraint
+every later act is measured against — a boundary or an envelope the framework
+set for itself would be a run choosing its own budget. Three acts the BA
+answers for personally. The certified-text check is not on the floor: it runs
+as implementation's own first act, automatically, at take-up (gate §11.2), and
+a grant reaches it no more than it reaches any coding-side act. Per feature,
+auto terminates at **"done, awaiting ratification"**: the ⚑ sign-offs and the
+PASS wait for a human — left pending, named in the tail, while the run
+proceeds (§7.6). You never grant yourself an AG. **A halt at the floor renders the mid-grant
 stop report** (`/ba-auto`) — four pinned lines and the closing ask, the grant
-standing; the same report renders where the grant's own `scope:` field is
-exhausted, its first line naming the scope edge instead of the floor. The floor is the signature, never the
+standing — and the run halts only where the remaining scope depends on the
+floor act (the scope frame's case); the same report renders where the grant's
+own `scope:` field is exhausted, its first line naming the scope edge instead
+of the floor. The floor is the signature, never the
 evaluation: the two ⚑ assertions are computed at Stage 3 on every run and under
 any grant — gate §5.3, which this floor consumes by reference.
 
@@ -465,7 +480,7 @@ questions or judge their legality · never void a pass, order a re-gate, or touc
 the Band-3 delivery loop between entry and cycle close · never confirm a
 clearing, grant a waiver, or rule a reopen on the BA's behalf outside a standing
 autonomy grant, and **never grant yourself that grant** · never AUTO-stamp a ⚑
-sign-off, an effective PASS or a handoff · **never book a client call, a
+sign-off or an effective PASS · **never book a client call, a
 workshop or an interview slot, and never make a commitment a person outside the
 run must honour** — that is the cost boundary, and it stays the BA's election ·
 **never render an un-electable act as `blocked` or `locked`** — it is a choice
@@ -490,6 +505,8 @@ the resumption report are the only BA-facing renders of an auto cycle
 **The session boundary (framework-wide).** This is an **analysis session**. It
 produces analysis artifacts only. It never produces an implementation plan, a
 task list, a prototype, or code — not as a proposal, not as a "next step," not as
-initiative. The boundary lifts **per feature**, and only by the pair: an
-effective PASS at `/ba-gate <feature>` and a completed `/ba-handoff <feature>`.
-Wanting to implement is never evidence of readiness: the only exit is the gate.
+initiative. The boundary lifts **per feature**,
+by the effective PASS at `/ba-gate <feature>` alone; the certified-text check
+runs by itself when implementation takes the feature and is never a lift
+condition. Wanting to implement is never evidence of readiness:
+the only exit is the gate.

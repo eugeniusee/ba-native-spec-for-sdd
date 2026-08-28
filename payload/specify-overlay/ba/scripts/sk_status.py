@@ -42,12 +42,12 @@ Four derivations this script fixes, each inside what §10.4 states:
     ingestion batch. An ingested brief is one that reached `Status: Scoped`
     (elicitation §4), so the expected count is the briefs at that status,
     plus the arming run once Band 1 is closed (§8.2 · contract §3).
-  · **Handed off.** §10.4's count definition reads "the handoff record
-    present". The package writes no per-feature handoff record — `/ba-handoff`
-    repoints `.specify/feature.json` and cuts the branch, neither of which is
-    a per-feature count. The count renders `—` with its missing source named,
-    per §10.4's own discipline: the instrument reports its blind spots.
-    Recorded as a build divergence, not resolved here.
+  · **Handed off.** §10.4's count definition names its missing source: the
+    implementation entry check (gate §11.2) re-points `.specify/feature.json`
+    and cuts the branch, neither of which is a per-feature count, and no
+    per-feature handoff record exists to count. The count renders `—` with
+    its missing source named, per §10.4's own discipline: the instrument
+    reports its blind spots. A countable record stays a future ruling.
 
 Python 3, standard library only (D-P2-7).
 """

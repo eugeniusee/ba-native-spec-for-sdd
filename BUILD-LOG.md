@@ -12049,3 +12049,180 @@ machine checker, CC-G-03 included, which reports `0 unresolved
 the mint is invisible to the whole M pass, which is why the weight falls on
 CC-G-02 at Stage 3 and why a per-card patch would have left the next card to be
 found in the field.
+
+## The Named Route, and the Check That Runs Itself — /ba-dev-ready ships, /ba-handoff leaves the vocabulary, the floor three acts, the boundary lifting by the PASS alone · orchestrator v0.39 · gate v0.13 · package 0.1.43 · 29 August 2026 · GREEN
+
+**Session prompt (Lane A, the BA Lead's 28 Aug items, ruled `apply all`):** the
+documents were amended in the Lane B sitting of 28 Aug 2026; this pass compiles
+them — retire `ba-handoff`, ship `ba-dev-ready` from §7.6, make the
+certified-text check run by itself at implementation take-up with one plain
+refusal, bring the safety floor to three acts and the boundary tail to *PASS
+alone* on every carrier, add register rule 11, re-pin the harness, verify on
+origin/main.
+
+**Ground truth.** Fresh clone at `6eca0ce` = `origin/main`, VERSION **0.1.42**.
+The working tree beside it holds the **uncommitted EC-20 framework-half
+sibling** (26 Aug, GREEN, reserved to EK's own commit) *plus* the BA Lead's
+four-document drop; only the four documents crossed into this pass — each
+STEP-1 marker asserted at 1 before the copy and after it, and the four diffs
+eyeballed clean of fence material. **Documents before code:** the drop
+committed on its own first (`methodology drop 2026-08-28`, this pass's first
+commit), and it opened the baseline **RED exactly as the standing pattern
+predicts** — check-auto down 3, all three the four-act floor pins against a
+three-act document; check-install's red was environmental (the vendored Spec
+Kit zip is populate-once-per-clone, copied in from the sibling tree per
+vendor/README.md).
+
+**Numbering — the D0 re-route, on the record.** The 0.1.42 entry reserved
+`D-O93 · §42` for the parked EC-20 peer rebase, and the uncommitted sibling
+pass in the working tree took those numbers on 26 Aug with orchestrator v0.39
+and package 0.1.43. The BA Lead's 28 Aug ruling re-routes: **this edition takes
+D-O93–D-O96 · §42 · v0.39 · 0.1.43**, and the parked EC-20 rebase takes the
+next free numbers when it lands — the v0.27 precedent. The sibling's tree is
+untouched; its rebase is EK's act.
+
+**The units.**
+**3.1 — retired.** `git rm -r payload/claude/skills/ba-handoff` (36 → 35
+`ba-*` skills, then 36 again with the new one). Every remaining hit handled
+under the law: the command string left every live surface; the noun stays where
+it names the moment (gate §11's title, `sk_handoff.py`'s name, "downstream of
+handoff", the dashboard's Presale note — byte-untouched).
+**3.2 — shipped.** `payload/claude/skills/ba-dev-ready/SKILL.md`, compiled
+from §7.6 and nothing else: the invocation contract with both entry forms, the
+`go` as three records in one act, the pinned §10.6 route-render instance
+verbatim, the six route steps each reached by its owning skill
+(`/ba-t11/12/13/15` in assumption posture · `/ba-tier2` · `/ba-gate` under the
+P2 row as written), the pinned mid-grant stop-report shape byte-identical to
+`/ba-auto`'s with the `Resume from:` instance and the rule-9 ask as its tail,
+the hold-condition-2 clarification, "After the tail — nothing to remember",
+the seven-item never-list, mode read, the pinned register self-check, and the
+D-O95 boundary block. `disable-model-invocation: true`, every BA-facing line
+plain-first.
+**3.3 — the automatic path.** `sk_handoff.py`: feature now resolves argument →
+`NNN-*` branch → `.specify/feature.json` pointer → pinned-shape refusal naming
+the missing feature (D-4); **clean → exit 0 and print nothing** in take-up
+text mode, the ready report behind `--report` and `--format json` (D-2);
+every refusal renders gate §11.2's pinned shape — first line
+`<NNN-feature> — not started: <reason>`, one indented line per file
+(`edited after certification | missing | branch <name> carries another
+revision`), the two-routes line; no-PASS refuses in the same shape with the
+pinned first line. `--verify-only`, `--no-branch`, `--dry-run` unchanged; the
+hash guard, branch, re-verify and pointer acts byte-identical in effect; the
+docstring states "run by implementation itself at take-up" and pins the render.
+**3.4 — the mirrors.** The `/ba-handoff` index row replaced by
+`/ba-dev-ready <feature …>` in the quickstart's wording and position (after
+`/ba-wbs`; claude-block carries the index); the floor paragraph three acts in
+the block register; the hold list without the command plus hold-condition-2's
+clarification; the §10.2 session-mode paragraph **derived from the document's
+own line** (the two-transform derivation check-register enforces); "Here that
+pair is …" → "Here that is `/ba-gate <feature>` reaching an effective PASS.";
+the reader line "not both passed the gate and been handed off" → "not reached
+its effective PASS" (D-O95, both mirrors); the coding-agent section keeps its
+title and takes the rewritten reader definition — the check as implementation's
+first act, silent exit, refusal reported never taken — with "verified at
+handoff" → "verified when you took it up" in both mirrors' first bullet; rule
+11 after rule 10 in both.
+**3.5 — the boundary tail.** Ground truth against the record's ~44 estimate:
+**40** payload units carried the skill/persona pair sentence (36 skills incl.
+the retired one + 4 personas), the **2 mirrors** carried the block form — 42
+carriers in all. The 39 surviving units recompiled to the D-O95 block
+(count == 1 asserted per file), `ba-dev-ready` born carrying it — **40 units
+now carry the command-form sentence**, and the two mirrors carry §10.2's own
+derived paragraph, which states the same law in the document's words ("by the
+**effective PASS at the gate alone** … never a lift condition") — the
+command-form fragment grep therefore counts 40, not the brief's 45, and the
+mirrors' form is enforced verbatim-from-source by check-register.
+**3.6 — rule 11.** `11. **Named by outcome (D-O96).**` verbatim after rule 10
+in the six register carriers — both mirrors, four personas — exactly once each.
+**3.7 — the floor, every surface.** ba-auto (description, the three-act floor
+section with the check-not-on-the-floor paragraph and the pending-tail
+termination, hold-condition 2 with the clarification, "floor's three acts",
+advisory section "keeps its three acts", never-list without the handoff;
+policy table and the three report shapes byte-untouched), ba-orchestrator
+(floor paragraph with halt-only-where-scope-depends, never-list), ba-gate
+persona (the floor sentence gains "three acts with the scope frame
+(orchestrator §10.7)"), ba-gate skill (§11.3's boundary sentence: the adapter
+run by implementation itself at take-up, no BA command). The four-act sweep
+now matches only ba-aspect's three P-O2 plan-composition lines — Q2's four
+acts, not the floor's.
+**3.8 — the count's source.** `sk_status.py`'s *Handed off* comment names the
+implementation entry check (gate §11.2) as the missing source; the rendered
+Presale note line byte-identical.
+
+**Harness — every changed pin named.** `check-auto.sh`: the FLOOR token list
+drops `/ba-handoff` and `handoff` with the header comment citing D-O94; the
+§4.4 pin → "…the ⚑ sign-offs, the effective PASS and the scope frame (P-O0b)
+stay BA-only — three acts (D-O94)"; the gate pin → §7.1's new sentence in
+full; the §10.7 floor pin → the three-act text, label "§10.7 names the three
+floor acts"; the "four acts, not three" comment inverted to "three acts, not
+four … stopped having at D-O94"; the control seeds 4 → 3 (the handoff seed
+gone, expected hits 3); the sweep docstring's example now "effective PASS";
+the carries-the-floor pair `ba-handoff` → `ba-dev-ready`; new: has_joined on
+`Route — dev-ready:` and `Resume from: /ba-auto off → ratify the batch`, and
+the six carriers each carry rule 11 exactly once. `check-exit.sh`: step 9
+relabelled "Implementation take-up — the check runs itself" — the take-up run
+asserted exit 0 with **empty output**, `--report` carrying the existing
+ready-report assertions and the idempotency check, plus the added refusal test
+(edit after cert → non-zero, stdout's first line byte-pinned, restore, silent
+again); step 7 pins the no-PASS first line; step 8's text asserts moved to the
+pinned render (first line · `edited after certification` · the two-routes
+line) with the no-side-effects facts still asserted behaviorally; the S9
+install check now looks for `ba-dev-ready`. `check-register.sh`: the boundary
+block heredoc recompiled (6 → 8 lines, the D-O95 sentence with the
+falsification fragment intact on one line, "the only exit is the gate." kept
+whole for the alteration control); the doc-grounding PHRASES rows re-pinned
+("The boundary lifts **per feature**, by the" · "is never a lift condition");
+the §5 comment now says one command lifts and the check never does.
+**check-orchestrator.sh** (drop-forced, outside the brief's named list —
+reported): the live-edition pin v0.38 → v0.39, the review-record ladder gains
+the §42 rung and the D-O93–D-O96 block pin, the contiguity window
+1…92 → 1…96. `tests/exit-test.md`: the four narrative sites now describe the
+automatic check in the same voice, the step-8 render block showing the pinned
+refusal, step 9 retitled "Implementation take-up". `tests/layout.expected`:
+S9 skill row → `ba-dev-ready` ("the dev-ready route (orchestrator §7.6) —
+added in package 0.1.43, after S9"), the RT feature-pointer annotation →
+"the take-up check", the writes-it comment → "at implementation take-up".
+`run-all.sh` untouched — no test file added (D-6), the suite stays 18 rows and
+README's list is unchanged.
+
+**Default-taken decisions, named (the delegation amendment).** **D-1** — the
+mirrors' coding-agent instruction is the carrier that ships;
+`payload/specify-overlay` owns no file that runs before `/speckit-plan` (SK
+rows are Spec Kit's own, never installer-laid), so the mechanical hook stands
+**routed, unbuilt**, exactly as gate §11.2 contemplates. **D-2** — clean is
+silent; the ready report lives behind `--report`. **D-3** — the route's AG
+write reuses `/ba-auto on`'s path with the profile stated; no second writer of
+`AG-<n>` exists. **D-4** — resolution argument → branch → pointer; the
+no-feature first line ships as "(no feature) — not started: no feature named —
+pass one (sk_handoff.py <NNN>), run from the NNN-* branch, or set
+.specify/feature.json." and its wording is **routed to the master
+conversation** for the corpus to absorb (gate §11.2 pins two variants today).
+**D-5** — the plain-sentence entry rides the D-O32 auto-repair carriers (the
+claude-block paragraph and the orchestrator persona's): the dev-ready outcome
+is a recognized destination rendering the route and waiting for `go`; the
+skill's frontmatter stays `disable-model-invocation: true`. **D-6** — existing
+test files extended; none added.
+
+**Falsification (run on the tree, re-run on the fresh clone after push).**
+Killed strings at 0 across payload · tests · install.sh · bootstrap.sh ·
+README.md; `completed `/ba-handoff`` at 0 repo-wide outside BUILD-LOG; the
+four-act phrasings at 0. Named-once: quickstart 1 (the index note) ·
+gate §11.2's retirement sentence. **Two counts corrected against ground truth,
+on the record:** the body awks — orchestrator 4, gate 2 (vs 0/1 expected) —
+every extra hit sits in a **version change record at the document head**
+(orchestrator v0.39 · v0.19 · v0.14 · v0.12; gate v0.13), append-only ruling
+history that necessarily names the retired command, **zero hits in operative
+law**; and the D-O95 command-form fragment counts **40 payload files** (39
+recompiled + the new skill), not 45 — the mirrors carry §10.2's derived form
+because check-register derives their paragraph from the document verbatim, and
+the record's own "~44" was an estimate. Required strings: `Route — dev-ready:`
+1 · the pinned refusal line in `sk_handoff.py` 1 · rule 11 six × 1 ·
+`ba-dev-ready` in layout.expected 1 · three-acts ≥ 1 with four-acts 0 on all
+four floor surfaces · the skill directory gone.
+
+**The suite: 18/18 GREEN.** check-auto 278 → 286 · check-exit 99 → 105 ·
+check-register 63 → 64 · check-orchestrator 586 with the §42 rung and the
+widened D-O window · everything else unmoved — check-m 71 · check-gate 133 ·
+check-techniques 104/127/166 · check-spine 286 · check-wbs 99 · check-audit
+178 · check-status 115 · check-layout 121 · check-install 64 · check-budget
+83 · cards byte-identical to their re-derivations.

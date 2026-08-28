@@ -28,7 +28,9 @@ tests/check-exit.sh --offline    # install from vendor/spec-kit-v0.12.5.zip
 the ten steps below by invoking the real skills. This is the version that
 exercises the framework as a BA meets it: `/ba-frame`, `/ba-aspect`,
 `/ba-t<NN>` · `/ba-tier1` · `/ba-tier2` (one step each; `/ba-run` aliases them),
-`/ba-clear`, `/ba-close-band1`, `/ba-enter-feature`, `/ba-gate`, `/ba-handoff`.
+`/ba-clear`, `/ba-close-band1`, `/ba-enter-feature`, `/ba-gate`. The
+certified-text check is on no such list: it runs by itself at implementation
+take-up (gate §11.2).
 
 **What the difference is, exactly.** Some acts in this framework are agent acts
 — composing an aspect plan, running a technique, drafting a spec, evaluating the
@@ -177,8 +179,8 @@ or move the concern to an NFR with metric + condition.
 This is the *"gate blocks with named gaps"* v1-done item, proven rather than
 claimed. Every failure line names its element **and** its fix action; a line
 without both is invalid gate output. No certification block is written, and
-`/ba-handoff 004` at this moment **refuses for lack of a certification** — a
-feature that never passed has nothing to hand off.
+the take-up check (`sk_handoff.py 004`) at this moment **refuses for lack of
+a certification** — a feature that never passed has nothing to hand off.
 
 Then fix per the fixture — the adverb out, the timing concern into **NFR-003**
 with metric and condition — and re-gate:
@@ -203,16 +205,16 @@ well as what it read.
 printf ' ' >> specs/004-appointment-booking/spec.md     # one byte
 ```
 ```
-/ba-handoff 004
+python3 .specify/ba/scripts/sk_handoff.py 004 --root .
 ```
 
-**Green when the adapter REFUSES**, printing the diverged path:
+**Green when the check REFUSES** — the pinned render, plain language, one line
+per diverged file (gate §11.2):
 
 ```
-REFUSED — 1 certified path(s) diverged from the live files
-  specs/004-appointment-booking/spec.md — content changed
-→ re-gate before handoff; the certified text is the read text.
-  Nothing was done: no branch was created or checked out.
+004-appointment-booking — not started: a certified file changed after the PASS.
+  specs/004-appointment-booking/spec.md — edited after certification
+Keep the change → re-gate: /ba-gate 004. Don't want it → revert the file; the check passes again.
 ```
 
 and when **nothing else happened**: no branch created or switched, no feature
@@ -226,15 +228,18 @@ spec.
 
 ---
 
-## Step 9 — Handoff
+## Step 9 — Implementation take-up
 
 ```
-/ba-handoff 004
+python3 .specify/ba/scripts/sk_handoff.py 004 --root .
 ```
 
-**Green when:** every certified hash matches · branch `004-appointment-booking`
-is checked out — the name `/ba-enter-feature` assigned · Spec Kit's structure is
-confirmed and its feature pointer written · the ready report names the
+— run by implementation itself at take-up, the coding side's first act on the
+feature; nobody types it as a command (gate §11.2). **Green when:** the clean
+run is **silent** — exit 0, nothing printed — and every certified hash
+matches · branch `004-appointment-booking` is checked out — the name
+`/ba-enter-feature` assigned · Spec Kit's structure is confirmed and its
+feature pointer written · `--report` prints the ready report, naming the
 certification, the waiver in force, and **every carried
 `[NEEDS CLARIFICATION]`** with its section. Running it a second time is
 idempotent.

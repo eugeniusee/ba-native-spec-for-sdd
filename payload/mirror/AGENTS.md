@@ -15,8 +15,7 @@ writing rules below the two apply in both.
 ## Analysis session — the default mode
 
 **Reader: you, in this conversation.** Every conversation in this project starts
-here and stays here, for every feature that has not both passed the gate and been
-handed off.
+here and stays here, for every feature that has not reached its effective PASS.
 
 **Mode read (framework-wide):** before the first act of any session, read the
 aspect-state head — the Profile and Auto lines govern.
@@ -30,21 +29,23 @@ the resumption report are the only BA-facing renders of an auto cycle
 (`/ba-auto`).
 
 **Session mode — the analysis boundary (framework-wide).** Every conversation
-this framework conducts is an **analysis session**. An analysis session produces
-analysis artifacts only. It never produces an implementation plan, a task list, a
-prototype, or code — not as a proposal, not as a "next step," not as initiative.
-The boundary lifts **per feature**, and only by the pair: effective PASS at the
-gate **and** completed handoff (gate §11). Downstream of that pair, implementation
-belongs to the coding agent and the operator; the analysis session continues
-unchanged for every other feature. Standing project instructions (the compiled
-CLAUDE.md block, AGENTS.md) carry two addressed modes — analysis-session rules
-and coding-agent rules — and every instruction names its reader; an instruction
-addressed to the coding agent is inert in an analysis session. Wanting to
-implement is never evidence of readiness: the only exit is the gate.
+this framework conducts is an **analysis session**. An analysis session
+produces analysis artifacts only. It never produces an implementation plan, a
+task list, a prototype, or code — not as a proposal, not as a "next step," not
+as initiative. The boundary lifts **per feature**, by the **effective PASS at
+the gate alone** (gate §11; D-O95 — the pair's second member, the handoff as a
+BA act, is gone: the certified-text check runs as implementation's own first
+act, gate §11.2, and is never a lift condition). Downstream of the PASS,
+implementation belongs to the coding agent and the operator; the analysis
+session continues unchanged for every other feature. Standing project
+instructions (the compiled CLAUDE.md block, AGENTS.md) carry two addressed
+modes — analysis-session rules and coding-agent rules — and every instruction
+names its reader; an instruction addressed to the coding agent is inert in an
+analysis session. Wanting to implement is never evidence of readiness: the only
+exit is the gate.
 
-Here that pair is `/ba-gate <feature>` reaching an effective PASS, then
-`/ba-handoff <feature>` completing. Until both land for a feature, you are in
-analysis mode for it.
+Here that is `/ba-gate <feature>` reaching an effective PASS. Until it lands
+for a feature, you are in analysis mode for it.
 
 - **You never author.** You schedule, route, and record. Content is authored by
   techniques and the BA; checks are run by the gate. If a step seems to need you
@@ -62,15 +63,19 @@ analysis mode for it.
 
 ## Coding agent — downstream of handoff
 
-**Reader: the coding agent working a feature that has passed the gate and
-completed `/ba-handoff <feature>`.** If that pair has not landed for the feature
-in front of you, these rules are inert. You are in an analysis session, and the
-section above governs.
+**Reader: the coding agent taking a feature into implementation.** Your
+first act on the feature is not yours: before `/speckit-plan` or any
+implementation act, the certified-text check runs —
+`python3 .specify/ba/scripts/sk_handoff.py <feature> --root .` — and you
+proceed only on a silent exit. A refusal means the feature is not yours to
+build yet: its message names the file and the two routes, and you take
+neither — you report it. A feature with no effective PASS refuses the same
+way.
 
 - **The certified text is the read text.** A spec that reached `/speckit-plan`
-  was certified by the gate and its hashes were verified at handoff. **Do not
-  edit a certified spec to make implementation easier** — spec errors are fixed
-  in the spec and re-run downstream, never hand-patched in code.
+  was certified by the gate and its hashes were verified when you took it up.
+  **Do not edit a certified spec to make implementation easier** — spec errors
+  are fixed in the spec and re-run downstream, never hand-patched in code.
 - **A `[NEEDS CLARIFICATION]` marker you find in a certified spec is deliberate**
   — a consciously accepted, waivered unknown. Implement around it and surface
   it; do not resolve it by guessing.
@@ -313,6 +318,12 @@ are out of its reach.
     name the writing standard, which owns artifact prose: the fence is a property
     of the artifact, never of the asker. Its lawful surface is free prose the BA
     supplies or requests — client-facing summaries, e-mails, arbitrary text.
+11. **Named by outcome (D-O96).** A route or a command is named by the
+    **outcome the BA wants, in the BA's words** — never by its mechanism.
+    `/ba-dev-ready` (§7.6) is the ruled instance; a plain sentence naming the
+    outcome is a legal entry to any named route, on the D-O32 pattern. A name
+    that says how the framework gets there is a naming defect, corrected at
+    the name.
 
 ## Autonomous mode — the autonomy grant
 
@@ -374,11 +385,16 @@ line, the resumption report's `Next manual act:` line, and every run narration.
 **The stamp:** `<date> · AUTO (AG-<n>) · <act> · <basis>`.
 
 **The safety floor — outside every grant, in every profile:** the two ⚑
-sign-offs (CC-XA-01, CC-XA-06), the effective PASS, `/ba-handoff`, and **the
-scope frame** (P-O0b — scope-frame selection). The first three are where a false
-pass is a security incident, a scope escape, or code built on unread text; the
-fourth is the constraint every later act is measured against. Per feature, auto
-ends at **"done, awaiting ratification"**. Never grant yourself a grant. The
+sign-offs (CC-XA-01, CC-XA-06), the effective PASS, and **the scope frame**
+(P-O0b — scope-frame selection). The first two are where a false pass is a
+security incident or a scope escape; the third is the constraint every later
+act is measured against. Three acts the BA answers for personally. The
+certified-text check is not on the floor: it runs by itself as
+implementation's own first act at take-up (gate §11.2), and a grant reaches
+it no more than it reaches any coding-side act. Per feature, auto ends at
+**"done, awaiting ratification"**: the ⚑ sign-offs and the PASS wait for a
+human — left pending, named in the stop report's tail, while the run proceeds
+(§7.6). Never grant yourself a grant. The
 floor is the signature, never the evaluation: the two ⚑ assertions are computed
 at Stage 3 on every run and under any grant — gate §5.3, which this floor
 consumes by reference.
@@ -389,9 +405,11 @@ inside a band**. Every record — AUTO stamps, auto-AWs, deferrals, open questio
 — goes to the **ledger and the auto-trail only**. The run proceeds continuously
 until exactly one of four events: **a band boundary** (P-O7 — Band-1 closure ·
 P-O8 — Band-3 entry) · **a safety-floor stop** (the ⚑ sign-offs · the effective
-PASS · `/ba-handoff` · P-O0b — scope-frame selection) · **exhaustion of the
-grant's scope** · **`off`**. The middle two render the **mid-grant stop report**
-below. A conversational render **ends the turn**, so under
+PASS · P-O0b — scope-frame selection) · **exhaustion of the grant's scope** ·
+**`off`**. The middle two render the **mid-grant stop report** below. A floor
+stop halts the run only where the remaining scope depends on the floor act —
+the scope frame's case; a feature's ⚑ sign-offs and its PASS are left pending,
+named in the tail, and the run proceeds (§7.6). A conversational render **ends the turn**, so under
 a grant a mid-band render is a de-facto stop — the exact thing the grant was
 written to remove.
 

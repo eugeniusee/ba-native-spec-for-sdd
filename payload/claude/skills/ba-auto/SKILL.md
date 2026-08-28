@@ -1,6 +1,6 @@
 ---
 name: ba-auto
-description: Autonomous mode - /ba-auto on writes the autonomy grant AG-<n>, flips the ledger head's Auto line and runs the surviving checkpoints under the policy table, each act stamped AUTO; /ba-auto off closes the grant and renders the pinned resumption report for one batch ratification. The grant reaches every act that spends no client access and makes no external commitment - self-elections included, each stamped and ratified in the batch; a client call is never booked, and an un-electable act renders as a choice, never as blocked. The safety floor sits outside every grant - the two flagged sign-offs, the effective PASS, the handoff and the scope frame at P-O0b - scope-frame selection stay BA-only. A halt mid-grant - the safety floor, or the grant's own scope exhausted - renders the pinned mid-grant stop report and hands control back with the grant still standing. Never grants itself a grant.
+description: Autonomous mode - /ba-auto on writes the autonomy grant AG-<n>, flips the ledger head's Auto line and runs the surviving checkpoints under the policy table, each act stamped AUTO; /ba-auto off closes the grant and renders the pinned resumption report for one batch ratification. The grant reaches every act that spends no client access and makes no external commitment - self-elections included, each stamped and ratified in the batch; a client call is never booked, and an un-electable act renders as a choice, never as blocked. The safety floor sits outside every grant - the two flagged sign-offs, the effective PASS and the scope frame at P-O0b - scope-frame selection stay BA-only; the certified-text check is implementation's own first act at take-up, on no floor and under no grant. A halt mid-grant - the safety floor, or the grant's own scope exhausted - renders the pinned mid-grant stop report and hands control back with the grant still standing. Never grants itself a grant.
 disable-model-invocation: true
 ---
 
@@ -113,20 +113,25 @@ report's `Next manual act:` line, and every run narration.
 
 ## The safety floor — outside every grant
 
-Four acts a grant never reaches, in every profile:
+Three acts a grant never reaches, in every profile:
 
 - **The two flagged sign-offs** — CC-XA-01 (authorization) and CC-XA-06 (the
   scope boundary), at the gate's ⚑ review.
 - **The effective PASS** — the gate's ⚑ sign-off and approval steps.
-- **`/ba-handoff <feature>`.**
 - **The scope frame** — P-O0b (scope-frame selection), at `/ba-frame`.
 
-The first three are the acts where a false pass is a security incident, a scope
-escape, or code built on unread text. The fourth is the constraint every later
-act is measured against: a boundary or an envelope the framework set for itself
-would be a run choosing its own budget. Per feature, auto therefore ends at
-**"done, awaiting ratification"**: the draft is complete, the gate has run, the
-last two acts wait for a human.
+The first two are the acts where a false pass is a security incident or a
+scope escape. The third is the constraint every later act is measured against:
+a boundary or an envelope the framework set for itself would be a run choosing
+its own budget. Three acts the BA answers for personally. **The certified-text
+check is not on the floor:** a script containing no judgment cannot be listed
+as an act the BA answers for personally — it runs as implementation's own
+first act, automatically, at take-up (gate §11.2), and a grant reaches it no
+more than it reaches any coding-side act, because it is not this mode's act at
+all. Per feature, auto therefore ends at **"done, awaiting ratification"**:
+the draft is complete, the gate has run, and the ⚑ sign-offs and the PASS wait
+for a human — left pending, named in the stop report's tail, while the run
+proceeds to the next feature in its scope (§7.6).
 
 ## Continuity under the grant
 
@@ -138,9 +143,12 @@ events:
 
 1. **A band boundary** — P-O7 — Band-1 closure, or P-O8 — Band-3 entry. Stamp,
    render the band-boundary report below, end the turn.
-2. **A safety-floor stop** — the two ⚑ sign-offs, the effective PASS,
-   `/ba-handoff <feature>`, or P-O0b — scope-frame selection. Render the
-   **mid-grant stop report** below, end the turn.
+2. **A safety-floor stop** — the two ⚑ sign-offs, the effective PASS, or
+   P-O0b — scope-frame selection. The run halts where the remaining scope
+   depends on the floor act — the scope frame's case; a feature's ⚑ sign-offs
+   and its PASS are left pending, named in the tail, and the run proceeds
+   (§7.6). Where it halts, render the **mid-grant stop report** below, end
+   the turn.
 3. **Exhaustion of the grant's scope** — the `scope:` field of `AG-<n>`. The
    same report, its first line naming the scope edge instead of the floor.
 4. **`off`** — `/ba-auto off`, or the BA interrupting.
@@ -239,7 +247,7 @@ what it grants those two is **shape, not silence**: each carries its own
 is **composed at the stop** under the register's rules.
 
 **What each event does to the grant — say which, never leave it inferred.** At
-a **safety-floor stop** the grant **stands**: the floor's four acts sit outside
+a **safety-floor stop** the grant **stands**: the floor's three acts sit outside
 every grant on their own account, the BA performs the act, and the run
 continues under the same `AG-<n>`. At **scope exhaustion** the grant **reaches
 no further**: `AG-<n>` stands as a record awaiting ratification, and you may
@@ -378,14 +386,14 @@ mode rules the list where the finding is born.
 **Autonomy — the list is a BA act, and an AG never answers it.** **Assembling**
 the list may be AUTO like any other assembly; **ruling** it is not — the P-A1
 floor. **No policy row is added and none moves**, the safety floor keeps its
-four acts, and a run under a grant renders the tail and **ends its turn**
+three acts, and a run under a grant renders the tail and **ends its turn**
 exactly as the two reports already do. **Internal surfaces only:** the decision
 list never reaches the client-facing WBS export or any other client artifact.
 
 ## What this skill never does
 
-Never AUTO-stamps a ⚑ sign-off, an effective PASS, a handoff, or a scope
-frame · **never grants itself an AG** — the grant is the BA's act, and a framework that could write its
+Never AUTO-stamps a ⚑ sign-off, an effective PASS, or a scope frame ·
+**never grants itself an AG** — the grant is the BA's act, and a framework that could write its
 own would have no boundary at all · **never answers the scope-advisory decision
 list** — assembling it is AUTO, ruling it is the BA's act in every mode · never
 invents where unclear — that is an
@@ -418,6 +426,8 @@ the resumption report are the only BA-facing renders of an auto cycle
 **The session boundary (framework-wide).** This is an **analysis session**. It
 produces analysis artifacts only. It never produces an implementation plan, a
 task list, a prototype, or code — not as a proposal, not as a "next step," not as
-initiative. The boundary lifts **per feature**, and only by the pair: an
-effective PASS at `/ba-gate <feature>` and a completed `/ba-handoff <feature>`.
-Wanting to implement is never evidence of readiness: the only exit is the gate.
+initiative. The boundary lifts **per feature**,
+by the effective PASS at `/ba-gate <feature>` alone; the certified-text check
+runs by itself when implementation takes the feature and is never a lift
+condition. Wanting to implement is never evidence of readiness:
+the only exit is the gate.

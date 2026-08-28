@@ -15,7 +15,7 @@
 #    6  Band 3                   feature folder · Tier-2 spec, defect seeded
 #    7  gate                     FAIL with named gaps → fix → PASS WITH WAIVERS
 #    8  negative check           one byte edited → the adapter REFUSES
-#    9  handoff                  hash guard clean → branch → ready
+#    9  take-up                  the check runs itself: silent → branch → pointer
 #   10  /speckit-plan            setup resolves · hashes hold · one marker
 #
 # The split, as in every session before this one: mechanical acts run **live**
@@ -117,8 +117,8 @@ fi
 SK="$TARGET/.specify/ba/scripts"
 [ -f "$SK/sk_handoff.py" ] && ok "the adapter is installed (S9 unit)" \
                           || bad "sk_handoff.py did not install"
-[ -f "$TARGET/.claude/skills/ba-handoff/SKILL.md" ] \
-  && ok "/ba-handoff is registered (S9 unit)" || bad "ba-handoff skill did not install"
+[ -f "$TARGET/.claude/skills/ba-dev-ready/SKILL.md" ] \
+  && ok "/ba-dev-ready is registered (S9 unit)" || bad "ba-dev-ready skill did not install"
 
 # ── 3. frame ─────────────────────────────────────────────────────────────────
 #
@@ -290,6 +290,8 @@ has  "$GR" "Certification:        — (not an effective PASS)" \
 run "the adapter refuses a feature that has never passed" 1 \
     python3 "$SK/sk_handoff.py" 004 --root "$TARGET"
 has "$TMP/out.txt" "no certification" "the refusal names the missing certification, not a hash"
+has "$TMP/out.txt" "not started: no PASS on record — run /ba-gate 004." \
+    "…in the pinned no-PASS shape (gate §11.2)"
 
 # — the fixes (gate §14.1), then the incremental re-gate
 cp "$FX/revisions/spec-r6.md"                          "$TARGET/specs/$F/spec.md"
@@ -345,12 +347,12 @@ BEFORE_BRANCH=$(git -C "$TARGET" rev-parse --abbrev-ref HEAD)
 printf ' ' >> "$TARGET/specs/$F/spec.md"
 run "the adapter REFUSES after a post-certification edit" 1 \
     python3 "$SK/sk_handoff.py" 004 --root "$TARGET"
-has "$TMP/out.txt" "specs/$F/spec.md — content changed" \
+has "$TMP/out.txt" "$F — not started: a certified file changed after the PASS." \
+    "the refusal opens with the pinned first line (gate §11.2)"
+has "$TMP/out.txt" "specs/$F/spec.md — edited after certification" \
     "the refusal prints the diverged path (gate §11.1)"
-has "$TMP/out.txt" "the certified text is the read text" \
-    "the refusal states the rule it is enforcing"
-has "$TMP/out.txt" "Nothing was done: no branch was created or checked out" \
-    "a refused handoff is not half-done — the guard precedes every side effect"
+has "$TMP/out.txt" "Keep the change → re-gate: /ba-gate 004." \
+    "…and names the two routes: keep → re-gate, unwanted → revert"
 AFTER_BRANCH=$(git -C "$TARGET" rev-parse --abbrev-ref HEAD)
 [ "$BEFORE_BRANCH" = "$AFTER_BRANCH" ] \
   && ok "the branch is untouched by the refusal (still $AFTER_BRANCH)" \
@@ -377,9 +379,16 @@ cp "$TMP/glossary.bak" "$MEM/glossary.md"
 
 # ── 9. handoff ───────────────────────────────────────────────────────────────
 
-step "9 · Handoff — hash guard → branch → plumbing → ready"
+step "9 · Implementation take-up — the check runs itself"
 
-run "/ba-handoff 004 reports ready" 0 python3 "$SK/sk_handoff.py" 004 --root "$TARGET"
+# the coding side's first act on the feature: silent when clean (gate §11.2)
+run "the take-up check passes" 0 python3 "$SK/sk_handoff.py" 004 --root "$TARGET"
+[ -s "$TMP/out.txt" ] \
+  && bad "the clean take-up run printed output — gate §11.2 pins clean → silent" \
+  || ok "clean → silent: exit 0 and empty output"
+
+run "--report prints the ready report the silent run withholds" 0 \
+    python3 "$SK/sk_handoff.py" 004 --root "$TARGET" --report
 cp "$TMP/out.txt" "$TMP/ready.txt"
 has "$TMP/ready.txt" "Ready — $F"                  "the ready report names the feature"
 has "$TMP/ready.txt" "run 3 · effective PASS"      "it names the certification it verified"
@@ -399,9 +408,25 @@ BR=$(git -C "$TARGET" rev-parse --abbrev-ref HEAD)
   || bad ".specify/feature.json was not written"
 has "$TARGET/.specify/feature.json" "specs/$F" "the pointer resolves to this feature"
 
-# idempotent: a second handoff is a no-op that still verifies
-run "a second /ba-handoff is idempotent" 0 python3 "$SK/sk_handoff.py" 004 --root "$TARGET"
+# idempotent: a repeated take-up is a no-op that still verifies
+run "a repeated take-up is idempotent" 0 \
+    python3 "$SK/sk_handoff.py" 004 --root "$TARGET" --report
 has "$TMP/out.txt" "already checked out" "the branch act recognizes it is already there"
+
+# the refusal at the pin: a certified file edited after the PASS → the check,
+# run exactly as take-up runs it, refuses — first line byte-pinned (gate §11.2)
+printf ' ' >> "$TARGET/specs/$F/spec.md"
+run "the take-up check refuses after a post-certification edit" 1 \
+    python3 "$SK/sk_handoff.py" 004 --root "$TARGET"
+head -1 "$TMP/out.txt" > "$TMP/first-line.txt"
+hasx "$TMP/first-line.txt" "$F — not started: a certified file changed after the PASS." \
+     "stdout's first line is the pinned refusal head"
+python3 - "$TARGET/specs/$F/spec.md" <<'PY'
+import pathlib, sys
+p = pathlib.Path(sys.argv[1]); p.write_text(p.read_text(encoding="utf-8")[:-1], encoding="utf-8")
+PY
+run "restored — the take-up check is silent again" 0 \
+    python3 "$SK/sk_handoff.py" 004 --root "$TARGET"
 
 # ── 10. /speckit-plan consumes it, zero manual rework ────────────────────────
 

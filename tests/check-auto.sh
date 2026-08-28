@@ -50,13 +50,15 @@ TPL="$PKG_ROOT/payload/specify-overlay/ba/templates/aspect-state.md"
 CB1="$PKG_ROOT/payload/claude/skills/ba-close-band1/SKILL.md"
 ENTF="$PKG_ROOT/payload/claude/skills/ba-enter-feature/SKILL.md"
 
-# ── the safety floor — the four acts no grant reaches ────────────────────────
+# ── the safety floor — the three acts no grant reaches ───────────────────────
 #
-# Seeded from D-O37, which names the first three exactly — the two ⚑ sign-offs,
-# the effective PASS, and the handoff — and extended by D-O42, which adds the
-# scope frame (P-O0b) as the floor's fourth act. A sentence that carries one of
-# these AND an AUTO token is a candidate; it is a defect unless it also carries
-# a negation.
+# Seeded from D-O37 (the ⚑ sign-offs, the effective PASS) and D-O42 (the scope
+# frame, P-O0b). The handoff tokens left the list at D-O94: the certified-text
+# check is a coding-side act run by implementation itself at take-up, not a
+# floor act this document answers for — a token for an act the floor no longer
+# lists would sweep for a law the corpus stopped having. A sentence that
+# carries one of these AND an AUTO token is a candidate; it is a defect unless
+# it also carries a negation.
 #
 # The scope-frame tokens went in with the rebuild, not with the documents pass:
 # a token that can match nothing proves nothing, and until the payload carried
@@ -64,8 +66,6 @@ ENTF="$PKG_ROOT/payload/claude/skills/ba-enter-feature/SKILL.md"
 FLOOR='⚑
 sign-off
 effective PASS
-/ba-handoff
-handoff
 scope frame
 P-O0b'
 
@@ -153,7 +153,7 @@ has_joined "$DOC" "**AG-\<n\> · scope: \<full workflow | until \<event\>\> · g
     "§4.4 states the AG record, field for field"
 has_joined "$DOC" "an AG waives nothing and rules nothing — it moves the *moment* of consent, never the *content* of a ruling" \
     "…and the distinctness clause that keeps it out of §4.3's table"
-has_joined "$DOC" "An AG never grants what the safety floor reserves (§10.7): ⚑ sign-offs, effective PASS, handoff, and the scope frame (P-O0b) stay BA-only." \
+has_joined "$DOC" "An AG never grants what the safety floor reserves (§10.7): the ⚑ sign-offs, the effective PASS and the scope frame (P-O0b) stay BA-only — three acts (D-O94)." \
     "…and names the floor inside the instrument itself"
 
 # the head line, in the §2.4 exhibit and in the shipped template — one grammar
@@ -246,12 +246,12 @@ has_joined "$GATE" "P2 waivers on real gaps may be taken AUTO — stamped \`AUTO
 has_joined "$GATE" "Overrides are never AUTO." "…and closes the override lane"
 has_joined "$GATE" "The non-waivable set is untouchable under any mode: the auto path fixes and re-gates." \
     "…and keeps the non-waivable set untouchable"
-has_joined "$GATE" "P3 ⚑, P4 approval, and handoff (§11) sit outside every AG — the safety floor." \
+has_joined "$GATE" "P3 ⚑ and P4 approval sit outside every AG — the safety floor, three acts with the scope frame (orchestrator §10.7, D-O94); the adapter's check (§11.2) is implementation's own act, on no floor and under no grant." \
     "…and states the floor in the gate's own words"
 
 # ── 3. the safety floor — the sweep ──────────────────────────────────────────
 
-printf '\n▸ The safety floor — no compiled sentence AUTO-stamps a ⚑ sign-off, an effective PASS, a handoff or the scope frame (D-O37 · D-O42)\n'
+printf '\n▸ The safety floor — no compiled sentence AUTO-stamps a ⚑ sign-off, an effective PASS or the scope frame (D-O37 · D-O42 · D-O94)\n'
 printf '%s\n' "$FLOOR" | sed 's/^/    floor: /'
 printf '    negations: %s\n' "$NEGATION"
 
@@ -263,7 +263,7 @@ cat > "$SWEEP" <<'PY'
 The render surface is joined into the paragraphs the BA actually sees, then cut
 into sentences. A sentence carrying both an AUTO token and a floor act is a
 candidate. It is a defect unless it also carries a negation — because the only
-legitimate reason to say "AUTO" and "handoff" in one breath is to say that the
+legitimate reason to say "AUTO" and "effective PASS" in one breath is to say that the
 one never touches the other.
 
 Prints one line per offender, then `files=<n> hits=<m>`: the scanner's contract.
@@ -321,8 +321,8 @@ else
   grep -v '^files=' "$TMP/floor.out" | sed 's/^/      /' | head -12
 fi
 
-# the control: four seeds, one per floor act — the sweep is worth nothing
-# until each of the four is shown to trip it
+# the control: three seeds, one per floor act — the sweep is worth nothing
+# until each of the three is shown to trip it
 CTL="$TMP/ctl"
 mkdir -p "$CTL"
 ( cd "$PKG_ROOT" && tar cf - payload ) | ( cd "$CTL" && tar xf - )
@@ -336,15 +336,14 @@ SEED="$CTL/payload/claude/skills/ba-auto/SKILL.md"
 {
   printf '\nUnder a standing grant the ⚑ sign-offs are taken AUTO (AG-1).\n'
   printf '\nThe effective PASS is stamped AUTO (AG-1) once the run is clean.\n'
-  printf '\nA handoff may be AUTO-stamped when the grant covers the feature.\n'
   printf '\nThe scope frame is set AUTO (AG-1) from the pre-filled block.\n'
 } >> "$SEED"
 
 sweep "$CTL" > "$TMP/ctl-dirty.out" 2>&1
 C_HITS="$(sed -n 's/^files=[0-9]* hits=\([0-9]*\)$/\1/p' "$TMP/ctl-dirty.out")"
-[ "${C_HITS:-0}" = "4" ] \
-  && ok "the control fires on all four floor acts — ⚑ sign-off, effective PASS, handoff, scope frame" \
-  || bad "the four seeded floor breaches produced ${C_HITS:-?} hits, expected 4"
+[ "${C_HITS:-0}" = "3" ] \
+  && ok "the control fires on all three floor acts — ⚑ sign-off, effective PASS, scope frame" \
+  || bad "the three seeded floor breaches produced ${C_HITS:-?} hits, expected 3"
 
 # and the negation must still work: the same three sentences, negated, are legal
 cp "$PKG_ROOT/payload/claude/skills/ba-auto/SKILL.md" "$SEED"
@@ -358,14 +357,14 @@ sweep "$CTL" > "$TMP/ctl-neg.out" 2>&1
   || bad "a negated floor sentence was flagged: the sweep cannot read a prohibition"
 
 # the floor said in full, in the document and on the surfaces that execute it
-has_joined "$DOC" "the **⚑ sign-offs** (CC-XA-01 authorization, CC-XA-06 the scope boundary — gate P3), the **effective PASS** (gate P3 + P4), **\`/ba-handoff\`**, and **the scope frame** (P-O0b, §8.1)" \
-    "§10.7 names the four floor acts"
+has_joined "$DOC" "the **⚑ sign-offs** (CC-XA-01 authorization, CC-XA-06 the scope boundary — gate P3), the **effective PASS** (gate P3 + P4), and **the scope frame** (P-O0b, §8.1)" \
+    "§10.7 names the three floor acts"
 has_joined "$DOC" "auto therefore terminates at **\"done, awaiting ratification\"**" \
     "…and where auto terminates per feature"
 
-# and the compiled surfaces that state the floor in full state four acts, not
-# three: a payload that named three would be describing a floor the document
-# stopped having at D-O42.
+# and the compiled surfaces that state the floor in full state three acts, not
+# four: a payload that named four would be describing a floor the document
+# stopped having at D-O94.
 for pair in "$AUTO|the skill" "$ORC|the orchestrator persona" \
             "$BLOCK|the CLAUDE.md block" "$AGENTS|AGENTS.md"; do
   f="${pair%%|*}"; label="${pair##*|}"
@@ -378,7 +377,7 @@ PY
 done
 has_joined "$AUTO" "**P-O0b — scope-frame selection** | **Never AUTO — the safety floor.**" \
     "…and the skill's policy table carries the never-AUTO row"
-for pair in "$AUTO|the skill" "$PKG_ROOT/payload/claude/skills/ba-handoff/SKILL.md|ba-handoff" \
+for pair in "$AUTO|the skill" "$PKG_ROOT/payload/claude/skills/ba-dev-ready/SKILL.md|ba-dev-ready" \
             "$PKG_ROOT/payload/claude/skills/ba-gate/SKILL.md|the gate skill" \
             "$PKG_ROOT/payload/claude/agents/ba-gate.md|the gate persona"; do
   f="${pair%%|*}"; label="${pair##*|}"
@@ -391,6 +390,27 @@ PY
 done
 
 has_joined "$AUTO" "**never grants itself an AG**" "the skill refuses to grant itself a grant"
+
+# the dev-ready route (D-O93) — the skill renders §7.6's pinned instance and
+# names the human tail; it carries the floor by naming what it never takes
+DEVR="$PKG_ROOT/payload/claude/skills/ba-dev-ready/SKILL.md"
+has_joined "$DEVR" "Route — dev-ready:" \
+    "ba-dev-ready renders the §7.6 route instance"
+has_joined "$DEVR" "Resume from: /ba-auto off → ratify the batch" \
+    "…and its stop report names the human tail in plain words"
+
+# rule 11 — named by outcome (D-O96): the six register carriers, once each
+printf '\n▸ Register rule 11 — named by outcome (D-O96), in the six carriers\n'
+for f in "$BLOCK" "$AGENTS" \
+         "$PKG_ROOT/payload/claude/agents/ba-analyst.md" \
+         "$PKG_ROOT/payload/claude/agents/ba-discovery.md" \
+         "$PKG_ROOT/payload/claude/agents/ba-gate.md" \
+         "$PKG_ROOT/payload/claude/agents/ba-orchestrator.md"; do
+  n="$(grep -cF '11. **Named by outcome (D-O96).**' "$f")"
+  [ "$n" = "1" ] \
+    && ok "$(basename "$f") carries rule 11 exactly once" \
+    || bad "$(basename "$f") carries rule 11 $n times, expected exactly 1"
+done
 
 # ── 4. the resumption report — the pinned shape ──────────────────────────────
 

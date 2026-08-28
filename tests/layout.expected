@@ -58,7 +58,7 @@ S4|file|.claude/skills/ba-close-band1/SKILL.md|closure + arming request (P-O7)
 S4|file|.claude/skills/ba-enter-feature/SKILL.md|slicing confirmation, NNN assignment (P-O8)
 S3|file|.claude/skills/ba-gate/SKILL.md|Scope-F run, stages 0–5 (gate §4)
 S3|file|.claude/skills/ba-gate-health/SKILL.md|Scope-H runs [artifact | full] (gate §10)
-S9|file|.claude/skills/ba-handoff/SKILL.md|Mode-A adapter front (gate §11.2)
+S9|file|.claude/skills/ba-dev-ready/SKILL.md|the dev-ready route (orchestrator §7.6) — added in package 0.1.43, after S9
 S9|file|.claude/skills/ba-auto/SKILL.md|autonomous mode (orchestrator §10.7) — added in package 0.1.11, after S9
 
 # ── technique skills — 20 (build plan §2.1, D-P2-4) ──────────────────────────
@@ -146,9 +146,9 @@ RT|absent|.specify/status.html|◇ /ba-status --html (orchestrator §10.4)
 RT|absent|.specify/gate-tuning.md|◇ first O/E record (gate §7.4)
 RT|absent|.specify/elicitation-tuning.md|◇ first log entry (D-P2-11)
 # Spec Kit's own feature pointer — how v0.12.x resolves FEATURE_DIR. Normally
-# written by /speckit-specify; under Mode A the adapter writes it at handoff
+# written by /speckit-specify; under Mode A the adapter writes it at implementation take-up
 # (gate §11.2, "any copies Spec Kit's layout requires"). Never installer-laid.
-RT|absent|.specify/feature.json|◇ /ba-handoff (Spec Kit feature pointer)
+RT|absent|.specify/feature.json|◇ the take-up check (Spec Kit feature pointer)
 
 # ── source audit (Scope S) — added in package 0.1.x, after S9; source doc:
 # docs/methodology/ba-native-spec-source-audit-definition.md ─────────────────
