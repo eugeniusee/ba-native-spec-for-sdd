@@ -17,7 +17,7 @@ rather than an improvisation with an unknown one.
 | How the spec reaches Spec Kit | It is already there. The compiler wrote the certified artifacts directly into `specs/NNN-feature/` and `.specify/memory/` | It is imported — `/speckit-specify` reads our spec and writes Spec Kit's |
 | What sits between gate and plan | A hash check | **An LLM** |
 | The guarantee | *The certified text is the read text* | The read text is a re-rendering of the certified text |
-| The adapter's act | Verify · branch · plumb · report (`/ba-handoff`) | None — this is not the adapter's path |
+| The adapter's act | Verify · branch · plumb · report — automatic when implementation takes the feature (gate §11.2) | None — this is not the adapter's path |
 
 Plan Q5 fixes Mode A as primary for one reason, and it is the reason the whole
 gate exists: **no LLM between gate and plan.** Every assertion the contract

@@ -171,14 +171,13 @@ A FAIL comes back as named gaps — each with the element and the fix action —
 you fix the spec and re-gate. Re-gates are cheap: only what your edit could have
 affected is re-run.
 
-```
-/ba-handoff 004
-```
-
-Verifies that every certified byte is still on disk, checks out the feature
-branch, confirms Spec Kit's plumbing, and reports ready. **If anything was
-edited after certification, it refuses and names the file.** That refusal is the
-framework working, not failing.
+There is no handoff command. When the operator takes 004 into implementation —
+the first `/speckit-plan` on it — the framework first checks that every
+certified byte is still on disk, checks out the feature branch, and points Spec
+Kit at the feature. Clean, it says nothing. **If anything was edited after
+certification, implementation does not start**, and one message names the file
+and the two ways out: keep the edit and re-gate, or revert it. That refusal is
+the framework working, not failing.
 
 Then the operator runs `/speckit-plan`, `/speckit-tasks`, `/speckit-implement`,
 and you re-enter to verify the built feature against its acceptance tier.
@@ -253,10 +252,31 @@ arrive once, at the end, as one batch. Not once per feature.
 **8 — spare.** The budget has one interaction of slack in it by design, for the
 correction the route did not anticipate.
 
-Certification and handoff are not the presale destination — they sit behind gate
-law and are expected after a recorded switch to Discovery. What you hand the
-client is the roadmap, the draft specs with their assumptions on the record, and
-the WBS.
+What you hand the client is the roadmap, the draft specs with their assumptions
+on the record, and the WBS. Certification is not the presale destination — it
+sits behind gate law and happens after a recorded switch to Discovery. The
+switch has a route, and the eight interactions end at the WBS, so the route sits
+outside the budget:
+
+**9 — to dev-ready.**
+
+```
+/ba-dev-ready 004 005
+```
+
+Or just say it — *віддай 004 і 005 в розробку* — and the same route renders. You
+say `go` once, and that one word is three things: the profile switch to
+Discovery, recorded; a grant scoped to exactly these features; and the route's
+start. If a grant was already running, the framework closes it first and asks
+you to ratify its trail — the one stop on the way, and an existing one. Then it
+runs on its own: the four techniques Presale leaves out (domain model, roles and
+permissions, core processes, constitution) drafted from the material on hand
+with the assumptions marked, each spec completed against them, the gate run on
+each feature with real gaps waived and named. It stops when every feature stands
+**done, awaiting ratification**, and tells you plainly what is left for you:
+ratify the batch, then per feature sign the two flagged bundles and approve the
+PASS. Those are the acts that must be a person's, and the framework never takes
+them.
 
 **If the destination is out of reach,** say so plainly — "I need a WBS by
 Friday" — and the framework answers with one repair route in the shape above,
@@ -279,8 +299,8 @@ ending in `go?`. It will not hand you a list of commands to type.
 | `/ba-enter-feature <epic>/<feature>` | Band-3 entry: confirm slicing, assign `NNN` |
 | `/ba-gate <feature>` | The completeness gate |
 | `/ba-gate-health [artifact\|full]` | Project health across the shared artifacts |
-| `/ba-handoff <feature>` | Hash guard → branch → ready for `/speckit-plan` |
 | `/ba-wbs [--include NNN …]` | The client-facing WBS → `exports/wbs.xlsx` + `.csv` |
+| `/ba-dev-ready <feature …>` | From the presale estate to dev-ready: the switch, a scoped grant, the four missing techniques, specs completed, the gate per feature — you say `go` once |
 | `/ba-run` | Run the composed plan as a route — the render, then every row on one `go` |
 | `/ba-run specs all` · `specs <epic-list>` | Batch Band-3 entry, then Tier 2 per feature |
 | `/ba-auto on [<profile>]` · `/ba-auto off` | Autonomous mode: grant, then close and ratify |
@@ -289,7 +309,9 @@ Techniques run one-step: `/ba-t01`…`/ba-t18`,
 `/ba-tier1 <kit|ingest|supplement> <epic>`, `/ba-tier2 <NNN>`. `/ba-run <technique>`
 remains as a thin alias and the custom-technique entry. Nothing fires by itself —
 every one of these is invoked by you, enforced in the skills' own frontmatter,
-not by convention.
+not by convention. The one exception is not a command at all: the certified-text
+check that used to be `/ba-handoff` now runs by itself when implementation takes
+a feature (Band 3, above).
 
 ---
 
@@ -321,12 +343,14 @@ the material you captured (kit and brief per epic), enters the features, and
 drafts their specs. What it will never do is **spend someone's time**: it writes
 the call kit and leaves the call for you to arrange.
 
-**What never runs on its own.** The two ⚑ sign-offs, the effective PASS,
-`/ba-handoff`, and the **scope frame** you confirm at `/ba-frame`. Those four are
-yours in every mode — the first three are where a false pass becomes a security
-incident, a scope escape, or code built on unread text, and the fourth is the
-boundary everything else is measured against. Auto therefore takes a feature to
-**"done, awaiting ratification"** and stops.
+**What never runs on its own.** The two ⚑ sign-offs, the effective PASS, and the
+**scope frame** you confirm at `/ba-frame`. Those three are yours in every mode —
+the first two are where a false pass becomes a security incident or a scope
+escape, and the third is the boundary everything else is measured against. (The
+certified-text check is not on this list: it is a script with no judgment in it,
+and it runs by itself when implementation takes the feature.) Auto therefore
+takes a feature to **"done, awaiting ratification"**, leaves the sign-offs and the
+PASS for you, and moves on to the next feature in its scope.
 
 **It never tells you something is blocked when it is your choice.** Where the
 next act is one auto may not take on its own, the report says
