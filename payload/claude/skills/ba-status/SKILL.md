@@ -128,6 +128,7 @@ Workflow ▕██████░░░░▏ <p>% — §10.4-F
 9 · Next: <the one act the state points to — code + name>
 Auto: <on — AG-<n> · scope <…> · since <date> | off — last AG-<n> ratified <date>>
       trail <n> AUTO acts · unratified <u>     (renders only once an AG exists)
+Humanizer: <on — since <date> · <initials> | off>                (always renders)
 ```
 
 ### The counts, each with its source
@@ -171,6 +172,19 @@ yet.
 
 Rendering the trail is not ratifying it. This skill never writes a grant, an
 AUTO stamp, or a ratification — `/ba-auto` owns all three.
+
+### The humanizer tail
+
+**One additive line, after the pinned render and after the auto-trail section.**
+The nine numbered lines are **untouched** — nothing is replaced, reordered or
+dropped, and no count enters §10.4-F. It is a ledger read like every other line
+here: the head's `Humanizer:` line, and `off` where the line is absent.
+
+**It always renders**, unlike the auto-trail: `off` is a state the BA set or
+inherited, not the absence of one.
+
+Rendering the state is not setting it. This skill never writes the line —
+`/ba-humanizer on|off` owns it.
 
 ### Three lines that need saying plainly
 

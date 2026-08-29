@@ -44,7 +44,7 @@ S5|file|.claude/agents/ba-discovery.md|Discovery BA — Band-1/2 technique execu
 S8|file|.claude/agents/ba-analyst.md|Requirements Analyst — Tier-2 authoring persona
 S3|file|.claude/agents/ba-gate.md|gate agent — A-pass evaluator, read-only tools
 
-# ── workflow skills — 15 (build plan §2.2, D-P2-1/D-P2-5) ────────────────────
+# ── workflow skills — 16 (build plan §2.2, D-P2-1/D-P2-5) ────────────────────
 S4|file|.claude/skills/ba-frame/SKILL.md|Band-1 entry (orchestrator §8.1)
 S4|file|.claude/skills/ba-status/SKILL.md|ledger-head render
 S9|file|.claude/skills/ba-wbs/SKILL.md|WBS export (orchestrator §10.5) — added in package 0.1.6, after S9
@@ -60,6 +60,7 @@ S3|file|.claude/skills/ba-gate/SKILL.md|Scope-F run, stages 0–5 (gate §4)
 S3|file|.claude/skills/ba-gate-health/SKILL.md|Scope-H runs [artifact | full] (gate §10)
 S9|file|.claude/skills/ba-dev-ready/SKILL.md|the dev-ready route (orchestrator §7.6) — added in package 0.1.43, after S9
 S9|file|.claude/skills/ba-auto/SKILL.md|autonomous mode (orchestrator §10.7) — added in package 0.1.11, after S9
+S9|file|.claude/skills/ba-humanizer/SKILL.md|the humanizer switch (orchestrator §10.3 rule 10, D-O97) — added in package 0.1.44, after S9
 
 # ── technique skills — 20 (build plan §2.1, D-P2-4) ──────────────────────────
 S5|file|.claude/skills/ba-t01/SKILL.md|discovery canvas framing
@@ -102,9 +103,10 @@ S1|file|.specify/ba/templates/gate-health.md|gate §10.3 head + entries shape
 S1|file|.specify/ba/templates/gate-tuning.md|gate §7.4 two tables + §12 escape record
 S1|file|.specify/ba/templates/elicitation-tuning.md|doc 3 §10 three tables (D-P2-11)
 
-# vendored scripts — 15 (build plan §2.4, D-P2-7): 11 M checkers + the WBS pair
-#                     + the dashboard; the fifteenth is sk_audit_report.py,
-#                     listed below with its own source doc
+# vendored scripts — 16 (build plan §2.4, D-P2-7): 11 M checkers + the WBS pair
+#                     + the dashboard + the humanizer write guard (0.1.44); the
+#                     fifteenth is sk_audit_report.py, listed below with its own
+#                     source doc
 S2|file|.specify/ba/scripts/sk_snapshot.py|gate §3 · §7.2 · §9.2
 S2|file|.specify/ba/scripts/sk_structure.py|gate §4.1–§4.2 · standard §2
 S2|file|.specify/ba/scripts/sk_scan.py|contract §4/§5/C12
@@ -119,6 +121,7 @@ S9|file|.specify/ba/scripts/sk_handoff.py|gate §11.1–§11.2 · plan Q5
 S9|file|.specify/ba/scripts/sk_wbs.py|orchestrator §10.5 — the WBS export generator (0.1.6)
 S9|file|.specify/ba/scripts/sk_xlsx.py|orchestrator §10.5 — the stdlib xlsx writer (0.1.6)
 S9|file|.specify/ba/scripts/sk_status.py|orchestrator §10.4 — the project dashboard (0.1.9)
+S9|file|.specify/ba/scripts/sk_humanizer_guard.py|orchestrator §10.3 rule 10 — the humanizer write guard (D-O97, 0.1.44)
 
 # compiled cards — 3 (build plan §2.5)
 S3|file|.specify/ba/cards/assertions-f.md|34 Scope-F A cards (text + CC-ID only)
@@ -158,9 +161,10 @@ S9|file|.specify/ba/templates/source-audit-report-entry.md|pinned Scope-S entry 
 S9|file|.specify/ba/scripts/sk_audit_report.py|Stage-5b coverage report → exports/audit-report.xlsx + .csv (§6b, D-S6) — added in package 0.1.40, after S9
 RT|absent|.specify/source-audit.md|◇ /ba-audit report ledger + standing SA records
 
-# ── vendored skill (D-O89) — added in package 0.1.37, after S9; upstream
-# blader/humanizer v2.11.2 @ 38b8890, MIT. No `ba-` prefix: the prefix marks
-# framework-owned skills and a vendored guest is not one ─────────────────────
-S9|file|.claude/skills/humanizer/SKILL.md|explicit-invocation-only prose skill, canonical artifacts fenced (D-O89) — added in package 0.1.37, after S9
+# ── vendored skill (D-O89 · the switch D-O97) — added in package 0.1.37, after
+# S9; upstream blader/humanizer v2.11.2 @ 38b8890, MIT. No `ba-` prefix: the
+# prefix marks framework-owned skills and a vendored guest is not one — the
+# switch that runs it, /ba-humanizer, is ours and does wear it ───────────────
+S9|file|.claude/skills/humanizer/SKILL.md|prose skill run under the /ba-humanizer switch, the fence on the machine-read line and guard-asserted (D-O97) — added in package 0.1.37, after S9
 S9|file|.claude/skills/humanizer/LICENSE|upstream MIT, verbatim — added in package 0.1.37, after S9
-S9|file|.claude/skills/humanizer/PROVENANCE.md|upstream URL · pin · commit · the two local deltas — added in package 0.1.37, after S9
+S9|file|.claude/skills/humanizer/PROVENANCE.md|upstream URL · pin · commit · the two local deltas, amended under D-O97 — added in package 0.1.37, after S9

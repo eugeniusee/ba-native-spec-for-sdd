@@ -71,6 +71,7 @@ Acceptance shapes: AS-<n> — <acceptance item, one line> (<citation>) — <stat
 Parameters: rate <amount>/h · team mix <…> (eng-share <n>%) · capacity check <on | off>
 Capacity: ~<n> eng-h (envelope ÷ rate × eng-share) | — (no envelope)
 Auto: off
+Humanizer: off
 
 | Aspect | State | Since | Basis |
 |---|---|---|---|
@@ -90,6 +91,7 @@ Scope advisories:         none
 <!-- Head line shapes once populated:
   Band: 1 (closed <date>) — Bands 2/3 capable
   Auto: on — AG-<n> · scope <full workflow | until <event>> · since <date>
+  Humanizer: on — since <date> · <initials>   (absent reads off; /ba-humanizer writes it)
   Standing aspect waivers:  AW-<n> · <aspect> · <AT-ID(s) unmet> — revisit: <event>
   Open reopens:             RO-<n> · <aspect> — <conflict, one line>
   Upstream flags:           <aspect> flagged: prerequisite <aspect> reopened

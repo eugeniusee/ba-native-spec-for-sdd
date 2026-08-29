@@ -86,6 +86,8 @@ made.
 - **Stable path, overwritten per run** — `exports/design-guide.md`, beside the
   WBS export's own two files.
 
+**Under `/ba-humanizer on`, the write passes through the humanizer first** (§10.3 rule 10, D-O97): the prose is rewritten, every machine-read line stands byte-untouched, and `sk_humanizer_guard.py` asserts it before the write lands — a guard failure writes the original and names the anchor, never a stop.
+
 ## The register — entry text is stakeholder-facing
 
 Entry text is stakeholder-facing. Plain sentences. **No CC-IDs, no marker

@@ -12226,3 +12226,192 @@ widened D-O window · everything else unmoved — check-m 71 · check-gate 133 �
 check-techniques 104/127/166 · check-spine 286 · check-wbs 99 · check-audit
 178 · check-status 115 · check-layout 121 · check-install 64 · check-budget
 83 · cards byte-identical to their re-derivations.
+
+## The Humanizer Becomes A Switch — /ba-humanizer on|off, the fence moved to the machine-read line and asserted · orchestrator v0.40 · package 0.1.44 · 29 August 2026 · GREEN
+
+**Session prompt (the owner's ruling of 28 Aug 2026, `apply all` over the
+five-point list):** *"має бути команда humanizer on/off … всі відповіді і
+артефакти агента проганяються через humanizer … працює, поки користувач не
+змінить свою думку"*. Documents before code: the orchestrator ruling first, the
+compile second.
+
+**Ground truth.** Fresh `git clone --depth 60` of origin/main at `97dc653`,
+VERSION **0.1.43**, `tests/run-all.sh` **18/18 GREEN** before any edit. The
+vendored Spec Kit zip is populate-once-per-clone (`vendor/README.md`, and
+`.gitignore` excludes it): its absence opened the clone at 3 RED — check-layout,
+check-exit and check-install, all one environmental cause — and copying the
+archive in from the sibling tree returned 18/18. The zip is not repo content and
+was not committed.
+
+**Numbering — the brief's premise was stale, and the record already moved.** The
+brief was authored against orchestrator v0.38 · D-O92 · §41 and instructed this
+pass to take `D-O93 · §42 · v0.39` and *move* the 0.1.42 entry's reservation for
+the parked EC-20 peer rebase. **HEAD had already done both.** Package 0.1.43 took
+`D-O93–D-O96 · §42 · v0.39` on 29 Aug and recorded the D0 re-route in §42's own
+"Not edited, on the record" paragraph — *the rebase takes the next free numbers
+when it lands, the v0.27 precedent*. **So this pass takes the next free triple —
+`D-O97 · §43 · v0.40 · package 0.1.44` — and no reservation needed moving:** the
+one the brief names had already been re-routed by a dated ruling, which is the
+brief's own rule applied one edition earlier. Nothing is parked at D-O97.
+
+**The ruling, in one line.** D-O89 shipped a vendored humanizer as an on-request
+tool for e-mails: fenced off `spec.md` bodies and the §10.5 exports, and named in
+no BA-facing document. The directive asks for a **mode**, and it says how long
+the mode lasts. D-O97 makes it one — and **moves the fence from the artifact to
+the machine-read line**, which is the move that actually reaches the artifacts
+the client reads. That move is safe only because a script asserts it, so the
+enforcing check §38 routed to the regression-floor pass is **built here and the
+item is closed**.
+
+**The units.**
+**1 — Lane B, the document first.** `docs/methodology/ba-native-spec-orchestrator-rules.md`
+to **v0.40**: the header line · the `**v0.40 change record:**` paragraph ·
+**`## 43. Review record (v0.39 → v0.40)`** with D-O97's row, the four argument
+paragraphs (*what D-O89 built and why it does not answer the directive* · *the
+fence was in the wrong place* · *why a switch and not the mandatory pass* · *a
+guard that stops a run would be worse than the defect*), the amended-on-the-record
+block, the honest inventory, the not-edited list, the conflict scan, the routed
+items · **§10.3 rule 10 rewritten in place** — a rule that says *only when asked*
+cannot be amended by addition into one that says *always while on* · **§2.4** the
+`Humanizer:` head line in the fenced ledger shape plus its own paragraph (absent
+reads `off`; a mode, not an instrument — it never joins §4.3's table) · **§10.4**
+the additive dashboard tail and the paragraph governing it · **§10.7** one
+interplay clause — no policy row added, no fifth hold condition · **§38** the
+dated amendment note, appended and never rewriting the section's argument ·
+the trailing line extended, `decisions D-O1–D-O97 locked`, the review-record
+ladder gaining `v0.39→v0.40 in §43`. Every edit assertion-guarded: the anchor
+`grep -c`'d at 1 before and the result at 1 after.
+**As the standing pattern predicts, the Lane B drop opened the baseline RED** —
+2 failures in check-orchestrator, both harness pins against the new edition (the
+`head -2 … v0.39` header pin, and the contiguity check's `set(range(1, 97))`).
+**2 — the vendored guest, two deltas, still exactly two.** `humanizer/SKILL.md`
+frontmatter `description` → the switch and the fence; the local scope-fence
+blockquote → the new law, still marked *local addition, not upstream*, citing
+D-O97. **The upstream body region was re-verified byte-identical** against a
+fresh `git clone` of `blader/humanizer` at `38b8890` in a temp dir outside the
+repo — 442 lines from `Rewrite AI-sounding text …` onward, and `LICENSE`
+byte-identical too. **The pin was not moved and nothing was re-fetched for it.**
+`PROVENANCE.md`: the guest-name preamble names the switch as ours, both delta
+texts updated, a dated *Amended 28 Aug 2026, package 0.1.44 — D-O97* line in the
+deltas section, and a new `## Estate law — amended 28 Aug 2026` section naming
+the two superseded clauses and the standing list.
+**3 — the command.** `payload/claude/skills/ba-humanizer/SKILL.md`, modelled on
+`ba-auto`: frontmatter with `disable-model-invocation: true`, the two acts with
+their exact writes (head-line grammar · event grammar · line-anchored in place ·
+insert-after-`Auto:` when absent), the scope, the fence list, the guard and its
+skip line, the `/ba-status` tail, the cost line, a six-item never-list, and the
+three standing blocks **byte-identical** to every other carrier.
+**4 — the guard.** `payload/specify-overlay/ba/scripts/sk_humanizer_guard.py` —
+Python 3, stdlib only, deterministic, no network and no model call, matching the
+sibling `sk_*.py` conventions. `--original` / `--candidate` (`--path` where the
+destination differs), exit 0 on pass, exit 1 with `guard failed on <anchor>` on
+stderr so the skip line can carry the anchor verbatim. **Seven checks in firing
+order:** exempt path · front matter · code fences · table rows · pinned lines ·
+pinned-region line counts · exempt tokens. **Both constants are corpus-derived
+and each entry names its source §** — 33 pinned lines (§8.1 · §10.3 · §10.4 ·
+§10.5 · §10.6 · §10.7 · §10.8), 9 wholly-exempt paths, 28 token classes —
+printable with `--list`. **The token check asserts order, not a multiset:** a
+multiset would accept a rewrite that moved `FR-3`'s sentence above `FR-2`'s.
+**5 — the compile.** Rule 10 recompiled into the **six register carriers** in the
+carriers' compact style, byte-identical across all six (one sha), the old rule-10
+text at 0 everywhere · `/ba-frame`'s Step-1 cell names `Auto: off` and
+**`Humanizer: off`** born from the template, and the ledger template carries the
+line directly after `Auto: off` with its `on` shape in the head-line-shapes
+comment · `/ba-status` gains the tail line and the section that governs it, the
+nine numbered lines byte-untouched · the three prose-artifact writers
+(`ba-design` · `ba-tier1` · `ba-tier2`) each carry **one** routing sentence by
+reference to rule 10, no law duplicated · `ba-wbs` states that the export is
+**never passed separately** — it reads a `spec.md` already humanized at write.
+**6 — registries, docs and the suite.** `tests/layout.expected`: the two new
+rows, the workflow block 15 → 16, the script block 15 → 16, and the vendored
+skill's own two descriptions rewritten (the `explicit-invocation-only … (D-O89)`
+text killed) · `check-layout.sh` and `check-install.sh` 36 → 37 (17 workflow +
+20 technique) · `docs/quickstart.md` one row directly after `/ba-auto` · README
+36 → 37, eighteen → nineteen, the new suite in the layout listing.
+**`install.sh` is unchanged, and that was verified rather than assumed:** the
+`ba-*` removal glob and the `payload/claude` find-copy cover `ba-humanizer/`, the
+overlay copy and the manifest's `.specify/ba` `**/*` glob cover the guard, and no
+selective enumeration exists. `tests/verify-manifest.py` passes inside
+check-layout on the installed tree.
+**7 — the new suite.** `tests/check-humanizer.sh`, **117 checks**, six sections:
+rule 10 once per carrier with the six shas collapsed to one and the superseded
+text swept to zero · the `/ba-humanizer` contract · **the guard against its
+fixtures, both directions**, plus the exempt-path, front-matter and fence
+branches and the `--list` constants · the document's six touched sites · the
+surfaces (quickstart · ledger creation · the dashboard tail with its nine lines) ·
+the guest (two deltas, the pin unmoved, the upstream body unedited — 35 pattern
+headings still standing). Fixtures at `tests/fixtures/humanizer-guard/`: one
+spec-shaped original, one good candidate, **three bad candidates each one edit
+away from the good one** (a dropped `[NEEDS CLARIFICATION]` · a reworded `FR-2`
+table row · the closing ask folded into one paragraph). Wired into
+`run-all.sh` at position 12; the runner's own eighteen → nineteen.
+
+**Harness — every changed pin named.** `check-orchestrator.sh`: the header pin
+`v0.39` → `v0.40` with its label, the contiguity check `set(range(1, 97))` →
+`set(range(1, 98))` and its message `1…96` → `1…97`, and two new ladder rows
+(`## 43. Review record (v0.39 → v0.40)`, `D-O97`) — 586 → 588.
+`check-layout.sh` 121 → 123 (the two new registry rows), `check-install.sh`
+64 → 64, `check-register.sh` and `check-auto.sh` unchanged in count and **both
+picked the new skill up by existing** — the skills glob now derives **37**, the
+standing-block sweeps **43 units** (37 skills + 4 personas + 2 mirrors), all
+byte-identical. `run-all.sh` gains one row.
+
+**Defaults taken, each on the record.**
+**(1) Numbering** — the next free triple, no reservation moved; the premise the
+brief supplied was one edition stale and HEAD's own D0 re-route already governs.
+**(2) The section heading form** — the brief's sweep names `## §<new>`; this
+document's review records are `## <n>. Review record (v… → v…)`, and the document's
+own form was taken. The sweep was run against the real heading.
+**(3) The dashboard tail is the agent's render, not the script's.** `sk_status.py`
+renders the **nine lines only** — the `Auto:` trail has always been the skill's
+render (D-O38), and the `Humanizer:` tail follows that precedent exactly.
+**`sk_status.py` is byte-untouched.**
+**(4) `Humanizer: off` at ledger creation is born from the template**, as
+`Auto: off` is; `/ba-frame`'s Step-1 cell names it rather than adding a write
+step. No new act at Frame, and D-O33's budget is untouched by construction.
+**(5) `PROVENANCE.md`'s D-O89 section reworded to history.** The residual sweep
+bans the superseded phrasings on every live payload surface and the provenance
+file quoted two of them verbatim. The D-O89 record **stands and is not deleted**:
+its two superseded bullets are marked *Superseded* and restated, and the section
+heading now says so.
+**(6) The killed strings survive in `tests/check-humanizer.sh`'s own `KILLED`
+heredoc** — the suite names them in order to ban them, the `check-budget.sh`
+`BANNED` precedent exactly, and the sweep excludes the suite from itself.
+**(7) The guard's `--path` flag** — so a caller whose destination differs from
+`--original`'s path still gets the exempt-path check. Internal, no law.
+**(8) `install.sh` unchanged** — verified against both globs rather than edited.
+
+**The two §38 items, re-dispositioned.** *Fence enforcement riding the
+regression-floor pass* — **closed**: `sk_humanizer_guard.py` is the check, and
+§38's note says so on the record. *Option (C), distilling the 35 upstream
+patterns into §10.3* — **still routed, unchanged**, parked to the master
+conversation pending field runs.
+
+**Routed, never legislated here.** The **guest-skill PROVENANCE sweep-escape**
+candidate — non-`ba-*` skills still fall out of the four standing-instruction
+sweeps by design, and the new `ba-humanizer` skill joins them by existing while
+the guest stays out; unchanged by this ruling. The **upstream pin drift** —
+nothing watches it, and refresh stays a ruling. **The guard's exempt-token list
+will need extending whenever a new ID class is ruled**, and no check asserts that
+a newly-ruled class reached it; the script names each class with its source § so
+the next editor can see what to add. The **EC-20 peer rebase** takes the next
+free numbers when it lands, unchanged.
+
+**Untouched, on the record.** The three compiled cards are **byte-identical** —
+`assertions-h.md` `1bd7dbf055a1c07e098515b40ee4ae00` and `at-thresholds.md`
+`982c080153913ac37d9d84018d142897` before and after, `assertions-f.md` and
+`assertions-s.md` likewise; `check-cards.py` re-derives all of them clean. **No
+pinned shape moved** — the dashboard's nine lines, the three §10.7 reports, the
+§10.6 route render, the §8.1 blocks, the §10.5 title block and the §10.8 record
+all stand. **No new stop, no new prompt point, no new register, no new record
+class, no threshold, no gate assertion text, no policy row, no ledger field
+beyond the head line.** The safety floor keeps its three acts. `sk_status.py`,
+`sk_handoff.py` and every other overlay script are byte-untouched. The writing
+standard is untouched and is named **senior** at every conflict.
+
+**Suite: 19/19 GREEN** — check-m 71 · check-gate 133 · check-orchestrator 588 ·
+check-techniques 104 · check-techniques2 127 · check-techniques3 166 ·
+check-spine 286 · check-register 64 · check-wbs 99 · check-audit 178 ·
+check-status 115 · **check-humanizer 117** · check-ledger 19 rules ·
+check-cards clean · check-layout 123 · check-exit 105 · check-install 64 ·
+check-budget 83 · check-auto 286.

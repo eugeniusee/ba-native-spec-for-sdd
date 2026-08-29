@@ -1503,9 +1503,12 @@ has "$RULES_DOC" "## 41. Review record (v0.37 → v0.38)" \
 has "$RULES_DOC" "## 42. Review record (v0.38 → v0.39)" \
     "…and §42, the review record that carries it"
 has "$RULES_DOC" "D-O93–D-O96" "…and the dev-ready ruling block"
-head -2 "$RULES_DOC" | grep -q 'v0\.39' \
-  && ok "the header states the live edition — v0.39, the named route to dev-ready" \
-  || bad "the header does not name v0.39: the edition and the change record disagree"
+has "$RULES_DOC" "## 43. Review record (v0.39 → v0.40)" \
+    "…and §43, the review record that carries it"
+has "$RULES_DOC" "D-O97" "…and the humanizer-switch ruling"
+head -2 "$RULES_DOC" | grep -q 'v0\.40' \
+  && ok "the header states the live edition — v0.40, the humanizer becomes a switch" \
+  || bad "the header does not name v0.40: the edition and the change record disagree"
 has "$RULES_DOC" "D-O45–D-O49" "…and the source-inventory ruling block"
 has "$RULES_DOC" "D-O50" "…and the change record names the unreadable-spec ruling"
 has "$RULES_DOC" "D-O51–D-O52" "…and the continuity-under-a-grant ruling block"
@@ -1515,11 +1518,11 @@ has "$RULES_DOC" "v0.20" "…and the edition the candidate scan produced"
 has "$RULES_DOC" "D-O54" "…and the scan-method ruling"
 
 # the ruling block is contiguous from the live high-water mark: no gap, no reuse
-python3 - "$RULES_DOC" <<'PYX' && ok "the D-O block runs 1…96 with no gap and no skipped number" \
+python3 - "$RULES_DOC" <<'PYX' && ok "the D-O block runs 1…97 with no gap and no skipped number" \
   || bad "the D-O decision block is not contiguous — a number is missing or reused"
 import re, sys
 seen = {int(n) for n in re.findall(r"D-O(\d+)", open(sys.argv[1], encoding="utf-8").read())}
-sys.exit(0 if seen == set(range(1, 97)) else 1)
+sys.exit(0 if seen == set(range(1, 98)) else 1)
 PYX
 
 # ── 6b. Band-2 plan composition — the record home has its producer (D-O55) ──

@@ -93,7 +93,7 @@ the bootstrap closes by installing `uv` itself.
 ## Test
 
 ```sh
-tests/run-all.sh                                               # the regression — all eighteen checks, one table
+tests/run-all.sh                                               # the regression — all nineteen checks, one table
 tests/run-all.sh --file-only                                   # the fourteen checks that need no install; no network
 tests/check-exit.sh                                            # the Phase-2 exit test — all ten steps
 tests/check-install.sh                                         # the install UX — bootstrap · self-guard · uv-free
@@ -146,7 +146,7 @@ its name. The names are read from the catalogue index and orchestrator §10.1's
 Moment column, not hardcoded, so a rename in either document breaks the scan
 instead of drifting past it. Its fifth section holds down the other rule that
 compiles into every unit — orchestrator §10.2's session boundary: byte-identical
-in all 36 skills and 4 personas, and §10.2's own paragraph in both mirrors,
+in all 37 skills and 4 personas, and §10.2's own paragraph in both mirrors,
 derived from the document rather than pinned here. Its eighth holds the three
 standing blocks in one order — mode read, then register self-check, then the
 boundary — across every carrier. A new skill that ships
@@ -193,7 +193,7 @@ ba-native-spec/
 │  ├─ quickstart.md        BA quickstart — the loop, and manual mode (S9)
 │  └─ mode-b-fallback.md   the documented handoff fallback, and its cost (S9)
 └─ tests/
-   ├─ run-all.sh           the regression runner — all eighteen checks, one table
+   ├─ run-all.sh           the regression runner — all nineteen checks, one table
    │                       (Lane D; closes the hand-assembled roll-up)
    ├─ check-layout.sh · layout.expected
    ├─ check-m.sh           the M-checker suite (S2)
@@ -206,6 +206,9 @@ ba-native-spec/
    ├─ check-techniques3.sh the technique suite, batch III + closure — T-11…T-16,
    │                       /ba-close-band1 and the arming Scope-H run (S7)
    ├─ check-spine.sh       Band 2 + the spine — T-17/T-18, Tier 1, Tier 2 (S8)
+   ├─ check-humanizer.sh   the humanizer switch — rule 10 in the six register
+   │                       carriers, the /ba-humanizer contract, and the write
+   │                       guard against its fixtures, both directions (D-O97)
    ├─ check-band1-artifacts.py  the Band-1 artifact validator — canvas (framing and
    │                       aspect grade) · glossary · register · context · constraints ·
    │                       competitive · personas · domain model · roles & permissions ·

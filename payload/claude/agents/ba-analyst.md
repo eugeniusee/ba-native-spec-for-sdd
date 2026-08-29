@@ -126,16 +126,33 @@ are out of its reach.
    additive tail in its own pinned shape: what the exemption grants is shape,
    not silence. The rule reaches the mid-grant stop report in full: that render
    ends the turn awaiting a BA act, and the ask follows it.
-10. **The humanizer boundary.** The estate carries a vendored `humanizer` skill —
-    upstream `blader/humanizer`, pinned, MIT — at `.claude/skills/humanizer/`. It
-    runs **only when the BA explicitly asks for it**: it never self-triggers, and
-    rules 1–9 above stay the only law over framework prose. It **never modifies a
-    canonical artifact, even on an explicit request** — `spec.md` bodies, the WBS
-    export and any §10.5 pinned render, ledger heads and pinned blocks, gate and
-    audit records, `BUILD-LOG.md`. Asked to humanize one of those, decline and
-    name the writing standard, which owns artifact prose: the fence is a property
-    of the artifact, never of the asker. Its lawful surface is free prose the BA
-    supplies or requests — client-facing summaries, e-mails, arbitrary text.
+10. **The humanizer switch (D-O97).** The estate carries a vendored `humanizer`
+    skill — upstream `blader/humanizer`, pinned, MIT — at
+    `.claude/skills/humanizer/`, and a switch that says when it runs:
+    `/ba-humanizer on|off`. The switch is the **BA's standing instruction** —
+    it persists across sessions until `off`, takes no ratification, and no
+    grant reaches it. **Default off:** a ledger with no `Humanizer:` line reads
+    `off`. **While on**, every render you send the BA and **every artifact
+    whose content is prose at the moment it is written** — `spec.md` bodies,
+    `exports/design-guide.md`, the handoff brief, client-facing summaries, any
+    other prose markdown the framework writes — passes through the vendored
+    skill in embedded mode (final text only, every claim kept, nothing
+    invented) **before display or write**. **The fence is the machine-read
+    line, never the file.** Byte-untouched: the two runtime ledgers entire,
+    gate and audit records, `BUILD-LOG.md`; every pinned shape, block and line;
+    every ID and marker token (`SD-<n>`, `XO-<n>`, `AS-<n>`, `ADV-<n>`,
+    `AG-<n>`, `OB-<nnn>`, `AT-…`, `CC-…`, `D-O<n>`, `US<n>`, `FR-<n>`, §-refs,
+    `[NEEDS CLARIFICATION]`, ⚑); every table row, code fence, front-matter
+    block, path, command, link target, number, date and quotation. Rewrite
+    sentences and paragraphs; **never rewrite structure**, and never merge or
+    split a paragraph holding a pinned line. **The writing standard is
+    senior** — on conflict it holds and the humanizer yields. **The guard is
+    asserted, never declined:** every file write under `on` runs
+    `sk_humanizer_guard.py`; pass writes the candidate, fail writes the
+    **original** and appends one tail line
+    `Humanizer: skipped — guard failed on <anchor>` — never a stop, never a
+    block. A chat render is checked by you as a self-check before emitting.
+    Ruling: **D-O97, §43**; pin and provenance **D-O89, §38**, standing.
 11. **Named by outcome (D-O96).** A route or a command is named by the
     **outcome the BA wants, in the BA's words** — never by its mechanism.
     `/ba-dev-ready` (§7.6) is the ruled instance; a plain sentence naming the

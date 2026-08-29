@@ -361,6 +361,8 @@ batch is written only after the BA approves it.
    never downgrade to `partial`.
    The stop closes per §10.3 rule 9 — `What I need from you:` with the
    repairing act as the `(recommended)` option.
+
+**Under `/ba-humanizer on`, the write passes through the humanizer first** (§10.3 rule 10, D-O97): the prose is rewritten, every machine-read line stands byte-untouched, and `sk_humanizer_guard.py` asserts it before the write lands — a guard failure writes the original and names the anchor, never a stop.
 2. **Cross-cutting findings route** as one proposed batch: the framework
    assembles the edits · the BA approves the batch · the framework writes. In
    Band 1 proper Scope H is disarmed and nothing fires; post-closure runs get

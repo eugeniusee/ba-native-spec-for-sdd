@@ -143,11 +143,11 @@ else
       "(a) the network Spec Kit source was used — no argument invented"
 fi
 
-# 36 /ba-* skills is the layout bar's own number; a bootstrap install is a full
+# 37 /ba-* skills is the layout bar's own number; a bootstrap install is a full
 # install or it is not an install.
 N_BA=$(find "$FRESH/.claude/skills" -maxdepth 1 -mindepth 1 -type d -name 'ba-*' 2>/dev/null | wc -l | tr -d ' ')
-[ "$N_BA" -eq 36 ] && ok "(a) all 36 /ba-* skills installed — a bootstrap install is a full install" \
-                   || bad "(a) $N_BA of 36 /ba-* skills installed after bootstrap"
+[ "$N_BA" -eq 37 ] && ok "(a) all 37 /ba-* skills installed — a bootstrap install is a full install" \
+                   || bad "(a) $N_BA of 37 /ba-* skills installed after bootstrap"
 
 # --help answers without side effects: no download, no git init, nothing written
 HELP_DIR="$TMP/help-dir"

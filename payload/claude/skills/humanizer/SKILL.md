@@ -1,11 +1,11 @@
 ---
 name: humanizer
 description: >-
-  Rewrites free prose to remove AI-writing patterns (upstream: blader/humanizer).
-  EXPLICIT INVOCATION ONLY — apply solely when the BA explicitly asks to humanize a
-  text. Never apply to canonical framework artifacts: spec.md bodies, WBS/exports and
-  pinned renders, ledger heads and pinned blocks, gate/audit/BUILD-LOG records. When
-  in doubt, do not apply.
+  Rewrites prose to remove AI-writing patterns (upstream: blader/humanizer). Runs under
+  the BA's switch `/ba-humanizer on` over every render and every prose artifact —
+  embedded mode, final text only, every claim kept, nothing invented. Never touches
+  machine-read lines: ledgers, gate/audit records, pinned shapes, IDs and markers,
+  tables, code — a guard asserts it. Off by default; `/ba-humanizer off` stops it.
 license: MIT
 metadata:
   version: "2.11.2"
@@ -13,19 +13,45 @@ metadata:
 
 # Humanizer: remove AI writing patterns
 
-> **Scope fence (BA-Native Spec estate law, D-O89) — local addition, not upstream.**
+> **Scope fence (BA-Native Spec estate law, D-O97) — local addition, not upstream.**
 >
-> This skill is invoked **only when the BA explicitly asks for it.** It never self-triggers.
+> **When this runs.** Under the BA's switch. `/ba-humanizer on` turns the mode on and it
+> stands until `/ba-humanizer off` — across sessions. **Default off.** While on, every
+> render a `ba-*` agent sends the BA and **every artifact whose content is prose at the
+> moment it is written** (`spec.md` bodies, `exports/design-guide.md`, the handoff brief,
+> client-facing summaries, any other prose markdown the framework writes) passes through
+> this skill **before display or write**. While off, it runs only when asked.
 >
-> It **never modifies canonical framework artifacts, even on an explicit request** — `spec.md`
-> bodies, the WBS/`exports/` renders and any §10.5 pinned export, ledger heads and pinned
-> blocks, and gate / audit / `BUILD-LOG.md` records. Asked to humanize one of those,
-> **decline and point to the writing standard**
-> (`docs/methodology/ba-native-spec-writing-standard.md`), which owns artifact prose.
-> The fence is a property of the artifact, never of the asker.
+> **Embedded mode.** Return the **final text only** — no preamble, no diff, no summary of
+> what changed. **Keep every claim. Invent nothing.** Voice: neutral and technical unless
+> the source is plainly informal. Upstream's dash rule (§14) applies.
 >
-> **Lawful surface:** free prose the BA supplies or requests — client-facing summaries,
-> e-mails, arbitrary text. **When in doubt, do not apply.**
+> **The fence is the machine-read line, not the file.** Pass these through **byte for
+> byte**, unchanged and in place:
+>
+> - `.specify/aspect-state.md` and `.specify/aspect-plans.md` — **entirely**; gate and
+>   audit records; `BUILD-LOG.md`.
+> - **Every pinned shape, block and line the framework names as pinned** — the scope-frame
+>   block, the band-boundary / resumption / mid-grant stop reports, the
+>   `What I need from you:` title line with its lettered options and `(recommended)`
+>   markers, the WBS title block, the design-guide pinned record, the dashboard's nine
+>   lines, `Next act:` lines.
+> - **Every ID and marker token** — `SD-<n>` · `XO-<n>` · `AS-<n>` · `ADV-<n>` · `AG-<n>` ·
+>   `OB-<nnn>` · `AW-<n>` · `RO-<n>` · `AT-…` · `CC-…` · `W-…` · `D-O<n>` · `US<n>` ·
+>   `FR-<n>` · `OQ-<n>` · §-refs · `[NEEDS CLARIFICATION]` · ⚑.
+> - **Every row of a markdown table**, every code fence and its contents, YAML front
+>   matter, file paths, commands, link targets, numbers, dates, quotes, citations.
+>
+> **Rewrite sentences and paragraphs. Never rewrite structure.** Do not merge or split a
+> paragraph that holds a pinned line, and do not reorder, add or drop a heading.
+>
+> **The writing standard is senior** (`docs/methodology/ba-native-spec-writing-standard.md`):
+> its marker grammar and normative verbs stand, and on any conflict it wins and this skill
+> yields. **When in doubt, byte-untouched.**
+>
+> **A guard asserts this on every file write** — `sk_humanizer_guard.py`. If it fails, the
+> original is written and the render carries one line naming the anchor. The guard is the
+> check, not the licence: write as if there were none.
 
 Rewrite AI-sounding text so it reads like the writer, not a chatbot. Do not change what it says or make up details.
 

@@ -304,6 +304,7 @@ ending in `go?`. It will not hand you a list of commands to type.
 | `/ba-run` | Run the composed plan as a route — the render, then every row on one `go` |
 | `/ba-run specs all` · `specs <epic-list>` | Batch Band-3 entry, then Tier 2 per feature |
 | `/ba-auto on [<profile>]` · `/ba-auto off` | Autonomous mode: grant, then close and ratify |
+| `/ba-humanizer on` · `/ba-humanizer off` | Every reply and every prose artifact passes through the humanizer until you switch it off — slower while on |
 
 Techniques run one-step: `/ba-t01`…`/ba-t18`,
 `/ba-tier1 <kit|ingest|supplement> <epic>`, `/ba-tier2 <NNN>`. `/ba-run <technique>`

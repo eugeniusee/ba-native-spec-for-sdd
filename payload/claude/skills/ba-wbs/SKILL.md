@@ -131,6 +131,12 @@ guess.
 
 The generation summary is BA-facing and follows the communication register.
 
+**The export is never passed through the humanizer separately** (§10.3 rule 10,
+D-O97). It reads `spec.md`, which was humanized when it was written, and this
+render stays a pure render of what it read. Passing it again would rewrite cells
+that are transformations of text already rewritten — and the title block, the
+column row and the `Yes`/`No` derivation are pinned besides.
+
 ## Formats & paths
 
 One build, both renders, one row model:
