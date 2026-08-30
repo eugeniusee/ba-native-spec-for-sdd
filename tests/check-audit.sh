@@ -12,7 +12,7 @@
 # the render must carry through to the workbook. D-S1, D-S4 and D-S5 stay in
 # the document half below.
 #
-#   1.  the document — v0.4, D-S6–D-S8, §6b, §7's required set, §10, §11, §13,
+#   1.  the document — v0.5, D-S6–D-S11, §6b, §7's required set, §10, §11, §13,
 #       §14, the
 #       footer; the entry template's Coverage report field; the mirror's row
 #   2.  the skill — Stage 5b compiled: the argument line, the workspace, the
@@ -104,18 +104,18 @@ nrows()  { awk -F'\t' -v k="$2" '$1=="rows" && $4 ~ "^"k"=" {sub(/^.*=/,"",$4); 
 
 # ── 1. the document ──────────────────────────────────────────────────────────
 
-printf '\n▸ The document — v0.4, D-S6–D-S8 and §6b (source-audit definition)\n'
+printf '\n▸ The document — v0.5, D-S6–D-S11 and §6b (source-audit definition)\n'
 
-has "$DOC" '**Status:** ruled · 25 August 2026 — v0.4' \
-    "the header stands at v0.4"
+has "$DOC" '**Status:** ruled · 30 August 2026 — v0.5' \
+    "the header stands at v0.5"
 has "$DOC" '**v0.3 change record:** one ruling — the coverage report' \
     "the v0.3 change record opens the header"
 has "$DOC" '## 6b. Stage 5b — the coverage report' \
     "§6b is the coverage report's section"
 has "$DOC" '## 13. Amendment record — the coverage report (v0.2 → v0.3)' \
     "§13 is the amendment record"
-has "$DOC" 'decisions D-S1–D-S8 locked' \
-    "the footer locks D-S1–D-S8"
+has "$DOC" 'decisions D-S1–D-S11 locked' \
+    "the footer locks D-S1–D-S11"
 has "$DOC" 'v0.2→v0.3 in §13' \
     "the footer names the v0.2→v0.3 record"
 
@@ -222,7 +222,7 @@ has "$SKILL" 'It is **exclusive with `--full`**.' \
 has "$SKILL" '## Stage 5b — the coverage report' "Stage 5b is a stage"
 has "$SKILL" '**The run is not closed until it renders**' \
     "the skill carries the teeth"
-has "$SKILL" 'exports/audit-report.xlsx   the coverage report — four pinned sheets' \
+has "$SKILL" 'exports/audit-report.xlsx   the coverage report — six pinned sheets' \
     "the workspace block lists the xlsx as REQUIRED"
 has "$SKILL" 'exports/audit-report.csv    the same run'"'"'s Coverage Matrix, canonical' \
     "the workspace block lists the csv as REQUIRED"
@@ -376,26 +376,43 @@ fi
 
 printf '\n▸ The render — the closed run, read back\n'
 
-report --root "$FX" --latest --out-dir "$TMP/latest" > "$TMP/latest.summary" 2>&1
+# Run 2 is the golden case and stays byte-untouched under D-S11: the four
+# pinned sheets, their columns and the csv are asserted against it by run
+# number, never by --latest, so a later closed run cannot move the golden
+# render out from under them (definition §10 unit 7, amended with v0.5).
+report --root "$FX" --run 2 --out-dir "$TMP/latest" > "$TMP/latest.summary" 2>&1
+rc=$?
+[ "$rc" -eq 0 ] \
+  && ok "the golden run renders clean — run 2, the state subject" \
+  || { bad "the run-2 render exited $rc"; sed 's/^/      /' "$TMP/latest.summary"; }
+if grep -q '^Coverage report — run 2 ' "$TMP/latest.summary"; then
+  ok "…and it is run 2 the golden assertions read"
+else
+  bad "the golden render is not run 2"; sed 's/^/      /' "$TMP/latest.summary"
+fi
+
+# --latest is the latest CLOSED run. Run 5 closed in v0.5 grammar, run 4 is a
+# Stage-0 refusal with no workspace, and run 3's directory is not on the
+# ledger: the answer is 5, and a directory scan would get it wrong.
+report --root "$FX" --latest --out-dir "$TMP/newest" > "$TMP/newest.summary" 2>&1
 rc=$?
 [ "$rc" -eq 0 ] \
   && ok "the --latest run exits clean" \
-  || { bad "the --latest run exited $rc"; sed 's/^/      /' "$TMP/latest.summary"; }
-
-# --latest is the latest CLOSED run: run 3's workspace exists and is not on the
-# ledger, so run 2 is the answer. A directory scan would get this wrong.
-if grep -q '^Coverage report — run 2 ' "$TMP/latest.summary"; then
-  ok "--latest renders run 2 — the latest closed run, not the latest directory"
+  || { bad "the --latest run exited $rc"; sed 's/^/      /' "$TMP/newest.summary"; }
+if grep -q '^Coverage report — run 5 ' "$TMP/newest.summary"; then
+  ok "--latest renders run 5 — the latest closed run, not the latest directory"
 else
-  bad "--latest did not render run 2"; sed 's/^/      /' "$TMP/latest.summary"
+  bad "--latest did not render run 5"; sed 's/^/      /' "$TMP/newest.summary"
 fi
-# run 4 is a Stage-0 refusal: a run number, no workspace. It is stepped past,
-# and the step is said out loud — never silently.
-if grep -q '^Stepped past: run 4 ' "$TMP/latest.summary"; then
-  ok "--latest steps past the refused admission and names it"
+# Run 5 is itself the latest entry with a workspace, so --latest steps past
+# nothing on the way to it. Run 4's refusal is stepped past by the *previous
+# closed run* selection instead, and the Before & After `Run` row names it —
+# asserted in the D-S9–D-S11 block below.
+if grep -q '^Stepped past: ' "$TMP/newest.summary"; then
+  bad "--latest claims to have stepped past an entry on the way to run 5"
+  sed 's/^/      /' "$TMP/newest.summary"
 else
-  bad "--latest did not name the entry it stepped past"
-  sed 's/^/      /' "$TMP/latest.summary"
+  ok "--latest steps past nothing — run 5 is the latest entry with a workspace"
 fi
 
 if [ -f "$TMP/latest/audit-report.csv" ]; then
@@ -434,9 +451,11 @@ else
   ok "the xlsx unzips and every part parses as XML"
 
   SHEETS="$(cellof "$TMP/cells.tsv" sheets 0 0)"
-  [ "$SHEETS" = "Coverage Matrix | Per-Source Summary | Findings & Rulings | SA Register" ] \
-    && ok "four sheets, in the pinned order: $SHEETS" \
-    || bad "the sheets are [$SHEETS], expected the four pinned names in order"
+  # The four that render the state keep their names and their order; the two
+  # that render the movement are appended after them (D-S11).
+  [ "$SHEETS" = "Coverage Matrix | Per-Source Summary | Findings & Rulings | SA Register | Before & After | Fix Log" ] \
+    && ok "six sheets, in the pinned order: $SHEETS" \
+    || bad "the sheets are [$SHEETS], expected the six pinned names in order"
 
   # every sheet carries the four-line title block above its bold header row
   for s in 'Coverage Matrix' 'Per-Source Summary' 'Findings & Rulings' 'SA Register'; do
@@ -522,8 +541,9 @@ else
   # Obligations cell and the ledger entry's Register: line
   N_MATRIX=$(( $(nrows "$TMP/cells.tsv" 'Coverage Matrix') - 5 ))
   N_TOTAL="$(cellof "$TMP/cells.tsv" 'Per-Source Summary' 10 4)"
-  N_ENTRY="$(sed -n 's/^Register: \([0-9]*\) obligations.*/\1/p' \
-              "$FX/.specify/source-audit.md" | tail -1)"
+  N_ENTRY="$(awk '/^## Source audit run 2 /{f=1} f && /^Register: /{
+                    sub(/^Register: /,""); sub(/ obligations.*/,""); print; exit}' \
+              "$FX/.specify/source-audit.md")"
   if [ "$N_MATRIX" = "$N_TOTAL" ] && [ "$N_TOTAL" = "$N_ENTRY" ]; then
     ok "three surfaces, one number — matrix $N_MATRIX = TOTAL $N_TOTAL = entry $N_ENTRY"
   else
@@ -557,10 +577,13 @@ else
 
   # the SA Register is the STANDING set, deduplicated against the entry's own
   # repeat of this run's record
+  # Standing records are band-global and survive runs, so run 5's SA-04 joins
+  # every run's sheet — run 2's included. The golden **csv** is the Coverage
+  # Matrix alone and is untouched by it, which is what D-S11 protects.
   N_SA=$(( $(nrows "$TMP/cells.tsv" 'SA Register') - 5 ))
-  [ "$N_SA" = "3" ] \
-    && ok "the SA Register carries the three standing records, SA-03 once" \
-    || bad "the SA Register carries $N_SA rows, expected 3"
+  [ "$N_SA" = "4" ] \
+    && ok "the SA Register carries the four standing records, SA-03 once" \
+    || bad "the SA Register carries $N_SA rows, expected 4"
   R="$(rowof "$TMP/cells.tsv" 'SA Register' 6)"
   case "$R" in
     "SA-01 | OB-006 | FR.md#§3.3 | view meal status per patient | not carried this band | "*"| EK | 2026-08-21 | "*)
@@ -615,7 +638,7 @@ grep -qF '/ba-audit' "$TMP/refuse1.out" \
 
 # a workspace missing a required file — the re-render refuses and names it
 cp -R "$FX" "$TMP/holed"
-rm -f "$TMP/holed/.specify/ba/runs/band-audit/run-2/trace.json"
+rm -f "$TMP/holed/.specify/ba/runs/band-audit/run-5/trace.json"
 report --root "$TMP/holed" --latest --out-dir "$TMP/holed/exports" \
        > "$TMP/refuse2.out" 2>&1
 rc=$?
@@ -741,6 +764,201 @@ report --root "$FX" --latest --out-dir "$TMP/none" --summary-only > /dev/null 2>
 [ -e "$TMP/none" ] \
   && bad "--summary-only created $TMP/none" \
   || ok "--summary-only writes no file at all"
+
+# ── 3c. D-S9–D-S11 — the report shows the movement ───────────────────────────
+#
+# The second subject of this suite (§10 unit 7, amended with v0.5). Run 5 is a
+# closed run in v0.5 grammar: movement in its `re_audit` block, a row resumed
+# from run 2, and run 4's refusal standing between it and the previous closed
+# run. Run 2 is byte-untouched above, so the golden csv still holds.
+
+printf '\n▸ D-S9–D-S11 — the movement: two sheets, two ratios, the html, the tail\n'
+
+python3 "$READER" "$TMP/newest/audit-report.xlsx" > "$TMP/n.tsv" 2>"$TMP/n.err"
+if [ ! -s "$TMP/n.tsv" ]; then
+  bad "run 5's xlsx did not read back"; sed 's/^/      /' "$TMP/n.err"
+else
+
+  # ── the three export files are the required set (D-S11) ──────────────────
+  for f in audit-report.xlsx audit-report.csv audit-stats.html; do
+    [ -s "$TMP/newest/$f" ] \
+      && ok "the required set carries $f" \
+      || bad "$f did not render — the three-file required set is short"
+  done
+
+  # ── sheet 5 · Before & After: the pinned columns and rows ────────────────
+  R="$(rowof "$TMP/n.tsv" 'Before & After' 5)"
+  [ "$R" = "Measure | Previous closed run | At P-A1 | After repairs | Δ since previous | Δ by this ruling | Note" ] \
+    && ok "Before & After: the seven pinned columns, in order" \
+    || bad "Before & After's header row is [$R]"
+  N_BA=$(( $(nrows "$TMP/n.tsv" 'Before & After') - 5 ))
+  [ "$N_BA" = "33" ] \
+    && ok "…and the 33 pinned measure rows, one per measure the ruling lists" \
+    || bad "Before & After carries $N_BA measure rows, expected 33"
+
+  # the previous-closed-run selection: run 4's refusal is stepped past and the
+  # `Run` row NAMES it — the column is never a silent zero
+  R="$(rowof "$TMP/n.tsv" 'Before & After' 6)"
+  case "$R" in
+    "Run | 2 | 5 | 5 | "*"stepped past run 4"*)
+      ok "the Run row: previous 2, this 5, and run 4's refusal named as stepped past" ;;
+    *) bad "the Run row is [$R]" ;;
+  esac
+
+  # ── both deltas, and the two ratios (D-S10) ──────────────────────────────
+  R="$(rowof "$TMP/n.tsv" 'Before & After' 13)"
+  case "$R" in
+    "Coverage % (carried + accepted ÷ obligations) | 67% | 60% | 80% | +13 pts | +20 pts | sample"*)
+      ok "Coverage %: three grounds, both deltas in points, and the sample note" ;;
+    *) bad "the Coverage % row is [$R]" ;;
+  esac
+  R="$(rowof "$TMP/n.tsv" 'Before & After' 21)"
+  case "$R" in
+    "Defect density (defects per 100 acceptance items) |  | 35.7 | 21.4 |  | -14.3 pts"*)
+      ok "Defect density: a figure at P-A1 and after, one decimal, the delta in points" ;;
+    *) bad "the Defect density row is [$R]" ;;
+  esac
+  # the empty side is the ruling's own rule: empty where either side is empty
+  case "$(rowof "$TMP/n.tsv" 'Before & After' 21)" in
+    "Defect density"*" |  | 35.7 |"*)
+      ok "…and the previous column is empty — run 2 carries no band block" ;;
+    *) bad "the density's previous cell is not empty over a run with no band" ;;
+  esac
+
+  # ── sheet 6 · Fix Log: the columns and the cross-run join ────────────────
+  R="$(rowof "$TMP/n.tsv" 'Fix Log' 5)"
+  [ "$R" = "Run | # | From run | OB | CC-S | Proposal → target | Ruling | Target file | Outcome | Why" ] \
+    && ok "Fix Log: the ten pinned columns, in order" \
+    || bad "Fix Log's header row is [$R]"
+  # every run's repairs.json, newest first: run 5's three rows, then run 2's
+  N_FL=$(( $(nrows "$TMP/n.tsv" 'Fix Log') - 5 ))
+  [ "$N_FL" = "6" ] \
+    && ok "…and it sweeps every run — 3 rows from run 5, 3 from run 2" \
+    || bad "the Fix Log carries $N_FL rows, expected 6"
+  # the resumed row is joined to the run that RULED it, and From run says which
+  R="$(rowof "$TMP/n.tsv" 'Fix Log' 8)"
+  case "$R" in
+    "5 | 3 | 2 | "*) ok "the resumed row carries From run 2 — the run that ruled it" ;;
+    *) bad "run 5's resumed row is [$R]" ;;
+  esac
+  # two rows share a `#`: run 5's own #3 and run 2's #3. `From run` tells them
+  # apart, and neither is dropped.
+  SHARED="$(awk -F'\t' '$1=="Fix Log" && $3==2 {print $4}' "$TMP/n.tsv" \
+            | grep -c '^3$')"
+  [ "$SHARED" = "2" ] \
+    && ok "two rows share a # across runs — From run tells them apart" \
+    || bad "the # column carries $SHARED rows numbered 3, expected 2"
+
+  # ── the four-surface reconciliation (D-S2, extended) ─────────────────────
+  N_M=$(( $(nrows "$TMP/n.tsv" 'Coverage Matrix') - 5 ))
+  N_T="$(cellof "$TMP/n.tsv" 'Per-Source Summary' 9 4)"
+  N_BAO="$(cellof "$TMP/n.tsv" 'Before & After' 8 4)"
+  N_E="$(awk '/^## Source audit run 5 /{f=1} f && /^Register: /{
+                sub(/^Register: /,""); sub(/ obligations.*/,""); print; exit}' \
+          "$FX/.specify/source-audit.md")"
+  if [ "$N_M" = "$N_T" ] && [ "$N_T" = "$N_BAO" ] && [ "$N_BAO" = "$N_E" ]; then
+    ok "four surfaces, one number — matrix $N_M = TOTAL $N_T = Before & After $N_BAO = entry $N_E"
+  else
+    bad "the four surfaces disagree — matrix $N_M, TOTAL $N_T, B&A $N_BAO, entry $N_E"
+  fi
+fi
+
+# ── the dashboard: one self-contained file, six pinned sections ─────────────
+H="$TMP/newest/audit-stats.html"
+if [ ! -s "$H" ]; then
+  bad "audit-stats.html did not render"
+else
+  # self-contained: the ruling's own words — inline CSS, inline SVG, no script,
+  # no external asset. A dashboard that fetches is not one file.
+  if grep -qE 'https?://|<script|src=|@import|<link' "$H"; then
+    bad "the html reaches outside itself — it must be one self-contained file"
+  else
+    ok "the html is self-contained — no script, no link, no external asset"
+  fi
+  grep -q '<svg' "$H" \
+    && ok "…and the movement renders as inline SVG" \
+    || bad "the html carries no inline SVG: the movement has no picture"
+  for s in "Headline" "The movement" "What moved" "Findings by family" "The fix log"; do
+    grep -qF "$s" "$H" \
+      && ok "…section present: $s" \
+      || bad "the html is missing its pinned section: $s"
+  done
+  # every figure is the sheet's own figure (D-S2's bar)
+  grep -qF '60% → 80%' "$H" \
+    && ok "…and the headline carries the sheet's own coverage figures" \
+    || bad "the html's coverage headline does not match the Before & After sheet"
+  # a code never renders bare
+  grep -qiE 'forward coverage <span class="q">[(]CC-S-01[)]' "$H" \
+    && ok "…and a CC-S code renders beside its gloss, never bare" \
+    || bad "the html renders a family without its plain-language gloss"
+fi
+
+# ── the five-line closing tail — the renderer's, not the session's ──────────
+T5="$TMP/newest.summary"
+grep -q '^Coverage 60% → 80% by this ruling · 67% → 80% since the previous report (run 2)\.$' "$T5" \
+  && ok "tail line 1 — coverage, by this ruling and since the previous report" \
+  || bad "tail line 1 is [$(grep -m1 '^Coverage ' "$T5")]"
+grep -q '^Defects per 100 acceptance items 35\.7 → 21\.4 · no acceptance count on run 2\.$' "$T5" \
+  && ok "tail line 2 — density, and the previous run carrying no band count says so" \
+  || bad "tail line 2 is [$(grep -m1 '^Defects per ' "$T5")]"
+grep -q '^Fixes: 2 landed · 0 unexecuted — resume next run · 1 declined (SA) · 1 resumed from earlier runs\.$' "$T5" \
+  && ok "tail line 3 — the four fix counts" \
+  || bad "tail line 3 is [$(grep -m1 '^Fixes: ' "$T5")]"
+grep -q '^Findings this run: 3 — .*forward coverage (CC-S-01).*$' "$T5" \
+  && ok "tail line 4 — findings, each family beside its gloss" \
+  || bad "tail line 4 is [$(grep -m1 '^Findings this run' "$T5")]"
+grep -q '^Report: exports/audit-stats\.html — the picture · audit-report\.xlsx · audit-report\.csv\.$' "$T5" \
+  && ok "tail line 5 — the three files, the picture named first" \
+  || bad "tail line 5 is [$(grep -m1 '^Report: ' "$T5")]"
+# the tail asks nothing: §8's budget is untouched
+grep -qE '^(What I need from you|\?)' "$T5" \
+  && bad "the tail asks something — §8's budget is not the renderer's to spend" \
+  || ok "…and the tail asks nothing"
+
+# the first-run case: no previous closed run, and both `since` halves say so
+report --root "$TMP/holed2" --run 1 --out-dir "$TMP/first" > "$TMP/first.out" 2>&1 || true
+cp -R "$FX" "$TMP/firstrun" 2>/dev/null
+python3 - "$TMP/firstrun" <<'PY'
+import pathlib, sys, re
+# a band whose only entry is run 1: the previous-closed-run column has nothing
+led = pathlib.Path(sys.argv[1]) / ".specify" / "source-audit.md"
+t = led.read_text(encoding="utf-8")
+head, _sep, _rest = t.partition("## Source audit run 2 ")
+led.write_text(head + "## Standing SA records\n", encoding="utf-8")
+PY
+mkdir -p "$TMP/firstrun/.specify/ba/runs/band-audit/run-1"
+cp "$FX/.specify/ba/runs/band-audit/run-5/"*.md \
+   "$FX/.specify/ba/runs/band-audit/run-5/trace.json" \
+   "$TMP/firstrun/.specify/ba/runs/band-audit/run-1/" 2>/dev/null
+report --root "$TMP/firstrun" --run 1 --out-dir "$TMP/firstrun/exports" \
+       > "$TMP/firstrun.out" 2>&1
+grep -q 'first closed run — no previous report' "$TMP/firstrun.out" \
+  && ok "the first closed run says so — no previous report, never a zero" \
+  || { bad "the first-run case does not name itself"; sed 's/^/      /' "$TMP/firstrun.out"; }
+
+# ── --band: the count is mechanical, and it is pasted rather than typed ─────
+report --band --root "$PKG_ROOT/tests/fixtures/appointment-booking/project" \
+       > "$TMP/band.out" 2>&1
+rc=$?
+[ "$rc" -eq 0 ] \
+  && ok "--band exits clean over a fixture band" \
+  || { bad "--band exited $rc"; sed 's/^/      /' "$TMP/band.out"; }
+python3 - "$TMP/band.out" <<'PY'
+import json, sys
+d = json.load(open(sys.argv[1]))["band"]
+need = {"specs", "stories", "acceptance_items", "unreadable"}
+assert need <= set(d), sorted(need - set(d))
+assert d["specs"] == 2 and d["stories"] == 5 and d["acceptance_items"] == 14, d
+assert d["unreadable"] == [], d
+PY
+[ $? -eq 0 ] \
+  && ok "…and prints the four pinned keys, counted by the gate's own parser" \
+  || bad "--band's block is not the four pinned keys over the fixture band"
+has "$SKILL" 'sk_audit_report.py --band --root .' \
+    "the skill names the counter, so the figure is pasted and never typed"
+has "$DOC" 'pastes it verbatim' \
+    "…and the document says the session pastes it (D-S10)"
+
 
 # ── roll-up ──────────────────────────────────────────────────────────────────
 

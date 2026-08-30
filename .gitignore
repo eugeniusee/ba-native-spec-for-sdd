@@ -15,3 +15,11 @@ vendor/spec-kit-*.zip
 # session worktrees under .claude/worktrees/. Machine-local, never package
 # content: a worktree there is a checkout of this repo, not a source of it.
 /.claude/
+
+# Nested checkouts of this repo. A clone or worktree under this directory is a
+# checkout, never package content — and two of them are how the EC-20 fence
+# pass and the source-audit v0.5 drop were both stranded (BUILD-LOG 0.1.45).
+# One working copy: author here, commit here. Throwaway checkouts belong under
+# .claude/worktrees/ via `git worktree add`, which is already ignored above.
+/repo/
+/verify/

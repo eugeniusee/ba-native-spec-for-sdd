@@ -12564,3 +12564,166 @@ guard belongs with the regression-floor pass where D-O88's routed check waits.
 `repo/` and `verify/`, live inside the connected folder, and this pass was
 stranded because work was authored in the outer copy while the clones tracked
 `origin`. Collapsing to one working copy is put to the BA in the pass report.
+
+## The Report Shows The Movement — the stranded v0.5 drop rebased and compiled, one working copy, documents before code · source-audit definition v0.5 · package 0.1.46 · 31 August 2026 · GREEN
+
+**Session prompt:** rebase and land the v0.5 source-audit pass (D-S9 · D-S10 ·
+D-S11, §15) onto `b84a961` under the house discipline — document first,
+compile, suite green, BUILD-LOG, VERSION — taking the next free numbers if any
+collide, and **reconciling** against the four D-O98 citation sites the previous
+commit put in the same file rather than overwriting them. Then collapse the
+working copy, and record the working rule that two strandings in one week have
+now earned.
+
+**Precondition — the numbers were free, and that was established rather than
+assumed.** Base `b84a961` = `origin/main`, `VERSION` **0.1.45**, tree clean. In
+the source-audit definition at that base: **D-S1–D-S8 present**, last amendment
+record **§14**, locked line `decisions D-S1–D-S8 locked`. So **D-S9 · D-S10 ·
+D-S11 and §15 are all free** and the drop keeps its own numbers — no
+renumbering, unlike the fence pass one commit earlier. `VERSION` **0.1.45 →
+0.1.46**. Pre-edit baselines: `check-audit` **178/0**, whole suite **16/16**.
+
+**The reconciliation — a three-way merge, not an overwrite.** The drop was
+authored against `f7aeb94`, before the D-O98 citations landed, so applying it
+whole would have silently reverted four of them. Base `f7aeb94`, **ours**
+`b84a961` (the citations), **theirs** the parked drop: `git merge-file` produced
+**one conflict**, at the trailing footer line, which both sides had edited — the
+drop prepending its `*v0.5 · …*` entry, updating the locked range to
+**D-S1–D-S11** and adding `v0.4→v0.5 in §15`; the citation adding **D-O98**
+beside D-O81 in the framework-law-by-reference note. **Resolved by taking the
+v0.5 footer and re-applying the citation into it**, so both stand. Everything
+else merged clean, and all four citation sites are verified present in the
+landed file.
+
+**D-S9 · the delta is recorded.** `trace.json`'s Stage-2 blocks are written once
+and **never rewritten**; the re-audit adds one block of its own, `re_audit` —
+the post-repair counts, the band's size, and **every register row whose status
+moved with the row that moved it**. The band's size is counted by the gate's own
+parser through **`sk_audit_report.py --band`** and **pasted, never typed**: an
+acceptance figure counted by eye is an asserted number, and D-S2 does not allow
+one. `--band` is the renderer's one act that reads specs, and it reads them to
+count, never to judge.
+
+**D-S10 · the two ratios, each beside its components.** Coverage % is unchanged
+— **the client's number**. **Defect density** is the band's: `(partial + gaps +
+ungrounded + contradictions)` per 100 acceptance items, one decimal, **empty at
+zero items**, the sample note on its own row where the parser could not read a
+spec. **No third number blends them** — a score weighing coverage against
+density is a number this framework does not produce.
+
+**D-S11 · the reader sees the movement.** Two further sheets after D-S6's four —
+**`Before & After`** (33 pinned measures × three grounds and two deltas) and
+**`Fix Log`** (every `repairs.json` under every run, newest first) — plus
+**`exports/audit-stats.html`**, a self-contained dashboard with six pinned
+sections and inline SVG, and a **five-line closing tail printed by the renderer
+and echoed verbatim by the skill**. The three export files are now the required
+set. **The four sheets D-S6 pinned stand exactly as pinned and the golden csv
+holds.**
+
+**Each column is read from its own ground, and the Fix Log closes the seam §14
+routed.** `At P-A1` from the Stage-2 blocks, `After repairs` from `re_audit`,
+`Previous closed run` from **the latest ledger entry before this run whose
+workspace holds §7's required set** — a refused admission stepped past and
+**named on the `Run` row's `Note`**, never a silent zero. The Fix Log joins each
+repair by `#` to the decision list of the run that **ruled** it, so a resumed row
+carries its ruling from `from-run` and its outcome from this run; two rows may
+share a `#` and `From run` tells them apart. **The sweep is a render** — it
+resumes nothing and re-rules nothing, and **D-S8's resumption stays one run
+deep**.
+
+**Compiled — documents first, then the payload.** Lane B: the merged definition
+(v0.5, §15, D-S9–D-S11, the reconciled footer). Lane A: `sk_audit_report.py` —
+`--band`, `read_trace`, `read_repair_rows` (the flat `{row: outcome}` reader the
+four sheets use is left byte-untouched and the new sheets read the file again
+rather than widen a shape the suite pins), the two sheet builders, the html, the
+tail, the previous-closed-run selection; `sk_xlsx.py` **untouched** — `write_book()`
+takes six sheets as it took four; the `ba-audit` skill (description, §7's
+three-file set, the append condition, Stage 5b, the six sheets, the `--band`
+paste, the tail echo); and the entry template (`Coverage report:` names three
+files, `Re-audit delta:` derived from `re_audit`).
+
+**The fixture gained a run 5, and run 2 stayed byte-untouched.** Run 5 is a
+closed run in v0.5 grammar: movement in its `re_audit` block, a row **resumed
+from run 2**, and **run 4's refusal standing between** it and the previous closed
+run. Because run 5 is now the latest closed run, the suite's golden assertions
+were **re-pointed from `--latest` to `--run 2` by number**, exactly as §10 unit 7
+requires — so a later closed run can never again move the golden render out from
+under them. One knock-on is recorded rather than smoothed: **standing SA records
+are band-global**, so run 5's `SA-04` joins *every* run's SA Register sheet
+including run 2's, and that count assertion moved 3 → 4. **The golden csv is the
+Coverage Matrix alone and is untouched**, which is what the ruling protects.
+
+**Tests.** `check-audit.sh` **178 → 222**: the second subject — the two sheets
+with their pinned columns and 33 rows, the previous-closed-run selection with
+run 4 stepped past and named, the first-run case, both deltas, the two ratios
+with the density's empty-previous case, `--band` against a fixture band, the
+html's self-containment and six sections, the five-line tail line by line, the
+tail asking nothing, the three-file required set, the Fix Log's cross-run join
+with two rows sharing a `#`, and the **four-surface reconciliation** (matrix =
+TOTAL = Before & After = entry). Every other check unmoved.
+
+**Suite: 16/16 GREEN**, 3 skipped by `--file-only`.
+
+| Check | Result |
+|---|---|
+| `check-m.sh` | 71 / 0 |
+| `check-gate.sh` | 133 / 0 |
+| `check-orchestrator.sh` | 628 / 0 |
+| `check-techniques.sh` | 104 / 0 |
+| `check-techniques2.sh` | 127 / 0 |
+| `check-techniques3.sh` | 166 / 0 |
+| `check-spine.sh` | 286 / 0 |
+| `check-register.sh` | 64 / 0 |
+| `check-wbs.sh` | 99 / 0 |
+| `check-audit.sh` | 222 / 0 |
+| `check-status.sh` | 115 / 0 |
+| `check-humanizer.sh` | 117 / 0 |
+| `check-ledger.py` | grammar-legal — 19 rules, no violations |
+| `check-cards.py` | every card byte-identical to its re-derivation; layering clean |
+| `check-budget.sh` | 83 / 0 |
+| `check-auto.sh` | 286 / 0 |
+
+**The working copy is collapsed.** `repo/` — clean, fully pushed, no stashes, no
+unique work — is deleted; `verify/` is left standing because the ruling named
+only `repo/`, and both are now in `.gitignore` so neither can be swept into a
+commit by a wildcard add. Throwaway checkouts belong under `.claude/worktrees/`
+via `git worktree add`, which was already ignored.
+
+Two things this week's strandings earned, stated so they are not rediscovered —
+the S9 closure-note form, citable by name:
+
+**(i) One working copy, and a pass is committed before another starts in it.**
+Two passes were stranded in one tree this week for one reason: work was authored
+in the outer copy while nested clones silently tracked `origin`, and **neither
+pass was committed before the next began**. The EC-20 fence pass sat uncommitted
+across three upstream packages and lost its reserved numbers; the source-audit
+v0.5 drop sat under it and was nearly discarded as part of someone else's diff.
+Neither failure was a merge problem — both were **an uncommitted tree left open
+across a session boundary**. The rule: **one working copy per repository — the
+connected folder, never a clone inside it** — and **a pass is committed and
+pushed before another pass starts in the same tree**. Where a pass must be
+withheld from commit (the D165 reservation), the next pass **does not start in
+that tree**: it waits, or it takes a `git worktree` under `.claude/worktrees/`.
+The mechanical guard is `.gitignore`'s `/repo/` and `/verify/`; the discipline is
+this note. **Before any destructive git act, capture the tree to a patch outside
+it** — that is what made this landing recoverable rather than a loss, and it is
+what surfaced that the tree held two passes and not one.
+
+**(ii) The edition pin lives at two sites, and the full suite is what catches
+the second.** `check-orchestrator.sh` has always pinned the live orchestrator
+edition, the newest review-record heading and the D-O contiguity range. **Since
+0.1.44 `check-humanizer.sh` pins the live edition and the locked D-O range
+independently.** At 0.1.45 those two were the pass's only RED — two failures, one
+cause — and they were missed because the edits targeted `check-orchestrator.sh`
+and `check-audit.sh`, both of which were run green **individually**. On any
+edition bump, grep the whole `tests/` directory for the pin and move every hit;
+then run the **full** `tests/run-all.sh`, never only the checks you edited. The
+individually-green trap is exactly how it shipped to the suite.
+
+**Named and unbuilt, routed from this pass.** The `Fix Log` renders `OB` from
+the ruling run's decision list, falling back to any `OB-<nnn>` in the row where
+that list carries no `OB` column; a list that names its obligations **only** in
+prose leaves the cell empty, which is the ruling's own *every cell the files do
+not carry renders empty* — but a decision-list grammar that pinned an `OB`
+column would make the join total, and that is a document change, not a renderer
+one. **Routed to the definition, not taken here.**

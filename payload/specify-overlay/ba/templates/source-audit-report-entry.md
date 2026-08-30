@@ -29,14 +29,19 @@
   A count this entry asserts but the workspace does not carry is invalid audit
   output (definition D-S2).
 
-  The coverage-report field (head line 8) names the two files Stage 5b rendered
+  The coverage-report field (head line 8) names the three files Stage 5b rendered
   from this run's post-repair state — the reader's copy of the register
   (definition §6b, D-S6). It is a REQUIRED field and the render precedes this
   append: an entry naming a file that does not exist is the D-S4 defect one
   artifact along. Where the render did not complete, this entry does not append
   at all — the run names the file it could not write and stands INCOMPLETE.
-  `/ba-audit --report` re-renders the pair from the latest closed run and
+  `/ba-audit --report` re-renders all three from the latest closed run and
   appends nothing: one run, one entry.
+
+  The re-audit delta line is DERIVED from `trace.json`'s `re_audit` block —
+  the post-repair counts beside the P-A1 ones and the rows that moved
+  (definition §7, D-S9 · D-S11). A delta this entry asserts but the trace does
+  not carry is invalid audit output, exactly as a count is.
 -->
 
 ## Source audit run <n> — <date>
@@ -46,7 +51,7 @@ Sources read: <k> — <list, by Sources-line name>
 Unaudited ground: <source — state, per entry | none>
 Band read set: specs <NNN…> · briefs <E-nn…> · roadmap · out-of-scope · [wbs]
 Corpus covered: <the named corpus, walked | sample — <what was not walked>>
-Coverage report: exports/audit-report.xlsx · exports/audit-report.csv
+Coverage report: exports/audit-report.xlsx · exports/audit-report.csv · exports/audit-stats.html
 
 Register: <t> obligations (<n_critic> from the critic pass)
 Forward: carried <c> · partial <p> · accepted <a> · gaps <g>
@@ -60,7 +65,8 @@ Repairs executed:
      · spec edits via ba-analyst dispatch, draft-first · upstream via routing -->
 
 Re-audit delta:
-<!-- closed <n> · resolved <n> · newly surfaced <n> (list) · convergence:
+<!-- from trace.json's re_audit block: carried <c0> → <c1> · partial <p0> → <p1>
+     · gaps <g0> → <g1> · ungrounded <u0> → <u1> · <n> rows moved · convergence:
      one cycle | second cycle — filed as finding -->
 
 SA records this run:

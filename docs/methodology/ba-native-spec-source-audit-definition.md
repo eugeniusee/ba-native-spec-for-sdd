@@ -1,9 +1,40 @@
 # BA-Native Spec — the source audit (Scope S)
 
-**Status:** ruled · 25 August 2026 — v0.4 (v0.3 ruled 2026-08-23; v0.2 ruled
-2026-08-21; v0.1 drafted 2026-08-16) · document-first under the one-way rule
-(BUILD-LOG S9, closure note ii): this document is the source; the package units
-in §10 compile from it and never the reverse.
+**Status:** ruled · 30 August 2026 — v0.5 (v0.4 ruled 2026-08-25; v0.3 ruled
+2026-08-23; v0.2 ruled 2026-08-21; v0.1 drafted 2026-08-16) · document-first
+under the one-way rule (BUILD-LOG S9, closure note ii): this document is the
+source; the package units in §10 compile from it and never the reverse.
+
+**v0.5 change record:** three rulings — **the report shows the movement**,
+ruled 30 Aug 2026 (**D-S9** · **D-S10** · **D-S11**, amendment record §15; base
+commit `f7aeb94`, package 0.1.44; origin: the **owner ruling of 30 Aug 2026**,
+`apply all` over a six-item list raised on 29 Aug — *"enrich ba-audit with a
+beautiful stats report — findings, fixes with a log, before/after, a ratio of
+defect vs total content (acceptance criteria)"*): the coverage report showed a
+closed run's **end state and nothing else** — a reader could not see what the
+ruling fixed, what moved since the last report, or how defective the band is
+per unit of its own content — and every one of those figures already stood on
+disk with no render over it: **the delta is recorded** (§6 · §7) — `trace.json`'s
+Stage-2 blocks are written once and **never rewritten**, the re-audit adds one
+block of its own, `re_audit` (the post-repair counts, the band's size, every
+register row that moved with the list row that moved it), and the band's size
+— specs · stories · acceptance items — is counted by the gate's own parser
+through `sk_audit_report.py --band` and **pasted, never typed** (**D-S9**) ·
+**the two ratios** (§6b) — coverage % exactly as D-S6 fixed it, and **defect
+density = (partial + gaps + ungrounded + contradictions) per 100 acceptance
+items**, one decimal, empty at zero items, each rendered beside its components
+and **never blended into a score** (**D-S10**) · **the reader sees the
+movement** (§6b · §7) — two further pinned sheets after D-S6's four, `Before &
+After` (previous closed run · at P-A1 · after repairs, both deltas) and `Fix
+Log` (every `repairs.json` row across every run, newest first, a resumed row
+joined to the run that **ruled** it — the seam §14 routed, closed here), the
+dashboard render **`exports/audit-stats.html`** joining the required set
+beside the workbook and the csv, `--report` re-rendering all three, and a
+five-line plain-language **closing tail** printed by the renderer at run
+close, asking nothing (**D-S11**). The four sheets D-S6 pinned stand exactly as
+pinned and the golden csv holds; **nothing about what the audit checks moves**,
+no CC-S family is touched, `assertions-s.md` stands byte-unchanged, D-S8's
+resumption stays one run deep, and §8's budget is arithmetically untouched.
 
 **v0.4 change record:** two rulings — **the repair route becomes executable**,
 ruled 25 Aug 2026 (**D-S7** · **D-S8**, amendment record §14; base commit
@@ -469,10 +500,23 @@ already given by the ruling itself — no second confirmation):
   the brief (new slicing row) instead — a Band-2 act, named as such.
 - **Re-audit.** After repairs, re-run **incrementally**: rows touched by the
   diff, everything not clean last run, plus CC-S-03/CC-S-08 whole-band always.
-  Render the delta — obligations closed, claims resolved, anything new — then
-  **Stage 5b renders the coverage report** over the post-repair state (§6b),
-  **and the entry appends last**. Convergence is expected in one cycle; a second
-  cycle that still finds new rows is itself a finding.
+  Render the delta — obligations closed, claims resolved, anything new — **and
+  record it (D-S9)**: the re-audit writes `trace.json`'s `re_audit` block (§7)
+  — the post-repair forward and backward counts, the band's size counted again
+  through `sk_audit_report.py --band`, and **every register row whose status
+  moved**, with the `repairs.json` row whose repair moved it — and **rewrites
+  nothing above it**: the Stage-2 blocks are the P-A1 state and stay as
+  written, exactly as `decision-list.md`'s *as rendered* head does. **A run
+  whose route had no executable row re-audits too** — the block writes with
+  counts equal to Stage 2's and an empty `rows` list, because *nothing moved*
+  is a result, and a block a renderer has to guess about is not. The entry's
+  `Re-audit delta:` line is **derived from the block**, never narrated: *closed*
+  counts the rows moving from `partial` or `gap` to `carried` or `accepted`,
+  *resolved* is the fall in `ungrounded + contradictions`, *newly surfaced*
+  counts the rows the block records with no *before*. Then **Stage 5b renders
+  the coverage report** over the post-repair state (§6b), **and the entry
+  appends last**. Convergence is expected in one cycle; a second cycle that
+  still finds new rows is itself a finding.
 - **The entry refuses an incomplete workspace (D-S4).** Before appending,
   the run checks the workspace against §7's required set — **the coverage
   report's two files included, and checked after Stage 5b has written them**
@@ -593,23 +637,30 @@ markdown grammar built for a walker and not for a reader. **Stage 5b is the
 reader's copy, and it is permanent** (**D-S6**).
 
 **The run is not closed until it renders.** After the re-audit delta (§6) and
-**before the entry appends**, the run writes two files:
+**before the entry appends**, the run writes three files:
 
 ```
-exports/audit-report.xlsx   the primary render — four pinned sheets
+exports/audit-report.xlsx   the primary render — four pinned sheets (D-S6)
+                            and two further sheets after them (D-S11)
 exports/audit-report.csv    the canonical render — the Coverage Matrix alone
+exports/audit-stats.html    the dashboard render — one self-contained file,
+                            the movement (D-S11)
 ```
 
-Both join §7's required set at the force **D-S4** already sets: **where the
+All three join §7's required set at the force **D-S4** already sets: **where the
 render does not complete the entry does not append** — the run names the file
 it could not write and stands `INCOMPLETE`. The ordering is the whole point. An
 entry that appends first and renders second is an entry naming a file that may
 not exist, and that is the D-S4 defect one artifact along.
 
-**What it renders is the closed run's post-repair state**, never the P-A1
-state: the register as Stage 5's re-audit left it, the decision list as ruled,
-the repairs as executed. A report over the pre-repair register would show the
-BA the band their own ruling has already fixed.
+**What the four sheets render is the closed run's post-repair state**, and
+never the P-A1 state: the register as Stage 5's re-audit left it, the decision
+list as ruled, the repairs as executed. A report over the pre-repair register
+would show the BA the band their own ruling has already fixed. **D-S11 renders
+the P-A1 state once, as the `At P-A1` column of the `Before & After` sheet —
+beside the post-repair state and never instead of it**, which is the difference
+between a before that shows what a ruling fixed and a report that shows the band
+unfixed.
 
 ### The four sheets
 
@@ -673,6 +724,232 @@ applied to the render.
 **Standing records, not this run's alone.** An SA is project-level, and a
 reader asking *what did we decline?* is asking the register, not the run.
 
+### The two further sheets (D-S11)
+
+The four sheets above render a closed run's **state**. Two more render its
+**movement**, appended after them — the four keep their names, their order and
+their columns, and the csv still carries the Coverage Matrix alone.
+
+**5 · `Before & After`** — three columns of counts and two of deltas, one row
+per pinned measure:
+
+```
+| Measure | Previous closed run | At P-A1 | After repairs | Δ since previous | Δ by this ruling | Note |
+```
+
+The rows, pinned in this order, the `Measure` cell carrying the text shown:
+
+```
+Run
+Sources read
+Obligations
+— carried
+— partial
+— accepted
+— gaps
+Coverage % (carried + accepted ÷ obligations)
+Claims checked
+— ungrounded
+— contradictions
+Specs in band
+Stories
+Acceptance items
+Defects (partial + gaps + ungrounded + contradictions)
+Defect density (defects per 100 acceptance items)
+Findings raised
+— CC-S-01 forward coverage
+— CC-S-02 backward grounding
+— CC-S-03 list union
+— CC-S-04 client acceptance tables
+— CC-S-05 unconditional NFRs
+— CC-S-06 deferral legitimacy
+— CC-S-07 persona coverage
+— CC-S-08 cross-band consistency against sources
+Ruled apply
+Ruled SA
+Ruled amend
+Repairs landed
+Repairs → SA
+Repairs unexecuted
+Repairs superseded
+Resumed from earlier runs
+```
+
+**The three count columns have three grounds, and the render reads each from
+its own.** `At P-A1` is `decision-list.md`'s *as rendered* head and
+`trace.json`'s Stage-2 blocks — **two surfaces, one number** on the before
+side, and a disagreement is invalid audit output on D-S2's bar. `After
+repairs` is the post-repair register, `trace.json`'s `re_audit` block and
+`repairs.json` — the same ground the four sheets render, so the obligation
+count here is the Coverage Matrix's row count, the `TOTAL` row and the entry's
+`Register:` line **one figure counted four ways**. `Previous closed run` is
+**the latest ledger entry before this run whose workspace holds §7's required
+set** — the selection `--report` already makes, applied from this run's number
+downward: a refused admission is stepped past and **named on the `Run` row's
+`Note`**, and where no earlier run qualifies the column is empty and the `Run`
+row reads `none — first closed run`. That run's cells are read from **its own**
+workspace and ledger entry — its `re_audit` block where it wrote one, else its
+entry's three count lines — and a run from before this ruling, which carries
+no `band` block and no `re_audit`, renders its band rows **empty**: an older
+run is still a closed run, and an empty cell is what its evidence supports.
+
+**The deltas.** `Δ since previous` is `After repairs` less `Previous closed
+run`; `Δ by this ruling` is `After repairs` less `At P-A1`. Both render for the
+count and ratio rows (`Sources read` through `Defect density`) as signed
+figures — `+3` · `-2` · `0`, percentage points on the `Coverage %` row — and
+**empty where either side is empty**. The finding, ruling and repair rows carry
+`Δ since previous` and leave `Δ by this ruling` empty: a ruling has no *before*
+of its own. The `At P-A1` column carries the finding and ruling rows and leaves
+the repair rows empty, because a repair is a post-ruling fact. `Resumed from
+earlier runs` counts this run's `repairs.json` rows carrying `from-run`.
+
+**`Note` carries what the numbers cannot.** The `Run` row's stepped-past
+refusals or its `none — first closed run`; the `Coverage %` row's
+`sample — <what was not walked>` verbatim from the corpus line wherever the run
+sampled (D-S3's double render, extended to the headline); and the `Acceptance
+items` and `Defect density` rows' `sample — <k> spec(s) unreadable: <paths>`
+wherever `trace.json`'s `band.unreadable` is non-empty. A density over a band
+the parser could not fully read is a density over a sample, and it says so on
+its own row.
+
+**6 · `Fix Log`** — one row per row of **every** `repairs.json` under
+`.specify/ba/runs/band-audit/run-*/`, newest run first, list order within a
+run:
+
+```
+| Run | # | From run | OB | CC-S | Proposal → target | Ruling | Target file | Outcome | Why |
+```
+
+`Run`, `#`, `From run`, `Target file`, `Outcome` and `Why` are the
+`repairs.json` row's own fields. **`OB`, `CC-S`, `Proposal → target` and
+`Ruling` are joined by `#` to the decision list of the run that ruled the row**
+— the `from-run` run where the key is present, the row's own run where it is
+not. **That join is the seam §14 routed** — *a row resumed from an earlier run
+has its ruling in that run's list and its outcome in this one* — and this is
+its answer: `Findings & Rulings` stays **this run's list alone**, exactly as
+D-S6 pinned it, and the Fix Log carries the cross-run join with `From run`
+filled on every resumed row. Two rows may share a `#` — one resumed, one this
+run's own — and `From run` is what tells them apart. A run that wrote no
+`repairs.json` contributes no rows; a refused admission has no workspace and
+contributes none. Every cell the files do not carry renders **empty**.
+
+**The sweep is a render, not a resumption.** §14 named — and did not open —
+*a repair-history sweep across all prior runs*. This sheet **reads** every
+run's `repairs.json`; it resumes nothing, re-rules nothing and writes nothing.
+**D-S8's resumption stays one run deep** exactly as ruled: the rule that brings
+a row back reads the most recent run that wrote a `repairs.json`, and a sheet
+that shows the whole trail changes nothing about which row comes back or when.
+
+### The two ratios (D-S10)
+
+**Coverage %** is fixed above under the Per-Source Summary, and this ruling
+does not touch its formula, its rounding or its empty cell. It is **the
+client's number** — *of what the client asked for, how much does the band carry
+or consciously decline?* — and its denominator is the client's material.
+
+**Defect density is the band's number.** It answers *how defective is the band
+per unit of its own content?*, and its denominator is the band:
+
+```
+defects          = partial + gaps + ungrounded + contradictions
+acceptance items = every checklist line and every Gherkin scenario standing
+                   beneath a story, across every specs/NNN-*/spec.md in the
+                   band — the writing standard's §5 unit, counted by the
+                   gate's own parser (sk_structure — CC-AC-01's own count)
+defect density   = defects ÷ acceptance items × 100, one decimal place
+```
+
+**The four states are the numerator because they are exactly the states a
+finding is raised against.** An obligation standing `partial` or `gap` is the
+uncovered remainder D-S6 already refuses half credit for; a claim standing
+`ungrounded` or `contradicts` is CC-S-02's and CC-S-08's whole subject; and a
+deferral whose basis a source contradicts — CC-S-06's case — **stands `gap`
+under §3, never `accepted`**, because `accepted` requires *a basis no source
+contradicts*. No finding lives outside the four, so the count needs no
+family-by-family exception list. `accepted` is not a defect: it is the
+conscious declining §1 names, on the record.
+
+**Acceptance items are the denominator because they are the unit the client
+reads and the engineer implements.** Obligations as a denominator would only
+restate coverage from the other end (100 − coverage %) and say nothing about
+the band's size; claims checked is the audit's own sample of the band, not the
+band. The count is **mechanical**: `sk_audit_report.py --band --root .` prints
+the block, the session **pastes it verbatim** into `trace.json` — at Stage 2
+and again at Stage 5 (§7) — and a band block typed by hand is a D-S2 violation,
+because an acceptance figure counted by eye is an asserted number. The render
+**reads the recorded block and re-counts nothing**: the estate moves after a
+run closes, the record does not, and a `--report` taken weeks later must
+render the run, not the estate.
+
+**Both ratios render beside their components, and no third number blends
+them.** A score that weighed coverage against density would be a number this
+framework does not produce — the reason D-S6 gave for refusing half credit,
+applied to the pair. Zero acceptance items renders an **empty** density cell,
+as zero obligations renders an empty coverage cell; a non-empty
+`band.unreadable` renders the density over the readable rest **with its sample
+note on the row**.
+
+### The dashboard render — `exports/audit-stats.html` (D-S11)
+
+The workbook is the record and the csv is the diff; **neither is a picture.**
+Stage 5b writes a third file, `exports/audit-stats.html` — **one self-contained
+file**: inline CSS, inline SVG, no script, no external asset, opening offline
+in any browser and dropping into a channel as a file. **Every figure on it is
+the `Before & After` sheet's own figure, from the one derivation** — the html
+adds no number the sheet does not carry, and a figure that differs between the
+two is invalid audit output on D-S2's bar.
+
+Pinned — the sections, in this order; the styling is the renderer's:
+
+1. **The title block** — the same four lines as every sheet.
+2. **The headline** — coverage % and defect density, each `at P-A1 → after
+   repairs` for this ruling and `previous closed run → after repairs` since
+   the last report; the fix counts — landed · unexecuted · declined (SA) ·
+   resumed.
+3. **The movement** — the four obligation statuses and the two claim
+   statuses, three bars per measure (previous closed run · at P-A1 · after
+   repairs), in inline SVG, the counts written on the bars.
+4. **What moved** — `re_audit.rows` as a table: OB · the register's verbatim
+   quote · before → after · the row that moved it (`from run <n>` where
+   resumed).
+5. **Findings by family** — the eight CC-S rows, code beside its plain-language
+   gloss, this run against the previous closed run.
+6. **The fix log** — the `Fix Log` sheet's rows under two headings: *Fixes
+   since the previous report (run <n>)*, then *Earlier runs*.
+
+**Plain language leads, codes beside a gloss.** A heading reads *Coverage —
+obligations carried or consciously declined*, not `CC-S-01`; a code renders
+beside its words, never bare. **The html is the workbook's class** — BA-facing
+operational state, never client-facing, §10.5's stakeholder register expressly
+not carried — and quotes stay verbatim on it as they do in the matrix.
+
+### The closing tail (D-S11)
+
+**After the entry appends, and again under `--report`, the run renders five
+lines into the conversation — before the closing ask, asking nothing:**
+
+```
+Coverage <c0>% → <c1>% by this ruling · <cp>% → <c1>% since the previous report (run <n>).
+Defects per 100 acceptance items <d0> → <d1> · <dp> → <d1> since run <n>.
+Fixes: <k> landed · <u> unexecuted — resume next run · <s> declined (SA) · <r> resumed from earlier runs.
+Findings this run: <f> — <n> forward coverage (CC-S-01) · <n> <gloss> (CC-S-nn) · …
+Report: exports/audit-stats.html — the picture · audit-report.xlsx · audit-report.csv.
+```
+
+**The tail is the renderer's, not the session's** — `sk_audit_report.py`
+prints it at the end of every render and the skill echoes it verbatim, so the
+five lines are the sheet's figures once more and never a summary composed from
+memory (the field defect of 2026-08-20, one render along). Line 4 names only
+the families with a non-zero count, each code beside its gloss. Where there is
+no previous closed run, the *since* halves of lines 1 and 2 read `first closed
+run — no previous report`; where the previous closed run carries no band block,
+line 2's *since* half reads `no acceptance count on run <n>`; and where the
+sheet leaves any other cell empty, the tail leaves its figure empty too. **Where the run stands `INCOMPLETE`, the entry's
+`Status:` line renders verbatim as a line above the five**, so the reader who
+reads only the chat reads the status. The tail **asks nothing** — §8's budget
+is untouched — and the closing ask that follows it is orchestrator §10.3
+rule 9's, unchanged.
+
 ### The render conventions, and the register that is not carried
 
 The render conventions are **`/ba-wbs`'s**, over the same `sk_xlsx.py` helpers:
@@ -734,11 +1011,19 @@ Per-Source Summary's `TOTAL` row and the entry's `Register:` line are one figure
 counted three ways. **A disagreement is invalid audit output** on the bar D-S2
 already sets, corrected before the render stands — never rendered and explained.
 
+**A fourth surface, and the before side (D-S11).** The `Before & After` sheet's
+`After repairs` obligation count is that same figure counted a fourth way; its
+`At P-A1` count is `decision-list.md`'s *as rendered* head and `trace.json`'s
+Stage-2 `forward` block, **one figure counted two ways**; and every figure on
+`audit-stats.html` is the sheet's. Each disagreement is the same defect, on the
+same bar.
+
 ### `--report` — the re-render
 
-`/ba-audit --report` **re-renders the two export files from the latest closed
+`/ba-audit --report` **re-renders the three export files from the latest closed
 run and runs no audit.** It reads that run's workspace and the ledger, writes
-the two files, and does nothing else: **no walk, no dispatch, no ruling, no
+the three files, prints the closing tail (§6b, D-S11), and — that done — it
+does nothing else: **no walk, no dispatch, no ruling, no
 repair, no append, no checkpoint**. The ledger already carries the run, and a
 second entry for a re-render would be a claim that a second run happened. It is
 **exclusive with `--full`**, and it is the whole act.
@@ -778,6 +1063,8 @@ exports/audit-report.xlsx  the coverage report — four pinned sheets (§6b)
                        — REQUIRED, rendered before the entry appends
 exports/audit-report.csv   the same run's Coverage Matrix, canonical
                        — REQUIRED, rendered with it
+exports/audit-stats.html   the same run's dashboard render — the movement
+                       (§6b, D-S11) — REQUIRED, rendered with them
 .specify/source-audit.md   append-only report ledger + standing SA records
 .specify/ba/cards/assertions-s.md          the Scope-S card (compiled)
 .specify/ba/templates/source-audit-report-entry.md   the pinned entry shape
@@ -786,9 +1073,44 @@ exports/audit-report.csv   the same run's Coverage Matrix, canonical
 Run numbers are monotonic and band-global. The report ledger is operational
 state under quickstart rule 3: never quoted into a spec.
 
+**`trace.json`'s pinned grammar (D-S9).** Three blocks written at Stage 2 and
+**never rewritten**, one block written at Stage 5 by the re-audit and by
+nothing else:
+
+```
+{
+  "run": <n>,
+  "forward":  {"rows": <t>, "carried": <c>, "partial": <p>, "accepted": <a>, "gaps": <g>},
+  "backward": {"rows": <m>, "ungrounded": <u>, "contradictions": <x>},
+  "band":     {"specs": <s>, "stories": <st>, "acceptance_items": <ac>, "unreadable": [<spec paths>]},
+  "a_pass":   {…as §4 pins it…},
+  "re_audit": {
+    "forward":  {…the same five keys, post-repair…},
+    "backward": {…the same three keys, post-repair…},
+    "band":     {…the same four keys, post-repair…},
+    "rows":     [{"OB": "OB-<nnn>", "before": <status | none>, "after": <status | none>,
+                  "via": <repairs.json row #>, "from-run": <n>}, …]
+  }
+}
+```
+
+`forward` and `backward` are the P-A1 state and equal the head
+`decision-list.md` renders from the register. `band` is the block
+`sk_audit_report.py --band` printed, pasted verbatim (§6b, D-S10);
+`unreadable` names every `specs/NNN-*/spec.md` the parser could not read, and
+the counts cover the rest. `re_audit.rows` carries **every register row whose
+status differs** between the P-A1 register and the post-repair one, every row
+the re-audit **added** (`before: none`) and every row it **dropped** (`after:
+none`); `via` is the `repairs.json` row whose repair moved it, `from-run`
+beside it where that row carries one, and both absent where no repair row
+moved it. **Claims move as counts only** — the trace keys no claim, and this
+ruling mints no key. A run that reaches Stage 5 writes `re_audit` **even when
+nothing moved** (§6). A `trace.json` from before this ruling carries no `band`
+and no `re_audit`; the render reads what stands and leaves the rest empty.
+
 **The required set is the append condition (D-S4 · D-S6).** The four workspace
-files and the **two export files** are the run's own evidence, and §6's
-re-audit step checks them before the entry appends. `repairs.json` is
+files and the **three export files** (D-S11) are the run's own evidence, and
+§6's re-audit step checks them before the entry appends. `repairs.json` is
 conditional because an empty route file records nothing and *absent* and
 *stubbed* are the same hole; the other three are unconditional because each of
 them records a **result**, and a run with no findings has results too. **The
@@ -797,10 +1119,12 @@ one, the next run reads it before running its own rows, and a row standing
 `unexecuted` resumes on the ruling `decision-list.md` already holds. That is
 why the resumption needs no instrument — **it reads two files this section
 already requires**, and a run that skipped writing them would have had no
-entry. **The two
+entry. **The three
 exports are unconditional for the same reason**: a clean run's coverage report
 is the run's strongest result, and the register it renders is exactly what a
-clean verdict is a claim about. The exports live under `exports/` and not in the
+clean verdict is a claim about; the entry's `Coverage report:` field names all
+three, and an entry from before D-S11 names two — the reader tolerates the
+older line, and `--report` over that run renders three regardless. The exports live under `exports/` and not in the
 run workspace because they are the reader's copy, not the walk's evidence —
 **derived, regenerable by `--report`, and overwritten per run**; the workspace
 is what they are derived *from*, which is why a missing workspace file refuses
@@ -813,8 +1137,9 @@ sentences is a status the next run can forget to write.
 
 The audit adds **one** BA interaction — the P-A1 ruling — and fits the
 standing budget's spare (quickstart: eight, one spare by design). The repair
-route and the re-audit ask nothing. A run that needs a second interaction
-outside `amend` rows is a register-rule defect, not a busy project.
+route and the re-audit ask nothing; the closing tail (§6b, D-S11) renders
+and asks nothing. A run that needs a second interaction outside `amend` rows
+is a register-rule defect, not a busy project.
 
 ## 9. Calibration — the golden case
 
@@ -840,7 +1165,9 @@ red:
 2. `payload/specify-overlay/ba/cards/assertions-s.md` — the CC-S card,
    `check-cards.py` shape.
 3. `payload/specify-overlay/ba/templates/source-audit-report-entry.md` — the
-   pinned entry.
+   pinned entry. **Amended with v0.5:** the `Coverage report:` field names
+   three files, and the `Re-audit delta:` line is derived from `trace.json`'s
+   `re_audit` block (D-S9 · D-S11).
 4. `tests/fixtures/nutrivity-audit/expected-findings.md` — the golden case.
 5. `tests/layout.expected` — rows for 1–3; `RT|absent` for
    `.specify/source-audit.md` and the run workspace.
@@ -863,19 +1190,37 @@ red:
    capture-time renderings belong at `/ba-frame` (orchestrator §8.1 capture
    mechanics) so every consumer — Tier-2 source mining included — reads the
    same ground; until that lands, Stage 0's capture completion covers audit
-   runs only.
+   runs only. **Amended with v0.5 — its second subject is D-S9–D-S11:** the two
+   further sheets with their pinned rows and columns, the previous-closed-run
+   selection with a refusal stepped past and the first-run case, both deltas,
+   the two ratios with the density's three cases (a figure · the empty cell at
+   zero items · the sample note at an unreadable spec), `--band` against a
+   fixture band, the html's six pinned sections, the five-line tail, the
+   three-file required set, the Fix Log's cross-run join with two rows sharing
+   a `#`, and the four-surface reconciliation. **The closed-run fixture gains a
+   run 5** — a closed run in v0.5 grammar with movement, a resumed row from run
+   2, and run 4's refusal standing between them — and **run 2 stays
+   byte-untouched**, so the golden csv holds as the render of `--run 2`.
 8. `payload/specify-overlay/ba/scripts/sk_audit_report.py` — the Stage-5b
    renderer (**D-S6**): reads the closed run's post-repair workspace and the
    ledger, writes `exports/audit-report.xlsx` and `exports/audit-report.csv`.
    Python 3, standard library only (build plan D-P2-7). It derives and never
-   asserts; it authors nothing, edits no estate file, and writes exactly two
-   files.
+   asserts; it authors nothing and edits no estate file. **Amended with v0.5
+   (D-S9–D-S11):** it writes exactly **three** files — `exports/audit-stats.html`
+   the third — over the same derivation, reads every run's `repairs.json` and
+   the previous closed run's workspace and entry for the two further sheets,
+   prints the five-line closing tail at the end of every render, and under
+   `--band --root <estate>` counts the band through `sk_structure` and prints
+   the `band` block for the session to paste — its one act that reads specs,
+   and it reads them to count, never to judge.
 9. `payload/specify-overlay/ba/scripts/sk_xlsx.py` — **the multi-sheet
    extension** (**D-S6**). `write()` keeps its single-sheet contract and its
    bytes: `/ba-wbs`'s workbook is unchanged by this amendment, and the suite
    asserts it. `write_book()` is the four-sheet writer, the same two cell
    formats, the same inline strings, the same fixed timestamps, one title block
-   per sheet.
+   per sheet. **Untouched by v0.5:** `write_book()` takes six sheets as it took
+   four, and the writer stays text-only — no number cell, no colour, no chart;
+   the picture is the html's job (D-S11).
 10. `tests/layout.expected` — the row for unit 8. The two export files take no
    row: `exports/` holds no installer-laid file and the layout bar asserts the
    installed tree, not a run's output.
@@ -917,9 +1262,19 @@ never renders a coverage percentage over a sampled corpus without naming the
 sample on the title block and on the source's own row (D-S3 · D-S6) · never
 treats the coverage report as client-facing content — it is operational state,
 and §10.5's stakeholder register is not its rule (D-S6) · never appends,
-repairs or rules under `--report` (D-S6) · never reads a source the inventory
-did not capture · never re-proposes a standing SA absent new source ground ·
-never runs auto past P-A1.
+repairs or rules under `--report` (D-S6) · never rewrites `trace.json`'s
+Stage-2 blocks at re-audit, and never writes `re_audit` from anywhere but the
+re-audit (D-S9) · never types a band count — the block is the script's, pasted
+(D-S9 · D-S10) · never blends coverage % and defect density into one score, and
+never renders either without its components beside it (D-S10) · never renders
+a before/after figure it did not read from the run's own recorded state, and
+never re-counts the estate under `--report` (D-S10 · D-S11) · never resumes,
+re-rules or writes from the Fix Log's sweep — D-S8 stays one run deep (D-S11) ·
+never composes the closing tail from memory — the renderer prints it, the
+session echoes it (D-S11) · never appends over a missing `audit-stats.html`
+(D-S4 · D-S11) · never reads a source the inventory did not capture · never
+re-proposes a standing SA absent new source ground · never runs auto past
+P-A1.
 
 ## 12. Amendment record — EC-17, audit integrity (v0.1 → v0.2)
 
@@ -1079,6 +1434,82 @@ without a scan of the whole band. Whether a **repair-history sweep** across all
 prior runs should ever exist — after a long gap, or a band re-opened — is a
 different act on different ground, and this ruling does not open it.
 
+## 15. Amendment record — the report shows the movement (v0.4 → v0.5)
+
+Origin: the **owner ruling of 30 August 2026** — `apply all` over a six-item
+list raised on 29 Aug (*"enrich ba-audit with a beautiful stats report —
+findings, fixes with a log, before/after, a ratio of defect vs total content
+(acceptance criteria)"*). Ruled and applied the same day (base commit
+`f7aeb94`, package 0.1.44). Three rulings; one is a **record**, one a
+**definition**, one a **render**. Nothing about what the audit checks moves,
+nothing about what it may rule moves, and nothing about which row resumes
+moves.
+
+| ID | Decision | Ruling |
+|---|---|---|
+| **D-S9** | The register was regenerated in place and the re-audit's delta was narrated, so the P-A1 state survived only as five numbers and no row's movement was on disk | **The delta is recorded.** `trace.json`'s Stage-2 blocks (`forward` · `backward` · `band`) are written once and **never rewritten**; the re-audit writes one block of its own, `re_audit` — the post-repair counts, the band's size counted again, and **every register row whose status moved** with the `repairs.json` row that moved it (`via`, `from-run` beside it where resumed), rows added as `before: none`, rows dropped as `after: none`, claims as counts only. **A run that reaches Stage 5 writes the block even when nothing moved.** The band's size — specs · stories · acceptance items · unreadable specs — is `sk_audit_report.py --band`'s block, **pasted verbatim, never typed**, at Stage 2 and at Stage 5. The entry's `Re-audit delta:` line derives from the block. No new file; the grammar is pinned in §7 |
+| **D-S10** | Coverage % was the report's only ratio, and it measures the client's material, not the band | **Two ratios, each beside its components, never blended.** Coverage % stands exactly as D-S6 fixed it. **Defect density = (partial + gaps + ungrounded + contradictions) ÷ acceptance items × 100**, one decimal — the four states because they are exactly the states a finding is raised against (a contradicted deferral stands `gap` under §3), acceptance items because they are the unit the client reads and the engineer implements, counted by the gate's own parser and read from the recorded block, never re-counted from the estate. An empty cell at zero items; a sample note on the row where `band.unreadable` is non-empty. **No score weighs the two** |
+| **D-S11** | A closed run's report showed its end state — not what the ruling fixed, not what moved since the last report, and no picture | **The reader sees the movement.** Two further pinned sheets appended after D-S6's four, which stand untouched — `Before & After` (`Previous closed run` · `At P-A1` · `After repairs` · both deltas · `Note`, over the pinned measure rows) and `Fix Log` (every `repairs.json` row across every run, newest first, joined by `#` to the decision list of the run that **ruled** it — the seam §14 routed, closed here; `Findings & Rulings` stays this run's alone). The previous closed run is `--report`'s own selection applied downward, refusals stepped past and named, the first closed run rendering `none`. **`exports/audit-stats.html`** — one self-contained file, six pinned sections, inline SVG, plain language leading and codes beside a gloss — **joins the required set** beside the workbook and the csv at D-S4's force; `--report` re-renders all three. **A five-line closing tail**, printed by the renderer and echoed verbatim, after the append and under `--report`, asking nothing. **Four surfaces, one number** on the after side, two on the before side, the html's figures the sheet's |
+
+**Why the record came first.** Every figure the ruling asked for stood on disk
+before it — the P-A1 head, the post-repair register, the ledger's count lines,
+`repairs.json` — except two: **which row moved**, lost when the register was
+regenerated in place, and **how big the band is**, counted by nobody. D-S9 adds
+those two and nothing else, and it adds them to a file §7 already requires. A
+render over a recorded delta derives; a render over a narrated one guesses, and
+the whole of D-S2 is that the audit does not guess.
+
+**Why three columns and not two.** *Before* is two different questions. The
+P-A1 state against the post-repair state is *what did this ruling fix?*; the
+previous closed run against this one is *what has moved since we last looked?*
+— and the band drifts between runs (specs drafted, sources captured), so the
+previous run's *after* is not this run's *before*. A two-column render would
+have to pick one question and silently answer the other with the wrong number.
+Three columns, two deltas, each named for the question it answers.
+
+**Why a density and not a score.** The framework refused half credit for
+`partial` (D-S6) because a weighting is a manufactured number on the most
+authoritative-looking surface it produces. A quality score blending coverage
+and density would be the same manufacture one level up. Two ratios, each with
+its components beside it, is the most the record supports; the reader's
+arithmetic beyond that is the reader's.
+
+**Why the html joins the required set.** D-S6's argument for the two exports —
+*an entry naming a file that may not exist is the D-S4 defect one artifact
+along* — does not weaken for a third file the entry names. The html is rendered
+in the same act, from the same derivation, by the same script; a render that
+wrote the workbook and not the picture has half-happened, and a run does not
+close on half a render.
+
+**Why the sweep is not a resumption.** §14 declined to open *a repair-history
+sweep across all prior runs* because the question there was **which row comes
+back** — and one run deep is the right depth for that. The Fix Log asks a
+different question — *what happened to every ruled row, ever?* — and reads
+every file to answer it while resuming nothing. D-S8's rule is untouched in
+letter and in force; what changes is only that the reader can now see the trail
+it leaves.
+
+**Why the tail is the renderer's.** The field defect of 2026-08-20 was a
+session rendering numbers it remembered. A closing summary composed by the
+session from the sheet it just wrote is one step short of the same defect, and
+the step is not worth taking: the script that counted prints, the session
+repeats. That is D-S2 applied to the last five lines the BA reads.
+
+**Deliberately not built here.** **Charts, numbers, colours in the workbook** —
+`sk_xlsx.py` stays a text-only writer, because `/ba-wbs`'s export is asserted
+byte-identical through it and a hand-rolled chart part is a week of risk on the
+wrong file; the picture is the html's. **A client-facing derivative** — still
+not ruled, §13's reasons standing. **`sk_audit.py`** — still on §10's pending
+list, where v0.2, v0.3 and v0.4 each left it.
+
+**Deliberately not legislated here.** **A run-over-run trend across every
+closed run** — one row per run, coverage and density down the ledger — is
+derivable from the ledger and this ruling's blocks and is not rendered: the ask
+was *before/after*, which is two runs, and a third column is not a trend.
+Named, not ruled. **Whether a stale `band` block should refuse the render** — a
+workspace whose specs moved after Stage 5 and before the append — is the same
+workspace-hygiene question §13 named and left, one block along.
+
 ---
 
-*v0.4 · the repair route becomes executable — the `ba-analyst` fence gains one named exception, `/ba-audit`'s post-ruling Stage-4 repair route, draft-first and assumption posture as Stage 4 already specifies, the law of the exception living in §6 and the persona's fence citing it; the fence itself unweakened — a bare dispatch is an author working without a definition, and this route's definition arrives as the P-A1 ruling itself (target spec, verbatim quote, approved proposal, posture); the audit's *authors nothing itself* bar untouched — who may be dispatched moves, who may write does not — and the D-S1 evaluator separation untouched with silent self-substitution still a defined violation of §4; an undispatchable dispatch landing the row `unexecuted` with its `why` and stopping nothing else (D-S7) · the standing ruling carries — a row standing ruled and `unexecuted` in the most recent run that wrote a `repairs.json` re-entering the next run's Stage-4 route ahead of that run's own rows, no re-ruling and no second P-A1 render, the resumption a read over two files §7 already requires, the trail one `from-run` key, a re-refusal resuming again with no count of attempts closing a row, and closure without execution named `superseded — <reason>` and never silent; no new flag, no new instrument, no new file, no new prompt point, no new stop and no new BA interaction — §8's budget arithmetically untouched (D-S8) (§6 · §7 · §10 · §11) — applied 25 Aug 2026 (D-S7 · D-S8, amendment record §14; base `3b028bd`, package 0.1.40; origin: the field audit run of 2026-08-23, Nutrivity — the first `/ba-audit` run on the post-wave package; BA ruling 25 Aug 2026, registration EC-20) · *v0.3 · the coverage report — a run is not closed until it renders `exports/audit-report.xlsx` and `exports/audit-report.csv` from the closed run's post-repair state, the render standing after the re-audit delta and before the entry appends and both files joining §7's required set at D-S4's force; four pinned sheets — Coverage Matrix one row per post-repair OB row with its verbatim quote, Per-Source Summary with the four status counts and coverage %, Findings & Rulings as ruled with each row's outcome, SA Register standing; the csv the Coverage Matrix alone and canonical; `/ba-wbs`'s render conventions over the `sk_xlsx.py` helpers and §10.5's stakeholder register expressly not carried — operational state, the audit's evidence bar governing the cells, quotes verbatim and codes as themselves; D-S2 extended from the head to the workbook, every number counted from the post-repair state and an absent field an empty cell, the matrix's rows, the TOTAL row and the entry's `Register:` line one figure counted three ways; coverage % = (carried + accepted) ÷ obligations with no half credit for `partial` and an empty cell at zero obligations; a sampled corpus rendered twice (D-S3); `--report` re-rendering from the latest closed run with no audit, no append and no checkpoint, refusing by naming what is missing (§6b · §6 · §7 · §10 · §11) — applied 23 Aug 2026 (D-S6, amendment record §13; base `3b028bd`, package 0.1.39; origin: the owner ruling of 23 Aug 2026) · *v0.2 · audit integrity — the register stops lying about its own coverage: the undispatchable state named beside mechanical death, its Stage-0 refusal with the named unblocking act and the BA-electable self-evaluated mode whose verdicts are stamped and whose run stands `INCOMPLETE`, silence no legal path and the substitution absent the election a defined violation (§4 · §11) · the five P-A1 header numbers derived from the register's rows by status at render time, `c + p + a + g = t`, a head disagreeing with the on-disk rows invalid audit output (§5) · per-source coverage accounting in the register head and the corpus-declaration rule applied at both of this document's retrievals — the Stage-1 walk and the band-wide search set naming the corpus they must cover, the run stating the corpus it covered, a sample never grounding a `gap` (§2 · §3 · §5) · `decision-list.md` an explicit Stage-3 write act on a clean run too, §7's required set, and the Stage-5 entry refusing to append over a missing required file (§5 · §6 · §7) · CC-S-04's finding grain untouched and carrying through the list across distinct dispositions, one enumerated `amend` row governing a shared disposition with its enumeration count equal to the unmapped-row count it absorbs (§5) — applied 21 Aug 2026 (D-S1…D-S5, amendment record §12; base `3f0f59d`, package 0.1.33; origin: the field defect report of 2026-08-20, Part A evidence A1–A5 · A7; BA ruling "apply all recommendations", 21 Aug 2026) · v0.1 · drafted 16 Aug 2026 from the Nutrivity band evaluation of 14 Aug 2026 · Scope S — source fidelity, band-level, one BA checkpoint at P-A1 · complementary to the completeness gate and changing no verdict it owns · reaches framework law by reference, never by restatement (orchestrator D-O81 · D-O98 · §10.3 rule 9) · decisions D-S1–D-S8 locked · amendment records: v0.1→v0.2 in §12 · v0.2→v0.3 in §13 · v0.3→v0.4 in §14 · compiles to the units in §10 and never the reverse*
+*v0.5 · the report shows the movement — the delta recorded: `trace.json`'s Stage-2 blocks written once and never rewritten, the re-audit adding one `re_audit` block of its own (post-repair counts, the band's size, every register row whose status moved with the `repairs.json` row that moved it, rows added and dropped named, claims as counts only, the block written even when nothing moved) and the band's size — specs · stories · acceptance items · unreadable specs — counted by the gate's own parser through `sk_audit_report.py --band` and pasted verbatim, never typed, the entry's `Re-audit delta:` line derived from it (D-S9) · the two ratios — coverage % exactly as D-S6 fixed it, and defect density = (partial + gaps + ungrounded + contradictions) per 100 acceptance items, one decimal, the four states because they are exactly the states a finding is raised against, acceptance items because they are the unit the client reads and the engineer implements, read from the recorded block and never re-counted from the estate, empty at zero items, a sample note at an unreadable spec, and no score blending the two (D-S10) · the reader sees the movement — two further pinned sheets after D-S6's four untouched: `Before & After` (previous closed run · at P-A1 · after repairs · both deltas · note, over the pinned measure rows, the previous closed run `--report`'s own selection applied downward with refusals stepped past and named) and `Fix Log` (every `repairs.json` row across every run, newest first, joined to the decision list of the run that ruled it — §14's routed seam closed, D-S8's resumption one run deep untouched); `exports/audit-stats.html` — one self-contained file, six pinned sections, inline SVG, plain language leading with codes beside a gloss — joining the required set at D-S4's force with `--report` re-rendering all three; a five-line closing tail printed by the renderer and echoed verbatim, after the append and under `--report`, asking nothing; four surfaces one number on the after side, two on the before side, the html's figures the sheet's (D-S11) (§6 · §6b · §7 · §8 · §10 · §11) — applied 30 Aug 2026 (D-S9 · D-S10 · D-S11, amendment record §15; base `f7aeb94`, package 0.1.44; origin: the owner ruling of 30 Aug 2026, `apply all` over the six-item list of 29 Aug) · *v0.4 · the repair route becomes executable — the `ba-analyst` fence gains one named exception, `/ba-audit`'s post-ruling Stage-4 repair route, draft-first and assumption posture as Stage 4 already specifies, the law of the exception living in §6 and the persona's fence citing it; the fence itself unweakened — a bare dispatch is an author working without a definition, and this route's definition arrives as the P-A1 ruling itself (target spec, verbatim quote, approved proposal, posture); the audit's *authors nothing itself* bar untouched — who may be dispatched moves, who may write does not — and the D-S1 evaluator separation untouched with silent self-substitution still a defined violation of §4; an undispatchable dispatch landing the row `unexecuted` with its `why` and stopping nothing else (D-S7) · the standing ruling carries — a row standing ruled and `unexecuted` in the most recent run that wrote a `repairs.json` re-entering the next run's Stage-4 route ahead of that run's own rows, no re-ruling and no second P-A1 render, the resumption a read over two files §7 already requires, the trail one `from-run` key, a re-refusal resuming again with no count of attempts closing a row, and closure without execution named `superseded — <reason>` and never silent; no new flag, no new instrument, no new file, no new prompt point, no new stop and no new BA interaction — §8's budget arithmetically untouched (D-S8) (§6 · §7 · §10 · §11) — applied 25 Aug 2026 (D-S7 · D-S8, amendment record §14; base `3b028bd`, package 0.1.40; origin: the field audit run of 2026-08-23, Nutrivity — the first `/ba-audit` run on the post-wave package; BA ruling 25 Aug 2026, registration EC-20) · *v0.3 · the coverage report — a run is not closed until it renders `exports/audit-report.xlsx` and `exports/audit-report.csv` from the closed run's post-repair state, the render standing after the re-audit delta and before the entry appends and both files joining §7's required set at D-S4's force; four pinned sheets — Coverage Matrix one row per post-repair OB row with its verbatim quote, Per-Source Summary with the four status counts and coverage %, Findings & Rulings as ruled with each row's outcome, SA Register standing; the csv the Coverage Matrix alone and canonical; `/ba-wbs`'s render conventions over the `sk_xlsx.py` helpers and §10.5's stakeholder register expressly not carried — operational state, the audit's evidence bar governing the cells, quotes verbatim and codes as themselves; D-S2 extended from the head to the workbook, every number counted from the post-repair state and an absent field an empty cell, the matrix's rows, the TOTAL row and the entry's `Register:` line one figure counted three ways; coverage % = (carried + accepted) ÷ obligations with no half credit for `partial` and an empty cell at zero obligations; a sampled corpus rendered twice (D-S3); `--report` re-rendering from the latest closed run with no audit, no append and no checkpoint, refusing by naming what is missing (§6b · §6 · §7 · §10 · §11) — applied 23 Aug 2026 (D-S6, amendment record §13; base `3b028bd`, package 0.1.39; origin: the owner ruling of 23 Aug 2026) · *v0.2 · audit integrity — the register stops lying about its own coverage: the undispatchable state named beside mechanical death, its Stage-0 refusal with the named unblocking act and the BA-electable self-evaluated mode whose verdicts are stamped and whose run stands `INCOMPLETE`, silence no legal path and the substitution absent the election a defined violation (§4 · §11) · the five P-A1 header numbers derived from the register's rows by status at render time, `c + p + a + g = t`, a head disagreeing with the on-disk rows invalid audit output (§5) · per-source coverage accounting in the register head and the corpus-declaration rule applied at both of this document's retrievals — the Stage-1 walk and the band-wide search set naming the corpus they must cover, the run stating the corpus it covered, a sample never grounding a `gap` (§2 · §3 · §5) · `decision-list.md` an explicit Stage-3 write act on a clean run too, §7's required set, and the Stage-5 entry refusing to append over a missing required file (§5 · §6 · §7) · CC-S-04's finding grain untouched and carrying through the list across distinct dispositions, one enumerated `amend` row governing a shared disposition with its enumeration count equal to the unmapped-row count it absorbs (§5) — applied 21 Aug 2026 (D-S1…D-S5, amendment record §12; base `3f0f59d`, package 0.1.33; origin: the field defect report of 2026-08-20, Part A evidence A1–A5 · A7; BA ruling "apply all recommendations", 21 Aug 2026) · v0.1 · drafted 16 Aug 2026 from the Nutrivity band evaluation of 14 Aug 2026 · Scope S — source fidelity, band-level, one BA checkpoint at P-A1 · complementary to the completeness gate and changing no verdict it owns · reaches framework law by reference, never by restatement (orchestrator D-O81 · D-O98 · §10.3 rule 9) · decisions D-S1–D-S11 locked · amendment records: v0.1→v0.2 in §12 · v0.2→v0.3 in §13 · v0.3→v0.4 in §14 · v0.4→v0.5 in §15 · compiles to the units in §10 and never the reverse*

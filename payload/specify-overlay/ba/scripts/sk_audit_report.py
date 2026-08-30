@@ -96,6 +96,82 @@ SA_WIDTHS = [10, 10, 26, 52, 26, 44, 18, 12, 34]
 
 TOTAL_LABEL = "TOTAL"
 
+# ── the two further sheets (§6b, D-S11) ──────────────────────────────────────
+#
+# Five and six render the run's **movement**. The four above keep their names,
+# their order and their columns, and the csv still carries the Coverage Matrix
+# alone. The measure list is the ruling's, in the ruling's order: a row that
+# moved here moved in the document first.
+
+SHEET_BA = "Before & After"
+SHEET_FIXLOG = "Fix Log"
+
+BA_COLUMNS = [
+    "Measure", "Previous closed run", "At P-A1", "After repairs",
+    "\u0394 since previous", "\u0394 by this ruling", "Note",
+]
+BA_WIDTHS = [52, 20, 12, 15, 18, 19, 52]
+
+FIXLOG_COLUMNS = [
+    "Run", "#", "From run", "OB", "CC-S", "Proposal \u2192 target", "Ruling",
+    "Target file", "Outcome", "Why",
+]
+FIXLOG_WIDTHS = [6, 5, 10, 10, 10, 44, 26, 34, 16, 44]
+
+# Each measure: (label, kind). `kind` decides which columns render:
+#   count  — all three grounds, both deltas
+#   ratio  — as count, deltas in points
+#   find   — findings/rulings: no `\u0394 by this ruling`
+#   repair — post-ruling fact: no `At P-A1`, no `\u0394 by this ruling`
+BA_MEASURES = [
+    ("Run", "meta"),
+    ("Sources read", "count"),
+    ("Obligations", "count"),
+    ("\u2014 carried", "count"),
+    ("\u2014 partial", "count"),
+    ("\u2014 accepted", "count"),
+    ("\u2014 gaps", "count"),
+    ("Coverage % (carried + accepted \u00f7 obligations)", "ratio"),
+    ("Claims checked", "count"),
+    ("\u2014 ungrounded", "count"),
+    ("\u2014 contradictions", "count"),
+    ("Specs in band", "count"),
+    ("Stories", "count"),
+    ("Acceptance items", "count"),
+    ("Defects (partial + gaps + ungrounded + contradictions)", "count"),
+    ("Defect density (defects per 100 acceptance items)", "ratio"),
+    ("Findings raised", "find"),
+    ("\u2014 CC-S-01 forward coverage", "find"),
+    ("\u2014 CC-S-02 backward grounding", "find"),
+    ("\u2014 CC-S-03 list union", "find"),
+    ("\u2014 CC-S-04 client acceptance tables", "find"),
+    ("\u2014 CC-S-05 unconditional NFRs", "find"),
+    ("\u2014 CC-S-06 deferral legitimacy", "find"),
+    ("\u2014 CC-S-07 persona coverage", "find"),
+    ("\u2014 CC-S-08 cross-band consistency against sources", "find"),
+    ("Ruled apply", "find"),
+    ("Ruled SA", "find"),
+    ("Ruled amend", "find"),
+    ("Repairs landed", "repair"),
+    ("Repairs \u2192 SA", "repair"),
+    ("Repairs unexecuted", "repair"),
+    ("Repairs superseded", "repair"),
+    ("Resumed from earlier runs", "repair"),
+]
+
+# The eight families, code beside the plain-language gloss the html and the
+# tail both render (§6b — a code never renders bare).
+FAMILY_GLOSS = [
+    ("CC-S-01", "forward coverage"),
+    ("CC-S-02", "backward grounding"),
+    ("CC-S-03", "list union"),
+    ("CC-S-04", "client acceptance tables"),
+    ("CC-S-05", "unconditional NFRs"),
+    ("CC-S-06", "deferral legitimacy"),
+    ("CC-S-07", "persona coverage"),
+    ("CC-S-08", "cross-band consistency against sources"),
+]
+
 # ── the register's grammar (§2) ──────────────────────────────────────────────
 
 OB_START_RE = re.compile(r"^OB-\d+\s*·")
@@ -376,6 +452,47 @@ def read_repairs(path):
     return out
 
 
+def read_repair_rows(path):
+    """The `repairs.json` rows as authored — every field, in list order.
+
+    `read_repairs` above flattens to `{row: outcome}`, which is what the four
+    pinned sheets need and all they need. The Before & After and Fix Log sheets
+    need the row's own fields — `from-run`, `target`, `why` — so they read the
+    file again rather than widen a shape the suite pins (D-S11).
+    """
+    if not path.exists():
+        return []
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (ValueError, OSError):
+        return []
+    rows = data.get("rows") if isinstance(data, dict) else data
+    if not isinstance(rows, list):
+        return []
+    out = []
+    for item in rows:
+        if not isinstance(item, dict):
+            continue
+        key = ""
+        for k in ("#", "row", "n", "id", "finding"):
+            if item.get(k) not in (None, ""):
+                key = str(item[k]).strip().lstrip("#")
+                break
+        outcome = ""
+        for k in ("outcome", "result", "status"):
+            if isinstance(item.get(k), str) and item[k].strip():
+                outcome = item[k].strip()
+                break
+        out.append({
+            "#": key,
+            "from-run": item.get("from-run", ""),
+            "target": item.get("target", "") or "",
+            "outcome": outcome,
+            "why": item.get("why") or item.get("reason") or "",
+        })
+    return out
+
+
 # ── reading the ledger ───────────────────────────────────────────────────────
 
 
@@ -588,16 +705,633 @@ def title_block(head, status):
     ]
 
 
+# ── the band count (§6b, D-S10) ──────────────────────────────────────────────
+
+
+def count_band(root):
+    """specs · stories · acceptance items, through the gate's own parser.
+
+    This is the renderer's **one** act that reads specs, and it reads them to
+    count, never to judge (§10 unit 8). The session pastes the printed block
+    into `trace.json`; the render then reads the recorded block and re-counts
+    nothing, because the estate moves after a run closes and the record does
+    not (§6b).
+    """
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import sk_structure  # noqa: E402  — imported here: --band is the only caller
+
+    specs = sorted((root / "specs").glob("[0-9][0-9][0-9]-*/spec.md"))
+    n_specs = n_stories = n_items = 0
+    unreadable = []
+    for path in specs:
+        try:
+            spec = sk_structure.parse_spec(path)
+        except Exception:
+            unreadable.append(str(path.relative_to(root)))
+            continue
+        n_specs += 1
+        n_stories += len(spec.stories)
+        for story in spec.stories:
+            n_items += len(story.acceptance)
+    return {"specs": n_specs, "stories": n_stories,
+            "acceptance_items": n_items, "unreadable": unreadable}
+
+
+def read_trace(path):
+    """`trace.json` as it stands. A trace from before D-S9 carries no `band`
+    and no `re_audit`; the render reads what stands and leaves the rest
+    empty (§7)."""
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+
+
+# ── the two ratios (§6b, D-S10) ──────────────────────────────────────────────
+
+
+def defect_density(partial, gaps, ungrounded, contradictions, items):
+    """defects ÷ acceptance items × 100, one decimal. Empty at zero items,
+    exactly as zero obligations renders an empty coverage cell."""
+    if not items:
+        return ""
+    defects = (partial or 0) + (gaps or 0) + (ungrounded or 0) + (contradictions or 0)
+    return "%.1f" % (defects * 100.0 / items)
+
+
+def _defects(fwd, bwd):
+    return ((fwd.get("partial") or 0) + (fwd.get("gaps") or 0)
+            + (bwd.get("ungrounded") or 0) + (bwd.get("contradictions") or 0))
+
+
+# ── one column's ground → the pinned measures (§6b) ──────────────────────────
+
+
+def measure_block(forward, backward, band, sources_read=None):
+    """The count and ratio measures for one of the three grounds.
+
+    Every value is read from the block it belongs to and nothing is inferred:
+    a ground that carries no `band` yields empty band rows, which is what an
+    older run's evidence supports.
+    """
+    fwd = forward or {}
+    bwd = backward or {}
+    bnd = band or {}
+    out = {}
+    out["Sources read"] = sources_read if sources_read is not None else ""
+    out["Obligations"] = fwd.get("rows", "")
+    out["— carried"] = fwd.get("carried", "")
+    out["— partial"] = fwd.get("partial", "")
+    out["— accepted"] = fwd.get("accepted", "")
+    out["— gaps"] = fwd.get("gaps", "")
+    out["Coverage % (carried + accepted ÷ obligations)"] = coverage_pct(
+        fwd.get("carried") or 0, fwd.get("accepted") or 0, fwd.get("rows") or 0)
+    out["Claims checked"] = bwd.get("rows", "")
+    out["— ungrounded"] = bwd.get("ungrounded", "")
+    out["— contradictions"] = bwd.get("contradictions", "")
+    out["Specs in band"] = bnd.get("specs", "")
+    out["Stories"] = bnd.get("stories", "")
+    out["Acceptance items"] = bnd.get("acceptance_items", "")
+    if fwd:
+        out["Defects (partial + gaps + ungrounded + contradictions)"] = _defects(fwd, bwd)
+    else:
+        out["Defects (partial + gaps + ungrounded + contradictions)"] = ""
+    out["Defect density (defects per 100 acceptance items)"] = defect_density(
+        fwd.get("partial"), fwd.get("gaps"), bwd.get("ungrounded"),
+        bwd.get("contradictions"), bnd.get("acceptance_items") or 0)
+    return out
+
+
+def effective_rulings(rulings_line, row_numbers):
+    """`{row: ruling}` with the `apply all [except …]` form resolved.
+
+    `rulings_by_row` returns the explicit rows, the `apply all` flag and the
+    excepted set; a row carries its own ruling where the list gives one, `apply`
+    where the blanket form covers it, and nothing where the list ruled nothing.
+    """
+    explicit, apply_all, _excepted = rulings_by_row(rulings_line) if rulings_line \
+        else ({}, False, set())
+    out = {}
+    for num in row_numbers:
+        key = str(num).strip().lstrip("#")
+        if key in explicit:
+            out[key] = explicit[key]
+        elif apply_all:
+            out[key] = "apply"
+    return out
+
+
+def finding_block(header, table, rulings_line):
+    """Findings raised, by family, and the three ruling counts — from the
+    decision list, which is where a ruling lives."""
+    out = {"Findings raised": len(table)}
+    fam_i = _column_index(header, "cc-s", "assertion")
+    counts = {code: 0 for code, _ in FAMILY_GLOSS}
+    for row in table:
+        cell = row[fam_i] if fam_i is not None and fam_i < len(row) else ""
+        for code, _ in FAMILY_GLOSS:
+            if code in cell:
+                counts[code] += 1
+                break
+    for code, gloss in FAMILY_GLOSS:
+        out["— %s %s" % (code, gloss)] = counts[code]
+    i_num = _column_index(header, "#")
+    nums = [(row[i_num] if i_num is not None and i_num < len(row) else "")
+            for row in table]
+    rulings = effective_rulings(rulings_line, nums)
+    tally = {"apply": 0, "sa": 0, "amend": 0}
+    for value in rulings.values():
+        v = (value or "").strip().lower()
+        for key in tally:
+            if v.startswith(key):
+                tally[key] += 1
+                break
+    out["Ruled apply"] = tally["apply"]
+    out["Ruled SA"] = tally["sa"]
+    out["Ruled amend"] = tally["amend"]
+    return out
+
+
+def repair_block(repairs):
+    """The post-ruling facts. A repair is not a *before* of anything, so these
+    rows leave `At P-A1` empty (§6b)."""
+    rows = repairs or []
+    def n(pred):
+        return sum(1 for r in rows if pred(r))
+    outcome = lambda r: str(r.get("outcome", "")).strip().lower()
+    return {
+        "Repairs landed": n(lambda r: outcome(r).startswith("landed")),
+        "Repairs → SA": n(lambda r: outcome(r).startswith("sa")),
+        "Repairs unexecuted": n(lambda r: outcome(r).startswith("unexecuted")),
+        "Repairs superseded": n(lambda r: outcome(r).startswith("superseded")),
+        "Resumed from earlier runs": n(lambda r: r.get("from-run") not in (None, "")),
+    }
+
+
+# ── the previous closed run (§6b) ────────────────────────────────────────────
+
+
+def previous_closed(root, entries, this_run):
+    """The latest entry before this run whose workspace holds §7's required set.
+
+    The selection `--report` already makes, applied downward from this run: a
+    refused admission opened no workspace and is **stepped past and named**,
+    never treated as a zero. Where nothing earlier qualifies the column is
+    empty and the `Run` row says so.
+    """
+    stepped = []
+    try:
+        here = int(str(this_run).lstrip("#"))
+    except ValueError:
+        return None, stepped
+    earlier = [n for n in entries if str(n).isdigit() and int(n) < here]
+    for n in sorted(earlier, key=int, reverse=True):
+        work = workspace_of(root, n)
+        if work.is_dir() and not missing_from(work):
+            return n, stepped
+        stepped.append(n)
+    return None, stepped
+
+
+def previous_ground(root, run):
+    """That run's own post-repair state: its `re_audit` block where it wrote
+    one, else the Stage-2 blocks it closed on. A run from before D-S9 carries
+    no band block, and its band rows render empty."""
+    if run is None:
+        return {}, {}, {}
+    trace = read_trace(workspace_of(root, run) / "trace.json")
+    ra = trace.get("re_audit") or {}
+    if ra:
+        return ra.get("forward") or {}, ra.get("backward") or {}, ra.get("band") or {}
+    return trace.get("forward") or {}, trace.get("backward") or {}, trace.get("band") or {}
+
+
+# ── sheet 5 · Before & After (§6b, D-S11) ────────────────────────────────────
+
+
+def _delta(after, before, points=False):
+    """A signed figure, empty where either side is empty (§6b)."""
+    if after in ("", None) or before in ("", None):
+        return ""
+    strip = lambda v: str(v).strip().rstrip("%")
+    try:
+        a, b = float(strip(after)), float(strip(before))
+    except (TypeError, ValueError):
+        return ""
+    d = a - b
+    if points:
+        return ("%+.1f" % d).rstrip("0").rstrip(".") + " pts" if d else "0 pts"
+    if d == int(d):
+        return "%+d" % int(d) if d else "0"
+    return "%+.1f" % d
+
+
+def _cells(row):
+    """The writer is text-only (sk_xlsx, unchanged by D-S11): every cell a
+    string, an absent figure the empty cell §6b asks for."""
+    return ["" if c is None else str(c) for c in row]
+
+
+def before_after_rows(prev_run, prev_cols, p_a1, after, findings_p, findings_a,
+                      repairs_a, notes):
+    """One row per pinned measure, in the ruling's order."""
+    rows = []
+    for label, kind in BA_MEASURES:
+        note = notes.get(label, "")
+        if kind == "meta":                                   # the `Run` row
+            rows.append(_cells([label, prev_run or "", p_a1.get("__run__", ""),
+                                after.get("__run__", ""), "", "", note]))
+            continue
+        if kind == "repair":
+            a = repairs_a.get(label, "")
+            rows.append(_cells([label, prev_cols.get(label, ""), "", a,
+                                _delta(a, prev_cols.get(label, "")), "", note]))
+            continue
+        if kind == "find":
+            b = findings_p.get(label, "")
+            a = findings_a.get(label, "")
+            rows.append(_cells([label, b, a, "", _delta(a, b), "", note]))
+            continue
+        pts = kind == "ratio"
+        b = prev_cols.get(label, "")
+        m = p_a1.get(label, "")
+        a = after.get(label, "")
+        rows.append(_cells([label, b, m, a, _delta(a, b, pts),
+                            _delta(a, m, pts), note]))
+    return rows
+
+
+# ── sheet 6 · Fix Log (§6b, D-S11) ───────────────────────────────────────────
+
+
+def fixlog_rows(root, entries):
+    """Every `repairs.json` row under every run, newest run first, list order
+    within a run.
+
+    `OB`, `CC-S`, `Proposal → target` and `Ruling` are joined by `#` to the
+    decision list of the run that **ruled** the row — the `from-run` run where
+    the key is present, the row's own run where it is not. That join is the
+    seam §14 routed. The sweep is a **render**: it resumes nothing, re-rules
+    nothing and writes nothing, and D-S8's resumption stays one run deep.
+    """
+    lists = {}
+
+    def ruled_in(run):
+        if run not in lists:
+            work = workspace_of(root, run)
+            try:
+                _h, header, table, rline = read_decision_list(work / "decision-list.md")
+            except Exception:
+                lists[run] = ({}, {})
+                return lists[run]
+            by_num = {}
+            i_num = _column_index(header, "#")
+            i_ob = _column_index(header, "ob")
+            i_fam = _column_index(header, "cc-s", "assertion")
+            i_prop = _column_index(header, "proposal")
+            for row in table:
+                key = (row[i_num].strip().lstrip("#")
+                       if i_num is not None and i_num < len(row) else "")
+                if not key:
+                    continue
+                cell = lambda i: (row[i].strip() if i is not None and i < len(row) else "")
+                ob = cell(i_ob)
+                if not ob:
+                    # A list with no OB column still names its obligations in
+                    # the evidence cell; the join reads what the file carries.
+                    found = OB_REF_RE.findall(" ".join(row))
+                    ob = ", ".join(dict.fromkeys(found))
+                by_num[key] = {"ob": ob, "fam": cell(i_fam), "prop": cell(i_prop)}
+            lists[run] = (by_num, effective_rulings(rline, by_num.keys()))
+        return lists[run]
+
+    runs = sorted((n for n in entries if str(n).isdigit()), key=int, reverse=True)
+    out = []
+    for run in runs:
+        work = workspace_of(root, run)
+        if not work.is_dir():
+            continue                       # a refusal has no workspace: no rows
+        rows = read_repair_rows(work / "repairs.json")
+        for r in rows or []:
+            num = str(r.get("#", "")).strip().lstrip("#")
+            frm = r.get("from-run")
+            frm = "" if frm in (None, "") else str(frm)
+            by_num, rulings = ruled_in(frm or run)
+            src = by_num.get(num, {})
+            out.append(_cells([
+                run, num, frm, src.get("ob", ""), src.get("fam", ""),
+                src.get("prop", ""), (rulings.get(num) or "").strip(),
+                r.get("target", ""), r.get("outcome", ""), r.get("why", ""),
+            ]))
+    return out
+
+
+# ── the html's inputs, from the one derivation (§6b) ─────────────────────────
+#
+# Every figure the dashboard shows is the Before & After sheet's own figure.
+# These four shape it for the render and compute nothing new.
+
+
+def headline_cards(p_a1, after, prev_cols, repairs_now, prev_run):
+    cov, dens = ("Coverage % (carried + accepted ÷ obligations)",
+                 "Defect density (defects per 100 acceptance items)")
+    since = ("first closed run — no previous report" if prev_run is None
+             else "%s → %s since run %s" % (prev_cols.get(cov, "") or "—",
+                                            after.get(cov, "") or "—", prev_run))
+    since_d = ("first closed run — no previous report" if prev_run is None
+               else "%s → %s since run %s" % (prev_cols.get(dens, "") or "—",
+                                              after.get(dens, ""), prev_run))
+    return [
+        ("Coverage — obligations carried or consciously declined",
+         "%s → %s" % (p_a1.get(cov, "") or "—", after.get(cov, "") or "—"), since),
+        ("Defect density — defects per 100 acceptance items",
+         "%s → %s" % (p_a1.get(dens, "") or "—", after.get(dens, "") or "—"),
+         since_d),
+        ("Fixes this run",
+         "%s landed" % repairs_now["Repairs landed"],
+         "%s unexecuted · %s declined (SA) · %s resumed"
+         % (repairs_now["Repairs unexecuted"], repairs_now["Repairs → SA"],
+            repairs_now["Resumed from earlier runs"])),
+    ]
+
+
+def movement_bars(prev_cols, p_a1, after):
+    """The four obligation statuses and the two claim statuses, three readings
+    each — previous closed run · at P-A1 · after repairs."""
+    measures = [
+        ("Carried", "— carried"), ("Partial", "— partial"),
+        ("Accepted", "— accepted"), ("Gaps", "— gaps"),
+        ("Claims ungrounded", "— ungrounded"),
+        ("Claims contradicting", "— contradictions"),
+    ]
+    return [(label, [prev_cols.get(key, ""), p_a1.get(key, ""),
+                     after.get(key, "")]) for label, key in measures]
+
+
+def moved_rows(re_audit, rows, repairs):
+    """`re_audit.rows` as a table — the register's verbatim quote beside each,
+    and the repair row that moved it."""
+    quotes = {r.ob: r.quote for r in rows}
+    by_num = {}
+    for r in repairs or []:
+        by_num[str(r.get("#", "")).strip().lstrip("#")] = r
+    out = []
+    for row in (re_audit.get("rows") or []):
+        via = str(row.get("via", "") or "").strip().lstrip("#")
+        frm = row.get("from-run")
+        label = ""
+        if via:
+            label = "repair #%s" % via
+            if frm not in (None, ""):
+                label += " (from run %s)" % frm
+        out.append([row.get("OB", ""), quotes.get(row.get("OB", ""), ""),
+                    row.get("before", "none") or "none",
+                    row.get("after", "none") or "none", label])
+    return out
+
+
+def family_rows(findings_prev, findings_now):
+    """The eight CC-S rows, gloss leading and the code beside it."""
+    out = []
+    for code, gloss in FAMILY_GLOSS:
+        key = "— %s %s" % (code, gloss)
+        out.append((gloss[:1].upper() + gloss[1:], code,
+                    findings_prev.get(key, ""), findings_now.get(key, "")))
+    return out
+
+
+# ── the dashboard render — exports/audit-stats.html (§6b, D-S11) ─────────────
+#
+# One self-contained file: inline CSS, inline SVG, no script, no external
+# asset. **Every figure here is the Before & After sheet's own figure, from the
+# one derivation** — the html adds no number the sheet does not carry, and a
+# figure that differs between the two is invalid audit output on D-S2's bar.
+# Plain language leads and a code never renders bare.
+
+HTML_CSS = """
+:root{--ink:#1a1a1a;--dim:#5b5b5b;--rule:#d8d5cf;--bg:#faf9f7;--pale:#efece6;
+--prev:#b9b2a6;--pa1:#c98a4b;--after:#4a7c59}
+*{box-sizing:border-box}
+body{margin:0;padding:2.2rem 2rem 4rem;background:var(--bg);color:var(--ink);
+font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.wrap{max-width:1080px;margin:0 auto}
+h1{font-size:1.35rem;margin:0 0 .2rem;font-weight:640}
+h2{font-size:1.02rem;margin:2.4rem 0 .7rem;font-weight:640;
+border-bottom:1px solid var(--rule);padding-bottom:.35rem}
+.title-block{color:var(--dim);font-size:.86rem;margin-bottom:.4rem}
+.title-block div{margin:.1rem 0}
+.cards{display:flex;flex-wrap:wrap;gap:.8rem;margin:.4rem 0 .2rem}
+.card{flex:1 1 220px;background:#fff;border:1px solid var(--rule);
+border-radius:7px;padding:.85rem 1rem}
+.card .k{font-size:.78rem;color:var(--dim);text-transform:uppercase;
+letter-spacing:.04em}
+.card .v{font-size:1.5rem;font-weight:650;margin:.25rem 0 .1rem}
+.card .s{font-size:.83rem;color:var(--dim)}
+table{border-collapse:collapse;width:100%;font-size:.87rem;background:#fff}
+th,td{text-align:left;padding:.42rem .6rem;border:1px solid var(--rule);
+vertical-align:top}
+th{background:var(--pale);font-weight:620}
+td.n,th.n{text-align:right;white-space:nowrap}
+.q{color:var(--dim)}
+.legend{font-size:.82rem;color:var(--dim);margin:.3rem 0 .7rem}
+.sw{display:inline-block;width:.62rem;height:.62rem;border-radius:2px;
+margin:0 .25rem 0 .8rem;vertical-align:baseline}
+.sub{font-size:.9rem;font-weight:640;margin:1.1rem 0 .45rem}
+.empty{color:var(--dim);font-style:italic}
+"""
+
+
+def _esc(value):
+    return (str("" if value is None else value)
+            .replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;"))
+
+
+def _bars(measures):
+    """Three bars per measure — previous closed run · at P-A1 · after repairs —
+    with the counts written on them. Inline SVG, no script."""
+    rowh, barh, gap, left, top = 62, 15, 4, 210, 26
+    width, plot = 940, 640
+    peak = 0
+    for _label, vals in measures:
+        for v in vals:
+            if isinstance(v, (int, float)):
+                peak = max(peak, v)
+    peak = peak or 1
+    height = top + rowh * len(measures) + 8
+    out = ['<svg viewBox="0 0 %d %d" width="100%%" height="%d" '
+           'role="img" aria-label="the movement, three bars per measure">'
+           % (width, height, height)]
+    colours = ["var(--prev)", "var(--pa1)", "var(--after)"]
+    names = ["previous closed run", "at P-A1", "after repairs"]
+    for i, (label, vals) in enumerate(measures):
+        y0 = top + i * rowh
+        out.append('<text x="0" y="%d" font-size="12.5" fill="#1a1a1a">%s</text>'
+                   % (y0 + 14, _esc(label)))
+        for j, v in enumerate(vals):
+            y = y0 + j * (barh + gap)
+            if not isinstance(v, (int, float)):
+                out.append('<text x="%d" y="%d" font-size="11" fill="#8a8a8a">'
+                           '%s —</text>' % (left, y + 12, _esc(names[j])))
+                continue
+            w = max(1.0, plot * (float(v) / peak))
+            out.append('<rect x="%d" y="%d" width="%.1f" height="%d" rx="2" '
+                       'fill="%s"><title>%s · %s</title></rect>'
+                       % (left, y, w, barh, colours[j], _esc(names[j]), _esc(v)))
+            out.append('<text x="%.1f" y="%d" font-size="11" fill="#3a3a3a">%s</text>'
+                       % (left + w + 6, y + 12, _esc(v)))
+    out.append("</svg>")
+    return "\n".join(out)
+
+
+def write_html(path, title, headline, movement, moved, families, fixlog,
+               prev_run):
+    """The six pinned sections, in the ruling's order."""
+    h = ['<!doctype html><html lang="en"><head><meta charset="utf-8">',
+         '<meta name="viewport" content="width=device-width,initial-scale=1">',
+         "<title>%s</title>" % _esc(title[0] if title else "Source audit"),
+         "<style>%s</style></head><body><div class=\"wrap\">" % HTML_CSS]
+
+    # 1 · the title block — the same four lines as every sheet
+    h.append('<h1>%s</h1><div class="title-block">' % _esc(title[0] if title else ""))
+    for line in (title[1:] if title else []):
+        h.append("<div>%s</div>" % _esc(line))
+    h.append("</div>")
+
+    # 2 · the headline
+    h.append("<h2>Headline — what this ruling moved, and what has moved since "
+             "the last report</h2><div class=\"cards\">")
+    for k, v, s in headline:
+        h.append('<div class="card"><div class="k">%s</div>'
+                 '<div class="v">%s</div><div class="s">%s</div></div>'
+                 % (_esc(k), _esc(v), _esc(s)))
+    h.append("</div>")
+
+    # 3 · the movement
+    h.append("<h2>The movement — obligations and claims, three readings each</h2>")
+    h.append('<div class="legend">'
+             '<span class="sw" style="background:var(--prev)"></span>previous closed run'
+             '<span class="sw" style="background:var(--pa1)"></span>at P-A1'
+             '<span class="sw" style="background:var(--after)"></span>after repairs'
+             "</div>")
+    h.append(_bars(movement))
+
+    # 4 · what moved
+    h.append("<h2>What moved — every register row whose status changed</h2>")
+    if moved:
+        h.append("<table><tr><th>OB</th><th>The obligation, as the source states it"
+                 "</th><th>Before → after</th><th>Moved by</th></tr>")
+        for ob, quote, before, after, via in moved:
+            h.append("<tr><td>%s</td><td class=\"q\">%s</td><td>%s → %s</td>"
+                     "<td>%s</td></tr>"
+                     % (_esc(ob), _esc(quote), _esc(before), _esc(after), _esc(via)))
+        h.append("</table>")
+    else:
+        h.append('<p class="empty">No register row changed status in this run.</p>')
+
+    # 5 · findings by family
+    h.append("<h2>Findings by family — this run against the previous closed run</h2>")
+    h.append("<table><tr><th>Check</th><th class=\"n\">Previous closed run</th>"
+             "<th class=\"n\">This run</th></tr>")
+    for gloss, code, prev, now in families:
+        h.append("<tr><td>%s <span class=\"q\">(%s)</span></td>"
+                 "<td class=\"n\">%s</td><td class=\"n\">%s</td></tr>"
+                 % (_esc(gloss), _esc(code), _esc(prev), _esc(now)))
+    h.append("</table>")
+
+    # 6 · the fix log, under two headings
+    h.append("<h2>The fix log — every repair, newest first</h2>")
+    recent = [r for r in fixlog if prev_run is None or int(str(r[0])) > int(str(prev_run))]
+    earlier = [r for r in fixlog if not (prev_run is None or int(str(r[0])) > int(str(prev_run)))]
+    for heading, rows in (
+            ("Fixes since the previous report (run %s)" % _esc(prev_run)
+             if prev_run is not None else "Fixes this run", recent),
+            ("Earlier runs", earlier)):
+        h.append('<div class="sub">%s</div>' % heading)
+        if not rows:
+            h.append('<p class="empty">None.</p>')
+            continue
+        h.append("<table><tr><th>Run</th><th>#</th><th>From run</th><th>OB</th>"
+                 "<th>Check</th><th>What was proposed</th><th>Ruling</th>"
+                 "<th>Target file</th><th>Outcome</th><th>Why</th></tr>")
+        for r in rows:
+            h.append("<tr>%s</tr>" % "".join("<td>%s</td>" % _esc(c) for c in r))
+        h.append("</table>")
+
+    h.append("</div></body></html>")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text("\n".join(h), encoding="utf-8")
+    return path
+
+
+# ── the closing tail (§6b, D-S11) ────────────────────────────────────────────
+
+
+def closing_tail(cov, dens, fixes, findings, prev_run, prev_has_band, status):
+    """Five lines into the conversation, before the closing ask, asking nothing.
+
+    **The tail is the renderer's, not the session's** — it prints at the end of
+    every render and the skill echoes it verbatim, so the five lines are the
+    sheet's figures once more and never a summary composed from memory (the
+    field defect of 2026-08-20, one render along).
+    """
+    c_p, c0, c1 = cov            # previous · at P-A1 · after repairs
+    d_p, d0, d1 = dens
+    first = prev_run is None
+    lines = []
+    if status:
+        lines.append(status)     # an INCOMPLETE run says so above the five
+
+    since_c = ("first closed run — no previous report" if first
+               else "%s → %s since the previous report (run %s)"
+                    % (c_p or "—", c1 or "—", prev_run))
+    lines.append("Coverage %s → %s by this ruling · %s."
+                 % (c0 or "—", c1 or "—", since_c))
+
+    if first:
+        since_d = "first closed run — no previous report"
+    elif not prev_has_band:
+        since_d = "no acceptance count on run %s" % prev_run
+    else:
+        since_d = "%s → %s since run %s" % (d_p or "—", d1 or "—", prev_run)
+    lines.append("Defects per 100 acceptance items %s → %s · %s."
+                 % (d0 or "—", d1 or "—", since_d))
+
+    k, u, s, r = fixes
+    lines.append("Fixes: %s landed · %s unexecuted — resume next run · "
+                 "%s declined (SA) · %s resumed from earlier runs." % (k, u, s, r))
+
+    # Line 4 names only the families with a non-zero count, code beside gloss.
+    named = ["%s %s (%s)" % (n, gloss, code)
+             for code, gloss, n in findings[1] if n]
+    lines.append("Findings this run: %s%s." % (
+        findings[0], (" — " + " · ".join(named)) if named else ""))
+
+    lines.append("Report: exports/audit-stats.html — the picture · "
+                 "audit-report.xlsx · audit-report.csv.")
+    return lines
+
+
 # ── the writers (the D-O23 pattern — xlsx first, then csv) ───────────────────
 
 
-def write_xlsx(path, title, matrix, sources, findings, sa):
-    return sk_xlsx.write_book(path, [
+def write_xlsx(path, title, matrix, sources, findings, sa, ba=None, fixlog=None):
+    """The four pinned sheets, then the two that render the movement (D-S11).
+
+    The four keep their names, their order and their columns; `write_book()`
+    takes six sheets as it took four and the writer stays text-only — the
+    picture is the html's job.
+    """
+    sheets = [
         (SHEET_MATRIX, MATRIX_COLUMNS, matrix, MATRIX_WIDTHS, title),
         (SHEET_SOURCES, SOURCES_COLUMNS, sources, SOURCES_WIDTHS, title),
         (SHEET_FINDINGS, FINDINGS_COLUMNS, findings, FINDINGS_WIDTHS, title),
         (SHEET_SA, SA_COLUMNS, sa, SA_WIDTHS, title),
-    ])
+    ]
+    if ba is not None:
+        sheets.append((SHEET_BA, BA_COLUMNS, ba, BA_WIDTHS, title))
+    if fixlog is not None:
+        sheets.append((SHEET_FIXLOG, FIXLOG_COLUMNS, fixlog, FIXLOG_WIDTHS, title))
+    return sk_xlsx.write_book(path, sheets)
 
 
 def write_csv(path, matrix):
@@ -705,7 +1439,12 @@ def main(argv=None) -> int:
     p = argparse.ArgumentParser(
         description="the coverage report — source-audit definition §6b (D-S6)")
     p.add_argument("--root", default=".", help="project root")
-    g = p.add_mutually_exclusive_group(required=True)
+    p.add_argument("--band", action="store_true",
+                   help="count the band through the gate's own parser and "
+                        "print the `band` block for the session to paste into "
+                        "trace.json (§6b, D-S10) — reads specs to count, never "
+                        "to judge")
+    g = p.add_mutually_exclusive_group(required=False)
     g.add_argument("--run", metavar="N", help="render this run's workspace")
     g.add_argument("--latest", action="store_true",
                    help="render the latest closed run (the `/ba-audit "
@@ -718,6 +1457,16 @@ def main(argv=None) -> int:
     args = p.parse_args(argv)
 
     root = Path(args.root).resolve()
+
+    if args.band:
+        # The one act that reads specs. It prints; the session pastes. A band
+        # block typed by hand is a D-S2 violation, because an acceptance figure
+        # counted by eye is an asserted number (§6b).
+        print(json.dumps({"band": count_band(root)}, indent=2, sort_keys=True))
+        return 0
+    if not (args.run or args.latest):
+        return refuse("one of --run, --latest or --band is required.")
+
     ledger_path = root / ".specify" / "source-audit.md"
     entries, sa = read_ledger(ledger_path)
 
@@ -750,6 +1499,7 @@ def main(argv=None) -> int:
     dl_head, dl_header, dl_table, rulings_line = read_decision_list(
         work / "decision-list.md")
     repairs = read_repairs(work / "repairs.json")
+    repair_rows = read_repair_rows(work / "repairs.json")
 
     head_fields = dict(dl_head)
     head_fields.setdefault("run", run)
@@ -783,14 +1533,83 @@ def main(argv=None) -> int:
     sa_table = sa_rows(sa)
     title = title_block(head_fields, status)
 
+    # ── the movement (§6b, D-S9–D-S11) ──────────────────────────────────────
+    #
+    # Three grounds, each read from its own: `At P-A1` from trace.json's
+    # Stage-2 blocks, `After repairs` from its `re_audit` block, and
+    # `Previous closed run` from that run's own workspace. Nothing is inferred
+    # across a column, and a ground that carries no band renders empty.
+    trace = read_trace(work / "trace.json")
+    re_audit = trace.get("re_audit") or {}
+    sources_read = len(head)
+
+    p_a1 = measure_block(trace.get("forward"), trace.get("backward"),
+                         trace.get("band"), sources_read)
+    after = measure_block(re_audit.get("forward"), re_audit.get("backward"),
+                          re_audit.get("band"), sources_read if re_audit else "")
+    p_a1["__run__"] = run
+    after["__run__"] = run
+
+    prev_run, prev_skipped = previous_closed(root, entries, run)
+    p_fwd, p_bwd, p_band = previous_ground(root, prev_run)
+    prev_cols = measure_block(p_fwd, p_bwd, p_band, "") if prev_run else {}
+
+    findings_now = finding_block(dl_header, dl_table, rulings_line)
+    if prev_run:
+        try:
+            _ph, p_header, p_table, p_rline = read_decision_list(
+                workspace_of(root, prev_run) / "decision-list.md")
+            findings_prev = finding_block(p_header, p_table, p_rline)
+        except Exception:
+            findings_prev = {}
+        prev_cols.update(repair_block(read_repair_rows(
+            workspace_of(root, prev_run) / "repairs.json")))
+    else:
+        findings_prev = {}
+    repairs_now = repair_block(repair_rows)
+
+    # `Note` carries what the numbers cannot (§6b).
+    notes = {}
+    if prev_run is None:
+        notes["Run"] = "none — first closed run"
+    elif prev_skipped:
+        notes["Run"] = "stepped past run %s — no closed workspace" % (
+            ", ".join(str(n) for n in prev_skipped))
+    walked = [e for e in head if e.get("walked") is not None
+              and e.get("total") is not None and e["walked"] < e["total"]]
+    if walked:
+        notes["Coverage % (carried + accepted ÷ obligations)"] = (
+            "sample — %s" % "; ".join(
+                "%s %s/%s sections walked" % (e["source"], e["walked"], e["total"])
+                for e in walked))
+    band_now = (re_audit.get("band") or trace.get("band") or {})
+    unreadable = band_now.get("unreadable") or []
+    if unreadable:
+        note = "sample — %d spec(s) unreadable: %s" % (
+            len(unreadable), ", ".join(unreadable))
+        notes["Acceptance items"] = note
+        notes["Defect density (defects per 100 acceptance items)"] = note
+
+    ba_table = before_after_rows(prev_run, prev_cols, p_a1, after,
+                                 findings_prev, findings_now, repairs_now, notes)
+    fixlog = fixlog_rows(root, entries)
+
     out_dir = Path(args.out_dir)
     if not out_dir.is_absolute():
         out_dir = root / out_dir
     xlsx_path, csv_path = out_dir / "audit-report.xlsx", out_dir / "audit-report.csv"
+    html_path = out_dir / "audit-stats.html"
 
     if not args.summary_only:
-        write_xlsx(xlsx_path, title, matrix, sources, findings, sa_table)
+        write_xlsx(xlsx_path, title, matrix, sources, findings, sa_table,
+                   ba_table, fixlog)
         write_csv(csv_path, matrix)   # the Coverage Matrix alone (§6b)
+        write_html(html_path, title,
+                   headline_cards(p_a1, after, prev_cols, repairs_now, prev_run),
+                   movement_bars(prev_cols, p_a1, after),
+                   moved_rows(re_audit, rows, repair_rows),
+                   family_rows(findings_prev, findings_now),
+                   fixlog, prev_run)
 
     def shown(path):
         try:
@@ -806,6 +1625,24 @@ def main(argv=None) -> int:
     print(summary(head_fields, rows, sources, findings, sa_table, unlisted,
                   unparsed, other, stepped_past,
                   shown(xlsx_path), shown(csv_path)))
+
+    # The tail is the renderer's, not the session's: the skill echoes these
+    # five lines verbatim, so they are the sheet's figures once more (§6b).
+    print()
+    for line in closing_tail(
+            (prev_cols.get("Coverage % (carried + accepted ÷ obligations)", ""),
+             p_a1.get("Coverage % (carried + accepted ÷ obligations)", ""),
+             after.get("Coverage % (carried + accepted ÷ obligations)", "")),
+            (prev_cols.get("Defect density (defects per 100 acceptance items)", ""),
+             p_a1.get("Defect density (defects per 100 acceptance items)", ""),
+             after.get("Defect density (defects per 100 acceptance items)", "")),
+            (repairs_now["Repairs landed"], repairs_now["Repairs unexecuted"],
+             repairs_now["Repairs → SA"], repairs_now["Resumed from earlier runs"]),
+            (findings_now.get("Findings raised", 0),
+             [(code, gloss, findings_now.get("— %s %s" % (code, gloss), 0))
+              for code, gloss in FAMILY_GLOSS]),
+            prev_run, bool(p_band), status if status.lower() != "complete" else ""):
+        print(line)
     return 0
 
 

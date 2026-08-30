@@ -1,6 +1,6 @@
 ---
 name: ba-audit
-description: Run the source audit over the whole band (Scope S) - build the obligations register from the captured sources, trace it forward into every spec, brief, roadmap row and deferral, trace every scope-bearing claim backward to its ground, evaluate the CC-S assertions, and render one decision list at P-A1 - source-audit ruling - where every finding carries its source quote, its band-wide search set and a default. On the BA's ruling it executes the repairs by dispatch and routing, re-audits incrementally, renders the coverage report - exports/audit-report.xlsx and audit-report.csv, four pinned sheets over the post-repair state - and appends the report entry. A run is not closed until the report renders; --report re-renders it from the latest closed run without a new audit. BA-invoked, band-level, one checkpoint.
+description: Run the source audit over the whole band (Scope S) - build the obligations register from the captured sources, trace it forward into every spec, brief, roadmap row and deferral, trace every scope-bearing claim backward to its ground, evaluate the CC-S assertions, and render one decision list at P-A1 - source-audit ruling - where every finding carries its source quote, its band-wide search set and a default. On the BA's ruling it executes the repairs by dispatch and routing, re-audits incrementally, renders the coverage report - exports/audit-report.xlsx, audit-report.csv and audit-stats.html, six pinned sheets and a dashboard over the post-repair state, the movement beside the state - and appends the report entry, closing with the renderer's own five-line tail. A run is not closed until the report renders; --report re-renders it from the latest closed run without a new audit. BA-invoked, band-level, one checkpoint.
 disable-model-invocation: true
 ---
 
@@ -40,9 +40,13 @@ no checkpoint. It is **exclusive with `--full`**.
                        — REQUIRED, a clean run included (zero rows)
   repairs.json         the executed route, per-row outcome — REQUIRED where
                        the ruling produced at least one executable row
-exports/audit-report.xlsx   the coverage report — four pinned sheets
+exports/audit-report.xlsx   the coverage report — six pinned sheets: the four
+                       that render the state, then Before & After and Fix Log,
+                       which render the movement (D-S11)
                        — REQUIRED, rendered at Stage 5b before the entry appends
 exports/audit-report.csv    the same run's Coverage Matrix, canonical
+exports/audit-stats.html    the same run's dashboard — one self-contained file,
+                       inline CSS and SVG, no script — REQUIRED, rendered with them
                        — REQUIRED, rendered with it
 ```
 
@@ -340,8 +344,8 @@ cycle; a second cycle still finding new rows files itself as a finding.
 **Check the workspace before appending** (**D-S4** · **D-S6**). The required
 set: `obligations.md` · `trace.json` · `decision-list.md` **always**, a clean
 run included; `repairs.json` **where the ruling produced at least one
-executable row**; **`exports/audit-report.xlsx` and `exports/audit-report.csv`
-always** — checked after Stage 5b has written them. **Where a required file is
+executable row**; **`exports/audit-report.xlsx`, `exports/audit-report.csv` and
+`exports/audit-stats.html` always** (D-S11) — checked after Stage 5b has written them. **Where a required file is
 missing the entry does not append** — name the missing file and record the run
 `INCOMPLETE`. An append is a claim on an
 append-only ledger that the run behind it happened; an entry that outruns its
@@ -363,21 +367,49 @@ python3 .specify/ba/scripts/sk_audit_report.py --root . --latest   # --report
 ```
 
 Written, in this order: `exports/audit-report.xlsx` — the primary render —
-then `exports/audit-report.csv` — the canonical one. Stable paths, overwritten
+then `exports/audit-report.csv` — the canonical one — then
+`exports/audit-stats.html`, the picture (**D-S11**). Stable paths, overwritten
 per run, **derived and never hand-edited**.
+
+**The band count is pasted, never typed** (**D-S10**). At Stage 2, and again at
+Stage 5, run the counter and paste its block into `trace.json` verbatim:
+
+```bash
+python3 .specify/ba/scripts/sk_audit_report.py --band --root .
+```
+
+An acceptance figure counted by eye is an asserted number, and D-S2 does not
+allow one. **`trace.json`'s Stage-2 blocks are written once and never
+rewritten**; the re-audit adds `re_audit` and nothing else (**D-S9**, §7).
+
+**The closing tail is the renderer's, not yours** (**D-S11**). `sk_audit_report.py`
+prints five plain-language lines at the end of every render — coverage and
+defect density each *by this ruling* and *since the previous report*, the fix
+counts, the findings by family, and the three files. **Echo them verbatim**,
+after the entry appends and again under `--report`, before the closing ask. They
+are the sheet's figures once more; a summary composed from memory is the field
+defect of 2026-08-20 one render along. The tail **asks nothing** — §8's budget is
+untouched, and the closing ask that follows is orchestrator §10.3 rule 9's,
+unchanged. Where the run stands `INCOMPLETE`, the renderer prints the entry's
+`Status:` line above the five.
 
 **The state is the closed run's post-repair state**, never the P-A1 state: the
 register as this stage's re-audit left it, the decision list **as ruled**, the
 repairs as executed. A report over the pre-repair register would show the BA the
 band their own ruling has already fixed.
 
-**The four pinned sheets** — the names, the order, the columns:
+**The six pinned sheets** — the names, the order, the columns. The first four
+render the run's **state** and are byte-for-byte the sheets D-S6 pinned; the
+last two render its **movement** (**D-S11**), and the csv still carries the
+Coverage Matrix alone:
 
 ```
 Coverage Matrix      | OB | Source | Section | Quote | Modality | Phase claim | Carrier | Status | Finding # |
 Per-Source Summary   | Source | Sections walked | Sections total | Obligations | Carried | Partial | Accepted | Gaps | Coverage % | Note |
 Findings & Rulings   | # | CC-S | Evidence — source · section · "quote" | Band check | Proposal → target | Default | Ruling | Outcome |
 SA Register          | SA | OB | Source | Quote | Decision | Reason | Approver | Date | Revisit |
+Before & After       | Measure | Previous closed run | At P-A1 | After repairs | Δ since previous | Δ by this ruling | Note |
+Fix Log              | Run | # | From run | OB | CC-S | Proposal → target | Ruling | Target file | Outcome | Why |
 ```
 
 - **Coverage Matrix** — one row per post-repair register row, `OB-<nnn>` the row
@@ -397,6 +429,22 @@ SA Register          | SA | OB | Source | Quote | Decision | Reason | Approver |
   `repairs.json`. **A clean run renders the sheet with its header row and no
   rows**: a sheet the workbook omits is a result no reader can tell apart from a
   run that never checked.
+- **Before & After** — one row per pinned measure, three grounds and two
+  deltas. **Each count column is read from its own ground** — `At P-A1` from
+  `trace.json`'s Stage-2 blocks, `After repairs` from its `re_audit` block and
+  the post-repair register, `Previous closed run` from **the latest ledger entry
+  before this run whose workspace holds §7's required set**, a refused admission
+  stepped past and named on the `Run` row's `Note`. An older run that carries no
+  `band` block renders its band rows **empty**: an empty cell is what its
+  evidence supports. Deltas are signed, percentage points on the ratio rows, and
+  **empty where either side is empty**.
+- **Fix Log** — one row per row of **every** `repairs.json` under every run,
+  newest run first. `OB`, `CC-S`, `Proposal → target` and `Ruling` are joined by
+  `#` to **the decision list of the run that ruled the row** — the `from-run`
+  run where the key is present, this run where it is not. Two rows may share a
+  `#`, and `From run` is what tells them apart. **The sweep is a render:** it
+  resumes nothing, re-rules nothing and writes nothing, and D-S8's resumption
+  stays one run deep.
 - **SA Register** — the **standing** `SA-<nn>` records, this run's included: an
   SA is project-level, and *what did we decline?* is a question to the register,
   not to the run.

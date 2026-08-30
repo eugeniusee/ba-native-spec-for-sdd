@@ -1,0 +1,19 @@
+{
+  "run": 5,
+  "forward": {"rows": 5, "carried": 3, "partial": 1, "accepted": 0, "gaps": 1},
+  "backward": {"rows": 14, "ungrounded": 2, "contradictions": 1},
+  "band": {"specs": 2, "stories": 5, "acceptance_items": 14, "unreadable": []},
+  "a_pass": {"evaluator": "ba-gate",
+             "families": ["CC-S-01", "CC-S-02", "CC-S-03", "CC-S-04",
+                          "CC-S-05", "CC-S-06", "CC-S-07", "CC-S-08"]},
+  "re_audit": {
+    "forward": {"rows": 5, "carried": 4, "partial": 0, "accepted": 0, "gaps": 1},
+    "backward": {"rows": 14, "ungrounded": 1, "contradictions": 1},
+    "band": {"specs": 2, "stories": 5, "acceptance_items": 14, "unreadable": []},
+    "rows": [
+      {"OB": "OB-003", "before": "partial", "after": "carried", "via": 1},
+      {"OB": "OB-014", "before": "none", "after": "gap"},
+      {"OB": "OB-009", "before": "partial", "after": "carried", "via": 3, "from-run": 2}
+    ]
+  }
+}
