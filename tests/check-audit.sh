@@ -296,9 +296,26 @@ has "$DOC" 'remains a defined violation of §4**' \
     "…and the D-S1 substitution class is explicitly not reopened"
 has "$DOC" 'its `why`, and **D-S8 brings it back**' \
     "…an undispatchable dispatch has a landing, not an improvisation"
+has "$DOC" '**One act, two documents, and the split is by subject.**' \
+    "…and the split against the framework ruling is stated here (D-O98)"
+has "$DOC" '**This document owns the route:**' \
+    "…this document claims the route and never the condition"
+has "$DOC" 'by **its own law** establishing it as post-ruling and' \
+    "…and it is the route's own law that qualifies it…"
+has "$DOC" 'never by an enumeration kept at §11' \
+    "…never a list kept at §11 — the census this ruling forbids"
+has "$SKILL" '**orchestrator D-O98**' \
+    "…and Stage 4 names it too, so the two documents agree on the page"
 
 # the agent fence cites the exception and never restates the law
-has "$ANALYST" 'with one named exception' "the fence carries the carve-out"
+has "$ANALYST" 'the fence is a condition, not a census (D-O98)' \
+    "the fence is conditional, not an exception bolted to a flat rule (D-O98)"
+has "$ANALYST" 'dispatch is lawful only for a batch author executing an already-ruled route' \
+    "…and the condition is stated where a dispatcher reads it"
+has "$ANALYST" 'a route qualifies only where its own law establishes it as post-ruling and batch-shaped' \
+    "…and a route qualifies by its own law, never by a list kept in the fence"
+has "$ANALYST" 'Today exactly one route does: /ba-audit' \
+    "…with this route an instance of the test, marked as today's and not the definition"
 has "$ANALYST" "/ba-audit's post-ruling Stage-4 repair route" \
     "…naming whose route it is"
 has "$ANALYST" 'D-S7' "…and citing the rule that owns it"

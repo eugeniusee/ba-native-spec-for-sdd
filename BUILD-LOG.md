@@ -12415,3 +12415,152 @@ check-spine 286 · check-register 64 · check-wbs 99 · check-audit 178 ·
 check-status 115 · **check-humanizer 117** · check-ledger 19 rules ·
 check-cards clean · check-layout 123 · check-exit 105 · check-install 64 ·
 check-budget 83 · check-auto 286.
+
+## The Fence Names Its Condition — the parked EC-20 rebase lands under its next-free numbers, documents before code · orchestrator v0.41 · package 0.1.45 · 31 August 2026 · GREEN
+
+**Session prompt:** land the stranded fence pass. Preserve the uncommitted work
+first, establish what is actually free at 0.1.44 rather than assuming, re-apply
+the pass onto the current base rather than merging the stale tree, keep the
+guard that forbids defining the permission by naming its one current route, and
+commit and push.
+
+**Precondition — the pass was authored against 0.1.42 and the world moved twice
+under it.** The connected working copy sat at `6eca0ce` (0.1.42) with the fence
+pass uncommitted; `origin/main` had reached `f7aeb94` (**0.1.45's base, 0.1.44**)
+across three commits — the methodology drop `3f7540f`, **0.1.43** (D-O93–D-O96 ·
+§42) and **0.1.44** (D-O97 · §43). **The reservation this pass was written to
+claim had been re-routed on the record before it landed:** v0.39 states that
+*the 0.1.42 build entry reserved `D-O93 · §42` for the parked EC-20 peer rebase;
+this edition takes the next free numbers and the rebase takes the next free when
+it lands* — the v0.27 precedent. **Every target was therefore established
+against `origin/main`, not assumed:** highest D-O **97**, highest review record
+**§43**, orchestrator **v0.40**, `VERSION` **0.1.44** → this pass takes **D-O98 ·
+§44 · v0.41 · 0.1.45**. Pre-edit baselines on the new base: `check-orchestrator`
+**588/0**, `check-audit` **178/0**.
+
+**Preservation came before any git act, and it found a second pass in the tree.**
+The uncommitted diff was captured to
+`~/Downloads/ba-fence-pass-D-O93-stranded-20260831-015826.patch` before anything
+was touched. Reading it against `origin/main` showed **the tree was not carrying
+one pass but two**: `gate-definition`, `mode-b-fallback` and `quickstart` were
+already upstream in the methodology drop, but the source-audit definition
+carried **463 lines `origin/main` does not have** — **an uncommitted v0.5 drop,
+D-S9 · D-S10 · D-S11 with §15, belonging to a different pass in flight**
+(`~/Downloads/lane-a-prompt-audit-movement-v0.5.md` is its brief). **That work is
+not this pass's to land and was not landed.** It is preserved three ways — the
+whole-tree patch, a standalone copy of the file, and a
+`git stash` entry naming both passes — and `origin/main` and `6eca0ce` are
+byte-identical on that document, so the drop still applies to its own base.
+**It now needs a rebase over this commit**, which touches four citation sites in
+the same file: the same hazard this pass was itself caught by, recorded so the
+next reader does not rediscover it.
+
+**A stale `.git/index.lock` (0 bytes, 01:55) blocked the first stash and merge.**
+No git process was running; the lock was removed and the operation retried. The
+working copy then fast-forwarded cleanly `6eca0ce → f7aeb94`, zero ahead.
+
+**D-O98 · §44 — the reservation is a condition, not a census.** *A
+compile-source persona is dispatchable **only as a batch author executing an
+already-ruled route** — every input the compiling skill would have supplied
+already fixed **before** the dispatch fires — and **never for any act that would
+stop and take a BA decision**.* **Interactive composition stays a compile source,
+and nothing about how a persona writes changes under dispatch.** D-O16 ruled a
+**reason**; what compiled into the three persona files was **a census of the
+callers of 8 August 2026** — *no skill dispatches it, and none should* — exact
+that day and never the rule. `ba-gate` survived D-O16 on the reason; `/ba-audit`'s
+Stage-4 route is the same shape on the authoring side and was blocked by the
+census. **D-O16's ruling text and its §14 row are byte-untouched** — the §11
+reservation clause is amended on the record by a paragraph placed after it.
+
+**The enumeration is never the definition — the guard the BA required, kept.**
+The first draft of this fence read *"the one route that qualifies is `/ba-audit`'s
+post-ruling Stage-4 repair route"* — **a census inside a condition-shaped rule**,
+which goes stale the moment a second post-ruling batch route exists, exactly as
+the orchestrator persona's *"the one correct instance"* line had already gone
+stale for `ba-gate`. **The test carries the force:** *a route qualifies where its
+own law establishes it as post-ruling and batch-shaped — the test is that route's
+own document, never a list kept here* — and `/ba-audit`'s Stage-4 route is an
+**instance**, marked as today's. **A sweep assertion holds it across six
+carriers** and fails on precisely the sentence the first draft shipped.
+
+**The count is at persona grain, and correcting it caught a standing inaccuracy.**
+A payload sweep shows `ba-gate` is dispatched by **three** callers — `/ba-gate`,
+`/ba-gate-health`, and `/ba-audit`'s own A pass — so the orchestrator persona's
+*"the one correct instance"* was already false. **Two dispatchable personas**,
+not two callers. **A third dispatchable persona is a new ruling; a further caller
+of an already-dispatchable one is not, provided it meets the condition.**
+
+**The reconciliation against D-S7 — one act, two documents, no second copy.**
+This document owns the **condition**; the source-audit definition owns the
+**route**. **D-S7's ruling text is byte-untouched and takes no new D-S number:**
+the definition receives the **citation** at four sites (§6's Spec-edits row ·
+§6's named-exception close · §10 unit 11 · the footer's
+framework-law-by-reference note), stands at **v0.4**, and its §14 is not
+reopened. The one substantive word-drop is at §10 unit 11 — *"keeps its force
+and its wording"* — since the fence's wording is now the orchestrator's compile
+target.
+
+**The three personas are not byte-identical, by ruling — and never were.**
+`check-register.sh`'s byte-identity sweeps cover the **session boundary** and the
+**§10.3 self-check**; the fence is a per-persona line no test pinned, and the
+analyst's had already diverged at 0.1.41. All three now state **one rule** and
+differ only in whether the condition can be met — `ba-analyst` conditional with
+the test and its current instance, `ba-orchestrator` and `ba-discovery`
+unconditional **and saying why**, in both frontmatter and body.
+
+**Compiled — documents first, then the payload.** Lane B: orchestrator rules
+**v0.40 → v0.41** (header · the v0.41 change record · §11's amending paragraph ·
+§44 · footer locked range **D-O1–D-O98** and the §44 pointer), and the audit
+definition's four citation sites. Lane A: `ba-analyst.md` (fence, the test, the
+body condition, and *"You are dispatched by `ba-tier2`"* corrected to **compiled
+into** — a sentence D-O98 would otherwise contradict inside one file),
+`ba-orchestrator.md` (frontmatter and the compiled §11 paragraph),
+`ba-discovery.md`, and `ba-audit`'s Stage 4 + never-list. **`ba-gate.md`
+untouched. D-O97's humanizer switch untouched; no register carrier recompiled.**
+**No mirror moved, and that is asserted rather than assumed.**
+
+**Tests — one assertion changed on purpose, and one harness difference caught.**
+`check-orchestrator.sh` **588 → 628**: edition pin **v0.40 → v0.41**, D-O
+contiguity **1…97 → 1…98**, and the *EC-20 — the fence names its condition
+(D-O98)* block. `check-audit.sh` **178 → 186**: `'with one named exception'` no
+longer asserts — the fence is not an exception bolted to a flat rule — replaced
+by four at the same grain, plus the two-document split. **`check-audit`'s `has()`
+is a plain `grep -F` while `check-orchestrator`'s flattens soft wraps**, so one
+anchor that passed in the latter failed in the former; the anchor was moved to
+single-line substrings rather than reflowing the document. **And the edition pin
+now lives at two sites, not one:** `check-humanizer.sh`, new at 0.1.44, pins the
+live header edition and the trailing locked range independently of
+`check-orchestrator.sh`, and opened the pass's only RED — 2 failures, one cause,
+caught by the full suite and not by the two checks the edits targeted. Both pins
+moved to **v0.41 / D-O1–D-O98**; `check-humanizer` **117/0**. **Any future
+edition bump must move both.**
+
+**Suite: 19/19 GREEN**, 3 skipped by `--file-only` — 16 ran.
+
+| Check | Result |
+|---|---|
+| `check-m.sh` | 71 / 0 |
+| `check-gate.sh` | 133 / 0 |
+| `check-orchestrator.sh` | 628 / 0 |
+| `check-techniques.sh` | 104 / 0 |
+| `check-techniques2.sh` | 127 / 0 |
+| `check-techniques3.sh` | 166 / 0 |
+| `check-spine.sh` | 286 / 0 |
+| `check-register.sh` | 64 / 0 |
+| `check-wbs.sh` | 99 / 0 |
+| `check-audit.sh` | 186 / 0 |
+| `check-status.sh` | 115 / 0 |
+| `check-humanizer.sh` | 117 / 0 |
+| `check-ledger.py` | grammar-legal — 19 rules, no violations |
+| `check-cards.py` | every card byte-identical to its re-derivation; layering clean |
+| `check-budget.sh` | 83 / 0 |
+| `check-auto.sh` | 286 / 0 |
+
+**Named and unbuilt, routed from this pass.** **Nothing enforces the two-persona
+set but text** — no check sweeps every `SKILL.md` for a dispatch of
+`ba-orchestrator` or `ba-discovery`, or for a third dispatchable persona; the
+guard belongs with the regression-floor pass where D-O88's routed check waits.
+**And the working copy itself is the standing hazard:** two nested clones,
+`repo/` and `verify/`, live inside the connected folder, and this pass was
+stranded because work was authored in the outer copy while the clones tracked
+`origin`. Collapsing to one working copy is put to the BA in the pass report.

@@ -307,7 +307,11 @@ Then the rows:
   inferred values marked, exactly as Tier-2 fixes land. **This dispatch is the
   one named exception to that agent's own fence** (**D-S7**, definition §6),
   and it is lawful because it is **post-ruling**: P-A1 has already fixed the
-  target, the quote, the proposal and the posture. This skill authors
+  target, the quote, the proposal and the posture. **The permission it meets is
+  framework-grain** (**orchestrator D-O98**, §11): a compile-source persona is
+  dispatchable **only as a batch author executing an already-ruled route**, and
+  **never for an act that would stop and take a BA decision** — which is why
+  nothing in this stage asks. This skill authors
   nothing itself — and **where the dispatch is undispatchable** (§4's third
   state, a policy restriction on agent calls) the row lands `unexecuted` with
   its `why`, **never self-authored**, and D-S8 brings it back. A refused row
@@ -465,9 +469,11 @@ Never changes a gate verdict, a waiver, an override or a certification ·
 never edits any file before the P-A1 ruling — except producing a missing `sources/*.extracted.md` rendering at Stage 0, capture completion and never band content · never authors repair content —
 it dispatches `ba-analyst` under the definition's one named exception and
 routes upstream edits (D-S7) · never dispatches that agent for anything but a
-**post-ruling** repair at a ruled target, and never self-authors a repair whose
-dispatch was refused (D-S7) · never re-rules a row that stands ruled and
-unexecuted, and never drops one without naming what closed it (D-S8) · never
+**post-ruling** repair at a ruled target — the one act that meets D-O98's
+batch-author condition — and never self-authors a repair whose
+dispatch was refused (D-S7) · never stops inside Stage 4 to take a ruling: an
+act that would need one is not a repair this route executes (D-O98) ·
+never re-rules a row that stands ruled and unexecuted, and never drops one without naming what closed it (D-S8) · never
 edits a file it rewrites in place by substring search, and never writes a note
 that quotes its own section headings (D-O92) · never treats a
 question, a marker or a comment as a carrier · never renders a finding

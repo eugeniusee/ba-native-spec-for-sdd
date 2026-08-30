@@ -1506,9 +1506,13 @@ has "$RULES_DOC" "D-O93–D-O96" "…and the dev-ready ruling block"
 has "$RULES_DOC" "## 43. Review record (v0.39 → v0.40)" \
     "…and §43, the review record that carries it"
 has "$RULES_DOC" "D-O97" "…and the humanizer-switch ruling"
-head -2 "$RULES_DOC" | grep -q 'v0\.40' \
-  && ok "the header states the live edition — v0.40, the humanizer becomes a switch" \
-  || bad "the header does not name v0.40: the edition and the change record disagree"
+has "$RULES_DOC" "v0.40" "…and the edition the humanizer switch produced"
+has "$RULES_DOC" "D-O98" "…and the fence-condition ruling"
+has "$RULES_DOC" "## 44. Review record (v0.40 → v0.41)" \
+    "…and §44, the review record that carries it"
+head -2 "$RULES_DOC" | grep -q 'v0\.41' \
+  && ok "the header states the live edition — v0.41, the fence names its condition" \
+  || bad "the header does not name v0.41: the edition and the change record disagree"
 has "$RULES_DOC" "D-O45–D-O49" "…and the source-inventory ruling block"
 has "$RULES_DOC" "D-O50" "…and the change record names the unreadable-spec ruling"
 has "$RULES_DOC" "D-O51–D-O52" "…and the continuity-under-a-grant ruling block"
@@ -1518,11 +1522,11 @@ has "$RULES_DOC" "v0.20" "…and the edition the candidate scan produced"
 has "$RULES_DOC" "D-O54" "…and the scan-method ruling"
 
 # the ruling block is contiguous from the live high-water mark: no gap, no reuse
-python3 - "$RULES_DOC" <<'PYX' && ok "the D-O block runs 1…97 with no gap and no skipped number" \
+python3 - "$RULES_DOC" <<'PYX' && ok "the D-O block runs 1…98 with no gap and no skipped number" \
   || bad "the D-O decision block is not contiguous — a number is missing or reused"
 import re, sys
 seen = {int(n) for n in re.findall(r"D-O(\d+)", open(sys.argv[1], encoding="utf-8").read())}
-sys.exit(0 if seen == set(range(1, 98)) else 1)
+sys.exit(0 if seen == set(range(1, 99)) else 1)
 PYX
 
 # ── 6b. Band-2 plan composition — the record home has its producer (D-O55) ──
@@ -1861,6 +1865,143 @@ has "$AUDIT_SKILL" "**And any note this file carries names its sections without 
 grep -q '^## As ruled' "$AUDIT_SKILL" \
   && bad "the decision-list author re-embeds a literal heading string — the B8 hazard, authored" \
   || ok "…and no authored heading string stands at line start in the skill that writes the file"
+
+
+# ── EC-20 · the fence names its condition (D-O98) ────────────────────────────
+#
+# The other half of the same field run, landing as the parked EC-20 rebase under
+# its next-free numbers (0.1.42 reserved D-O93 · §42; v0.39 re-routed that and
+# 0.1.43/0.1.44 took D-O93–D-O97 · §42–§43). Stage 4 routes spec edits to a
+# `ba-analyst` dispatch; the persona's own file forbade every dispatch, and
+# fourteen ruled rows closed `unexecuted`. D-S7 gave the ROUTE its law. This
+# block holds the FRAMEWORK half, which D-S space cannot own: D-O16's
+# reservation stated as a condition rather than a census, the qualifying test
+# answered by the route's own law, the count kept at persona grain, the two
+# undispatchable personas fenced by construction, and the split against D-S7.
+
+printf '\n▸ EC-20 — the fence names its condition (D-O98)\n'
+
+ANALYST_AG="$PKG_ROOT/payload/claude/agents/ba-analyst.md"
+DISCOVERY_AG="$PKG_ROOT/payload/claude/agents/ba-discovery.md"
+AUDIT_DEF="$PKG_ROOT/docs/methodology/ba-native-spec-source-audit-definition.md"
+AUDIT_SK="$PKG_ROOT/payload/claude/skills/ba-audit/SKILL.md"
+
+# the ruling, at its home — §11, amending the reservation clause on the record
+has "$RULES_DOC" "**The reservation is a condition, not a census (D-O98).**" \
+    "D-O98 lives at §11 — the clause it amends, not a new section"
+has "$RULES_DOC" "dispatchable **only as a batch author executing an already-ruled route**" \
+    "…and states the condition, not a list of permitted callers"
+has "$RULES_DOC" "never for any act that would stop and take a BA decision" \
+    "…with the half that keeps D-O16's reason intact"
+has "$RULES_DOC" "**Interactive composition stays a compile source**" \
+    "…and interactive composition is untouched"
+has "$RULES_DOC" "nothing about how a persona writes changes under dispatch" \
+    "…and the dispatch changes the caller, never the author"
+has "$RULES_DOC" "the count is at persona grain, never at caller grain" \
+    "…the count is declared at persona grain — \`ba-gate\` has three callers"
+has "$RULES_DOC" "**\`ba-orchestrator\` and \`ba-discovery\` stay undispatchable**" \
+    "…and the two that stay fenced are named"
+has "$RULES_DOC" "not by exemption: each conducts or executes work that **contains** a ruling" \
+    "…fenced by construction, never by exemption"
+has "$RULES_DOC" "**D-O16's ruling text is byte-untouched**" \
+    "…and D-O16 is amended on the record, never rewritten"
+
+# the enumeration must never BE the definition — the defect D-O98 itself names.
+# A route qualifies by ITS OWN law; §11 keeps no list of permitted callers, so a
+# second post-ruling batch route is lawful the day its document says so.
+has "$RULES_DOC" "**A route qualifies where its own law establishes it as post-ruling and batch-shaped**" \
+    "the qualifying test is the route's own law, not a list at §11"
+has "$RULES_DOC" "never by an enumeration kept at §11" \
+    "…and §11 says so of itself — a second route needs no amendment here"
+has "$AUDIT_DEF" "**That is how a route qualifies at all**" \
+    "…and the route's own document says it is the thing that qualifies it"
+for f in "$ANALYST_AG" "$AG"; do
+  grep -q "A route qualifies where its own law establishes it as" "$f" \
+    || bad "${f##*/} states the route as a definition, not as an instance of the test"
+done
+ok "…and both dispatch-bearing personas carry the test, not a named route alone"
+CENSUS=0
+for f in "$ANALYST_AG" "$AG" "$DISCOVERY_AG" "$RULES_DOC" "$AUDIT_DEF" "$AUDIT_SK"; do
+  grep -q "the one route that qualifies is" "$f" && { CENSUS=$((CENSUS + 1)); printf '      census: %s\n' "${f##*/}"; }
+done
+[ "$CENSUS" -eq 0 ] \
+  && ok "…and no carrier defines the permission by naming its one current route" \
+  || bad "$CENSUS carrier(s) define the condition as a census — the defect D-O98 diagnoses"
+
+# the reconciliation against D-S7 — one act, two documents, no second copy
+has "$RULES_DOC" "**The condition is this document's; a route's own law is its own document's.**" \
+    "the split against D-S space is stated at this end"
+has "$RULES_DOC" "cited here and **never restated**" \
+    "…and this document carries no copy of the route's law"
+has "$AUDIT_DEF" "**One act, two documents, and the split is by subject.**" \
+    "…and the split is stated at the other end too"
+has "$AUDIT_DEF" "**orchestrator §11 (D-O98)**" \
+    "…the audit definition names the permission it relies on"
+has "$AUDIT_DEF" "**This document owns the route:**" \
+    "…and claims only the route, never the condition"
+grep -q 'v0\.4 · the repair route becomes executable' "$AUDIT_DEF" \
+  && ok "…and the audit definition stands at v0.4 — a citation is not a rule" \
+  || bad "the audit definition bumped for a citation: D-S7 was reopened to carry a reference"
+
+# the compiled personas — one rule, three fences, two dispositions
+has "$ANALYST_AG" "**The fence is a condition, not a census (D-O98).**" \
+    "the analyst carries the condition in its body"
+has "$ANALYST_AG" "the fence is a condition, not a census (D-O98)" \
+    "…and in the frontmatter a dispatcher actually reads"
+has "$ANALYST_AG" 'a route qualifies only where its own law establishes it as post-ruling and batch-shaped' \
+    "…and a route qualifies by its own law, never by a list kept in the fence"
+has "$ANALYST_AG" 'Today exactly one route does: /ba-audit' \
+    "…with this route an instance of the test, marked as today's and not the definition"
+has "$ANALYST_AG" '**compiled into** `ba-tier2`' \
+    "…and no longer claims \`ba-tier2\` dispatches it"
+has "$ANALYST_AG" "The \`ba-gate\` agent is this same condition on the" \
+    "…and the analyst names the gate as its model"
+has "$AG" "**The reservation is a condition, not a census (D-O98).**" \
+    "the orchestrator persona compiles §11's amended clause"
+has "$AG" "two personas** meet it" \
+    "…and carries the persona-grain count, not the old one-instance line"
+has "$AG" "unconditionally, and not by exemption" \
+    "…and its own fence says why it stays unconditional"
+has "$DISCOVERY_AG" "unconditionally, and not by exemption" \
+    "…and the discovery fence says the same, in its own words"
+has "$DISCOVERY_AG" "D-O98's batch-author condition" \
+    "…citing the rule rather than restating it"
+
+# the three fences state one rule, are NOT byte-identical by ruling, none bare
+FENCE_N=0
+for f in "$ANALYST_AG" "$AG" "$DISCOVERY_AG"; do
+  grep -q 'No skill dispatches it, and none should' "$f" && FENCE_N=$((FENCE_N + 1))
+done
+[ "$FENCE_N" -eq 3 ] \
+  && ok "all three persona fences still carry the sentence — narrowed, never deleted" \
+  || bad "$((3 - FENCE_N)) persona fence(s) lost the sentence: rewritten away rather than narrowed"
+for f in "$ANALYST_AG" "$AG" "$DISCOVERY_AG"; do
+  grep -q 'D-O98' "$f" \
+    || bad "${f##*/} states no condition: its fence is still a census"
+done
+ok "…and every one of the three cites D-O98 — one rule, three fences"
+BARE_N=0
+for f in "$ANALYST_AG" "$AG" "$DISCOVERY_AG"; do
+  grep -q 'none should\.$' "$f" && { BARE_N=$((BARE_N + 1)); printf '      bare: %s\n' "${f##*/}"; }
+done
+[ "$BARE_N" -eq 0 ] \
+  && ok "…and none of the three ends its fence bare — every one states its disposition" \
+  || bad "$BARE_N persona fence(s) still terminate bare: the census survives where a reader looks first"
+
+# the caller side: the skill that relies on the permission names it
+has "$AUDIT_SK" "**orchestrator D-O98**" \
+    "Stage 4 names the framework permission, not only its own exception"
+has "$AUDIT_SK" "never stops inside Stage 4 to take a ruling" \
+    "…and the never-list fences the act the condition forbids"
+
+# no mirror carries the fence, so no mirror moved — asserted, not assumed
+MIRROR_HITS=0
+for m in "$PKG_ROOT/payload/mirror/claude-block.md" "$PKG_ROOT/payload/mirror/AGENTS.md"; do
+  grep -q 'none should' "$m" && MIRROR_HITS=$((MIRROR_HITS + 1))
+done
+[ "$MIRROR_HITS" -eq 0 ] \
+  && ok "no mirror carries the fence sentence — the carry set is the three personas exactly" \
+  || bad "$MIRROR_HITS mirror(s) carry a fence sentence that this ruling did not move"
 
 # ── roll-up ──────────────────────────────────────────────────────────────────
 
