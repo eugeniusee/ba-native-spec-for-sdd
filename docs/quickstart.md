@@ -339,9 +339,11 @@ gaps. Every one of those acts is stamped `AUTO (AG-<n>)` in the ledger.
 **The line it works to is cost, not confidence.** Auto will start any act that
 **spends none of your client's access and commits nobody outside the run** — and
 every such act comes back in the ratification batch like all the others. So
-under Presale with no call booked, it scopes the first phase's epics itself from
-the material you captured (kit and brief per epic), enters the features, and
-drafts their specs. What it will never do is **spend someone's time**: it writes
+under Presale with no call booked, it scopes every epic inside your delivery
+boundary itself from the material you captured (kit and brief per epic) — the
+same set the WBS bills — enters the features, and drafts their specs. If a
+billable epic is ever left unbriefed, the status line, the band-boundary report
+and the WBS summary name it by name. What it will never do is **spend someone's time**: it writes
 the call kit and leaves the call for you to arrange.
 
 **What never runs on its own.** The two ⚑ sign-offs, the effective PASS, and the
