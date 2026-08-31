@@ -77,5 +77,6 @@ anywhere in the band exist in the sources or the band's own registries and
 contradict neither; an integration listed on rows whose phase a source
 excludes it from, a role outside the registry's set, a phase word not in the
 client's phase vocabulary — each is a named finding. Duplicate carriers of
-one obligation with diverging acceptance are this family's divergence
-finding, both carriers cited.
+one obligation — with diverging acceptance, with the same acceptance (double
+coverage), or one carrying and one deferring or excluding it — are this
+family's finding, both texts cited.

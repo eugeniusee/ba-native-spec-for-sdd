@@ -12,8 +12,8 @@
 # the render must carry through to the workbook. D-S1, D-S4 and D-S5 stay in
 # the document half below.
 #
-#   1.  the document — v0.5, D-S6–D-S11, §6b, §7's required set, §10, §11, §13,
-#       §14, the
+#   1.  the document — v0.6, D-S6–D-S14, §6b, §7's required set, §10, §11, §13,
+#       §14, §16, the
 #       footer; the entry template's Coverage report field; the mirror's row
 #   2.  the skill — Stage 5b compiled: the argument line, the workspace, the
 #       four sheets, the title block, the conventions, --report, the nevers
@@ -26,6 +26,9 @@
 #   5.  the writer — sk_xlsx keeps its single-sheet contract, and the sheet-name
 #       rules are enforced rather than written
 #   6.  read-only — the fixture hashes identical across a run
+#   7.  D-S12–D-S14 — the whole-run default: the retired strings at zero, the
+#       whole-run and every-carrier rules at one per surface, the DOC's `--full`
+#       census over its named survivor sites
 #
 # The fixture is read, never written: every run writes into the suite's temp
 # dir, and section 6 proves it.
@@ -42,6 +45,7 @@ DOC="$PKG_ROOT/docs/methodology/ba-native-spec-source-audit-definition.md"
 SKILL="$PKG_ROOT/payload/claude/skills/ba-audit/SKILL.md"
 TMPL="$PKG_ROOT/payload/specify-overlay/ba/templates/source-audit-report-entry.md"
 BLOCK="$PKG_ROOT/payload/mirror/claude-block.md"
+CARD="$PKG_ROOT/payload/specify-overlay/ba/cards/assertions-s.md"
 FX="$HERE/fixtures/nutrivity-audit/closed-run"
 EXPECT="$HERE/fixtures/nutrivity-audit/expected"
 
@@ -65,6 +69,20 @@ bad() { FAILED=$((FAILED+1)); printf '  ✗ %s\n' "$1"; }
 has() {
   if grep -qF -- "$2" "$1"; then ok "$3"; else bad "$3 — not found: $2"; fi
 }
+
+# `hasnt <file> <literal> <label>` — the same pin, read as a kill set
+hasnt() {
+  if grep -qF -- "$2" "$1"; then bad "$3 — present but must not be: $2"; else ok "$3"; fi
+}
+
+# `countis <file> <literal> <n> <label>` — an occurrence census, not a line
+# count: a string that survives at named sites is pinned at its number, so a
+# new one cannot arrive unnamed.
+countis() {
+  c="$(grep -oF -- "$2" "$1" | grep -c .)"
+  if [ "$c" -eq "$3" ]; then ok "$4"; else bad "$4 — $c occurrence(s), expected $3"; fi
+}
+
 report() { python3 "$SK/sk_audit_report.py" "$@"; }
 
 # ── the sheet reader: every cell of an xlsx, `<sheet>\t<row>\t<col>\t<text>` ──
@@ -104,18 +122,18 @@ nrows()  { awk -F'\t' -v k="$2" '$1=="rows" && $4 ~ "^"k"=" {sub(/^.*=/,"",$4); 
 
 # ── 1. the document ──────────────────────────────────────────────────────────
 
-printf '\n▸ The document — v0.5, D-S6–D-S11 and §6b (source-audit definition)\n'
+printf '\n▸ The document — v0.6, D-S6–D-S14 and §6b (source-audit definition)\n'
 
-has "$DOC" '**Status:** ruled · 30 August 2026 — v0.5' \
-    "the header stands at v0.5"
+has "$DOC" '**Status:** ruled · 31 August 2026 — v0.6' \
+    "the header stands at v0.6"
 has "$DOC" '**v0.3 change record:** one ruling — the coverage report' \
     "the v0.3 change record opens the header"
 has "$DOC" '## 6b. Stage 5b — the coverage report' \
     "§6b is the coverage report's section"
 has "$DOC" '## 13. Amendment record — the coverage report (v0.2 → v0.3)' \
     "§13 is the amendment record"
-has "$DOC" 'decisions D-S1–D-S11 locked' \
-    "the footer locks D-S1–D-S11"
+has "$DOC" 'decisions D-S1–D-S14 locked' \
+    "the footer locks D-S1–D-S14"
 has "$DOC" 'v0.2→v0.3 in §13' \
     "the footer names the v0.2→v0.3 record"
 
@@ -178,7 +196,7 @@ has "$DOC" 'sample — <walked>/<total> sections walked' \
 has "$DOC" '### `--report` — the re-render' "§6b rules --report"
 has "$DOC" 'does nothing else: **no walk, no dispatch, no ruling, no' \
     "--report does nothing but render"
-has "$DOC" '**exclusive with `--full`**' "--report is exclusive with --full"
+has "$DOC" 'It is the whole act.' "§6b's --report is the whole act"
 has "$DOC" '**refuses and names `/ba-audit`**' \
     "no entry on the ledger: refuse and name the act"
 has "$DOC" '**refuses and names the file**' \
@@ -202,7 +220,7 @@ has "$DOC" 'repairs or rules under `--report` (D-S6)' \
     "§11 fences --report"
 has "$TMPL" 'Coverage report: exports/audit-report.xlsx · exports/audit-report.csv' \
     "the entry template carries the Coverage report field"
-has "$BLOCK" '`/ba-audit [--full \| --report]`' \
+has "$BLOCK" '`/ba-audit [--report]`' \
     "the mirror's command table carries --report"
 has "$BLOCK" 'a run is not closed until it renders' \
     "the mirror's command table carries the not-closed-until rule"
@@ -215,10 +233,10 @@ has "$DOC" 'recompiled:** D-S6 adds a render and no assertion' \
 
 printf '\n▸ The skill — Stage 5b compiled into /ba-audit\n'
 
-has "$SKILL" '# `/ba-audit [--full | --report]` — the Scope-S run' \
+has "$SKILL" '# `/ba-audit [--report]` — the Scope-S run' \
     "the argument line carries --report"
-has "$SKILL" 'It is **exclusive with `--full`**.' \
-    "the skill states the exclusivity"
+has "$SKILL" 'It is the whole act.' \
+    "the skill states that --report is the whole act"
 has "$SKILL" '## Stage 5b — the coverage report' "Stage 5b is a stage"
 has "$SKILL" '**The run is not closed until it renders**' \
     "the skill carries the teeth"
@@ -960,11 +978,69 @@ has "$DOC" 'pastes it verbatim' \
     "…and the document says the session pastes it (D-S10)"
 
 
+# ── 7. D-S12–D-S14 — the default that means what it says ─────────────────────
+#
+# The third subject of this suite. This ruling retires a mode rather than
+# adding a render, so the floor is a kill set beside a required set: the
+# retired strings at zero on every carrier, the whole-run and every-carrier
+# rules at exactly one per surface, and the one incremental act §6 keeps —
+# Stage 5's post-repair re-audit — asserted as the deliberate survivor. The
+# `--full` census is the same instrument the ruling itself uses: the string
+# survives only where the record carries it, and the count names those sites.
+
+printf '\n▸ D-S12–D-S14 — the default that means what it says\n'
+
+# the kill set — nothing on a live carrier elects a composition any more
+hasnt "$SKILL" '--full' "the skill has no --full to force"
+hasnt "$SKILL" 'Incremental composition' \
+    "the skill's cross-run composition paragraph is gone"
+hasnt "$SKILL" 'carries with its basis' \
+    "…and with it the clause that carried a verdict forward"
+hasnt "$SKILL" 'on a full run' \
+    "…and the assertion selection no longer splits full from re-run"
+hasnt "$BLOCK" '--full' "the mirror's row offers no --full"
+
+# the required set — the whole-run rule, at one per surface
+countis "$SKILL" 'The pass is whole, every run' 1 \
+    "the skill states the whole-run rule once (D-S12 · D-S13)"
+countis "$SKILL" 'records every carrier it finds' 1 \
+    "…and the every-carrier rule once (D-S14)"
+countis "$SKILL" 'Re-run Stages 1–2 incrementally over the repair diff' 1 \
+    "…and Stage 5's post-repair re-audit survives — §6's law, the one incremental act"
+countis "$DOC" 'The pass is whole, every run (D-S12 · D-S13)' 1 \
+    "§4 rules the pass whole, every run"
+countis "$DOC" 'records every carrier it finds, not the first (D-S14)' 1 \
+    "§3 rules the forward trace onto every carrier"
+has "$DOC" 'a basis travels and a verdict never does (D-S12)' \
+    "§3's sample rule says which of the two crosses a run boundary"
+has "$DOC" '## 16. Amendment record — the default that means what it says (v0.5 → v0.6)' \
+    "§16 is the amendment record"
+has "$DOC" 'v0.5→v0.6 in §16' "the footer names the v0.5→v0.6 record"
+
+# the widened CC-S-08 class — the document and the card say the same thing
+has "$DOC" "both texts cited (D-S14)" \
+    "§4's CC-S-08 widens to the whole duplicate class"
+countis "$CARD" 'one carrying and one deferring or excluding it' 1 \
+    "…and the card carries the widened clause"
+hasnt "$CARD" 'with diverging acceptance are this family' \
+    "…the narrow divergence-only clause is gone from the card"
+
+# the DOC's `--full` census. Live law holds none: the string survives only
+# where the record carries it — the head's v0.3 and v0.6 change records, §13's
+# D-S6 row, §16 (the retired clause quoted, D-S12's ruling, D-S14's defect,
+# and the amended-on-the-record line), and the footer's v0.6 segment.
+countis "$DOC" '--full' 8 \
+    "the document's --full census stands at its 8 recorded sites"
+hasnt "$DOC" 'exclusive with `--full`**, and it is the whole act' \
+    "…and §6b's live exclusivity clause is not among them"
+
+
+
 # ── roll-up ──────────────────────────────────────────────────────────────────
 
 printf '\n  passed: %s   failed: %s\n' "$PASSED" "$FAILED"
 if [ "$FAILED" -eq 0 ]; then
-  printf '✓ GREEN — the source audit: D-S6 in the document and the skill · the four pinned sheets read back · the golden csv · the derived counts and the three surfaces · the clean run · the four refusals · sk_xlsx single-sheet contract · read-only\n'
+  printf '✓ GREEN — the source audit: D-S6 in the document and the skill · the four pinned sheets read back · the golden csv · the derived counts and the three surfaces · the clean run · the four refusals · sk_xlsx single-sheet contract · read-only · D-S12–D-S14 whole-run, kill set at zero\n'
   exit 0
 fi
 printf '✗ RED — %s check(s) failed\n' "$FAILED"

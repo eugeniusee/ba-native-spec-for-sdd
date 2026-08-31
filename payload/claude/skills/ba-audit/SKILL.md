@@ -4,13 +4,13 @@ description: Run the source audit over the whole band (Scope S) - build the obli
 disable-model-invocation: true
 ---
 
-# `/ba-audit [--full | --report]` — the Scope-S run
+# `/ba-audit [--report]` — the Scope-S run
 
-**Argument:** none — the scope is the band; that is the point. `--full` forces
-a from-scratch run where an incremental one would otherwise compose (run > 1).
+**Argument:** none — the scope is the band; that is the point, and it is the
+point on every run: run <n> walks and evaluates exactly as run 1 does (D-S12).
 `--report` **re-renders the coverage report from the latest closed run and runs
 no audit** (Stage 5b) — no walk, no dispatch, no ruling, no repair, no append,
-no checkpoint. It is **exclusive with `--full`**.
+no checkpoint. It is the whole act.
 
 ## Invocation contract — check before you run
 
@@ -168,12 +168,20 @@ Stage 0's read set, walked whole. The run **states the corpus it covered** on
 Stage 3's `Corpus covered:` line. **A `gap` is a negative:** where what you
 covered falls short of what is named here, say so on that line and **render no
 `gap` out of the part you did not cover** — the row carries its basis into the
-next run, because an unsearched obligation is unfinished work, not a finding.
+next run, because an unsearched obligation is unfinished work, not a finding —
+and the next run searches it as it searches every row (D-S12).
+
+**The forward trace records every carrier it finds, not the first (D-S14).**
+A row two carriers hold stands `carried` and lists both; a row holding a spec
+carrier **and** a deferral or out-of-scope entry stands `carried` with the
+deferral listed beside it — the disposition contradiction is CC-S-08's
+finding, never the trace's to settle.
 
 Then dispatch the `ba-gate` subagent: the run
 workspace path, `.specify/ba/cards/assertions-s.md`, and the explicit CC-S
-list to evaluate — all eight families on a full run, the incremental set on a
-re-run. Write its JSON to `trace.json`'s `a_pass` block. Do not edit its
+list to evaluate — all eight families over every row, every run (D-S12);
+Stage 5's post-repair re-audit alone hands the narrower set §6 of the
+source-audit definition defines. Write its JSON to `trace.json`'s `a_pass` block. Do not edit its
 verdicts; a missing or surplus assertion is a runtime defect — re-dispatch.
 Hand the subagent text renderings only — never a binary source path (its
 toolset is Read/Grep/Glob).
@@ -198,9 +206,11 @@ implied by the forward one: `trace.json` carries its rows, and Stage 3's
 `Claims:` line counts them. A backward trace that did not run renders `0`
 against an empty block — visible — never a number the render supplies.
 
-**Incremental composition (run > 1, unless `--full`):** rows whose source or
-whose carrier files the diff touched · everything not clean last run ·
-CC-S-03 and CC-S-08 whole-band always. Everything else carries with its basis.
+**The pass is whole, every run (D-S12 · D-S13):** every family over every row
+its Checks set names — no composition across runs, no flag electing one. A
+verdict this run did not evaluate is not a verdict; the one incremental act is
+Stage 5's post-repair re-audit, inside this run, over the repair diff
+(source-audit definition §6).
 
 ## Stage 3 — P-A1 · source-audit ruling
 

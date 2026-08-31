@@ -12850,3 +12850,184 @@ the cards byte-identical.
 | `check-auto.sh` | 286 / 0 |
 
 **20/20 green — the full regression, the three install-based runs included.**
+
+
+## The Default That Means What It Says — /ba-audit runs the whole band every run, `--full` and the cross-run composition retired, documents before code · source-audit definition v0.6 · package 0.1.48 · 31 August 2026 · GREEN
+
+**Session prompt:** apply the four-item owner ruling of 31 Aug 2026 over **field
+defect report #2** (project `presale-qr-code`) as D-S12–D-S14 — document first,
+carriers second, tests third — with the gate's incremental re-gate, the entry
+template, `sk_audit_report.py` and both audit fixtures fenced byte-untouched.
+
+**Origin — a default that ran a subset and said nothing.** Between a run-1 close
+on 08-29 and 08-31 the `presale-qr-code` estate took two new epics, six new
+specs, nine rewritten brief §3 items and 31 WBS rows. A **bare** `/ba-audit` on
+run 2 re-checked only rows whose source or last-known carrier files the diff
+touched and **carried every other verdict forward unchecked** — under a clause
+that lived only in the compiled skill, `Incremental composition (run > 1, unless
+--full)`, compiled at 0.1.22 by generalising §6's **post-repair** re-audit —
+within one run, over the repair diff — into a **cross-run** default. **This
+document never held that rule.** No render named the mode. Meanwhile an
+independent manual check surfaced probable duplicate carriers across at least
+six deferred rows — "Business analytics" standing both as spec `026` stories and
+as an E-08 §3 deferred one-liner, "additional UI languages" as spec `033` and an
+E-12 deferred row — **exactly the shape the composition rule is structurally
+blind to**, because a new second carrier touches neither the obligation's source
+nor its last-known carrier files. And the blindness was not the default's alone:
+**no CC-S family asserted the class.** CC-S-08 fired only on duplicate carriers
+*with diverging acceptance*; CC-S-01 and CC-S-04 are satisfied by one carrier;
+§3's forward trace recorded *a* carrier, singular.
+
+**D-S12 · the run is whole, every run.** Cross-run incremental composition is
+retired, and **`--full` with it** — nothing is left for the flag to force. Run
+<n> walks and evaluates exactly as run 1 does. The one incremental act this
+document defines is §6's post-repair re-audit, **inside** a run, over the repair
+diff. A **basis** travels into the next run (§3's sample rule); a **verdict**
+never does — D-S2's bar applied across runs: *a figure a prior run rendered is
+evidence of nothing*.
+
+**D-S13 · no mode line, because there is no mode.** D-S2 extended: the A pass
+evaluates every family over every row its Checks set names, on every run, and a
+verdict this run did not evaluate is not a verdict. The head's derived counts
+already say *this run, every row*; a constant `Run mode: full` line would say
+nothing they don't. **Regression is pinned by the suite instead** — the retired
+strings at zero, the whole-run rule at one per surface. `Mode:` on the entry
+head keeps its one meaning, the interaction mode, and **no render was added**.
+
+**D-S14 · every carrier listed, the disposition contradiction named.** §3: the
+forward trace **records every carrier it finds, not the first** — a row two
+carriers hold stands `carried` and lists both; a row holding a spec carrier
+**and** a deferral or out-of-scope entry stands `carried` with the deferral
+listed beside it, and the contradiction is CC-S-08's finding, never the trace's
+to settle. §4 · CC-S-08: the duplicate-carrier clause widens to **the whole
+class** — diverging acceptance, **same acceptance (double coverage)**, or **one
+carrying and one deferring or excluding it** — both texts cited.
+`assertions-s.md` recompiles with the widened sentence.
+
+**Compiled — documents first, then the carriers, then the tests.** Lane B: the
+definition at **v0.6** — status line, the v0.6 head change record, §1's
+duplication bullet widened, §3's every-carrier paragraph and sample-rule tail,
+§4's whole-run paragraph and CC-S-08 bullet, §6b's `--report` tail, **§16** and
+the footer (locked range **D-S1–D-S14**, `v0.5→v0.6 in §16`). Lane A: the
+`ba-audit` skill (H1, argument paragraph, Stage-2 sample tail, the every-carrier
+paragraph, the assertion selection, and the composition paragraph replaced
+whole), the mirror's command row, and the CC-S card. **Five files, and the
+`ba-audit` frontmatter description byte-untouched** — its `re-audits
+incrementally` is Stage 5's, §6's law, not the retired default's.
+
+**The base moved under the pass, and the pass moved with it.** Authored on
+`8867df7` (0.1.46), the brief's expected base. Mid-pass `origin/main` advanced to
+**`14a88d8` (0.1.47)** — the sibling `/ba-map` pass landed and pushed. Per the
+brief's own §0 the work was **rebased onto the new base and every OLD string
+re-verified verbatim and unique there** before proceeding: one file overlapped,
+`payload/mirror/claude-block.md`, where 0.1.47 added a `/ba-map` row and this
+pass edits the `/ba-audit` row — **different rows, merged clean**, both present
+in the landed file. `VERSION` **0.1.47 → 0.1.48**, next free against
+`origin/main` read at close, never assumed. The ruled text keeps the **ruling's**
+base — `8867df7`, package 0.1.46 — exactly as §15 names `f7aeb94`/0.1.44 while
+landing at 0.1.46: a change record dates the ruling, not the compile.
+
+**Worked in a worktree, because the tree already held a live pass.** The
+connected folder was dirty with the in-flight `/ba-map` work and **actively being
+written** — `git status` showed one modified file and `git diff --stat` four,
+seconds apart. Closure note **(i)** rules exactly this case: the next pass does
+not start in that tree; it waits, or it takes a `git worktree` under
+`.claude/worktrees/`. It took the worktree, off `origin/main`, with `vendor/`
+copied in so the install-based runs were real. The sibling's uncommitted state
+was captured to a patch outside the tree first, and **never touched**.
+
+**Fences held, and asserted rather than assumed.** Byte-identical to base, each
+checked: the entry template · `sk_audit_report.py` · `expected-findings.md` and
+the whole `closed-run/` fixture · `tests/layout.expected` (no file created or
+removed) · and every gate carrier the incremental re-gate lives on —
+`ba-gate/SKILL.md`, `agents/ba-gate.md`, the gate definition, `sk_snapshot.py`,
+`check-gate.sh`, `check-exit.sh`. **The gate's incremental re-gate is different
+law** — a per-feature re-run with carried verdicts labeled, with their basis —
+and nothing here reaches it. In the definition, §12–§15 and the head's v0.2–v0.5
+change records are **byte-identical**, verified section by section: amended on
+the record, never rewritten.
+
+**MF-09 is the calibration, and the counts did not move.** The golden answer key
+already calibrates the widened CC-S-08 class at **MF-09** — an Integration on
+live rows against the band's own deferral — so §9's bar, *a change that moves
+either count is a regression*, is **met at unchanged counts** and the fixture
+stands byte-unchanged. The exact story-level carried-and-deferred shape
+calibrates at the **next human-scored band**, per §9's own rule for new golden
+cases.
+
+**The `--full` census: 3 → 8, every site named.** Live law now holds **none**.
+Before: §6b's exclusivity clause (retired here), the head's v0.3 change record,
+§13's D-S6 row. After, the string survives only where the **record** carries it —
+the head's v0.3 and v0.6 change records · §13's D-S6 row · §16 four times (the
+retired clause quoted, D-S12's ruling, D-S14's defect, and the
+amended-on-the-record line) · the footer's v0.6 segment. `check-audit.sh` pins
+that number, so a ninth cannot arrive unnamed.
+
+**Tests.** `check-audit.sh` **222 → 240**: a seventh part, `D-S12–D-S14 — the
+default that means what it says`, on the section-per-ruling precedent §15 set.
+Two helpers in the estate's own idiom — **`hasnt`** (check-orchestrator's kill-set
+form) and **`countis`** (an occurrence census, not a line count). The kill set at
+zero on every live carrier — skill `--full`, `Incremental composition`, `carries
+with its basis`, `on a full run`; mirror `--full`; the card's narrow
+divergence-only clause. The required set at one per surface, including
+**`Re-run Stages 1–2 incrementally over the repair diff` asserted as the
+deliberate survivor** — §6's law, the one incremental act, which this pass must
+not sweep with the rest. Edition pins moved on the **whole-`tests/` sweep**
+closure note (ii) requires, not only in the file being edited: the status line
+and the locked range both live in `check-audit.sh` and both moved; **no other
+check pins this document's edition**, verified by sweep.
+
+**Two judgement calls, recorded rather than smoothed.**
+
+*(1) One required pin could not be a count of 1, because the ruling's own text
+carries the phrase.* The brief asked for `one carrying and one deferring or
+excluding it` at **exactly 1 per file** in both DOC and CARD. The CARD is at 1.
+The DOC cannot be: the brief's **own ruled §16** repeats the phrase in D-S14's
+ruling cell, and the v0.6 head record repeats it again. Rather than weaken the
+ruled text to fit its own test, the DOC is pinned at the **live-law site alone**,
+by a string unique to it — `both texts cited (D-S14)`; §16's cell closes `both
+texts cited.` with no citation, so the pin reaches §4 and nothing else. Intent
+kept, text unedited.
+
+*(2) Three pins forced a re-wrap.* `check-audit.sh`'s `has()` is a raw
+`grep -qF`, so a pinned sentence must sit on **one line**. §6b's `It is the whole
+act.`, §3's `a basis travels and a verdict never does (D-S12)` and the card's
+widened clause were wrapped to keep each control phrase whole — the estate's
+standing convention, applied here because the test reads bytes, not prose.
+
+**Named, not taken.** `assertions-s.md` is still **outside** `check-cards.py
+--record`'s compiled set (which holds `assertions-f.md`, `assertions-h.md`,
+`at-thresholds.md`), so the card's own head comment — *regeneration joins
+`tests/check-cards.py --record` when the audit suite lands* — **stands unmet, as
+before**; the card was edited by hand and `check-cards.py` passes its layering
+and re-derivation checks unchanged. Bringing Scope S into the compiler is a
+change to the compiler, not to this ruling, and it is not taken here.
+
+**Defaults taken: none — all ruled.**
+
+**Suite: 20/20 GREEN**, the three install-based runs included.
+
+| Check | Result |
+|---|---|
+| `check-m.sh` | 71 / 0 |
+| `check-gate.sh` | 133 / 0 |
+| `check-orchestrator.sh` | 628 / 0 |
+| `check-techniques.sh` | 104 / 0 |
+| `check-techniques2.sh` | 127 / 0 |
+| `check-techniques3.sh` | 166 / 0 |
+| `check-spine.sh` | 286 / 0 |
+| `check-register.sh` | 64 / 0 |
+| `check-wbs.sh` | 99 / 0 |
+| `check-audit.sh` | 240 / 0 |
+| `check-status.sh` | 115 / 0 |
+| `check-map.sh` | 43 / 0 |
+| `check-humanizer.sh` | 117 / 0 |
+| `check-ledger.py` | grammar-legal — 19 rules, no violations |
+| `check-cards.py` | every card byte-identical to its re-derivation; layering clean |
+| `check-layout.sh` | 126 / 0 / 0 |
+| `check-exit.sh --offline` | 105 / 0 |
+| `check-install.sh` | 64 / 0 |
+| `check-budget.sh` | 83 / 0 |
+| `check-auto.sh` | 286 / 0 |
+
+**20/20 green — the full regression, the three install-based runs included.**
