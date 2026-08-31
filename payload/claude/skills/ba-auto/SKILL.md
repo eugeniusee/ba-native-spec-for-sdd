@@ -88,8 +88,10 @@ covers Band-1 closure itself. Stamp the self-election, trail it, ratify it at
 **Presale with no client call — the pinned instance.** At **Band-2 exit**,
 self-elect **Tier 1 — epic scoping, ingest mode over captured client material**
 (`sources/`, the notes input the profile already legalizes) for **every epic
-allocated to the first phase** — writing the **kit and the brief per epic** —
-then continue **P-O8 — Band-3 entry** → **Tier 2 — spec-depth gap-filling** in
+allocated to a phase inside the scope frame's `Boundary:` set** — the rows the
+WBS's Billable column reads `Yes` for, the quoted scope itself and never a
+subset of it — writing the **kit and the brief per epic** — then continue
+**P-O8 — Band-3 entry** → **Tier 2 — spec-depth gap-filling** in
 assumption posture → draft specs. **The call stays BA-elected:** a live client
 session is client access, so write the kit and **never book the session it was
 written for.** An epic whose slicing hangs on an open question **still gets its
@@ -172,6 +174,7 @@ Band boundary — <date> · AUTO (AG-<n>) · <P-O7 Band-1 closure | P-O8 Band-3 
 Auto-trail since <start | last boundary>: <n> acts
 Assumptions: <n> · Open questions: <n>
 Health refresh: <current | overdue: <r> runs vs cadence>
+Scope coverage: <in-boundary epics briefed <b>/<e> | uncovered inside boundary: E-nn <name> · … | — no roadmap or no boundary yet>
 Next act: <one line> — any reply continues · /ba-auto off renders the resumption report
 ```
 
@@ -203,15 +206,23 @@ Reply with a letter, or in your own words — any reply continues.
 
 `<n>` is the band the boundary leaves behind — Band 1 at P-O7 — Band-1
 closure, Band 2 at P-O8 — Band-3 entry: the head line's own fact, said in
-plain words. **Two conditional joins, and no other.** Where the health line
+plain words. **Three conditional joins, and no other.** Where the health line
 renders `overdue`, one option joins before c, re-lettering c to d:
 `run /ba-gate-health full first — it is overdue; no grant reaches it, this
 stays your act`. **Recommended stays on continue** — the health line is
 display only and the refresh act stays the BA's; the option words a choice
 the BA already owned, and the grant still does not reach the run. Where the
-decision-list tail renders, its items **join the ask as questions** — one
-lettered question per `ADV-<n>` row, after the proceed question, in
-**T-18 — Scope allocation's** step-4 shape: the row's finding with a plain
+`Scope coverage:` line renders uncovered epics, one option joins before c the
+same way — after the health option where both render, the letters shifting in
+order: `brief the uncovered in-boundary epics first — <the line's list>;
+Tier 1 in ingest mode is inside the grant, the run resumes toward Band 3
+after`. **Recommended stays on continue** here too, and the wording differs
+from the health option deliberately: the health act stays outside every grant,
+while this one sits **inside the cost boundary** — the option words an act the
+run may perform on the BA's letter. Still no AG expands, no new stop and no
+new prompt point exists. Where the decision-list tail renders, its items
+**join the ask as questions** — one lettered question per `ADV-<n>` row,
+after the proceed question, in **T-18 — Scope allocation's** step-4 shape: the row's finding with a plain
 gloss beside the id, the three dispositions lettered, `hold as advisory — no
 move` carrying `(recommended)` — so taking every recommended option is
 `apply all` exactly; the typed ruling grammar stays the shortcut, never the

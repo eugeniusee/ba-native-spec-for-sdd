@@ -1510,9 +1510,12 @@ has "$RULES_DOC" "v0.40" "…and the edition the humanizer switch produced"
 has "$RULES_DOC" "D-O98" "…and the fence-condition ruling"
 has "$RULES_DOC" "## 44. Review record (v0.40 → v0.41)" \
     "…and §44, the review record that carries it"
-head -2 "$RULES_DOC" | grep -q 'v0\.41' \
-  && ok "the header states the live edition — v0.41, the fence names its condition" \
-  || bad "the header does not name v0.41: the edition and the change record disagree"
+has "$RULES_DOC" "D-O99–D-O101" "…and the boundary-coverage ruling block"
+has "$RULES_DOC" "## 45. Review record (v0.41 → v0.42)" \
+    "…and §45, the review record that carries it"
+head -2 "$RULES_DOC" | grep -q 'v0\.42' \
+  && ok "the header states the live edition — v0.42, the election takes the boundary" \
+  || bad "the header does not name v0.42: the edition and the change record disagree"
 has "$RULES_DOC" "D-O45–D-O49" "…and the source-inventory ruling block"
 has "$RULES_DOC" "D-O50" "…and the change record names the unreadable-spec ruling"
 has "$RULES_DOC" "D-O51–D-O52" "…and the continuity-under-a-grant ruling block"
@@ -1522,11 +1525,11 @@ has "$RULES_DOC" "v0.20" "…and the edition the candidate scan produced"
 has "$RULES_DOC" "D-O54" "…and the scan-method ruling"
 
 # the ruling block is contiguous from the live high-water mark: no gap, no reuse
-python3 - "$RULES_DOC" <<'PYX' && ok "the D-O block runs 1…98 with no gap and no skipped number" \
+python3 - "$RULES_DOC" <<'PYX' && ok "the D-O block runs 1…101 with no gap and no skipped number" \
   || bad "the D-O decision block is not contiguous — a number is missing or reused"
 import re, sys
 seen = {int(n) for n in re.findall(r"D-O(\d+)", open(sys.argv[1], encoding="utf-8").read())}
-sys.exit(0 if seen == set(range(1, 99)) else 1)
+sys.exit(0 if seen == set(range(1, 102)) else 1)
 PYX
 
 # ── 6b. Band-2 plan composition — the record home has its producer (D-O55) ──

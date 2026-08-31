@@ -509,6 +509,94 @@ has_joined "$SKILL" "never invents a composite beyond the one workflow line" \
     "the never-list is amended, not dropped"
 has "$SKILL" "The session boundary (framework-wide)." "the session boundary is carried"
 
+# ── the boundary-coverage continuation — line 2 (D-O100 · EC-22) ────────────
+#
+# The field render read `briefs 12/14 epics` and looked like ordinary
+# later-phase deferral. It was not: both missing epics sat INSIDE the quoted
+# delivery boundary and were billable. A count without names is the D-O58
+# blind spot met at a join instead of at a grammar.
+
+printf '\n▸ Line 2 — the boundary-coverage continuation (D-O100)\n'
+
+QRA="$HERE/fixtures/qr-boundary"
+QA="$TMP/qr-a.out"
+status --root "$QRA" --date 2026-08-31 > "$QA" 2>&1
+
+line_has "$QA" "briefs 12/14 epics" "line 2 still counts briefs against the roadmap's rows"
+line_has "$QA" "unbriefed inside boundary 2:" "…and the continuation names how many"
+line_has "$QA" "E-10 Public API & Bulk Generation (Phase 2 · Billable Yes)" \
+    "…E-10 by name, with its phase and its Billable value"
+line_has "$QA" "E-11 Premium Redirect Features (Phase 2 · Billable Yes)" \
+    "…and E-11 beside it"
+
+# the nine numbered lines are byte-untouched: the continuation is a
+# continuation, not a tenth line
+ORDER_A="$(grep -o '^[1-9] · ' "$QA" | tr -d ' ·')"
+[ "$ORDER_A" = "$(printf '1\n2\n3\n4\n5\n6\n7\n8\n9')" ] \
+  && ok "…the nine numbered lines still render once each, in order" \
+  || bad "the continuation disturbed the nine: $(echo "$ORDER_A" | tr '\n' ' ')"
+grep -q '^      unbriefed inside boundary' "$QA" \
+  && ok "…and it is indented under line 2, never numbered" \
+  || bad "the continuation is not indented under line 2"
+
+# no count enters §10.4-F: drop the head's Boundary: line and EVERY other line
+# of the render is byte-identical — the continuation is the only difference.
+NOB="$TMP/qr-noboundary"
+mkdir -p "$NOB"
+cp -R "$QRA/." "$NOB/"
+python3 - "$NOB/.specify/aspect-state.md" <<'PYX'
+import pathlib, re, sys
+p = pathlib.Path(sys.argv[1])
+p.write_text(re.sub(r"^Boundary:.*\n", "", p.read_text(encoding="utf-8"),
+                    count=1, flags=re.M), encoding="utf-8")
+PYX
+QN="$TMP/qr-noboundary.out"
+status --root "$NOB" --date 2026-08-31 > "$QN" 2>&1
+
+no_line "$QN" "unbriefed inside boundary" \
+    "no boundary in the frame: the line does not render — vacuous, never a gap"
+if diff <(grep -v 'unbriefed inside boundary' "$QA") "$QN" > "$TMP/cov.diff" 2>&1; then
+  ok "…and every other line is byte-identical: no count enters §10.4-F"
+else
+  bad "removing the boundary moved a line other than the continuation:"
+  sed 's/^/      /' "$TMP/cov.diff" | head -8
+fi
+
+# the single-phase boundary: the same estate, nothing to name
+MVP="$TMP/qr-mvp"
+mkdir -p "$MVP"
+cp -R "$QRA/." "$MVP/"
+python3 - "$MVP/.specify/aspect-state.md" <<'PYX'
+import pathlib, sys
+p = pathlib.Path(sys.argv[1]); t = p.read_text(encoding="utf-8")
+old = "Boundary: MVP + Phase 2 — set 2026-08-28 (P-O0b)"
+assert t.count(old) == 1, t.count(old)
+p.write_text(t.replace(old, "Boundary: MVP — set 2026-08-28 (P-O0b)", 1),
+             encoding="utf-8")
+PYX
+QM="$TMP/qr-mvp.out"
+status --root "$MVP" --date 2026-08-31 > "$QM" 2>&1
+no_line "$QM" "unbriefed inside boundary" \
+    "Boundary: MVP — every in-boundary epic briefed, so nothing renders"
+line_has "$QM" "briefs 12/14 epics" \
+    "…line 2's own count unchanged: the boundary moved, the brief count did not"
+
+# the estate is never written — a render is not a repair (§10.4's read law)
+BEFORE=$(find "$QRA" -type f -exec shasum {} + | shasum | cut -d' ' -f1)
+status --root "$QRA" --date 2026-08-31 > /dev/null 2>&1
+AFTER=$(find "$QRA" -type f -exec shasum {} + | shasum | cut -d' ' -f1)
+[ "$BEFORE" = "$AFTER" ] \
+  && ok "…and naming an uncovered epic writes nothing: the reader reports, never repairs" \
+  || bad "the render wrote to the estate it read"
+
+# the skill states the law at its own site
+has_joined "$SKILL" "unbriefed inside boundary <n>: <E-nn <epic name> (Phase <p> · Billable Yes) · …>" \
+    "the skill's pinned shape carries the continuation"
+has_joined "$SKILL" "one computation, four display sites" \
+    "…and names the one computation behind the four sights"
+has_joined "$SKILL" "The reader reports; it never repairs:" \
+    "…with the render/repair boundary stated"
+
 # ── roll-up ──────────────────────────────────────────────────────────────────
 
 printf '\n  passed: %s   failed: %s\n' "$PASSED" "$FAILED"

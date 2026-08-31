@@ -13031,3 +13031,265 @@ change to the compiler, not to this ruling, and it is not taken here.
 | `check-auto.sh` | 286 / 0 |
 
 **20/20 green — the full regression, the three install-based runs included.**
+
+---
+
+## The Election Takes The Boundary, And Coverage Is Named — D-O99–D-O101 compiled, CC-H-08 runs, one computation at four sights · orchestrator v0.42 · completeness contract v0.5 · gate v0.14 · package 0.1.49 · 1 September 2026 · GREEN
+
+**Session prompt:** Lane A compile of the 2026-08-31 methodology drop (HEAD
+`6339cbf`) — the election clause in five payload carriers, the CC-H-08 checker,
+the four display sites, the closing ask's third join, the guard's pins, the gate
+surfaces, the edition pins swept, and the EC-22 regression. Eleven items, the
+ruled law living entirely in the three documents plus the field note's §5, and
+the doc winning wherever the prompt and the doc disagree.
+
+**Origin — two independent defects and one silence.** EC-22, project
+`presale-qr-code`, Presale under a standing AG, `Boundary: MVP + Phase 2`. The
+pinned Tier-1 self-election iterated *"every epic allocated to the first phase"*
+while the frame quoted two, so the run briefed 12 of 14 — and **E-10 Public API
+& Bulk Generation** and **E-11 Premium Redirect Features**, both inside the
+delivery boundary, both named RFQ cost-breakdown line items, were never briefed,
+entered or specced. ~160 eng-h ≈ 20% of the quoted engagement absent from the
+client-facing WBS for three days, behind a `/ba-wbs` run reporting `Included 41 ·
+excluded none` — true of the folders it read, false of the engagement. The
+second defect is the silence: **no assertion anywhere compared the roadmap's
+in-boundary rows to the brief set**, and each downstream surface held its own
+completeness contract on a dimension that could not see an epic with no folder.
+Both are closed here: D-O99 the cause, D-O100 the detector for the whole class,
+D-O101 the one-letter act at the boundary.
+
+**The election, in five carriers.** `ba-tier1` · `ba-auto` · `ba-orchestrator` ·
+`claude-block` · `AGENTS.md` now elect **every epic allocated to a phase inside
+the scope frame's `Boundary:` set** — the rows the WBS's Billable column reads
+`Yes` for. Both variants are dead in the payload: the killed clause and
+`ba-orchestrator`'s drift *"every epic **in** the first phase"*, which the field
+report's own carrier sweep had missed. The quickstart is Lane B's and untouched.
+
+**CC-H-08 — the detector.** `sk_health.py` gains the fourth M row: a
+deterministic join over roadmap in-boundary rows × the brief folder × the
+ledger head's `Boundary:` line, **existence not content** — whether a brief
+carries a confirmed slicing stays CC-H-03's question, at CC-H-03's moment.
+Element grain is the epic, named with its phase and its Billable value.
+**Vacuous, never a gap** where no roadmap or no boundary stands; a blank-Phase
+row sits outside the set exactly as its Billable cell sits blank. It counts in
+`n gaps`, **blocks nothing** — the join sits in no feature's `deps(F)` — and it
+is **never in Stage-0 pre-flight**, which `/ba-gate`, `/ba-gate-health`, the
+`gate-health.md` template and `sk_snapshot`'s docstring now each say at their
+own site. `SCOPE_H` takes it as `("CC-H-08", "H", "M")`; §10.1's stale *six
+CC-H* count goes count-free in the two compiled surfaces that carried it.
+
+**One computation, four display sites.** `boundary_coverage()` lives in
+`sk_health.py` — **the gate computes and rules; the renders read**, in the
+document's own words — and `sk_status` and `sk_wbs` import it. Its three grounds
+are imported too: `read_frame`, `read_roadmap_at` and `billable_cell` come from
+`sk_wbs`, so the set is *by construction* the rows the export bills rather than
+a second reading of the same rule. `read_roadmap` gained a path-taking core,
+`read_roadmap_at`, so a `--roadmap` override reads the roster identically.
+
+- **§10.4 line 2** — `unbriefed inside boundary <n>: <E-nn <epic name> (Phase
+  <p> · Billable Yes) · …>`, the *renders only when* pattern. The nine numbered
+  lines are byte-untouched and no count enters §10.4-F — proved by diffing the
+  render against the same estate with its `Boundary:` line removed: the
+  continuation is the only line that moves.
+- **The band-boundary report** — the sixth pinned line, inserted byte-identical
+  from §10.7 into all five carriers that render the report; `check-auto`'s
+  byte-match holds it and its vacuity list now names the coverage state and its
+  `—` alternate.
+- **`/ba-run specs`** — the confirmation table opens with the same line, in the
+  report's own wording, in the skill, the persona and the mirror's command row.
+- **`/ba-wbs`** — the generation summary's roadmap dimension: every in-boundary
+  epic that contributed zero rows, each with its phase, its Billable value and
+  the first missing link (`no brief` · `brief — no confirmed slicing` · `no spec
+  folder` · `spec — no stories`), then the closing sentence. Re-derived from
+  §10.5; the field estate's patched `sk_wbs.py` was read as evidence and copied
+  from nowhere.
+
+**D-O101 — the third conditional join.** `brief the uncovered in-boundary epics
+first`, joining before *c* after the health option where both render, recommended
+staying on continue. The wording differs from the health option deliberately and
+the compile keeps that: the refresh act stays outside every grant, while this one
+sits **inside the cost boundary**. Three skills count the joins and now count
+three; the two mirrors carry the join and have never counted, and this ruling
+adds no count to a surface that never had one.
+
+**The guard.** `sk_humanizer_guard.py` takes two pins: `Scope coverage:` (§10.7's
+sixth line) and `unbriefed inside boundary` (§10.4's continuation). A pinned line
+survives the humanizer rewrite byte for byte, and a client-visible scope fact is
+exactly the class that rule exists for.
+
+**The fixture — the field case's *shape*, and nothing of its content.**
+`tests/fixtures/qr-boundary/`: 14 epics, 12 MVP and 2 Phase 2, E-10 and E-11
+unbriefed, `Boundary: MVP + Phase 2` on the head. Fixture B is the **same
+estate** with the head's `Boundary:` line reading `MVP` alone, built by copy
+inside three checks so *same estate* is literally true. Held small on purpose —
+the briefs carry their header, their status and their §8 table and nothing
+else, because CC-H-08 reads existence and the §10.5 ladder reads the slicing's
+Status column. Depth belongs to the appointment-booking world.
+
+**Synthetic, and made to say so — the client-provenance sweep (owner-directed,
+1 Sep 2026).** The fixture was first authored *shaped like* the field estate:
+it named the project slug, attributed twelve **invented** epic names to a
+client RFQ under the `[stated]` ground-class token, carried an invented rate
+card (`rate 50/h · team mix 4 (eng-share 75%)`), and put invented commercial
+rationale next to the real BA's initials. No client text was ever reproduced —
+every byte came from a generator — but a fixture that asserts client provenance
+for text no client wrote is a record waiting to be misread. Swept on the
+owner's direction: the slug is gone (no check pinned it), `Sources:` reads
+`none`, `Client label:` reads `open — no source material`, every rate and mix
+figure is an absent-source dash, the initials are `A.B.`, and the allocation
+reasoning and every Description and Value Anchor say plainly that the row is
+invented. What is kept is what the framework's own committed record already
+publishes and the checks pin: the **shape**, and the two epic names `E-10
+Public API & Bulk Generation` and `E-11 Premium Redirect Features` that gate
+§10.4's illustration names verbatim.
+
+**No ground-class token, and why not one of the two.** The instruction was to
+mark the invented rows with the framework's own marker for fixture text. **The
+framework has none.** Catalogue-b6 **D-B6-11** closes the Source ground-class at
+exactly two — `[stated]` (an estate line states the capability) and
+`[inferred]` (dependency reasoning or a probe on indirect evidence) — and
+**both mean derived from real ground**; the same ruling names
+assumptions-vs-facts marking as *forward context, named and not built here*,
+i.e. unruled. Minting a third token would put unruled vocabulary into a column
+D-B6-11 governs tightly enough to have rejected a seventh roadmap column over.
+The sibling **negative** fixture's precedent is taken instead: **no token at
+all**, and a citation to ground that exists — here `fixture roster — no client
+document`. The head's comment states the whole of it, including this reasoning,
+so the next reader does not have to re-derive it.
+
+**The falsification, all of it held.**
+
+- **Fixture A** — all four display sites name E-10 and E-11 with phase and
+  Billable; `sk_health` counts exactly 2 gaps, the other three assertions still
+  PASS beside them, and pre-flight is unaffected.
+- **Fixture B** — `CC-H-08 PASS — 12 in-boundary epic(s)`, and the set is
+  asserted **identical** to the roadmap's first-phase list: under a single-phase
+  boundary the election's output is byte-identical to the pre-fix election, by
+  construction rather than by inspection.
+- **The greps** — `allocated to the first phase`: 0 in every payload carrier, 0
+  in the quickstart, exactly **2** in the orchestrator document (D-O61's register
+  row and the v0.42 change record's quotation, both byte-untouched);
+  `epic in the first phase`: 0 in every carrier and the quickstart; the boundary
+  clause **exactly 1** per payload carrier.
+- **Four more edges, seeded** — a boundary-less frame and a roadmap-less estate
+  both render the dash and never a gap · a blank-Phase row leaves the set while
+  its billable sibling stays named · a deleted in-boundary brief surfaces at
+  boundary grain, the scoped run's own cause · CC-H-03 renders its vacuous `0
+  Band-3 epic(s)` on the same fixture, subset-blind by construction and not
+  broken.
+
+**Edition pins — swept, and the two-site lesson held.** `check-orchestrator`'s
+header pin v0.41 → v0.42 and its D-O contiguity range → `1…101`; `check-humanizer`
+carries the **second** copy of both, and both moved there too — the 0.1.47 lesson
+repeating exactly where memory said it would. Contract pins: the live footer
+assertion moved to `63 (… 8 project-health; 25 M · 38 A, 2 ⚑)` and the v0.3
+record's own `62 (… 7 project-health)` stayed, relabelled as the history it is.
+`check-m`'s M list and total 24 → 25; `README.md` with it. No check pinned the
+gate's edition string; `check-gate` now pins v0.14's law instead.
+
+**Four divergences, registered rather than resolved silently.**
+
+*(1) The drift variant's census.* The field note's §5 says the `ba-orchestrator`
+drift *"every epic in the first phase"* is **0 everywhere**. The orchestrator
+document carries it **twice** at HEAD — the v0.42 change record's origin line and
+§45's five-corrections paragraph — both historical quotation, exactly like the
+killed clause's own 2 which §5 *does* pin. The document wins: the regression
+asserts 0 across the five payload carriers and the quickstart, and leaves the
+document's two untouched. A ruling is amended **on** the record, never rewritten
+out of it — the same reading that keeps §10.7's three historical *"two
+conditional joins"* alive and asserted at 3.
+
+*(2) The CC-H-08 gap line.* Gate §10.4 illustrates it as `CC-H-08 FAIL — E-10
+Public API & Bulk Generation — Phase 2 · Billable Yes — no scope brief`.
+Contract §7 rules that **every** failure line has the form `CC-<ID> FAIL —
+<element>: <what is wrong> → <fix action>`, and that a line naming no action is
+itself invalid gate output; every M checker in the estate renders through
+`Finding.gap_line`, which is that form. Taken: the **element** is the doc's own
+text through the Billable value, the problem is `no scope brief`, the fix names
+Tier 1 in ingest mode. Every token of the pinned line is present and in order;
+the separator before `no scope brief` is §7's colon rather than the doc's dash,
+and the `→ fix` tail is §7's requirement. The document's own illustrative line is
+pinned verbatim against the gate document **and** against the compiled
+`/ba-gate-health` surface, so the doc's form is still held where it is stated.
+
+*(3) `assertions-h.md` does not gain a CC-H-08 row — item 2 not taken as
+written.* The card is **compiled, never hand-edited** (`check-cards.py
+--record`), and `render_h` selects Scope-H rows whose Chk **starts with A**; its
+own head comment names its reader as "the `ba-gate` subagent on the **A third**".
+Contract §6 gives CC-H-08 Chk **M**. A hand-added row would diverge from its own
+compiler at the next `--record` and would hand an M assertion to the A pass.
+CC-H-08's runtime lands where an M row belongs — `sk_health.py`,
+`/ba-gate-health`'s M third, `SCOPE_H` — and `check-gate` now asserts the card
+does **not** carry it, with the reason on the line.
+
+*(4) The map's 24 does not move — and the stale half is routed, not edited.*
+`sk_map.py`'s `M_TOTAL = 24` is pinned by map definition v0.1 **D-M2** as "the M
+set's own size (build plan §2.4; **check-m's 24 exercised assertions**)", and
+check-m's exercised count is now 25. The number stays: the map's denominator is
+the **per-feature** set a gate report can carry — the Scope-F M assertions plus
+the CC-H pre-flight subset — and CC-H-08 is never in pre-flight, so no
+per-feature report can ever carry its verdict. Moving it would drop every
+certified feature from 100% to 96% for an assertion its report never evaluated.
+`sk_map.py`'s comment is corrected to state the rule rather than the
+coincidence; **the map definition itself is routed to master, not edited here** —
+this pass names three documents and that is not one of them.
+
+**Six judgement calls, recorded.**
+
+*(i) The phase renders verbatim.* The pinned line reads `— Phase 2 · Billable
+Yes` because E-10's roadmap cell reads `Phase 2`; a cell reading `MVP` renders
+`MVP`, never `Phase MVP`. §10.4's `(Phase <p> · Billable Yes)` template is read
+the same way — the WBS Phase column's own verbatim rule (D-O67), and the only
+reading under which the document's two pinned examples agree.
+
+*(ii) The boundary clause is asserted per **payload** carrier.* The field note's
+*exactly 1 per carrier* names six; Lane B wrote the quickstart in the BA-facing
+register — *"it scopes every epic inside your delivery boundary itself"* — and
+compiling the framework clause into it would break §10.3's register split. The
+quickstart's own sentence is pinned instead, beside its *"If a billable epic is
+ever left unbriefed"* line.
+
+*(iii) The computation lives in `sk_health`,* not in a shared reader, because the
+document says which way the dependency runs: the gate computes and rules, the
+renders read. `sk_status` already imported from both `sk_wbs` and `sk_health`, so
+no cycle arrives.
+
+*(iv) A roadmap with no in-boundary row renders the dash too* — `— no roadmap
+row falls inside the boundary`. The vacuity clause names the two absent-source
+states; a zero denominator is §10.4-F's own separate law, and `0/0` is the one
+thing both rules forbid.
+
+*(v) The join count is asserted only where a count already stood* — the document
+and the three skills. The two mirrors state the joins and have never counted
+them.
+
+*(vi) `hasnt_flow` added to `check-auto`* — check-orchestrator's kill-set form at
+check-auto's flow grain, so a killed clause is killed as the BA reads it and not
+as the source happened to wrap it.
+
+**Defaults taken: none — all ruled.**
+
+**Suite: 20/20 GREEN**, the three install-based runs included.
+
+| Check | Result |
+|---|---|
+| `check-m.sh` | 91 / 0 |
+| `check-gate.sh` | 157 / 0 |
+| `check-orchestrator.sh` | 630 / 0 |
+| `check-techniques.sh` | 104 / 0 |
+| `check-techniques2.sh` | 127 / 0 |
+| `check-techniques3.sh` | 166 / 0 |
+| `check-spine.sh` | 286 / 0 |
+| `check-register.sh` | 64 / 0 |
+| `check-wbs.sh` | 111 / 0 |
+| `check-audit.sh` | 240 / 0 |
+| `check-status.sh` | 129 / 0 |
+| `check-map.sh` | 43 / 0 |
+| `check-humanizer.sh` | 119 / 0 |
+| `check-ledger.py` | grammar-legal — 19 rules, no violations |
+| `check-cards.py` | every card byte-identical to its re-derivation; layering clean |
+| `check-layout.sh` | 126 / 0 / 0 |
+| `check-exit.sh --offline` | 105 / 0 |
+| `check-install.sh` | 64 / 0 |
+| `check-budget.sh` | 99 / 0 |
+| `check-auto.sh` | 312 / 0 |

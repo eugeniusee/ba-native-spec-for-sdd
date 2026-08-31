@@ -982,6 +982,78 @@ wbs --root "$PROJ" --profile presale --out-dir "$TMP/none" --summary-only \
 
 fi  # end of section 6
 
+# ── 7. the roadmap dimension of the summary (§10.5 · D-O100 · EC-22) ─────────
+#
+# `Included 41 · excluded none` was TRUE of the folders the export read and
+# FALSE of the engagement: two in-boundary epics had no folder to be named in.
+# The specs dimension holds `nothing silently dropped` over what exists; this
+# one holds it over the quoted scope.
+
+printf '\n▸ The roadmap dimension — every in-boundary epic with no rows (D-O100)\n'
+
+QRA="$HERE/fixtures/qr-boundary"
+QSUM="$TMP/qr.summary"
+wbs --root "$QRA" --summary-only > "$QSUM" 2>&1
+QRC=$?
+
+[ "$QRC" -eq 0 ] \
+  && ok "the export runs clean over an under-covered roadmap — counts render, no block" \
+  || { bad "the export exited $QRC over an under-covered roadmap"; \
+       sed 's/^/      /' "$QSUM" | tail -6; }
+
+grep -q '^In-boundary epics with no rows: 13$' "$QSUM" \
+  && ok "…and names how many: 13 of the 14 in-boundary epics contributed no row" \
+  || bad "the roadmap dimension's count line is missing: $(grep -i 'in-boundary' "$QSUM" | head -1)"
+
+# the ladder — the first missing link the read set already sees, all four states
+while IFS='|' read -r want label; do
+  [ -z "$want" ] && continue
+  grep -Fq "$want" "$QSUM" \
+    && ok "…$label" \
+    || bad "the ladder does not name $label — wanted: $want"
+done <<'LADDER'
+  E-10 Public API & Bulk Generation — Phase 2 · Billable Yes — no brief|no brief (E-10, the field case)
+  E-11 Premium Redirect Features — Phase 2 · Billable Yes — no brief|no brief (E-11)
+  E-12 Campaign Folders — MVP · Billable Yes — brief — no confirmed slicing|brief — no confirmed slicing
+  E-13 Bulk CSV Import — MVP · Billable Yes — no spec folder|no spec folder
+  E-14 White-label Domains — MVP · Billable Yes — spec — no stories|spec — no stories
+LADDER
+
+grep -Fq 'The WBS understates the quoted scope until they are briefed and specced.' "$QSUM" \
+  && ok "…and the closing sentence says what the number means" \
+  || bad "the closing understatement sentence is missing"
+
+grep -q '^  E-01 ' "$QSUM" \
+  && bad "an epic that DID contribute rows was named — the dimension is zero-rows only" \
+  || ok "…the one epic that contributed a row is not named"
+
+# vacuous where the check is vacuous: no boundary, no dimension
+NOB="$TMP/qr-noboundary"
+mkdir -p "$NOB"
+cp -R "$QRA/." "$NOB/"
+python3 - "$NOB/.specify/aspect-state.md" <<'PYX'
+import pathlib, re, sys
+p = pathlib.Path(sys.argv[1])
+p.write_text(re.sub(r"^Boundary:.*\n", "", p.read_text(encoding="utf-8"),
+                    count=1, flags=re.M), encoding="utf-8")
+PYX
+wbs --root "$NOB" --summary-only > "$TMP/qr-nob.summary" 2>&1
+grep -q 'In-boundary epics with no rows' "$TMP/qr-nob.summary" \
+  && bad "a boundary-less frame produced a roadmap dimension — it has no ground" \
+  || ok "no boundary in the frame: the dimension does not render — the absent-source law"
+grep -q '^Included: ' "$TMP/qr-nob.summary" \
+  && ok "…and the specs dimension is untouched: one dimension went quiet, not the summary" \
+  || bad "the boundary-less summary lost the specs dimension too"
+
+# read-only: the dimension opens no new source and writes nothing
+QBEFORE=$(find "$QRA" -type f -exec shasum {} + | shasum | cut -d' ' -f1)
+wbs --root "$QRA" --summary-only > /dev/null 2>&1
+QAFTER=$(find "$QRA" -type f -exec shasum {} + | shasum | cut -d' ' -f1)
+[ "$QBEFORE" = "$QAFTER" ] \
+  && ok "…and the estate is byte-identical after the run: the read set is unchanged" \
+  || bad "the roadmap dimension wrote to the estate it read"
+
+
 # ── roll-up ──────────────────────────────────────────────────────────────────
 
 printf '\n  passed: %s   failed: %s\n' "$PASSED" "$FAILED"

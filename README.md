@@ -131,7 +131,7 @@ live; agent acts are staged from recorded fixtures and validated in place. Add
 
 `check-m.sh` runs the ten vendored checkers against the appointment-booking
 fixture world, asserts each case against its recorded verdict table, reproduces
-gate run 2's M-detectable gaps verbatim, and fails if any of the 24 M assertions
+gate run 2's M-detectable gaps verbatim, and fails if any of the 25 M assertions
 is not exercised with both a seeded FAIL and a PASS.
 
 `check-techniques2.sh` validates the Context estate, the Assumed → Confirmed

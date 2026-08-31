@@ -38,9 +38,9 @@ enforced at Stage 0 of `/ba-gate`, nowhere else.
 
 | Mode | When | Coverage | Voice |
 |---|---|---|---|
-| **Full** | Band-1 closure (the arming run) · after each scope-brief ingestion batch · on demand | all seven CC-H over every spec-anchored artifact | always reported; the entry appends to the ledger |
+| **Full** | Band-1 closure (the arming run) · after each scope-brief ingestion batch · on demand | every CC-H assertion over every spec-anchored artifact | always reported; the entry appends to the ledger |
 | **Scoped** | every framework write to a governance or context artifact | the touched artifact's assertions + its cross-reference dependents | **silent unless FAIL** |
-| **Pre-flight** | Stage 0 of every Scope-F run — *dispatched by `/ba-gate`, not by this skill* | the seven CC-H restricted to `deps(F)` | reported into that run's entry |
+| **Pre-flight** | Stage 0 of every Scope-F run — *dispatched by `/ba-gate`, not by this skill* | the CC-H set restricted to `deps(F)` — CC-H-08 never among them, its join sitting in no feature's `deps(F)` | reported into that run's entry |
 
 ### The scoped-run map
 
@@ -49,14 +49,14 @@ enforced at Stage 0 of `/ba-gate`, nowhere else.
 | `glossary.md` | CC-H-01 · CC-H-04 | notice for certified-but-unhandedoff features (the glossary is in every `deps(F)`) |
 | `roles-permissions.md` | CC-H-01 · CC-H-05 | same |
 | `domain-model.md` | CC-H-01 · CC-H-05 (policy rows referencing entities) | same |
-| `scope/<epic>.md` | CC-H-01 · CC-H-03 (that epic) | notice for that epic's certified features |
-| `roadmap.md` | CC-H-02 · CC-H-03 · CC-H-07 (the roadmap half — rows outside the head's `Boundary:` set against standing `AS-<n>` entries) | — |
+| `scope/<epic>.md` | CC-H-01 · CC-H-03 (that epic) · CC-H-08 (existence at boundary grain — a deleted brief surfaces) | notice for that epic's certified features |
+| `roadmap.md` | CC-H-02 · CC-H-03 · CC-H-07 (the roadmap half — rows outside the head's `Boundary:` set against standing `AS-<n>` entries) · CC-H-08 (the in-boundary rows against the brief set) | — |
 | `constitution.md` / a governance file | CC-H-01 · CC-H-06 | notice where it sits in a `deps(F)` |
 | `canvas.md` · `context.md` · `constraints.md` · `stakeholders.md` · `processes.md` · `out-of-scope.md` | CC-H-01 · CC-H-07 — `out-of-scope.md` only (the fence half — fence rows against standing `AS-<n>` entries) | notice where the artifact is in a certified feature's manifest |
 
 ## Running it
 
-**The M third** — CC-H-02 · CC-H-03 · CC-H-06:
+**The M third** — CC-H-02 · CC-H-03 · CC-H-06 · CC-H-08:
 
 ```bash
 python3 .specify/ba/scripts/sk_health.py --format json --root .
@@ -88,6 +88,37 @@ blocks wherever `roadmap` or `out-of-scope.md` sits in `deps(F)`, and
 **`HA-<nn>` applies exactly as to any H gap.** **The ledger head is ground,
 never a trigger and never audited** — read-only, outside every glob and outside
 the scoped-run write set.
+
+**CC-H-08 — the boundary-coverage check.** It reads three grounds: the
+**roadmap** (rows whose Phase — a Deferred row: its target phase — falls
+inside the head's `Boundary:` set, the WBS Billable column's own test), the
+**brief
+set on disk** (`.specify/memory/scope/<E-nn>.md` — **existence, not content**:
+whether the brief carries a confirmed slicing stays CC-H-03's question), and
+the head's **`Boundary:`** line. **Element grain is the epic**, in named-gap
+grammar:
+
+```
+CC-H-08 FAIL — E-10 Public API & Bulk Generation — Phase 2 · Billable Yes — no scope brief
+```
+
+**Vacuous, never a gap,** where no roadmap stands or no boundary stands in the
+frame — the pre-decomposition and boundary-less states render `—`, and a
+blank-Phase row sits outside the set exactly as its Billable cell sits blank.
+**A live CC-H-08 gap counts in `n gaps` and blocks nothing:** its ground is the
+roadmap ⇄ brief-set join at boundary grain, which sits in **no feature's
+`deps(F)`** — one epic's missing brief does not rot another epic's spec, and a
+Stage-0 block over an uncovered sibling would stop covered work over an
+uncovered one. **`HA-<nn>` applies exactly as to any H gap** — the legitimate
+case is a client-agreed deferral of an in-boundary epic's briefing. **Run
+points:** full runs — the post-ingestion batch-end run is the one that meets
+the Tier-1 election — and scoped runs on `roadmap.md` and
+`.specify/memory/scope/<epic>.md` edits; **never Stage-0 pre-flight**.
+**Display is the orchestrator's — four sites, one computation:** the
+`/ba-status` dashboard's line-2 continuation, the band-boundary report's `Scope
+coverage:` line, `/ba-run specs`' confirmation table and `/ba-wbs`'s generation
+summary. **The gate computes and rules; the renders read** — so under a grant
+the boundary report shows the set without a run, and the next full run rules it.
 
 Both read the artifacts as they stand. A Scope-H run has no snapshot of its
 own: it is a health reading of the live estate, and its findings are what the

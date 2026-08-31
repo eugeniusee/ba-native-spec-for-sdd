@@ -574,7 +574,7 @@ has "$CONTRACT_DOC" "| roadmap+oos+ledger head | 10.1 · 7.2 consistent | A |" \
 has "$CONTRACT_DOC" "The assertion count moves **61 → 62** (24 M · 38 A)" \
     "…and the count moves 61 → 62, the M third untouched"
 has "$CONTRACT_DOC" "assertion count: 62 (6 global · 49 across C1–C12 · 7 project-health)" \
-    "…the footer counting seven project-health rows"
+    "…the v0.3 record keeping its own seven-row count, on the record"
 has "$CARDS_H" "### CC-H-07 · Checks: roadmap+oos+ledger head" \
     "the compiled A card carries CC-H-07 — check-cards.py holds it byte-identical"
 
@@ -656,6 +656,82 @@ has "$TMP/h07-ha.entry" "Pre-flight:           1 gap(s) lifted by HA-02" \
     "…and an HA lifts it, the conscious valve working on CC-H-07 as on any H gap"
 has "$TMP/h07-ha.entry" "Category summary" "…the run proceeding past Stage 0 once accepted"
 
+
+# ── 6d. CC-H-08 — boundary coverage at the H layer (contract v0.5 §6 ·
+#       gate v0.14 §10.1 · §10.2 · §10.4) ────────────────────────────────────
+#
+# EC-22. Nothing anywhere compared the roadmap's in-boundary rows to the brief
+# set, so two billable epics with no folder were invisible to every surface —
+# each of which was correct on its own terms. CC-H-03 is subset-blind by
+# construction (it conditions on ENTERING Band 3) and stands untouched; this
+# row owns the coverage question. It counts and it never blocks: the join sits
+# in no feature's deps(F).
+
+printf '\n▸ CC-H-08 — boundary coverage at the H layer (contract §6 · gate §10.1 · §10.2 · §10.4)\n'
+
+has "$CONTRACT_DOC" "| CC-H-08 | Boundary coverage: every roadmap epic allocated to a phase inside the ledger head" \
+    "the contract carries the CC-H-08 row (§6)"
+has "$CONTRACT_DOC" "| brief+roadmap+ledger head | 10.41 · 7.2 complete | M |" \
+    "…with its Checks set and its class — M, a file-existence join, CC-H-03's own class"
+has "$CONTRACT_DOC" "**Assertion count 62 → 63: 25 M · 38 A (2 ⚑).**" \
+    "…and the count moves 62 → 63, the M third 24 → 25"
+has "$CONTRACT_DOC" "assertion count: 63 (6 global · 49 across C1–C12 · 8 project-health; 25 M · 38 A, 2 ⚑)" \
+    "…the live footer counting eight project-health rows"
+has "$CONTRACT_DOC" "**CC-H-03 is untouched**" \
+    "…and CC-H-03 is untouched: two questions, two rows"
+
+hasnt "$CARDS_H" "CC-H-08" \
+    "the A card does NOT carry it — assertions-h.md is the A pass, and CC-H-08 is M"
+
+has "$GATE_DOC" "The boundary-coverage check (CC-H-08) — classing, ground and run points" \
+    "§10.4 owns the runtime — the contract states the assertion"
+has "$GATE_DOC" "**Element grain is the epic**" \
+    "…element grain is the epic, one line per uncovered row"
+has "$GATE_DOC" "CC-H-08 FAIL — E-10 Public API & Bulk Generation — Phase 2 · Billable Yes — no scope brief" \
+    "…rendered in named-gap grammar, phase and Billable on the line"
+has "$GATE_DOC" "existence, not content: the slicing's presence stays CC-H-03's question" \
+    "…reading brief EXISTENCE, the slicing staying CC-H-03's"
+has "$GATE_DOC" "**Vacuous, never a gap,**" \
+    "…vacuous where no roadmap or no boundary stands — the absent-source law"
+has "$GATE_DOC" "counts in \`n gaps\` and blocks nothing" \
+    "…a live gap counts and blocks NOTHING — no deps(F) contains the join"
+has "$GATE_DOC" "**never Stage-0 pre-flight**" \
+    "…and it is never in the Stage-0 pre-flight set"
+has "$GATE_DOC" "CC-H-08 (the in-boundary rows against the brief set)" \
+    "§10.2's scoped map widens the roadmap cell in place"
+has "$GATE_DOC" "CC-H-08 (existence at boundary grain — a deleted brief surfaces)" \
+    "…and the scope-brief cell, for the deleted-brief cause"
+has "$GATE_DOC" "Every CC-H assertion over all spec-anchored artifacts" \
+    "§10.1's full-run cell goes count-free — a count that goes stale silently is worse than none"
+NSIX=$(grep -o "all six CC-H" "$GATE_DOC" | wc -l | tr -d ' ')
+[ "$NSIX" = "1" ] \
+  && ok "…and the stale six-CC-H count survives only where v0.14 quotes what it retired" \
+  || bad "the gate document carries $NSIX \"all six CC-H\", expected 1 (the change record's quotation)"
+
+# the compiled surfaces carry the same law, count-free
+has "$SKILLS_D/ba-gate-health/SKILL.md" "CC-H-02 · CC-H-03 · CC-H-06 · CC-H-08" \
+    "/ba-gate-health runs CC-H-08 with the M third"
+has "$SKILLS_D/ba-gate-health/SKILL.md" "every CC-H assertion over every spec-anchored artifact" \
+    "…its full-run row count-free"
+has "$SKILLS_D/ba-gate-health/SKILL.md" "CC-H-08 — the boundary-coverage check" \
+    "…with the check's own paragraph compiled at its site"
+has "$SKILLS_D/ba-gate-health/SKILL.md" "CC-H-08 FAIL — E-10 Public API & Bulk Generation — Phase 2 · Billable Yes — no scope brief" \
+    "…and its named-gap grammar"
+has "$SKILLS_D/ba-gate/SKILL.md" "**CC-H-08 is never in this set:**" \
+    "the compiled gate keeps CC-H-08 out of pre-flight, and says why"
+hasnt "$SKILLS_D/ba-gate/SKILL.md" "the seven CC-H assertions restricted to" \
+    "…its pre-flight line count-free too"
+
+# the runtime table the snapshot compiles from the contract
+python3 - "$PKG_ROOT/payload/specify-overlay/ba/scripts/sk_snapshot.py" <<'PYH8' \
+  && ok "sk_snapshot's SCOPE_H carries CC-H-08 as M — the H set is eight rows" \
+  || bad "sk_snapshot's SCOPE_H does not carry CC-H-08 as an M row"
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(sys.argv[1]).parent))
+from sk_snapshot import SCOPE_H
+sys.exit(0 if ("CC-H-08", "H", "M") in SCOPE_H and len(SCOPE_H) == 8 else 1)
+PYH8
 
 # ── 7. R4 — the A pass takes §5.1 by reference, and carries no copy ──────────
 #

@@ -94,7 +94,7 @@ Do not invoke them on your own initiative and do not simulate their effects.
 | `/ba-aspect <aspect>` · `/ba-aspect band2` | Open an aspect (suggestion snapshot → plan composition), or compose the `## Band 2` section's plan — nothing opens; Band-1 closure is the door |
 | `/ba-t<NN>` · `/ba-tier1` · `/ba-tier2` | One-step technique run — the P-O3 (technique invocation) check compiled in; `/ba-run <id>` = alias + custom runner |
 | `/ba-run` | Run the composed plan as a route: the pinned route render, then every row on one `go` — no per-row acknowledgement |
-| `/ba-run specs all` · `/ba-run specs <epic-list>` | Batch Band-3 entry: one P-O8 (Band-3 entry) table, then Tier 2 per feature, one consolidated defer-confirm |
+| `/ba-run specs all` · `/ba-run specs <epic-list>` | Batch Band-3 entry: one P-O8 (Band-3 entry) table opening with the `Scope coverage:` line, then Tier 2 per feature, one consolidated defer-confirm |
 | `/ba-clear <aspect>` | Evidence table → clearing confirmation |
 | `/ba-waive-aspect <aspect>` | Grant · re-affirm · lapse an aspect waiver |
 | `/ba-reopen <aspect>` | Rule and execute a reopen signal |
@@ -218,11 +218,12 @@ never reach the profile's own draft-spec destination. **Election stays the BA's
 act** — under a grant it is taken by deferred batch ratification, the instrument
 Band-1 closure already rides. **The pinned Presale instance:** with no client
 call available, at Band-2 exit self-elect **Tier 1 — epic scoping in ingest mode
-over captured client material** for every epic allocated to the first phase —
-**kit and brief per epic** — then P-O8 — Band-3 entry → Tier 2 — spec-depth
-gap-filling in assumption posture → draft specs. **The call stays BA-elected:**
-write the kit, **never book the session it was written for**. An epic whose
-slicing hangs on an open question **still gets its brief**, the dependency in its
+over captured client material** for every epic allocated to a phase inside the
+scope frame's `Boundary:` set — the rows the WBS's Billable column reads `Yes`
+for — **kit and brief per epic** — then P-O8 — Band-3 entry → Tier 2 —
+spec-depth gap-filling in assumption posture → draft specs. **The call stays
+BA-elected:** write the kit, **never book the session it was written for**.
+An epic whose slicing hangs on an open question **still gets its brief**, the dependency in its
 Open Questions and named in the resumption report.
 
 **An un-electable act renders as a choice, never as a failure.** An act outside
@@ -273,6 +274,7 @@ Band boundary — <date> · AUTO (AG-<n>) · <P-O7 Band-1 closure | P-O8 Band-3 
 Auto-trail since <start | last boundary>: <n> acts
 Assumptions: <n> · Open questions: <n>
 Health refresh: <current | overdue: <r> runs vs cadence>
+Scope coverage: <in-boundary epics briefed <b>/<e> | uncovered inside boundary: E-nn <name> · … | — no roadmap or no boundary yet>
 Next act: <one line> — any reply continues · /ba-auto off renders the resumption report
 ```
 
@@ -293,9 +295,15 @@ closure, Band 2 at P-O8 — Band-3 entry. Where the health line renders
 `overdue`, one option joins before c, re-lettering c to d — `run
 /ba-gate-health full first — it is overdue; no grant reaches it, this stays
 your act` — recommended staying on continue: the health line is display only
-and the refresh act stays the BA's. Where the decision-list tail renders, its
-items join the ask as questions in **T-18 — Scope allocation's** step-4 shape,
-`hold as advisory — no move` recommended; the typed ruling grammar stays the
+and the refresh act stays the BA's. Where the `Scope coverage:` line renders
+uncovered epics, one option joins before c the same way — after the health
+option where both render — `brief the uncovered in-boundary epics first —
+<the line's list>; Tier 1 in ingest mode is inside the grant, the run resumes
+toward Band 3 after`, recommended staying on continue here too: unlike the
+health act this one sits inside the cost boundary, and still no AG expands.
+Where the decision-list tail renders, its items join the ask as questions in
+**T-18 — Scope allocation's** step-4 shape, `hold as advisory — no move`
+recommended; the typed ruling grammar stays the
 shortcut. Still a render, not a ratification point: the ask takes no ruling on
 the trail, option b routes to the existing `off` act, and the recommended
 option is the continue.

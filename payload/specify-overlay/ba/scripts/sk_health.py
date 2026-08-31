@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
-"""sk_health — CC-H-02 · CC-H-03 · CC-H-06 (contract §6, the M third of Scope H).
+"""sk_health — CC-H-02 · CC-H-03 · CC-H-06 · CC-H-08 (contract §6, the M third
+of Scope H).
 
 BA-Native Spec · vendored M checker (build plan §2.4).
 Anchors: completeness contract §6 · gate definition §10 (Scope-H runtime, the
-scoped-run map) · catalogue b6 D-B6-2 (the roadmap's row and log grammar) ·
-D-B6-3 (the status vocabulary) · catalogue b5 T-15 §5 (the constitution's
-`## Governance references` table — CC-H-06's checked set verbatim) ·
-elicitation §4 (the brief's §8).
+scoped-run map, and CC-H-08's classing) · catalogue b6 D-B6-2 (the roadmap's
+row and log grammar) · D-B6-3 (the status vocabulary) · catalogue b5 T-15 §5
+(the constitution's `## Governance references` table — CC-H-06's checked set
+verbatim) · elicitation §4 (the brief's §8) · orchestrator D-O67 (the Billable
+test) · D-O100 (one computation, four display sites).
 
   CC-H-02  roadmap discipline: every epic carries a status; every re-allocation
            entry logs a diff and a reason.
@@ -14,12 +16,20 @@ elicitation §4 (the brief's §8).
            feature slicing.
   CC-H-06  every governance file the constitution references exists and is
            stub-free.
+  CC-H-08  boundary coverage: every roadmap epic allocated to a phase inside
+           the ledger head's `Boundary:` set has a scope brief.
 
 CC-H-03's "entering Band 3" resolves through D-B6-3's status vocabulary: an
 epic is in or past Band 3 exactly when its status is `In delivery` (its first
 feature entered Band 3, at P-O8) or `Delivered`. `Defined` epics have not
 entered; `Retired — <reason>` rows have left scope. No status mirror of the
 brief exists by design (D-B6-3), so the join is read directly.
+
+CC-H-08 asks a different question at a different moment, and the two rows are
+disjoint by ruling: CC-H-03 conditions on *entering Band 3*, so an epic that
+never enters is invisible to it — which is exactly how two in-boundary epics
+went unbriefed for three days under a green health run (EC-22). CC-H-08 is
+conditioned on the **boundary**, so it sees them.
 
 Scope H is project-level: this script takes `--root` and never a feature.
 
@@ -45,6 +55,15 @@ from sk_structure import (  # noqa: E402
     Finding, base_parser, emit, fail, is_stub, memory, ok, runtime_defect,
     table_rows,
 )
+
+# CC-H-08's three grounds are already read elsewhere, and are imported rather
+# than restated: `read_frame` is the ledger head's `Boundary:` line (§2.4),
+# `read_roadmap_at` the header-resolved epic roster, and `billable_cell` the
+# Billable test itself — the row's Phase (a Deferred row: its target phase)
+# tested against the boundary set (§10.5, D-O67). D-O100 puts one computation
+# behind four display sites; a second copy of any of the three would be a
+# second thing to drift.
+from sk_wbs import billable_cell, read_frame, read_roadmap_at  # noqa: E402
 
 STATUS_VOCAB = ("Defined", "In delivery", "Delivered")
 RETIRED_RE = re.compile(r"^Retired\s*[—–-]\s*\S", re.IGNORECASE)
@@ -334,8 +353,89 @@ def check_h06(root, constitution_path: Path):
               "stub-free" % len(refs))
 
 
+# ── CC-H-08 ───────────────────────────────────────────────────────────────────
+
+
+def boundary_coverage(roadmap_path: Path, scope_dir: Path, root):
+    """The boundary-coverage set — one computation, four display sites (D-O100).
+
+    Returns `(in_boundary, uncovered)`:
+
+      * **in_boundary** — `[(eid, name, phase)]`, every roadmap epic whose
+        Phase falls inside the ledger head's `Boundary:` set. The membership
+        test is `billable_cell` itself, imported from the export: the set is
+        exactly the rows the WBS bills, by construction rather than by a
+        second reading of the same rule (§10.5's own Billable test, D-O67).
+        A **blank Phase** sits outside the set exactly as its Billable cell
+        sits blank — an absent source is never a guess.
+      * **uncovered** — the subset with no `<E-nn>.md` in the brief folder.
+        **Existence, not content:** whether the brief carries a confirmed
+        slicing is CC-H-03's question, at CC-H-03's moment.
+
+    `in_boundary` is **None** where the check is **vacuous** — no roadmap
+    stands, or no boundary stands in the frame. Vacuous is *never a gap*: the
+    pre-decomposition and boundary-less states render `—`, the absent-source
+    law (D-O67 · D-O71), and the four display sites print that dash rather
+    than a ratio they have no ground for.
+
+    The gate computes and rules here; the renders read. `/ba-status`'s line-2
+    continuation, the band-boundary report's `Scope coverage:` line,
+    `/ba-run specs`' confirmation table and `/ba-wbs`'s generation summary all
+    call this function, so no two of them can ever disagree.
+    """
+    _, boundary, _ = read_frame(Path(root))
+    if not boundary or not roadmap_path.is_file():
+        return None, []
+
+    order, names, phases = read_roadmap_at(roadmap_path)
+    in_boundary, uncovered = [], []
+    for eid in order:
+        phase = phases.get(eid, "")
+        if billable_cell(phase, boundary) != "Yes":
+            continue
+        row = (eid, names.get(eid, ""), phase)
+        in_boundary.append(row)
+        if not (Path(scope_dir) / ("%s.md" % eid)).is_file():
+            uncovered.append(row)
+    return in_boundary, uncovered
+
+
+def check_h08(roadmap_path: Path, scope_dir: Path, root):
+    a = "CC-H-08"
+    checks = ["brief", "roadmap", "ledger head"]
+    in_boundary, uncovered = boundary_coverage(roadmap_path, scope_dir, root)
+
+    # Vacuous, never a gap. The verdict is a PASS by construction, and its
+    # evidence says which source is absent — the dash the renders print,
+    # said in the gate's own grammar.
+    if in_boundary is None:
+        return ok(a, checks, "— no roadmap or no boundary in the frame: "
+                             "the check is vacuous, never a gap")
+    if not in_boundary:
+        return ok(a, checks, "— no roadmap row falls inside the boundary: "
+                             "a zero denominator renders the dash, never 0%")
+
+    if uncovered:
+        # Element grain is the epic, named with its phase and its Billable
+        # value — a count without names is indistinguishable from ordinary
+        # later-phase deferral, which is the blind spot this row exists to
+        # close (D-O58 met at a join, EC-22). The phase is the ladder value
+        # **verbatim**, the WBS Phase column's own rule (D-O67): the pinned
+        # line reads `E-10 … — Phase 2 · Billable Yes` because the roadmap
+        # cell reads `Phase 2`, and a value of `MVP` renders `MVP`.
+        return fail(a, checks, [Finding(
+            element="%s %s — %s · Billable Yes" % (eid, name, phase),
+            problem="no scope brief",
+            fix="run Tier 1 — epic scoping in ingest mode over the captured "
+                "material for the epic",
+            location=str(Path(scope_dir) / ("%s.md" % eid)))
+            for eid, name, phase in uncovered])
+
+    return ok(a, checks, "%d in-boundary epic(s), each with a scope brief"
+              % len(in_boundary))
+
 def main(argv=None) -> int:
-    p = base_parser("CC-H-02 · CC-H-03 · CC-H-06 (contract §6)")
+    p = base_parser("CC-H-02 · CC-H-03 · CC-H-06 · CC-H-08 (contract §6)")
     p.add_argument("--roadmap", help="path to roadmap.md")
     p.add_argument("--constitution", help="path to constitution.md")
     p.add_argument("--scope-dir", help="path to memory/scope/")
@@ -349,7 +449,8 @@ def main(argv=None) -> int:
                                                                    "scope")
 
     verdicts = [check_h02(roadmap), check_h03(roadmap, scope_dir),
-                check_h06(args.root, constitution)]
+                check_h06(args.root, constitution),
+                check_h08(roadmap, scope_dir, args.root)]
     return emit("sk_health", verdicts, args.format)
 
 

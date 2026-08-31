@@ -291,6 +291,23 @@ has_joined "$DOC" "Batch entry — \`/ba-run specs all | specs <epic-list>\` (D-
 has_joined "$DOC" "each run owing its own \`## Band 3\` run-log line" \
     "…and keeps D86's per-run bookkeeping inside the batch"
 
+# the confirmation table opens with the coverage line (§8.4 · D-O100) — the
+# driver drives every SELECTED feature, so the line names the in-boundary
+# epics that have no rows to select: the subset made visible above the table
+# it cannot appear in.
+has_joined "$DOC" "The confirmation table opens with the \`Scope coverage:\` line (D-O100)" \
+    "§8.4 opens the batch table with the coverage line"
+has_joined "$DOC" "the subset made visible above the table it cannot appear in" \
+    "…and says why: the epics with no rows to select"
+has_joined "$DOC" "Display only: the line strikes nothing, blocks nothing and adds no" \
+    "…display only — it strikes nothing and adds no confirmation act"
+has "$RUN" "Scope coverage: <in-boundary epics briefed <b>/<e> | uncovered inside boundary: E-nn <name> · … | — no roadmap or no boundary yet>" \
+    "…and /ba-run carries the line verbatim, the report's own wording"
+has_joined "$RUN" "the subset made visible above the table it cannot appear in" \
+    "…with the reason compiled beside it"
+has_joined "$ORC" "The table opens with the \`Scope coverage:\` line" \
+    "…and the persona opens its batch table with it too"
+
 has "$DOC" "Auto-repair (D-O32)" "§10.2 carries auto-repair"
 has_joined "$DOC" "Handing the BA a list of commands to type is a banned render" \
     "…and bans the list-of-commands render"
@@ -461,6 +478,67 @@ has_joined "$DOC" '**Recommended stays on continue:**' \
     "…with recommended staying on continue (D-O59 display-only)"
 has_joined "$DOC" 'join the ask as questions' \
     "…and the decision-list items join the ask as questions (T-18 step-4 shape)"
+
+# ── the third conditional join (D-O101 — EC-22) ─────────────────────────────
+#
+# D-O91 ruled two joins; the coverage line brings a third. It is worded
+# DIFFERENTLY from the health option on purpose: the refresh act stays outside
+# every grant, while briefing an uncovered epic sits inside the cost boundary.
+has_joined "$DOC" '**Three conditional joins, and no other (D-O101' \
+    "§10.7 counts three conditional joins, D-O91's two amended on the record"
+has_joined "$DOC" 'brief the uncovered in-boundary epics first' \
+    "…the coverage option, joining only where uncovered epics render"
+has_joined "$DOC" 'Tier 1 in ingest mode is inside the grant, the run resumes toward Band 3 after' \
+    "…and its reason: the act the run may perform on the BA's letter"
+has_joined "$DOC" 'after the health option where both render, the letters shifting in order' \
+    "…placed after the health option where both render, the letters shifting"
+has_joined "$DOC" 'while this act sits **inside the cost boundary**' \
+    "…and the wording differs deliberately: this act is inside the boundary"
+has_joined "$DOC" 'still no AG expands, no new stop and no new prompt point exists (D-O101)' \
+    "…with no AG expansion, no new stop and no new prompt point"
+
+joinmiss=0
+for pair in "$AUTO|ba-auto" "$CB1|ba-close-band1" "$ENTF|ba-enter-feature" \
+            "$BLOCK|claude-block" "$AGENTS|AGENTS.md"; do
+  f="${pair%%|*}"
+  python3 - "$f" <<'PYX' > /dev/null || { joinmiss=$((joinmiss+1)); printf '      no third join: %s\n' "${pair##*|}"; }
+import re, sys
+flat = re.sub(r"\s+", " ", open(sys.argv[1], encoding="utf-8").read())
+sys.exit(0 if "brief the uncovered in-boundary epics first" in flat else 1)
+PYX
+done
+[ "$joinmiss" -eq 0 ] \
+  && ok "…and all five band-boundary carriers carry the third join" \
+  || bad "$joinmiss carrier(s) miss D-O101's third conditional join"
+
+# the COUNT is stated wherever the joins are counted at all — the document and
+# the three skills. The two mirrors state the joins and have never counted
+# them, and this ruling adds no count where none stood (D-O56's tail rule read
+# the other way: nothing is added to a surface that never carried it).
+countmiss=0
+for pair in "$AUTO|ba-auto" "$CB1|ba-close-band1" "$ENTF|ba-enter-feature"; do
+  f="${pair%%|*}"
+  python3 - "$f" <<'PYX' > /dev/null || { countmiss=$((countmiss+1)); printf '      still counts two: %s\n' "${pair##*|}"; }
+import re, sys
+flat = re.sub(r"\s+", " ", open(sys.argv[1], encoding="utf-8").read())
+sys.exit(0 if (re.search(r"[Tt]hree\s+conditional\s+joins", flat)
+               and not re.search(r"[Tt]wo\s+conditional\s+joins", flat)) else 1)
+PYX
+done
+[ "$countmiss" -eq 0 ] \
+  && ok "…and every compiled surface that counts them counts three, none still two" \
+  || bad "$countmiss surface(s) still count two conditional joins"
+
+# The document keeps its `two` — three times, all historical: the v0.42 change
+# record, D-O101's own row naming what it amends, and §45's byte-untouched
+# note. A ruling is amended ON the record, never rewritten out of it, and a
+# corpus that scrubbed the old count would lose the amendment it is evidence of.
+has_joined "$DOC" "s *two* amended on the record, its row byte-untouched" \
+    "…and §10.7 amends the count on the record rather than rewriting D-O91"
+NTWO=$(grep -o 'two conditional joins' "$DOC" | wc -l | tr -d ' ')
+[ "$NTWO" = "3" ] \
+  && ok "…the document keeping its 3 historical \"two conditional joins\" — the amendment's own evidence" \
+  || bad "the document carries $NTWO historical \"two conditional joins\", expected 3"
 has_joined "$DOC" 'The ask asks for **no ruling on the trail**' \
     "…the boundary stays a render, not a ratification point (D-O52)"
 has "$DOC" "$RQ" "…the resumption question, its text pinned"

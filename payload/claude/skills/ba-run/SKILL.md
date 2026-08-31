@@ -44,6 +44,19 @@ and band event individually; run Tier 2 — spec-depth gap-filling per feature i
 assumption posture, each run writing its own `## Band 3` run-log line; stop once
 at the consolidated defer-confirm.
 
+**The table opens with the coverage line.** Above the rows, one line — worded
+exactly as the band-boundary report words it and computed exactly as CC-H-08
+computes it:
+
+```
+Scope coverage: <in-boundary epics briefed <b>/<e> | uncovered inside boundary: E-nn <name> · … | — no roadmap or no boundary yet>
+```
+
+This driver drives *every selected feature*, so the epics it names are the ones
+with **no rows to select** — the subset made visible above the table it cannot
+appear in. **Display only:** the line strikes nothing, blocks nothing and adds
+no confirmation act; briefing a named epic is Tier 1's.
+
 Both batch stops close per §10.3 rule 9: the confirmation table asks one
 lettered question — `a. enter all <n> features as listed (recommended)` ·
 `b. all except — give the row numbers` — and the consolidated defer-confirm

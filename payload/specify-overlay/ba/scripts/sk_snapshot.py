@@ -90,7 +90,7 @@ ASSERTIONS = [
 
 SCOPE_H = [("CC-H-01", "H", "A"), ("CC-H-02", "H", "M"), ("CC-H-03", "H", "M"),
            ("CC-H-04", "H", "A"), ("CC-H-05", "H", "A"), ("CC-H-06", "H", "M"),
-           ("CC-H-07", "H", "A")]
+           ("CC-H-07", "H", "A"), ("CC-H-08", "H", "M")]
 
 # The whole-spec A set, verbatim from gate §14.2's worked composition.
 WHOLE_SPEC_A = {"CC-G-02", "CC-G-05", "CC-G-06", "CC-XA-03", "CC-XA-06",
@@ -669,11 +669,13 @@ def _category_summary(recs, carried, live, waived, overridden, skipped,
     ones, and gate §14.3's "55 in force · 1 waived · 1 overridden (re-applied)".
 
     The contract's §7 example is a **pinned worked run** and is quoted as it
-    stands: it predates CC-H-07 (contract v0.3), whose row the v0.3 change
-    record adds without moving any other section. The live pre-flight set is
-    `SCOPE_H` above — seven — and the summary this function computes is the
-    Scope-F one either way; the reconciliation note is history, not arithmetic
-    the runtime performs.
+    stands: it predates CC-H-07 (contract v0.3) and CC-H-08 (v0.5), whose rows
+    the change records add without moving any other section. The live Scope-H
+    set is `SCOPE_H` above, and the pre-flight subset is that set restricted to
+    `deps(F)` — CC-H-08 never among them, its roadmap ⇄ brief-set join sitting
+    in no feature's `deps(F)` (gate §10.4). The summary this function computes
+    is the Scope-F one either way; the reconciliation note is history, not
+    arithmetic the runtime performs.
     """
     failed_ids = {aid for aid, _ in live}
     waived_ids = {aid for aid, _ in waived}

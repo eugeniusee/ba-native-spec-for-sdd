@@ -68,14 +68,16 @@ python3 .specify/ba/scripts/sk_snapshot.py build \
    A missing static-core member is a runtime condition, not a spec verdict —
    report it and stop.
 
-4. **Pre-flight** — the seven CC-H assertions restricted to `deps(F)`. This is
+4. **Pre-flight** — the CC-H set restricted to `deps(F)`. This is
    the hard guarantee, run fresh every time; the ledger head in
    `.specify/gate-health.md` is convenience, never the guarantee. Run
    `sk_health.py` for the M third and dispatch the A third (CC-H-01 · CC-H-04 ·
    CC-H-05 · CC-H-07) to the `ba-gate` agent with `assertions-h.md`, both
    against the snapshot workspace. **CC-H-07 reads the ledger head's
    `Acceptance shapes:` line as ground — read-only, never a trigger, and the
-   ledger is never audited.**
+   ledger is never audited.** **CC-H-08 is never in this set:** its ground is
+   the roadmap ⇄ brief-set join at boundary grain, which sits in no feature's
+   `deps(F)` — it runs on full and scoped runs, and it blocks nothing here.
 5. Any H gap **not covered by a health acceptance** blocks the run — **P1**.
    Put the gaps into `run.json`'s `preflight` block, each with its `ha` field
    set to the covering `HA-<nn>` or `null`, and run the report writer: it emits

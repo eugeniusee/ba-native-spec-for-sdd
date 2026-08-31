@@ -157,6 +157,34 @@ finish_case health-clean
 verdicts health-gaps sk_health --root "$FX/negatives/health"
 finish_case health-gaps
 
+# ── CC-H-08 — the EC-22 world, both boundaries (contract v0.5 §6) ────────────
+#
+# Fixture A is `tests/fixtures/qr-boundary/` as it stands: `Boundary: MVP +
+# Phase 2`, 14 roadmap epics, E-10 and E-11 inside the boundary and unbriefed.
+# Fixture B is the SAME estate with the head's `Boundary:` line reading `MVP`
+# alone — built here by copy, so "same estate" is literally true.
+
+QRA="$HERE/fixtures/qr-boundary"
+QRB="$TMP/qr-boundary-mvp"
+mkdir -p "$QRB"
+cp -R "$QRA/." "$QRB/"
+python3 - "$QRB/.specify/aspect-state.md" <<'PYX'
+import pathlib, sys
+p = pathlib.Path(sys.argv[1]); t = p.read_text(encoding="utf-8")
+old = "Boundary: MVP + Phase 2 — set 2026-08-28 (P-O0b)"
+assert t.count(old) == 1, t.count(old)
+p.write_text(t.replace(old, "Boundary: MVP — set 2026-08-28 (P-O0b)", 1),
+             encoding="utf-8")
+PYX
+
+: > "$TMP/case.txt"
+verdicts health-boundary sk_health --root "$QRA"
+finish_case health-boundary
+
+: > "$TMP/case.txt"
+verdicts health-boundary-mvp sk_health --root "$QRB"
+finish_case health-boundary-mvp
+
 # ── 2. r5 reproduces gate run-2's M gaps verbatim ─────────────────────────────
 
 printf '\n▸ Gate run-2 reproduction (contract §7 worked example, M-detectable set)\n'
@@ -527,6 +555,143 @@ grep -q '^rows=\[§6 Business Rules: section present, no parseable BR lines' "$T
   && ok "…and where the M set carries no assertion that fails on the shape, the gap line is the blocker" \
   || bad "the §6 blocker must be the gap line itself: $(grep '^rows=' "$TMP/grain.txt")"
 
+# ── CC-H-08 — boundary coverage (contract v0.5 §6 · gate v0.14 §10.4) ───────
+#
+# EC-22, 31 Aug 2026: under `Boundary: MVP + Phase 2` the Tier-1 election
+# briefed the first phase only, and NO assertion anywhere compared the
+# roadmap's in-boundary rows to the brief set. Two epics — both billable, both
+# billable line items — went unbriefed for three days behind a green
+# health run and a WBS reporting `Included 41 · excluded none`.
+#
+# `$QRA` / `$QRB` are Fixture A and Fixture B, built above.
+
+printf '\n▸ CC-H-08 — the boundary set, both boundaries (EC-22)\n'
+
+python3 "$SK/sk_health.py" --root "$QRA" > "$TMP/h08-a.txt" 2>&1
+H08A_RC=$?
+
+for want in \
+  'CC-H-08 FAIL — E-10 Public API & Bulk Generation — Phase 2 · Billable Yes: no scope brief' \
+  'CC-H-08 FAIL — E-11 Premium Redirect Features — Phase 2 · Billable Yes: no scope brief'
+do
+  grep -Fq "$want" "$TMP/h08-a.txt" \
+    && ok "named with its phase and its Billable value: ${want:18:44}…" \
+    || bad "the gap line is not the pinned one — wanted: $want"
+done
+
+N08=$(grep -c '^CC-H-08 FAIL' "$TMP/h08-a.txt")
+[ "$N08" = "2" ] \
+  && ok "…and exactly 2 — element grain is the epic, one line each" \
+  || bad "expected 2 CC-H-08 gap lines, got $N08"
+
+grep -Fq 'run Tier 1 — epic scoping in ingest mode' "$TMP/h08-a.txt" \
+  && ok "…each naming its fix action — a fix-less line is invalid gate output (contract §7)" \
+  || bad "the CC-H-08 gap line names no fix action"
+
+# counts in `n gaps`, blocks nothing: the OTHER three assertions still PASS on
+# the same run. A CC-H-08 gap is a health finding about the roadmap ⇄ brief-set
+# join, and that join sits in no feature's deps(F) — it never gates admission.
+for a in CC-H-02 CC-H-03 CC-H-06; do
+  grep -q "^$a PASS" "$TMP/h08-a.txt" \
+    && ok "…$a still PASSes beside it — the gap is counted, never contagious" \
+    || bad "$a did not pass on the boundary fixture: $(grep "^$a" "$TMP/h08-a.txt" | head -1)"
+done
+[ "$H08A_RC" -ne 0 ] \
+  && ok "…and the run is not clean: a live CC-H-08 gap counts in \`n gaps\`" \
+  || bad "a live CC-H-08 gap left the run clean: rc=$H08A_RC"
+
+# Fixture B — the same estate under a single-phase boundary. The regression the
+# field note demands: the election's set is byte-identical to the pre-fix one.
+python3 "$SK/sk_health.py" --root "$QRB" > "$TMP/h08-b.txt" 2>&1
+H08B_RC=$?
+grep -q '^CC-H-08 PASS — 12 in-boundary epic(s), each with a scope brief' "$TMP/h08-b.txt" \
+  && ok "Boundary: MVP — 12 in-boundary epics, each briefed" \
+  || bad "the single-phase boundary did not pass: $(grep CC-H-08 "$TMP/h08-b.txt" | head -1)"
+[ "$H08B_RC" -eq 0 ] && ok "…and the run is clean" \
+                     || bad "the MVP-only estate did not run clean: rc=$H08B_RC"
+
+# the byte-identity itself, at the set the election iterates
+python3 - "$SK" "$QRB" <<'PYX' > "$TMP/h08-set.txt" 2>&1
+import sys
+from pathlib import Path
+sys.path.insert(0, sys.argv[1])
+from sk_health import boundary_coverage
+from sk_wbs import read_roadmap_at
+root = Path(sys.argv[2])
+rm = root / ".specify" / "memory" / "roadmap.md"
+in_boundary, _ = boundary_coverage(rm, root / ".specify" / "memory" / "scope", root)
+order, _names, phases = read_roadmap_at(rm)
+first = [e for e in order if phases.get(e) == phases.get(order[0])]
+print("boundary=%s" % " ".join(e for e, _n, _p in in_boundary))
+print("firstphase=%s" % " ".join(first))
+print("identical=%s" % ([e for e, _n, _p in in_boundary] == first))
+PYX
+grep -q '^identical=True$' "$TMP/h08-set.txt" \
+  && ok "…and under a single-phase boundary the set IS the first-phase set — byte-identical" \
+  || { bad "the single-phase election is not byte-identical to the pre-fix one"; \
+       sed 's/^/      /' "$TMP/h08-set.txt"; }
+
+# vacuous, never a gap: no boundary in the frame, and no roadmap at all
+VAC="$TMP/qr-no-boundary"
+mkdir -p "$VAC"
+cp -R "$QRA/." "$VAC/"
+python3 - "$VAC/.specify/aspect-state.md" <<'PYX'
+import pathlib, re, sys
+p = pathlib.Path(sys.argv[1])
+t = p.read_text(encoding="utf-8")
+p.write_text(re.sub(r"^Boundary:.*\n", "", t, count=1, flags=re.M), encoding="utf-8")
+PYX
+python3 "$SK/sk_health.py" --root "$VAC" > "$TMP/h08-vac.txt" 2>&1
+grep -q '^CC-H-08 PASS — — no roadmap or no boundary in the frame' "$TMP/h08-vac.txt" \
+  && ok "no boundary in the frame: the dash, never a gap — the absent-source law" \
+  || bad "a boundary-less frame did not render vacuous: $(grep CC-H-08 "$TMP/h08-vac.txt" | head -1)"
+grep -q '^CC-H-08 FAIL' "$TMP/h08-vac.txt" \
+  && bad "a boundary-less frame produced a CC-H-08 gap — the check has no ground there" \
+  || ok "…and no gap: an absent source is never a finding"
+
+rm -f "$VAC/.specify/memory/roadmap.md"
+python3 "$SK/sk_health.py" --root "$VAC" > "$TMP/h08-noroad.txt" 2>&1
+grep -q '^CC-H-08 PASS' "$TMP/h08-noroad.txt" \
+  && ok "pre-decomposition — no roadmap: vacuous by construction, as at the arming run" \
+  || bad "the pre-decomposition state produced a CC-H-08 verdict other than PASS"
+
+# a blank Phase sits outside the set exactly as its Billable cell sits blank
+BLANK="$TMP/qr-blank-phase"
+mkdir -p "$BLANK"
+cp -R "$QRA/." "$BLANK/"
+python3 - "$BLANK/.specify/memory/roadmap.md" <<'PYX'
+import pathlib, sys
+p = pathlib.Path(sys.argv[1]); t = p.read_text(encoding="utf-8")
+old = "| E-10 | Public API & Bulk Generation | The public api & bulk generation capability — a fixture row, invented for this estate. | Phase 2 |"
+new = "| E-10 | Public API & Bulk Generation | The public api & bulk generation capability — a fixture row, invented for this estate. |  |"
+assert t.count(old) == 1, t.count(old)
+p.write_text(t.replace(old, new, 1), encoding="utf-8")
+PYX
+python3 "$SK/sk_health.py" --root "$BLANK" > "$TMP/h08-blank.txt" 2>&1
+grep -q 'CC-H-08 FAIL — E-10' "$TMP/h08-blank.txt" \
+  && bad "a blank-Phase row entered the set — an absent source is never a guess" \
+  || ok "a blank Phase sits outside the set, as its Billable cell sits blank"
+grep -q 'CC-H-08 FAIL — E-11' "$TMP/h08-blank.txt" \
+  && ok "…and its billable sibling is still named: the row left, the rule did not" \
+  || bad "E-11 vanished with E-10 — the blank-Phase rule took the whole set"
+
+# the deleted-brief cause the scoped-run trigger exists for (gate §10.2)
+DEL="$TMP/qr-deleted-brief"
+mkdir -p "$DEL"
+cp -R "$QRB/." "$DEL/"
+rm -f "$DEL/.specify/memory/scope/E-01.md"
+python3 "$SK/sk_health.py" --root "$DEL" > "$TMP/h08-del.txt" 2>&1
+grep -Fq 'CC-H-08 FAIL — E-01 QR Code Generation — MVP · Billable Yes: no scope brief' "$TMP/h08-del.txt" \
+  && ok "a deleted brief surfaces at boundary grain — the scoped run's own cause" \
+  || bad "a deleted in-boundary brief did not surface: $(grep CC-H-08 "$TMP/h08-del.txt" | head -1)"
+
+# CC-H-03 is subset-blind by construction and stands untouched: every roadmap
+# row here is `Defined`, so no epic has entered Band 3 and CC-H-03 has nothing
+# to say — which is exactly how the field defect stayed invisible to it.
+grep -q '^CC-H-03 PASS — 0 Band-3 epic(s)' "$TMP/h08-a.txt" \
+  && ok "CC-H-03 sees nothing here — subset-blind by construction, not broken" \
+  || bad "CC-H-03's verdict on the boundary fixture is not the vacuous one"
+
 printf '\n▸ Coverage — every M assertion, ≥ 1 seeded FAIL and ≥ 1 PASS\n'
 
 python3 - "$ALL" <<'PY' > "$TMP/coverage.txt"
@@ -539,7 +704,7 @@ M = ["CC-G-01", "CC-G-03", "CC-G-04",
      "CC-FL-02", "CC-NF-02", "CC-BR-02", "CC-OS-01",
      "CC-TR-01", "CC-TR-02", "CC-TR-03", "CC-TR-04",
      "CC-XA-02", "CC-XA-05",
-     "CC-H-02", "CC-H-03", "CC-H-06"]
+     "CC-H-02", "CC-H-03", "CC-H-06", "CC-H-08"]
 
 seen = defaultdict(set)
 for line in open(sys.argv[1]):
@@ -574,7 +739,7 @@ while read -r st aid rest; do
 done < <(grep -E '^(ok|GAP)' "$TMP/coverage.txt")
 COVERLINE=$(grep '^TOTAL' "$TMP/coverage.txt")
 COVERED=$(printf '%s' "$COVERLINE" | awk '{print $2}')
-if [ "$COVERED" = "24" ]; then
+if [ "$COVERED" = "25" ]; then
   PASSED=$((PASSED+1)); printf '  ✓ %s\n' "$COVERLINE"
 else
   FAILED=$((FAILED+1)); printf '  ✗ %s\n' "$COVERLINE"

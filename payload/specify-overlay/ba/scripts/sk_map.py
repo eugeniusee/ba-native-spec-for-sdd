@@ -39,7 +39,12 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import sk_status as st  # noqa: E402
 
-# The M set's own size — build plan §2.4; check-m exercises all 24 (D-M2).
+# The **per-feature** M set's own size — build plan §2.4 (D-M2). A gate report
+# evaluates the Scope-F M assertions plus the CC-H pre-flight subset, so a
+# project-level Scope-H row that never reaches pre-flight is not in this
+# denominator: CC-H-08 joined the M class at contract v0.5 and the number did
+# not move, because no per-feature report can ever carry its verdict (gate
+# §10.4). Tunable by version bump, never silently.
 M_TOTAL = 24
 # "A lot of questions" — the D-M6 threshold. Pinned here and in the map
 # definition §6; tunable by version bump, never silently.

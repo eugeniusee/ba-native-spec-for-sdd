@@ -276,7 +276,8 @@ python3 "$GUARD" --list > "$TMP/list.txt" 2>&1 \
   && ok "--list prints the pinned lines and token classes with their sources" \
   || bad "--list failed: $(head -3 "$TMP/list.txt")"
 for needle in 'What I need from you:' 'Band boundary —' 'Auto paused —' 'Auto off —' \
-              'Project status —' 'Route —' 'Design guide —' 'Scope frame — before any aspect opens'; do
+              'Project status —' 'Route —' 'Design guide —' 'Scope frame — before any aspect opens' \
+              'Scope coverage:' 'unbriefed inside boundary'; do
   has "$TMP/list.txt" "$needle" "the pinned set carries: $needle"
 done
 for cls in 'NEEDS CLARIFICATION' 'CC-' 'AT-' 'AG-' 'XO-' 'SD-' 'FR-' 'US' '⚑'; do
@@ -295,10 +296,10 @@ printf '\n▸ The document — D-O97 · §43 and the five sections it touches\n'
 
 has "$DOC" "**D-O97**" "the ruling is on the record"
 has "$DOC" "## 43. Review record (v0.39 → v0.40)" "…and §43, the review record that carries it"
-has "$DOC" "decisions D-O1–D-O98 locked" "the trailing line locks through D-O98"
-head -2 "$DOC" | grep -q 'v0\.41' \
-  && ok "the header states the live edition — v0.41, the fence names its condition" \
-  || bad "the header does not name v0.41: the edition and the change record disagree"
+has "$DOC" "decisions D-O1–D-O101 locked" "the trailing line locks through D-O101"
+head -2 "$DOC" | grep -q 'v0\.42' \
+  && ok "the header states the live edition — v0.42, the election takes the boundary" \
+  || bad "the header does not name v0.42: the edition and the change record disagree"
 has "$DOC" "**v0.40 change record:**" "the change record opens the edition"
 
 has "$DOC" "10. **The humanizer switch (D-O97 — D-O89's rule rewritten in place, never amended by addition).**" \

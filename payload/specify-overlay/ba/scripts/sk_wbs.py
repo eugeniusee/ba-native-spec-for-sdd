@@ -66,6 +66,10 @@ from sk_structure import parse_spec, table_rows  # noqa: E402
 # the spec it is rendering. A second copy of these patterns is a second thing
 # to drift.
 from sk_idgraph import PATH_RE, ROLES_DECL_RE  # noqa: E402
+# The brief's §8 body, read by the checker that owns it (CC-XA-05 · CC-H-03).
+# The roadmap dimension below needs to know whether a slicing is *confirmed*;
+# a second parse of the same section is a second thing to drift.
+from sk_brief import slicing_section  # noqa: E402
 
 # ── the pinned column set (§10.5) ─────────────────────────────────────────────
 #
@@ -232,7 +236,17 @@ class Feature:
 
 def read_roadmap(root: Path):
     """`.specify/memory/roadmap.md` → epic row order, name and Phase."""
-    path = root / ".specify" / "memory" / "roadmap.md"
+    return read_roadmap_at(root / ".specify" / "memory" / "roadmap.md")
+
+
+def read_roadmap_at(path: Path):
+    """The same read, taking the file — the path-taking core.
+
+    `sk_health`'s CC-H-08 honours a `--roadmap` override and must read the
+    roster exactly as the export reads it, header-resolved columns and all:
+    a second copy of this parse is a second thing to drift (D-O100's one
+    computation, four display sites).
+    """
     order, names, phases = [], {}, {}
     if not path.is_file():
         return order, names, phases
@@ -890,11 +904,56 @@ def write_csv(path: Path, rows):
     return path
 
 
+# ── the roadmap dimension of the summary (§10.5 · D-O100) ────────────────────
+
+CONFIRMED_RE = re.compile(r"^Confirmed\b", re.I)
+
+
+def first_missing_link(root: Path, eid: str, features) -> str:
+    """Where an in-boundary epic with zero rows stops — the read set's own answer.
+
+    Four links, in order, and the **first** one that fails is the one named:
+    `no brief` · `brief — no confirmed slicing` · `no spec folder` ·
+    `spec — no stories`. Nothing new is opened: the brief folder, the brief's
+    §8 and the `specs/NNN-*` folders are already D-O25's read set — the ladder
+    only says which of them the epic has not reached.
+    """
+    brief = root / ".specify" / "memory" / "scope" / ("%s.md" % eid)
+    if not brief.is_file():
+        return "no brief"
+    body = slicing_section(brief.read_text(encoding="utf-8"))
+    rows = [c for c in table_rows(body) if any(x.strip() for x in c)]
+    if not any(CONFIRMED_RE.match(c[-1].strip()) for c in rows):
+        return "brief — no confirmed slicing"
+    if not any(f.epic_id == eid for f in features):
+        return "no spec folder"
+    return "spec — no stories"
+
+
+def roadmap_dimension(root: Path, features, in_boundary):
+    """Every in-boundary roadmap epic that contributed zero rows (D-O100).
+
+    *Nothing silently dropped*, applied to the quoted scope. The specs
+    dimension already names every `specs/NNN-*` folder — and held that
+    contract while two in-boundary epics had **no folder to name**. This is
+    where the same contract runs on the roadmap.
+
+    Returns `[]` where the coverage check is vacuous (no roadmap, no boundary)
+    or where every in-boundary epic contributed a row. Counts render, the BA
+    judges: no threshold, and the export never blocks.
+    """
+    if not in_boundary:
+        return []
+    covered = {f.epic_id for f in features if f.included and f.rows and f.epic_id}
+    return [(eid, name, phase, first_missing_link(root, eid, features))
+            for eid, name, phase in in_boundary if eid not in covered]
+
+
 # ── the generation summary (§10.5; BA-facing register, §10.3) ────────────────
 
 
 def summary(features, rows, epic_rowcount, profile, xlsx_path, csv_path,
-            cross=()):
+            cross=(), uncovered_epics=()):
     default = ("every drafted feature" if profile == "presale"
                else "certified features only")
     # Counted off the rows that were actually emitted, never off what was
@@ -942,6 +1001,17 @@ def summary(features, rows, epic_rowcount, profile, xlsx_path, csv_path,
     if empty:
         out.append("No rows: %s — selected, but §2 yielded no User Story"
                    % ", ".join(empty))
+    # The roadmap dimension (D-O100). The specs dimension above names every
+    # folder; this one names every in-boundary epic that has no folder to be
+    # named in — each with its phase, its Billable value and the first link
+    # it is missing. Counts render, the BA judges; the export never blocks.
+    if uncovered_epics:
+        out.append("In-boundary epics with no rows: %d" % len(uncovered_epics))
+        for eid, name, phase, link in uncovered_epics:
+            out.append("  %s %s — %s · Billable Yes — %s"
+                       % (eid, name, phase, link))
+        out.append("The WBS understates the quoted scope until they are "
+                   "briefed and specced.")
     # The register's teeth (D-O75): `carried`, `accepted` and `default` are
     # terminal states; anything else — a `captured` entry above all — is an
     # obligation that left Frame with no carrier, and it is NAMED, never
@@ -982,6 +1052,22 @@ def main(argv=None) -> int:
 
     features, rows, epic_rowcount = collect(root, profile, args.include)
 
+    # The roadmap dimension's ground is the gate's own computation — the
+    # CC-H-08 set, imported rather than recomputed (D-O100: one computation,
+    # four display sites). This render adds only the downstream links a
+    # briefed-but-unrendered epic fails at.
+    #
+    # Imported HERE and not at module level, deliberately: `sk_health` imports
+    # this module for the three grounds CC-H-08 reads, so a module-level import
+    # back would close the cycle. The dependency runs one way — the gate
+    # computes and rules, the renders read — and this local import is what
+    # keeps it that way.
+    from sk_health import boundary_coverage  # noqa: E402
+    in_boundary, _uncovered = boundary_coverage(
+        root / ".specify" / "memory" / "roadmap.md",
+        root / ".specify" / "memory" / "scope", root)
+    uncovered_epics = roadmap_dimension(root, features, in_boundary)
+
     # Billable is derived per row, after collection: the Phase cell is already
     # on the row (a deferred row carries its item's target phase), and the
     # boundary is the ledger head's (D-O67).
@@ -1006,7 +1092,7 @@ def main(argv=None) -> int:
             return str(path)
 
     print(summary(features, rows, epic_rowcount, profile,
-                  shown(xlsx_path), shown(csv_path), cross))
+                  shown(xlsx_path), shown(csv_path), cross, uncovered_epics))
     return 0
 
 

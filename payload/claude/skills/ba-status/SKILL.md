@@ -116,6 +116,7 @@ Project status — <project> — <date> · profile: <…> · Band: <…>
 Workflow ▕██████░░░░▏ <p>% — §10.4-F
 1 · Band 1 — Foundations ▕██████████▏ <s>/6 settled (<c> cleared · <w> waived — debt on record) · closed <date> | open
 2 · Band 2 — Scoping     ▕████████░░▏ briefs <b>/<e> epics · kits <k>/<e> · roadmap current <date> | missing
+      unbriefed inside boundary <n>: <E-nn <epic name> (Phase <p> · Billable Yes) · …>   (renders only when n > 0)
 3 · Band 3 — Delivery    ▕██████░░░░▏ entered <n> across <x>/<e> epics · drafted <d>/<n> · gated <g> (latest: <verdicts>) · certified <c> · handed off <h>
       Presale note: certification & handoff out of profile — destination: draft specs + the Q&A agenda (§6.5)
 4 · Questions: <o> open · <a> answered · <v> overtaken · oldest: <ref — one line, standing since <where>>
@@ -147,6 +148,19 @@ Humanizer: <on — since <date> · <initials> | off>                (always rend
 
 `/ba-wbs` reads *ready* when the roadmap is current and at least one spec is
 drafted; *blocked* names the missing piece.
+
+**The boundary-coverage continuation — line 2.** Every roadmap epic allocated
+to a phase inside the head's `Boundary:` set that has **no scope brief on
+disk** is named on line 2's own continuation — by name, with its phase and its
+Billable value. It renders **only when the count is non-zero**, and not at all
+where no roadmap or no boundary stands: the check is vacuous there, never a
+gap. This is the same set CC-H-08 rules on and the same one the band-boundary
+report's `Scope coverage:` line, `/ba-run specs`' confirmation table and
+`/ba-wbs`'s generation summary show — one computation, four display sites, so
+no two of them can disagree. A count without names is what the field render
+gave (`briefs 12/14 epics`), and it was indistinguishable from ordinary
+later-phase deferral. **The reader reports; it never repairs:** naming an
+uncovered epic is a render, and briefing it is Tier 1's act.
 
 ### The formula
 

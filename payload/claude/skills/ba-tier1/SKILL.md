@@ -53,7 +53,9 @@ grant reaches every act that **spends no client access and makes no external
 commitment**, so `kit` and `ingest` over **captured client material** are
 self-elected and stamped `AUTO (AG-<n>)`, standing for ratification at `off`.
 Under Presale with no client call available, that election fires at **Band-2
-exit for every epic allocated to the first phase** — kit then brief, per epic.
+exit for every epic allocated to a phase inside the scope frame's `Boundary:`
+set** — the rows the WBS's Billable column reads `Yes` for — kit then brief,
+per epic.
 **The call itself is never elected here:** a live client session is client
 access and stays the BA's act, so the framework writes the kit and **books
 nobody's time**. The notes input in that case is the captured material at

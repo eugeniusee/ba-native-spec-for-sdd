@@ -140,6 +140,16 @@ flat = re.sub(r"\s+", " ", re.sub(r"(?m)^\s*>\s?", "", text))
 sys.exit(0 if re.sub(r"\s+", " ", sys.argv[2]).strip() in flat else 1)
 PY
 }
+# `hasnt_flow` — the same reading, asserting absence. A killed clause has to
+# be killed as the BA reads it, not as the source happened to wrap it.
+hasnt_flow() {
+  python3 - "$1" "$2" <<'PY' && bad "$3 — present but must not be: $2" || ok "$3"
+import re, sys
+text = open(sys.argv[1], encoding="utf-8").read()
+flat = re.sub(r"\s+", " ", re.sub(r"(?m)^\s*>\s?", "", text))
+sys.exit(0 if re.sub(r"\s+", " ", sys.argv[2]).strip() in flat else 1)
+PY
+}
 
 for f in "$DOC" "$GATE" "$AUTO" "$ORC" "$BLOCK" "$AGENTS" "$TPL"; do
   [ -f "$f" ] || { printf '✗ missing source: %s\n' "$f" >&2; exit 2; }
@@ -586,6 +596,8 @@ both boundary acts|P-O7 Band-1 closure | P-O8 Band-3 entry
 the trail since the last boundary|Auto-trail since <start | last boundary>
 the assumption and question counts|Assumptions: <n> · Open questions: <n>
 the health-refresh state (D-O59)|Health refresh: <current | overdue: <r> runs vs cadence>
+the boundary-coverage state (D-O100)|Scope coverage: <in-boundary epics briefed <b>/<e>
+the coverage line's absent-source alternate|— no roadmap or no boundary yet>
 the continuation — any reply resumes|any reply continues
 the off route to the resumption report|/ba-auto off renders the resumption report
 LINES
@@ -888,6 +900,7 @@ printf '\n▸ The cost boundary · the arming run · the render rule (D-O61–D-
 CB1S="$PKG_ROOT/payload/claude/skills/ba-close-band1/SKILL.md"
 GH="$PKG_ROOT/payload/claude/skills/ba-gate-health/SKILL.md"
 T1="$PKG_ROOT/payload/claude/skills/ba-tier1/SKILL.md"
+QS="$PKG_ROOT/docs/quickstart.md"
 
 # the boundary itself — one sentence, five carriers, however each one wraps it
 for pair in "$DOC|§10.7" "$AUTO|the skill" "$ORC|the orchestrator persona" \
@@ -912,9 +925,63 @@ has_flow "$DOC" "recommended\` was a proxy for" \
 # the pinned Presale instance — the dead end the run hit, closed by name
 for pair in "$DOC|§10.7" "$AUTO|the skill"; do
   f="${pair%%|*}"; label="${pair##*|}"
-  has_flow "$f" "every epic allocated to the first phase" "$label pins the first-phase set"
-  has_flow "$f" "still gets its brief" "…and briefs the open-question-blocked epic anyway"
+  has_flow "$f" "still gets its brief" "$label briefs the open-question-blocked epic anyway"
 done
+
+# ── EC-22 · D-O99 — the election takes the boundary, in every carrier ────────
+#
+# The clause the field run executed read "every epic allocated to the FIRST
+# PHASE" while the scope frame quoted two, so 2 of 14 roadmap epics — both
+# billable — were never briefed. The set is now the frame's own `Boundary:`.
+
+CLAUSE="every epic allocated to a phase inside the scope frame's \`Boundary:\` set"
+for pair in "$DOC|§10.7 + §6.5" "$AUTO|the ba-auto skill" "$T1|ba-tier1" \
+            "$ORC|the persona" "$BLOCK|the CLAUDE.md block" "$AGENTS|AGENTS.md"; do
+  f="${pair%%|*}"; label="${pair##*|}"
+  has_flow "$f" "$CLAUSE" "$label takes the boundary, not the first phase (D-O99)"
+done
+
+# the clause stands exactly once per compiled carrier — one rule, one statement
+for pair in "$AUTO|the ba-auto skill" "$T1|ba-tier1" "$ORC|the persona" \
+            "$BLOCK|the CLAUDE.md block" "$AGENTS|AGENTS.md"; do
+  f="${pair%%|*}"; label="${pair##*|}"
+  N=$(python3 - "$f" "$CLAUSE" <<'PYX'
+import re, sys
+hay = re.sub(r"\s+", " ", open(sys.argv[1], encoding="utf-8").read())
+print(hay.count(re.sub(r"\s+", " ", sys.argv[2])))
+PYX
+)
+  [ "$N" = "1" ] && ok "…and $label states it exactly once" \
+                 || bad "$label states the boundary clause $N time(s), expected 1"
+done
+
+# the killed strings, and the ba-orchestrator drift variant beside them
+for pair in "$AUTO|the ba-auto skill" "$T1|ba-tier1" "$ORC|the persona" \
+            "$BLOCK|the CLAUDE.md block" "$AGENTS|AGENTS.md" "$QS|the quickstart"; do
+  f="${pair%%|*}"; label="${pair##*|}"
+  for dead in "every epic allocated to the first phase" "every epic in the first phase"; do
+    hasnt_flow "$f" "$dead" "$label carries no \"$dead\""
+  done
+done
+
+# the quickstart says it in the BA's own words — the sixth carrier, Lane B's
+has_flow "$QS" "it scopes every epic inside your delivery boundary" \
+    "the quickstart states the boundary in plain words"
+has_flow "$QS" "If a billable epic is ever left unbriefed" \
+    "…and names the surfaces that would say so"
+
+# the two historical occurrences in the document are byte-deliberate: D-O61's
+# own register row, and the v0.42 change record quoting the clause it replaced.
+# A ruling is amended on the record, never rewritten out of it.
+NDEAD=$(python3 - "$DOC" <<'PYX'
+import re, sys
+hay = re.sub(r"\s+", " ", open(sys.argv[1], encoding="utf-8").read())
+print(hay.count("every epic allocated to the first phase"))
+PYX
+)
+[ "$NDEAD" = "2" ] \
+  && ok "…and the document keeps exactly 2 — D-O61's row and v0.42's quotation, amended never rewritten" \
+  || bad "the document carries $NDEAD occurrences of the replaced clause, expected 2"
 has_flow "$DOC" "ingest mode over captured client material" "§10.7 names the input path"
 has_flow "$PKG_ROOT/docs/methodology/ba-native-spec-orchestrator-rules.md" \
     "Under a standing AG the captured-material path is self-elected" \

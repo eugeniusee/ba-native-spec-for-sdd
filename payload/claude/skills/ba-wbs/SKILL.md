@@ -64,6 +64,23 @@ judges, and **the export never blocks**: this command stays read-only and
 invocable at any time, and an obligation leaving Frame uncarried is a named
 fact on the summary, never a silent drop.
 
+**And the roadmap dimension — *nothing silently dropped*, applied to the
+quoted scope.** The summary additionally names **every in-boundary roadmap
+epic that contributed zero rows** — the head's `Boundary:` set against the
+rendered rows, the Billable test's own set — each by name with its phase, its
+Billable value and **the first missing link the read set already sees**: `no
+brief` · `brief — no confirmed slicing` · `no spec folder` · `spec — no
+stories`. One closing sentence follows: *the WBS understates the quoted scope
+until they are briefed and specced.* The field case is the argument — a
+summary that named every `specs/NNN-*` folder held *nothing silently dropped*
+on the specs dimension while two in-boundary epics had **no folder to name**.
+Counts render, the BA judges: **no numeric threshold and no block**, and the
+read set is unchanged. The epics with no brief are the same set CC-H-08 rules
+on and the same one `/ba-status` line 2, the band-boundary report's `Scope
+coverage:` line and `/ba-run specs`' confirmation table show — one
+computation, four display sites; the summary adds only the downstream links a
+briefed-but-unrendered epic fails at.
+
 Void detection is never re-run here: it stays lazy, and it is the gate's.
 "Certified" means the report's last entry says so, with the run date shown.
 

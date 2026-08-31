@@ -173,6 +173,7 @@ Band boundary — <date> · AUTO (AG-<n>) · <P-O7 Band-1 closure | P-O8 Band-3 
 Auto-trail since <start | last boundary>: <n> acts
 Assumptions: <n> · Open questions: <n>
 Health refresh: <current | overdue: <r> runs vs cadence>
+Scope coverage: <in-boundary epics briefed <b>/<e> | uncovered inside boundary: E-nn <name> · … | — no roadmap or no boundary yet>
 Next act: <one line> — any reply continues · /ba-auto off renders the resumption report
 ```
 
@@ -202,13 +203,15 @@ What I need from you:
 Reply with a letter, or in your own words — any reply continues.
 ```
 
-`<n>` is the band this boundary leaves behind — **Band 2 here**. The two
+`<n>` is the band this boundary leaves behind — **Band 2 here**. The three
 conditional joins — the overdue health option before c with recommended
-staying on continue, and the decision-list items joining as questions in
-**T-18 — Scope allocation's** step-4 shape — and the presentation are
-`/ba-auto`'s, cited here, never restated. Still a render, not a ratification
-point: the ask takes no ruling on the trail, and **the recommended option is
-the continue**.
+staying on continue, the uncovered-epics option joining the same way after it
+(`brief the uncovered in-boundary epics first`, recommended still on continue,
+Tier 1 in ingest mode being inside the grant), and the decision-list items
+joining as questions in **T-18 — Scope allocation's** step-4 shape — and the
+presentation are `/ba-auto`'s, cited here, never restated. Still a render, not
+a ratification point: the ask takes no ruling on the trail, and **the
+recommended option is the continue**.
 
 The steps above record to the ledger, not the conversation: under a grant
 nothing between acts is narrated. The standing-AW re-affirmation of step 4 is a

@@ -80,7 +80,13 @@ from sk_wbs import (  # noqa: E402
     read_roadmap,
     spec_epic_id,
 )
-from sk_health import ALLOC_HEAD_RE, _section, allocation_entries  # noqa: E402
+# The boundary-coverage set is the gate's computation, not a second one: the
+# CC-H-08 checker owns it, this render reads it. D-O100 puts one computation
+# behind four display sites, so line 2's continuation and the band-boundary
+# report's `Scope coverage:` line can never disagree (the D-O59 law, extended).
+from sk_health import (  # noqa: E402
+    ALLOC_HEAD_RE, _section, allocation_entries, boundary_coverage,
+)
 
 # ── the pinned shape (§10.4) ─────────────────────────────────────────────────
 
@@ -478,6 +484,12 @@ def assemble(root: Path, profile: str, today: str):
     d["log_off"] = log_off_n
     d["log_off_first"] = log_off_first
     d["b2_ratio"] = ratio_of(d["briefs"], d["epics"])
+    # The boundary-coverage continuation (D-O100). `uncovered` is the set the
+    # gate rules on; it is empty — and the line does not render — wherever no
+    # roadmap or no boundary stands, the check being vacuous there.
+    _in_boundary, d["uncovered"] = boundary_coverage(
+        root / ".specify" / "memory" / "roadmap.md",
+        root / ".specify" / "memory" / "scope", root)
 
     # 3 · Band 3 — Delivery
     d["entered"] = len(features)
@@ -625,6 +637,16 @@ def render(d) -> str:
                    'expected %s'
                    % (d["log_off"], "y" if d["log_off"] == 1 else "ies",
                       d["log_off_first"], ALLOC_SHAPE_EXPECTED))
+    # The boundary-coverage continuation (D-O100) — named, never counted alone.
+    # `briefs 12/14 epics` was the field render, and it read like ordinary
+    # later-phase deferral; naming the epics with their phase and their
+    # Billable value is what separates the two. Renders only when n > 0, the
+    # near-miss lines' own pattern, and never repairs what it names.
+    if d["uncovered"]:
+        out.append("      unbriefed inside boundary %d: %s"
+                   % (len(d["uncovered"]),
+                      " · ".join("%s %s (%s · Billable Yes)" % (eid, name, phase)
+                                 for eid, name, phase in d["uncovered"])))
 
     verdicts = " · ".join("%s %s" % (f, v) for f, v in d["verdicts"]) or "—"
     out.append("3 · Band 3 — Delivery    %s entered %d across %s epics · "

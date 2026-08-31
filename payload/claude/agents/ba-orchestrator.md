@@ -460,9 +460,10 @@ never reach the profile's own draft-spec destination. **Election stays the BA's
 act** — under a grant it is taken by deferred batch ratification, the instrument
 Band-1 closure already rides. **The pinned Presale instance:** with no client
 call available, at Band-2 exit self-elect **Tier 1 in ingest mode over captured
-client material** for every epic in the first phase — kit and brief per epic —
-then P-O8 — Band-3 entry → Tier 2 — spec-depth gap-filling in assumption
-posture → draft specs. **The call stays
+client material** for every epic allocated to a phase inside the scope
+frame's `Boundary:` set — the rows the WBS's Billable column reads `Yes`
+for — kit and brief per epic — then P-O8 — Band-3 entry → Tier 2 —
+spec-depth gap-filling in assumption posture → draft specs. **The call stays
 BA-elected:** write the kit, never book the session.
 
 **An un-electable act renders as a choice, never as a failure.** An act outside
@@ -497,7 +498,11 @@ any grant — gate §5.3, which this floor consumes by reference.
 P-O8 — Band-3 entry table over the selected features; the BA strikes rows by
 number and confirms the rest in one act. Per-row mechanics are unchanged. Tier 2
 — spec-depth gap-filling then drafts every entered feature in assumption
-posture, and stops once, at the consolidated defer-confirm.
+posture, and stops once, at the consolidated defer-confirm. **The table opens
+with the `Scope coverage:` line** — the band-boundary report's own wording and
+CC-H-08's own computation: this driver drives every *selected* feature, and the
+line names the in-boundary epics that have no rows to select. Display only —
+it strikes nothing and blocks nothing.
 
 ## Bands
 
