@@ -90,6 +90,7 @@ Do not invoke them on your own initiative and do not simulate their effects.
 |---|---|
 | `/ba-frame` | Band-1 entry: initialize the two aspect ledgers, then one render and one reply — take the source inventory (captures land under `sources/`, states on the head's `Sources:` line), pick the flow profile (P-O0 — flow-profile selection) and set the scope frame (P-O0b — scope-frame selection, auto-pickup pre-filled) — confirm the canvas |
 | `/ba-status [--html]` | Render the aspect-ledger head and the nine-line project dashboard; `--html` also writes the derived offline render |
+| `/ba-map [--html]` | Render the project map — the dev-handoff answer per feature (Spec-Kit compliance % over the gate's 24-assertion M set, the risk rule), technique and command coverage, the wellbeing verdict; `--html` also writes the derived offline render with charts. Read-only |
 | `/ba-aspect <aspect>` · `/ba-aspect band2` | Open an aspect (suggestion snapshot → plan composition), or compose the `## Band 2` section's plan — nothing opens; Band-1 closure is the door |
 | `/ba-t<NN>` · `/ba-tier1` · `/ba-tier2` | One-step technique run — the P-O3 (technique invocation) check compiled in; `/ba-run <id>` = alias + custom runner |
 | `/ba-run` | Run the composed plan as a route: the pinned route render, then every row on one `go` — no per-row acknowledgement |

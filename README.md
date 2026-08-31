@@ -93,8 +93,8 @@ the bootstrap closes by installing `uv` itself.
 ## Test
 
 ```sh
-tests/run-all.sh                                               # the regression — all nineteen checks, one table
-tests/run-all.sh --file-only                                   # the fourteen checks that need no install; no network
+tests/run-all.sh                                               # the regression — all twenty checks, one table
+tests/run-all.sh --file-only                                   # the seventeen checks that need no install; no network
 tests/check-exit.sh                                            # the Phase-2 exit test — all ten steps
 tests/check-install.sh                                         # the install UX — bootstrap · self-guard · uv-free
 tests/check-layout.sh --target /path/to/project                # full Phase-2 bar
@@ -107,17 +107,18 @@ tests/check-techniques2.sh                                     # the technique s
 tests/check-techniques3.sh                                     # batch III + Band-1 closure
 tests/check-spine.sh                                           # Band 2 + the Tier-1/Tier-2 spine
 tests/check-register.sh                                        # the BA-facing communication register
+tests/check-map.sh                                             # the project map — handoff answer · compliance · coverage
 tests/check-auto.sh                                            # autonomous mode — the grant · the policy table · the floor
 ```
 
 `run-all.sh` runs the whole regression and prints the roll-up table this
-package's BUILD-LOG entries carry: the twelve file-only checks, then the three
+package's BUILD-LOG entries carry: the fifteen file-only checks, then the three
 that install first — the full layout bar on a fresh offline install, the Phase-2
 exit test, and the install-UX suite — then the two whole-surface checks, the
 interaction budget and autonomous mode. It asserts nothing of its own. Every verdict is the check's own exit
 code and every count is parsed from the check's own roll-up line, so a suite
 that stops printing counts reports that, not a passing row. `--file-only` runs
-the fourteen that need no install and no network; `--keep` keeps the installed
+the seventeen that need no install and no network; `--keep` keeps the installed
 projects; `-v` streams each check's output as it runs.
 
 `check-exit.sh` is the integration suite: it installs into a fresh git repo and
@@ -193,7 +194,7 @@ ba-native-spec/
 │  ├─ quickstart.md        BA quickstart — the loop, and manual mode (S9)
 │  └─ mode-b-fallback.md   the documented handoff fallback, and its cost (S9)
 └─ tests/
-   ├─ run-all.sh           the regression runner — all nineteen checks, one table
+   ├─ run-all.sh           the regression runner — all twenty checks, one table
    │                       (Lane D; closes the hand-assembled roll-up)
    ├─ check-layout.sh · layout.expected
    ├─ check-m.sh           the M-checker suite (S2)
@@ -209,6 +210,9 @@ ba-native-spec/
    ├─ check-humanizer.sh   the humanizer switch — rule 10 in the six register
    │                       carriers, the /ba-humanizer contract, and the write
    │                       guard against its fixtures, both directions (D-O97)
+   ├─ check-map.sh         the project map — the dev-handoff answer, the
+   │                       compliance and risk measures, the coverage panels,
+   │                       the verdict rule, the HTML law (map definition v0.1)
    ├─ check-band1-artifacts.py  the Band-1 artifact validator — canvas (framing and
    │                       aspect grade) · glossary · register · context · constraints ·
    │                       competitive · personas · domain model · roles & permissions ·

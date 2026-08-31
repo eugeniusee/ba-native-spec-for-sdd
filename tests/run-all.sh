@@ -22,23 +22,26 @@
 #                                the four pinned sheets · the derived counts ·
 #                                the refusals · sk_xlsx's one-sheet contract
 #    11  check-status.sh         the dashboard — shape · counts · §10.4-F · HTML
-#    12  check-humanizer.sh      the humanizer switch — rule 10 in the six
+#    12  check-map.sh            the project map — the handoff answer · the
+#                                compliance and risk measures · the coverage
+#                                panels · the verdict rule · the HTML law
+#    13  check-humanizer.sh      the humanizer switch — rule 10 in the six
 #                                carriers · the /ba-humanizer contract · the
 #                                write guard against its fixtures, both ways
-#    13  check-ledger.py         the aspect ledger against its grammar
-#    14  check-cards.py          the three compiled cards vs. their sources
+#    14  check-ledger.py         the aspect ledger against its grammar
+#    15  check-cards.py          the three compiled cards vs. their sources
 #
 #   three install-based runs — each installs into a throwaway git repo
-#    15  check-layout.sh         the full Phase-2 tree bar on a fresh install
-#    16  check-exit.sh --offline the Phase-2 §5 exit test, all ten steps
-#    17  check-install.sh        the install UX — bootstrap · self-guard · uv-free
+#    16  check-layout.sh         the full Phase-2 tree bar on a fresh install
+#    17  check-exit.sh --offline the Phase-2 §5 exit test, all ten steps
+#    18  check-install.sh        the install UX — bootstrap · self-guard · uv-free
 #
 #   two whole-surface checks — file-only, but last: each reads the render
 #   surface entire, so they run after everything that could have changed it
-#    18  check-budget.sh         manual-mode UX — the ≤ 8 interaction budget ·
+#    19  check-budget.sh         manual-mode UX — the ≤ 8 interaction budget ·
 #                                the route render §10.6 · the checkpoint law ·
 #                                zero acknowledgement-only stops
-#    19  check-auto.sh           autonomous mode — the AG record · the §10.7
+#    20  check-auto.sh           autonomous mode — the AG record · the §10.7
 #                                policy table · the safety floor sweep ·
 #                                the resumption report · the mode read
 #
@@ -165,6 +168,7 @@ run_check "check-register.sh"     suite "$HERE/check-register.sh"
 run_check "check-wbs.sh"          suite "$HERE/check-wbs.sh"
 run_check "check-audit.sh"        suite "$HERE/check-audit.sh"
 run_check "check-status.sh"       suite "$HERE/check-status.sh"
+run_check "check-map.sh"          suite "$HERE/check-map.sh"
 run_check "check-humanizer.sh"    suite "$HERE/check-humanizer.sh"
 run_check "check-ledger.py"       line  python3 "$HERE/check-ledger.py" \
           "$HERE/fixtures/appointment-booking/band1/aspect-state.md"

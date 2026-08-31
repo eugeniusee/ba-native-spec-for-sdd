@@ -61,6 +61,7 @@ S3|file|.claude/skills/ba-gate-health/SKILL.md|Scope-H runs [artifact | full] (g
 S9|file|.claude/skills/ba-dev-ready/SKILL.md|the dev-ready route (orchestrator §7.6) — added in package 0.1.43, after S9
 S9|file|.claude/skills/ba-auto/SKILL.md|autonomous mode (orchestrator §10.7) — added in package 0.1.11, after S9
 S9|file|.claude/skills/ba-humanizer/SKILL.md|the humanizer switch (orchestrator §10.3 rule 10, D-O97) — added in package 0.1.44, after S9
+S9|file|.claude/skills/ba-map/SKILL.md|the project map (map definition §1, D-M1–D-M7) — added in package 0.1.47, after S9
 
 # ── technique skills — 20 (build plan §2.1, D-P2-4) ──────────────────────────
 S5|file|.claude/skills/ba-t01/SKILL.md|discovery canvas framing
@@ -103,10 +104,10 @@ S1|file|.specify/ba/templates/gate-health.md|gate §10.3 head + entries shape
 S1|file|.specify/ba/templates/gate-tuning.md|gate §7.4 two tables + §12 escape record
 S1|file|.specify/ba/templates/elicitation-tuning.md|doc 3 §10 three tables (D-P2-11)
 
-# vendored scripts — 16 (build plan §2.4, D-P2-7): 11 M checkers + the WBS pair
-#                     + the dashboard + the humanizer write guard (0.1.44); the
-#                     fifteenth is sk_audit_report.py, listed below with its own
-#                     source doc
+# vendored scripts — 17 (build plan §2.4, D-P2-7): 11 M checkers + the WBS pair
+#                     + the dashboard + the humanizer write guard (0.1.44) + the
+#                     project map (0.1.47); sk_audit_report.py is listed below
+#                     with its own source doc
 S2|file|.specify/ba/scripts/sk_snapshot.py|gate §3 · §7.2 · §9.2
 S2|file|.specify/ba/scripts/sk_structure.py|gate §4.1–§4.2 · standard §2
 S2|file|.specify/ba/scripts/sk_scan.py|contract §4/§5/C12
@@ -119,6 +120,7 @@ S2|file|.specify/ba/scripts/sk_brief.py|contract C12 · elicitation §4
 S2|file|.specify/ba/scripts/sk_health.py|contract §6
 S9|file|.specify/ba/scripts/sk_handoff.py|gate §11.1–§11.2 · plan Q5
 S9|file|.specify/ba/scripts/sk_wbs.py|orchestrator §10.5 — the WBS export generator (0.1.6)
+S9|file|.specify/ba/scripts/sk_map.py|map definition §1–§8 — the project map (0.1.47)
 S9|file|.specify/ba/scripts/sk_xlsx.py|orchestrator §10.5 — the stdlib xlsx writer (0.1.6)
 S9|file|.specify/ba/scripts/sk_status.py|orchestrator §10.4 — the project dashboard (0.1.9)
 S9|file|.specify/ba/scripts/sk_humanizer_guard.py|orchestrator §10.3 rule 10 — the humanizer write guard (D-O97, 0.1.44)
@@ -146,6 +148,7 @@ RT|absent|.specify/aspect-state.md|◇ /ba-frame (orchestrator §2.4)
 RT|absent|.specify/aspect-plans.md|◇ /ba-frame
 RT|absent|.specify/gate-health.md|◇ arming run (gate §10.3)
 RT|absent|.specify/status.html|◇ /ba-status --html (orchestrator §10.4)
+RT|absent|.specify/map.html|◇ /ba-map --html (map definition §7)
 RT|absent|.specify/gate-tuning.md|◇ first O/E record (gate §7.4)
 RT|absent|.specify/elicitation-tuning.md|◇ first log entry (D-P2-11)
 # Spec Kit's own feature pointer — how v0.12.x resolves FEATURE_DIR. Normally

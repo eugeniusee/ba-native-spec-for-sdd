@@ -12727,3 +12727,126 @@ prose leaves the cell empty, which is the ruling's own *every cell the files do
 not carry renders empty* — but a decision-list grammar that pinned an `OB`
 column would make the join total, and that is a document change, not a renderer
 one. **Routed to the definition, not taken here.**
+
+## The Map Answers The Handoff Question — /ba-map ships: one project, one page, the measurable dev-handoff answer, documents before code · map definition v0.1 · package 0.1.47 · 31 August 2026 · GREEN
+
+**Session prompt:** build the artifacts map. The ask arrived in three
+corrections over one day — first a portfolio wall, then the owner's three
+rulings: **one installed project, not a cross-project scan** · show which
+techniques and commands were actually applied against what is technically
+applicable · answer *"are we ready to pass the specs to the devs, considering
+the compliance with Spec Kit?"* with a **measurable (score/%) result and the
+risk level** — then, over the approved prototype: *"ok, can you build it?
+ba-map works for me."* House discipline: document first, compile, suite
+green, BUILD-LOG, VERSION.
+
+**Precondition — the numbers were free, and that was established rather than
+assumed.** Base `8867df7` = `origin/main`, `VERSION` **0.1.46**, tree clean —
+no reservation standing (the S9 closure note's condition read against the
+tail). No `D-M` series exists anywhere in the corpus, so the new document
+mints **D-M1–D-M7** without renumbering anything. `VERSION` **0.1.46 →
+0.1.47**. The previous pass's recorded baseline stands at 16/16 file-only;
+this pass closed with the **full twenty-row regression, the three
+install-based runs included**.
+
+**The document — `ba-native-spec-map-definition.md` v0.1, the law before the
+code.** A new definition doc on the source-audit precedent (its own D-series,
+never installed, the §9 units compiling from it one way). **D-M1** — the map
+is **one project, read-only**: the §10.4 discipline unchanged, sources =
+§10.4's two classes plus the install manifest and the gate reports' own entry
+bodies; a cross-project mode is a future ruling, not a flag. **D-M2** —
+**Spec-Kit compliance per feature** = assertions standing met / 24, the
+gate's own M set read from the latest entry: certified **(24−W)/24** — a
+waiver is accepted debt, not a met assertion, so an effective PASS with
+waivers renders below 100% and the debt stays visible — FAIL
+**(24−gaps−W)/24** with the standing count as the report states it, ungated
+**`—` never 0%**; the project-grain number is **Band 3's own §10.4-F ratio**
+and **no new composite enters the document** (D-O27 honored on the record).
+**D-M3** — **risk if handed now**: §10.4 line 8's rule unchanged for
+certified features, extended FAIL(n) → high with its count named, ungated →
+unassessed — an ungated feature is not handed off at any risk level, the
+boundary lifting per feature by the effective PASS alone. **D-M4** — the
+technique roster is **fixed at 20** (18 catalogue + 2 spine), compiled at
+build time under the layering rule; four states read from the plans file;
+custom runs counted beside, never folded in; **unapplied is not a defect**.
+**D-M5** — twelve command surfaces, each *evidenced* only from the estate;
+render-only commands leave no record by law, so no-record is never rendered
+as never-ran. **D-M6** — the **wellbeing verdict** is a rule, first match
+wins — question-heavy (q+⚑ ≥ 10, or a FAIL standing, or a named near-miss,
+or refresh overdue ≥ 2) · questions standing · dev-ready (the profile's
+destination at zero debt) · in motion — nothing averaged, thresholds the
+document's text, tunable by version bump only. **D-M7** — two renders: the
+pinned chat shape primary; `--html` → **`.specify/map.html`** on the D-O29
+pattern extended — self-contained, **zero `<script>`**, CSS-only hover/focus
+disclosure and `<details>`, inline-SVG charts that each carry **one series in
+one hue** (the CVD floor fails the gray and amber adjacencies; state colors
+appear only beside a text label, never as adjacent segments).
+
+**The compile.** `sk_map.py` — every shared count through `sk_status`'s own
+`assemble()`, imported and never restated (the §10.5 one-reader rule); the
+handoff, coverage, activity and verdict layers on top; the chat render, and
+the HTML render with the two donut gauges, the per-feature compliance bars,
+the 20-slot strip and the activity columns. `ba-map/SKILL.md` — the route,
+the pinned shape, the formulas, the never-list, the **three standing blocks
+byte-identical** in the pinned order (check-register's §8 sweep took the new
+carrier without an edit). One command row added to `claude-block.md`'s table
+beside `/ba-status` — the dev-ready precedent, not the humanizer one.
+`check-map.sh` — **43 checks**: the shape, the golden counts (96% on the
+certified feature, `—` never 0% on the ungated one), **the verdict rule both
+sides** (the fixture's own debt reads *questions standing*; a seeded FAIL
+gate-report flips it to *question-heavy* and the row to 88% · high · 3 open),
+the HTML law (no script, zero external references, regenerated, the edition
+from the project's own manifest), **read-only proved by tree hash** — a chat
+run changes nothing, an `--html` run writes `map.html` and nothing else — and
+the skill and definition held down. Wired as row 12 of `run-all.sh`: the
+suite is **19 → 20**.
+
+**The count pin lived at two checks, and the install lane caught the second.**
+The `/ba-*` registry number moved 37 → 38 at **check-layout.sh** (the
+registry header, the by-name note, the installed-count verdict — five sites
+and a sixth in the workflow/technique split) — and the first full run opened
+**3 RED**, all one cause: **check-install.sh** pins the same number for the
+bootstrap lane, and `check-exit.sh` inherits check-layout's bar. The
+edition-pin lesson (S9 closure note ii) repeats at the skill count: **the
+registry number lives at two checks, and the full suite — not the file-only
+lane — is what catches the second.** Both sites moved; recorded here so the
+next skill addition greps for both. `layout.expected` gains four lines — the
+skill row, the script row, the `RT|absent` row for `map.html`, and the
+vendored-scripts count comment 16 → 17. README's stale check counts were
+trued against `run-all.sh`'s own list while the neighboring numerals moved
+(nineteen → twenty; the twelve/fourteen that predate the status, audit and
+wbs additions → fifteen file-only rows and seventeen no-install runs).
+
+**Untouched, asserted:** the orchestrator rules stand at v0.41 and §44 — no
+edition pin moved in `check-orchestrator.sh` or `check-humanizer.sh` (628/0
+and 117/0 without an edit) · `install.sh` unchanged — the payload globs take
+the new script and skill, the manifest hashes them, and the source-doc vector
+stays the fifteen compiled docs (the source-audit precedent: a definition doc
+does not join it) · `sk_status.py` byte-untouched — the map imports it ·
+the mirrors' §10.2 paragraphs and the six register carriers byte-untouched ·
+the cards byte-identical.
+
+| Check | Result |
+|---|---|
+| `check-m.sh` | 71 / 0 |
+| `check-gate.sh` | 133 / 0 |
+| `check-orchestrator.sh` | 628 / 0 |
+| `check-techniques.sh` | 104 / 0 |
+| `check-techniques2.sh` | 127 / 0 |
+| `check-techniques3.sh` | 166 / 0 |
+| `check-spine.sh` | 286 / 0 |
+| `check-register.sh` | 64 / 0 |
+| `check-wbs.sh` | 99 / 0 |
+| `check-audit.sh` | 222 / 0 |
+| `check-status.sh` | 115 / 0 |
+| `check-map.sh` | 43 / 0 |
+| `check-humanizer.sh` | 117 / 0 |
+| `check-ledger.py` | grammar-legal — 19 rules, no violations |
+| `check-cards.py` | every card byte-identical to its re-derivation; layering clean |
+| `check-layout.sh` | 126 / 0 / 0 |
+| `check-exit.sh --offline` | 105 / 0 |
+| `check-install.sh` | 64 / 0 |
+| `check-budget.sh` | 83 / 0 |
+| `check-auto.sh` | 286 / 0 |
+
+**20/20 green — the full regression, the three install-based runs included.**
