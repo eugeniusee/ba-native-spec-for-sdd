@@ -13293,3 +13293,164 @@ as the source happened to wrap it.
 | `check-install.sh` | 64 / 0 |
 | `check-budget.sh` | 99 / 0 |
 | `check-auto.sh` | 312 / 0 |
+
+---
+
+## The Gate's Edition Gets A Pin — the empty target set named, the pin minted at both sites, EC-22 closed · gate v0.15 · package 0.1.50 · 1 September 2026 · GREEN
+
+**Session prompt:** Lane A follow-up — move the gate edition pin v0.14 → v0.15
+(EC-22 closure), sweeping **all** checks for the pin per the 0.1.47 two-site
+lesson; assert the §10.4 CC-H-08 illustration's tokens and their order unchanged
+in v0.15 and the pins on them **unmoved**; assert the compiled CC-H-08 gap line
+byte-unchanged from 0.1.49; no payload law changes; divergences numbered, never
+resolved silently.
+
+**The premise, and the estate that contradicted it.** The prompt asked for one
+pin moved and verified twice. The sweep found **no pin to move**: the gate
+definition's edition string is pinned by **nothing** — not in any of the twenty
+checks, not in `payload/`, `diagnostics/`, `verify/` or `install.sh`. This is
+not an oversight the sweep caught, it is a state 0.1.49 recorded on purpose, in
+its own entry: *"No check pinned the gate's edition string; `check-gate` now
+pins v0.14's law instead."* The five `v0.14` occurrences under `tests/` are two
+comment banners (`check-gate.sh:661`, `check-m.sh:558`), one `ok`-message
+quotation of what v0.14 retired (`check-gate.sh:708`), and two **other**
+documents' editions (`check-orchestrator.sh:1456`, the orchestrator's own v0.14;
+`check-auto.sh:879`, its §19 review record). Not one is a pin on this document.
+The only header-reading edition pins in the estate — `head -2 … | grep -q
+'v0\.42'` — both read `ba-native-spec-orchestrator-rules.md`, at
+`check-orchestrator.sh:1516` and `check-humanizer.sh:300`.
+
+**Nothing was RED.** The suite ran **20/20 green** against the v0.15 header
+before this pass touched a file — the baseline is recorded below. The v0.15
+change record's claim that the pin *"stands RED until the next compile pass
+moves it"* described a state that never existed.
+
+**The ruling — the document wins, so the estate takes the pin.** Put to the
+owner as three options; ruled **mint the pin at v0.15** (option (a), 1 Sep
+2026). The reasoning is 0.1.49's own rule, *the doc wins wherever the prompt and
+the doc disagree*, applied to a document that changed the ground: v0.14 never
+claimed a pin, **v0.15 does**. Minting it therefore follows the newer document
+rather than reversing 0.1.49 — and it closes the real gap the sweep exposed,
+that a gate header bump was invisible to the whole suite.
+
+**The pin, minted at two sites.** `check-gate.sh` (in §6d, beside the CC-H-08
+law it already pins) and `check-auto.sh` (in the gate's own half of the AG
+ruling). Both files open this document, so both take the pin — the
+`check-orchestrator`/`check-humanizer` precedent applied **by its own logic**,
+not by counting to two. Shape is that precedent verbatim:
+
+    head -2 "$GATE_DOC" | grep -q 'v0\.15' \
+      && ok "the header states the live edition — v0.15, the CC-H-08 line meets §7's grammar" \
+      || bad "the header does not name v0.15: the edition and the change record disagree"
+
+**Proved both ways, per the house rule.** Line 2 mutated v0.15 → v0.14: both
+sites fire, exactly one failure each — `check-gate` 158/0 → 157/**1**,
+`check-auto` 313/0 → 312/**1** — then the document restored and re-hashed
+byte-identical (`f4da544c…8556d`). The same mutation proves the `head -2`
+discrimination: line 3 still read `**v0.15 change record:**` while line 2 read
+v0.14, and both pins still fired, so the change record can never be what
+satisfies the pin.
+
+**The third site — derived, and not a pin.** `install.sh`'s `doc_version()`
+reads the first four lines of each vendored document and writes the first
+`v<n>.<n>` it finds into the installed `.specify/ba/manifest.md`; the gate row
+now derives **v0.15** with no edit, and `verify-manifest.py`'s claim 2 checks it
+against the same header. A derived site cannot go stale, so it takes no pin and
+needs no sweep next time — named here so the next pass does not look for one.
+
+**The two assertions the prompt asked for, both held.**
+
+- *The illustration's tokens and their order are unchanged, and their pins did
+  not move.* `check-gate.sh` reported **157/0** before this pass and **158/0**
+  after — the delta is the new pin alone, and 157 is the count 0.1.49 recorded.
+  Every §10.4 pin holds as-is: the illustrated prefix `CC-H-08 FAIL — E-10
+  Public API & Bulk Generation — Phase 2 · Billable Yes — no scope brief` (2
+  occurrences in the document at HEAD, 2 in the worktree — the live text and the
+  v0.14 change record's historical copy), `**Element grain is the epic**`,
+  `**Vacuous, never a gap,**`, the `n gaps`/blocks-nothing clause and `**never
+  Stage-0 pre-flight**`. `NSIX` — the stale *all six CC-H* census — stays **1**:
+  v0.15's change record does not quote the retired phrase.
+- *The compiled CC-H-08 gap line is byte-unchanged from 0.1.49.* `git diff HEAD
+  -- payload/ tests/` was **empty** for `payload/` at session open: the whole
+  payload tree is byte-identical to 0.1.49, so the gap line is unchanged by
+  construction. Checked directly as well — 1 occurrence in
+  `payload/claude/skills/ba-gate-health/SKILL.md` at HEAD, 1 in the worktree,
+  identical. **No payload law changed in this pass**; the only edits are the two
+  check files, `VERSION` and this log.
+
+**Three divergences, registered rather than resolved silently.**
+
+*(1) The precondition's form.* The prompt required origin/main to contain
+package 0.1.49 **and the 2026-09-01 docs commit**. `origin/main` is `4814f34`
+(0.1.49) and carries **no docs commit**: gate v0.15 and the field note's §6 were
+**uncommitted working-tree edits** at session open. The substance the
+precondition tests for was present and readable — the header reads v0.15, §6
+*Compile pass — divergences registered and ruled* exists — so the pass proceeded
+on substance rather than aborting on form, and the Lane B docs ride this pass's
+commit, the estate's established pattern. Registered because a precondition
+partly met is not a precondition met.
+
+*(2) The pin's target set was empty.* Named in full above. The scope item
+"every check pinning the gate definition's edition moves v0.14 → v0.15" had
+nothing to move; the sweep is recorded so the next pass inherits the census
+rather than repeating it.
+
+*(3) The v0.15 change record describes an estate state that never existed.* Its
+sentence *"The gate's edition pin at the compiled checks reads this header and
+stands RED until the next compile pass moves it — the recorded Lane-B state, the
+6339cbf precedent"* is wrong twice: there was no pin, and nothing was RED. The
+6339cbf precedent does not transfer — the pin that stood RED there was
+`check-orchestrator`'s v0.41 header pin, which **existed**. The owner's ruling
+makes the sentence's *forward* claim true from this pass on; its account of the
+**past** stays a registered inaccuracy in methodology text, which is not this
+pass's to edit. **Routed to master**, with the field note's §6 as its anchor.
+
+**Five judgement calls, recorded.**
+
+1. **`head -2`, not `head -3` or a bare `has`.** The edition line is line 2 and
+   the v0.15 change record on line 3 names the same edition; a `has` over the
+   whole file would be satisfied forever by the historical change records, which
+   is exactly why no pin here has ever gone stale loudly. `head -2` reads the
+   edition line alone. Proved by the mutation.
+2. **Two sites, chosen by who reads the document**, not by matching the
+   orchestrator's count. `check-gate.sh` and `check-auto.sh` are the two checks
+   that open this file; both take it.
+3. **The pin only — v0.15's new §10.4 sentence is not pinned.** The prompt ruled
+   the illustration's pins unmoved and no payload law changes; an assertion on
+   the new sentence would be new law this pass was not asked to write. Routed,
+   not taken.
+4. **`install.sh` left untouched.** Its manifest row derives the edition live,
+   so it already reads v0.15. Editing it would replace a self-truing site with a
+   second thing to move.
+5. **`VERSION` 0.1.49 → 0.1.50.** Every entry in this log is a package, and this
+   pass changes check law and lands the Lane B docs, so it takes its own number.
+   `VERSION` is the only live carrier — the `0.1.49` strings in the gate document
+   and the field note are historical record and correct as written.
+
+**Defaults taken: none.** The one open decision — mint the pin or leave the
+edition unpinned — was put to the owner and ruled before any check was edited.
+
+**Suite: 20/20 GREEN**, the three install-based runs included.
+
+| Check | Result |
+|---|---|
+| `check-m.sh` | 91 / 0 |
+| `check-gate.sh` | 158 / 0 |
+| `check-orchestrator.sh` | 630 / 0 |
+| `check-techniques.sh` | 104 / 0 |
+| `check-techniques2.sh` | 127 / 0 |
+| `check-techniques3.sh` | 166 / 0 |
+| `check-spine.sh` | 286 / 0 |
+| `check-register.sh` | 64 / 0 |
+| `check-wbs.sh` | 111 / 0 |
+| `check-audit.sh` | 240 / 0 |
+| `check-status.sh` | 129 / 0 |
+| `check-map.sh` | 43 / 0 |
+| `check-humanizer.sh` | 119 / 0 |
+| `check-ledger.py` | grammar-legal — 19 rules, no violations |
+| `check-cards.py` | every card byte-identical to its re-derivation; layering clean |
+| `check-layout.sh` | 126 / 0 / 0 |
+| `check-exit.sh --offline` | 105 / 0 |
+| `check-install.sh` | 64 / 0 |
+| `check-budget.sh` | 99 / 0 |
+| `check-auto.sh` | 313 / 0 |

@@ -259,6 +259,15 @@ has_joined "$GATE" "The non-waivable set is untouchable under any mode: the auto
 has_joined "$GATE" "P3 ⚑ and P4 approval sit outside every AG — the safety floor, three acts with the scope frame (orchestrator §10.7, D-O94); the adapter's check (§11.2) is implementation's own act, on no floor and under no grant." \
     "…and states the floor in the gate's own words"
 
+# The gate's edition pin — the second of the two copies (check-gate.sh carries
+# the first, where it was minted). This check reads the gate document, so it
+# pins the edition it read: the 0.1.47 lesson is that one site is never all of
+# them, and the 0.1.49 sweep found the orchestrator's pin duplicated exactly
+# this way.
+head -2 "$GATE" | grep -q 'v0\.15' \
+  && ok "the header states the live edition — v0.15, the CC-H-08 line meets §7's grammar" \
+  || bad "the header does not name v0.15: the edition and the change record disagree"
+
 # ── 3. the safety floor — the sweep ──────────────────────────────────────────
 
 printf '\n▸ The safety floor — no compiled sentence AUTO-stamps a ⚑ sign-off, an effective PASS or the scope frame (D-O37 · D-O42 · D-O94)\n'

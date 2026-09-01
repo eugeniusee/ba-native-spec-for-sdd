@@ -708,6 +708,18 @@ NSIX=$(grep -o "all six CC-H" "$GATE_DOC" | wc -l | tr -d ' ')
   && ok "…and the stale six-CC-H count survives only where v0.14 quotes what it retired" \
   || bad "the gate document carries $NSIX \"all six CC-H\", expected 1 (the change record's quotation)"
 
+# The gate's edition pin — minted here, 1 Sep 2026 (EC-22 closure). Through
+# v0.14 no check pinned this document's edition string: check-gate pinned its
+# law instead, and a header bump was invisible to the whole suite. v0.15's own
+# change record asserts the pin exists and reads this header, so the estate
+# takes it — the document wins. The second copy lives in check-auto.sh, which
+# reads this document too: the 0.1.47 two-site lesson, applied before it can
+# be relearned. head -2 reads the edition line alone — the change record on
+# line 3 names the same edition and must not be what satisfies the pin.
+head -2 "$GATE_DOC" | grep -q 'v0\.15' \
+  && ok "the header states the live edition — v0.15, the CC-H-08 line meets §7's grammar" \
+  || bad "the header does not name v0.15: the edition and the change record disagree"
+
 # the compiled surfaces carry the same law, count-free
 has "$SKILLS_D/ba-gate-health/SKILL.md" "CC-H-02 · CC-H-03 · CC-H-06 · CC-H-08" \
     "/ba-gate-health runs CC-H-08 with the M third"
