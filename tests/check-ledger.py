@@ -103,6 +103,9 @@ RULES = {
            "`XO-<n>` entry (§8.1, D-O73)",
     "L19": "acceptance-shape register — `AS-<n> — <item> (<citation>) — "
            "<state>`, three states, `none found` legal (§2.4, D-O78)",
+    "L20": "change register — `CR-<n> — <the change> (<from>) — <state>`, five "
+           "states, an absent line reads `none`; the CR records append in full "
+           "(§2.4 · §7.7, D-O102)",
 }
 
 # ── event forms ──────────────────────────────────────────────────────────────
@@ -120,6 +123,17 @@ RE_RO = re.compile(r"^RO-(\d+) · (\w+) — (.+)$")
 RE_AW = re.compile(r"^AW-(\d+) · (\w+) · unmet: (.+)$")
 RE_GAP = re.compile(
     rf"^Threshold-gap candidate — ({DATE}) · should have been caught by (.+)$")
+
+# The `CR-<n>` record class (§2.4 · §7.7, D-O102) — three record lines, all
+# appending to Events IN FULL on the RO pattern.  No new event kind exists:
+# these are records, exactly as `RO-<n>` and `AW-<n>` are, and they are matched
+# here for the same reason those are — a record the grammar does not know is a
+# record nobody can read back.
+RE_CR_RECV = re.compile(
+    rf"^CR-(\d+) · received · ({DATE}) · from: (.+?) · (\S+) — (.+)$")
+RE_CR_RULED = re.compile(rf"^CR-(\d+) · ruled · ({DATE}) · (.+?) — (.+)$")
+RE_CR_LANDED = re.compile(rf"^CR-(\d+) · landed · ({DATE}) — (.+)$")
+CR_RULINGS = ("take", "decline", "hold")
 
 # The five head-line events §2.4 pins, verbatim (D-O14 · D-O36–D-O38 · D-O43 ·
 # D-O48). Each rewrites a head line rather than an aspect state, so none feeds
@@ -180,6 +194,29 @@ RE_XO_STATE = re.compile(r"\s+—\s+(?P<state>%s)\b" % "|".join(XO_STATES))
 AS_STATES = ("standing", "superseded", "accepted")
 RE_AS = re.compile(r"^AS-(?P<n>\d+)\s+—\s+(?P<rest>.+)$")
 RE_AS_STATE = re.compile(r"\s+—\s+(?P<state>%s)\b" % "|".join(AS_STATES))
+
+# ── the change register (§2.4, D-O102) ───────────────────────────────────────
+#
+# `Changes: CR-<n> — <the change, one line> (<from>) — <state> · …` or `none`.
+# The state vocabulary is closed at five by ruling.  The line is NOT in
+# HEAD_LINES and is never required: §2.4 rules that an absent line reads `none`,
+# so a ledger written before D-O102 is legal and reads correctly — the
+# `Humanizer:` line's own law (D-O97).  Presence is optional; shape, once
+# present, is not.  The state token is matched at a ` — ` boundary from the
+# right for the reason XO's and AS's are: `held — trigger: <event>`,
+# `routed — <acts>`, `landed — <refs>` and `declined — <reason>` each carry a
+# separator of their own, so the LAST state token on an entry is its state.
+CR_STATES = ("received", "held", "routed", "landed", "declined")
+RE_CR = re.compile(r"^CR-(?P<n>\d+)\s+—\s+(?P<rest>.+)$")
+RE_CR_STATE = re.compile(r"\s+—\s+(?P<state>%s)\b" % "|".join(CR_STATES))
+# Entries are separated by ` · ` like every other register's — but this line is
+# the first whose LAST field legitimately carries that separator itself:
+# `landed — <refs>` names an `Allocation <n>` entry, a routing-log line, a gate
+# run and an `SD-<n>` in one field, joined by ` · ` (§7.7's landed record).
+# Splitting on every ` · ` would read each ref as a malformed entry.  The id is
+# what disambiguates it, which is what the id grammar is for: split only where
+# the next chunk OPENS a new `CR-<n> — `.
+RE_CR_SPLIT = re.compile(r"\s+·\s+(?=CR-\d+\s+—\s+)")
 
 # L18's marker set — the harvest floor, and it claims nothing more.  Each entry
 # is a phrasing that names its class unmistakably in captured client prose; a
@@ -406,6 +443,64 @@ def check(path: pathlib.Path, allow_open_band: bool, captures=None) -> Report:
                         f"AS-{n}: `accepted` carries no reason — a declined "
                         "item is a record, never silence")
 
+    # ── L20 — the change register's grammar (§2.4, D-O102) ─────────────────
+    #
+    # The line is optional by ruling — an absent line reads `none`, so a ledger
+    # written before D-O102 is legal.  What is asserted is the shape once the
+    # line stands: ids unique, five states and nothing else, and no state
+    # ending a change without what that state exists to name.  A `held` trigger
+    # is event-shaped, never a date — the deferred-consequence law (§5.3), and
+    # the same `DATE_WISH` guard the AW's revisit trigger takes: no scheduler
+    # exists anywhere in the framework, so a date is a wish nothing reads.
+    cr_line = head_line_value("Changes:")
+    if cr_line and cr_line.lower() not in ("none", "none found"):
+        seen_cr = {}
+        for chunk in RE_CR_SPLIT.split(cr_line):
+            chunk = chunk.strip()
+            if not chunk or chunk.startswith("<"):
+                continue
+            m = RE_CR.match(chunk)
+            if not m:
+                rep.bad("L20", i_head + 2,
+                        f"register entry does not parse as "
+                        f"`CR-<n> — <the change, one line> (<from>) — <state>`: {chunk!r}")
+                continue
+            n, rest = int(m.group("n")), m.group("rest")
+            if n in seen_cr:
+                rep.bad("L20", i_head + 2, f"CR-{n} appears twice on the line")
+            seen_cr[n] = True
+            if "(" not in rest or ")" not in rest:
+                rep.bad("L20", i_head + 2,
+                        f"CR-{n}: no `(<from>)` — who brought the change is half "
+                        "of what this register holds (D-O102)")
+            last = None
+            for sm in RE_CR_STATE.finditer(rest):
+                last = sm
+            if last is None:
+                rep.bad("L20", i_head + 2,
+                        f"CR-{n}: no state — one of "
+                        f"{' · '.join(CR_STATES)}, never absence")
+                continue
+            st = last.group("state")
+            tail = rest[last.end():].strip(" —")
+            if st == "held":
+                trig = re.sub(r"^trigger:\s*", "", tail)
+                if not tail.startswith("trigger:") or not trig:
+                    rep.bad("L20", i_head + 2,
+                            f"CR-{n}: `held` names no trigger — a hold is "
+                            "event-shaped and never open-ended (D-O102)")
+                elif DATE_WISH.search(trig):
+                    rep.bad("L20", i_head + 2,
+                            f"CR-{n}: the hold trigger {trig!r} is a date wish, not "
+                            "an event — no scheduler exists; only an event can be "
+                            "recognized at a touchpoint")
+            elif st in ("routed", "landed", "declined") and not tail:
+                what = {"routed": "acts", "landed": "refs",
+                        "declined": "reason"}[st]
+                rep.bad("L20", i_head + 2,
+                        f"CR-{n}: `{st}` names no {what} — no state ends a change "
+                        "without one (D-O102)")
+
     # ── replay the events ───────────────────────────────────────────────────
     state = {a: "untouched" for a in ASPECTS}
     since = {a: "" for a in ASPECTS}
@@ -417,6 +512,8 @@ def check(path: pathlib.Path, allow_open_band: bool, captures=None) -> Report:
     ro_reopened = {}          # RO-id -> [aspects it reopened]
     ro_status = {}            # RO-id -> received | open | resolved | declined
     ro_seen = set()
+    cr_status = {}            # CR-id -> received | held | routed | landed | declined
+    cr_seen = set()
     aw_status = {}            # AW-id -> granted | superseded | lapsed | voided
 
     for lineno, header, cont in parse_blocks(lines, i_ev + 1, len(lines)):
@@ -606,6 +703,74 @@ def check(path: pathlib.Path, allow_open_band: bool, captures=None) -> Report:
                     rep.bad("L9", lineno,
                             f"RO-{rid}'s blast radius is stated but never ruled "
                             "(continue-with-visibility, or named pauses)")
+            continue
+
+        # ── the CR record class (§7.7, D-O102) — records, not a new event kind ──
+        m = RE_CR_RECV.match(header)
+        if m:
+            cid, date = m.group(1), m.group(2)
+            cr_seen.add(cid)
+            cr_status[cid] = "received"
+            if date < last_date:
+                rep.bad("L13", lineno, f"CR record dated {date} follows {last_date}")
+            last_date = max(last_date, date)
+            continue
+
+        m = RE_CR_RULED.match(header)
+        if m:
+            cid, date, ruling = m.group(1), m.group(2), m.group(4)
+            if cid not in cr_seen:
+                rep.bad("L20", lineno,
+                        f"CR-{cid} is ruled with no `received` record before it — "
+                        "the record exists before any classification (§7.7)")
+            cr_seen.add(cid)
+            verb = ruling.split(" — ")[0].split(" · ")[0].strip()
+            if verb not in CR_RULINGS:
+                rep.bad("L20", lineno,
+                        f"CR-{cid}: unknown ruling {verb!r} — the ruling is one of "
+                        f"{' · '.join(CR_RULINGS)} (P-O10)")
+            else:
+                cr_status[cid] = {"take": "routed", "decline": "declined",
+                                  "hold": "held"}[verb]
+            if verb == "hold":
+                trig = ruling.split("trigger:", 1)[1].strip() if "trigger:" in ruling else ""
+                if not trig:
+                    rep.bad("L20", lineno,
+                            f"CR-{cid}: `hold` names no trigger — event-shaped, "
+                            "never a date (§7.7)")
+                elif DATE_WISH.search(trig):
+                    rep.bad("L20", lineno,
+                            f"CR-{cid}: the hold trigger {trig!r} is a date wish, "
+                            "not an event — no scheduler exists")
+            elif verb == "decline" and not ruling.split(" · ")[0].partition(" — ")[2].strip():
+                rep.bad("L20", lineno,
+                        f"CR-{cid}: `decline` carries no reason — the reason is the "
+                        "record, and a declined change is never a silent drop (§5.1)")
+            if "targets:" not in ruling:
+                rep.bad("L20", lineno,
+                        f"CR-{cid}: the ruling names no `targets:` — a change is "
+                        "ruled against the estate it was located in (§7.7)")
+            if date < last_date:
+                rep.bad("L13", lineno, f"CR record dated {date} follows {last_date}")
+            last_date = max(last_date, date)
+            continue
+
+        m = RE_CR_LANDED.match(header)
+        if m:
+            cid, date, refs = m.group(1), m.group(2), m.group(3)
+            if cid not in cr_seen:
+                rep.bad("L20", lineno,
+                        f"CR-{cid} lands with no `received` record before it — "
+                        "every change is received once, before anything else (§7.7)")
+            cr_seen.add(cid)
+            if not refs.strip():
+                rep.bad("L20", lineno,
+                        f"CR-{cid}: `landed` names no refs — the CR binds the records "
+                        "its route wrote and duplicates none of them (§7.7)")
+            cr_status[cid] = "landed"
+            if date < last_date:
+                rep.bad("L13", lineno, f"CR record dated {date} follows {last_date}")
+            last_date = max(last_date, date)
             continue
 
         m = RE_AW.match(header)

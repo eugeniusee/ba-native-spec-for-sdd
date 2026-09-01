@@ -395,6 +395,25 @@ carried the list — **no new event kind, no new prompt point, and no act named
 *the manual ratification batch***. **Assembling the list may be AUTO; ruling it
 never is — an AG never answers it**, and the list reaches no client artifact.
 
+**A received change — a conditional line on all three reports.** Where the
+ledger head's `Changes:` line carries at least one **`received`** entry, the
+**band-boundary report**, the **mid-grant stop report** and the **resumption
+report** each render one line as a **tail after their last pinned line** —
+after the decision-list tail where that renders, and **before the closing
+ask**. Where no `received` entry stands, **nothing renders**:
+
+```
+Changes awaiting your ruling: CR-<n> — <the change, one line> (<from>) · …
+```
+
+**The pinned shapes do not change** — six lines, four and six, byte for byte;
+the line is an addition, never a replacement. **Visibility, and never an
+option in any closing ask:** the ruling is **P-O10 — change ruling**'s
+(`/ba-change`), it needs the impact render first, and it is taken by naming
+the change — never inside a continue or a ratification. Unlike the advisory
+list, this line **does** reach the mid-grant stop report: a change awaiting a
+ruling is a fact, not a ruling asked for.
+
 ### BA-facing communication register
 
 The framework speaks in three registers, one owner each: **artifact text** — the

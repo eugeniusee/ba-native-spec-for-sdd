@@ -190,6 +190,21 @@ The row shape, the three dispositions and the ruling's home are `/ba-auto`'s —
 cited here, never restated. **Assembling the list may be AUTO; ruling it never
 is: an AG never answers it.**
 
+**Where a change stands `received`, one line follows it** — after the
+decision-list tail where that renders, and **before the closing ask**. The
+pinned shape above is untouched, and the line is an addition, never a
+replacement. Where no `received` entry stands on the head's `Changes:` line,
+nothing renders:
+
+```
+Changes awaiting your ruling: CR-<n> — <the change, one line> (<from>) · …
+```
+
+**Visibility, never an option.** No option joins the closing ask on its
+account: the ruling is **P-O10 — change ruling**'s, it needs the impact render
+first, and it is taken by naming the change — `/ba-change CR-<n>`, or the
+change in your own words — never inside a continue or a ratification.
+
 **The closing ask — the report's pinned tail.** After the report's last line —
 and after the decision-list tail where that renders — the render ends with the
 pinned `What I need from you:` block; it is **never composed at the stop**:

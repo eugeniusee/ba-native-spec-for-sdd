@@ -87,6 +87,7 @@ Open reopens:             none
 Upstream flags:           none
 Deferred consequences:    none
 Scope advisories:         none
+Changes:                  none
 
 <!-- Head line shapes once populated:
   Band: 1 (closed <date>) — Bands 2/3 capable
@@ -97,6 +98,11 @@ Scope advisories:         none
   Upstream flags:           <aspect> flagged: prerequisite <aspect> reopened
   Deferred consequences:    RO-<n>: <item> — trigger: <event>
   Scope advisories:         ADV-<n> · <epic> — standing | accepted <date> — revisit: <event>
+  Changes:                  CR-<n> — <the change, one line> (<from>) — <state>
+                            states:  received | held — trigger: <event> | routed — <acts> |
+                                     landed — <refs> | declined — <reason> (closed at five)
+                            absent reads none; /ba-change writes it in place, line-anchored,
+                            inserted directly after Scope advisories: where it is absent
   Cross-cutting: XO-1 — language: English (engagement default — framework law, D-O74) — default · XO-<n> — <class>: <value, one line> (<citation>) — <state> · …
                             classes: language · device · accessibility · branding · compliance (closed at five)
                             states:  captured | carried — <unit> | accepted — <reason> — revisit: <event> | default (closed at four)
@@ -109,8 +115,8 @@ Scope advisories:         none
 
 ## Events
 
-<!-- Append-only. Evidence tables, AW records, RO records, band events, and
-     threshold-gap candidates append here in full.
+<!-- Append-only. Evidence tables, AW records, RO records, CR records, band
+     events, and threshold-gap candidates append here in full.
 
   Aspect gate review — <aspect> — <date>
   | AT | Evidence | Met |
@@ -134,6 +140,10 @@ Scope advisories:         none
 
   Threshold-gap candidate — <date> · should have been caught by <AT-ID | none — new class>
     <what escaped, and why the threshold missed it>
+
+  CR-<n> · received · <date> · from: <who — role, and name or channel> · <source path> — <the change, one line>
+  CR-<n> · ruled · <date> · <initials> — <take | decline — <reason> | hold — trigger: <event>> · targets: <target — state · …>
+  CR-<n> · landed · <date> — <refs>
 
   <date> · scope-frame · <from → to> · <initials> — <reason>
   <date> · source · <name> · <state> · <initials> — <basis>

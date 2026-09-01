@@ -296,10 +296,10 @@ printf '\n▸ The document — D-O97 · §43 and the five sections it touches\n'
 
 has "$DOC" "**D-O97**" "the ruling is on the record"
 has "$DOC" "## 43. Review record (v0.39 → v0.40)" "…and §43, the review record that carries it"
-has "$DOC" "decisions D-O1–D-O101 locked" "the trailing line locks through D-O101"
-head -2 "$DOC" | grep -q 'v0\.42' \
-  && ok "the header states the live edition — v0.42, the election takes the boundary" \
-  || bad "the header does not name v0.42: the edition and the change record disagree"
+has "$DOC" "decisions D-O1–D-O102 locked" "the trailing line locks through D-O102"
+head -2 "$DOC" | grep -q 'v0\.43' \
+  && ok "the header states the live edition — v0.43, the change has a front door" \
+  || bad "the header does not name v0.43: the edition and the change record disagree"
 has "$DOC" "**v0.40 change record:**" "the change record opens the edition"
 
 has "$DOC" "10. **The humanizer switch (D-O97 — D-O89's rule rewritten in place, never amended by addition).**" \
@@ -330,13 +330,21 @@ has_joined "$DOC" "the enforcing check is built — \`sk_humanizer_guard.py\`, D
 has_joined "$DOC" "option (C), the pattern distillation into §10.3, stays routed" \
     "…while option C stays routed, unchanged"
 
-# no new prompt point: §10.1's table is complete as it stands
+# no new prompt point: §10.1's table is complete as this ruling leaves it
 [ "$(grep -c '^| \*\*P-O' "$DOC")" -gt 0 ] \
   && ok "§10.1's P-O table still derives" \
   || ok "§10.1's P-O table shape unchanged by this ruling"
-grep -qF 'P-O10' "$DOC" \
-  && bad "a P-O10 row appeared: this ruling adds no prompt point" \
-  || ok "no P-O10 exists — the ruling adds no prompt point"
+# D-O102 added P-O10 — change ruling at v0.43, so a whole-document census of the
+# string now tests the corpus instead of this ruling. The claim is scoped where
+# it is made: §43, the humanizer review record, names no prompt point, and the
+# P-O10 row that does exist belongs to §7.7's change route.
+awk '/^## 43\. Review record/{s=1} s && /^## 44\. Review record/{exit} s' "$DOC" \
+  | grep -qF 'P-O10' \
+  && bad "§43 names P-O10: the humanizer ruling must add no prompt point" \
+  || ok "§43 names no P-O10 — the humanizer ruling adds no prompt point"
+grep -qF '| P-O10 | Change ruling |' "$DOC" \
+  && ok "…and the P-O10 that exists is §7.7's change ruling, a later ruling's row" \
+  || bad "§10.1's P-O10 row is not the change ruling's — the scoping above lost its ground"
 
 # ── 5. the surfaces — quickstart, /ba-frame, /ba-status ─────────────────────
 

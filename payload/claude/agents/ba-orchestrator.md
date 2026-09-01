@@ -360,6 +360,7 @@ moments, not step boundaries.
 | P-O7 | Band-1 closure | declare closure; re-affirm AWs into the armed state | `/ba-close-band1` |
 | P-O8 | Band-3 entry | confirm the slicing row | `/ba-enter-feature` |
 | P-O9 | overflow ruling | supplement · cap adjust · defer | raised inside a Tier-2 session |
+| P-O10 | change ruling | take (the route's `go`) · decline — <reason> · hold — trigger: <event> | `/ba-change` |
 
 Under a standing autonomy grant these stops survive as **acts** and move as
 **moments** — see the policy table below. The safety floor never moves.

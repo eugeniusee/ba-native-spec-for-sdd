@@ -44,6 +44,9 @@
 #    20  check-auto.sh           autonomous mode — the AG record · the §10.7
 #                                policy table · the safety floor sweep ·
 #                                the resumption report · the mode read
+#    21  check-change.sh         the change route — the skill · the impact
+#                                render against §7.7's instance · P-O10 ·
+#                                the three additive tails · the CR grammar
 #
 # `check-cards.py` and `check-ledger.py` also run inside `check-gate.sh` and
 # `check-orchestrator.sh`. They keep their own rows because the entries give
@@ -220,13 +223,18 @@ fi
 # pinned route render down in every file that renders one; check-auto.sh sweeps
 # the same surface for the safety floor — no compiled sentence may AUTO-stamp a
 # ⚑ sign-off, an effective PASS or a handoff — and holds down the mode read in
-# every carrier. Running them after everything else means they read the surface
-# as the rest of the suite left it.
+# every carrier; check-change.sh derives its carrier sets the same way — every
+# file that renders a pinned report must carry the change tail — so it belongs
+# here and not in the file-only block. Running them after everything else means
+# they read the surface as the rest of the suite left it. check-change.sh takes
+# row 21 rather than a seat among the file-only checks so no existing row is
+# renumbered: the entries in BUILD-LOG.md cite these rows by number.
 
 printf '\n▸ The whole-surface checks — the render surface as the suite leaves it\n'
 
 run_check "check-budget.sh"       suite "$HERE/check-budget.sh"
 run_check "check-auto.sh"         suite "$HERE/check-auto.sh"
+run_check "check-change.sh"       suite "$HERE/check-change.sh"
 
 # ── the table ────────────────────────────────────────────────────────────────
 

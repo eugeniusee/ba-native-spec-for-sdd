@@ -113,6 +113,19 @@ Resume from: /ba-auto off → ratify the batch → per feature: the two ⚑ sign
 The register's `What I need from you:` closing ask follows as the report's
 tail (§10.3 rule 9).
 
+**Where a change stands `received`, one line follows the report's last pinned
+line and precedes the closing ask** — the head's `Changes:` line, read, never
+written (`/ba-change`, §7.7). The pinned shape above is untouched. Where no
+`received` entry stands, nothing renders:
+
+```
+Changes awaiting your ruling: CR-<n> — <the change, one line> (<from>) · …
+```
+
+**Visibility, never an option:** no option joins the closing ask on its
+account — the ruling is **P-O10 — change ruling**'s and it needs the impact
+render first.
+
 **A safety-floor stop halts this route only where the remaining scope depends
 on the floor act** — the scope frame's case (P-O0b — scope-frame selection):
 nothing downstream can proceed until the frame stands. A floor act nothing in

@@ -50,6 +50,7 @@ Every checkpoint still happens. The table says who states it.
 | P-O7 — Band-1 closure · P-O8 — Band-3 entry | AUTO stamp |
 | The arming run — `/ba-gate-health full`, the closing step of P-O7 — Band-1 closure | **Inside the grant.** Closure completes only when the arming entry exists, so a run must **never stand "closed but unarmed"** — that would put Band 2 on the road with Scope H silently disarmed. Request it as part of the closure, before the band-boundary report. **The gate runs it; you request it** — unchanged. The **P8 HA review** it raises rides the ratification batch |
 | P-O9 — overflow ruling | The **supplement lane** only: the Tier 1 — epic scoping interview supplement mini-loop fills the named gaps, assumption posture held. Never cap-adjust, never defer |
+| **P-O10 — change ruling** (`/ba-change`) | **Never AUTO — and not on the floor.** A change arrives from outside the workflow the grant runs; no `scope:` field contains it, and a grant cannot self-elect a request nobody made. Brought by the BA mid-grant, the change renders its impact and its ask in that sitting with the AG standing; a `take` is the route's `go` under the grant, its acts in the ratification batch like any other. A `received` change left unruled rides the three pinned reports as one conditional tail line — visibility, never an option in the ask. The floor keeps its three acts |
 | The gate's verdict review | **Waivers AUTO on real gaps**, stamped in the report entry. **Overrides never.** On a non-waivable assertion: **fix** — name the gap in the text, or reclassify — **and re-gate.** Never bypass |
 
 **The AUTO stamp, every act, no exceptions:**
@@ -400,6 +401,34 @@ floor. **No policy row is added and none moves**, the safety floor keeps its
 three acts, and a run under a grant renders the tail and **ends its turn**
 exactly as the two reports already do. **Internal surfaces only:** the decision
 list never reaches the client-facing WBS export or any other client artifact.
+
+## A received change — a conditional line on all three reports
+
+Where the ledger head's `Changes:` line carries at least one **`received`**
+entry, the **band-boundary report**, the **mid-grant stop report** and the
+**resumption report** each render one line as a **tail after their last pinned
+line** — after the decision-list tail where that renders, and **before the
+closing ask**. Where no `received` entry stands, **nothing renders**:
+
+```
+Changes awaiting your ruling: CR-<n> — <the change, one line> (<from>) · …
+```
+
+**The pinned shapes do not change.** The band-boundary report's six lines, the
+mid-grant stop report's four and the resumption report's six stand
+byte-untouched; the line is an addition, never a replacement.
+
+**Visibility, and never an option in any closing ask.** The ruling is
+**P-O10 — change ruling**'s (`/ba-change`): it needs the impact render first,
+and it is taken by naming the change — `/ba-change CR-<n>`, or the change in
+the BA's own words — never inside a continue or a ratification. **One policy
+row, no new stop beyond P-O10, no new event kind and no new state:** a report
+that already ends the turn now says one more true thing.
+
+**Unlike the decision list, this line reaches the mid-grant stop report too.**
+That report rules nothing and closes no grant — which is why the advisory list
+stays off it — but a change awaiting a ruling is not a ruling asked for; it is
+a fact the BA reads while the run is paused.
 
 ## What this skill never does
 

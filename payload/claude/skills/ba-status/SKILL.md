@@ -57,6 +57,7 @@ Open reopens:             none | RO-<n> · <aspect> — <conflict, one line>
 Upstream flags:           none | <aspect> flagged: prerequisite <aspect> reopened
 Deferred consequences:    none | RO-<n>: <item> — trigger: <event>
 Scope advisories:         none | ADV-<n> · <epic> — standing | accepted <date> — revisit: <event>
+Changes:                  none | CR-<n> — <the change, one line> (<from>) — received | held — trigger: <event> | routed — <acts> | landed — <refs> | declined — <reason>
 ```
 
 ### Derived — what is available now
@@ -130,6 +131,7 @@ Workflow ▕██████░░░░▏ <p>% — §10.4-F
 Auto: <on — AG-<n> · scope <…> · since <date> | off — last AG-<n> ratified <date>>
       trail <n> AUTO acts · unratified <u>     (renders only once an AG exists)
 Humanizer: <on — since <date> · <initials> | off>                (always renders)
+Changes: <CR-<n> — <the change, one line> — <state> · …>       (renders only when the register is non-empty)
 ```
 
 ### The counts, each with its source
@@ -199,6 +201,22 @@ inherited, not the absence of one.
 
 Rendering the state is not setting it. This skill never writes the line —
 `/ba-humanizer on|off` owns it.
+
+### The changes tail
+
+**One additive line, after the humanizer tail.** The nine numbered lines are
+**untouched** — nothing is replaced, reordered or dropped, and no count enters
+§10.4-F. It is a ledger read like every other line here: the head's `Changes:`
+line, every entry with its state. An absent line reads `none`.
+
+**It renders only where the register holds at least one entry** — a project
+nobody has asked to change shows nothing, the auto-trail's own *renders only
+when* pattern. A `received` entry is the one you read first — a change that
+arrived and awaits your ruling — and the tail says so in the entry's own state
+word.
+
+Rendering the register is not ruling on it. This skill never writes the line —
+`/ba-change` owns it.
 
 ### Three lines that need saying plainly
 

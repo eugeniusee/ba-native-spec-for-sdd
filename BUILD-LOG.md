@@ -13454,3 +13454,357 @@ edition unpinned — was put to the owner and ruled before any check was edited.
 | `check-install.sh` | 64 / 0 |
 | `check-budget.sh` | 99 / 0 |
 | `check-auto.sh` | 313 / 0 |
+
+---
+
+## The Change Has A Front Door — /ba-change ships: received once, located in the estate, its consequences named under standing law, one route from existing acts · orchestrator v0.43 (D-O102 · §7.7 · P-O10) · package 0.1.51 · 2 September 2026 · GREEN
+
+**Session prompt:** Lane A — compile the change route from the text at HEAD.
+Nine units: the `ba-change` skill · the ledger template's `Changes:` line ·
+`/ba-status`'s changes tail · the three-report conditional line · the P-O10 row
+and the policy row · the guard's new pins · the tests, with `check-change.sh` as
+run-all row 21 · the D-O99–D-O101 pass's routed items left alone · this entry
+and the patch bump. Documents before code: **nothing was designed in this
+session** — every unit derives from `docs/methodology/ba-native-spec-orchestrator-rules.md`
+at HEAD, and every choice the text does not fix is a numbered divergence below.
+
+**The Lane B drop landed and the compiled pins had not moved.** Precondition 1
+held in full — line 2 reads `v0.43`, `### 7.7 The change route` stands once,
+`D-O102` appears nine times, `## 46.` exists, and the quickstart carries *When a
+change arrives* and its command-index row. Preconditions 2 and 3 did not, and
+both are registered below rather than resolved silently.
+
+### Two divergences on the way in
+
+**D-1 — the baseline was RED, not green.** `bash tests/run-all.sh` at session
+open: **20 checks, 2 red, 5 failures**, and all five have **one cause** — the
+2026-09-01 drop moved the document to v0.43 / D-O102 / P-O10 while the compiled
+pins still read v0.42 / D-O101 / no-P-O10. This is the recorded Lane-B state the
+estate has seen before (0.1.45's precedent, and the memory note *a
+documents-before-code pass opens RED*), and moving all five is this pass's work,
+not a defect it inherited:
+
+| Check | The failure | Cause |
+|---|---|---|
+| `check-orchestrator.sh` | the header does not name v0.42 | the header now names v0.43 |
+| `check-orchestrator.sh` | the D-O block is not contiguous | D-O102 exists; the pin read 1…101 |
+| `check-humanizer.sh` | the trailing line locks through D-O101 | it now locks through D-O102 |
+| `check-humanizer.sh` | the header does not name v0.42 | the second edition-pin site (0.1.47's two-site lesson) |
+| `check-humanizer.sh` | a P-O10 row appeared | **D-3 below — the only one that is not a pin move** |
+
+**D-2 — the base had moved: `VERSION` read 0.1.50, not 0.1.49.** `origin/main`
+is `0bc1abb`; `4814f34` (0.1.49) was overtaken by **0.1.50** — the gate's edition
+pin, EC-22 — and by the Lane B docs commit that rides `0bc1abb`. Every *next
+free* was re-established against `origin/main` per the v0.27 precedent:
+**D-O102 · §46 · §7.7 · P-O10 all stand exactly as the drop landed them**, no
+landed ruling is renumbered, and this pass takes **0.1.51**. The prompt's stated
+base is recorded as read, not as found.
+
+### The skill — `payload/claude/skills/ba-change/SKILL.md`, new
+
+Frontmatter: `name: ba-change` · `disable-model-invocation: true` · a
+one-paragraph description opening on D-O102's own sentence. The body runs
+**§7.7's order**, asserted as an order and not only as a set of headings:
+invocation (two entry forms plus `/ba-change CR-<n>` re-entry) → Step 0 receive →
+Step 1 locate → Step 2 the impact render → Step 3 the route and P-O10 → Step 4
+landing → autonomy → budget → the pinned instance → the never-list → the three
+standing blocks.
+
+**Step 0 cites `/ba-frame` and re-implements nothing.** The capture table names
+what arrives (paste · attachment · named Slack, mail or drive item) against the
+mechanic that already captures it (D-O45 · D-O46 · §8.1's readability sibling),
+the destination `sources/change-<n>-<date>.md`, the `Sources:` entry and the
+`source` event. Then the record, **before any classification** — stated twice on
+purpose: once as the step's order, once as a rule (*The record comes before the
+classification, always*), because an order can be read as a suggestion and a rule
+cannot. The mutation proof below fires on both.
+
+**Step 1's targets table names the read behind every state.** Two of them are not
+in any report and are read from plumbing: **`taken by implementation`** off the
+`NNN-*` branch and `.specify/feature.json` — `sk_handoff.py`'s own take-up read,
+its pointer single-valued so it establishes take-up for one feature at a time
+(**D-4**, registered, not a gap) — and **`delivered`** off the roadmap's
+`Delivered` row or the cycle-close band event. Where no reliable read exists the
+skill says so and stops guessing: D-O58's near-miss law at the state grain.
+
+**Step 2's WBS counts are read, never written.** `sk_wbs.py` **already carries
+`--summary-only`** — *print the generation summary; write no files* — so the
+prompt's conditional (*add a count/dry mode if none exists*) never fired and **no
+code was added** (**D-5**). A count that cannot be established renders
+`WBS: count not established — <why>`, **never zero**, and the skill says why:
+printing `0 rows` tells the client the change costs nothing.
+
+**Step 3's hold wires all three touchpoints** — `/ba-enter-feature`, `/ba-t18`
+and the cycle-close prompt — each with the read it performs. **No touchpoint
+lacked a natural read** (**D-6**), so no divergence was needed there; a trigger
+naming none is named as such at the ruling and comes back through
+`/ba-change CR-<n>`.
+
+**The pinned impact render is byte-equal to §7.7's instance** — extracted from
+the document at run time by `check-change.sh` and compared, never restated in the
+test file. 26 lines, verified identical.
+
+### The three additive tails
+
+| Tail | Where | Law |
+|---|---|---|
+| the `Changes:` head line | the ledger template, born at `none`, directly after `Scope advisories:` | §2.4 — an absent line reads `none` |
+| the changes tail | `/ba-status`'s pinned shape, **after** the humanizer tail | §10.4 — renders only where the register is non-empty |
+| `Changes awaiting your ruling:` | six report carriers, after the D-O69 tail, before the closing ask | §10.7 — visibility, never an option |
+
+**The report tail is its own conditional line in its own paragraph, never a line
+inside a pinned fence** — the D-O69 tail's own shape. Every pinned report line is
+byte-untouched, asserted line by line: the band-boundary report's six, the
+mid-grant stop report's four, the resumption report's six.
+
+**D-7 — the HTML dashboard is not mirrored, because the humanizer tail is not
+there either.** `sk_status.py` renders **the nine numbered lines only**: the
+`Auto:` section and the `Humanizer:` line live in `ba-status/SKILL.md`'s pinned
+shape and are agent-rendered from the ledger head. `render_html()` embeds the
+chat render, so it carries neither. The changes tail lands **exactly where the
+humanizer tail lands** — the skill — and `sk_status.py` and the HTML render are
+**untouched**. U3's `sk_status.py` element did not fire, and the prompt's own
+condition (*mirror it only if the humanizer tail is mirrored there*) rules it out.
+
+**D-10 — the carrier list is grep's, not the prompt's.** The prompt named
+`ba-run`; **`ba-run` carries no pinned report block** — it names the three
+reports in prose only, and takes no tail. The prompt did not name
+`ba-dev-ready`; **it does carry the mid-grant stop report's pinned shape**, and
+by §10.7's own terms it takes the line. The six carriers, each found by grepping
+the three reports' pinned head lines:
+
+`ba-auto` (all three) · `ba-close-band1` (band boundary) · `ba-enter-feature`
+(band boundary) · `ba-dev-ready` (mid-grant stop) · `mirror/claude-block.md`
+(all three) · `mirror/AGENTS.md` (all three).
+
+`check-change.sh` derives that set the same way, so a seventh carrier added later
+is caught rather than missed.
+
+### P-O10 and the policy row
+
+**D-11 — one carrier each, not four.** The prompt expected `ba-orchestrator.md`,
+`ba-auto`, `ba-run` and `ba-tier2` to compile both tables. At this base **exactly
+one file compiles each**: `ba-orchestrator.md` holds the §10.1 P-O table (the row
+went in beside P-O9) and `ba-auto` holds the §10.7 policy table (the row went in
+beside P-O9's). `ba-run` and `ba-tier2` mention `P-O9` **in prose only**. The
+check finds both sets by grep — `| P-O9 | ` and `| P-O9 — overflow ruling |` — so
+the sweep can never go vacuous and a new carrier is caught.
+
+**D-12 — §11's binding table has no compiled carrier.** The `Change route` row
+stands in the document alone; nothing in `payload/` compiles that table. Nothing
+to move, and the check pins the document's row.
+
+### The guard
+
+`sk_humanizer_guard.py`'s `PINNED_LINES` gains **three**, not six: `Change —` ·
+`Targets:` · `Changes awaiting your ruling:`. **`Route —`, `Stops en route:` and
+`What I need from you:` were already pinned** — U6's own *if not already pinned*
+clause, exercised. The two impact-render pins name `§7.7 — the impact render
+(D-O102)`. The two runtime ledgers stay **exempt entire**, so a `CR-<n>` record
+is never rewritten. `("prompt point", r"\bP-O\d+[a-z]?\b", "§10.1")` already
+matched `P-O10` and was not touched.
+
+### The tests
+
+**D-3 — the one stale assertion that was not a pin move.**
+`check-humanizer.sh` asserted `grep -qF 'P-O10' "$DOC"` → **bad**, on the message
+*a P-O10 row appeared: this ruling adds no prompt point*. **The claim is still
+true** — D-O97 added no prompt point — but the **instrument** was a
+whole-document census, and a *later* ruling in a *different* section added the
+point, so the census stopped testing the claim and started testing the corpus.
+Rescoped to where the claim is made: **§43's own text carries no `P-O10`**, plus
+a second assertion that the row which does exist is **§7.7's change ruling**. Two
+assertions where there was one; the claim is asserted, the corpus is not
+frozen.
+
+**D-8 — `Changes:` does NOT join `check-ledger.py`'s `HEAD_LINES`.** That
+constant is the **required** head-line set: L1 fails when a listed line is
+missing. §2.4 rules that **an absent line reads `none`, so a ledger written
+before this ruling is legal** — the `Humanizer:` line's own law. Joining
+`HEAD_LINES` would make every pre-D-O102 ledger illegal and contradict the
+sentence the pass is compiling. The line joins as an **optional, grammar-checked
+register — L20**, the twentieth rule, and the fixture ledger *without* the line
+is asserted still legal as part of the check.
+
+**D-9 — the register's entry separator is the id, not ` · `.** This is the first
+head line whose last field legitimately carries the entry separator:
+`landed — <refs>` joins an `Allocation <n>` entry, a routing-log line, a gate run
+and an `SD-<n>` with ` · ` (§7.7's own landed record does exactly that).
+Splitting on every ` · ` read each ref as a malformed entry — caught by the
+positive fixture, not by reasoning. `RE_CR_SPLIT` splits only where the next
+chunk **opens** a new `CR-<n> — `. Proved both ways: the full
+received → ruled → landed run with four refs is legal, and two entries on one
+line still separate.
+
+**L20's six seeded negatives**, each firing on its own clause: a sixth state ·
+an entry naming nobody who brought it · a hold parked on a date wish · a decline
+with no reason · a CR landing with no `received` record before it · a ruling
+naming no `targets:`.
+
+**`tests/check-change.sh` — new, 134 assertions, run-all row 21.** Eight parts:
+the skill and §7.7's order · the impact render against the document's own
+instance · P-O10 and the policy row at every grep-derived carrier · the tail line
+at every report carrier with every pinned report line re-asserted · the
+`/ba-status` tail with the nine lines still in place · the ledger, both
+directions · the guard · the document. **Row 21, in the whole-surface group**
+(judgement call 1): it derives its carrier sets by grepping `payload/`, which is
+what that group is for, and taking row 21 renumbers no existing row — the entries
+in this log cite these rows by number.
+
+**Four mutations, every file restored byte-identically.**
+
+| # | Mutation | Result |
+|---|---|---|
+| M1 | `ba-close-band1` loses its tail line | 134/0 → 132/**2** — the carrier named, and the miss counted |
+| M2 | the skill loses the received-before-classification guard | 134/0 → 132/**2** — both the step and the rule |
+| M3 | the impact render drifts by one token (`change` → `changed`) | 134/0 → 133/**1** |
+| M4 | the template loses the born-at-`none` head line | 134/0 → 132/**2** — the line and its position |
+
+M1's restore is worth recording: `git checkout --` reverted the mutation **and
+this pass's own U4 insert**, because the file was already edited. The insert was
+re-applied from source and the file re-hashed to `29d3f367…`, its pre-mutation
+value, and diffed against `ba-enter-feature`'s identical insert. The other three
+restored from a copy taken before the mutation (`eddd865b…` twice).
+
+### The falsification sweep — every killed string at 0, every required string at its stated count
+
+| Killed | Count |
+|---|---|
+| `head -2 … grep -q 'v0\.42'` (both edition-pin sites) | 0 |
+| `decisions D-O1–D-O101 locked` | 0 |
+| `1…101` / `range(1, 102)` (the contiguity pin) | 0 |
+| `a P-O10 row appeared` | 0 |
+| `no P-O10 exists — the ruling adds no prompt point` | 0 |
+| `38 /ba-* skills` | 0 |
+| `all five standing-instrument head lines` | 0 |
+
+| Required | Count |
+|---|---|
+| the tail line — payload carriers | **6** |
+| the tail line — the document (§10.7) | 1 |
+| `\| P-O10 \| change ruling \|` — payload · `\| P-O10 \| Change ruling \|` — docs | 1 · 1 |
+| the §10.7 policy row — payload · docs | 1 · 1 |
+| the §10.4 changes tail — payload · docs | 1 · 1 |
+| `Changes:                  none` — payload | **2** — the template's born line, and `ba-status`'s head exhibit whose line opens with it |
+| `Changes:                  none \| CR-<n>` — payload · docs | 1 · 1 |
+| `39 /ba-* skills` | **2** — `check-layout.sh` and `check-install.sh`, the two-site count pin |
+| `layout.expected` `ba-*` skill rows | **39** (19 workflow + 20 technique) |
+
+The four `head -2` edition pins now read: orchestrator **v0.43** at
+`check-orchestrator.sh` and `check-humanizer.sh`; gate **v0.15** at
+`check-gate.sh` and `check-auto.sh`, unmoved. Every surviving `v0.42` in
+`tests/` is a §45/§46 review-record reference or historical prose, checked one by
+one.
+
+### Two divergences routed, not resolved
+
+**D-13 — `P-O10` is invisible to `check-register.sh`'s rule-5 sweep.**
+`CODE = re.compile(r"\b(T-\d{2}|P-O\d)\b")` matches **one** digit, so `P-O10`
+is neither swept for bare renders nor read out of §10.1's Moment column —
+`want_p` still expects `P-O0…P-O9`, ten rows, and the check stayed green through
+this ruling without seeing it. `P-O0b` has been invisible for the same reason
+since D-O42. **Not widened here:** widening moves an existing assertion's
+expected set *and* opens a corpus-wide bare-code sweep on a code this ruling has
+just introduced — new law this pass was not asked to write. **Routed to master**,
+with the two-digit and the `0b` cases named together.
+
+**D-14 — the mirrors' command index gains no `/ba-change` row.** It is not the
+estate's registration surface and has not been for two packages:
+`claude-block.md`'s index reads **"Workflow — 17"** over **19** rows and carries
+**no `/ba-humanizer` row** (shipped 0.1.44); `AGENTS.md` carries no index at all;
+no check asserts index completeness. The BA-facing registration that does exist —
+the **quickstart's** section and command-index row — landed with the Lane B drop.
+**Routed**, with the stale count named so the next pass finds it.
+
+### Six judgement calls, recorded
+
+1. **Row 21, whole-surface group** — reasoned above.
+2. **The report tail is a separate paragraph, never a line inside a pinned
+   fence** — the D-O69 tail's own shape, and the only shape that keeps every
+   pinned report block byte-untouched.
+3. **The ledger template's Events comment gains the three `CR-<n>` record
+   shapes.** §2.4's Events exhibit already names *CR records (§7.7)* at HEAD, and
+   the comment lists every other record's grammar; a Phase-1 ledger kept by hand
+   would have had nothing to look this one up in.
+4. **`ba-frame`'s cell reads "all six standing-instrument head lines".**
+   `Changes:` is a **register, not an instrument** — §2.4 says so in as many
+   words — but so is `Scope advisories:`, and the sentence already counts it.
+   Following the sentence as written beat correcting a phrase this ruling was not
+   asked to touch; the parenthetical names it *the change register*.
+5. **The two new guard pins take the house's no-trailing-space idiom** —
+   `Change —`, matching the seven sibling `—` pins, rather than the prompt's
+   `Change — `. Identical in effect, consistent on the page.
+6. **Three register rule-5 repairs in the new skill**, caught by
+   `check-register.sh` on the first full run: `T-17`'s second mention became
+   *that technique's* rather than a second full code-plus-name, and two bare
+   `T-18`s took their names. The suite found them; nothing was hand-audited.
+
+### The laws this pass was bound by, each held
+
+**No new stop and no new prompt point beyond P-O10** — the P-O table gains one
+row, the one the document rules. **No new event kind** — the three `CR-<n>` forms
+are **records**, matched in `check-ledger.py`'s events dispatch on the `RO-<n>`
+and `AW-<n>` seat, and no `RE_*` **event** form was added. **No new roadmap
+status** — untouched; the post-delivery half stays parked. **No threshold,
+assertion or gate verdict text moved** — `check-m.sh` 91/0 and `check-gate.sh`
+158/0, both unchanged. **The safety floor stays three acts** — `check-auto.sh`
+313/0, unchanged, its floor sweep reading the surface after every edit above.
+**Pinned shapes byte-untouched** — `check-budget.sh` 99/0 (the route render) and
+the report lines re-asserted one by one in the new check. **The skill authors
+nothing** — the never-list is compiled and asserted clause by clause.
+
+**Defaults taken: none.** The one conditional the prompt left open —
+*add a count/dry mode to `sk_wbs.py` if none exists* — did not fire, because one
+exists. D-13 and D-14 are routed on the record, not defaulted.
+
+### Suite: 21/21 GREEN, the three install-based runs included
+
+| Check | Before | After |
+|---|---|---|
+| `check-m.sh` | 91 / 0 | 91 / 0 |
+| `check-gate.sh` | 158 / 0 | 158 / 0 |
+| `check-orchestrator.sh` | 628 / **2** ✗ | **632 / 0** |
+| `check-techniques.sh` | 104 / 0 | 104 / 0 |
+| `check-techniques2.sh` | 127 / 0 | 127 / 0 |
+| `check-techniques3.sh` | 166 / 0 | 166 / 0 |
+| `check-spine.sh` | 286 / 0 | 286 / 0 |
+| `check-register.sh` | 64 / 0 | 64 / 0 |
+| `check-wbs.sh` | 111 / 0 | 111 / 0 |
+| `check-audit.sh` | 240 / 0 | 240 / 0 |
+| `check-status.sh` | 129 / 0 | 129 / 0 |
+| `check-map.sh` | 43 / 0 | 43 / 0 |
+| `check-humanizer.sh` | 116 / **3** ✗ | **120 / 0** |
+| `check-ledger.py` | grammar-legal — **19** rules | grammar-legal — **20** rules |
+| `check-cards.py` | byte-identical; layering clean | byte-identical; layering clean |
+| `check-layout.sh` | 126 / 0 / 0 | **127** / 0 / 0 |
+| `check-exit.sh --offline` | 105 / 0 | 105 / 0 |
+| `check-install.sh` | 64 / 0 | 64 / 0 |
+| `check-budget.sh` | 99 / 0 | 99 / 0 |
+| `check-auto.sh` | 313 / 0 | 313 / 0 |
+| **`check-change.sh`** | — | **134 / 0** (new) |
+| | **20 checks · 2 RED** | **21 checks · 0 RED** |
+
+### Open — routed from this pass and inherited from the corpus
+
+- **`P-O10` and `P-O0b` are invisible to `check-register.sh`'s rule-5 sweep**
+  (D-13 above). The regex, the `want_p` expectation and the §10.1 Moment-column
+  reader all assume one digit.
+- **The mirrors' command index** (D-14 above) — no `/ba-change` row, no
+  `/ba-humanizer` row, and a "Workflow — 17" heading over 19 rows in
+  `claude-block.md`.
+- **catalogue-b6 — the §5 Reason tag set's fourth value, `BA-directed (CR-<n>)`**,
+  at its next bump. `BA-directed` with a free-text reason is legal today, which
+  is why the skill and the impact render use it.
+- **The post-delivery half** — a route and a fifth roadmap status for a feature
+  implementation has taken or delivered. Gate §9.4 stays one sentence, D-B6-3's
+  four values stand. **Parked until a field case**, and the skill says so in
+  plain words where a `delivered` target renders.
+- **A client-facing change log** in the `/ba-wbs` family — parked. The register
+  is internal, and the skill's never-list says so.
+- **The impact render's WBS-count near-miss reader** — the counts come from
+  `sk_wbs.py --summary-only`, and a count that cannot be established renders its
+  reason. Named and unbuilt as a *reader*: nothing computes the near-miss
+  automatically, and the render states the fact the way D-O58 requires.
+- **The D-O99–D-O101 pass's routed items are not this pass's** and were not
+  touched: catalogue-b6's `[stated]`/`[inferred]` vocabulary, the map's stale
+  D-M2 gloss, and the v0.15 change record's account of the past.

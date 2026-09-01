@@ -59,6 +59,7 @@ S4|file|.claude/skills/ba-enter-feature/SKILL.md|slicing confirmation, NNN assig
 S3|file|.claude/skills/ba-gate/SKILL.md|Scope-F run, stages 0–5 (gate §4)
 S3|file|.claude/skills/ba-gate-health/SKILL.md|Scope-H runs [artifact | full] (gate §10)
 S9|file|.claude/skills/ba-dev-ready/SKILL.md|the dev-ready route (orchestrator §7.6) — added in package 0.1.43, after S9
+S9|file|.claude/skills/ba-change/SKILL.md|the change route (orchestrator §7.7, D-O102) — added in package 0.1.51, after S9
 S9|file|.claude/skills/ba-auto/SKILL.md|autonomous mode (orchestrator §10.7) — added in package 0.1.11, after S9
 S9|file|.claude/skills/ba-humanizer/SKILL.md|the humanizer switch (orchestrator §10.3 rule 10, D-O97) — added in package 0.1.44, after S9
 S9|file|.claude/skills/ba-map/SKILL.md|the project map (map definition §1, D-M1–D-M7) — added in package 0.1.47, after S9
