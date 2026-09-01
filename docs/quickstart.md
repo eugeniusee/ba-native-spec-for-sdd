@@ -284,6 +284,63 @@ ending in `go?`. It will not hand you a list of commands to type.
 
 ---
 
+## When a change arrives
+
+The estate stands — specs drafted or certified, the WBS sent — and someone
+brings a change: the client wants a feature added, a designer wants a flow
+simplified, a sponsor wants a module cut. You do not have to work out which
+file it hits or which command moves it. Hand it to the framework:
+
+```
+/ba-change the client wants to drop online payment from booking — clients pay at the clinic
+```
+
+Or paste the message, attach the document, name the Slack thread — or just say
+it in your own words. The change is captured word for word under `sources/`
+and logged as `CR-<n>` before anything else happens, so even a change you
+decline leaves a record.
+
+Then one render, in three parts. **Targets:** every artifact the change touches
+and the state each is in — a certified spec, a draft, a scope brief, an epic on
+the roadmap, a rule in the constitution — read from the ledgers, never guessed;
+if the change names something the estate does not hold, the framework asks
+which of the things it does hold you mean. **Consequences:** for each target,
+what taking the change would do under the rules that already exist — this spec's
+PASS lapses and it re-gates cheaply; this brief edit means its sibling re-gates
+too and the scope-boundary check comes back to you; this epic moves phase
+through the allocation log; this acceptance item the client gave us is
+superseded by their own new statement; three WBS rows drop. Never a block —
+visibility. **The route:** one route in the shape you know, built only from acts
+the framework already has, ending in one question:
+
+```
+What I need from you:
+1. Take this change, decline it, or hold it?
+   a. take — run the route above (recommended)
+   b. decline — nothing moves; your reason goes on the record
+   c. hold — until an event you name; it comes back when that moment renders
+```
+
+`take` is the `go`. The route runs through the stops those acts already own —
+the allocation diff for your approval, the brief-edit batch, the re-gate's
+verdict review — and when the last of them has written its own record the
+change reads `landed` on the ledger head with a pointer to every place it went.
+`decline` records your reason and moves nothing. `hold` parks it against an
+event — *when 004 enters delivery* — and it comes back on its own when that
+moment renders; never a date.
+
+`/ba-status` shows every change and its state in one tail line. Under
+autonomous mode a change you bring mid-run is asked about right then, and a
+change nobody has ruled yet is named on every auto report — the framework never
+takes one on its own, and never recommends declining one: that call is yours.
+
+**Not covered yet, on purpose:** a feature already in implementation or
+delivered still follows the gate's own sentence — fix the spec, re-gate, and
+implementation takes it up again — but a named route and a roadmap status for
+that case wait for a field run.
+
+---
+
 ## The command index
 
 | Command | What it does |
@@ -301,6 +358,7 @@ ending in `go?`. It will not hand you a list of commands to type.
 | `/ba-gate-health [artifact\|full]` | Project health across the shared artifacts |
 | `/ba-wbs [--include NNN …]` | The client-facing WBS → `exports/wbs.xlsx` + `.csv` |
 | `/ba-dev-ready <feature …>` | From the presale estate to dev-ready: the switch, a scoped grant, the four missing techniques, specs completed, the gate per feature — you say `go` once |
+| `/ba-change <the change …>` | A stakeholder's change, received and located: what it touches, what taking it does under the standing rules, one route from existing acts — take · decline · hold |
 | `/ba-run` | Run the composed plan as a route — the render, then every row on one `go` |
 | `/ba-run specs all` · `specs <epic-list>` | Batch Band-3 entry, then Tier 2 per feature |
 | `/ba-auto on [<profile>]` · `/ba-auto off` | Autonomous mode: grant, then close and ratify |
