@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BA-Native Spec — sideboard (§10.4 prototype v13)</title>
+<style>
+  :root{
+    --bg:#f4f5f7; --card:#fff; --ink:#171717; --muted:#6b7280; --line:#e2e4e9;
+    --accent:#155dfc; --accent-strong:#0e46c4; --accent-soft:#eff4ff;
+    --warn:#b47708; --warn-soft:#f5ecd8; --bad:#b93a26; --bad-soft:#f4e2dd;
+    --info:#0e7490; --info-soft:#e2eff2; --lime:#d8f24a; --lime-ink:#191a10;
+    --hov:color-mix(in oklab,var(--accent) 10%,var(--card)); --r:14px;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  }
+  html.dark{
+    --bg:#14161a; --card:#1e2126; --ink:#f2f3f5; --muted:#9aa1ad; --line:#333842;
+    --accent-soft:rgb(21 93 252 / .16); --warn-soft:rgb(180 119 8 / .20);
+    --bad-soft:rgb(185 58 38 / .20); --info-soft:rgb(14 116 144 / .20);
+  }
+  *{box-sizing:border-box}
+  *{scrollbar-width:thin;scrollbar-color:color-mix(in oklab,var(--muted) 45%,transparent) transparent}
+  *::-webkit-scrollbar{width:9px;height:9px}
+  *::-webkit-scrollbar-track{background:transparent}
+  *::-webkit-scrollbar-thumb{background:color-mix(in oklab,var(--muted) 45%,transparent);border-radius:99px;border:2px solid transparent;background-clip:padding-box}
+  *::-webkit-scrollbar-thumb:hover{background:color-mix(in oklab,var(--muted) 70%,transparent);background-clip:padding-box}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+  body{margin:0;background:var(--bg);color:var(--ink);font:400 14px/1.5 var(--sans);display:flex;justify-content:center;padding:20px 16px 44px;transition:background .2s,color .2s}
+  .board{width:100%;max-width:1280px}
+  button{font-family:inherit}
+
+  /* header */
+  .hdr{display:flex;align-items:flex-start;gap:12px;margin-bottom:12px}
+  h1{margin:0;font-weight:800;font-size:22px;line-height:28px;letter-spacing:-.01em}
+  .sub{color:var(--muted);font-size:12px;margin-top:3px}
+  .sub b{color:var(--ink);font-weight:600}
+  .hright{margin-left:auto;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+  .mbtn{width:34px;height:34px;border:none;border-radius:9px;background:rgb(255 255 255 / .06);backdrop-filter:blur(12px);color:var(--ink);cursor:pointer;font-size:15px;display:grid;place-items:center}
+  html:not(.dark) .mbtn{background:rgb(0 0 0 / .04)}
+  .mbtn:hover{background:var(--hov)}
+  .badge{border-radius:9px;padding:4px 11px;font-weight:700;font-size:11px;line-height:17px;white-space:nowrap}
+  .b-ok{background:var(--accent-soft);color:var(--accent)} .b-warn{background:var(--warn-soft);color:var(--warn)}
+  .b-bad{background:var(--bad-soft);color:var(--bad)} .b-wait{background:var(--bg);color:var(--muted)}
+  .b-info{background:var(--info-soft);color:var(--info)} .b-off{background:var(--bg);color:var(--muted);text-decoration:line-through}
+  .ovr{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+  .ovr .lbl{font-weight:600;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .ovr .track{flex:1;height:8px;border-radius:6px;background:var(--card);overflow:hidden}
+  .ovr .fill{height:100%;border-radius:6px;background:var(--accent);width:0;animation:grow .9s cubic-bezier(.2,.7,.2,1) forwards}
+  @keyframes grow{to{width:var(--w)}}
+  .ovr .pct{font-weight:700;font-size:15px}
+
+  /* tabs — one row, glass, lime active */
+  .tabs{display:flex;gap:8px;flex-wrap:nowrap;overflow-x:auto;padding-bottom:6px;margin-bottom:14px;scrollbar-width:thin}
+  .tab{flex:0 0 auto;border:1px solid transparent;background:rgb(255 255 255 / .06);backdrop-filter:blur(12px);color:var(--muted);padding:9px 15px;border-radius:9px;cursor:pointer;font-weight:600;font-size:13px;line-height:18px;white-space:nowrap}
+  html:not(.dark) .tab{background:rgb(0 0 0 / .04)}
+  .tab:hover:not(.on){color:var(--ink);background:rgb(255 255 255 / .1)}
+  html:not(.dark) .tab:hover:not(.on){background:rgb(0 0 0 / .07)}
+  .tab.on{background:var(--lime);color:var(--lime-ink)}
+  .pane{display:none} .pane.on{display:block}
+
+  /* card anatomy (reference) */
+  .card{background:var(--card);border:none;border-radius:var(--r);margin-bottom:12px}
+  .hd{padding:17px 18px 0;font-weight:600;font-size:11px;line-height:16px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:10px}
+  .bd{padding:11px 18px 16px}
+  .ptitle{font-weight:600;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:2px 2px 10px}
+
+  /* zebra rows */
+  .arow{display:flex;align-items:center;gap:10px;padding:9px 12px;font-size:13px;border-radius:9px}
+  .arow:nth-child(odd){background:var(--bg)}
+  .arow .an{flex:1} .arow .an small{display:block;color:var(--muted);font-size:11px;margin-top:1px}
+  .arow .id{font-weight:700;font-size:12px;color:var(--muted);flex:0 0 auto}
+
+  /* position + change */
+  .prow{display:flex;gap:10px;align-items:baseline;padding:6px 0}
+  .prow+.prow{border-top:1px solid var(--line)}
+  .pk{flex:0 0 78px;font-weight:600;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+  .pv{flex:1;font-size:13.5px;font-weight:650} .pv.sig{color:var(--accent)}
+  .chg{display:flex;gap:10px;padding:7px 0;font-size:12.5px;color:var(--muted)}
+  .chg+.chg{border-top:1px solid var(--line)}
+  .chg .d{flex:0 0 40px;font-weight:700;font-size:11px;color:var(--accent)} .chg b{color:var(--ink);font-weight:650}
+
+  /* spine */
+  .band{position:relative;padding:12px 0 12px 30px}
+  .band+.band{border-top:1px solid var(--line)}
+  .bnode{position:absolute;left:2px;top:17px;width:15px;height:15px;border-radius:50%;border:2px solid var(--muted);background:var(--card)}
+  .brail{position:absolute;left:8.5px;top:28px;bottom:-12px;width:2px;background:var(--line)}
+  .band:last-child .brail{display:none}
+  .band.done .bnode{border-color:var(--accent);background:var(--accent)} .band.done .brail{background:linear-gradient(var(--accent),var(--line))}
+  .band.now .bnode{border-color:var(--lime);background:var(--card);box-shadow:0 0 0 4px color-mix(in oklab,var(--lime) 26%,transparent);animation:pulse 2.4s ease-in-out infinite}
+  .band.now .brail{background:linear-gradient(var(--lime),var(--line))}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 4px color-mix(in oklab,var(--lime) 26%,transparent)}50%{box-shadow:0 0 0 7px color-mix(in oklab,var(--lime) 18%,transparent)}}
+  .bsum{display:flex;justify-content:space-between;align-items:baseline;gap:8px;cursor:pointer;list-style:none}
+  .bsum::-webkit-details-marker{display:none}
+  .chev{color:var(--muted);font-size:11px;transition:transform .15s}
+  details[open]>.bsum .chev{transform:rotate(90deg)}
+  .bstage{font-weight:600;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .bname{font-weight:750;font-size:14.5px} .bsub{margin-top:2px;font-size:11.5px;color:var(--muted)}
+  .bcount{font-weight:700;font-size:11px;color:var(--muted);padding:3px 8px;border-radius:9px;background:var(--bg);margin-right:6px}
+  .steps{margin:11px 0 2px;border-left:1px dashed var(--line);padding-left:13px;display:flex;flex-direction:column;gap:2px}
+  .st{display:flex;align-items:baseline;gap:9px;padding:5px 0}
+  .st .dot{flex:0 0 7px;width:7px;height:7px;border-radius:50%;margin-top:5px;background:var(--accent)}
+  .st.now .dot{background:var(--lime);box-shadow:0 0 0 3px color-mix(in oklab,var(--lime) 26%,transparent)} .st.todo .dot{background:transparent;border:1.5px solid var(--muted)}
+  .st .num{flex:0 0 12px;font-weight:700;font-size:10px;color:var(--muted)}
+  .st .an{flex:0 0 120px;font-weight:650;font-size:12.5px} .st.todo .an{color:var(--muted)}
+  .st .ad{flex:1;font-size:11px;color:var(--muted)}
+  .st .as{font-weight:700;font-size:10px;color:var(--accent)} .st.todo .as{color:var(--muted)}
+  .st.launch{cursor:pointer;border-radius:8px;margin:0 -6px;padding:5px 6px}
+  .st.launch:hover{background:var(--bg)} .st.launch .an{color:var(--ink)}
+  .st.launch .an::after{content:' ›';color:var(--accent);font-weight:700}
+
+  /* canvas */
+  .cvgrp{border-bottom:1px solid var(--line)} .cvgrp:last-child{border-bottom:none}
+  .cvgh{font-weight:600;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);padding:11px 18px 3px}
+  .cvrow{display:flex;gap:12px;padding:8px 18px 10px}
+  .cvsec{flex:0 0 108px;font-size:12px;font-weight:700} .cvsec small{display:block;font-size:10px;color:var(--muted);font-weight:400;margin-top:1px}
+  .cvdesc{flex:1;font-size:11.5px;line-height:1.5;color:var(--muted)} .cvdesc .q{color:var(--warn);font-style:italic}
+
+  /* epics & AC */
+  .prio{display:flex;gap:8px;flex-wrap:wrap;padding:2px 0 10px}
+  .prio .pc{display:flex;align-items:center;gap:7px;padding:8px 12px;border-radius:10px;background:var(--card);font-size:12px;font-weight:600}
+  .prio .pc b{font-size:15px}
+  .epic{background:var(--card);border-radius:12px;margin-bottom:9px;overflow:hidden}
+  .esum{display:flex;align-items:center;gap:9px;padding:12px 14px;cursor:pointer;list-style:none}
+  .esum::-webkit-details-marker{display:none}
+  .esum .chev{font-size:10px} details[open]>.esum .chev{transform:rotate(90deg)}
+  .eord{flex:0 0 16px;font-weight:750;font-size:13px;color:var(--muted)} .eid{font-weight:700;font-size:10px;color:var(--muted)}
+  .enm{flex:1;font-size:13.5px;font-weight:700} .echips{display:flex;gap:5px}
+  .edesc{padding:0 14px 12px 30px;font-size:12px;line-height:1.55;color:var(--muted)}
+  .edesc .why{display:block;margin-top:5px;font-size:11px;color:var(--muted);opacity:.8} .edesc .why b{font-weight:700}
+  .efeat{margin:0 14px 11px 30px;border-top:1px dashed var(--line);padding-top:9px}
+  .ffrow{display:flex;align-items:baseline;gap:8px} .fid{font-weight:700;font-size:9.5px;color:var(--muted)} .fnm{flex:1;font-size:11.5px;font-weight:650}
+  .acl{display:flex;gap:8px;padding:5px 0 0;font-size:11px;line-height:1.5;color:var(--muted)} .acl .ai{flex:0 0 auto;font-weight:700;font-size:9px;color:var(--accent)}
+  .acnote{font-size:10.5px;color:var(--muted);font-style:italic;padding-top:4px;opacity:.8}
+  .story{margin-top:9px;padding-top:9px;border-top:1px dotted var(--line)}
+  .story:first-child{border-top:none;margin-top:4px}
+  .ushead{font-size:11.5px;font-weight:700;margin-bottom:2px;display:flex;align-items:center;gap:6px}
+  .urole{font-weight:700;font-size:8.5px;letter-spacing:.04em;text-transform:uppercase;padding:2px 6px;border-radius:5px;background:var(--accent-soft);color:var(--accent)}
+  .ustory{font-size:10.5px;line-height:1.5;color:var(--muted);font-style:italic;margin-bottom:5px}
+  .tblwrap{overflow-x:auto;border-radius:12px;background:var(--card);margin-bottom:12px}
+  table.eac{border-collapse:separate;border-spacing:0;width:100%;min-width:680px;font-size:11.5px}
+  table.eac th{text-align:left;font-weight:600;font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:12px 12px 10px;white-space:nowrap}
+  table.eac th .flt{opacity:.45;margin-left:5px;font-size:10px}
+  table.eac td{padding:10px 12px;vertical-align:top;line-height:1.45}
+  table.eac tbody tr:nth-child(odd) td{background:var(--bg)}
+  table.eac .epc{font-weight:700;white-space:nowrap;color:var(--ink)}
+  table.eac .ac{color:var(--ink)} table.eac .ac i{color:var(--muted);font-style:italic;font-size:10px}
+  table.eac .pend{color:var(--muted);font-style:italic}
+  table.eac .intg{color:var(--muted);font-size:10.5px;white-space:nowrap}
+  table.eac .src{color:var(--muted);font-size:10.5px;white-space:nowrap}
+  table.eac .src .tg{font-weight:700;font-size:8.5px;color:var(--accent);text-transform:uppercase}
+  table.eac .ft{font-weight:650;white-space:nowrap;color:var(--ink)}
+  table.eac .fr{font-size:11px;color:var(--ink);margin-bottom:4px;line-height:1.4}
+  table.eac .fr b{color:var(--accent);font-weight:700}
+  table.eac .acx{font-size:11px;color:var(--muted);line-height:1.45} table.eac .acx i{font-style:italic;font-size:10px}
+  .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+  .filters select{appearance:none;-webkit-appearance:none;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:9px;padding:8px 12px;font-weight:600;font-size:12px;cursor:pointer}
+  .lnk{cursor:pointer;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:2px;color:inherit}
+  .lnk:hover{color:var(--accent)}
+  .qdot{display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:50%;background:var(--accent-soft);color:var(--accent);font-size:9px;font-weight:800;cursor:pointer;margin-left:6px;vertical-align:baseline;border:none}
+  .qdot:hover{background:var(--accent);color:#fff}
+  .hl{animation:flash 2.4s ease}
+  @keyframes flash{0%,55%{background:var(--accent-soft)!important}100%{background:transparent}}
+  .gapc{padding:14px 16px}
+  .gaptop{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+  .gname{font-size:14px;font-weight:750;flex:1;min-width:130px}
+  .bstg{font-weight:700;font-size:9px;letter-spacing:.05em;text-transform:uppercase;padding:3px 8px;border-radius:6px;background:var(--bg);color:var(--muted)}
+  .gmeta{font-size:11.5px;color:var(--muted);margin-bottom:5px}
+  .gmeta .gml{font-weight:700;font-size:9px;letter-spacing:.05em;text-transform:uppercase;margin-right:3px}
+  .gdesc{font-size:12px;color:var(--muted);line-height:1.5}
+  .glegend{font-size:10.5px;color:var(--muted);margin:0 2px 10px;opacity:.85}
+  .qitem{padding:11px 0;border-top:1px solid var(--line)} .qitem:first-child{border-top:none}
+  .qhead{display:flex;gap:8px;font-size:12px;color:var(--muted);margin-bottom:8px;line-height:1.45}
+  .qhead .gi{flex:0 0 auto;font-weight:700;font-size:9px;padding-top:1px} .qtext b{color:var(--ink)}
+  .qans{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .qinput{flex:1;min-width:150px;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:8px;padding:8px 10px;font:400 12px/1.4 var(--sans)}
+  .qinput:focus{outline:none;border-color:var(--accent)}
+  .qmode{display:flex;gap:4px} .qm{border:1px solid var(--line);background:var(--card);color:var(--muted);border-radius:7px;padding:7px 9px;font:600 10px/1 var(--sans);cursor:pointer}
+  .qm.on{background:var(--accent-soft);color:var(--accent);border-color:transparent} .qm.assumed.on{background:var(--warn-soft);color:var(--warn)}
+  .qansd{margin-top:6px;font-size:11px;color:var(--muted)} .qansd .tag{font-weight:700;font-size:8.5px;text-transform:uppercase;padding:2px 6px;border-radius:5px;margin-right:5px}
+  .ingestbar{display:flex;align-items:center;gap:10px;margin-top:12px;flex-wrap:wrap}
+  .ingestout{width:100%;min-height:96px;margin-top:8px;border:1px dashed var(--line);background:var(--bg);color:var(--ink);border-radius:9px;padding:11px;font:400 11px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace;display:none;resize:vertical}
+  .ing-note{font-size:10.5px;color:var(--muted);opacity:.85}
+  .propbtn{margin-top:11px;display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border:1px solid var(--line);background:var(--card);color:var(--accent);border-radius:8px;font-weight:600;font-size:11px;cursor:pointer}
+  .propbtn:hover{border-color:var(--accent)}
+  .advp{margin-top:11px;border:1px solid color-mix(in oklab,var(--info) 34%,var(--line));border-radius:10px;background:var(--info-soft);padding:13px}
+  .advbadge{font-weight:800;font-size:9px;letter-spacing:.05em;text-transform:uppercase;color:var(--info);background:var(--card);padding:4px 8px;border-radius:6px}
+  .advrow{display:flex;gap:10px;margin-top:9px;font-size:11.5px;line-height:1.5}
+  .advk{flex:0 0 64px;font-weight:700;font-size:9px;letter-spacing:.05em;text-transform:uppercase;color:var(--info);padding-top:1px}
+  .advrow .av{color:var(--ink)}
+  .advmark{margin-top:10px;font-size:10.5px;color:var(--warn);font-style:italic}
+  .advacts{display:flex;gap:6px;margin-top:11px;flex-wrap:wrap}
+  .advbtn{padding:7px 12px;border:1px solid var(--line);background:var(--card);color:var(--muted);border-radius:8px;font-weight:600;font-size:11px;cursor:pointer}
+  .advbtn.ok{background:var(--accent);color:#fff;border-color:transparent}
+  .advbtn:hover:not(.ok){color:var(--ink);border-color:var(--accent)}
+  .qm.dismiss{color:var(--muted)}
+  .gaptbl td.epc{white-space:normal;font-weight:700}
+  .grow{cursor:pointer} .grow:hover td{background:var(--hov)!important}
+  .gapdetail{background:var(--card);border-radius:12px;padding:14px 16px;margin-bottom:12px}
+  .gd-head{display:flex;align-items:center;font-size:14px;font-weight:750;margin-bottom:4px}
+  .gd-close{margin-left:auto;cursor:pointer;color:var(--muted);font-size:14px}
+  .gd-close:hover{color:var(--ink)}
+  .gd-sec{margin-top:11px} .gd-k{font-weight:600;font-size:9px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+  .badge.assum{cursor:help}
+  th.sortable{cursor:pointer;user-select:none} th.sortable:hover{color:var(--ink)}
+  .sortarr{font-size:9px;margin-left:3px;color:var(--accent)}
+  .xbtn{border:none;background:none;color:var(--muted);cursor:pointer;font-size:13px;padding:4px 7px;border-radius:6px;line-height:1}
+  .xbtn:hover{color:var(--bad);background:var(--bad-soft)}
+  .gaptbl .lnk{color:var(--accent)}
+
+  /* questions / gaps / audit blocks */
+  .gh{display:flex;align-items:center;gap:9px;padding:14px 18px 0}
+  .gh .gn{font-size:13px;font-weight:700} .gh .k2{font-weight:600;font-size:9px;letter-spacing:.06em;text-transform:uppercase;padding:3px 7px;border-radius:6px}
+  .gbody{padding:8px 18px 16px}
+  .gline{display:flex;gap:8px;padding:5px 0;font-size:12px;line-height:1.5;color:var(--muted)}
+  .gline .gi{flex:0 0 auto;font-weight:700;font-size:9px;padding-top:1px}
+  .gx{font-size:12px;line-height:1.55;color:var(--muted)} .gx b{color:var(--ink);font-weight:650}
+  .runbtn{display:inline-flex;align-items:center;gap:6px;margin-top:8px;padding:8px 13px;border:none;border-radius:9px;background:var(--lime);color:var(--lime-ink);font-weight:700;font-size:12px;cursor:pointer}
+  .scrnote{font-size:10.5px;line-height:1.5;color:var(--muted);text-align:center;margin:2px 4px 0;opacity:.85}
+</style>
+</head>
+<body>
+  <div class="board">
+
+    <div class="hdr">
+      <div>
+        <h1>Acme Booking</h1>
+        <div class="sub">presale · 2026-08-27 · profile <b>Presale</b> · stage <b>Scoping</b></div>
+      </div>
+      <div class="hright">
+        <button class="mbtn" id="tog" aria-label="Toggle theme">◐</button>
+        <span class="badge b-warn" title="Can the work-breakdown be exported yet?">WBS · blocked</span>
+      </div>
+    </div>
+    <div class="ovr"><span class="lbl">Workflow</span><div class="track"><div class="fill" style="--w:58%"></div></div><span class="pct">58%</span></div>
+
+    <div class="tabs">
+      <button class="tab on" data-pane="workflow">Workflow</button>
+      <button class="tab" data-pane="canvas">Canvas</button>
+      <button class="tab" data-pane="questions">Questions</button>
+      <button class="tab" data-pane="epicsac">Epics &amp; AC</button>
+      <button class="tab" data-pane="artifacts">Artifacts</button>
+      <button class="tab" data-pane="gaps">Gaps</button>
+      <button class="tab" data-pane="audit">Audit</button>
+    </div>
+
+    <!-- ===== WORKFLOW ===== -->
+    <section class="pane on" id="workflow">
+      <div class="card"><div class="hd">Where you are</div><div class="bd" style="padding-top:6px">
+        <div class="prow"><span class="pk">Stopped at</span><span class="pv">Scoping · Questions to client</span></div>
+        <div class="prow"><span class="pk">Next</span><span class="pv sig">Scope E-08 → Prioritization → Delivery</span></div>
+      </div></div>
+
+      <div class="card"><div class="bd" style="padding-top:14px">
+        <details class="band done" open>
+          <span class="bnode"></span><span class="brail"></span>
+          <summary class="bsum"><span style="display:flex;gap:7px"><span class="chev">▸</span><span><span class="bstage">Stage 1</span><div class="bname">Foundations</div><div class="bsub">Understand the product across six aspects</div></span></span><span style="display:flex;align-items:center"><span class="bcount">6/6</span><span class="badge b-ok">closed</span></span></summary>
+          <div class="steps">
+            <div class="st"><span class="num">1</span><span class="dot"></span><span class="an">Stakeholders</span><span class="ad">customers, sponsors, users</span><span class="as">cleared</span></div>
+            <div class="st"><span class="num">2</span><span class="dot" style="background:var(--warn)"></span><span class="an">Context</span><span class="ad">environment, constraints, competitors</span><span class="as" style="color:var(--warn)">waived</span></div>
+            <div class="st"><span class="num">3</span><span class="dot"></span><span class="an">Value</span><span class="ad">problems &amp; objectives</span><span class="as">cleared</span></div>
+            <div class="st"><span class="num">4</span><span class="dot"></span><span class="an">Vision</span><span class="ad">product &amp; high-level solution</span><span class="as">cleared</span></div>
+            <div class="st"><span class="num">5</span><span class="dot"></span><span class="an">Solution</span><span class="ad">forms, functions, integrations</span><span class="as">cleared</span></div>
+            <div class="st"><span class="num">6</span><span class="dot"></span><span class="an">Requirements</span><span class="ad">domain, processes, roles, scope</span><span class="as">cleared</span></div>
+          </div>
+        </details>
+        <details class="band now" open>
+          <span class="bnode"></span><span class="brail"></span>
+          <summary class="bsum"><span style="display:flex;gap:7px"><span class="chev">▸</span><span><span class="bstage">Stage 2 · you are here</span><div class="bname">Scoping</div><div class="bsub">Break the product into features and prioritise them</div></span></span><span style="display:flex;align-items:center"><span class="bcount">4/5</span><span class="badge b-warn">in progress</span></span></summary>
+          <div class="steps">
+            <div class="st launch" onclick="go('epicsac')"><span class="num">1</span><span class="dot"></span><span class="an">Epics decomposition</span><span class="ad"></span><span class="as">5 epics</span></div>
+            <div class="st launch now" onclick="go('questions')"><span class="num">2</span><span class="dot"></span><span class="an">Questions to client</span><span class="ad"></span><span class="as">3 open</span></div>
+            <div class="st"><span class="num">3</span><span class="dot"></span><span class="an">Feature slicing</span><span class="ad">break each epic into features</span><span class="as">5 feats</span></div>
+            <div class="st todo"><span class="num">4</span><span class="dot"></span><span class="an">Prioritization</span><span class="ad">what's MVP, Phase 2, or Future Phases</span><span class="as">pending</span></div>
+          </div>
+        </details>
+        <details class="band" open>
+          <span class="bnode"></span><span class="brail"></span>
+          <summary class="bsum"><span style="display:flex;gap:7px"><span class="chev">▸</span><span><span class="bstage">Stage 3</span><div class="bname">Delivery</div><div class="bsub">Write each feature's spec, check it, hand it off</div></span></span><span style="display:flex;align-items:center"><span class="bcount">0/4</span><span class="badge b-wait">not entered</span></span></summary>
+          <div class="steps">
+            <div class="st todo launch" onclick="go('questions')"><span class="num">1</span><span class="dot"></span><span class="an">Feature Skeleton</span><span class="ad">first draft; unknowns become questions</span><span class="as">gap</span></div>
+            <div class="st todo launch" onclick="go('epicsac')"><span class="num">2</span><span class="dot"></span><span class="an">Specification</span><span class="ad">user stories, rules, acceptance, data</span><span class="as">AC</span></div>
+            <div class="st todo"><span class="num">3</span><span class="dot"></span><span class="an">Validation</span><span class="ad">check the spec — nothing left blank</span><span class="as">—</span></div>
+            <div class="st todo"><span class="num">4</span><span class="dot"></span><span class="an">Handoff</span><span class="ad">ready spec to the build team; BA checks</span><span class="as">out of profile</span></div>
+          </div>
+        </details>
+      </div></div>
+
+      <div class="card"><div class="hd">Change history</div><div class="bd" style="padding-top:6px">
+        <div class="chg"><span class="d">08-27</span><span><b>Online Payment (E-07) moved to Phase 2.</b></span></div>
+        <div class="chg"><span class="d">08-26</span><span>Roadmap refreshed after the Notifications (E-05) call.</span></div>
+        <div class="chg"><span class="d">08-25</span><span><b>Appointment Booking (E-03)</b> scoped; sliced into 2 features.</span></div>
+        <div class="chg"><span class="d">08-25</span><span>5 epics decomposed from the canvas.</span></div>
+        <div class="chg"><span class="d">08-24</span><span><b>Foundations closed.</b> Context waived — debt on record.</span></div>
+      </div></div>
+    </section>
+
+    <!-- ===== CANVAS ===== -->
+    <section class="pane" id="canvas">
+      <div class="ptitle">Project Canvas — the product at a glance</div>
+      <div class="card" style="overflow:hidden">
+        <div class="cvgrp"><div class="cvrow"><div class="cvsec">Customers</div><div class="cvdesc">Clients booking appointments; Specialists offering services; Clinic admin overseeing operations.</div></div></div>
+        <div class="cvgrp"><div class="cvrow"><div class="cvsec">Roles</div><div class="cvdesc">Client · Specialist · Clinic Admin · System. <span style="opacity:.75">— the acting roles the project's role model defines.</span></div></div></div>
+        <div class="cvgrp"><div class="cvrow"><div class="cvsec">Problems</div><div class="cvdesc">Phone booking is slow and error-prone; missed reminders cause no-shows; specialists juggle availability by hand.</div></div></div>
+        <div class="cvgrp"><div class="cvgh">Product</div>
+          <div class="cvrow"><div class="cvsec">The<small>name</small></div><div class="cvdesc">Acme Booking</div></div>
+          <div class="cvrow"><div class="cvsec">Is<small>type</small></div><div class="cvdesc">An online appointment-booking platform.</div></div>
+          <div class="cvrow"><div class="cvsec">That<small>enables</small></div><div class="cvdesc">Lets clients book specialists' published slots online and get reminders, instead of calling.</div></div>
+        </div>
+        <div class="cvgrp"><div class="cvrow"><div class="cvsec">Forms</div><div class="cvdesc">Responsive web app at MVP; native mobile a later phase.</div></div></div>
+        <div class="cvgrp"><div class="cvrow"><div class="cvsec">Core Functions</div><div class="cvdesc">Browse · book · cancel · publish availability · reminders · accounts &amp; sign-in · admin oversight &amp; exports · online payment <span class="q">(Phase 2)</span>.</div></div></div>
+        <div class="cvgrp"><div class="cvrow"><div class="cvsec">Third-Party</div><div class="cvdesc">Specialist calendar sync; email / SMS for reminders; payment provider (Phase 2).</div></div></div>
+        <div class="cvgrp"><div class="cvrow"><div class="cvsec">Localization</div><div class="cvdesc">English (default); single region &amp; currency at MVP.</div></div></div>
+        <div class="cvgrp"><div class="cvgh">Competition</div>
+          <div class="cvrow"><div class="cvsec">Unlike</div><div class="cvdesc">Generic calendar-link tools and phone booking.</div></div>
+          <div class="cvrow"><div class="cvsec">Our Solution</div><div class="cvdesc">Specialist-published slots + a clinic role model + reminders tuned to the booking lifecycle.</div></div>
+        </div>
+        <div class="cvgrp"><div class="cvrow"><div class="cvsec">Objectives</div><div class="cvdesc">Cut no-shows; reduce phone-booking load; MVP live within the presale window. <span class="q">Measurable targets — to confirm.</span></div></div></div>
+      </div>
+      <p class="scrnote">Foundations substrate (estate) · illustrative</p>
+    </section>
+
+    <!-- ===== QUESTIONS (scoping + spec-depth) ===== -->
+    <section class="pane" id="questions">
+      <div class="ptitle">Questions to client — everything to ask · 3 open</div>
+      <div class="glegend">Three ways to close a question: answer in your run (auto-pulled here) · answer directly below · or mark <b>not important</b>.</div>
+      <div class="card"><div class="hd">Scoping questions — record answers anytime <span class="badge b-wait" style="margin-left:auto">whether / what</span></div><div class="bd" style="padding-top:8px">
+        <div class="qitem" data-epic="E-03" data-kind="scoping"><div class="qhead"><span class="gi" style="color:var(--warn)">OPEN</span><span class="qtext"><b>E-03</b> — Cancellation policy: the cut-off before a slot is released?</span></div>
+          <div class="qans"><input class="qinput" placeholder="Record the client's answer…"><div class="qmode"><button class="qm on" data-mode="confirmed" onclick="setMode(this)">confirmed</button><button class="qm assumed" data-mode="assumed" onclick="setMode(this)">assumed</button></div><button class="qm dismiss" onclick="dismissQ(this)">not important</button></div></div>
+        <div class="qitem" data-epic="E-08" data-kind="scoping"><div class="qhead"><span class="gi" style="color:var(--warn)">OPEN</span><span class="qtext"><b>E-08</b> — Which reports/exports must admin pull, over what periods?</span></div>
+          <div class="qans"><input class="qinput" placeholder="Record the client's answer…"><div class="qmode"><button class="qm on" data-mode="confirmed" onclick="setMode(this)">confirmed</button><button class="qm assumed" data-mode="assumed" onclick="setMode(this)">assumed</button></div><button class="qm dismiss" onclick="dismissQ(this)">not important</button></div></div>
+        <div class="qitem" data-epic="E-08" data-kind="scoping"><div class="qhead"><span class="gi" style="color:var(--warn)">OPEN</span><span class="qtext"><b>E-08</b> — Who counts as “admin” — every specialist, or a clinic role?</span></div>
+          <div class="qans"><input class="qinput" placeholder="Record the client's answer…"><div class="qmode"><button class="qm on" data-mode="confirmed" onclick="setMode(this)">confirmed</button><button class="qm assumed" data-mode="assumed" onclick="setMode(this)">assumed</button></div><button class="qm dismiss" onclick="dismissQ(this)">not important</button></div></div>
+        <div class="qitem" data-epic="E-03"><div class="qhead"><span class="gi" style="color:var(--accent)">ANSW</span><span class="qtext"><b>E-03</b> — Calendar source of truth? / Availability?</span></div>
+          <div class="qansd"><span class="tag b-ok">confirmed</span>This system is the source of truth; availability is specialist self-service.</div></div>
+        <div class="qitem" data-epic="E-05"><div class="qhead"><span class="gi" style="color:var(--accent)">ANSW</span><span class="qtext"><b>E-05</b> — Reminder channels?</span></div>
+          <div class="qansd"><span class="tag b-ok">confirmed</span>Email at MVP.</div></div>
+        <div class="ingestbar"><button class="runbtn" onclick="buildIngest()">Build answers to ingest ›</button><span class="ing-note">Drafts only — not in the estate. Paste the block into your run to ingest.</span></div>
+        <textarea class="ingestout" id="ingestout" readonly></textarea>
+      </div></div>
+      <div class="card"><div class="hd">Spec-depth (gap) questions — record answers anytime <span class="badge b-wait" style="margin-left:auto">how it works</span></div><div class="bd" style="padding-top:8px">
+        <div class="gx" style="margin-bottom:8px;opacity:.85">Arise while drafting a feature spec. An answer here <b style="color:var(--ink)">closes its [NEEDS CLARIFICATION] marker</b> in the spec.</div>
+        <div class="qitem" data-epic="E-03" data-kind="specdepth"><div class="qhead"><span class="gi" style="color:var(--info)">GAP</span><span class="qtext"><b>E-03</b> — If the calendar is unavailable when a client confirms — reject, queue, or hold?</span></div>
+          <div class="qans"><input class="qinput" placeholder="Record the answer…"><div class="qmode"><button class="qm on" data-mode="confirmed" onclick="setMode(this)">confirmed</button><button class="qm assumed" data-mode="assumed" onclick="setMode(this)">assumed</button></div><button class="qm dismiss" onclick="dismissQ(this)">not important</button></div></div>
+        <div class="qitem" data-epic="E-03" data-kind="specdepth"><div class="qhead"><span class="gi" style="color:var(--info)">GAP</span><span class="qtext"><b>E-03</b> — How long is a slot held before an unconfirmed booking is released?</span></div>
+          <div class="qans"><input class="qinput" placeholder="Record the answer…"><div class="qmode"><button class="qm on" data-mode="confirmed" onclick="setMode(this)">confirmed</button><button class="qm assumed" data-mode="assumed" onclick="setMode(this)">assumed</button></div><button class="qm dismiss" onclick="dismissQ(this)">not important</button></div></div>
+      </div></div>
+      <p class="scrnote">Answers typed here are <b>drafts</b> — the run ingests them into the brief/spec (confirmed → answered · assumed → drafted + marked). Dashboard stays read-only · illustrative</p>
+    </section>
+
+    <!-- ===== EPICS & AC (with prioritization) ===== -->
+    <section class="pane" id="epicsac">
+      <div class="ptitle">Epics &amp; AC</div>
+      <div class="card"><div class="hd">Prioritization</div><div class="bd" style="padding-top:8px">
+        <div class="gx" style="margin-bottom:8px"><b style="color:var(--ink)">Project ladder — confirmed for this project:</b> MVP · Phase 2 · Future Phases.</div>
+        <div class="prio">
+          <span class="pc"><span class="badge b-ok">MVP</span><b>3</b></span>
+          <span class="pc"><span class="badge b-info">Phase 2</span><b>1</b></span>
+          <span class="pc"><span class="badge b-wait">Future Phases</span><b>1</b></span>
+        </div>
+        <div class="gx" style="opacity:.85"><b style="color:var(--ink)">5 epics · 6 stories.</b></div>
+      </div></div>
+
+      <div class="filters">
+        <select id="fEpic" onchange="filterTable()"><option value="">All epics</option><option>E-01</option><option>E-03</option><option>E-05</option><option>E-07</option><option>E-08</option></select>
+        <select id="fRole" onchange="filterTable()"><option value="">All roles</option><option>Client</option><option>Specialist</option><option>Admin</option></select>
+        <select id="fPhase" onchange="filterTable()"><option value="">All phases</option><option>MVP</option><option>Phase 2</option><option>Future Phases</option></select>
+      </div>
+      <div class="tblwrap"><table class="eac">
+        <thead><tr>
+          <th>Epic</th><th>Feature</th><th>Requirement (EARS) &amp; Acceptance</th><th>Integrations</th><th>Role</th><th>Phase</th><th>Source</th>
+        </tr></thead>
+        <tbody>
+          <tr data-epic="E-03" data-role="Client" data-phase="MVP"><td class="epc">E-03</td><td class="ft">F1 Booking Flow</td><td><div class="fr"><b>FR-01</b> (US1) — WHEN a Client confirms a booking on a published slot, the system SHALL reserve the slot and notify the Specialist.</div><div class="acx"><b>AC1</b> Given a published slot, when a Client confirms, then the slot is reserved and the Specialist is notified. <i>(Gherkin)</i><button class="qdot" title="Related questions" onclick="askQ('E-03')">Q</button></div></td><td class="intg"><span class="lnk" onclick="srcJump('canvas.md')">Calendar sync · Email/SMS</span></td><td><span class="urole">Client</span></td><td><span class="badge b-ok">MVP</span></td><td class="src"><span class="tg">stated</span> <span class="lnk" onclick="srcJump('canvas.md')">canvas.md</span></td></tr>
+          <tr data-epic="E-03" data-role="Client" data-phase="MVP"><td class="epc">E-03</td><td class="ft">F1 Booking Flow</td><td><div class="fr"><b>FR-02</b> (US1) — WHILE a booking is before the cancellation cut-off, the system SHALL allow the Client to cancel it.</div><div class="acx"><b>AC2</b> A Client can cancel their own booking up to the policy cut-off. <i>(one-line)</i><button class="qdot" title="Related questions" onclick="askQ('E-03')">Q</button></div></td><td class="intg">—</td><td><span class="urole">Client</span></td><td><span class="badge b-ok">MVP</span></td><td class="src"><span class="tg">stated</span> <span class="lnk" onclick="srcJump('canvas.md')">canvas.md</span></td></tr>
+          <tr data-epic="E-03" data-role="Client" data-phase="MVP"><td class="epc">E-03</td><td class="ft">F1 Booking Flow</td><td><div class="fr"><b>FR-03</b> (US1) — IF a slot is already booked, the system SHALL reject any further booking for it.</div><div class="acx"><b>AC3</b> A slot already booked cannot be double-booked. <i>(one-line)</i></div></td><td class="intg">—</td><td><span class="urole">Client</span></td><td><span class="badge b-ok">MVP</span></td><td class="src"><span class="tg">stated</span> <span class="lnk" onclick="srcJump('canvas.md')">canvas.md</span></td></tr>
+          <tr data-epic="E-03" data-role="Specialist" data-phase="MVP"><td class="epc">E-03</td><td class="ft">F1 Booking Flow</td><td><div class="fr"><b>FR-04</b> (US2) — WHEN a slot is booked, the system SHALL send a confirmation to the assigned Specialist.</div><div class="acx"><b>AC4</b> When a slot is booked, the assigned Specialist receives a confirmation. <i>(one-line)</i></div></td><td class="intg"><span class="lnk" onclick="srcJump('canvas.md')">Email/SMS</span></td><td><span class="urole">Specialist</span></td><td><span class="badge b-ok">MVP</span></td><td class="src"><span class="tg">stated</span> <span class="lnk" onclick="srcJump('canvas.md')">canvas.md</span></td></tr>
+          <tr data-epic="E-03" data-role="Specialist" data-phase="MVP"><td class="epc">E-03</td><td class="ft">F2 Slot Publishing</td><td class="pend" style="font-style:italic;color:var(--muted)">FR (EARS) &amp; AC authored in Delivery</td><td class="intg">—</td><td><span class="urole">Specialist</span></td><td><span class="badge b-ok">MVP</span></td><td class="src"><span class="tg">stated</span> <span class="lnk" onclick="srcJump('canvas.md')">canvas.md</span></td></tr>
+          <tr data-epic="E-01" data-role="Client" data-phase="MVP"><td class="epc">E-01</td><td class="ft">F1 Registration &amp; Sign-in</td><td class="pend" style="font-style:italic;color:var(--muted)">FR (EARS) &amp; AC authored in Delivery</td><td class="intg">—</td><td><span class="urole">Client</span></td><td><span class="badge b-ok">MVP</span></td><td class="src"><span class="tg">inferred</span> <span class="lnk" onclick="srcJump('roles-permissions.md')">roles-permissions.md</span></td></tr>
+          <tr data-epic="E-05" data-role="Client" data-phase="MVP"><td class="epc">E-05</td><td class="ft">F1 Reminders</td><td class="pend" style="font-style:italic;color:var(--muted)">FR (EARS) &amp; AC authored in Delivery</td><td class="intg"><span class="lnk" onclick="srcJump('canvas.md')">Email/SMS</span></td><td><span class="urole">Client</span></td><td><span class="badge b-ok">MVP</span></td><td class="src"><span class="tg">stated</span> <span class="lnk" onclick="srcJump('canvas.md')">canvas.md</span></td></tr>
+          <tr data-epic="E-07" data-role="Client" data-phase="Phase 2"><td class="epc">E-07</td><td class="ft">F1 Pay at Booking</td><td class="pend" style="font-style:italic;color:var(--muted)">FR (EARS) &amp; AC authored in Delivery</td><td class="intg"><span class="lnk" onclick="srcJump('canvas.md')">Payment provider</span></td><td><span class="urole">Client</span></td><td><span class="badge b-info">Phase 2</span></td><td class="src"><span class="tg">stated</span> <span class="lnk" onclick="srcJump('out-of-scope.md')">out-of-scope.md</span></td></tr>
+          <tr data-epic="E-08" data-role="Admin" data-phase="Future Phases"><td class="epc">E-08</td><td class="ft pend">pending</td><td class="pend" style="font-style:italic;color:var(--muted)">Brief draft — FR, stories &amp; AC land with the call<button class="qdot" title="Related questions" onclick="askQ('E-08')" style="font-style:normal">Q</button></td><td class="intg">—</td><td><span class="urole">Admin</span></td><td><span class="badge b-wait">Future Ph.</span></td><td class="src"><span class="tg">inferred</span> (open)</td></tr>
+        </tbody>
+      </table></div>
+      <p class="scrnote">Each row shows its <b>FR (EARS)</b> + acceptance · filter by epic / role / phase · Source &amp; Integrations link to Artifacts · <span style="color:var(--accent);font-weight:700">Q</span> jumps to questions · illustrative</p>
+    </section>
+
+    <!-- ===== ARTIFACTS ===== -->
+    <section class="pane" id="artifacts">
+      <div class="ptitle">Artifacts — every document produced so far</div>
+      <div class="card"><div class="hd">Foundations</div><div class="bd" style="padding:8px 10px 12px">
+        <div class="arow" data-file="canvas.md"><span class="id">▤</span><span class="an">canvas.md<small>project canvas — the substrate</small></span><span class="badge b-ok">present</span></div>
+        <div class="arow"><span class="id">▤</span><span class="an">stakeholders · context · value · vision · solution<small>the six-aspect estate</small></span><span class="badge b-ok">present</span></div>
+        <div class="arow"><span class="id">▤</span><span class="an">domain-model · process-maps<small>requirements aspect</small></span><span class="badge b-ok">present</span></div>
+        <div class="arow" data-file="roles-permissions.md out-of-scope.md"><span class="id">▤</span><span class="an">roles-permissions · glossary · out-of-scope<small>governance &amp; boundary</small></span><span class="badge b-ok">present</span></div>
+      </div></div>
+      <div class="card"><div class="hd">Scoping</div><div class="bd" style="padding:8px 10px 12px">
+        <div class="arow"><span class="id">▤</span><span class="an">roadmap.md<small>epics · phases · statuses</small></span><span class="badge b-ok">present</span></div>
+        <div class="arow"><span class="id">▤</span><span class="an">brief-E01 · E03 · E05 · E07<small>scope briefs — scoped</small></span><span class="badge b-ok">present</span></div>
+        <div class="arow"><span class="id">▤</span><span class="an">brief-E08<small>Admin &amp; Reporting</small></span><span class="badge b-warn">draft</span></div>
+      </div></div>
+      <div class="card"><div class="hd">Delivery</div><div class="bd" style="padding:8px 10px 12px">
+        <div class="arow"><span class="id">▤</span><span class="an">spec-E03-F1 … per feature<small>feature specifications</small></span><span class="badge b-wait">pending</span></div>
+        <div class="arow"><span class="id">▤</span><span class="an">exports/wbs<small>work-breakdown export</small></span><span class="badge b-wait">pending</span></div>
+      </div></div>
+      <p class="scrnote">The project's document set (estate) · illustrative</p>
+    </section>
+
+    <!-- ===== GAPS (non-question) ===== -->
+    <section class="pane" id="gaps">
+      <div class="ptitle">Gaps — open items, by structure &amp; criticality</div>
+      <div class="glegend">Click a gap to see the suggested solution and accept, reject, or answer it · sort by a column header · <b>✕</b> marks it unimportant.</div>
+      <div class="tblwrap"><table class="eac gaptbl">
+        <thead><tr>
+          <th>Gap</th>
+          <th class="sortable" onclick="sortGaps('stage')">Stage <span class="sortarr" id="sa-stage"></span></th>
+          <th>Relates to</th>
+          <th class="sortable" onclick="sortGaps('crit')">Criticality <span class="sortarr" id="sa-crit">▼</span></th>
+          <th class="sortable" onclick="sortGaps('prio')">Priority <span class="sortarr" id="sa-prio"></span></th>
+          <th>Status</th>
+          <th></th>
+        </tr></thead>
+        <tbody id="gapBody"><tr class="grow" data-gap="g3" data-stage="Scoping" data-crit="Blocking" data-prio="High"><td class="epc" onclick="openGap('g3')">Admin epic not scoped</td><td onclick="openGap('g3')">Scoping</td><td><span class="lnk" onclick="event.stopPropagation();featJump('E-08','')">E-08 Admin &amp; Reporting</span></td><td onclick="openGap('g3')"><span class="badge b-bad">Blocking</span></td><td onclick="openGap('g3')"><span class="badge b-warn">High</span></td><td id="st-g3" onclick="openGap('g3')"><span class="badge b-warn">Open</span></td><td><button class="xbtn" title="Mark unimportant" onclick="event.stopPropagation();gapDismiss('g3')">✕</button></td></tr><tr class="grow" data-gap="g2" data-stage="Delivery" data-crit="High" data-prio="High"><td class="epc" onclick="openGap('g2')">Cancellation cut-off undefined</td><td onclick="openGap('g2')">Delivery</td><td><span class="lnk" onclick="event.stopPropagation();featJump('E-03','F1 Booking Flow')">E-03 · F1 Booking Flow</span></td><td onclick="openGap('g2')"><span class="badge b-warn">High</span></td><td onclick="openGap('g2')"><span class="badge b-warn">High</span></td><td id="st-g2" onclick="openGap('g2')"><span class="badge b-warn">Open</span></td><td><button class="xbtn" title="Mark unimportant" onclick="event.stopPropagation();gapDismiss('g2')">✕</button></td></tr><tr class="grow" data-gap="g4" data-stage="Foundations" data-crit="Medium" data-prio="Medium"><td class="epc" onclick="openGap('g4')">Objectives not measurable</td><td onclick="openGap('g4')">Foundations</td><td><span class="lnk" onclick="event.stopPropagation();go('canvas')">Canvas · Objectives</span></td><td onclick="openGap('g4')"><span class="badge b-info">Medium</span></td><td onclick="openGap('g4')"><span class="badge b-info">Medium</span></td><td id="st-g4" onclick="openGap('g4')"><span class="badge b-warn">Open</span></td><td><button class="xbtn" title="Mark unimportant" onclick="event.stopPropagation();gapDismiss('g4')">✕</button></td></tr><tr class="grow" data-gap="g1" data-stage="Foundations" data-crit="Low" data-prio="Low"><td class="epc" onclick="openGap('g1')">Competitor analysis missing</td><td onclick="openGap('g1')">Foundations</td><td>Context aspect</td><td onclick="openGap('g1')"><span class="badge b-wait">Low</span></td><td onclick="openGap('g1')"><span class="badge b-wait">Low</span></td><td id="st-g1" onclick="openGap('g1')"><span class="badge b-warn">Open</span></td><td><button class="xbtn" title="Mark unimportant" onclick="event.stopPropagation();gapDismiss('g1')">✕</button></td></tr></tbody>
+      </table></div>
+      <div id="gapDetail" class="gapdetail" style="display:none"></div>
+      <p class="scrnote">Open a gap for its suggested solution · Relates-to jumps to the feature · rejecting removes its Assumption tag · illustrative</p>
+    </section>
+
+    <!-- ===== AUDIT ===== -->
+    <section class="pane" id="audit">
+      <div class="ptitle">Audit — did the whole project lose anything?</div>
+      <div class="card"><div class="hd">What this is</div><div class="bd">Validation checks one spec. <b style="color:var(--ink)">Audit checks the whole project didn't lose anything along the way</b> — something the client mentioned that never became an epic, a source never fully read, a cross-cutting need (language, devices, accessibility) dropped between capture and scope, or a deferred item that clashes with a stated acceptance criterion.<br><br>What you can do: see project health at a glance, and <b style="color:var(--ink)">run /ba-audit</b> before a milestone (e.g. before handing the presale package to the client) — each finding becomes an advisory you rule.</div></div>
+      <div class="card"><div class="gh"><span class="k2 b-ok">Scope-H</span><span class="gn">armed · HEALTHY</span></div><div class="gbody"><span class="gx">Completeness health across the estate — no live gaps blocking. Refresh current.</span></div></div>
+      <div class="card"><div class="gh"><span class="k2 b-info">/ba-audit</span><span class="gn">Source audit — not run yet</span></div><div class="gbody">
+        <span class="gx">The whole-project audit: every source covered, no obligation dropped between capture and scope, cross-cutting items (language, devices, accessibility) carried — not just one spec.</span>
+        <div><button class="runbtn" onclick="alert('In a live run this triggers /ba-audit on the estate.')">Run /ba-audit ›</button></div>
+      </div></div>
+      <div class="card"><div class="gh"><span class="k2 b-ok">Acceptance</span><span class="gn">no conflicts</span></div><div class="gbody"><span class="gx">Deferred/excluded items vs the client's acceptance criteria — nothing unresolved.</span></div></div>
+      <p class="scrnote">Per-feature spec checks live in Delivery · Validation · estate · illustrative</p>
+    </section>
+
+  </div>
+
+<script>
+  function go(id){
+    document.querySelectorAll('.pane').forEach(function(p){p.classList.remove('on')});
+    document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('on')});
+    document.getElementById(id).classList.add('on');
+    var t=document.querySelector('.tab[data-pane="'+id+'"]'); if(t)t.classList.add('on');
+    window.scrollTo(0,0);
+  }
+  var GAPS={
+    g1:{name:'Competitor analysis missing',epic:'',feature:'',answerable:false,proposal:{p:'A lean 3-competitor scan on booking experience and reminder handling.',why:'Smallest scan that de-risks positioning; market-standard; lower effort than a full study.',basis:'Standard competitive-scan practice + canvas Competition.',rel:'Context aspect \u00b7 WBS: discovery note, no build item.'}},
+    g2:{name:'Cancellation cut-off undefined',epic:'E-03',feature:'F1 Booking Flow',answerable:true,proposal:{p:'A standard cancellation window \u2014 the common 24-hours-before default \u2014 as a placeholder value.',why:'A widely-used clinic default; the simplest single rule to implement; the client can adjust one value.',basis:'Common booking-domain practice; relates to E-03 AC2 (cancel up to the cut-off).',rel:'E-03 \u00b7 F1 Booking Flow \u00b7 AC2 \u00b7 WBS: E-03 MVP slice.'}},
+    g3:{name:'Admin epic not scoped',epic:'E-08',feature:'',answerable:false,proposal:{p:'A lean admin scope for MVP: staff user management + a basic bookings export; richer reporting deferred to Future Phases.',why:'Smallest surface covering the essential admin need; market-standard baseline; lower build effort; easy to extend.',basis:'Standard admin patterns + the E-08 recall-probe hit; canvas Core Functions.',rel:'E-08 Admin & Reporting \u00b7 WBS: MVP admin slice + a Future-Phases reporting item.'}},
+    g4:{name:'Objectives not measurable',epic:'E-08',feature:'',answerable:false,proposal:{p:'Adopt two standard clinic KPIs \u2014 no-show rate and phone-booking share \u2014 each as a before/after comparison; leave the thresholds to the client.',why:'Industry-standard, simplest to instrument, invents no numbers \u2014 the client sets the thresholds.',basis:'Standard clinic KPIs + canvas Objectives.',rel:'Canvas \u00b7 Objectives \u00b7 WBS: a reporting item under E-08.'}}
+  };
+  var critRank={Blocking:4,High:3,Medium:2,Low:1},stageRank={Foundations:1,Scoping:2,Delivery:3};
+  var sortState={col:'crit',dir:-1};
+  function badgeH(cls,txt){return '<span class="badge '+cls+'">'+txt+'</span>';}
+  function setStatus(id,cls,txt){var c=document.getElementById('st-'+id);if(c)c.innerHTML=badgeH(cls,txt);}
+  function openGap(id){var g=GAPS[id];if(!g)return;var pr=g.proposal;
+    var h='<div class="gd-head">'+g.name+'<span class="gd-close" onclick="closeGap()">\u2715</span></div>';
+    h+='<div class="gd-sec"><div class="gd-k">Suggested solution \u2014 agent assumption</div><div class="advp"><span class="advbadge">Agent proposal \u00b7 ADV</span>'
+      +'<div class="advrow"><span class="advk">Proposal</span><span class="av">'+pr.p+'</span></div>'
+      +'<div class="advrow"><span class="advk">Why this</span><span class="av">'+pr.why+'</span></div>'
+      +'<div class="advrow"><span class="advk">Basis</span><span class="av">'+pr.basis+'</span></div>'
+      +'<div class="advrow"><span class="advk">Relates to</span><span class="av">'+pr.rel+'</span></div>'
+      +'<div class="advmark">Assumption until the client confirms \u2014 carried as [NEEDS CLARIFICATION], never stated as fact.</div>'
+      +'<div class="advacts"><button class="advbtn ok" onclick="gapAccept(\''+id+'\')">Accept</button><button class="advbtn" onclick="gapReject(\''+id+'\')">Reject</button></div></div></div>';
+    if(g.answerable){h+='<div class="gd-sec"><div class="gd-k">\u2026or answer directly</div><div class="qans"><input class="qinput" id="ga-'+id+'" placeholder="Record the client\u2019s answer\u2026"><div class="qmode"><button class="qm on" data-mode="confirmed" onclick="setMode(this)">confirmed</button><button class="qm assumed" data-mode="assumed" onclick="setMode(this)">assumed</button></div></div><button class="propbtn" onclick="gapAnswer(\''+id+'\')">Save answer</button></div>';}
+    if(g.feature){h+='<div class="gd-sec"><button class="propbtn" onclick="featJump(\''+g.epic+'\',\''+g.feature+'\')">Jump to feature \u203a</button></div>';}
+    var d=document.getElementById('gapDetail');d.innerHTML=h;d.style.display='block';}
+  function closeGap(){var d=document.getElementById('gapDetail');d.style.display='none';d.innerHTML='';}
+  function gapAnswer(id){setStatus(id,'b-ok','Answered');var g=GAPS[id];if(g.epic&&g.feature)removeAssumption(g.epic,g.feature);closeGap();}
+  function gapAccept(id){var g=GAPS[id];setStatus(id,'b-info','Covered \u00b7 Assumption');if(g.epic&&g.feature)addAssumption(g.epic,g.feature,id);closeGap();}
+  function gapReject(id){var g=GAPS[id];setStatus(id,'b-warn','Open');if(g.epic&&g.feature)removeAssumption(g.epic,g.feature);closeGap();}
+  function gapDismiss(id){setStatus(id,'b-off','Dismissed');closeGap();}
+  function addAssumption(epic,feature,gapId){document.querySelectorAll('table.eac:not(.gaptbl) tbody tr').forEach(function(tr){if(tr.dataset.epic===epic){var ft=tr.querySelector('.ft');if(ft&&ft.textContent.indexOf(feature)>-1&&!ft.querySelector('.assum')){var c=document.createElement('span');c.className='badge b-info assum';c.title='Agent assumption \u2014 click to open the gap';c.style.marginLeft='6px';c.style.cursor='pointer';c.textContent='Assumption';c.onclick=function(){go('gaps');openGap(gapId);};ft.appendChild(c);}}});}
+  function removeAssumption(epic,feature){document.querySelectorAll('table.eac:not(.gaptbl) tbody tr').forEach(function(tr){if(tr.dataset.epic===epic){var ft=tr.querySelector('.ft');if(ft){var c=ft.querySelector('.assum');if(c)c.remove();}}});}
+  function featJump(epic,feature){go('epicsac');document.querySelectorAll('table.eac:not(.gaptbl) tbody tr').forEach(function(tr){if(tr.dataset.epic===epic){var ft=tr.querySelector('.ft');if(!feature||(ft&&ft.textContent.indexOf(feature)>-1))flash(tr);}});}
+  function sortGaps(col){if(sortState.col===col){sortState.dir*=-1;}else{sortState.col=col;sortState.dir=(col==='stage')?1:-1;}
+    ['stage','crit','prio'].forEach(function(c){var a=document.getElementById('sa-'+c);if(a)a.textContent=(c===col)?(sortState.dir>0?'\u25b2':'\u25bc'):'';});
+    var tb=document.getElementById('gapBody');var rows=Array.prototype.slice.call(tb.querySelectorAll('tr'));
+    rows.sort(function(a,b){var ra=(col==='stage')?stageRank[a.dataset.stage]:critRank[col==='prio'?a.dataset.prio:a.dataset.crit];var rb=(col==='stage')?stageRank[b.dataset.stage]:critRank[col==='prio'?b.dataset.prio:b.dataset.crit];return (ra-rb)*sortState.dir;});
+    rows.forEach(function(r){tb.appendChild(r)});}
+  function dismissQ(btn){var it=btn.closest('.qitem');if(!it)return;it.style.opacity='.5';var t=it.querySelector('.qtext');if(t)t.style.textDecoration='line-through';var ans=it.querySelector('.qans');if(ans)ans.style.display='none';var gi=it.querySelector('.gi');if(gi){gi.textContent='SKIP';gi.style.color='var(--muted)';}}
+  document.querySelectorAll('.tab').forEach(function(b){b.addEventListener('click',function(){go(this.getAttribute('data-pane'))})});
+  function flash(el){if(!el)return;el.classList.remove('hl');void el.offsetWidth;el.classList.add('hl');setTimeout(function(){el.classList.remove('hl')},2400);}
+  function srcJump(file){go('artifacts');document.querySelectorAll('[data-file]').forEach(function(r){if(r.getAttribute('data-file').indexOf(file)>-1)flash(r);});}
+  function askQ(epic){go('questions');document.querySelectorAll('.gline[data-epic]').forEach(function(l){if(l.getAttribute('data-epic')===epic)flash(l);});}
+  function setMode(btn){var g=btn.parentNode;g.querySelectorAll('.qm').forEach(function(b){b.classList.remove('on')});btn.classList.add('on');}
+  function buildIngest(){var out=[];document.querySelectorAll('#questions .qitem').forEach(function(it){var inp=it.querySelector('.qinput');if(!inp||!inp.value.trim())return;var on=it.querySelector('.qm.on');var mode=on?on.dataset.mode:'confirmed';var kind=it.dataset.kind||'scoping';var q=it.querySelector('.qtext').textContent.trim();var route;if(kind==='specdepth'){route=mode==='confirmed'?'(→ resolve the spec marker; write the value into the spec)':'(→ draft in the spec + keep [NEEDS CLARIFICATION]; stays open)';}else{route=mode==='confirmed'?'(→ ingest into the scope brief; flip open→answered)':'(→ draft value + [NEEDS CLARIFICATION: confirm <value> — basis]; stays open)';}out.push('['+kind+'] '+q+'\n  answer: '+inp.value.trim()+'\n  posture: '+mode+'  '+route);});var ta=document.getElementById('ingestout');ta.value=out.length?('# Answers to ingest — Acme Booking — 2026-08-27\n\n'+out.join('\n\n')):'No answers entered yet.';ta.style.display='block';ta.select();}
+  function toggleAdv(id){var el=document.getElementById(id);if(el)el.style.display=el.style.display==='none'?'block':'none';}
+  function fv(id){var el=document.getElementById(id);return el?el.value:'';}
+  function filterTable(){var e=fv('fEpic'),r=fv('fRole'),p=fv('fPhase');document.querySelectorAll('table.eac:not(.gaptbl) tbody tr').forEach(function(tr){var ok=(!e||tr.dataset.epic===e)&&(!r||tr.dataset.role===r)&&(!p||tr.dataset.phase===p);tr.style.display=ok?'':'none';});}
+  document.getElementById('tog').addEventListener('click',function(){document.documentElement.classList.toggle('dark')});
+</script>
+</body>
+</html>
