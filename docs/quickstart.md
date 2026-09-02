@@ -368,7 +368,11 @@ Techniques run one-step: `/ba-t01`…`/ba-t18`,
 `/ba-tier1 <kit|ingest|supplement> <epic>`, `/ba-tier2 <NNN>`. `/ba-run <technique>`
 remains as a thin alias and the custom-technique entry. Nothing fires by itself —
 every one of these is invoked by you, enforced in the skills' own frontmatter,
-not by convention. The one exception is not a command at all: the certified-text
+not by convention. Invoked by you means authorised by you, not typed by you:
+once you have said `go` to a route or a grant covers the act, the framework
+runs the step itself by reading that step's own instruction file — no keystroke
+between steps, and without your act it stops and names the one act that
+unblocks. The one exception is not a command at all: the certified-text
 check that used to be `/ba-handoff` now runs by itself when implementation takes
 a feature (Band 3, above).
 
@@ -396,7 +400,10 @@ gaps. Every one of those acts is stamped `AUTO (AG-<n>)` in the ledger.
 
 **The line it works to is cost, not confidence.** Auto will start any act that
 **spends none of your client's access and commits nobody outside the run** — and
-every such act comes back in the ratification batch like all the others. So
+every such act comes back in the ratification batch like all the others. It
+starts them itself: between stops you type nothing, because the run executes
+each step's instruction file directly — the slash command is your door, never
+its. So
 under Presale with no call booked, it scopes every epic inside your delivery
 boundary itself from the material you captured (kit and brief per epic) — the
 same set the WBS bills — enters the features, and drafts their specs. If a
