@@ -19,9 +19,14 @@
     --bad-soft:rgb(185 58 38 / .20); --info-soft:rgb(14 116 144 / .20);
   }
   *{box-sizing:border-box}
+  *{scrollbar-width:thin;scrollbar-color:color-mix(in oklab,var(--muted) 45%,transparent) transparent}
+  *::-webkit-scrollbar{width:9px;height:9px}
+  *::-webkit-scrollbar-track{background:transparent}
+  *::-webkit-scrollbar-thumb{background:color-mix(in oklab,var(--muted) 45%,transparent);border-radius:99px;border:2px solid transparent;background-clip:padding-box}
+  *::-webkit-scrollbar-thumb:hover{background:color-mix(in oklab,var(--muted) 70%,transparent);background-clip:padding-box}
   @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
   body{margin:0;background:var(--bg);color:var(--ink);font:400 14px/1.5 var(--sans);display:flex;justify-content:center;padding:20px 16px 44px;transition:background .2s,color .2s}
-  .board{width:100%;max-width:480px}
+  .board{width:100%;max-width:1280px}
   button{font-family:inherit}
 
   /* header */
