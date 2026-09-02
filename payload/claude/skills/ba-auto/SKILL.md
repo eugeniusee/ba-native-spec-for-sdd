@@ -68,6 +68,14 @@ The table above says who **states** each surviving stop. This rule says which
 > external commitment. Every self-election lands in the ratification batch like
 > any other AUTO act.**
 
+**How a self-elected act starts (D-O103).** The grant **is** the covering act.
+A self-election inside `scope:` and this boundary runs on the execution
+mechanism: read the elected skill's file at `.claude/skills/ba-<id>/SKILL.md`
+and execute it as the procedure, under that skill's own compiled discipline —
+stamped and trailed like every other AUTO act. Ask for no keystroke and wait
+for none; the flag hides the button, never the file. Outside a covering act,
+stop in ≤ 2 lines and name the one BA act that unblocks.
+
 **The test.** An act is outside the boundary when it **spends client access** — a
 call, a workshop, an interview slot, a stakeholder's reply — or makes an
 **external commitment** a person outside the run must honour. Those stay the

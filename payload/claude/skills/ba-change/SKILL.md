@@ -216,7 +216,10 @@ your judgement alone. **The marker is a label, never a pre-selection.**
 
 A `take` **executes the route** exactly as `/ba-run` executes a composed route:
 the rows in order, no per-row acknowledgement, stopping only at the rows' own
-prompt points. The CR moves to `routed — <acts>`, and the ruling appends:
+prompt points. Each row runs by reading its skill file at
+`.claude/skills/ba-<id>/SKILL.md` and executing it as the procedure — the
+execution mechanism (§7.5, D-O103), whose named instance is `/ba-run`'s
+row-execution clause. The CR moves to `routed — <acts>`, and the ruling appends:
 
 ```
 CR-3 · ruled · 2026-09-01 · Y.K. — take · targets: E-07 Online payment (Phase 2 · Defined) · 004-appointment-booking (certified, not taken) · AS-2 (standing → superseded — SD-4)

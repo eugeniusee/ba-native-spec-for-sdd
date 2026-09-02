@@ -1176,12 +1176,189 @@ has_flow "$AUTO" "**The trail line has one conditional, and one only.**" \
 has_flow "$AUTO" "**The report is still six lines.**" \
     "…and the report's line count is unmoved"
 
+# ── 9. the execution mechanism — the procedure is the skill (D-O103) ─────────
+#
+# EC-23, field defect report #5: under a full-workflow grant the run halted at
+# every command boundary and handed the BA a command list — the D-O32 banned
+# render, and the session's only observed behaviour. The cause was not a missing
+# rule about *who may* start an act: D-O61's cost boundary had ruled that. It was
+# that nothing said *how* one starts. The mechanism existed as one skill's
+# compiled clause (`ba-run`) and as legislated law in none, so no session that
+# had not read that one file had a reason to generalize it.
+#
+# v0.44 legislates it at §7.5 and cites it at §10.7. This section holds every
+# **executor carrier** to it — the two mirrors, `ba-auto`, and the two named
+# routes — plus the instance clause standing in `ba-run`, plus the flag census
+# the ruling explicitly preserved. Two seeded controls prove the sweep fires.
+#
+# What is asserted here is the **carriers**, not a live run: the acceptance test
+# the field note §5 states (one BA act carrying T-17 → T-18 → Tier 1 → P-O8 →
+# Tier 2 → /ba-wbs) is a multi-step run against a real estate, which no offline
+# check can execute. Items 1 and 4 stay the field acceptance, on the reporting
+# estate, after release and owner update.
+
+printf '\n▸ EC-23 — the execution mechanism: the procedure is the skill (D-O103 · §7.5 · §10.7)\n'
+
+DEVREADY="$PKG_ROOT/payload/claude/skills/ba-dev-ready/SKILL.md"
+CHANGE="$PKG_ROOT/payload/claude/skills/ba-change/SKILL.md"
+RUN="$PKG_ROOT/payload/claude/skills/ba-run/SKILL.md"
+for f in "$DEVREADY" "$CHANGE" "$RUN"; do
+  [ -f "$f" ] || { printf '✗ missing source: %s\n' "$f" >&2; exit 2; }
+done
+
+# 9a — the ground. A carrier sweep whose law left the document asserts a
+# compile against nothing; §7.5 and §10.7 are checked first, and by their own
+# words.
+has_flow "$DOC" "**The execution mechanism — the procedure is the skill (D-O103).**" \
+    "§7.5 legislates the mechanism"
+has_flow "$DOC" "the conducting session **reads the skill file and executes it as the procedure**" \
+    "…and says what the session does"
+has_flow "$DOC" "an **already-stated BA act covers the run**" \
+    "…and names the one condition that licenses it"
+has_flow "$DOC" "**Absent a covering act, the session stops in ≤ 2 lines and names the one BA act that unblocks**" \
+    "…and the refusal absent one"
+has_flow "$DOC" "\`/ba-run\`'s compiled row-execution clause is this law's named instance." \
+    "…and names /ba-run as the instance"
+has_flow "$DOC" "**How a self-elected act starts (D-O103).**" \
+    "§10.7 cites the mechanism at the self-election"
+has_flow "$DOC" "the flag hides the button, never the file" \
+    "…and keeps the flag standing while it does"
+
+# 9b — the mechanism clause, in every executor carrier that legislates it whole.
+# The two mirrors carry the same paragraph; the needles are the three things it
+# has to say — how, when, and what happens absent a covering act.
+for pair in "$BLOCK|the CLAUDE.md block" "$AGENTS|AGENTS.md"; do
+  f="${pair%%|*}"; label="${pair##*|}"
+  has_flow "$f" "**The execution mechanism — the procedure is the skill (D-O103).**" \
+      "$label carries the mechanism"
+  has_flow "$f" "read the covered skill's file at \`.claude/skills/ba-<id>/SKILL.md\` and **execute it as the procedure**" \
+      "…$label — how an act starts"
+  has_flow "$f" "When, and only when, an **already-stated BA act covers the run**" \
+      "…$label — when, and only when"
+  has_flow "$f" "**Absent a covering act, stop in ≤ 2 lines and name the one BA act that unblocks**" \
+      "…$label — the ≤ 2-line refusal"
+  has_flow "$f" "\`disable-model-invocation: true\` keeps it off the model's own surface" \
+      "…$label — the flag stays, and says what it is for"
+done
+
+# the mirrors are one paragraph compiled twice, not two paragraphs that agree
+python3 - "$BLOCK" "$AGENTS" <<'PYM' && ok "the two mirrors carry the same paragraph, byte for byte" \
+  || bad "the mirrors' mechanism paragraphs diverge — one text, two carriers"
+import sys
+H = "**The execution mechanism — the procedure is the skill (D-O103).**"
+out = []
+for p in sys.argv[1:3]:
+    t = open(p, encoding="utf-8").read()
+    if H not in t:
+        sys.exit(1)
+    i = t.index(H)
+    out.append(t[i:t.index("\n\n", i)])
+sys.exit(0 if out[0] == out[1] else 1)
+PYM
+
+# ba-auto carries §10.7's start paragraph, not the mirrors' — the grant is the
+# covering act, and the stamp and the trail are already law
+has_flow "$AUTO" "**How a self-elected act starts (D-O103).** The grant **is** the covering act." \
+    "the ba-auto skill carries the start paragraph"
+has_flow "$AUTO" "read the elected skill's file at \`.claude/skills/ba-<id>/SKILL.md\` and execute it as the procedure" \
+    "…and says how a self-election starts"
+has_flow "$AUTO" "Ask for no keystroke and wait for none; the flag hides the button, never the file." \
+    "…and asks for no keystroke"
+has_flow "$AUTO" "Outside a covering act, stop in ≤ 2 lines and name the one BA act that unblocks." \
+    "…and the ≤ 2-line refusal outside one"
+
+# the two named routes cite the law and restate none of it — one sentence, one
+# needle, both carriers
+MECH_CITE="Each row runs by reading its skill file at \`.claude/skills/ba-<id>/SKILL.md\` and executing it as the procedure — the execution mechanism (§7.5, D-O103), whose named instance is \`/ba-run\`'s row-execution clause."
+has_flow "$DEVREADY" "$MECH_CITE" "/ba-dev-ready's \`go\` executes on the mechanism"
+has_flow "$CHANGE"   "$MECH_CITE" "/ba-change's \`take\` executes on the mechanism"
+
+# 9c — the instance. Its two sentences are the law's named instance and are held
+# byte for byte: the ruling tagged them, it did not reword them.
+has_joined "$RUN" "Take the BA's \`go\`, then run each row in order by reading its technique's skill file (\`.claude/skills/ba-<id>/SKILL.md\`) and executing it as the procedure" \
+    "ba-run's route-runner sentence stands byte-kept"
+has_joined "$RUN" "Read the technique's skill file at \`.claude/skills/ba-<id>/SKILL.md\` and execute it as the procedure, exactly as if the BA had typed \`/ba-<id>\`." \
+    "…and its alias sentence stands byte-kept"
+has_flow "$RUN" "**The execution mechanism's named instance (D-O103).**" \
+    "…and both are tagged as the named instance"
+
+# 9d — the flag census. D-P2-2 is upheld by this ruling, not moved: every ba-*
+# skill keeps `disable-model-invocation: true`, and the report's F1 — dropping
+# it — is parked with an event trigger. A future flag drop fails here, loudly,
+# until its own ruling lands.
+SKDIR="$PKG_ROOT/payload/claude/skills"
+FLAG_N=0; FLAG_OK=0; FLAG_BAD=""
+for d in "$SKDIR"/ba-*/; do
+  [ -f "$d/SKILL.md" ] || continue
+  FLAG_N=$((FLAG_N+1))
+  if head -12 "$d/SKILL.md" | grep -qx 'disable-model-invocation: true'; then
+    FLAG_OK=$((FLAG_OK+1))
+  else
+    FLAG_BAD="$FLAG_BAD $(basename "$d")"
+  fi
+done
+[ "$FLAG_N" -eq 39 ] \
+  && ok "the ba-* skill set is 39 — the census has something to count" \
+  || bad "the ba-* skill set is $FLAG_N, not 39: the census expectation moved without a ruling"
+if [ "$FLAG_OK" -eq "$FLAG_N" ] && [ "$FLAG_N" -gt 0 ]; then
+  ok "all $FLAG_OK of $FLAG_N ba-* skills carry disable-model-invocation: true (D-P2-2 upheld; F1 parked)"
+else
+  bad "flags missing on:$FLAG_BAD — D-P2-2 stands until F1's own ruling lands (D-O103)"
+fi
+# the guest is exempt by D-O97's vendoring pin, and its exemption is the reason
+# the census reads 39 and not 40
+grep -q 'disable-model-invocation' "$SKDIR/humanizer/SKILL.md" \
+  && bad "the vendored humanizer carries a framework flag — D-O97 pins it byte-untouched" \
+  || ok "the vendored humanizer guest carries none — D-O97's pin, and why the census is 39 of 39"
+
+# 9e — the seeded controls. A sweep that cannot fail is not a sweep.
+MC="$TMP/mech-corpus"
+mkdir -p "$MC"
+cp "$AGENTS" "$MC/AGENTS.md"
+python3 - "$MC/AGENTS.md" <<'PYK'
+import pathlib, sys
+p = pathlib.Path(sys.argv[1]); t = p.read_text(encoding="utf-8")
+H = "**The execution mechanism — the procedure is the skill (D-O103).**"
+i = t.index(H); j = t.index("\n\n", i)
+p.write_text(t[:i] + t[j+2:], encoding="utf-8")
+PYK
+python3 - "$MC/AGENTS.md" <<'PYC' && bad "a carrier stripped of the mechanism still passes — the sweep asserts nothing" \
+  || ok "the control fires — a carrier without the mechanism clause goes red"
+import re, sys
+flat = re.sub(r"\s+", " ", re.sub(r"(?m)^\s*>\s?", "", open(sys.argv[1], encoding="utf-8").read()))
+sys.exit(0 if "The execution mechanism — the procedure is the skill" in flat else 1)
+PYC
+
+cp "$AUTO" "$MC/SKILL.md"
+python3 - "$MC/SKILL.md" <<'PYF'
+import pathlib, sys
+p = pathlib.Path(sys.argv[1])
+p.write_text(p.read_text(encoding="utf-8").replace("disable-model-invocation: true\n", "", 1), encoding="utf-8")
+PYF
+head -12 "$MC/SKILL.md" | grep -qx 'disable-model-invocation: true' \
+  && bad "a skill stripped of its flag still counts as flagged — the census asserts nothing" \
+  || ok "the control fires — a dropped disable-model-invocation goes red"
+
+# 9f — the acceptance shape, as far as an offline check reaches. Every start
+# path the field note's test walks has a compiled mechanism at its carrier; the
+# floor keeps its three acts, so the refusal under both settings is the floor
+# sweep above, unchanged by this ruling.
+MECH_CARRIERS=0
+for f in "$BLOCK" "$AGENTS" "$AUTO" "$DEVREADY" "$CHANGE"; do
+  grep -qF -- 'D-O103' "$f" && MECH_CARRIERS=$((MECH_CARRIERS+1))
+done
+[ "$MECH_CARRIERS" -eq 5 ] \
+  && ok "all 5 executor carriers name D-O103 — no start path inherits the silence" \
+  || bad "$MECH_CARRIERS of 5 executor carriers name D-O103: a start path still inherits the silence"
+has_flow "$DOC" "The floor keeps its three acts (D-O94)." \
+    "the floor still keeps three acts — the mechanism reaches none of them"
+
 # ── roll-up ──────────────────────────────────────────────────────────────────
 
 printf '\n  passed: %s   failed: %s\n' "$PASSED" "$FAILED"
 if [ "$FAILED" -eq 0 ]; then
-  printf '✓ GREEN — autonomous mode: the AG record and the Auto head line · the §10.7 policy table on four surfaces · the four-act safety floor swept across %s files with 4 seeded breaches · the resumption report byte-identical in 3 units · the mode read in %s carriers · the two locked amendments · the cost boundary on five carriers, the arming run inside the grant on seven, the choice line on six\n' \
-    "${F_FILES:-?}" "${MR_UNITS:-?}"
+  printf '✓ GREEN — autonomous mode: the AG record and the Auto head line · the §10.7 policy table on four surfaces · the four-act safety floor swept across %s files with 4 seeded breaches · the resumption report byte-identical in 3 units · the mode read in %s carriers · the two locked amendments · the cost boundary on five carriers, the arming run inside the grant on seven, the choice line on six · the execution mechanism on %s executor carriers with the flag census at %s of %s and 2 seeded controls\n' \
+    "${F_FILES:-?}" "${MR_UNITS:-?}" "${MECH_CARRIERS:-?}" "${FLAG_OK:-?}" "${FLAG_N:-?}"
   exit 0
 fi
 printf '✗ RED — %s check(s) failed\n' "$FAILED"

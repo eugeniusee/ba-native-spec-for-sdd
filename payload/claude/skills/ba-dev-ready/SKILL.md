@@ -39,7 +39,10 @@ never consent; the render names the grant's scope before you say it.
    stated act recorded in advance, and you said `go` to a render that names the
    grant's scope.
 3. **The route's own `go`** — plan-as-route (§7.5), rows in order, no per-row
-   acknowledgement.
+   acknowledgement. Each row runs by reading its skill file at
+   `.claude/skills/ba-<id>/SKILL.md` and executing it as the procedure — the
+   execution mechanism (§7.5, D-O103), whose named instance is `/ba-run`'s
+   row-execution clause.
 
 **Where a grant already stands, the existing `off` comes first:** `/ba-auto
 off`, the resumption report, one batch ratification. The profile never

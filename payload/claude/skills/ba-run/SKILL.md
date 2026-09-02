@@ -29,6 +29,11 @@ composed plan; no aspect open and Band 2 reachable → the `## Band 2` section's
 route. Under a standing AG (`/ba-auto on`), proceed through those stops per the
 `/ba-auto` policy table; execution mechanics are unchanged.
 
+**The execution mechanism's named instance (D-O103).** §7.5 names the
+read-and-execute clause above — and the identical clause under **Catalogue
+techniques** below — as the instance of the law that governs every act an
+already-stated BA act covers.
+
 The route stop closes per §10.3 rule 9 — the pinned §10.6 shape above stands
 whole, `Next: step 1 — go?` included, and after it the plain-English ask:
 `What I need from you:` — one lettered question through the AskUserQuestion

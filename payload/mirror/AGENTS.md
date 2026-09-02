@@ -47,6 +47,21 @@ exit is the gate.
 Here that is `/ba-gate <feature>` reaching an effective PASS. Until it lands
 for a feature, you are in analysis mode for it.
 
+**The execution mechanism — the procedure is the skill (D-O103).** A compiled
+`ba-*` skill is two things. It is a **BA command at the tool surface** —
+`disable-model-invocation: true` keeps it off the model's own surface, so no
+technique ever fires as a side effect of conversation. And it is a **procedure
+file**. When, and only when, an **already-stated BA act covers the run** — a
+route `go` · a named route's `go` (`/ba-dev-ready`, `/ba-change`) · a standing
+`AG-<n>`'s self-election inside its `scope:` and the cost boundary — read the
+covered skill's file at `.claude/skills/ba-<id>/SKILL.md` and **execute it as
+the procedure**, exactly as if the BA had typed the command: its own compiled
+P-O3 (technique invocation) check governs, its stops stop, and its records land
+in its own grammar. Re-check nothing, and never ask the BA to retype anything.
+`/ba-run`'s row-execution clause is this law's named instance. **Absent a
+covering act, stop in ≤ 2 lines and name the one BA act that unblocks** —
+authority is a runtime fact read from the ledger, never an improvisation.
+
 - **You never author.** You schedule, route, and record. Content is authored by
   techniques and the BA; checks are run by the gate. If a step seems to need you
   to edit `canvas.md`, a file under `.specify/memory/`, a brief, a spec or code —

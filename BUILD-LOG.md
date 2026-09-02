@@ -13808,3 +13808,259 @@ exists. D-13 and D-14 are routed on the record, not defaulted.
 - **The D-O99–D-O101 pass's routed items are not this pass's** and were not
   touched: catalogue-b6's `[stated]`/`[inferred]` vocabulary, the map's stale
   D-M2 gloss, and the v0.15 change record's account of the past.
+
+---
+
+## The Procedure Is The Skill — the execution mechanism legislated once and compiled into five executor carriers, `/ba-run` tagged as its named instance, all 39 flags standing · orchestrator v0.44 (D-O103 · §47) · package 0.1.52 · 2 September 2026 · GREEN
+
+**Session prompt:** Lane A — compile *the procedure is the skill* (EC-23 · D-O103 ·
+§7.5 · §10.7). Seven units: the mechanism in both mirrors · the start paragraph in
+`ba-auto` · one citing sentence each in `ba-dev-ready` and `ba-change` · `ba-run`
+tagged as the named instance · the flag census verified and unmoved · the
+regression · this entry and the patch bump. Documents before code: **nothing was
+designed in this session** — every unit derives from
+`docs/methodology/ba-native-spec-orchestrator-rules.md` at HEAD, and every choice
+the text does not fix is a numbered divergence below.
+
+**What EC-23 was, and what closes here.** Field defect report #5, project
+`presale-qr-code`: under `AG-1 · scope full workflow` the run halted at every
+command boundary and handed the BA a command list — the D-O32 banned render, the
+session's only observed behaviour. One scope change cost **ten typed slash
+commands and zero of them carried a decision.** The cause was never a missing rule
+about *who may* start an act: D-O61's cost boundary ruled that five days earlier.
+It was that nothing said **how** one starts. The mechanism existed as
+`/ba-run`'s compiled clause and as legislated law nowhere, so a session that had
+not read that one file had no reason to generalize it — and in the field it did
+not. **This pass closes EC-23 at the compile layer:** the law the drop legislated
+now stands in every carrier that starts work, and the two live acceptance items
+stay the field acceptance, named in Open.
+
+**Precondition 1 held in full.** Line 2 reads `v0.44`; *The execution mechanism —
+the procedure is the skill* stands once; *How a self-elected act starts* stands
+once; `D-O103` appears six times; `## 47.` exists;
+`docs/field-notes/2026-09-02-grant-cannot-invoke.md` exists; the quickstart carries
+*authorised by you, not typed by you*. Precondition 2 held — `VERSION` read
+`0.1.51`, `origin/main` at `1f8646c`, clean tree, no rebase needed and none taken.
+Precondition 3 did not, and is D-1 below.
+
+### Five divergences, registered — none resolved silently
+
+**D-1 — the baseline was RED, and every failure had one cause.**
+`bash tests/run-all.sh` at session open: **21 checks, 2 red, 4 failures**, all four
+the Lane B drop moving the document to v0.44 / D-O103 while the compiled pins still
+read v0.43 / D-O102. The recorded Lane-B state, and the prompt's stated divergence
+1: moving these pins is this pass's work, not a defect it inherited.
+
+| Check | The failure | The move |
+|---|---|---|
+| `check-orchestrator.sh` | the header does not name v0.43 | → `v0.44`, *the procedure is the skill* |
+| `check-orchestrator.sh` | the D-O block is not contiguous | `range(1, 103)` → `range(1, 104)` |
+| `check-humanizer.sh` | the trailing line locks through D-O102 | → `decisions D-O1–D-O103 locked` |
+| `check-humanizer.sh` | the header does not name v0.43 | the second edition-pin site — 0.1.47's two-site lesson, again |
+
+**D-2 — `AGENTS.md` does not carry the D-O32 render rule the ruling seats the
+mechanism beside.** §47's Where column and the prompt both read *the framework
+block and `AGENTS.md` (the mechanism beside the D-O32 render rule)*. That sentence
+— *Handing the BA a list of commands to type is a banned render — after the `go`,
+execute the mechanics yourself* — exists in exactly two files in the estate,
+`payload/mirror/claude-block.md` and `payload/claude/agents/ba-orchestrator.md`,
+and in **neither** is it in `AGENTS.md`: that mirror carries no route law at all —
+no plan-as-route, no route render, no auto-repair paragraph — and its only D-O32
+mention is register rule 11's naming pattern. **Resolved by reading the two mirrors
+against each other:** `claude-block.md` takes the paragraph at the stated home,
+directly after the Auto-repair paragraph inside *Stops and routes — the checkpoint
+law*; `AGENTS.md` takes the **byte-identical** paragraph inside *Analysis session —
+the default mode*, the section the two mirrors already carry word for word, after
+the analysis-mode sentence and before the never-list. The mechanism is
+session-conduct law — how the conducting session starts an act — and that section
+is where both mirrors keep session-conduct law. The prompt's own clause, *keep both
+mirrors aligned where they already mirror each other*, is the rule applied.
+
+**D-3 — the orchestrator persona carries the same banned-render sentence and gains
+nothing.** `payload/claude/agents/ba-orchestrator.md:399` carries it verbatim.
+§47's Where column names the framework block and `AGENTS.md` and not the persona,
+and gives its own reason two paragraphs earlier: **D-O98's dispatch condition is
+untouched and adjacent, not overlapping** — dispatch sends a *persona* out as a
+batch author, while this ruling is about the *conducting session* starting a
+*skill's* procedure in place; different actor, different surface. The document was
+followed and the persona is byte-untouched. **Routed to master**, because §10.7's
+own home-of-the-definition sentence does name *the orchestrator persona* among the
+surfaces that reach it by compilation or by reference — a reading for a later pass,
+not a compile this ruling authorises.
+
+**D-4 — `check-auto.sh` has no fixture directory; its control style is the seeded
+private copy.** The prompt asks for the EC-23 acceptance shape wired *as far as the
+suite's fixture pattern allows (the check-auto fixture style)*. `check-auto.sh`
+ships no `tests/fixtures/` estate — its controls are private copies mutated in
+`$TMP` and re-read, the idiom the mid-grant stop report's dropped-line control
+already uses. That idiom is what section 9 uses. Acceptance items **2 and 3** are
+assertable offline and are asserted — the ≤ 2-line refusal in every carrier, and
+the floor's three acts, which no mechanism reaches. Items **1 and 4** are a live
+multi-step run against a real estate and cannot be executed by an offline check:
+**the carriers are asserted instead, and this entry says so.** Verification §1 and
+§4 stay the field acceptance, in Open.
+
+**D-5 — no payload-side flag census existed to extend.** `check-layout.sh` sweeps
+`disable-model-invocation: true` on the **installed** tree and pins the count 39
+there; nothing counted the payload tree, which is what a build pass edits. The
+census went into `check-auto.sh` — the ruling that preserves the flag is D-O103 and
+`check-auto.sh` is its home — rather than into `check-layout.sh`, and the two are
+now independent: a dropped flag fails at the payload before the installer ever runs.
+
+### The units
+
+**U1 — the mechanism, one paragraph compiled twice.** Fourteen lines, byte-identical
+in both mirrors, asserted as one text by extraction and comparison rather than by
+two needles that could drift apart. It says the three things §7.5 says and adds
+nothing: **how** — read the covered skill's file at
+`.claude/skills/ba-<id>/SKILL.md` and execute it as the procedure, its own compiled
+P-O3 — technique invocation check governing, its stops stopping, its records landing
+in its own grammar, re-checking nothing and never asking for a retype; **when** —
+when, and only when, an already-stated BA act covers the run: a route `go` · a named
+route's `go` · a standing `AG-<n>`'s self-election inside its `scope:` and the cost
+boundary; **the refusal** — absent a covering act, stop in ≤ 2 lines and name the
+one BA act that unblocks. The flag's purpose is restated inside it, not moved:
+`disable-model-invocation: true` keeps the skill off the model's own surface, so no
+technique fires as a side effect of conversation.
+
+**U2 — `ba-auto`, directly after the cost-boundary blockquote.** §10.7's start
+paragraph in the skill's own second-person voice: the grant **is** the covering act;
+a self-election inside `scope:` and this boundary reads the elected skill's file and
+executes it as the procedure under that skill's own discipline, **stamped and
+trailed like every other AUTO act** — F2 was already law and is cited, not
+re-legislated; ask for no keystroke and wait for none; outside a covering act, the
+same ≤ 2-line stop. D-O61's boundary blockquote is byte-untouched above it.
+
+**U3 — the two named routes cite the law and restate none of it.** One sentence,
+**identical in both**, so one needle covers two carriers: *Each row runs by reading
+its skill file at `.claude/skills/ba-<id>/SKILL.md` and executing it as the
+procedure — the execution mechanism (§7.5, D-O103), whose named instance is
+`/ba-run`'s row-execution clause.* In `ba-dev-ready` it joins record 3 of the
+three-records `go`; in `ba-change` it joins the `take`. Neither route's own law moved.
+
+**U4 — `/ba-run` tagged, not reworded.** Both row-execution sentences stand
+**byte-kept** — the route-runner's and the alias's — and one adjacent sentence names
+them: *§7.5 names the read-and-execute clause above — and the identical clause under
+**Catalogue techniques** below — as the instance of the law that governs every act
+an already-stated BA act covers.* Mutation M4 drops the tag and leaves both
+sentences standing, which is the proof that the tag is adjacent prose and not a
+rewrite.
+
+**U5 — the flag census: 39 of 39 `ba-*` skills carry
+`disable-model-invocation: true`, and no frontmatter in this pass was touched.**
+The vendored `humanizer` guest carries none and is byte-untouched — D-O97's pin, and
+the reason the census reads 39 and not 40. The census is now asserted, so the
+report's **F1** — dropping the flag — fails loudly against D-P2-2 until its own
+ruling lands.
+
+**U6 — `check-auto.sh` section 9, +34 assertions (313 → 347).** The document is
+checked first, by its own words, so a carrier sweep can never assert a compile
+against a law that left the corpus. Then the five executor carriers, the instance in
+`ba-run`, the two mirrors' byte-equality, the census, and a `D-O103`-in-every-carrier
+count derived by grep rather than written down. **Four mutations fire, and every file
+was restored byte-identically:**
+
+| # | Mutation | Result |
+|---|---|---|
+| M1 | the mechanism paragraph dropped from `claude-block.md` | 347 / 0 → **340 / 7** |
+| M2 | one `disable-model-invocation` dropped (`ba-t05`) | 347 / 0 → **346 / 1** |
+| M3 | the execution sentence dropped from `/ba-change`'s `take` | 347 / 0 → **345 / 2** |
+| M4 | the named-instance tag dropped from `/ba-run` | 347 / 0 → **346 / 1** |
+
+M3 fires twice on purpose: the carrier needle **and** the derived count, so a carrier
+that loses the citation cannot be lost to a needle nobody added.
+
+### Six judgement calls, recorded
+
+1. **The mirrors carry one paragraph, not two that agree** — extracted and compared
+   in the check, so a later edit to one is a failure and not a drift.
+2. **`has_flow`, not `has`, for every carrier needle** — the same sentence wraps
+   differently in a mirror and a skill, and `has_flow` reads a sentence as the BA
+   reads it, which is what lets one needle assert one law across five files.
+3. **`check-orchestrator.sh` gains two rows, not a bare pin move** — its edition
+   block pairs a `D-O<n>` row with a `## <n>. Review record` row per edition, and the
+   pattern was followed rather than shortened.
+4. **The census counts the payload tree and states its expectation as 39** — a count
+   that reads whatever it finds would pass through a silent flag drop, which is the
+   one thing this assertion exists to catch.
+5. **The acceptance items were split by what an offline check can execute**, and the
+   two that cannot are named in Open rather than approximated by a check that would
+   claim more than it tests.
+6. **The persona was left alone** — D-3 — because the document's Where column and its
+   D-O98 paragraph agree with each other, and this pass compiles the document.
+
+### The laws this pass was bound by, each held
+
+**No frontmatter changed** — the diff carries no `name:`, `description:` or
+`disable-model-invocation:` line, and the census stands 39 of 39. **No new stop and
+no new prompt point** — §10.1's table is byte-untouched; the document was not edited
+at all this pass, and `docs/` carries no modification. **No new event kind, no new
+record class, no policy row moved** — `check-auto.sh`'s policy-table assertions and
+`check-ledger.py`'s 20 rules are unchanged. **No threshold or assertion text** —
+`check-m.sh` 91/0 and `check-gate.sh` 158/0, both unchanged. **No §10.2 session
+boundary touched** — `check-register.sh` 64/0, its sha sweep green across every skill
+and persona. **Pinned shapes byte-untouched** — `check-budget.sh` 99/0 (the route
+render), `check-change.sh` 134/0 (the impact render), and `check-auto.sh`'s three
+report shapes still byte-identical to §10.7. **Plain language leads every BA-facing
+render** — the register sweep found nothing to repair in the new prose.
+
+**Falsification sweep, at the counts this entry states:** *The execution mechanism —
+the procedure is the skill* in **3** files (§7.5, both mirrors) · *How a self-elected
+act starts* in **2** (§10.7, `ba-auto`) · the citing sentence in **2**
+(`ba-dev-ready`, `ba-change`) · the instance tag in **1** (`ba-run`) · `D-O103` in
+**6** payload files — the five executor carriers plus the instance. Killed strings:
+this ruling retires nothing, and the guarantee it preserves was re-verified — **zero**
+`ba-*` skills without the flag.
+
+**Defaults taken: none.** D-2, D-3, D-4 and D-5 are decided on the record with their
+reasons; D-3 is routed rather than resolved.
+
+### Suite: 21/21 GREEN, the three install-based runs included
+
+| Check | Before | After |
+|---|---|---|
+| `check-m.sh` | 91 / 0 | 91 / 0 |
+| `check-gate.sh` | 158 / 0 | 158 / 0 |
+| `check-orchestrator.sh` | 630 / **2** ✗ | **634 / 0** |
+| `check-techniques.sh` | 104 / 0 | 104 / 0 |
+| `check-techniques2.sh` | 127 / 0 | 127 / 0 |
+| `check-techniques3.sh` | 166 / 0 | 166 / 0 |
+| `check-spine.sh` | 286 / 0 | 286 / 0 |
+| `check-register.sh` | 64 / 0 | 64 / 0 |
+| `check-wbs.sh` | 111 / 0 | 111 / 0 |
+| `check-audit.sh` | 240 / 0 | 240 / 0 |
+| `check-status.sh` | 129 / 0 | 129 / 0 |
+| `check-map.sh` | 43 / 0 | 43 / 0 |
+| `check-humanizer.sh` | 118 / **2** ✗ | **120 / 0** |
+| `check-ledger.py` | grammar-legal — 20 rules | grammar-legal — 20 rules |
+| `check-cards.py` | byte-identical; layering clean | byte-identical; layering clean |
+| `check-layout.sh` | 127 / 0 / 0 | 127 / 0 / 0 |
+| `check-exit.sh --offline` | 105 / 0 | 105 / 0 |
+| `check-install.sh` | 64 / 0 | 64 / 0 |
+| `check-budget.sh` | 99 / 0 | 99 / 0 |
+| **`check-auto.sh`** | 313 / 0 | **347 / 0** |
+| `check-change.sh` | 134 / 0 | 134 / 0 |
+| | **21 checks · 2 RED** | **21 checks · 0 RED** |
+
+### Open — routed from this pass
+
+- **F1's parking trigger, verbatim from §47:** *execute-by-reading failing in the
+  field on an estate that carries this ruling.* Nothing else reopens the flag
+  question. The census added this pass is what makes a premature drop fail loudly
+  in the meantime.
+- **The field-acceptance replay — the report's Verification §1 and §4** — pending on
+  the reporting estate, **after release and owner update**, never by patching
+  `.claude/skills/*` in place (installer output, manifest-hashed — the field note's
+  own boundary). §1: `Auto: on`, scope covering Band 2 → one BA act carries
+  T-17 → T-18 → Tier 1 → P-O8 → Tier 2 → `/ba-wbs`, stopping only at T-17 step 5,
+  T-18 step 4 and the band boundary. §4: replay 2026-09-02 — the same decision costs
+  **zero typed commands after the first**, and the same eight rulings. Neither is
+  assertable offline (D-4).
+- **The orchestrator persona and the mechanism** (D-3) — it carries the same D-O32
+  banned-render sentence, the ruling's Where column does not name it, and §10.7 does
+  name it among the surfaces that reach the definition. A reading for a later pass.
+- **The mirrors' command index** — inherited, untouched: no `/ba-change` row, no
+  `/ba-humanizer` row, and a *Workflow — 17* heading over 19 rows in
+  `claude-block.md`.
+- **`P-O10` and `P-O0b` are invisible to `check-register.sh`'s rule-5 sweep** —
+  inherited from 0.1.51, one-digit regex, untouched here.
