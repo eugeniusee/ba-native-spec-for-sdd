@@ -14402,3 +14402,339 @@ the three install-based runs included).
 - **check-spine's seeded `no legitimacy trace` reason gloss** (line ~703) — a
   fixture Reason cell riding the retired test's vocabulary; harmless to every
   sweep, renamable whenever that fixture is next touched.
+
+---
+
+## The Profile Says What It Forecloses — the picker names the consequence and the two acts, the gate's two Stage-0 refusals told apart, a refusal names what exists and the act · orchestrator v0.46 (D-O107–D-O108 · §49) · gate v0.16 (D-G10) · catalogue-b1 v0.9 (D-B1-9) · package 0.1.54 · 4 September 2026 · GREEN
+
+**Session prompt:** Lane A — compile the 2026-09-04 (b) methodology drop (EC-25 ·
+D-O107–D-O108 · D-G10 · D-B1-9). The picker's line 2 gains three lines naming
+the foreclosure and the two acts, byte-equal to §8.1; §6.5's amended FAIL-report
+sentence lands wherever a carrier compiles it; §10.3's twelfth rule compiles
+into the framework block and all four personas; ba-gate's step 3 renders the
+admission refusal in three parts with code-plus-name and step 5 says what an HA
+lifts; ba-gate-health names the step; the canvas mirror loses the budget
+envelope at the four D-7 sites; the four v0.45 remnants move at their carriers;
+the edition pins move; the field note's §5 items 2–4 compile as the regression
+floor. Documents before code: **nothing was designed in this session** — every
+unit derives from the text at HEAD, and every choice the text does not fix is a
+numbered divergence or judgement call below.
+
+**What EC-25 was, and what closes here.** The field defect report of 3 Sep 2026,
+*Presale specs not generated* (project Nutrivity, estate at 0.1.52), whose first
+act was to correct its own premise: **20 of 20 specs stood generated and
+structurally complete**, and `discovery-canvas.md` exists nowhere — the canvas is
+`canvas.md`, present. What was absent was the profile's own expected debt, and
+three of the five absent artifacts are **static-core members of every feature's
+`deps(F)`**, so the snapshot refused every feature at Stage 0 with
+`--require-complete`; **nothing had said so at the point of choice** (the
+picker's strongest wording: *draft specs optional. Waivers expected.*), the
+refusal named only what was missing, and an HA granted over pre-flight gaps
+lifted nothing at admission because the gate had drawn the line as *admission
+only* without saying which step is which. The rulings compiled here: **the
+profile says what it forecloses** (D-O107 — §6.5 states the mechanism once, the
+picker says it at the choice, the gate's refusal says it at the bite), **a
+refusal names what exists and the act** (D-O108 — §10.3 rule 12, *cannot be
+gated* alone a banned render), **the two Stage-0 refusals told apart** (D-G10 —
+admission at step 3, no entry, no run number, no instrument; pre-flight at
+step 5, an HA lifting those and only those), and **the canvas mirror loses the
+budget envelope** (D-B1-9 — closing the 0.1.53 pass's routed D-7).
+
+**Preconditions.** Orchestrator line 2 read `v0.46` and `## 49. Review record
+(v0.45 → v0.46)` stood at 2160; gate line 2 read `v0.16`; catalogue-b1 line 2
+read `v0.9`; the EC-25 field note existed; `VERSION` read `0.1.53` — all six
+held before a byte moved. `HEAD` = `origin/main` = `f284fb9` (the 0.1.53
+package), fetched and compared — the base had not moved. The only dirty paths
+were the drop itself (three methodology docs + quickstart modified, the field
+note untracked): no sibling pass, so this pass ran in the connected tree and
+the documents ride this commit (the Lane-B-docs precedent).
+
+**The baseline, recorded before any edit.** RED at 4 checks · 6 failures, all
+on the expected pins and nothing else: `check-gate` 157/1 and `check-auto`
+346/1 (the gate edition pin v0.15 at both 0.1.50 sites), `check-orchestrator`
+634/2 (header v0.45 · D-O contiguity at 1…106 against a doc carrying D-O108),
+`check-humanizer` 118/2 (header v0.45 · the trailer lock at D-O103). The two
+conditional REDs the prompt allowed did not exist — no check pins the picker's
+line count, and `check-lean`'s splice covers the P-O0b block alone, which the
+drop does not touch (green at 33/0 proves it byte-stable). D-1 below.
+
+### The census — found vs expected, re-established by grep at HEAD before any edit
+
+The picker renders in exactly one payload carrier (`ba-frame`; the
+`sk_humanizer_guard.py` anchor keys on the block's unchanged first line — no
+line count, no edit); `tests/presale-path.md` does not quote it (D-5). §6.5's
+amended FAIL-report sentence is carried at **two** sites — `ba-frame` and
+`ba-enter-feature`, the latter absent from the prompt's census list (D-2) —
+and at none of the other named candidates: `ba-clear`'s ruled-case paragraph
+compiles the unchanged AT-RQ-1 sentence, `ba-aspect` only the unchanged
+profile filter, the personas and both mirrors only AUTO-mode Presale law
+(D-3). The six register carriers held rule 11 and no rule 12. The b1 mirror
+stood at exactly the four D-7 sites (`ba-t01`'s inputs line naming `Budget:`,
+its §13-mirror paragraph, its example's §13 row, the canvas template's §13
+row). `ba-change`'s locate row carried `Budget:` and `none stated`.
+`ba-frame`'s XO and AS stop-count sentences already read line 4 · line 5 —
+the 0.1.53 compile moved them with the block, and the doc's trued
+parentheticals are historical gloss, compiled nowhere (D-4). The untouched
+set verified untouched: `ba-t18`, `ba-status`, `ba-auto` and the
+`ba-orchestrator` persona carry no *cannot be gated*, no *Stage 0*, and only
+legitimate budget tokens (D-O105's estimate clause; the ≤ 8 interaction
+budget). "cannot be gated" stood at 0 across all of payload before the pass.
+The census **missed two live-law template carriers the falsification sweep
+caught mid-pass** (D-8), and surfaced one carrier deliberately not moved
+(D-9).
+
+### The units, per carrier
+
+- **`ba-frame`** — the picker block gains the three lines **spliced-verified
+  byte-equal to §8.1 at HEAD** (nine lines; never retyped); the D-O65 sentence
+  trued — *a budget is a recorded constraint, never a frame line since
+  D-O105; timeline is neither*; the FAIL-report sentence amended to the doc's —
+  *once the static core is complete … before that it refuses at admission and
+  the refusal names what exists, what is missing and the act (D-O107 ·
+  D-O108)*. The closing-ask example shape untouched: the doc pins the
+  consequence at the picker and the refusal, *twice and nowhere else* (J-7).
+- **`ba-enter-feature`** — the same amended sentence, at the census's extra
+  site (D-2); the certification-is-not-next sentence stands unchanged after it.
+- **The six register carriers** (`claude-block.md` · `AGENTS.md` · four
+  personas) — rule 12 appended after rule 11, **byte-identical across all six**
+  (inserted programmatically from one source, asserted by sha), the anchor
+  sentence whole on its first line, nothing renumbered — D-O97's rule 10 and
+  D-O96's rule 11 byte-untouched.
+- **`ba-gate`** — step 3 refuses **at admission, before the snapshot binds**:
+  no report entry, no run number, no instrument — the three-part render pinned
+  in order (*what exists* with the marker count · *what is missing* with
+  `domain-model.md` (T-11 — Domain (conceptual) modeling) ·
+  `roles-permissions.md` (T-12 — Roles & permissions) · `constitution.md`
+  (T-15 — Constitution) as the Presale-expected instance · *the one act* —
+  elect at a P-O2 — plan composition, or switch to Discovery and run them),
+  closing on the register's own restatement (J-6); step 5 gains *an HA lifts
+  exactly these pre-flight gaps — this step, never step 3's admission
+  refusal*; the run-number sentence trued to count pre-flight blocks with an
+  admission refusal consuming none (J-5).
+- **`ba-gate-health`** — the *Admission only* bullet recompiled to the D-G10
+  form: *and admission means pre-flight*, the step named (step 5 against
+  step 3), and what an HA lifts *an H gap, not a missing artifact*.
+- **`ba-change`** — the locate row loses `Budget:` and its state token reads
+  `none found` (the §7.7 row's own tokens in the carrier's two-column shape).
+- **The b1 mirror, four sites** — `ba-t01`'s inputs drop `Budget:`; its
+  mirror paragraph, its example's §13 row and the canvas template's §13 row
+  drop the envelope and say where a stated budget lives instead — *a
+  business(-constraint) one-liner, no budget line since orchestrator D-O105* —
+  recomposed on the change record's own wording so the killed phrase reaches
+  0 (J-2), D-B tokens dropped per the layering convention.
+- **The two templates the sweep caught (D-8)** — `gate-report-entry.md` counts
+  pre-flight blocks, an admission refusal writing no entry and consuming no
+  number; `gate-health.md`'s HA-mechanics comment says *pre-flight blocks and
+  NOTHING else — never the admission refusal of a missing static-core member*.
+- **`sk_snapshot.py`** — byte-untouched, and now byte-pinned: the
+  `--require-complete` refusal block is asserted verbatim so field note §5
+  item 1 stays replayable.
+- **Untouched, verified:** `ba-t18` · `ba-status` · `ba-auto` · the
+  `ba-orchestrator` persona · both mirrors beyond rule 12 · `ba-clear` ·
+  `ba-aspect` · the quickstart (the drop's own file, out of payload).
+
+### The pins moved, and the checks
+
+`check-orchestrator` 636 → 638: the header pin to v0.46 with the edition's own
+motto, the D-O contiguity to **1…108**, and the §49 pattern extended — two new
+`has` pins (`D-O107–D-O108` · `## 49. Review record (v0.45 → v0.46)`).
+`check-humanizer`: the trailer pin to `decisions D-O1–D-O108 locked` and the
+header pin to v0.46 (the 0.1.47 two-site lesson, applied at both of its pins).
+`check-gate` and `check-auto`: the gate edition pin to v0.16 at both 0.1.50
+sites, the motto updated. `check-gate`'s section-6 labels trued to the D-G10
+vocabulary — *pre-flight block*, the tested behavior (the numbered
+blocked-at-pre-flight entry) unchanged (J-8). No b1 edition pin exists in
+tests to move (D-6).
+
+**`check-refusal.sh` — new, 63/0, run-all row 23** (the check-change/check-lean
+precedent: an EC closure's floor gets its own file — J-1), nothing renumbered:
+the documents checked first by their own words so no carrier sweep can go
+vacuous (§6.5's mechanism and *said twice and nowhere else*, §8.1's grown
+block, rule 12 and its ban, gate §4.1's admission cell and three-part order,
+§10.4's told-apart bullet with *step 3 … against step 5*, b1's shortened
+mirror); the picker **spliced from §8.1 at run time and asserted byte-equal**
+in `ba-frame` at nine lines with the three new lines named; the collapsed
+pre-D-O107 option 2 dead in carrier and doc, whitespace-collapsed so any
+wrapping fires; the picker's carrier census pinned at exactly one so a second
+render must extend the check consciously; the amended FAIL-report sentence at
+both carriers; ba-gate's three parts present **and in order** (a positional
+assertion, not three greps) with the three code-plus-name pairs, step 5's
+boundary, the trued run-number sentence positive and negative; the snapshot
+refusal byte-identical; rule 12 once per carrier with **the persona list
+derived by glob** (≥ 4 asserted) and one sha across all six; ba-change's row
+with `Budget:` at 0 file-wide; ba-frame's trued budget clause positive and
+negative; the four mirror sites at 0 with the business-one-liner clause at
+each, plus a payload-wide envelope negative; the two template carriers'
+trued sentences with payload-wide negatives; and the banned-render sweep —
+every payload paragraph saying *cannot be gated* also says what exists,
+whitespace-collapsed, **non-vacuous by count** (≥ 6; 7 sighted). The trailer
+and edition pins are cited to their owning checks, never duplicated (the
+check-lean boundary precedent).
+
+### Four mutations — each fired, each file restored byte-identically
+
+Copy-first restore throughout — the docs are uncommitted, so `git checkout`
+would have destroyed the drop itself (the standing lesson, applied):
+
+1. The three picker lines removed from `ba-frame` → `check-refusal` **58/2**
+   (byte-equality and the collapsed-option-2 negative both fire).
+2. Rule 12 removed from one persona → `check-refusal` **59/1** (the anchor
+   census names the file; five identical shas keep the drift check honest).
+3. The doc's trailer reverted D-O108 → D-O103 → `check-humanizer` **119/1**,
+   while the change record's other v0.46 and D-O108 tokens still stand.
+4. Gate header v0.16 → v0.15 **on line 2 only** → `check-gate` **157/1** and
+   `check-auto` **346/1** — both pin sites fire on `head -2` while line 3's
+   change record still names v0.16, the 0.1.50 discrimination preserved.
+
+### Ten divergences, registered — none resolved silently
+
+**D-1 — the baseline was RED exactly at the prompt's floor, not its ceiling.**
+4 checks · 6 failures, every one an edition/trailer/contiguity pin. The two
+REDs the prompt conditionally expected — a picker block-line pin in
+`check-orchestrator`, a `check-lean` picker/§6.5 pin — do not exist: no check
+pinned the picker's shape before this pass. Registered, not invented.
+
+**D-2 — the census found an extra carrier.** `ba-enter-feature` compiles §6.5's
+FAIL-report sentence (found by the *informative named-gap list* grep); the
+prompt's list stopped at ba-frame · ba-clear · ba-aspect · personas · mirrors.
+Compiled with the same amended sentence; the floor asserts it by name.
+
+**D-3 — the named candidates that carry nothing.** `ba-clear` (the unchanged
+ruled-case sentence), `ba-aspect` (the unchanged profile filter), all four
+personas and both mirrors (AUTO-mode Presale law only) — each verified, none
+compiled: *compile only where the doc's own sentence is carried*.
+
+**D-4 — the trued stop-count sentences need no payload move.** `ba-frame`
+already reads line 4 · line 5 (the 0.1.53 compile); the doc's *"(line 5 until
+D-O105 shortened the block)"* parentheticals are the doc's own history gloss,
+compiled nowhere.
+
+**D-5 — `tests/presale-path.md` does not quote the picker.** The prompt's
+conditional fixture target; verified at 0; no edit.
+
+**D-6 — no b1 edition pin exists in tests.** The sweep the prompt ordered
+found only `verify-manifest.py`'s filename map; nothing to move, and minting
+one stays an owner act (the 0.1.53 D-3 shape).
+
+**D-7 — catalogue-b1's trailer still locks D-B1-1…D-B1-8** while D-B1-9 stands
+ruled two lines above it — the orchestrator-trailer remnant shape (0.1.53's
+D-4) in the companion doc. No test pins it; Lane A does not touch documents;
+routed to b1's next drop.
+
+**D-8 — the census missed two live-law template carriers; the falsification
+sweep caught them mid-pass.** `gate-report-entry.md`'s run-number comment
+(*include blocked admissions*) and `gate-health.md`'s HA-mechanics comment
+(*lifts Stage-0 admission blocks and NOTHING else*) — both §-citing compiles
+of sentences D-G10 changed, neither pinned by any test before this pass. Both
+trued, both now on the floor with payload-wide negatives (the 0.1.53 D-8
+precedent, at smaller blast).
+
+**D-9 — the card keeps the broad phrasing, deliberately.** `assertions-h.md`'s
+header sentence (*`HA-<nn>`, which lifts Stage-0 admission and nothing else*)
+is a compiled card byte-pinned to `check-cards.py`'s own derivation from the
+completeness contract, which this drop does not touch, and the gate doc's
+§10.4 body itself keeps the broad *does not block admission* usage. Not in the
+ruling's Where column; not edited; routed to the contract/cards' next covering
+drop.
+
+**D-10 — the audit's own Stage 0 is a different machine.** `sk_audit_report.py`
+and `source-audit-report-entry.md` say *refused admissions* take run numbers —
+the source-audit definition's own law, untouched by this drop; verified as a
+deliberate difference, not a miss.
+
+### Judgement calls
+
+**J-1 — a sibling check, not a check-lean section.** EC-25's floor spans two
+documents and eight carriers; a section under EC-24's roof would blur two
+closures. `check-refusal.sh`, run-all row 23, the check-change precedent.
+
+**J-2 — the mirror compile avoids the killed phrase.** The doc's step-2
+parenthetical itself says *the budget envelope left the frame*; the prompt's
+falsification law kills "budget envelope" in payload, so the compile
+recomposes on the change record's own *no budget line since D-O105 — a stated
+budget is a business(-constraint) one-liner* wording. Substance identical,
+every clause the doc's own words, D-B tokens dropped per the layering
+convention, `orchestrator D-O105` kept.
+
+**J-3 — rule 12 wrapped, one source.** The carriers compile rules wrapped at
+~76 columns (rules 10 and 11's shape); rule 12 was inserted from one scratch
+file into all six and the floor asserts one sha — the anchor sentence whole on
+its first line so every `grep -F` pin holds.
+
+**J-4 — the three members render as the ruled instance.** Gate §4.1's cell
+names the general render and parenthesizes Presale as the expected debt;
+ba-gate's step 3 keeps that structure — *each absent member with its producing
+technique* generally, the three code-plus-name pairs as the Presale-expected
+three.
+
+**J-5 — the run-number sentences trued, behavior unchanged.** *Include blocked
+admissions* contradicts *no run number is consumed* as worded once the two
+refusals are told apart; ba-gate and the report template now count pre-flight
+blocks and say an admission refusal consumes none. The numbering mechanics
+(read the highest entry, add one) are byte-identical.
+
+**J-6 — a compile defect caught in-pass by the floor's own design.** ba-gate's
+first closing line — *Never render the refusal as "cannot be gated" alone
+(register rule 12).* — would have failed the exists-in-paragraph sweep about
+to be written; reworded to restate the rule's three parts before any check ran
+RED on it. It did not survive to any run.
+
+**J-7 — the closing-ask example shape untouched.** ba-frame's lettered
+profile question does not gain the consequence: the doc pins it at the
+picker's line 2 and the gate's refusal, *said twice and nowhere else*, and the
+ask's shape is D-O82/D-O90 ground this drop does not amend.
+
+**J-8 — check-gate's labels trued with their behavior proven unchanged.** The
+section-6 messages called the numbered pre-flight entry *a blocked admission*
+— the exact vocabulary D-G10 retires; renamed in the same pass that moved that
+file's pin, the assertions and fixtures byte-identical.
+
+**Defaults taken: none.**
+
+### Falsification sweep — clean
+
+The collapsed option 2 (*Waivers expected.* → *Waiting for your pick.*,
+whitespace-collapsed) stands nowhere in payload or tests except as its own
+negative needle inside `check-refusal.sh`; `Budget:` at 0 in `ba-change` and
+`ba-t01`; "budget envelope" at 0 across payload and tests outside
+`check-refusal.sh`'s needles; `D-O1–D-O103 locked` at 0 everywhere including
+the doc; *the budget has its own line* at 0; *An HA lifts a Stage-0 block and
+nothing else* at 0; *include blocked admissions* at 0 (was 1 — D-8);
+*lifts Stage-0 admission blocks* at 0; `none stated` at 0 in `ba-change`
+file-wide while D-O77's `Delivery boundary: none stated` law stands untouched
+elsewhere. Required strings at their stated counts: the picker opener ×1 in
+payload, *draft specs optional* ×1, the rule-12 anchor ×6 in payload + ×1 in
+the doc, the three code-plus-name pairs ×1 each in ba-gate.
+
+### The suite
+
+| Check | Baseline | This pass |
+|---|---|---|
+| `check-gate.sh` | 157 / 1 ✗ | 158 / 0 |
+| `check-orchestrator.sh` | 634 / 2 ✗ | 638 / 0 |
+| `check-humanizer.sh` | 118 / 2 ✗ | 120 / 0 |
+| `check-auto.sh` | 346 / 1 ✗ | 347 / 0 |
+| **`check-refusal.sh`** | — | **63 / 0 (new)** |
+| every other check | green | byte-stable, green |
+| | **22 checks · 4 RED** | **23 checks · 0 RED** |
+
+Verified twice: in the working tree and in an isolated copy (vendor/ carried
+in, the three install-based runs included). 23/23 GREEN both times.
+
+### Open — routed from this pass
+
+- **The field-acceptance replay** — field note §5 item 1 and the live halves of
+  items 3 and 4: `sk_snapshot.py … --require-complete` still refusing with the
+  three names on the reporting estate (its refusal block is byte-pinned here,
+  so the diagnosis cannot drift silently), `/ba-gate 001-nutrition-profile-record`
+  refusing in three parts with HA-01 lifting nothing — pending on the
+  reporting estate **after release and owner update**, never by patching an
+  estate in place (the note's own §6 boundary). Items 2, 3 and 4's offline
+  halves stand asserted in `check-refusal.sh`.
+- **catalogue-b1's trailer lock range** (D-7) — D-B1-1…D-B1-8 → D-B1-9, for
+  b1's next Lane B drop.
+- **The card's broad admission phrasing** (D-9) — `assertions-h.md` /
+  `check-cards.py`'s derivation, for the contract/cards' next covering drop.
+- **The audit's refused-admission run numbers** (D-10) — a deliberate
+  difference of that definition's own law, named here so the next reader does
+  not read it as a miss.

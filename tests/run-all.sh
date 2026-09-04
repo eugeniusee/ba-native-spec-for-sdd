@@ -51,6 +51,11 @@
 #                                five lines byte-equal to §8.1 · no money head
 #                                line · the one-seat-test advisory · the
 #                                boundary as the only switch · the default
+#    23  check-refusal.sh        the profile says what it forecloses — the
+#                                picker's nine lines byte-equal to §8.1 · the
+#                                gate's two Stage-0 refusals told apart ·
+#                                register rule 12 in six carriers · the b1
+#                                mirror without the envelope
 #
 # `check-cards.py` and `check-ledger.py` also run inside `check-gate.sh` and
 # `check-orchestrator.sh`. They keep their own rows because the entries give
@@ -240,6 +245,7 @@ run_check "check-budget.sh"       suite "$HERE/check-budget.sh"
 run_check "check-auto.sh"         suite "$HERE/check-auto.sh"
 run_check "check-change.sh"       suite "$HERE/check-change.sh"
 run_check "check-lean.sh"         suite "$HERE/check-lean.sh"
+run_check "check-refusal.sh"      suite "$HERE/check-refusal.sh"
 
 # ── the table ────────────────────────────────────────────────────────────────
 

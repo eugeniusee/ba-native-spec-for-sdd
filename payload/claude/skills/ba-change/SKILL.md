@@ -78,7 +78,7 @@ each with the **state the record establishes** — never a guess:
 
 | Target class | The read behind the state |
 |---|---|
-| The scope frame | the head's `Boundary:` · `Budget:` · `Scope decisions:` · `Acceptance shapes:` lines (§2.4) — `standing`, or `none stated` |
+| The scope frame | the head's `Boundary:` · `Scope decisions:` · `Acceptance shapes:` lines (§2.4) — `standing`, or `none found` |
 | A roadmap epic | `.specify/memory/roadmap.md` rows (T-17 — Epics decomposition) — the `E-<nn>`, its Phase and its Status: `not yet existing` · `Unallocated` · `<phase>` · `Defined` · `In delivery` · `Delivered` · `Retired` |
 | A scope brief | `.specify/memory/scope/E-<nn>.md` — absent → `none`; present → the brief's own status, `Draft` or `Scoped` |
 | A governance or context artifact | `.specify/memory/*` — glossary · roles · domain model · constraints · out-of-scope · constitution · canvas — mapped to its aspect by §5's mapping table, and carrying that aspect's state: cleared ground, or armed H ground after closure |

@@ -155,10 +155,13 @@ BA-confirmed deferral batch** — the framework proposes the client-unreachable
 subset, the BA confirms, edits, or dissolves it in a single act, never
 per-question drip and never the framework's own call. A deferred question records
 no answer; its `[NEEDS CLARIFICATION]` marker stands as the record. The queue
-re-evaluates once after the batch. The gate stays BA-invocable at any time, and
-on a draft spec its FAIL report is an informative named-gap list — the client Q&A
-agenda. Do **not** name certification or handoff as the next step: both need an
-effective PASS, which is Discovery's destination, after a recorded switch.
+re-evaluates once after the batch. The gate stays BA-invocable at any time;
+once the static core is complete, on a draft spec its FAIL report is an
+informative named-gap list — the client Q&A agenda; before that it refuses at
+admission and the refusal names what exists, what is missing and the act
+(D-O107 · D-O108). Do **not** name certification or handoff as the next step:
+both need an effective PASS, which is Discovery's destination, after a
+recorded switch.
 
 ## Under a standing grant — the band-boundary report
 

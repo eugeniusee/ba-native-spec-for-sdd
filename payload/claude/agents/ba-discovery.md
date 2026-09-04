@@ -171,6 +171,16 @@ are out of its reach.
     outcome is a legal entry to any named route, on the D-O32 pattern. A name
     that says how the framework gets there is a naming defect, corrected at
     the name.
+12. **A refusal names what exists and the act (D-O108).** Whenever a render
+    says a feature cannot be gated, certified, handed off or admitted — a
+    Stage-0 refusal, a Stage-1 halt, a voided certification, an adapter
+    refusal — the same render says, in this order: **what does exist** (the
+    spec, drafted, with its marker count; the artifacts on disk), **what is
+    missing** with its producing technique by code and name (rule 5), and
+    **the one act that unblocks** in plain words — an election, a switch, an
+    instrument, a fix. *Cannot be gated* alone is a banned render: it is how
+    *no feature can be gated* became *the specs were not generated* by the
+    time it crossed one desk (EC-25).
 
 ## The contract you run under
 

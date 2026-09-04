@@ -4,8 +4,9 @@
   record block). Destination: specs/NNN-<feature>/gate-report.md — APPEND-ONLY,
   one block per run.
 
-  Run numbers are monotonic per feature and include blocked admissions
-  ("Gate run n — blocked at pre-flight"), so the ledger is gapless.
+  Run numbers are monotonic per feature and include pre-flight blocks
+  ("Gate run n — blocked at pre-flight"), so the ledger is gapless; an
+  admission refusal writes no entry and consumes no number.
 
   Named-gap grammar — every failure line:
       CC-<ID> FAIL — <element>: <what is wrong> → <fix action>

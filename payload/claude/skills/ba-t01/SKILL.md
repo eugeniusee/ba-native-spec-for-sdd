@@ -68,7 +68,7 @@ export, brief, deck, transcript, or nothing at all. **No context stack exists
 yet:** Frame is first, and there is no `.specify/memory/` estate to read.
 
 Plus, where a frame stands, the ledger head's scope-frame fields in
-`.specify/aspect-state.md` — `Boundary:` · `Budget:` · `Client label:` ·
+`.specify/aspect-state.md` — `Boundary:` · `Client label:` ·
 `Scope decisions:` · `Cross-cutting:` — the §13 mirror's source, **read-only**.
 
 ## Procedure
@@ -86,8 +86,11 @@ Plus, where a frame stands, the ledger head's scope-frame fields in
 
    **The scope-frame mirror.** Where a scope frame stands — set at
    P-O0b (scope-frame selection) before this run — carry its detail into
-   **§13 Context/Constraints** as cited lines: budget envelope · delivery
-   boundary · client label · scope decisions (`SD-<n>`, each with its verbatim
+   **§13 Context/Constraints** as cited lines: delivery boundary · client
+   label (no budget line lands from the frame — the frame carries none since
+   orchestrator D-O105; a stated budget is a business-constraint one-liner
+   this section holds from the material, cited like any other line, and read
+   by no allocation act) · scope decisions (`SD-<n>`, each with its verbatim
    citation) · cross-cutting obligations (`XO-<n>` — class and one-line value,
    each with its verbatim citation; the language line's engagement default as
    `language: English (engagement default)`, framework law recorded as its own

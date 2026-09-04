@@ -44,8 +44,9 @@ Everything a run produces lives at
 Runtime-generated, never shipped, and outside `.specify/memory/` — a run
 workspace is not content. `<n>` is the next run number for this feature: read
 `specs/NNN-<feature>/gate-report.md`, take the highest `## Gate run <n>` and add
-one. Run numbers are monotonic and **include blocked admissions**, so the
-ledger is gapless.
+one. Run numbers are monotonic and **include pre-flight blocks** — a
+"blocked at pre-flight" entry consumes its number, while an admission refusal
+writes no entry and consumes none (step 3) — so the ledger is gapless.
 
 ---
 
@@ -65,8 +66,27 @@ python3 .specify/ba/scripts/sk_snapshot.py build \
   --require-complete
 ```
 
-   A missing static-core member is a runtime condition, not a spec verdict —
-   report it and stop.
+   A missing static-core member is a runtime condition, not a spec verdict:
+   **the run refuses at admission, before the snapshot binds** — no report
+   entry is written, no run number is consumed, and **no instrument lifts
+   it** — not a waiver, not an `HA-<nn>` (an HA lifts step 5's pre-flight
+   gaps, never this refusal), not a profile switch alone. The artifact must
+   exist, which means its producing technique has run — under Presale, the
+   profile's own expected debt. **The refusal renders three parts, in this
+   order:**
+
+   1. **what exists** — the spec, drafted, with its marker count, and the
+      static-core artifacts that are on disk;
+   2. **what is missing** — each absent member with its producing technique
+      by code and name; under Presale the expected three are
+      `domain-model.md` (T-11 — Domain (conceptual) modeling) ·
+      `roles-permissions.md` (T-12 — Roles & permissions) ·
+      `constitution.md` (T-15 — Constitution);
+   3. **the one act that unblocks** — elect the producing technique(s) at a
+      P-O2 — plan composition, or switch to Discovery and run them.
+
+   Never render the refusal as *cannot be gated* alone — the render says what
+   exists, what is missing and the act (register rule 12).
 
 4. **Pre-flight** — the CC-H set restricted to `deps(F)`. This is
    the hard guarantee, run fresh every time; the ledger head in
@@ -79,6 +99,9 @@ python3 .specify/ba/scripts/sk_snapshot.py build \
    the roadmap ⇄ brief-set join at boundary grain, which sits in no feature's
    `deps(F)` — it runs on full and scoped runs, and it blocks nothing here.
 5. Any H gap **not covered by a health acceptance** blocks the run — **P1**.
+   An `HA-<nn>` lifts exactly these pre-flight gaps — **this step, never
+   step 3's admission refusal**: a missing static-core member is not an H gap,
+   and no instrument lifts it.
    Put the gaps into `run.json`'s `preflight` block, each with its `ha` field
    set to the covering `HA-<nn>` or `null`, and run the report writer: it emits
    the "blocked at pre-flight" entry, which you append to `gate-report.md`.

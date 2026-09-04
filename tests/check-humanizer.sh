@@ -296,10 +296,10 @@ printf '\n▸ The document — D-O97 · §43 and the five sections it touches\n'
 
 has "$DOC" "**D-O97**" "the ruling is on the record"
 has "$DOC" "## 43. Review record (v0.39 → v0.40)" "…and §43, the review record that carries it"
-has "$DOC" "decisions D-O1–D-O103 locked" "the trailing line locks through D-O103"
-head -2 "$DOC" | grep -q 'v0\.45' \
-  && ok "the header states the live edition — v0.45, the first phase is lean by law" \
-  || bad "the header does not name v0.45: the edition and the change record disagree"
+has "$DOC" "decisions D-O1–D-O108 locked" "the trailing line locks through D-O108"
+head -2 "$DOC" | grep -q 'v0\.46' \
+  && ok "the header states the live edition — v0.46, the profile says what it forecloses" \
+  || bad "the header does not name v0.46: the edition and the change record disagree"
 has "$DOC" "**v0.40 change record:**" "the change record opens the edition"
 
 has "$DOC" "10. **The humanizer switch (D-O97 — D-O89's rule rewritten in place, never amended by addition).**" \

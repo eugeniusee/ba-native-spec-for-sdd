@@ -270,7 +270,14 @@ correction the route did not anticipate.
 
 What you hand the client is the roadmap, the draft specs with their assumptions
 on the record, and the WBS. Certification is not the presale destination — it
-sits behind gate law and happens after a recorded switch to Discovery. The
+sits behind gate law and happens after a recorded switch to Discovery. Not
+the switch alone: three techniques Presale leaves out — T-11 — Domain modeling,
+T-12 — Roles & permissions, T-15 — Constitution — produce artifacts that sit in
+every feature's gate snapshot, so under Presale the gate refuses at admission
+for every feature and says so in one breath: what exists, what is missing, and
+the act (elect the three, or switch and run them). The picker tells you the
+same before you choose. A health acceptance does not lift it — it lifts
+pre-flight gaps, never a missing artifact. The
 switch has a route, and the eight interactions end at the WBS, so the route sits
 outside the budget:
 

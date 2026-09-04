@@ -164,11 +164,16 @@ would be incoherent. The instrument is the project-level **`HA-<nn>`**, same
 fields as a waiver (reason · risk accepted · approver · revisit trigger),
 recorded in the ledger head.
 
-- **Admission only.** An HA lifts a Stage-0 block and nothing else. No Scope-F
-  assertion ever reads it; it satisfies nothing. A run it admits cites it:
-  "Pre-flight: <n> gap(s) lifted by HA-<nn>". Safety holds — the Scope-F
-  assertions still guard the same ground wherever the gap actually bites a
-  feature.
+- **Admission only — and admission means pre-flight.** An HA lifts Stage-0
+  **pre-flight** blocks — H gaps over `deps(F)`, `/ba-gate`'s Stage 0
+  **step 5** — and nothing else. No Scope-F assertion ever reads it; it
+  satisfies nothing. **It never lifts the admission refusal of a missing
+  static-core member** (step 3, the step before pre-flight): what an HA lifts
+  is an H gap, **not a missing artifact** — no instrument lifts that; the
+  artifact must exist, which means its producing technique has run. A run it
+  admits cites it: "Pre-flight: <n> gap(s) lifted by HA-<nn>". Safety holds —
+  the Scope-F assertions still guard the same ground wherever the gap actually
+  bites a feature.
 - **Persistence** — the override's mechanism, one layer up. When the accepted
   gap's artifact is edited, the scoped run re-evaluates: evidence unchanged at
   element granularity → the HA **auto re-applies**, logged; evidence changed or

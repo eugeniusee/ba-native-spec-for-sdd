@@ -30,8 +30,10 @@ Health acceptances: none
     HA-<nn> · CC-H-<nn> · <element> · reason: <why accepted now> ·
       risk: <one line> · approver: <name> · <date> · revisit: <event-shaped trigger>
 
-  HA mechanics (§10.4): an HA lifts Stage-0 admission blocks and NOTHING else —
-  no Scope-F assertion ever reads it. Persistence mirrors the override's: the
+  HA mechanics (§10.4): an HA lifts Stage-0 pre-flight blocks and NOTHING
+  else — never the admission refusal of a missing static-core member, which no
+  instrument lifts — and no Scope-F assertion ever reads it. Persistence
+  mirrors the override's: the
   accepted gap's artifact is edited → the scoped H run re-evaluates; evidence
   unchanged at element granularity → auto re-apply, logged; evidence changed or
   gap reshaped → the HA voids, the gap goes live, admission blocks return.

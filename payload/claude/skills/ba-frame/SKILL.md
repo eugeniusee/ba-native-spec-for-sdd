@@ -79,8 +79,8 @@ by ruling:** a decision *agreed between client and provider about engagement
 composition* — an option selection among proposals, an explicit trim, an agreed
 scope/module list, an agreed staging — and nothing else. Requirements, wishes
 and priorities are discovery ground — they belong to
-**T-01 — Discovery canvas framing**; the budget has its own line; timeline is
-neither. **Every harvested decision carries its verbatim citation**,
+**T-01 — Discovery canvas framing**; a budget is a recorded constraint, never
+a frame line since D-O105; timeline is neither. **Every harvested decision carries its verbatim citation**,
 and the verbatim ground lives in the cited source artifact — no new artifact
 class. **`none found` is a legal, recorded state** — it lands on the head line,
 never as silence. **An ambiguous candidate is asked, never guessed:** render it
@@ -281,6 +281,9 @@ Flow profile — pick one before any aspect opens (P-O0 — flow-profile selecti
 2. Presale — the minimum technique set for limited client access.
    Destination: roadmap + open questions + assumptions on record;
    draft specs optional. Waivers expected.
+   No feature reaches a gate run under this profile until T-11, T-12 and T-15
+   have run — their artifacts are part of every gate snapshot. To certify:
+   elect those three, or switch to Discovery and run them.
 Waiting for your pick. Switchable later; the switch is logged.
 ```
 
@@ -500,8 +503,10 @@ posture** — draft-and-mark, with the gap questions that cannot reach the clien
 deferred as a BA-confirmed batch, standing as their markers. Certification and
 handoff are not the presale destination: they stay behind existing gate law — no
 effective PASS, no certification, no handoff — and are expected after a recorded
-switch to Discovery. The gate stays BA-invocable at any time; on a draft spec its
-FAIL report is an informative named-gap list — the client Q&A agenda.
+switch to Discovery. The gate stays BA-invocable at any time; once the static
+core is complete, on a draft spec its FAIL report is an informative named-gap
+list — the client Q&A agenda; before that it refuses at admission and the
+refusal names what exists, what is missing and the act (D-O107 · D-O108).
 
 In profile for Presale: **T-01 — Discovery canvas framing · T-02 — Glossary
 discipline · T-03 — Stakeholder register · T-05 — Context & landscape mapping ·

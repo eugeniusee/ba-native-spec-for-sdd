@@ -264,9 +264,9 @@ has_joined "$GATE" "P3 ⚑ and P4 approval sit outside every AG — the safety f
 # pins the edition it read: the 0.1.47 lesson is that one site is never all of
 # them, and the 0.1.49 sweep found the orchestrator's pin duplicated exactly
 # this way.
-head -2 "$GATE" | grep -q 'v0\.15' \
-  && ok "the header states the live edition — v0.15, the CC-H-08 line meets §7's grammar" \
-  || bad "the header does not name v0.15: the edition and the change record disagree"
+head -2 "$GATE" | grep -q 'v0\.16' \
+  && ok "the header states the live edition — v0.16, the two Stage-0 refusals told apart" \
+  || bad "the header does not name v0.16: the edition and the change record disagree"
 
 # ── 3. the safety floor — the sweep ──────────────────────────────────────────
 

@@ -477,7 +477,7 @@ python3 "$SK/sk_snapshot.py" report "$TMP/run2-thinwaiver.json" > /dev/null 2> "
 has "$TMP/tw.err" "waiver record incomplete, missing risk, revisit" \
     "an incomplete waiver record is refused, naming the missing contract §8 fields"
 
-# ── 6. P1 — admission block and the health acceptance (gate §4.1 · §10.4) ────
+# ── 6. P1 — pre-flight block and the health acceptance (gate §4.1 · §10.4) ───
 
 printf '\n▸ P1 — pre-flight block and the health acceptance (gate §10.4)\n'
 
@@ -496,10 +496,10 @@ pathlib.Path(sys.argv[3]).write_text(json.dumps(d, indent=2, ensure_ascii=False)
 PY
 python3 "$SK/sk_snapshot.py" report "$TMP/blocked.json" > "$TMP/blocked.entry" 2>&1
 RC=$?
-[ $RC -eq 1 ] && ok "a blocked admission is a non-zero run" \
-              || bad "expected exit 1 on a blocked admission, got $RC"
+[ $RC -eq 1 ] && ok "a pre-flight block is a non-zero run" \
+              || bad "expected exit 1 on a pre-flight block, got $RC"
 has "$TMP/blocked.entry" "## Gate run 4 — 2026-07-19 — blocked at pre-flight" \
-    "the blocked admission takes a run number — the ledger stays gapless (gate §6.2)"
+    "the pre-flight block takes a run number — the ledger stays gapless (gate §6.2)"
 has "$TMP/blocked.entry" "Verdict: BLOCKED AT PRE-FLIGHT (2 H gaps)" "verdict names the H gap count"
 has "$TMP/blocked.entry" "CC-H-02 FAIL — " "the H gaps are named in named-gap grammar"
 hasnt "$TMP/blocked.entry" "Category summary" \
@@ -716,9 +716,9 @@ NSIX=$(grep -o "all six CC-H" "$GATE_DOC" | wc -l | tr -d ' ')
 # reads this document too: the 0.1.47 two-site lesson, applied before it can
 # be relearned. head -2 reads the edition line alone — the change record on
 # line 3 names the same edition and must not be what satisfies the pin.
-head -2 "$GATE_DOC" | grep -q 'v0\.15' \
-  && ok "the header states the live edition — v0.15, the CC-H-08 line meets §7's grammar" \
-  || bad "the header does not name v0.15: the edition and the change record disagree"
+head -2 "$GATE_DOC" | grep -q 'v0\.16' \
+  && ok "the header states the live edition — v0.16, the two Stage-0 refusals told apart" \
+  || bad "the header does not name v0.16: the edition and the change record disagree"
 
 # the compiled surfaces carry the same law, count-free
 has "$SKILLS_D/ba-gate-health/SKILL.md" "CC-H-02 · CC-H-03 · CC-H-06 · CC-H-08" \
