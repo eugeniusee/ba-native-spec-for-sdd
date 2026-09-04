@@ -479,8 +479,8 @@ report's `Next manual act:` line, and every run narration.
 sign-offs (CC-XA-01, CC-XA-06), the effective PASS, and **the scope frame**
 (P-O0b — scope-frame selection) are BA-only. The first two are where a false
 pass is a security incident or a scope escape; the third is the constraint
-every later act is measured against — a boundary or an envelope the framework
-set for itself would be a run choosing its own budget. Three acts the BA
+every later act is measured against — a boundary the framework
+set for itself would be a run choosing its own scope. Three acts the BA
 answers for personally. The certified-text check is not on the floor: it runs
 as implementation's own first act, automatically, at take-up (gate §11.2), and
 a grant reaches it no more than it reaches any coding-side act. Per feature,

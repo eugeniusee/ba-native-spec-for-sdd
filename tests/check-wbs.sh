@@ -297,7 +297,6 @@ cat > "$FRAMED/.specify/aspect-state.md" <<'HEAD'
 Band: 1 (open)
 Profile: Presale — picked 2026-08-13 (P-O0)
 Boundary: MVP + Phase 2 — set 2026-08-13 (P-O0b); switches append to Events with a reason
-Budget: 50000 USD  (sources/brief.md §2)
 Client label: PoC  (sources/brief.md §1)
 Scope decisions: none found
 Cross-cutting: XO-1 — language: English (engagement default — framework law, D-O74) — default · XO-2 — language: Ukrainian + English UI (sources/brief.md §4) — carried — E-07 Localization · XO-3 — accessibility: WCAG 2.1 AA (sources/rfp.md §6) — captured
@@ -383,7 +382,6 @@ cat > "$NOBND/.specify/aspect-state.md" <<'HEAD'
 ## Current state
 Band: 1 (open)
 Profile: Presale — picked 2026-08-13 (P-O0)
-Budget: 50000 USD  (sources/brief.md §2)
 Client label: PoC  (sources/brief.md §1)
 Scope decisions: none found
 Cross-cutting: XO-1 — language: English (engagement default — framework law, D-O74) — default

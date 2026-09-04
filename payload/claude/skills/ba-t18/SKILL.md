@@ -60,7 +60,7 @@ The event set, each with its ground:
 | **post-call** | an ingestion closed: a brief newly `Scoped` or supplemented means scope knowledge changed |
 | **delivery learnings** | a cycle closed, or a gate finding named "a Band-2 allocation act" — the BA's decision to rerun, not a signal class |
 | **priority shift** | BA-declared: a sponsor or market change. The declaration itself is the trigger, and it is logged as the entry's trigger |
-| **scope-frame** | the scope frame is set or changed at P-O0b (scope-frame selection): a budget appears or changes, the delivery boundary moves, or the capacity check fails against the current composition. You **propose** the reallocation with its basis; every mechanic below is unchanged |
+| **scope-frame** | the scope frame is set or changed at P-O0b (scope-frame selection): the delivery boundary moves, or a scope decision, cross-cutting obligation or acceptance shape enters or changes (the envelope and the capacity check retired — orchestrator D-O105). You **propose** the reallocation with its basis; every mechanic below is unchanged |
 
 **Never this run's ground:** feature sequencing inside a phase, and next-feature
 selection — both BA acts at the roadmap.
@@ -76,10 +76,11 @@ in the briefs, connection count, constraint load. **Never numeric estimation:**
 story points, day counts and velocity are delivery ground and deliberately not
 this technique's.
 
-**The capacity check is no exception.** Its rough sizing (P-O0b — scope-frame
-selection) lives **only in this run's advisory prose** and enters no artifact —
-not the roadmap, not a WBS, not a spec. The depth rule stands exactly as
-written.
+**No exception remains to name.** The capacity check that once sized the
+composition in advisory prose is retired with its module (orchestrator
+D-O105), and **an estimate of any provenance — a stated budget, a ballpark, an
+architect's sizing — is delivery ground the run never reads.** The depth rule
+stands exactly as written.
 
 **Must NOT expand into:**
 
@@ -95,8 +96,8 @@ written.
 - **retiring or creating epics.** An epic leaving scope is proposed as a routed
   pair on the T-17 — Epics decomposition side — graduation reversed. **`Later`
   is a phase, not an exit.**
-- **writing a number into any artifact.** Capacity figures are advisory prose
-  and nothing else.
+- **writing a number into any artifact, or reading one as allocation ground.**
+  An estimate of any provenance is delivery ground the run never reads.
 
 ## The four factors — the whole rationale vocabulary
 
@@ -112,10 +113,10 @@ Every reason is tagged with the factor (or factors) that decided it:
 An untagged reason is not a reason. If none of the four decided it, the honest
 entry says which BA judgment did.
 
-**The budget envelope enters inside value vs. effort**, as its constraint
-ground — a reason may name it directly (`reason: envelope`). **No fifth factor
-is created:** the four above are locked, and effort already owns the constraint
-side.
+**No envelope enters any factor** (the money left the frame —
+orchestrator D-O105): the constraint side of value vs. effort reads **estate
+evidence only**, no fifth factor exists, and the four locked factors stand
+exactly as locked.
 
 ## The write discipline — one file, three writers
 
@@ -144,8 +145,8 @@ line in the roadmap.
    epics they graduated into; **standing fence rows** are the acceptance
    cross-check's subjects below
 7. `.specify/aspect-state.md` — the ledger head's scope-frame fields:
-   `Boundary:` · `Budget:` · `Scope decisions:` · `Acceptance shapes:` ·
-   `Parameters:` · the derived `Capacity:`. **Read-only.** This run never
+   `Boundary:` · `Scope decisions:` · `Acceptance shapes:`. **Read-only.**
+   This run never
    writes a ledger. The `Scope decisions:` line is ground the four locked
    factors read, **never a fifth factor**, and the `Acceptance shapes:` line
    is **the same class of ground** — an `AS-<n>` is read by the factors, never
@@ -164,7 +165,36 @@ line in the roadmap.
    is measured from.
 
 3. **Framework act — the recommendation.** Per epic a phase and a reason tagged
-   with its deciding factor(s). Rendered **as the diff**:
+   with its deciding factor(s).
+
+   **The first phase composes on necessity alone (orchestrator
+   D-O104), the walking skeleton now the whole of the seat test.** The key
+   business need is the canvas's Problems and the Objectives they link to
+   (`P-n → O-n`), narrowed by any statement in the material or a standing
+   `SD-<n>` that names the engagement's one feature; the first phase is **the
+   least set of epics with which that need is met by a complete flow** — the
+   journey runs from its first step to the outcome the need names and never
+   stops halfway — and an epic earns a first-phase seat on **one ground only**:
+   the flow cannot complete without it, as the row on the slice or its
+   dependency. **Every other cited row allocates to a later phase** —
+   `Phase 2`… or `Later` — so the roadmap always carries the whole scope and
+   nothing is dropped to compose lean. A capability the client hard-requested
+   that the flow does not need is **recorded ground and a named candidate,
+   never a seat** (elicitation principle 4 — D15): it allocates outside the
+   first phase with its request on the record, and the advisory names it at
+   step 4 so the BA may direct it in through the existing `BA-directed`
+   machinery; a standing SD that places an epic in the first phase pins as
+   `BA-directed (SD-<n>)` — never contested, the consequence named. Where the
+   material names more than one need and nothing ranks them, compose the first
+   phase on the severest `P-n` line's objective, state the choice in the basis
+   line, and the BA rules it at the step-4 approval — **no new stop**.
+
+   **Lean needs no act (orchestrator D-O106):** a run with no directive, no
+   standing SD and the boundary at its default composes exactly this and the
+   proposal bills it; widening is an explicit, logged act — a `BA-directed`
+   row, an SD, a boundary switch — never a default and never a silence.
+
+   Rendered **as the diff**:
 
    - **changed rows** in `from → to` form, each with its factor-tagged reason
    - **held rows** on one line
@@ -177,30 +207,37 @@ line in the roadmap.
    **The scope-frame advisory — one per run, on the record.** Visibility, never
    a block; the BA's call stands.
 
-   - *Number-free form, always.* Name every epic sitting in a phase **inside the
-     delivery boundary** without a trace to either legitimacy test — the product
-     cannot meet its business goal without it, or the client hard-requested it
-     in the docs — and say what is missing.
+   - *Number-free form, always.* Name every epic sitting in the **first phase**
+     without a trace to the **necessity test** — the flow the key business need
+     names cannot complete without it (the former test (i), now the
+     whole of the seat test — orchestrator D-O104) — and say what is missing; and **name every
+     hard-requested epic the first phase leaves out in the same list, tagged
+     `(request)` beside its `ADV-<n>` id**, so the lean cut is visible where it
+     was made (orchestrator D-O104). The former second test — a hard request in the docs —
+     is **a request flag, no longer a seat**: an epic sitting in the first
+     phase on a request alone is a named finding, not a legitimate row. The
+     capacity comparison that once rode here is retired with its module
+     (orchestrator D-O105).
    - *The class reads mechanically.* A `[stated]` row carrying a hard-request
-     citation satisfies the second test on its face. **`[inferred]` rows inside
-     the boundary are the advisory's first-named candidates — first-named,
-     never disqualified:** an `[inferred]` row the product cannot meet its goal
-     without passes the first test exactly as a stated one does. The two tests
-     are the composition half of **principle 4**; the class makes them
-     checkable at the row, and settles nothing on its own.
+     citation carries the flag on its face. **`[inferred]` rows inside the
+     first phase are the advisory's first-named candidates — first-named,
+     never disqualified:** an `[inferred]` row the flow cannot complete
+     without passes the necessity test exactly as a stated one does. The
+     necessity test is the composition half of **principle 4**; the class
+     makes it checkable at the row, and settles nothing on its own.
    - *The SD reading rule.* A standing SD trimming a capability is
-     **the later, negotiated client statement** — an earlier hard-request
-     citation **no longer satisfies the second test *on its face*** for that
-     capability, and an epic sitting inside the boundary on that citation alone
-     is a **first-named advisory candidate — first-named, never disqualified:**
-     the first test still passes it where the product cannot meet its goal
-     without it. The controlling-statement law is elicitation principle 4's
-     (D13), cited and never restated.
+     **the later, negotiated client statement** — the earlier request is
+     superseded and **its flag falls silent for that capability**, while an
+     epic the trimmed flow still cannot complete without stays **first-named
+     on the necessity test alone**. The controlling-statement law is
+     elicitation principle 4's (D13), cited and never restated.
    - *The acceptance cross-check — the third reading rule, beside the
      ground-class and the SD rule.* Check **every deferring row this run
      touches or stands over** — an epic **allocated or held outside the
-     delivery boundary**, every **slide-down candidate** the capacity
-     comparison names, every **`BA-directed (SD-<n>)`** trim, and every
+     delivery boundary** (the lean cut's left-out rows first among them —
+     D-O104; the slide-down candidates the capacity comparison once named
+     are an empty class since D-O105), every **`BA-directed (SD-<n>)`**
+     trim, and every
      **standing `out-of-scope.md` fence row** — against the head's
      **`standing` `AS-<n>`** entries. **A match is a named finding in the same
      decision list below:** the row cites **both sides verbatim** — the
@@ -217,14 +254,9 @@ line in the roadmap.
      there, and a ruled one is not. The cross-check principle is
      orchestrator §8.1's (D-O79), consumed here by reference and never
      restated.
-   - *With `Capacity check: on`,* add the rough comparison, explicitly
-     assumption-grade: `MVP phase ≈ <n> eng-h against capacity ≈ <m> — rough,
-     assumption-grade. Slide-down candidates: <epics>.` With the check `off` the
-     advisory stands in its number-free form and **nothing else changes.**
-
    Its record is this run's output and the plans-file run log — **never the
-   roadmap.** That file carries outcomes and reasons only, and a capacity figure
-   written into it would breach the numbers-in-advisory-prose-only rule.
+   roadmap.** That file carries outcomes and reasons only, and **no figure
+   enters it from any source.**
 
    **The advisory is a decision list, not prose.** Every finding the advisory
    names takes an **`ADV-<n>`** id from the orchestrator's register — the
@@ -259,9 +291,9 @@ line in the roadmap.
 
    | Bucket | What you do with it |
    |---|---|
-   | **phase-shaped** — "Authentication to Phase 2", "keep all AI epics in MVP, slide the rest", "squeeze MVP to fit 40K" | Translate into a move list, **echo it back** (*"understood as: …"*), and apply it as **pinned rows tagged `BA-directed`** in the diff |
-   | **not phase-shaped** — a split, a merge, a new epic, "cut it entirely", a cost question | **Routed as proposals, never executed inline.** A set change proposes a T-17 (Epics decomposition) rerun · "cut it entirely" proposes `Later` or a retire act, the BA picking · a cost question is answered in capacity-check prose, not a diff |
-   | **impossible** — an unknown epic, an off-vocabulary phase, self-contradicting directives | **Named lines in the response**, never a silent skip |
+   | **phase-shaped** — "Authentication to Phase 2", "keep all AI epics in MVP, slide the rest", "the first phase is the booking flow and nothing else" | Translate into a move list, **echo it back** (*"understood as: …"*), and apply it as **pinned rows tagged `BA-directed`** in the diff |
+   | **not phase-shaped** — a split, a merge, a new epic, "cut it entirely", a cost question | **Routed as proposals, never executed inline.** A set change proposes a T-17 (Epics decomposition) rerun · "cut it entirely" proposes `Later` or a retire act, the BA picking · a cost question — *what fits 40K* — is **not answered at all**: the run has no sizing to answer it with (D-O105), and it says so, asking for the moves instead |
+   | **impossible** — an unknown epic, an off-vocabulary phase, self-contradicting directives, a directive phrased only in money (*squeeze MVP to fit 40K* names no phase and no epic) | **Named lines in the response**, never a silent skip |
 
    **Never contest a directive.** Compute its consequences through the four
    factors and render those as recommendations with reasons. A directive that
@@ -309,7 +341,7 @@ line in the roadmap.
    ```
    What I need from you:
    1. The allocation — approve the diff as shown?
-      a. approve it (recommended) — it fits the boundary and the capacity advisory
+      a. approve it (recommended) — it fits the boundary
       b. edit it — say which epic moves to which phase
    2. ADV-1 — "<finding, one line>" (a scope warning: <plain gloss>): what do you want done?
       a. hold as advisory — no move; it stays visible and returns next run (recommended)
@@ -414,9 +446,10 @@ inside a phase · never estimates in numbers · never writes a span of phases ·
 never guesses past an open scope question · never skips the log entry on a
 no-change rerun · never rewrites a standing entry · never approves its own
 recommendation · **never answers the scope-advisory decision list on the BA's
-behalf, and never lands an advisory-directed move as an inline phase edit** · never fires a health run · **never writes a capacity figure
-into the roadmap, a WBS, a spec or any other artifact** — the advisory's numbers
-live in its prose and nowhere else · never sets or edits the scope frame, and
+behalf, and never lands an advisory-directed move as an inline phase edit** · never fires a health run · **never writes a number
+into the roadmap, a WBS, a spec or any other artifact, and never reads one as
+allocation ground** — an estimate of any provenance is delivery ground the run
+never reads · never sets or edits the scope frame, and
 never writes a ledger · never contests a BA directive, and never executes a
 directive that is not phase-shaped inline.
 

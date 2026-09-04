@@ -64,15 +64,16 @@ sources: pasted content and attachments are captured exactly like a read
 channel.
 
 **Before you render — auto-pickup.** Scan the sources on hand — client
-documents, a Slack extract, the canvas — for budget and scope constraints, and
+documents, a Slack extract, the canvas — for scope constraints — the boundary,
+decisions, obligations, acceptance shapes; **no amount** (D-O105) — and
 **pre-fill the frame's values with their citations**. Cite-or-mark governs:
 every value carries a citation or an explicit `open — no source material`.
-Never guess a value. **`none stated` is a legal, recorded answer** for the
-envelope — it becomes a named client question, never silence.
+Never guess a value. **`none stated` is a legal, recorded answer** — it becomes
+a named client question, never silence.
 
 **The scope-decision harvest (D-O65) — auto-pickup extends from values to
 decisions.** Scan the same sources for **negotiated engagement-scope decisions**
-and pre-fill line 4, one entry per decision:
+and pre-fill line 3, one entry per decision:
 `SD-<n> — <the decision, one line> (<verbatim citation>)`. **The class is narrow
 by ruling:** a decision *agreed between client and provider about engagement
 composition* — an option selection among proposals, an explicit trim, an agreed
@@ -95,7 +96,7 @@ floor (D-O42), so SD confirmation is BA-only under any grant.
 obligations.** Before rendering the block, scan the same sources for
 **cross-cutting obligations** — the five classes of the head's `Cross-cutting:`
 line: **language · device · accessibility · branding · compliance** — and
-pre-fill line 5 with one entry per obligation:
+pre-fill line 4 with one entry per obligation:
 `XO-<n> — <class>: <value, one line> (<verbatim citation>)`. Cite-or-mark
 applies unchanged: **every harvested obligation carries its verbatim
 citation**, and the verbatim ground lives in the cited source artifact — no new
@@ -104,7 +105,7 @@ on the same line as
 `XO-? — <candidate, one line> (<citation>) — keep or discard`, resolved in the
 same single Frame reply.
 
-**The stop count is untouched here too:** line 5 rides inside the P-O0b block —
+**The stop count is untouched here too:** line 4 rides inside the P-O0b block —
 one render, one reply (D-O42, amended on the record by D-O73 exactly as D-O65
 amended it, never superseded), no new prompt point, and the ≤ 8 Presale budget
 stands arithmetically untouched. **Autonomy is untouched by composition:** P-O0b
@@ -115,7 +116,7 @@ any grant.
 acceptance shapes.** Before rendering the block, scan the same sources for
 **engagement-level acceptance shapes** — a pass list, success criteria, a
 definition of done, an acceptance table governing the delivery as a whole — and
-pre-fill **line 6** with one entry per **item**:
+pre-fill **line 5** with one entry per **item**:
 `AS-<n> — <acceptance item, one line> (<verbatim citation>)`.
 
 **The class is narrow by ruling:** it names what the client will accept the
@@ -133,7 +134,7 @@ it renders on the same line as
 `AS-? — <candidate, one line> (<citation>) — keep or discard`, resolved in the
 same single Frame reply.
 
-**The stop count is untouched here too:** line 6 rides inside the P-O0b block —
+**The stop count is untouched here too:** line 5 rides inside the P-O0b block —
 one render, one reply (D-O42, amended on the record by D-O78 exactly as D-O65
 and D-O73 amended it, never superseded), no new prompt point, and the ≤ 8
 Presale budget stands arithmetically untouched. **Autonomy is untouched by
@@ -288,13 +289,10 @@ Then the scope frame, in the same render, immediately after it, exactly:
 ```
 Scope frame — before any aspect opens (P-O0b — scope-frame selection):
 1. Delivery boundary: <phase(s) of the ladder this engagement pays for> — default MVP
-2. Budget envelope: <amount + currency> | none stated
-3. Client label: <free text — how the client names it: PoC, prototype, pilot…> [cite | BA-supplied | open — no source material]
-4. Scope decisions: <SD-<n> — <the decision, one line> (<citation>), per harvested decision> | none found
-5. Cross-cutting: <XO-<n> — <class>: <value, one line> (<citation>), per harvested obligation> | XO-1 English default only
-6. Acceptance shapes: <AS-<n> — <acceptance item, one line> (<citation>), per harvested item> | none found
-Parameters (defaults shown; edit or confirm):
-  Rate: $50/h · Team mix: 3 fullstack eng + 1 QA + 1 BA + 1 PM (eng-share ~60%) · Capacity check: on
+2. Client label: <free text — how the client names it: PoC, prototype, pilot…> [cite | BA-supplied | open — no source material]
+3. Scope decisions: <SD-<n> — <the decision, one line> (<citation>), per harvested decision> | none found
+4. Cross-cutting: <XO-<n> — <class>: <value, one line> (<citation>), per harvested obligation> | XO-1 English default only
+5. Acceptance shapes: <AS-<n> — <acceptance item, one line> (<citation>), per harvested item> | none found
 Waiting for your confirmation. Switchable later; the switch is logged.
 ```
 
@@ -453,10 +451,12 @@ parse the file at all (Scope-S run-1 escape, 17 Aug 2026).
 ### The correction stop — P-O0b re-taken, never a new prompt point
 
 A capture may **contradict or fill** a scope-frame value the BA has just
-confirmed: the documents say `none stated`, the Slack channel's first message
-says ≤ $50K. Where it does, render a **correction proposal** — the field · the
-confirmed value · the captured value with its citation · the frame re-confirmed
-or held.
+confirmed — the Run-1 case, on the line that then carried the envelope: the
+documents said `none stated`, the Slack channel's first message said ≤ $50K.
+That line has since left the frame (D-O105), and **the mechanism stands for
+every line that remains.** Where it fires, render a **correction proposal** —
+the field · the confirmed value · the captured value with its citation · the
+frame re-confirmed or held.
 
 This is **P-O0b — scope-frame selection, re-taken**: the frame's own switch act,
 legal at any time and logged as the `scope-frame` event. It is **not a new
@@ -473,8 +473,8 @@ where the two are that pair (the D-O66 precedence principle, by reference).
 
 **P-O0b (scope-frame selection) is a safety-floor act.** No autonomy grant
 reaches it, in any
-profile: the boundary and the envelope are what every later act is measured
-against, and a grant that could set them would be a run choosing its own budget.
+profile: the boundary is what every later act is measured against, and a grant
+that could set it would be a run choosing its own scope.
 Under a standing grant the pre-fill still runs and the block still renders — and
 it still waits for the BA.
 
@@ -522,10 +522,25 @@ project's phase ladder, `MVP` first, numbered phases after it, `Later` as the
 open tail. **PoC and prototype are never boundary or phase values.** They live
 in Client label and nowhere else.
 
-**The machinery reads the boundary and the envelope. The label is
+**The machinery reads the boundary. The label is
 communication, read by nothing.** Its landed home is the canvas —
 T-01 — Discovery canvas framing carries it into §13 Context/Constraints as a
 cited line.
+
+**The first phase is lean by law, and the switch is the boundary (D-O104 ·
+D-O106 — stated at elicitation principle 4 and T-18 — Scope allocation's step 3;
+reached here by citation).** The first phase composes on **necessity alone** —
+the least set of epics with which the key business need is met by a complete
+flow — so the boundary **selects among phases the lean law already composed**:
+`MVP` is the lean proposal, `MVP + Phase 2` is more, and nothing else changes
+between the two — no second switch exists and none is to be built. **Lean is
+the default and needs no act (D-O106):** absent any BA act — no directive, no
+standing SD, no boundary switch, nothing typed — the first phase is the lean
+set, `Boundary:` stands at its default `MVP`, and the proposal bills exactly
+that; widening is always an **explicit, logged act** — a boundary switch at
+P-O0b, a `BA-directed` move at T-18 — Scope allocation's step 4, a standing
+SD — never a default
+and never a silence.
 
 **The cross-cutting register — `Cross-cutting:` (D-O72).** One **`XO-<n>`**
 entry per cross-cutting obligation — a constraint the client's material states
@@ -614,8 +629,10 @@ silently against a `standing` acceptance-shape entry.**
 **The deferring acts, named:**
 
 - an epic **allocated or held outside the delivery boundary** — a
-  **T-18 — Scope allocation** phase move or held row;
-- a **slide-down candidate**;
+  **T-18 — Scope allocation** phase move or held row, the lean cut's left-out
+  rows first among them (D-O104);
+- a **slide-down candidate** — a class the capacity check once named; empty
+  since D-O105;
 - an **SD-directed trim** — D-O66's application;
 - a **standing `out-of-scope.md` fence row**.
 
@@ -640,35 +657,16 @@ ruled is not a gap — the record is the ruling itself.** **No new prompt point,
 no new stop, no new event kind, no threshold:** the list, the dispositions, the
 register grammar and the gate's blocking law are each consumed as they stand.
 
-**Capacity — two operations, two risk classes.**
-
-- **Envelope → capacity conversion, always on.** Pure arithmetic, no judgment:
-  `envelope ÷ rate = team hours` → team mix → `× eng-share = parallel
-  engineering hours`. It restates a stated constraint in other units and lands
-  as the head's derived `Capacity:` line. **It is not estimation.** Recompute it
-  whenever the envelope or a parameter changes; render `—` where no envelope
-  stands.
-- **The capacity check — a separately removable module, default `on`.**
-  Assumption-grade rough sizing of the phase composition against capacity, with
-  exactly one consumer: T-18 — Scope allocation's advisory text. Two hard
-  limits. **Numbers appear only inside advisory prose** — never in the roadmap,
-  a WBS, a spec, or any other artifact. And **zero tentacles** — no other rule
-  depends on the module: with `Capacity check: off` the advisory degrades to its
-  number-free form and nothing else changes.
-
 Write the pick and the frame into the ledger head:
 
 ```
 Profile: <Discovery | Presale> — picked <date> (P-O0); switches append to Events with a reason
 Sources: <kind — state, per named source>  (captured <date> | named — pending | skipped — <reason> | excluded — <reason> | none)
 Boundary: <ladder value(s) — MVP | MVP + Phase 2 | …> — set <date> (P-O0b); switches append to Events with a reason
-Budget: <amount + currency> | none stated  (<citation | BA-supplied | open — no source material>)
 Client label: <free text — PoC · prototype · pilot…>  (<citation | BA-supplied | open — no source material>)
 Scope decisions: SD-<n> — <the decision, one line> (<citation>) · … | none found
 Cross-cutting: XO-1 — language: English (engagement default — framework law, D-O74) — default · XO-<n> — <class>: <value, one line> (<citation>) — <state> · …
 Acceptance shapes: AS-<n> — <acceptance item, one line> (<citation>) — <state> · … | none found
-Parameters: rate <amount>/h · team mix <…> (eng-share <n>%) · capacity check <on | off>
-Capacity: ~<n> eng-h (envelope ÷ rate × eng-share) | — (no envelope)
 ```
 
 **Switching later is legal, and it is a ledger event with a reason** — never a
@@ -719,7 +717,8 @@ advisory finding through its existing revisit trigger**: nothing new fires.
 
 **A late source brings zero new machinery.** A channel, thread or folder that
 appears mid-band routes its content through the existing ingestion, and a
-budget- or scope-shaped finding fires that same proposal and the same
+scope-shaped finding — a boundary, a decision, an obligation, an acceptance
+shape — fires that same proposal and the same
 **T-18 — Scope allocation** trigger. The capture itself follows the mechanics above unchanged: the
 `Sources:` line appends the source with its state, and the Events entry records
 it.
@@ -760,7 +759,7 @@ Append to `## Events` in the state ledger:
 ```
 <date> · Band 1 entered · Frame · <BA initials> — canvas.md present (presale) | canvas.md produced by T-01 under {…}
   ledgers initialized: six aspects untouched · profile: <Discovery | Presale> (P-O0)
-  scope frame set (P-O0b): boundary <…> · budget <…> · label <…> · capacity <…>
+  scope frame set (P-O0b): boundary <…> · label <…>
 ```
 
 Then render the head (the same view `/ba-status` gives) and name the one act now
@@ -806,9 +805,9 @@ never reads silence as one** · **never captures an artifact standing
 `excluded — <reason>`, never mines one, and never follows a reference to one
 inside any capture — and never lets an encounter go unrecorded** · never
 interprets a capture into the artifact it writes, and never lands one under
-`.specify/memory/` — a capture is verbatim, and `sources/` is its home · never writes a capacity figure into the canvas, the roadmap,
-a WBS or any other artifact: capacity is a head line and advisory prose, nothing
-else.
+`.specify/memory/` — a capture is verbatim, and `sources/` is its home · never writes an estimate figure of any provenance into the canvas,
+the roadmap, a WBS or any other artifact, and never reads one as allocation
+ground: an estimate is delivery ground (D-O105), and no head line carries one.
 
 **Mode read (framework-wide):** before the first act of any session, read the
 aspect-state head — the Profile and Auto lines govern.

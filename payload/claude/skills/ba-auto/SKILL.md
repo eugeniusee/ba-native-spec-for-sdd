@@ -41,7 +41,7 @@ Every checkpoint still happens. The table says who states it.
 
 | Stop | Under the grant |
 |---|---|
-| **P-O0b — scope-frame selection** | **Never AUTO — the safety floor.** Auto-pickup still pre-fills every value with its citation and the block still renders; it then waits for the BA, standing grant or not. The boundary and the envelope are what every later act is measured against, and a grant that could set them would be a run choosing its own budget |
+| **P-O0b — scope-frame selection** | **Never AUTO — the safety floor.** Auto-pickup still pre-fills every value with its citation and the block still renders; it then waits for the BA, standing grant or not. The boundary is what every later act is measured against, and a grant that could set it would be a run choosing its own scope |
 | P-O2 — plan composition, and the route `go` | Compose **as-recommended from the snapshot**, AUTO. The grant **is** the `go`. Record the snapshot verbatim — it is the ratification's evidence |
 | Defer batches · the consolidated defer-confirm | Accepted AUTO. **Unclear stays an Open Question, never an invention** |
 | P-O4 — clearing confirmation | All criteria met → clear AUTO. Any miss → **auto-AW**: a full waiver record, misses named, revisit trigger `BA ratification sweep (auto off)`. An auto-AW whose every miss resolves to an out-of-profile technique's artifact carries its **expected profile debt** class into the record and the band-boundary report, where it renders as the class and not as a finding |
@@ -133,8 +133,8 @@ Three acts a grant never reaches, in every profile:
 
 The first two are the acts where a false pass is a security incident or a
 scope escape. The third is the constraint every later act is measured against:
-a boundary or an envelope the framework set for itself would be a run choosing
-its own budget. Three acts the BA answers for personally. **The certified-text
+a boundary the framework set for itself would be a run choosing
+its own scope. Three acts the BA answers for personally. **The certified-text
 check is not on the floor:** a script containing no judgment cannot be listed
 as an act the BA answers for personally — it runs as implementation's own
 first act, automatically, at take-up (gate §11.2), and a grant reaches it no

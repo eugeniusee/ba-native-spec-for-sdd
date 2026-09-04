@@ -1105,8 +1105,9 @@ has "$RULES_SRC" "the never-numeric guarantee (D-O44(b)) is untouched" \
 # ── 5g. the cross-cutting obligations register (D-O72–D-O74) ────────────────
 #
 # EC-01 + owner ruling Р8. The register is a head line with a closed class set
-# and a closed state vocabulary; the capture is line 5 of the pinned P-O0b
-# block; the language obligation materializes as a spec unit or it is not
+# and a closed state vocabulary; the capture is line 4 of the pinned P-O0b
+# block (line 5 until D-O105 shortened it); the language obligation
+# materializes as a spec unit or it is not
 # carried at all. The head-line grammar is check-ledger.py's L17 (live below);
 # the epic half is check-band2-artifacts.py's B104, run from check-spine.sh.
 
@@ -1135,10 +1136,10 @@ has "$RULES_SRC" "the audit's \`OB-<nnn>\` register is per-run and derived" \
 has "$FRAME" "the source audit's \`OB-<nnn>\` register is per-run and" \
     "…and ba-frame states the disjointness at its own site"
 
-# the capture — line 5 of the pinned block, one render one reply
-has "$RULES_SRC" "5. Cross-cutting: <XO-<n> — <class>: <value, one line> (<citation>), per harvested obligation> | XO-1 English default only" \
-    "§8.1's pinned P-O0b block carries line 5 (D-O73)"
-has "$FRAME" "5. Cross-cutting: <XO-<n> — <class>: <value, one line> (<citation>), per harvested obligation> | XO-1 English default only" \
+# the capture — line 4 of the pinned block, one render one reply
+has "$RULES_SRC" "4. Cross-cutting: <XO-<n> — <class>: <value, one line> (<citation>), per harvested obligation> | XO-1 English default only" \
+    "§8.1's pinned P-O0b block carries line 4 (D-O73; moved by D-O105)"
+has "$FRAME" "4. Cross-cutting: <XO-<n> — <class>: <value, one line> (<citation>), per harvested obligation> | XO-1 English default only" \
     "…and ba-frame's block renders it verbatim"
 has "$RULES_SRC" "XO-? — <candidate, one line> (<citation>) — keep or discard" \
     "…an ambiguous candidate asked inside the block, never guessed"
@@ -1223,7 +1224,8 @@ fi
 # EC-02. Deferring acts never consulted the acceptance/pass/success lists the
 # sources state, so an item an acceptance list required could be postponed with
 # a clean record and the conflict surfaced at delivery. D-O78 lands the register
-# and its harvest at line 6 of P-O0b; D-O79 states the cross-check once, at the
+# and its harvest at line 5 of P-O0b (line 6 until D-O105 shortened the
+# block); D-O79 states the cross-check once, at the
 # frame surface, every deferring act reaching it by reference. The head-line
 # grammar is check-ledger.py's L19 (live below); the T-18 consumption is
 # catalogue-b6's D-B6-16–D-B6-17, asserted from check-spine.sh; the standing
@@ -1250,10 +1252,10 @@ has "$FRAME" "is **three entries**, each" "…and ba-frame compiles the grain"
 has "$RULES_SRC" "the audit's \`OB-<nnn>\` register is per-run and derived" \
     "…the runtime register deliberately disjoint from the audit's (D-O78)"
 
-# the capture — line 6 of the pinned block, one render one reply
-has "$RULES_SRC" "6. Acceptance shapes: <AS-<n> — <acceptance item, one line> (<citation>), per harvested item> | none found" \
-    "§8.1's pinned P-O0b block carries line 6 (D-O78)"
-has "$FRAME" "6. Acceptance shapes: <AS-<n> — <acceptance item, one line> (<citation>), per harvested item> | none found" \
+# the capture — line 5 of the pinned block, one render one reply
+has "$RULES_SRC" "5. Acceptance shapes: <AS-<n> — <acceptance item, one line> (<citation>), per harvested item> | none found" \
+    "§8.1's pinned P-O0b block carries line 5 (D-O78; moved by D-O105)"
+has "$FRAME" "5. Acceptance shapes: <AS-<n> — <acceptance item, one line> (<citation>), per harvested item> | none found" \
     "…and ba-frame's block renders it verbatim"
 has "$RULES_SRC" "AS-? — <candidate, one line> (<citation>) — keep or discard" \
     "…an ambiguous candidate asked inside the block, never guessed"
@@ -1519,9 +1521,12 @@ has "$RULES_DOC" "## 46. Review record (v0.42 → v0.43)" \
 has "$RULES_DOC" "D-O103" "…and the execution-mechanism ruling"
 has "$RULES_DOC" "## 47. Review record (v0.43 → v0.44)" \
     "…and §47, the review record that carries it"
-head -2 "$RULES_DOC" | grep -q 'v0\.44' \
-  && ok "the header states the live edition — v0.44, the procedure is the skill" \
-  || bad "the header does not name v0.44: the edition and the change record disagree"
+has "$RULES_DOC" "D-O104–D-O106" "…and the first-phase ruling block"
+has "$RULES_DOC" "## 48. Review record (v0.44 → v0.45)" \
+    "…and §48, the review record that carries it"
+head -2 "$RULES_DOC" | grep -q 'v0\.45' \
+  && ok "the header states the live edition — v0.45, the first phase is lean by law" \
+  || bad "the header does not name v0.45: the edition and the change record disagree"
 has "$RULES_DOC" "D-O45–D-O49" "…and the source-inventory ruling block"
 has "$RULES_DOC" "D-O50" "…and the change record names the unreadable-spec ruling"
 has "$RULES_DOC" "D-O51–D-O52" "…and the continuity-under-a-grant ruling block"
@@ -1531,11 +1536,11 @@ has "$RULES_DOC" "v0.20" "…and the edition the candidate scan produced"
 has "$RULES_DOC" "D-O54" "…and the scan-method ruling"
 
 # the ruling block is contiguous from the live high-water mark: no gap, no reuse
-python3 - "$RULES_DOC" <<'PYX' && ok "the D-O block runs 1…103 with no gap and no skipped number" \
+python3 - "$RULES_DOC" <<'PYX' && ok "the D-O block runs 1…106 with no gap and no skipped number" \
   || bad "the D-O decision block is not contiguous — a number is missing or reused"
 import re, sys
 seen = {int(n) for n in re.findall(r"D-O(\d+)", open(sys.argv[1], encoding="utf-8").read())}
-sys.exit(0 if seen == set(range(1, 104)) else 1)
+sys.exit(0 if seen == set(range(1, 107)) else 1)
 PYX
 
 # ── 6b. Band-2 plan composition — the record home has its producer (D-O55) ──

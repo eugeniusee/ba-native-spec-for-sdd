@@ -88,10 +88,11 @@ declined.
 The source inventory, the profile picker and the scope-frame block render
 **together, as one stop** (D-O42, extended by D-O45). Auto-pickup pre-fills
 the frame's values with their citations from the material on hand — delivery
-boundary, budget envelope, client label, the parameters — and the BA answers all
+boundary, client label, the scope decisions, cross-cutting obligations and
+acceptance shapes; no amount (D-O105) — and the BA answers all
 three blocks in **one reply**. `Boundary:`,
-`Budget:`, `Client label:`, `Scope decisions:`, `Parameters:` and the derived
-`Capacity:` line land in the head beside `Profile:`. The frame is a safety-floor act: no autonomy
+`Client label:`, `Scope decisions:`, `Cross-cutting:` and
+`Acceptance shapes:` land in the head beside `Profile:`. The frame is a safety-floor act: no autonomy
 grant ever takes it (§10.7), so it is a BA interaction in every mode — this one.
 
 Under Presale the canvas confirms as **one artifact-level batch** — one confirm
@@ -99,8 +100,10 @@ per artifact, never per section (D-O14 profile default), so the drafting does
 not spend the budget a section at a time.
 
 *Note — the conditional correction stop is not a ninth act.* Where a capture
-contradicts or fills a frame value the BA just confirmed — the documents say
-`none stated`, Slack says ≤ $50K — the framework renders the correction proposal
+contradicts or fills a frame value the BA just confirmed — the Run-1 case, on
+the line that then carried the envelope; the line has since left the frame
+(D-O105) and the mechanism stands for every line that remains — the framework
+renders the correction proposal
 and **re-takes P-O0b**, the frame's own switch act. That is one stop, drawn from
 interaction 8's slack (7 + 1), and it fires only on a contradiction: captures
 consistent with the frame produce no stop at all.

@@ -14064,3 +14064,341 @@ reasons; D-3 is routed rather than resolved.
   `claude-block.md`.
 - **`P-O10` and `P-O0b` are invisible to `check-register.sh`'s rule-5 sweep** —
   inherited from 0.1.51, one-digit regex, untouched here.
+
+## The First Phase Is Lean By Law — the money leaves the frame, necessity the whole seat test, the boundary the only switch · orchestrator v0.45 (D-O104–D-O106 · §48) · catalogue-b6 v0.9 · elicitation v0.11 (D15) · package 0.1.53 · 4 September 2026 · GREEN
+
+**Session prompt:** Lane A — compile the 2026-09-04 methodology drop (EC-24 ·
+D-O104–D-O106 · D-B6-18–D-B6-20 · D15). The frame loses its money — the pinned
+P-O0b block down to five lines, byte-equal to §8.1's, the head's `Budget:` ·
+`Parameters:` · `Capacity:` lines retired, auto-pickup with no amount, D-O44's
+capacity section deleted whole; T-18's step 3 gains the first-phase law with its
+default sentence and the advisory recomposes — one seat test, the `(request)`
+flag, number-free always, the trigger narrowed; the personas compile principle 4's
+one-test form; the fixtures and both mirror-shaped test ledgers drop the retired
+lines; the edition pins move; the field note's §5 compiles as the regression
+floor. Documents before code: **nothing was designed in this session** — every
+unit derives from the three documents at HEAD, and every choice the text does not
+fix is a numbered divergence below.
+
+**What EC-24 was, and what closes here.** The AI-SDD team sync of early September,
+two estates read together: on the Nutrivity run the framework's first phase came
+out **wider than the BA's four-screen cut with every extra row legitimate** —
+principle 4's second test (*hard-requested*) seated any epic a `[stated]` citation
+covered, and a client brief hard-requests in breadth; the one counterweight was a
+capacity advisory that moves nothing at `apply all`. On `presale-qr-code` the
+envelope moved the administration epic while the architect's ballpark kept part of
+it, on ground the corpus could not reconcile. The rulings compiled here: the first
+phase composes on **necessity alone** (D-O104), **the money leaves the frame**
+(D-O105), and **the switch is the boundary — lean the default, needing no act**
+(D-O106).
+
+**Preconditions.** Line 2 read `v0.45`; `## 48. Review record (v0.44 → v0.45)`
+stood; catalogue-b6 line 2 read `v0.9`; elicitation line 2 read `v0.11`; the EC-24
+field note existed — all five held before a byte moved. `VERSION` read `0.1.52` as
+expected. The base had moved and is D-1 below. The baseline was RED wider than
+stated and is D-2.
+
+### The census — found vs expected, re-established by grep at HEAD before any edit
+
+Every expected row of the target set was found where the prompt put it, with four
+findings: `goal-blocking` is not in `ba-t18` (the grouped census row distributes
+unevenly across its three files — harmless); `or (ii)` was already at 0 everywhere
+(the old wording spelled the two tests in prose, no numerals); `hard-requested it
+in the docs` wrapped across a line break in `ba-t18`, so the single-line grep was
+already 0 at base — the substantive kill is the advisory recompile, and the floor
+asserts both negatives whitespace-collapsed so a re-introduction in any wrapping
+fires; and the census **missed four live-law carriers** the falsification sweep
+caught mid-pass — D-8 below. The mirrors carry no frame block and no head line
+(verified at 0, as the census said); `check-ledger.py` parses none of the retired
+lines (`HEAD_LINES` is the standing-instrument group — nothing to retire, no
+negative to seed); `check-status.sh` pins no `Capacity:` render; §10.4's nine
+numbered lines carry no retired value, so the prompt's do-not-edit conditional
+never fired.
+
+### The units, per carrier
+
+- **`ba-frame`** — the pinned P-O0b block **spliced from §8.1 at HEAD, byte-equal**
+  (never retyped); auto-pickup scans for *the boundary, decisions, obligations,
+  acceptance shapes; no amount (D-O105)* and `none stated` loses its
+  for-the-envelope clause; the harvests pre-fill lines **3 · 4 · 5** with the
+  stop-count sentences moved to match (D-5 registers the doc's own unmoved
+  remnant); the D-O49 worked case recompiled historical — *the line has since left
+  the frame, and the mechanism stands for every line that remains*; the safety
+  floor and boundary paragraphs lose *and the envelope* (a grant that could set
+  the boundary chooses *its own scope*); §8.1's lean-by-law paragraph compiled at
+  the boundary-value site with the D-O106 default sentence; D-O79's deferring acts
+  extended on the record — *the lean cut's left-out rows first among them
+  (D-O104)*, the slide-down candidate *a class the capacity check once named;
+  empty since D-O105*; the **Capacity — two operations section deleted whole**,
+  nothing else moved (D-O44's own removability clause, executed); the head-write
+  block loses its three money lines; the band event drops `budget <…> ·
+  capacity <…>`; the never-list closes on *an estimate figure of any provenance …
+  never reads one as allocation ground*; the late-source paragraph enumerates the
+  four scope grounds instead of *budget- or scope-shaped*.
+- **`ba-t18`** — the scope-frame trigger narrowed to *the delivery boundary moves,
+  or a scope decision, cross-cutting obligation or acceptance shape enters or
+  changes*; the Depth exception inverted to **No exception remains to name**; the
+  must-not row *writing a number into any artifact, or reading one as allocation
+  ground*; the envelope-in-factor paragraph replaced by **No envelope enters any
+  factor** — estate evidence only, the four locked factors standing; inputs item 7
+  down to `Boundary:` · `Scope decisions:` · `Acceptance shapes:`; **step 3 gains
+  the first-phase law verbatim-where-pinned with the severest-`P-n` tie-break and
+  the default sentence — Lean needs no act (orchestrator D-O106)**; the advisory
+  recomposed — the seat test *the necessity test*, every left-out hard request
+  named in the same list tagged `(request)` beside its `ADV-<n>` id, the class
+  read and the SD rule restated under the one test (*its flag falls silent*), the
+  cross-check's deferring acts extended and the slide-down class marked empty, the
+  `Capacity check: on` bullet deleted, *no figure enters it from any source*; the
+  buckets — *the first phase is the booking flow and nothing else* replacing the
+  money-phrased example in bucket 1, the cost question **not answered at all** in
+  bucket 2, *a directive phrased only in money … names no phase and no epic* named
+  in bucket 3; the step-4 example option and the never-list recompiled. The
+  walking-skeleton factor row stands **byte-identical**.
+- **`ba-status`** — the head exhibit loses its three money lines; the nine pinned
+  §10.4 lines untouched.
+- **`aspect-state.md` template** — the comment block's scope-frame paragraph
+  recompiled (*No head line carries an amount*, D-O105 cited; D-O44 dropped from
+  the citation set), the head loses its three lines, and `Auto:` now stands
+  directly after `Acceptance shapes:` — D-O38's placement rule as §2.4 states it.
+- **Personas (`ba-discovery` · `ba-analyst`)** — principle 4's admission sentence
+  compiled in the one-test form: *passes the necessity test … (goal-blocking); a
+  hard request the goal does not need is recorded ground and a named candidate,
+  never a seat — named by the composing run (D15)*; D13's sentence with the one
+  word moved (*The test reads*); the analyst's grain sentence names the Deferred
+  section as the flag's landing at story grain. Neither persona names the T-18
+  advisory, so the `(request)` token lands in neither (verified — the conditional
+  did not fire).
+- **`ba-auto` · `ba-orchestrator` · `ba-t18/references/example.md`** — the D-8
+  census misses: the §10.7 policy row and both floor-sentence compiles recomposed
+  to the doc's boundary-only wording; the example's envelope-driven third
+  allocation recomposed as a boundary-move no-change rerun derived from D-O106's
+  own words, the AUTO-tail lesson byte-kept.
+- **Fixtures and mirror-shaped test artifacts** — `tests/presale-path.md` (the
+  frame narrative and Green-when hold at five lines; the correction-stop note
+  historical), the `qr-boundary` ledger (three head lines and the event's
+  `no envelope stated` clause dropped; the synthetic-fixture comment recompiled;
+  no client text, no `[stated]` marker, no slug added), and `check-wbs.sh`'s two
+  seeded heredoc ledgers (the `Budget:` line dropped from each).
+- **Untouched by ruling** — `ba-t01` (+ its example and the canvas template) and
+  `ba-change`: D-7 and D-6 below. Both mirrors: zero hits, untouched.
+  `ba-t18/references/example.md`'s Allocation 1 basis line already lean, as the
+  sheet's untouched micro-example says.
+
+### The pins moved, and the checks
+
+- `check-orchestrator.sh` — header pin `v0.44` → `v0.45` (*the first phase is lean
+  by law*), D-O contiguity `range(1, 104)` → `range(1, 107)` with its message at
+  1…106, the two §8.1 block-line pins moved (`5. Cross-cutting` → `4.`,
+  `6. Acceptance shapes` → `5.`, both sites each, comments moved with them), and
+  the estate-idiom rows added: `D-O104–D-O106` and `## 48. Review record
+  (v0.44 → v0.45)`. 634 → 636 assertions.
+- `check-humanizer.sh` — the second header-pin site moved (the 0.1.47 two-site
+  lesson); its trailer pin is D-4 below.
+- `check-spine.sh` — the three advisory pins moved to the one-test wording
+  (*inside the first phase*, *its flag falls silent for that capability*,
+  *first-named on the necessity test alone*); count unchanged at 286.
+- **Sweep result:** no other `v0.44` orchestrator pin, no b6 `v0.8` pin, no
+  elicitation `v0.10` pin anywhere in `tests/` — `check-auto`'s sole `v0.44` is
+  D-3 below.
+- **`check-lean.sh` — new, the regression floor (field note §5 · §48 Open), 33/0,
+  run-all row 22** in the whole-surface group, no existing row renumbered (the
+  check-change precedent — J-1). Document first so the carrier sweep can never go
+  vacuous: the lean-law paragraph, the default sentence and the retirement in the
+  three documents' own words; then (1) ba-frame's block **extracted from §8.1 at
+  run time and asserted byte-equal**, five numbered lines, no Parameters and no
+  Budget inside; (2) no `^Budget:` / `^Parameters:` / `^Capacity:` line in the
+  template, the ba-frame/ba-status renders, and **every** fixture ledger found by
+  glob (2 found — the sweep asserts its own non-vacuity); (3) the advisory — both
+  seat-test negatives whitespace-collapsed, `(request)` present, `Capacity check`
+  and `reason: envelope` at 0; (4) the boundary difference **cited, not
+  duplicated** — check-wbs.sh's own pinned Billable derivation asserted to still
+  exist (J-2); (5) the default proved as a default — the step-3 sentence, the
+  billed-by-default sentence, ba-frame's site, and `lean mode` / `full mode` at 0
+  across `payload/` (case-insensitive).
+
+### Four mutations — each fired, each file restored byte-identically
+
+| Mutation | Fires | Result |
+|---|---|---|
+| `2. Budget envelope: …` restored into ba-frame's block | `check-lean.sh` | 33/0 → 32/1 — the byte-equal assertion |
+| `Budget:` restored into the template head | `check-lean.sh` | 33/0 → 32/1 — the head sweep |
+| `or (ii) the client hard-requested it in the docs` restored into ba-t18's advisory | `check-lean.sh` | 33/0 → 31/2 — both negatives |
+| orchestrator header `v0.45` → `v0.44` (line 2 only) | both pin sites | `check-orchestrator` 636/0 → 635/1 **and** `check-humanizer` 120/0 → 119/1, while the file still carries four `v0.45` tokens in the change record — the `head -2` discrimination, as 0.1.50 recorded |
+
+### Eleven divergences, registered — none resolved silently
+
+**D-1 — the base moved.** `origin/main` stood at `87e8139` (the dashboard-prototype
+merge, `proposals/ba-status-dashboard-prototype.html` only — no payload, no tests,
+no run-all row) while the tree sat at `b34c9dc` with the drop uncommitted on top.
+Fast-forwarded under the dirty docs (the merge touches no dirty path); every
+next-free re-established against `origin/main` per the v0.27 precedent — package
+`0.1.53`, run-all row 22, contiguity to 106. The change record's own base claim
+(`87e8139`, package 0.1.52) matches origin exactly.
+
+**D-2 — the baseline was RED wider than stated, on one cause.** Expected: the
+edition pins alone. Found: **21 checks, 2 red, 5 failures** — check-orchestrator
+630/4 (the header pin, the contiguity range, **and the two §8.1 block-line pins**
+for lines 5/6, all four the drop's own doing) and check-humanizer 119/1 (the
+header pin alone). All five moved by this pass.
+
+**D-3 — `check-auto` has no `v0.44` pin to move.** Its only `v0.44` is a comment
+banner recording that *v0.44 legislates it at §7.5* — the true history of D-O103's
+edition, not an edition pin; the check was GREEN at 347/0 in the baseline, exactly
+as a comment predicts. Moving it would falsify the record; minting a pin is an
+owner act (the 0.1.50 precedent minted on an owner ruling for a document that
+claims a pin — nothing here claims one). Left as the comment it is; routed.
+
+**D-4 — check-humanizer's "second copy of both" is a header pin and a trailer pin,
+and the trailer did not move in the drop.** The doc's italic trailer still reads
+`decisions D-O1–D-O103 locked` while D-O104–D-O106 stand ruled at §48;
+check-humanizer pins that trailer verbatim and passes. The pin stays byte-faithful
+to the document at HEAD; the stale trailer is a Lane B remnant, routed to the
+owner for the next drop.
+
+**D-5 — the doc's own XO stop-count remnant.** §8.1's D-O73 paragraph pre-fills
+**line 4** and §48 rules the numbers moved (3 · 4 · 5), but the paragraph's
+stop-count sentence still reads *line 5 rides inside the P-O0b block*. The carrier
+compiles the whole-document reading — `ba-frame`'s stop-count says line 4 — and
+the remnant is registered here, not fixed (docs untouched by this pass); routed.
+
+**D-6 — §7.7 still names the retired head line, and the carrier follows it.** The
+locate table's scope-frame row reads ``Boundary:` · `Budget:` · `Scope decisions:`
+· `Acceptance shapes:`` and the landing table says *a boundary or budget move* —
+D-O105's Where column never reached §7.7, and §48's conflict scan says the change
+route is unreached. `ba-change` compiles §7.7 verbatim, so its two rows stand
+**byte-unchanged** (recompiling from the doc at HEAD is the identity); the tension
+between the conflict-scan claim and §7.7's `Budget:` token is the owner's to rule;
+routed.
+
+**D-7 — the ba-t01 mirror (the prompt's own unit E), at four sites.** `ba-t01`'s
+inputs name `Budget:`; its §13-mirror paragraph, its references/example row and
+the canvas template's §13 row carry *budget envelope* — all compiles of
+catalogue-b1 D-B1-5, which this drop did not amend. Not resolved here: the mirror
+compiles b1's text as it stands, a stated budget remains a business-constraint
+one-liner the canvas holds from the material anyway, and the reconciliation is
+routed to b1's next pass.
+
+**D-8 — the census missed four live-law carriers; the sweep caught them.**
+`ba-auto`'s §10.7 policy row and floor sentence, `ba-orchestrator`'s floor
+sentence (*a boundary or an envelope … its own budget*), and
+`ba-t18/references/example.md`'s third worked example, where **the envelope moved
+an epic** — the exact mechanics D-O105 outlaws, demonstrated as teaching material.
+All four compile sections the ruling's Where column names (*§10.7 policy row and
+the floor*; the sheet's example world) and were moved; no test pinned any of them
+(verified before editing). The example fix is J-7.
+
+**D-9 — the qr-boundary event reason carried the envelope.** *boundary MVP +
+Phase 2; no envelope stated* — the clause dropped with the head lines; synthetic
+content, no check reads it.
+
+**D-10 — the template's autonomous-mode comment still lists four floor acts
+including the handoff**, retired from the floor by D-O94 (v0.39) — a pre-existing
+stale line outside this drop's Where. Registered, untouched, routed.
+
+**D-11 — a compile defect caught by the estate's own suite, in-pass.** The first
+ba-t18 compile cited `D-B6-18/19/20` and check-spine's layering rule (section 9 —
+no `D-B[0-9]-[0-9]` in the payload) fired; recompiled citing the paired
+orchestrator numbers, the payload's idiom. And the first ba-frame lean paragraph
+wrote a bare `T-18's step 4` — the doc's own wording — and check-register's rule-5
+sweep fired (64/57 → 7 failures, five of them the self-test's cascade); recompiled
+`T-18 — Scope allocation's step 4`, the register's code-plus-name law senior over
+the doc's prose at a render surface. Both defects existed for minutes and neither
+survived to the suite's final run — recorded because a silent fix is a fix nobody
+can audit.
+
+### Judgement calls
+
+1. **The floor is a new check, not a section** (J-1) — it spans three documents,
+   four skills, the template and every fixture ledger; no existing check reads
+   them all, and field note §5 stays one named unit. Row 22, nothing renumbered.
+2. **Floor item 4 cites check-wbs's pinned Billable test instead of adding one**
+   (J-2) — the prompt's own conditional, taken; the citation fails loudly if the
+   pin is ever dropped.
+3. **ba-frame's lean paragraph omits the doc's *lean/full mode* denial phrase**
+   (J-3) — *no second switch exists and none is to be built* instead — because the
+   floor's own grep (`lean mode` / `full mode` at 0 across payload) would count
+   the denial as a naming; the denial is enforced by the grep, not restated.
+4. **The XO stop-count compiled at line 4 against the doc's line-5 remnant**
+   (J-4/D-5) — the ruling, the pre-fill sentence and the block outvote one
+   unmoved token; registered, not silent.
+5. **The band event's frame line drops the two retired values and adds nothing**
+   (J-5) — `boundary <…> · label <…>`; the registers live on their own head lines.
+6. **The step-4 example option ends at *it fits the boundary*** (J-6) — the
+   capacity clause dropped, nothing invented.
+7. **Allocation 3 recomposed as a boundary-move no-change rerun** (J-7) — the
+   AUTO-tail heading byte-kept (the lesson the example exists for), the body now
+   D-O106's own law: *the boundary selects what the proposal bills, never what a
+   phase carries, so no row moves and the lean first phase stands.* The lawful
+   alternatives — deleting the example (loses the tail lesson) or an SD-driven
+   move (whose AUTO/step-4 interaction the doc does not spell) — both rejected.
+8. **The persona `(request)` conditional did not fire** (J-8) — neither persona
+   names the T-18 advisory; the flag's carriers are ba-t18 and the documents.
+
+**Defaults taken: none.**
+
+### Falsification sweep — clean
+
+Killed strings across `payload/` and `tests/`: `Budget envelope` 0 · 0;
+`Capacity check` 0 · 2; `eng-share` 0 · 0; `reason: envelope` 0 · 2; `or (ii)`
+0 · 1; `hard-requested it in the docs` 0 · 1 — **every tests-side occurrence is
+the killed string standing as its own negative-assertion needle inside
+`check-lean.sh`**, the mechanism that keeps it dead; zero occurrences elsewhere.
+Required strings at count: the five-line block byte-equal in doc and carrier
+(asserted at run time); `(request)` in ba-t18; the three harvests at 3 · 4 · 5;
+`lean mode` / `full mode` at 0 across payload. Every remaining lowercase
+`envelope` / `capacity` / `budget` mention in the payload reviewed by hand:
+historical-retirement clauses (doc-derived), the ≤ 8 interaction budget, T-06/T-14
+NFR-and-design budgets, the audit's sample vocabulary, and D-6/D-7's registered
+carriers — nothing live reads money as allocation ground.
+
+### The suite
+
+| Check | Baseline (Lane-B state) | This pass |
+|---|---|---|
+| `check-m.sh` | 91 / 0 | 91 / 0 |
+| `check-gate.sh` | 158 / 0 | 158 / 0 |
+| **`check-orchestrator.sh`** | **630 / 4 ✗** | **636 / 0** |
+| `check-techniques.sh` | 104 / 0 | 104 / 0 |
+| `check-techniques2.sh` | 127 / 0 | 127 / 0 |
+| `check-techniques3.sh` | 166 / 0 | 166 / 0 |
+| `check-spine.sh` | 286 / 0 | 286 / 0 |
+| `check-register.sh` | 64 / 0 | 64 / 0 |
+| `check-wbs.sh` | 111 / 0 | 111 / 0 |
+| `check-audit.sh` | 240 / 0 | 240 / 0 |
+| `check-status.sh` | 129 / 0 | 129 / 0 |
+| `check-map.sh` | 43 / 0 | 43 / 0 |
+| **`check-humanizer.sh`** | **119 / 1 ✗** | **120 / 0** |
+| `check-ledger.py` | grammar-legal, 20 rules | grammar-legal, 20 rules |
+| `check-cards.py` | byte-identical, layering clean | byte-identical, layering clean |
+| `check-layout.sh` | 127 / 0 / 0 | 127 / 0 / 0 |
+| `check-exit.sh --offline` | 105 / 0 | 105 / 0 |
+| `check-install.sh` | 64 / 0 | 64 / 0 |
+| `check-budget.sh` | 99 / 0 | 99 / 0 |
+| `check-auto.sh` | 347 / 0 | 347 / 0 |
+| `check-change.sh` | 134 / 0 | 134 / 0 |
+| **`check-lean.sh`** | — | **33 / 0 (new)** |
+| | **21 checks · 2 RED** | **22 checks · 0 RED** |
+
+Verified twice: in the working tree and in an isolated copy (vendor/ carried in,
+the three install-based runs included).
+
+### Open — routed from this pass
+
+- **The field-acceptance replay** — field note §5 items 1 and the live halves of 4
+  and 5: the Nutrivity replay over the client's material, and the default proved
+  in a live Frame-plus-T-18 run — pending on the reporting estates **after release
+  and owner update**, never by patching an estate in place (the note's own §6
+  boundary). Items 2, 3 and the offline halves of 4 and 5 stand asserted in
+  `check-lean.sh`.
+- **The doc remnants, for the next Lane B drop:** the trailer's lock range
+  (D-O103 → D-O106, D-4) · §8.1's XO stop-count *line 5* token (D-5) · §7.7's
+  `Budget:` row and *boundary or budget move* clause against its own conflict-scan
+  claim (D-6) · D-O65's *the budget has its own line* clause, whose line no longer
+  exists (kept verbatim in ba-frame's compile because the doc keeps it).
+- **The b1 mirror** (D-7) — ba-t01, its example, the canvas template: the
+  budget-envelope slot in the §13 mirror awaits catalogue-b1's own pass.
+- **The template's four-act floor comment** (D-10) — stale since D-O94; a
+  one-line Lane B or compile fix on its next covering ruling.
+- **check-spine's seeded `no legitimacy trace` reason gloss** (line ~703) — a
+  fixture Reason cell riding the retired test's vocabulary; harmless to every
+  sweep, renamable whenever that fixture is next touched.

@@ -71,10 +71,12 @@ Initializes the two ledgers, then asks once for the three things Band 1 is run
 against: the **source inventory** — what material exists beyond what you handed
 over, Slack channels, email threads, drive folders, call recordings, named,
 pasted, attached or declined — the **flow profile**, and the **scope frame** —
-delivery boundary, budget envelope, client label, and the rate and team mix
-behind the capacity line. All three blocks render together and you answer them
-in one reply; the framework pre-fills the frame from whatever material is on
-hand, with citations. Sources it can reach are captured verbatim under
+delivery boundary, client label, and the scope decisions, cross-cutting
+obligations and acceptance shapes the material states. There is no budget line
+and no rate card: money is delivery ground, and the first phase is composed on
+need, not on envelope (Band 2, below). All three blocks render together and
+you answer them in one reply; the framework pre-fills the frame from whatever
+material is on hand, with citations. Sources it can reach are captured verbatim under
 `sources/`; ones it cannot take your ruling — supply, skip, or leave pending —
 and every named source stands on the ledger head's `Sources:` line with its
 state. Then, if there is no
@@ -121,6 +123,20 @@ when something breaks.
 /ba-t18                      # MVP / Phase 2 / Later allocation, with a diff and a reason
 /ba-tier1 kit E-03           # a stakeholder-call kit for one epic
 ```
+
+**The first phase is lean by law.** T-18 puts into MVP only what the key
+business need cannot be met without — the least set of epics whose flow runs
+from its first step to the outcome the need names — and everything else onto a
+later phase, so the roadmap always shows the whole scope and nothing is dropped
+to compose lean. A capability the client asked for that the need does not
+require is not lost: it sits on a later phase with the request on record, and
+the advisory names it as `(request)` so you can direct it back in with one
+ruling; `apply all` leaves the lean cut standing. No budget, ballpark or
+architect's estimate moves an epic — the framework never reads one. If the
+proposal should carry more, widen the delivery boundary (`MVP + Phase 2`);
+that is the only switch, and it is yours. You never switch lean on: it is what T-18
+does when you say nothing, and every widening is an act you take and the log
+records.
 
 The kit is a question set at **scoping depth only** — crucial and significant
 areas, essential scope. Technical final-spec questions are forbidden there, and

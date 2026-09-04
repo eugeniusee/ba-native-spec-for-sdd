@@ -14,8 +14,8 @@
 
   Everything else is invented: the project name, the other twelve epic names,
   the descriptions, the allocation reasoning, the roles, the constitution, the
-  two specs and the initials. No rate, envelope or capacity figure is stated —
-  the head carries the absent-source dashes instead, because inventing
+  two specs and the initials. No rate, envelope or capacity figure is stated
+  and no head line carries one (the money left the frame — D-O105): inventing
   commercial terms inside a fixture shaped like a real engagement is how a
   fixture gets read as a record.
 
@@ -41,13 +41,10 @@ Band: 2 (open) — Bands 2/3 capable
 Profile: Presale — picked 2026-08-28 (P-O0)
 Sources: none
 Boundary: MVP + Phase 2 — set 2026-08-28 (P-O0b)
-Budget: none stated  (open — no source material)
 Client label: open — no source material
 Scope decisions: none found
 Cross-cutting: XO-1 — language: English (engagement default — framework law, D-O74) — default
 Acceptance shapes: none found
-Parameters: rate — · team mix — (eng-share —) · capacity check off
-Capacity: — (no envelope)
 Auto: on — AG-1 · scope full workflow · since 2026-08-28
 
 | Aspect | State | Since | Basis |
@@ -69,6 +66,6 @@ Scope advisories:         none
 
 2026-08-28 · Band 1 entered · Frame · A.B. — fixture estate, no captured sources
 
-2026-08-28 · scope-frame · P-O0b · A.B. — boundary MVP + Phase 2; no envelope stated
+2026-08-28 · scope-frame · P-O0b · A.B. — boundary MVP + Phase 2
 
 2026-08-28 · Band 1 closed · P-O7 · A.B. — six aspects first-pass-cleared; arming run requested

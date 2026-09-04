@@ -47,6 +47,10 @@
 #    21  check-change.sh         the change route — the skill · the impact
 #                                render against §7.7's instance · P-O10 ·
 #                                the three additive tails · the CR grammar
+#    22  check-lean.sh           the first phase is lean by law — the frame's
+#                                five lines byte-equal to §8.1 · no money head
+#                                line · the one-seat-test advisory · the
+#                                boundary as the only switch · the default
 #
 # `check-cards.py` and `check-ledger.py` also run inside `check-gate.sh` and
 # `check-orchestrator.sh`. They keep their own rows because the entries give
@@ -235,6 +239,7 @@ printf '\n▸ The whole-surface checks — the render surface as the suite leave
 run_check "check-budget.sh"       suite "$HERE/check-budget.sh"
 run_check "check-auto.sh"         suite "$HERE/check-auto.sh"
 run_check "check-change.sh"       suite "$HERE/check-change.sh"
+run_check "check-lean.sh"         suite "$HERE/check-lean.sh"
 
 # ── the table ────────────────────────────────────────────────────────────────
 

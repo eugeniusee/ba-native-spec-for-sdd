@@ -47,12 +47,9 @@ unsigned) held as in-epic risk with a named owner, not a re-phase.
 
 **Allocation 3 — 2026-08-16 · trigger: scope-frame · BA: Y.K. · AUTO (AG-1)**
 
-| Epic | Phase | Reason |
-|---|---|---|
-| E-07 Online Payment | Phase 2 → Later | scope frame: the ≤ $50K POC envelope excludes the payment surface; no launch dependency |
-
-Held: seven rows · Basis: the frame's envelope, applied to the one epic whose
-phase it contradicted.
+no change — the delivery boundary moved (MVP + Phase 2 → MVP, a P-O0b switch
+the BA logged); the boundary selects what the proposal bills, never what a
+phase carries (D-O106), so no row moves and the lean first phase stands.
 
 **What the tail is, and what it is not.** The heading keeps **every** pinned
 field — number, date, trigger, `BA:` — and appends `· AUTO (AG-1)` after them.

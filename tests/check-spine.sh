@@ -507,7 +507,7 @@ has "$T18" "Every approved run logs, including no-change" "…and logs a no-chan
 has "$T18" "\`Later\` is a phase, not an exit" "…and refuses to phase an epic out of existence"
 has "$T18" "Never numeric estimation" "…and keeps effort comparative"
 has "$T18" "recommends the call — never the answer" "…and refers an open scope question to Tier 1"
-has "$T18" "\`[inferred]\` rows inside the boundary are the advisory's first-named candidates — first-named, never disqualified:" \
+has "$T18" "\`[inferred]\` rows inside the first phase are the advisory's first-named candidates — first-named, never disqualified:" \
     "T-18's advisory reads the class — first-named, and never disqualified by it"
 has "$T18" "the composition half of **principle 4**" \
     "…citing the anchor rather than restating it"
@@ -524,9 +524,9 @@ has "$T18" "not phase-shaped routes as bucket 2" \
 has "$T18" "off-vocabulary phase is **bucket 3**" \
     "…an unknown epic or off-vocabulary phase to bucket 3, named and never skipped"
 has "$T18" "no new trigger token exists" "…riding the existing scope-frame trigger"
-has "$T18" "no longer satisfies the second test" \
-    "T-18's advisory applies the SD reading rule — the earlier citation stops sufficing"
-has "$T18" "first-named advisory candidate" "…the trimmed epic first-named…"
+has "$T18" "its flag falls silent for that capability" \
+    "T-18's advisory applies the SD reading rule — the earlier request's flag falls silent"
+has "$T18" "first-named on the necessity test alone" "…the still-needed epic first-named…"
 has "$T18" "never disqualified" "…and never disqualified by it"
 has "$T18" "elicitation principle 4" "…citing the controlling-statement law, never restating it"
 

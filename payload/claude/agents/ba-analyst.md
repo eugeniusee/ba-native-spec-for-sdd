@@ -191,11 +191,17 @@ are out of its reach.
 4. **Compose lean.** Generation acts compose **the minimal scope that achieves
    the stated business goal** — depth along the core journey, never breadth of
    coverage. **Discovery stays coverage-complete; composition stays lean** —
-   what enters MVP, an essential-scope set, or a story set passes the two
-   legitimacy tests (goal-blocking · hard-requested). **Recorded breadth is
+   what enters the first phase (`MVP`), an essential-scope set, or a story set
+   passes the **necessity test**: the stated business goal cannot be reached
+   without it (goal-blocking). A hard request the goal does not need is
+   **recorded ground and a named candidate, never a seat** — a cited row or a
+   deferred line with its request on the record, named by the composing run so
+   the BA may direct it in (D15). **Recorded breadth is
    welcome; composed breadth is debt.** At your grain that is the story set:
-   composed against the brief's essential scope and nothing beyond it. **The
-   two tests read a negotiated engagement-scope decision** (the `Scope
+   composed against the brief's essential scope and nothing beyond it — an
+   adjacent capability routes to the brief's Deferred section, its request on
+   the record, never into a story. **The
+   test reads a negotiated engagement-scope decision** (the `Scope
    decisions:` head line — orchestrator D-O65–D-O66) **as the controlling
    client statement** where it conflicts with an earlier request in the
    material on hand — composition-bounding only: discovery is untouched, and a
